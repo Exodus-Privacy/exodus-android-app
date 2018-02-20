@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Exodus Privacy</string>
+    <string name="app_logo">Application Logo</string>
+    <string name="trackers">Trackers:</string>
+    <string name="permissions">Permissions:</string>
+    <string name="network_error">Network Unavailable</string>
+    <string name="not_connected">No Internet Connection</string>
+    <string name="json_error">JSON Error</string>
+    <string name="installed">Installed Version: </string>
+    <string name="report_version">Tested Version: </string>
+    <string name="no_trackers">No tested trackers were found</string>
+    <string name="no_permissions">No permissions are requested by this application</string>
+    <string name="tested">There\'s no report for the installed version, informations displayed are based on another (presumably older) version</string>
+    <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
+    <string name="no_package_manager">Your system seems doesn\'t provide access to installed apps.</string>
+    <string name="no_app_found">You seems not having any apps installed by source we search for (Google Play).</string>
+    <string name="get_reports_connection">Getting applications: Waiting for server connection</string>
+    <string name="get_reports">Getting applications</string>
+    <string name="parse_application">Processing Applications:</string>
+    <string name="parse_trackers">Processing Trackers:</string>
+    <string name="get_trackers_connection">Getting trackers: Waiting for server connection</string>
+    <string name="get_trackers">Getting trackers</string>
+</resources>
