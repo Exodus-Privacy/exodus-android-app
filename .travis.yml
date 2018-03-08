@@ -8,3 +8,6 @@ android:
     - build-tools-27.0.3
     - android-27
     - extra-m2-repository
+
+before_script:
+  - gradle wrapper --gradle-version 4.1
