@@ -10,4 +10,4 @@ android:
     - extra-m2-repository
 
 before_script:
-  - gradle wrapper --gradle-version 4.1
+  - gradle wrapper --gradle-version 4.1 -Dcom.android.build.gradle.overrideVersionCheck=true
