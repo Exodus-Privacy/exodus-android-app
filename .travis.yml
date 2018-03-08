@@ -1,0 +1,10 @@
+language: android
+android:
+  componentes:
+    - tools
+    - platform-tools
+    - tools
+
+    - build-tools-27.0.3
+    - android-27
+    - extra-m2-repository
