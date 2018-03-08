@@ -111,14 +111,23 @@ public class ReportFragment  extends Fragment {
             permissionList.loadData(getString(R.string.no_permissions),"text/plain", "UTF-8");
         }
 
+        TextView analysed = v.findViewById(R.id.analysed);
+        TextView trackers_title = v.findViewById(R.id.trackers_title);
+        WebView trackersList = v.findViewById(R.id.trackers);
+        analysed.setVisibility(View.GONE);
+        trackers_title.setVisibility(View.VISIBLE);
+        trackersList.setVisibility(View.VISIBLE);
         //get trackers
         Report report = DatabaseManager.getInstance(context).getReportFor(packageName,versionName);
         Set<Tracker> trackers = null;
         if(report != null) {
             trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
+        } else {
+            analysed.setVisibility(View.VISIBLE);
+            trackers_title.setVisibility(View.GONE);
+            trackersList.setVisibility(View.GONE);
         }
         //setup trackers report
-        TextView trackers_title = v.findViewById(R.id.trackers_title);
         String trackers_text;
         if(trackers != null && trackers.size() > 0)
             trackers_text = context.getString(R.string.trackers)+" "+String.valueOf(trackers.size());
@@ -127,7 +136,6 @@ public class ReportFragment  extends Fragment {
         trackers_title.setText(trackers_text);
 
         //setup trackers lists
-        WebView trackersList = v.findViewById(R.id.trackers);
         //build html tracker list
         if(trackers != null && trackers.size() > 0) {
             List<String> trackersName = new ArrayList<>();

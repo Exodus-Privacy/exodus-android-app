@@ -75,19 +75,20 @@ public class AppListFragment extends Fragment {
         View v = getView();
         if(v == null)
             return;
-        if(startupRefresh) {
-            startRefresh(v);
-            startupRefresh = false;
-        }
         RecyclerView app_list = v.findViewById(R.id.app_list);
         SwipeRefreshLayout refresh = v.findViewById(R.id.swipe_refresh);
         refresh.setOnRefreshListener(() -> startRefresh(getView()));
         if (packageManager == null)
             packageManager = v.getContext().getPackageManager();
+
         app_list.setLayoutManager(new LinearLayoutManager(v.getContext()));
         TextView nopm = v.findViewById(R.id.no_package_manager);
         TextView noappfound = v.findViewById(R.id.no_app_found);
         if (packageManager != null) {
+            if(startupRefresh) {
+                startRefresh(v);
+                startupRefresh = false;
+            }
             nopm.setVisibility(View.GONE);
             noappfound.setVisibility(View.GONE);
             ApplicationListAdapter adapter = new ApplicationListAdapter(packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS), packageManager, onAppClickListener);
