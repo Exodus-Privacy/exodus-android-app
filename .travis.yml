@@ -10,6 +10,9 @@ android:
     - android-27
     - extra-m2-repository
 
+  licences:
+    - android-sdk-license-.+
+
 before_script:
   - touch empty.file
   - gradle wrapper --gradle-version 4.1 -b empty.file
