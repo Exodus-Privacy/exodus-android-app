@@ -10,10 +10,9 @@ android:
     - android-27
     - extra-m2-repository
 
-  licences:
-    - android-sdk-license-.+
-
 before_script:
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
   - touch empty.file
   - gradle wrapper --gradle-version 4.1 -b empty.file
   - rm empty.file
