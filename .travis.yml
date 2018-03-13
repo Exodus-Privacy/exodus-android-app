@@ -9,6 +9,7 @@ android:
     - build-tools-27.0.3
     - android-27
     - extra-m2-repository
+    - sys-img-armeabi-v7a-android-27
 
 before_script:
   - mkdir "$ANDROID_HOME/licenses" || true
