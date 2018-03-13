@@ -1,4 +1,5 @@
 language: android
+java: oraclejdk8
 android:
   componentes:
     - tools
@@ -10,4 +11,6 @@ android:
     - extra-m2-repository
 
 before_script:
-  - gradle wrapper --gradle-version 4.1 -Dcom.android.build.gradle.overrideVersionCheck=true
+  - touch empty.file
+  - gradle wrapper --gradle-version 4.1 -b empty.file
+  - rm empty.file
