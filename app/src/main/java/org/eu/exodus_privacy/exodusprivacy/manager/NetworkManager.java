@@ -46,6 +46,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
 
@@ -115,7 +116,7 @@ public class NetworkManager {
                     switch (mes.type) {
                         case GET_REPORTS:
                             getTrackers(mes);
-                            getReports(mes);
+                            getApplications(mes);
                             break;
                         default:
                             break;
@@ -126,19 +127,12 @@ public class NetworkManager {
             }
         }
 
-        private void getTrackers(Message mes) {
-            if (!isConnectedToInternet(mes.context)) {
-                mes.listener.onError(mes.context.getString(R.string.not_connected));
-                return;
+        private JSONObject makeDataRequest(Context context, NetworkListener listener, URL url) {
+            if (!isConnectedToInternet(context)) {
+                listener.onError(context.getString(R.string.not_connected));
+                return null;
             }
-            mes.listener.onProgress(R.string.get_trackers_connection,0,0);
-            URL url;
-            try {
-                url = new URL(apiUrl+"trackers");
-            } catch (Exception e){
-                e.printStackTrace();
-                return;
-            }
+
             InputStream inStream;
             HttpURLConnection urlConnection;
             boolean success = true;
@@ -146,9 +140,10 @@ public class NetworkManager {
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("Authorization","Token "+context.getString(R.string.exodus));
                 urlConnection.setDoInput(true);
             } catch (Exception e) {
-                return;
+                return null;
             }
 
             try {
@@ -157,13 +152,41 @@ public class NetworkManager {
                 success = false;
                 inStream = urlConnection.getErrorStream();
             }
-            mes.listener.onProgress(R.string.get_trackers,0,0);
-
+            JSONObject object = null;
             if(success) {
                 String jsonStr = getJSON(inStream);
                 try {
+                    object = new JSONObject(jsonStr);
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
 
-                    JSONObject object = new JSONObject(jsonStr);
+            try {
+                if(inStream != null)
+                    inStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return object;
+        }
+
+        private void getTrackers(Message mes) {
+            mes.listener.onProgress(R.string.get_trackers_connection,0,0);
+            URL url;
+            try {
+                url = new URL(apiUrl+"trackers");
+            } catch (Exception e){
+                e.printStackTrace();
+                return;
+            }
+            JSONObject object = makeDataRequest(mes.context,mes.listener,url);
+            mes.listener.onProgress(R.string.get_trackers,0,0);
+
+            if(object != null) {
+                try {
                     JSONObject trackers = object.getJSONObject("trackers");
                     List<Tracker> trackersList = new ArrayList<>();
                     for(int i = 0; i<trackers.names().length(); i++) {
@@ -178,58 +201,78 @@ public class NetworkManager {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
             }
-
-            try {
-                if(inStream != null)
-                    inStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
-        private void getReports(Message mes) {
-            if (!isConnectedToInternet(mes.context)) {
-                mes.listener.onError(mes.context.getString(R.string.not_connected));
-                return;
-            }
+        private void getApplications(Message mes) {
             mes.listener.onProgress(R.string.get_reports_connection,0,0);
-
             URL url;
             try {
-                url = new URL(apiUrl+"reports");
+                url = new URL(apiUrl+"applications");
             } catch (Exception e){
                 e.printStackTrace();
                 return;
             }
-            InputStream inStream;
-            HttpURLConnection urlConnection;
-            boolean success = true;
-            try {
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestProperty("Content-Type", "application/json");
-                urlConnection.setRequestProperty("Accept", "application/json");
-                urlConnection.setDoInput(true);
-            } catch (Exception e) {
+            JSONObject object = makeDataRequest(mes.context,mes.listener,url);
+            mes.listener.onProgress(R.string.get_reports,0,0);
+
+
+
+            if(object != null) {
+                List<String> handles = new ArrayList<>();
+                try {
+                    JSONArray applications = object.getJSONArray("applications");
+                    for(int i = 0; i<applications.length(); i++) {
+                        JSONObject app = applications.getJSONObject(i);
+                        String handle = app.getString("handle");
+                        handles.add(handle);
+                    }
+                } catch (JSONException e) {
+                    mes.listener.onError(mes.context.getString(R.string.json_error));
+                }
+                getReports(mes,handles);
+            }
+            mes.listener.onSuccess();
+        }
+
+        private void getReports(Message mes, List<String> handles) {
+            ArrayList<String> packages = mes.args.getStringArrayList("packages");
+            if(packages == null)
                 return;
+
+            packages.retainAll(handles);
+
+            // Add some random packages to avoid tracking
+            Random rand = new Random(Thread.currentThread().getId());
+            int alea = rand.nextInt(120) % 10 + 11;
+            for(int i = 0 ; i < alea; i++) {
+                int val = rand.nextInt(handles.size());
+                packages.add(handles.get(val));
             }
 
-            try {
-                inStream = urlConnection.getInputStream();
-            } catch (Exception e) {
-                success = false;
-                inStream = urlConnection.getErrorStream();
+
+            for(int i = 0; i < packages.size(); i++) {
+                mes.listener.onProgress(R.string.parse_application,i+1,packages.size());
+                getReport(mes,packages.get(i));
             }
-            mes.listener.onProgress(R.string.get_reports,0,0);
-            if(success) {
-                String jsonStr = getJSON(inStream);
+        }
+
+        private void getReport(Message mes, String handle) {
+            URL url;
+            try {
+                url = new URL(apiUrl+"search/"+handle);
+            } catch (Exception e){
+                e.printStackTrace();
+                return;
+            }
+            JSONObject object = makeDataRequest(mes.context,mes.listener,url);
+
+            if(object != null) {
                 try {
-                    JSONObject object = new JSONObject(jsonStr);
-                    JSONObject applications = object.getJSONObject("applications");
+                    JSONObject applications = object.getJSONObject(handle);
                     ArrayList<String> packages = mes.args.getStringArrayList("packages");
                     for(int i = 0; i<applications.names().length(); i++) {
-                        mes.listener.onProgress(R.string.parse_application,i+1,applications.names().length());
                         String packageName = applications.names().get(i).toString();
-                        if(packages.contains(packageName)) {
+                        if(packages != null && packages.contains(packageName)) {
                             JSONObject application = applications.getJSONObject(packageName);
                             Application app = parseApplication(application, packageName);
                             DatabaseManager.getInstance(mes.context).insertOrUpdateApplication(app);
@@ -239,15 +282,6 @@ public class NetworkManager {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
             }
-
-            try {
-                if(inStream != null)
-                        inStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            mes.listener.onSuccess();
         }
 
         private Application parseApplication(JSONObject object, String packageName) throws JSONException {
