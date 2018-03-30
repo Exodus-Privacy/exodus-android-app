@@ -152,6 +152,8 @@ public class AppListFragment extends Fragment {
 
     private void updateProgress(int resourceId, int progress, int maxProgress) {
         Activity activity = getActivity();
+        if(activity == null)
+            return;
         activity.runOnUiThread(() -> {
             View v = getView();
             if (v == null)
