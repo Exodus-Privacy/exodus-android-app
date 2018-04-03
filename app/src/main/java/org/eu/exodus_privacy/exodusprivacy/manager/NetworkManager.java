@@ -268,15 +268,11 @@ public class NetworkManager {
 
             if(object != null) {
                 try {
-                    JSONObject applications = object.getJSONObject(handle);
+                    JSONObject application = object.getJSONObject(handle);
                     ArrayList<String> packages = mes.args.getStringArrayList("packages");
-                    for(int i = 0; i<applications.names().length(); i++) {
-                        String packageName = applications.names().get(i).toString();
-                        if(packages != null && packages.contains(packageName)) {
-                            JSONObject application = applications.getJSONObject(packageName);
-                            Application app = parseApplication(application, packageName);
-                            DatabaseManager.getInstance(mes.context).insertOrUpdateApplication(app);
-                        }
+                    if(packages != null && packages.contains(handle)) {
+                        Application app = parseApplication(application, handle);
+                        DatabaseManager.getInstance(mes.context).insertOrUpdateApplication(app);
                     }
                 } catch (JSONException e) {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
