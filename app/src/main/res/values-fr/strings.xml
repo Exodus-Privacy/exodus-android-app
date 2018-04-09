@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Exodus Privacy</string>
+    <string name="app_logo">Application Logo</string>
+    <string name="trackers">Pisteurs :</string>
+    <string name="permissions">Autorisations :</string>
+    <string name="network_error">Réseau indisponible</string>
+    <string name="not_connected">Aucune connexion Internet</string>
+    <string name="json_error">Erreur JSON</string>
+    <string name="installed">Version installée : </string>
+    <string name="report_version">Version testée : </string>
+    <string name="no_trackers">Aucun pisteur testé n\'a été trouvé</string>
+    <string name="no_permissions">Aucune autorisation n\'est demandée par cette application</string>
+    <string name="tested">Il n\'y a pas de rapport pour la version installée, les informations affichées sont basées sur une autre version (vraisemblablement plus ancienne)</string>
+    <string name="analysed">Cette application n\'a pas encore été analysée par Exodus Privacy.</string>
+    <string name="no_package_manager">Votre système semble ne pas donner accès aux applications installées.</string>
+    <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play).</string>
+    <string name="get_reports_connection">Récupération des applications : en attente de connexion au serveur</string>
+    <string name="get_reports">Récupération des applications</string>
+    <string name="parse_application">Traitement des applications :</string>
+    <string name="parse_trackers">Traitement des pisteurs :</string>
+    <string name="get_trackers_connection">Récupération des pisteurs : en attente de connexion au serveur</string>
+    <string name="get_trackers">Récupération des pisteurs</string>
+</resources>
