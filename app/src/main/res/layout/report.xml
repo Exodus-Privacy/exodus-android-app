@@ -17,6 +17,8 @@
             />
 
         <LinearLayout
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
