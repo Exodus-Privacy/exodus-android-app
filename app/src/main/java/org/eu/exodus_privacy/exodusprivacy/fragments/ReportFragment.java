@@ -23,6 +23,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.databinding.ReportBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
@@ -45,6 +47,7 @@ public class ReportFragment  extends Fragment {
 
     private PackageManager packageManager;
     private PackageInfo packageInfo;
+    private ReportBinding reportBinding;
 
     public static ReportFragment newInstance(PackageManager packageManager, PackageInfo packageInfo) {
         ReportFragment fragment = new ReportFragment();
@@ -62,70 +65,57 @@ public class ReportFragment  extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.report, container, false);
-        updateComplete(v);
-        return v;
+        reportBinding = DataBindingUtil.inflate(inflater,R.layout.report,container,false);
+        updateComplete();
+        return reportBinding.getRoot();
     }
 
-    public void updateComplete(View v) {
-        if(v == null) {
-            v = getView();
-            if (v == null)
-                return;
-        }
-        Context context = v.getContext();
-
+    public void updateComplete() {
+        Context context = reportBinding.getRoot().getContext();
         String packageName = packageInfo.packageName;
         String versionName = packageInfo.versionName;
 
         //setup logo
-        ImageView app_logo = v.findViewById(R.id.logo);
         try {
-            app_logo.setImageDrawable(packageManager.getApplicationIcon(packageName));
+            reportBinding.logo.setImageDrawable(packageManager.getApplicationIcon(packageName));
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
         //setup name
-        TextView app_name = v.findViewById(R.id.name);
-        app_name.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
+        reportBinding.name.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
 
         //setup permissions number
-        TextView permissions_title = v.findViewById(R.id.permissions_title);
         String permissions_text;
         if (packageInfo.requestedPermissions != null && packageInfo.requestedPermissions.length > 0)
             permissions_text = context.getString(R.string.permissions) + " " + String.valueOf(packageInfo.requestedPermissions.length);
         else
             permissions_text = context.getString(R.string.permissions);
 
-        permissions_title.setText(permissions_text);
+        reportBinding.permissionsTitle.setText(permissions_text);
 
         //setup permissions list
-        WebView permissionList = v.findViewById(R.id.permissions);
         //Build html permissions list
         if (packageInfo.requestedPermissions != null && packageInfo.requestedPermissions.length > 0) {
             List<String> requestedPermissions = Arrays.asList(packageInfo.requestedPermissions);
             String html = buildHtmlList(requestedPermissions);
-            permissionList.loadData(html,"text/html","UTF-8");
+            reportBinding.permissions.loadData(html,"text/html","UTF-8");
         } else {
-            permissionList.loadData(getString(R.string.no_permissions),"text/plain", "UTF-8");
+            reportBinding.permissions.loadData(getString(R.string.no_permissions),"text/plain", "UTF-8");
         }
 
-        TextView analysed = v.findViewById(R.id.analysed);
-        TextView trackers_title = v.findViewById(R.id.trackers_title);
-        WebView trackersList = v.findViewById(R.id.trackers);
-        analysed.setVisibility(View.GONE);
-        trackers_title.setVisibility(View.VISIBLE);
-        trackersList.setVisibility(View.VISIBLE);
+        reportBinding.analysed.setVisibility(View.GONE);
+        reportBinding.trackersTitle.setVisibility(View.VISIBLE);
+        reportBinding.trackers.setVisibility(View.VISIBLE);
         //get trackers
         Report report = DatabaseManager.getInstance(context).getReportFor(packageName,versionName);
         Set<Tracker> trackers = null;
         if(report != null) {
             trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
         } else {
-            analysed.setVisibility(View.VISIBLE);
-            trackers_title.setVisibility(View.GONE);
-            trackersList.setVisibility(View.GONE);
+            reportBinding.analysed.setVisibility(View.VISIBLE);
+            reportBinding.trackersTitle.setVisibility(View.GONE);
+            reportBinding.trackers.setVisibility(View.GONE);
         }
         //setup trackers report
         String trackers_text;
@@ -133,7 +123,7 @@ public class ReportFragment  extends Fragment {
             trackers_text = context.getString(R.string.trackers)+" "+String.valueOf(trackers.size());
         else
             trackers_text = context.getString(R.string.trackers);
-        trackers_title.setText(trackers_text);
+        reportBinding.trackersTitle.setText(trackers_text);
 
         //setup trackers lists
         //build html tracker list
@@ -143,36 +133,33 @@ public class ReportFragment  extends Fragment {
                 trackersName.add(tracker.name);
             }
             String html = buildHtmlList(trackersName);
-            trackersList.loadData(html,"text/html","UTF-8");
+            reportBinding.trackers.loadData(html,"text/html","UTF-8");
         } else {
-            trackersList.loadData(getString(R.string.no_trackers),"text/plain","UTF-8");
+            reportBinding.trackers.loadData(getString(R.string.no_trackers),"text/plain","UTF-8");
         }
 
         //setup creator
-        TextView creators = v.findViewById(R.id.creator);
         if(report != null)
-            creators.setText(DatabaseManager.getInstance(context).getCreator(report.appId));
+            reportBinding.creator.setText(DatabaseManager.getInstance(context).getCreator(report.appId));
         else
-            creators.setVisibility(View.GONE);
+            reportBinding.creator.setVisibility(View.GONE);
 
         //setup installed
-        TextView installed = v.findViewById(R.id.installed_version);
         String installed_str = context.getString(R.string.installed) +" "+ versionName;
-        installed.setText(installed_str);
+        reportBinding.installedVersion.setText(installed_str);
 
         //setup reportversion
-        TextView reportVersion = v.findViewById(R.id.report_version);
+        reportBinding.reportVersion.setVisibility(View.VISIBLE);
         if(report != null && !report.version.equals(versionName)) {
             String report_str = context.getString(R.string.report_version)+" "+report.version;
-            reportVersion.setText(report_str);
+            reportBinding.reportVersion.setText(report_str);
         }
         else
-            reportVersion.setVisibility(View.GONE);
+            reportBinding.reportVersion.setVisibility(View.GONE);
 
         //setup report url
-        TextView url = v.findViewById(R.id.report_url);
         if(report != null)
-            url.setText("https://reports.exodus-privacy.eu.org/reports/"+report.id+"/");
+            reportBinding.reportUrl.setText("https://reports.exodus-privacy.eu.org/reports/"+report.id+"/");
     }
 
     private String buildHtmlList(List<String> list) {

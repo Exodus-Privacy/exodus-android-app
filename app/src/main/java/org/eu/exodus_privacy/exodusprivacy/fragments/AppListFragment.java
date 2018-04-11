@@ -23,6 +23,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -37,6 +38,7 @@ import android.widget.TextView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.databinding.ApplistBinding;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
 import org.eu.exodus_privacy.exodusprivacy.manager.NetworkManager;
 
@@ -50,6 +52,7 @@ public class AppListFragment extends Fragment {
     private NetworkListener networkListener;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
     private boolean startupRefresh;
+    private ApplistBinding applistBinding;
 
     public static AppListFragment newInstance(NetworkListener networkListener, ApplicationListAdapter.OnAppClickListener appClickListener) {
         AppListFragment fragment = new AppListFragment();
@@ -66,68 +69,58 @@ public class AppListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.applist,container,false);
+        applistBinding = DataBindingUtil.inflate(inflater,R.layout.applist,container,false);
+        return applistBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        View v = getView();
-        if(v == null)
+        if(applistBinding == null)
             return;
-        RecyclerView app_list = v.findViewById(R.id.app_list);
-        SwipeRefreshLayout refresh = v.findViewById(R.id.swipe_refresh);
-        refresh.setOnRefreshListener(() -> startRefresh(getView()));
+        Context context = applistBinding.getRoot().getContext();
+        applistBinding.swipeRefresh.setOnRefreshListener(() -> startRefresh());
         if (packageManager == null)
-            packageManager = v.getContext().getPackageManager();
+            packageManager = context.getPackageManager();
 
-        app_list.setLayoutManager(new LinearLayoutManager(v.getContext()));
-        TextView nopm = v.findViewById(R.id.no_package_manager);
-        TextView noappfound = v.findViewById(R.id.no_app_found);
+        applistBinding.appList.setLayoutManager(new LinearLayoutManager(context));
         if (packageManager != null) {
             if(startupRefresh) {
-                startRefresh(v);
+                startRefresh();
                 startupRefresh = false;
             }
-            nopm.setVisibility(View.GONE);
-            noappfound.setVisibility(View.GONE);
-            ApplicationListAdapter adapter = new ApplicationListAdapter(packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS), packageManager, onAppClickListener);
+            applistBinding.noPackageManager.setVisibility(View.GONE);
+            applistBinding.noAppFound.setVisibility(View.GONE);
+            ApplicationListAdapter adapter = new ApplicationListAdapter(packageManager, onAppClickListener);
             if(adapter.getItemCount() == 0) {
-                noappfound.setVisibility(View.VISIBLE);
+                applistBinding.noAppFound.setVisibility(View.VISIBLE);
             } else {
-                app_list.setAdapter(adapter);
+                applistBinding.appList.setAdapter(adapter);
             }
         } else {
-            nopm.setVisibility(View.VISIBLE);
+            applistBinding.noPackageManager.setVisibility(View.VISIBLE);
         }
     }
 
-    public void startRefresh(View v){
-        if(v == null)
+    public void startRefresh(){
+        if(applistBinding == null)
             return;
-        LinearLayout layout = v.findViewById(R.id.layout_progress);
-        layout.setVisibility(View.VISIBLE);
-        SwipeRefreshLayout refresh = v.findViewById(R.id.swipe_refresh);
-        refresh.setRefreshing(true);
+        applistBinding.layoutProgress.setVisibility(View.VISIBLE);
+        applistBinding.swipeRefresh.setRefreshing(true);
         List<PackageInfo> packageInstalled = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
         ArrayList<String> packageList = new ArrayList<>();
         for(PackageInfo pkgInfo : packageInstalled)
             packageList.add(pkgInfo.packageName);
 
-        NetworkManager.getInstance().getReports(v.getContext(),networkListener,packageList);
+        NetworkManager.getInstance().getReports(applistBinding.getRoot().getContext(),networkListener,packageList);
     }
 
     public void updateComplete() {
-        View v = getView();
-        if(v != null) {
-            LinearLayout layout = v.findViewById(R.id.layout_progress);
-            layout.setVisibility(View.GONE);
-            SwipeRefreshLayout refresh = v.findViewById(R.id.swipe_refresh);
-            refresh.setRefreshing(false);
-            RecyclerView app_list = v.findViewById(R.id.app_list);
-            if(packageManager != null && app_list.getAdapter() != null) {
-                ((ApplicationListAdapter) app_list.getAdapter()).setPackageManager(packageManager);
-                app_list.getAdapter().notifyDataSetChanged();
+        if(applistBinding != null) {
+            applistBinding.layoutProgress.setVisibility(View.GONE);
+            applistBinding.swipeRefresh.setRefreshing(false);
+            if(packageManager != null && applistBinding.appList.getAdapter() != null) {
+                ((ApplicationListAdapter) applistBinding.appList.getAdapter()).setPackageManager(packageManager);
             }
         }
     }
@@ -155,17 +148,14 @@ public class AppListFragment extends Fragment {
         if(activity == null)
             return;
         activity.runOnUiThread(() -> {
-            View v = getView();
-            if (v == null)
+            if (applistBinding == null)
                 return;
-            TextView status = v.findViewById(R.id.status_progress);
             if(maxProgress > 0)
-                status.setText(getString(resourceId)+" "+progress+"/"+maxProgress);
+                applistBinding.statusProgress.setText(getString(resourceId)+" "+progress+"/"+maxProgress);
             else
-                status.setText(getString(resourceId));
-            ProgressBar progressBar = v.findViewById(R.id.progress);
-            progressBar.setMax(maxProgress);
-            progressBar.setProgress(progress);
+                applistBinding.statusProgress.setText(getString(resourceId));
+            applistBinding.progress.setMax(maxProgress);
+            applistBinding.progress.setProgress(progress);
         });
 
     }

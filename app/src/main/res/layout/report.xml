@@ -1,116 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/base_info"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data/>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            />
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_marginLeft="2dp"
-            android:layout_marginStart="2dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:id="@+id/base_info"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/name"
-                android:text="test"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="Creator"
-                android:id="@+id/creator"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="installed version"
-                android:id="@+id/installed_version"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="Report version"
-                android:id="@+id/report_version"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/report_url"
-                android:autoLink="web"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/analysed"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
+
+            <LinearLayout
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/analysed"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                />
+                >
+                <TextView
+                    android:id="@+id/name"
+                    android:text="test"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="Creator"
+                    android:id="@+id/creator"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="installed version"
+                    android:id="@+id/installed_version"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="Report version"
+                    android:id="@+id/report_version"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/report_url"
+                    android:autoLink="web"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/analysed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analysed"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <ScrollView
-        android:layout_below="@id/base_info"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        >
-        <RelativeLayout
+        <LinearLayout
+            android:layout_below="@id/base_info"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             >
 
-            <TextView
-                android:background="@color/colorPrimary"
-                android:id="@+id/trackers_title"
-                android:text="@string/trackers"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                />
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:orientation="vertical">
 
-            <WebView
-                android:id="@+id/trackers"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                <TextView
+                    android:id="@+id/trackers_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/trackers"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white" />
+
+                <WebView
+                    android:id="@+id/trackers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="50"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/trackers_title"
-                />
+                android:layout_height="match_parent">
+                <TextView
+                    android:background="@color/colorPrimary"
+                    android:id="@+id/permissions_title"
+                    android:text="@string/permissions"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    />
 
-            <TextView
-                android:background="@color/colorPrimary"
-                android:id="@+id/permissions_title"
-                android:text="@string/permissions"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/trackers"
-                android:textColor="@android:color/white"
-                />
-
-            <WebView
-                android:id="@+id/permissions"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/permissions_title"
-                />
-        </RelativeLayout>
-    </ScrollView>
-
-</RelativeLayout>
+                <WebView
+                    android:id="@+id/permissions"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -20,11 +20,13 @@ package org.eu.exodus_privacy.exodusprivacy;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
 import org.eu.exodus_privacy.exodusprivacy.fragments.AppListFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        final MainBinding mainBinding = DataBindingUtil.setContentView(this,R.layout.main);
 
         NetworkListener networkListener = new NetworkListener() {
             @Override
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     appList.updateComplete();
                     if(report != null)
-                        report.updateComplete(null);
+                        report.updateComplete();
 
                 });
             }
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public void onError(String error) {
                 runOnUiThread(() -> {
                     appList.updateComplete();
-                    Snackbar bar = Snackbar.make(findViewById(R.id.fragment_container),error,Snackbar.LENGTH_LONG);
+                    Snackbar bar = Snackbar.make(mainBinding.fragmentContainer,error,Snackbar.LENGTH_LONG);
                     bar.show();
                 });
             }
