@@ -75,6 +75,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/tracker_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
@@ -89,8 +90,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@android:color/white" />
 
-                <WebView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/trackers"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -110,9 +113,10 @@
                     android:textColor="@android:color/white"
                     />
 
-                <WebView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/permissions"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />

@@ -23,8 +23,10 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PermissionInfo;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +35,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.ReportBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
+import org.eu.exodus_privacy.exodusprivacy.objects.Permission;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
@@ -95,18 +100,33 @@ public class ReportFragment  extends Fragment {
         reportBinding.permissionsTitle.setText(permissions_text);
 
         //setup permissions list
-        //Build html permissions list
+        List<Permission> requestedPermissions = null;
         if (packageInfo.requestedPermissions != null && packageInfo.requestedPermissions.length > 0) {
-            List<String> requestedPermissions = Arrays.asList(packageInfo.requestedPermissions);
-            String html = buildHtmlList(requestedPermissions);
-            reportBinding.permissions.loadData(html,"text/html","UTF-8");
-        } else {
-            reportBinding.permissions.loadData(getString(R.string.no_permissions),"text/plain", "UTF-8");
+            requestedPermissions = new ArrayList<>();
+            for(int i = 0; i < packageInfo.requestedPermissions.length; i++) {
+                Permission permission = new Permission();
+                permission.fullName = packageInfo.requestedPermissions[i];
+                try {
+                    PermissionInfo permissionInfo = packageManager.getPermissionInfo(permission.fullName,PackageManager.GET_META_DATA);
+                    if(permissionInfo.loadDescription(packageManager) != null)
+                        permission.description = permissionInfo.loadDescription(packageManager).toString();
+                    if(permissionInfo.loadLabel(packageManager) != null)
+                        permission.name = permissionInfo.loadLabel(packageManager).toString();
+                    requestedPermissions.add(permission);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
+        reportBinding.permissions.setLayoutManager(new LinearLayoutManager(context));
+        PermissionListAdapter permissionAdapter = new PermissionListAdapter(requestedPermissions);
+        reportBinding.permissions.setAdapter(permissionAdapter);
+
+
         reportBinding.analysed.setVisibility(View.GONE);
-        reportBinding.trackersTitle.setVisibility(View.VISIBLE);
-        reportBinding.trackers.setVisibility(View.VISIBLE);
+        reportBinding.trackerLayout.setVisibility(View.VISIBLE);
+
         //get trackers
         Report report = DatabaseManager.getInstance(context).getReportFor(packageName,versionName);
         Set<Tracker> trackers = null;
@@ -114,8 +134,7 @@ public class ReportFragment  extends Fragment {
             trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
         } else {
             reportBinding.analysed.setVisibility(View.VISIBLE);
-            reportBinding.trackersTitle.setVisibility(View.GONE);
-            reportBinding.trackers.setVisibility(View.GONE);
+            reportBinding.trackerLayout.setVisibility(View.GONE);
         }
         //setup trackers report
         String trackers_text;
@@ -126,17 +145,9 @@ public class ReportFragment  extends Fragment {
         reportBinding.trackersTitle.setText(trackers_text);
 
         //setup trackers lists
-        //build html tracker list
-        if(trackers != null && trackers.size() > 0) {
-            List<String> trackersName = new ArrayList<>();
-            for (Tracker tracker : trackers) {
-                trackersName.add(tracker.name);
-            }
-            String html = buildHtmlList(trackersName);
-            reportBinding.trackers.loadData(html,"text/html","UTF-8");
-        } else {
-            reportBinding.trackers.loadData(getString(R.string.no_trackers),"text/plain","UTF-8");
-        }
+        reportBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
+        TrackerListAdapter trackerAdapter = new TrackerListAdapter(trackers,R.layout.tracker_item);
+        reportBinding.trackers.setAdapter(trackerAdapter);
 
         //setup creator
         if(report != null)
@@ -160,15 +171,6 @@ public class ReportFragment  extends Fragment {
         //setup report url
         if(report != null)
             reportBinding.reportUrl.setText("https://reports.exodus-privacy.eu.org/reports/"+report.id+"/");
-    }
-
-    private String buildHtmlList(List<String> list) {
-        String html = "<ul>";
-        for (String item : list) {
-            html += "<li>"+item+"</li>";
-        }
-        html += "</li>";
-        return html;
     }
 
     public void setPackageManager(PackageManager packageManager) {
