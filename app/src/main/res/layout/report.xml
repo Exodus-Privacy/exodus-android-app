@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <data/>
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="horizontal"
             android:id="@+id/base_info"
@@ -123,4 +126,5 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+    </ScrollView>
 </layout>

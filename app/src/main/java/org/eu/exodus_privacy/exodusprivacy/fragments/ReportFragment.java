@@ -30,9 +30,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
@@ -44,7 +41,6 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -121,6 +117,7 @@ public class ReportFragment  extends Fragment {
 
         reportBinding.permissions.setLayoutManager(new LinearLayoutManager(context));
         PermissionListAdapter permissionAdapter = new PermissionListAdapter(requestedPermissions);
+        reportBinding.permissions.setNestedScrollingEnabled(false);
         reportBinding.permissions.setAdapter(permissionAdapter);
 
 
@@ -147,6 +144,7 @@ public class ReportFragment  extends Fragment {
         //setup trackers lists
         reportBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
         TrackerListAdapter trackerAdapter = new TrackerListAdapter(trackers,R.layout.tracker_item);
+        reportBinding.trackers.setNestedScrollingEnabled(false);
         reportBinding.trackers.setAdapter(trackerAdapter);
 
         //setup creator
