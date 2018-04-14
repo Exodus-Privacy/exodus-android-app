@@ -18,10 +18,10 @@
 
 package org.eu.exodus_privacy.exodusprivacy;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -70,26 +70,28 @@ public class MainActivity extends AppCompatActivity {
         ApplicationListAdapter.OnAppClickListener onAppClickListener = packageInfo -> {
 
             report = ReportFragment.newInstance(getPackageManager(),packageInfo);
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.fragment_container,report);
-            transaction.commit();
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
+                    .replace(R.id.fragment_container,report)
+                    .addToBackStack(null)
+                    .commit();
         };
 
         appList = AppListFragment.newInstance(networkListener,onAppClickListener);
 
 
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container,appList);
-        transaction.commit();
+        transaction.replace(R.id.fragment_container,appList)
+        .commit();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if(report != null)
-            report = null;
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0)
+            finish();
+        else
+            getSupportFragmentManager().popBackStack();
     }
 }
