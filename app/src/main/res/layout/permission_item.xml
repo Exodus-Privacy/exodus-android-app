@@ -26,7 +26,6 @@
                 android:layout_marginLeft="5dp"
                 />
             <TextView
-                android:drawablePadding="10dp"
                 android:id="@+id/permission_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
