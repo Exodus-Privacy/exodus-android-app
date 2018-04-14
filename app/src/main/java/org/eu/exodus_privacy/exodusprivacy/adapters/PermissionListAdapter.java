@@ -63,15 +63,18 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
                 permissionItemBinding.permissionName.setText(permission.name);
                 permissionItemBinding.permissionDescription.setText(permission.description);
                 manageExpanded(permission);
-                if( permission.description != null && permission.description.trim().length() > 0)
-                    permissionItemBinding.mainLayout.setOnClickListener((View.OnClickListener) v -> {
+                permissionItemBinding.mainLayout.setOnClickListener((View.OnClickListener) v -> {
+                    if( permission.description != null && permission.description.trim().length() > 0) {
                         permission.expanded = !permission.expanded;
                         manageExpanded(permission);
-                    });
+                    }
+                });
 
             }
-            else
+            else {
                 permissionItemBinding.permissionName.setText(R.string.no_permissions);
+                permissionItemBinding.arrow.setText(" ");
+            }
 
         }
 
