@@ -1,7 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.adapters;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,12 +9,9 @@ import android.view.ViewGroup;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.PermissionItemBinding;
-import org.eu.exodus_privacy.exodusprivacy.databinding.TrackerItemBinding;
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission;
-import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 import java.util.List;
-import java.util.Set;
 
 public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAdapter.TrackerListViewHolder>{
 
@@ -67,10 +63,12 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
                 permissionItemBinding.permissionName.setText(permission.name);
                 permissionItemBinding.permissionDescription.setText(permission.description);
                 manageExpanded(permission);
-                permissionItemBinding.mainLayout.setOnClickListener((View.OnClickListener) v -> {
-                    permission.expanded = !permission.expanded;
-                    manageExpanded(permission);
-                });
+                if( permission.description != null && permission.description.trim().length() > 0)
+                    permissionItemBinding.mainLayout.setOnClickListener((View.OnClickListener) v -> {
+                        permission.expanded = !permission.expanded;
+                        manageExpanded(permission);
+                    });
+
             }
             else
                 permissionItemBinding.permissionName.setText(R.string.no_permissions);
@@ -79,13 +77,15 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
 
         void manageExpanded(Permission permission) {
             if(permission.expanded) {
-                permissionItemBinding.rightArrow.setVisibility(View.GONE);
-                permissionItemBinding.downArrow.setVisibility(View.VISIBLE);
+                permissionItemBinding.arrow.setText("▼");
                 permissionItemBinding.permissionDescription.setVisibility(View.VISIBLE);
             } else {
-                permissionItemBinding.rightArrow.setVisibility(View.VISIBLE);
-                permissionItemBinding.downArrow.setVisibility(View.GONE);
+                if( permission.description != null && permission.description.trim().length() > 0 )
+                    permissionItemBinding.arrow.setText("▶");
+                else
+                    permissionItemBinding.arrow.setText("■");
                 permissionItemBinding.permissionDescription.setVisibility(View.GONE);
+
             }
         }
     }
