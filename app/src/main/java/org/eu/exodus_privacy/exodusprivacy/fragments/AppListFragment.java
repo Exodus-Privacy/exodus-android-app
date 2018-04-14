@@ -26,15 +26,10 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
@@ -53,6 +48,7 @@ public class AppListFragment extends Fragment {
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
     private boolean startupRefresh;
     private ApplistBinding applistBinding;
+    private ApplicationListAdapter adapter;
 
     public static AppListFragment newInstance(NetworkListener networkListener, ApplicationListAdapter.OnAppClickListener appClickListener) {
         AppListFragment fragment = new AppListFragment();
@@ -91,7 +87,7 @@ public class AppListFragment extends Fragment {
             }
             applistBinding.noPackageManager.setVisibility(View.GONE);
             applistBinding.noAppFound.setVisibility(View.GONE);
-            ApplicationListAdapter adapter = new ApplicationListAdapter(packageManager, onAppClickListener);
+            adapter = new ApplicationListAdapter(packageManager, onAppClickListener);
             if(adapter.getItemCount() == 0) {
                 applistBinding.noAppFound.setVisibility(View.VISIBLE);
             } else {
@@ -174,5 +170,9 @@ public class AppListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         packageManager = null;
+    }
+
+    public void filter(String filter){
+        adapter.filter(filter);
     }
 }

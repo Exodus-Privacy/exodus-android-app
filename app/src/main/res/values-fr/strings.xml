@@ -20,4 +20,7 @@
     <string name="parse_trackers">Traitement des pisteurs :</string>
     <string name="get_trackers_connection">Récupération des pisteurs : en attente de connexion au serveur</string>
     <string name="get_trackers">Récupération des pisteurs</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Filtrer</string>
 </resources>
