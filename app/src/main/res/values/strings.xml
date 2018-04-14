@@ -12,8 +12,8 @@
     <string name="no_permissions">No permissions are requested by this application</string>
     <string name="tested">There\'s no report for the installed version, informations displayed are based on another (presumably older) version</string>
     <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
-    <string name="no_package_manager">Your system seems doesn\'t provide access to installed apps.</string>
-    <string name="no_app_found">You seems not having any apps installed by source we search for (Google Play).</string>
+    <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
+    <string name="no_app_found">It appears that you don't have any apps installed from the source we test (Google Play store).</string>
     <string name="get_reports_connection">Getting applications: Waiting for server connection</string>
     <string name="get_reports">Getting applications</string>
     <string name="parse_application">Processing Applications:</string>
