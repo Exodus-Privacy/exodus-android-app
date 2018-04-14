@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.inputmethod.InputMethodManager;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     AppListFragment appList;
     ReportFragment report;
+    SearchView searchView;
+    private Menu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container,report)
                     .addToBackStack(null)
                     .commit();
+            searchView.clearFocus();
+            if (mMenu != null)
+                (mMenu.findItem(R.id.action_filter)).collapseActionView();
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
+
         };
 
         appList = AppListFragment.newInstance(networkListener,onAppClickListener);
@@ -103,12 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        mMenu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_filter).getActionView();
-        assert searchManager != null;
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView = (SearchView) menu.findItem(R.id.action_filter).getActionView();
         searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
