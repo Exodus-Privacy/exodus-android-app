@@ -22,32 +22,33 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.AppItemBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
-public class ApplicationListAdapter extends android.support.v7.widget.RecyclerView.Adapter<ApplicationListAdapter.ApplicationListViewHolder>{
+public class ApplicationListAdapter extends RecyclerView.Adapter {
 
     private List<PackageInfo> packages;
     private PackageManager packageManager;
     private OnAppClickListener onAppClickListener;
     private static final String gStore = "com.android.vending";
+    private String filter = "";
+    private final int HIDDEN_APP = 0;
+    private final int DISPLAYED_APP = 1;
+
 
     private Comparator<PackageInfo> alphaPackageComparator = new Comparator<PackageInfo>() {
         @Override
@@ -66,13 +67,13 @@ public class ApplicationListAdapter extends android.support.v7.widget.RecyclerVi
     private void setInstalledPackages(List<PackageInfo> installedPackages) {
         packages = installedPackages;
         applyStoreFilter();
-        Collections.sort(packages,alphaPackageComparator);
+        Collections.sort(packages, alphaPackageComparator);
         notifyDataSetChanged();
     }
 
     private void applyStoreFilter() {
         List<PackageInfo> toRemove = new ArrayList<>();
-        for(PackageInfo pkg : packages) {
+        for (PackageInfo pkg : packages) {
             if (!gStore.equals(packageManager.getInstallerPackageName(pkg.packageName))) {
                 toRemove.add(pkg);
             }
@@ -81,21 +82,39 @@ public class ApplicationListAdapter extends android.support.v7.widget.RecyclerVi
     }
 
     @Override
-    public ApplicationListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        AppItemBinding appItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.app_item,parent,false);
-        return new ApplicationListViewHolder(appItemBinding);
+    public int getItemViewType(int position){
+        return (Pattern.compile(Pattern.quote(filter.trim()), Pattern.CASE_INSENSITIVE).matcher(packageManager.getApplicationLabel(packages.get(position).applicationInfo)).find())?DISPLAYED_APP:HIDDEN_APP;
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if( viewType == HIDDEN_APP)
+            return new ApplicationEmptyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.app_item_empty, parent, false));
+        else
+            return new ApplicationListViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.app_item, parent, false));
+
     }
 
     @Override
-    public void onBindViewHolder(ApplicationListViewHolder holder, int position) {
-        holder.setData(packages.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onAppClickListener.onAppClick(holder.packageInfo);
-            }
-        });
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        if( viewHolder.getItemViewType() == DISPLAYED_APP) {
+            final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
+            holder.setData(packages.get(position));
+            //noinspection Convert2Lambda
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onAppClickListener.onAppClick(holder.packageInfo);
+                }
+            });
+        }else {
+            //noinspection unused
+            final ApplicationEmptyViewHolder holder = (ApplicationEmptyViewHolder) viewHolder;
+            //If something should be done for app that are hidden, it's here
+        }
     }
+
 
     @Override
     public int getItemCount() {
@@ -109,6 +128,13 @@ public class ApplicationListAdapter extends android.support.v7.widget.RecyclerVi
             setInstalledPackages(installedPackages);
         }
     }
+
+    class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
+        ApplicationEmptyViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
 
     class ApplicationListViewHolder extends RecyclerView.ViewHolder {
 
@@ -167,5 +193,11 @@ public class ApplicationListAdapter extends android.support.v7.widget.RecyclerVi
 
     public interface OnAppClickListener {
         void onAppClick(PackageInfo packageInfo);
+    }
+
+
+    public void filter(String text) {
+        filter = text;
+        notifyDataSetChanged();
     }
 }
