@@ -48,6 +48,7 @@ public class AppListFragment extends Fragment {
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
     private boolean startupRefresh;
     private ApplistBinding applistBinding;
+    private ApplicationListAdapter adapter;
 
     public static AppListFragment newInstance(NetworkListener networkListener, ApplicationListAdapter.OnAppClickListener appClickListener) {
         AppListFragment fragment = new AppListFragment();
@@ -86,7 +87,7 @@ public class AppListFragment extends Fragment {
             }
             applistBinding.noPackageManager.setVisibility(View.GONE);
             applistBinding.noAppFound.setVisibility(View.GONE);
-            ApplicationListAdapter adapter = new ApplicationListAdapter(packageManager, onAppClickListener);
+            adapter = new ApplicationListAdapter(packageManager, onAppClickListener);
             if(adapter.getItemCount() == 0) {
                 applistBinding.noAppFound.setVisibility(View.VISIBLE);
             } else {
@@ -169,5 +170,9 @@ public class AppListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         packageManager = null;
+    }
+
+    public void filter(String filter){
+        adapter.filter(filter);
     }
 }
