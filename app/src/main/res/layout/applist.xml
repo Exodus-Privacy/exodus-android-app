@@ -31,7 +31,9 @@
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:progressDrawable="@drawable/progressbar"
                 android:layout_width="match_parent"
-                android:layout_height="5dp" />
+                android:layout_height="5dp"
+                android:layout_marginBottom="10dp"
+                />
         </LinearLayout>
 
         <TextView
