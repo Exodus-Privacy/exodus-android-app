@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Exodus Privacy</string>
+    <string name="app_logo">Applikation Logo</string>
+    <string name="trackers">Aufspürer:</string>
+    <string name="permissions">Berechtigungen:</string>
+    <string name="network_error">Network Unavailable</string>
+    <string name="not_connected">Internetanschlusst nicht vorhanden</string>
+    <string name="json_error">JSON Fehler</string>
+    <string name="installed">Installierte Version: </string>
+    <string name="report_version">Erprobte Version: </string>
+    <string name="no_trackers">Keine erprobte Aufspürer konnten gefunden werden</string>
+    <string name="no_permissions">Diese Applikation braucht keine Berechtigungen</string>
+    <string name="tested">Es gibt kein Bericht für die installierte Version, gezeigte Informationen basieren auf eine andere (wahrscheinlich ältere) Version</string>
+    <string name="analysed">Diese Applikation wurde von Exodus noch nicht analysiert</string>
+    <string name="no_package_manager">Ihre System scheint den access zur installierte Applikationsliste nicht zu erlauben.</string>
+    <string name="no_app_found">Es scheint, dass keine Applikationen aus der quelle, die wir prüfen (Google Play Store), installierte sind.</string>
+    <string name="get_reports_connection">Applikationen erhalten : warten für Server Connection</string>
+    <string name="get_reports">Applikationen erhalten</string>
+    <string name="parse_application">Untersuchung der Applikationen:</string>
+    <string name="parse_trackers">Untersuchung der Aufspürer:</string>
+    <string name="get_trackers_connection">Aufspürer erhalten : warten für Server Connection</string>
+    <string name="get_trackers">Aufspürer erhalten</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Filter</string>
+</resources>
