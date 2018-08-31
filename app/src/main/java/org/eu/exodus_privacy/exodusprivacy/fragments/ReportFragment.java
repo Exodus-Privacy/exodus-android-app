@@ -25,6 +25,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ import java.util.Set;
 public class ReportFragment  extends Fragment {
 
     private PackageManager packageManager;
-    private PackageInfo packageInfo;
+    private PackageInfo packageInfo = null;
     private ReportBinding reportBinding;
 
     public static ReportFragment newInstance(PackageManager packageManager, PackageInfo packageInfo) {
@@ -63,9 +64,17 @@ public class ReportFragment  extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null && packageInfo == null) {
+            packageInfo = savedInstanceState.getParcelable("PackageInfo");
+        }
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable("PackageInfo", packageInfo);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
