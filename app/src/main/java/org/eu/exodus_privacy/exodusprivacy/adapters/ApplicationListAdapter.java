@@ -19,6 +19,7 @@
 package org.eu.exodus_privacy.exodusprivacy.adapters;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -79,11 +80,21 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         List<PackageInfo> toRemove = new ArrayList<>();
         for (PackageInfo pkg : packages) {
             if (!gStore.equals(packageManager.getInstallerPackageName(pkg.packageName))) {
+
                 String auid = Utils.getCertificateSHA1Fingerprint(packageManager,pkg.packageName);
                 String appuid = DatabaseManager.getInstance(context).getAUID(pkg.packageName);
                 if(!auid.equalsIgnoreCase(appuid)) {
                     toRemove.add(pkg);
                 }
+            }
+
+            try {
+                ApplicationInfo info = packageManager.getApplicationInfo(pkg.packageName,0);
+                if(!info.enabled) {
+                    toRemove.add(pkg);
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
         packages.removeAll(toRemove);
