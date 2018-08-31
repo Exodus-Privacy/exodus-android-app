@@ -42,10 +42,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
@@ -218,13 +222,14 @@ public class NetworkManager {
 
 
             if(object != null) {
-                List<String> handles = new ArrayList<>();
+                Map<String,String> handles = new HashMap<>();
                 try {
                     JSONArray applications = object.getJSONArray("applications");
                     for(int i = 0; i<applications.length(); i++) {
                         JSONObject app = applications.getJSONObject(i);
                         String handle = app.getString("handle");
-                        handles.add(handle);
+                        String auid = app.getString("app_uid");
+                        handles.put(handle,auid);
                     }
                 } catch (JSONException e) {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
@@ -234,29 +239,30 @@ public class NetworkManager {
             mes.listener.onSuccess();
         }
 
-        private void getReports(Message mes, List<String> handles) {
+        private void getReports(Message mes, Map<String,String> handles) {
             ArrayList<String> packages = mes.args.getStringArrayList("packages");
             if(packages == null)
                 return;
 
-            packages.retainAll(handles);
+            packages.retainAll(handles.keySet());
 
             // Add some random packages to avoid tracking
             Random rand = new Random(Thread.currentThread().getId());
             int alea = rand.nextInt(120) % 10 + 11;
+            List<String> handleList = new ArrayList<>(handles.keySet());
             for(int i = 0 ; i < alea; i++) {
-                int val = rand.nextInt(handles.size());
-                packages.add(handles.get(val));
+                int val = rand.nextInt(handleList.size());
+                packages.add(handleList.get(val));
             }
 
 
             for(int i = 0; i < packages.size(); i++) {
                 mes.listener.onProgress(R.string.parse_application,i+1,packages.size());
-                getReport(mes,packages.get(i));
+                getReport(mes,packages.get(i),handles.get(packages.get(i)));
             }
         }
 
-        private void getReport(Message mes, String handle) {
+        private void getReport(Message mes, String handle, String auid) {
             URL url;
             try {
                 url = new URL(apiUrl+"search/"+handle);
@@ -272,6 +278,7 @@ public class NetworkManager {
                     ArrayList<String> packages = mes.args.getStringArrayList("packages");
                     if(packages != null && packages.contains(handle)) {
                         Application app = parseApplication(application, handle);
+                        app.auid = auid;
                         DatabaseManager.getInstance(mes.context).insertOrUpdateApplication(app);
                     }
                 } catch (JSONException e) {
@@ -285,6 +292,7 @@ public class NetworkManager {
             application.packageName = packageName;
             application.creator = object.getString("creator");
             application.name = object.getString("name");
+
             //parse Report
             application.reports = new HashSet<>();
             JSONArray reports = object.getJSONArray("reports");

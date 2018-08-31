@@ -26,6 +26,7 @@ public class Application {
     public String name;
     public String creator;
     public Set<Report> reports;
+    public String auid;
 
     @Override
     public boolean equals(Object o) {
@@ -35,6 +36,7 @@ public class Application {
         Application that = (Application) o;
 
         if (id != that.id) return false;
+        if (!auid.equals(that.auid)) return false;
         return packageName.equals(that.packageName);
     }
 

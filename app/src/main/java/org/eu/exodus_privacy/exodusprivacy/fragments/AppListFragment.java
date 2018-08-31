@@ -24,6 +24,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -64,7 +65,7 @@ public class AppListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         applistBinding = DataBindingUtil.inflate(inflater,R.layout.applist,container,false);
         return applistBinding.getRoot();
     }
@@ -87,7 +88,7 @@ public class AppListFragment extends Fragment {
             }
             applistBinding.noPackageManager.setVisibility(View.GONE);
             applistBinding.noAppFound.setVisibility(View.GONE);
-            adapter = new ApplicationListAdapter(packageManager, onAppClickListener);
+            adapter = new ApplicationListAdapter(getActivity().getApplicationContext(),packageManager, onAppClickListener);
             if(adapter.getItemCount() == 0) {
                 applistBinding.noAppFound.setVisibility(View.VISIBLE);
             } else {

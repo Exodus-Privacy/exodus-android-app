@@ -28,10 +28,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.databinding.AppItemBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -48,6 +50,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     private String filter = "";
     private final int HIDDEN_APP = 0;
     private final int DISPLAYED_APP = 1;
+    private Context context;
 
 
     private Comparator<PackageInfo> alphaPackageComparator = new Comparator<PackageInfo>() {
@@ -59,8 +62,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         }
     };
 
-    public ApplicationListAdapter(PackageManager manager, OnAppClickListener listener) {
+    public ApplicationListAdapter(Context context, PackageManager manager, OnAppClickListener listener) {
         onAppClickListener = listener;
+        this.context = context;
         setPackageManager(manager);
     }
 
@@ -75,7 +79,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         List<PackageInfo> toRemove = new ArrayList<>();
         for (PackageInfo pkg : packages) {
             if (!gStore.equals(packageManager.getInstallerPackageName(pkg.packageName))) {
-                toRemove.add(pkg);
+                String auid = Utils.getCertificateSHA1Fingerprint(packageManager,pkg.packageName);
+                String appuid = DatabaseManager.getInstance(context).getAUID(pkg.packageName);
+                if(!auid.equalsIgnoreCase(appuid)) {
+                    toRemove.add(pkg);
+                }
             }
         }
         packages.removeAll(toRemove);

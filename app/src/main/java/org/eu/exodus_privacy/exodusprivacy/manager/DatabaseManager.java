@@ -44,13 +44,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public static DatabaseManager getInstance(Context context) {
         if(instance == null)
-            instance = new DatabaseManager(context,"Exodus.db",null,1);
+            instance = new DatabaseManager(context,"Exodus.db",null,2);
         return instance;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table if not exists applications (id INTEGER primary key autoincrement, package TEXT, name TEXT, creator TEXT);");
+        db.execSQL("Create Table if not exists applications (id INTEGER primary key autoincrement, package TEXT, name TEXT, creator TEXT, auid TEXT);");
         db.execSQL("Create Table if not exists reports (id INTEGER primary key, creation INTEGER, updateat INTEGER, downloads TEXT, version TEXT, version_code INTEGER, app_id INTEGER, foreign key(app_id) references applications(id));");
         db.execSQL("Create Table if not exists trackers (id INTEGER primary key, name TEXT, creation_date INTEGER, code_signature TEXT, network_signature TEXT, website TEXT, description TEXT);");
 
@@ -60,6 +60,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // do nothing
+        if(newVersion >= 2) {
+            db.execSQL("Alter Table applications add column auid TEXT");
+        }
     }
 
     private boolean existReport(SQLiteDatabase db, long reportId) {
@@ -119,6 +122,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put("package", application.packageName);
         values.put("name",application.name);
         values.put("creator",application.creator);
+        values.put("auid",application.auid);
 
         if(!existApplication(db, application.packageName)) {
             db.insert("applications", null, values);
@@ -308,5 +312,19 @@ public class DatabaseManager extends SQLiteOpenHelper {
         for(Tracker tracker : trackersList) {
             insertOrUpdateTracker(db,tracker);
         }
+    }
+
+    public String getAUID(String packageName) {
+        String where = "package = ?";
+        String[] whereArgs = {packageName};
+        String[] columns = {"auid"};
+        Cursor cursor = getReadableDatabase().query("applications",columns,where,whereArgs,null,null,null,null);
+        String uaid="";
+        if(cursor.moveToFirst())
+        {
+            uaid = cursor.getString(0);
+        }
+        cursor.close();
+        return uaid;
     }
 }
