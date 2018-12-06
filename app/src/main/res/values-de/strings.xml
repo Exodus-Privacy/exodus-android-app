@@ -3,7 +3,7 @@
     <string name="app_logo">Applikation Logo</string>
     <string name="trackers">Aufspürer:</string>
     <string name="permissions">Berechtigungen:</string>
-    <string name="network_error">Network Unavailable</string>
+    <string name="network_error">Netzwerk nicht verfügbar</string>
     <string name="not_connected">Internetanschlusst nicht vorhanden</string>
     <string name="json_error">JSON Fehler</string>
     <string name="installed">Installierte Version: </string>
