@@ -100,13 +100,22 @@ public class ReportFragment  extends Fragment {
         reportBinding.name.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
 
         //setup permissions number
-        String permissions_text;
-        if (packageInfo.requestedPermissions != null && packageInfo.requestedPermissions.length > 0)
-            permissions_text = context.getString(R.string.permissions) + " " + String.valueOf(packageInfo.requestedPermissions.length);
-        else
-            permissions_text = context.getString(R.string.permissions);
+        if (packageInfo.requestedPermissions != null) {
+            reportBinding.permissionsNb.setText(String.valueOf(packageInfo.requestedPermissions.length));
+            reportBinding.permissionsNb.setVisibility(View.VISIBLE);
+        }
+        else {
+            reportBinding.permissionsNb.setVisibility(View.GONE);
+        }
 
-        reportBinding.permissionsTitle.setText(permissions_text);
+        if(packageInfo.requestedPermissions != null){
+            if(packageInfo.requestedPermissions.length == 0)
+                reportBinding.permissionsNb.setBackgroundResource(R.drawable.square_green);
+            else if(packageInfo.requestedPermissions.length < 5)
+                reportBinding.permissionsNb.setBackgroundResource(R.drawable.square_yellow);
+            else
+                reportBinding.permissionsNb.setBackgroundResource(R.drawable.square_red);
+        }
 
         //setup permissions list
         List<Permission> requestedPermissions = null;
@@ -151,12 +160,20 @@ public class ReportFragment  extends Fragment {
             reportBinding.trackerLayout.setVisibility(View.GONE);
         }
         //setup trackers report
-        String trackers_text;
-        if(trackers != null && trackers.size() > 0)
-            trackers_text = context.getString(R.string.trackers)+" "+String.valueOf(trackers.size());
-        else
-            trackers_text = context.getString(R.string.trackers);
-        reportBinding.trackersTitle.setText(trackers_text);
+        if(trackers != null) {
+            reportBinding.trackersNb.setText(String.valueOf(trackers.size()));
+            reportBinding.trackersNb.setVisibility(View.VISIBLE);
+        } else {
+            reportBinding.trackersNb.setVisibility(View.GONE);
+        }
+        if(trackers != null){
+            if(trackers.size() == 0)
+                reportBinding.trackersNb.setBackgroundResource(R.drawable.square_green);
+            else if(trackers.size() < 5)
+                reportBinding.trackersNb.setBackgroundResource(R.drawable.square_yellow);
+            else
+                reportBinding.trackersNb.setBackgroundResource(R.drawable.square_red);
+        }
 
         //setup trackers lists
         reportBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
@@ -171,14 +188,26 @@ public class ReportFragment  extends Fragment {
             reportBinding.creator.setVisibility(View.GONE);
 
         //setup installed
-        String installed_str = context.getString(R.string.installed) +" "+ versionName;
+        String installed_str = "";
+        if(versionName != null)
+            installed_str = context.getString(R.string.installed) +" "+ versionName;
+        else
+            installed_str = context.getString(R.string.installed) +" "+ String.valueOf(versionCode);
         reportBinding.installedVersion.setText(installed_str);
 
         //setup reportversion
         reportBinding.reportVersion.setVisibility(View.VISIBLE);
-        if(report != null && !report.version.equals(versionName)) {
-            String report_str = context.getString(R.string.report_version)+" "+report.version;
-            reportBinding.reportVersion.setText(report_str);
+        if(report != null) {
+            String report_str = "";
+            if (versionName != null && !report.version.equals(versionName)) {
+                report_str = context.getString(R.string.report_version) + " " + report.version;
+            } else if (versionName == null && report.versionCode != versionCode) {
+                report_str = context.getString(R.string.report_version) + " " + report.versionCode;
+            }
+            if(!report_str.isEmpty())
+                reportBinding.reportVersion.setText(report_str);
+            else
+                reportBinding.reportVersion.setVisibility(View.GONE);
         }
         else
             reportBinding.reportVersion.setVisibility(View.GONE);

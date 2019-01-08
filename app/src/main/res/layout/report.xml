@@ -84,14 +84,35 @@
                 android:layout_weight="50"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/trackers_title"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:text="@string/trackers"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white" />
+                    >
+                    <TextView
+                        android:id="@+id/trackers_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trackers"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/trackers_nb"
+                        android:text="99"
+                        android:background="@drawable/square_green"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textAlignment="center"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/trackers"
@@ -106,15 +127,35 @@
                 android:layout_weight="50"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView
-                    android:background="@color/colorPrimary"
-                    android:id="@+id/permissions_title"
-                    android:text="@string/permissions"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    />
+                    android:background="@color/colorPrimary"
+                    >
+                    <TextView
+                        android:id="@+id/permissions_title"
+                        android:text="@string/permissions"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/permissions_nb"
+                        android:text="99"
+                        android:background="@drawable/square_green"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textAlignment="center"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/permissions"
