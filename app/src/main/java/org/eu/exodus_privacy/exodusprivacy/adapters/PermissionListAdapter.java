@@ -60,7 +60,10 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
 
         void setupData(Permission permission) {
             if(permission != null) {
-                permissionItemBinding.permissionName.setText(permission.name);
+                if(permission.name != null)
+                    permissionItemBinding.permissionName.setText(permission.name);
+                else
+                    permissionItemBinding.permissionName.setText(permission.fullName);
                 permissionItemBinding.permissionDescription.setText(permission.description);
                 manageExpanded(permission);
                 permissionItemBinding.mainLayout.setOnClickListener((View.OnClickListener) v -> {

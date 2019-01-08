@@ -225,6 +225,47 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
+    public Report getReportFor(String packageName, long version) {
+        String[] columns = {"id"};
+        String where = "package = ?";
+        String[] whereArgs = {packageName};
+        Cursor cursor = getReadableDatabase().query("applications",columns,where,whereArgs,null,null,null);
+        if(cursor.moveToFirst()) {
+            long appId = cursor.getLong(0);
+            cursor.close();
+            where = "app_id = ? and version_code = ?";
+            whereArgs = new String[2];
+            whereArgs[0] = String.valueOf(appId);
+            whereArgs[1] = String.valueOf(version);
+            String order = "id ASC";
+            cursor = getReadableDatabase().query("reports",columns,where,whereArgs,null,null,order);
+            long reportId;
+            if(cursor.moveToFirst()) {
+                reportId = cursor.getLong(0);
+            } else {
+                columns = new String[2];
+                columns[0] = "id";
+                columns[1] = "creation";
+                where = "app_id = ?";
+                whereArgs = new String[1];
+                whereArgs[0] = String.valueOf(appId);
+                order = "creation DESC";
+                //search a recent reports
+                cursor = getReadableDatabase().query("reports",columns,where,whereArgs,null,null,order);
+                if(cursor.moveToFirst()) {
+                    reportId = cursor.getLong(0);
+                } else {
+                    return null;
+                }
+            }
+            return getReport(reportId);
+
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
     private Report getReport(long reportId) {
         String where = "id = ?";
         String[] whereArgs = {String.valueOf(reportId)};

@@ -87,6 +87,7 @@ public class ReportFragment  extends Fragment {
         Context context = reportBinding.getRoot().getContext();
         String packageName = packageInfo.packageName;
         String versionName = packageInfo.versionName;
+        long versionCode = packageInfo.versionCode;
 
         //setup logo
         try {
@@ -120,10 +121,10 @@ public class ReportFragment  extends Fragment {
                         permission.description = permissionInfo.loadDescription(packageManager).toString();
                     if(permissionInfo.loadLabel(packageManager) != null)
                         permission.name = permissionInfo.loadLabel(packageManager).toString();
-                    requestedPermissions.add(permission);
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
+                requestedPermissions.add(permission);
             }
         }
 
@@ -137,7 +138,11 @@ public class ReportFragment  extends Fragment {
         reportBinding.trackerLayout.setVisibility(View.VISIBLE);
 
         //get trackers
-        Report report = DatabaseManager.getInstance(context).getReportFor(packageName,versionName);
+        Report report = null;
+        if(versionName != null)
+            report = DatabaseManager.getInstance(context).getReportFor(packageName,versionName);
+        else
+            report = DatabaseManager.getInstance(context).getReportFor(packageName,versionCode);
         Set<Tracker> trackers = null;
         if(report != null) {
             trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);

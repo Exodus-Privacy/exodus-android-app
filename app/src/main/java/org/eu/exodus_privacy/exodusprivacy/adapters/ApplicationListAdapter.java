@@ -178,6 +178,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
 
             String packageName = packageInfo.packageName;
             String versionName = packageInfo.versionName;
+            long versionCode = packageInfo.versionCode;
 
             //get logo
             try {
@@ -195,11 +196,17 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                 appItemBinding.appPermissionNb.setText(context.getString(R.string.permissions) + " " + String.valueOf(0));
             }
             //get reports
-            Report report = DatabaseManager.getInstance(context).getReportFor(packageName, versionName);
+            Report report = null;
+            if(versionName != null)
+                report = DatabaseManager.getInstance(context).getReportFor(packageName, versionName);
+            else
+                report = DatabaseManager.getInstance(context).getReportFor(packageName, versionCode);
             if(report != null) {
                 Set<Tracker> trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
                 appItemBinding.appTrackerNb.setText(context.getString(R.string.trackers) + " " + trackers.size());
-                if(!report.version.equals(data.versionName)) {
+                if(versionName != null && !report.version.equals(data.versionName)) {
+                    appItemBinding.otherVersion.setVisibility(View.VISIBLE);
+                } else if (versionName == null && report.versionCode != versionCode) {
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 }
 
