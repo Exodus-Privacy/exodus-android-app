@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Exodus Privacy</string>
     <string name="app_logo">Application Logo</string>
-    <string name="trackers">Pisteurs :</string>
-    <string name="permissions">Autorisations :</string>
+    <string name="trackers_pct">Pisteurs :</string>
+    <string name="permissions_pct">Autorisations :</string>
+    <string name="trackers">Pisteurs</string>
+    <string name="permissions">Autorisations</string>
     <string name="network_error">Réseau indisponible</string>
     <string name="not_connected">Aucune connexion Internet</string>
     <string name="json_error">Erreur JSON</string>

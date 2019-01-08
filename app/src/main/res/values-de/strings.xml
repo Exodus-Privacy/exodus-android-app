@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Exodus Privacy</string>
     <string name="app_logo">Applikation Logo</string>
-    <string name="trackers">Aufspürer:</string>
-    <string name="permissions">Berechtigungen:</string>
+    <string name="trackers_pct">Aufspürer:</string>
+    <string name="permissions_pct">Berechtigungen:</string>
+    <string name="trackers">Aufspürer</string>
+    <string name="permissions">Berechtigungen</string>
     <string name="network_error">Netzwerk nicht verfügbar</string>
     <string name="not_connected">Internetanschlusst nicht vorhanden</string>
     <string name="json_error">JSON Fehler</string>

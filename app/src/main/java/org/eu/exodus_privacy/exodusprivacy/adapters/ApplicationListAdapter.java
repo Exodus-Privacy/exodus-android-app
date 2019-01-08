@@ -174,6 +174,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding.otherVersion.setVisibility(View.GONE);
             appItemBinding.analysed.setVisibility(View.GONE);
             appItemBinding.appTrackerNb.setVisibility(View.VISIBLE);
+            appItemBinding.appTracker.setVisibility(View.VISIBLE);
 
 
             String packageName = packageInfo.packageName;
@@ -190,20 +191,33 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding.appName.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
 
             //get permissions
-            if(packageInfo.requestedPermissions != null) {
-                appItemBinding.appPermissionNb.setText(context.getString(R.string.permissions) + " " + String.valueOf(data.requestedPermissions.length));
-            } else {
-                appItemBinding.appPermissionNb.setText(context.getString(R.string.permissions) + " " + String.valueOf(0));
-            }
+            long size = packageInfo.requestedPermissions != null ? data.requestedPermissions.length : 0;
+            appItemBinding.appPermissionNb.setText(String.valueOf(size));
+            if(size == 0)
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_green);
+            else if (size < 5)
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_yellow);
+            else
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_red);
+
             //get reports
-            Report report = null;
+            Report report;
             if(versionName != null)
                 report = DatabaseManager.getInstance(context).getReportFor(packageName, versionName);
             else
                 report = DatabaseManager.getInstance(context).getReportFor(packageName, versionCode);
             if(report != null) {
                 Set<Tracker> trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
-                appItemBinding.appTrackerNb.setText(context.getString(R.string.trackers) + " " + trackers.size());
+
+                size = trackers.size();
+                appItemBinding.appTrackerNb.setText(String.valueOf(size));
+                if(size == 0)
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_green);
+                else if (size < 5)
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_yellow);
+                else
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_red);
+
                 if(versionName != null && !report.version.equals(data.versionName)) {
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 } else if (versionName == null && report.versionCode != versionCode) {
@@ -212,6 +226,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
 
             } else {
                 appItemBinding.appTrackerNb.setVisibility(View.GONE);
+                appItemBinding.appTracker.setVisibility(View.GONE);
                 appItemBinding.analysed.setVisibility(View.VISIBLE);
             }
         }

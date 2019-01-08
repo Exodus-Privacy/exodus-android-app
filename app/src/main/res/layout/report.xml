@@ -94,7 +94,7 @@
                         android:id="@+id/trackers_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/trackers"
+                        android:text="@string/trackers_pct"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@android:color/white" />
 
@@ -135,7 +135,7 @@
                     >
                     <TextView
                         android:id="@+id/permissions_title"
-                        android:text="@string/permissions"
+                        android:text="@string/permissions_pct"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
