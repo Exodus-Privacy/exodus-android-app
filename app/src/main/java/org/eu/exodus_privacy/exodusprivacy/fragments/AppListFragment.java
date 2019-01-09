@@ -161,8 +161,9 @@ public class AppListFragment extends Fragment {
         this.onAppClickListener = onAppClickListener;
     }
 
+
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
         packageManager = context.getPackageManager();
     }
