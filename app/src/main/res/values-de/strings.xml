@@ -1,27 +1,27 @@
 <resources>
     <string name="app_name">Exodus Privacy</string>
-    <string name="app_logo">Applikation Logo</string>
-    <string name="trackers_pct">Aufspürer:</string>
+    <string name="app_logo">App Logo</string>
+    <string name="trackers_pct">Tracker:</string>
     <string name="permissions_pct">Berechtigungen:</string>
-    <string name="trackers">Aufspürer</string>
+    <string name="trackers">Tracker</string>
     <string name="permissions">Berechtigungen</string>
     <string name="network_error">Netzwerk nicht verfügbar</string>
-    <string name="not_connected">Internetanschlusst nicht vorhanden</string>
+    <string name="not_connected">Keine Verbindung</string>
     <string name="json_error">JSON Fehler</string>
     <string name="installed">Installierte Version: </string>
-    <string name="report_version">Erprobte Version: </string>
-    <string name="no_trackers">Keine erprobte Aufspürer konnten gefunden werden</string>
-    <string name="no_permissions">Diese Applikation braucht keine Berechtigungen</string>
-    <string name="tested">Es gibt kein Bericht für die installierte Version, gezeigte Informationen basieren auf eine andere (wahrscheinlich ältere) Version</string>
-    <string name="analysed">Diese Applikation wurde von Exodus noch nicht analysiert</string>
-    <string name="no_package_manager">Ihre System scheint den access zur installierte Applikationsliste nicht zu erlauben.</string>
-    <string name="no_app_found">Es scheint, dass keine Applikationen aus der quelle, die wir prüfen (Google Play Store), installierte sind.</string>
-    <string name="get_reports_connection">Applikationen erhalten : warten für Server Connection</string>
-    <string name="get_reports">Applikationen erhalten</string>
-    <string name="parse_application">Untersuchung der Applikationen:</string>
-    <string name="parse_trackers">Untersuchung der Aufspürer:</string>
-    <string name="get_trackers_connection">Aufspürer erhalten : warten für Server Connection</string>
-    <string name="get_trackers">Aufspürer erhalten</string>
+    <string name="report_version">Getestete Version: </string>
+    <string name="no_trackers">Es wurden keine Tracker gefunden</string>
+    <string name="no_permissions">Diese App braucht keine Berechtigungen</string>
+    <string name="tested">Es gibt keinen Bericht für die installierte Version, die gezeigte Informationen basieren auf eine andere (wahrscheinlich ältere) Version</string>
+    <string name="analysed">Diese App wurde von Exodus noch nicht analysiert</string>
+    <string name="no_package_manager">Ihr System scheint den Zugriff auf die Appliste nicht zu erlauben.</string>
+    <string name="no_app_found">Es scheint, dass keine App aus der Quelle, die wir prüfen (Google Play Store), installiert ist.</string>
+    <string name="get_reports_connection">App erhalten: Warte auf Antwort des Servers</string>
+    <string name="get_reports">App erhalten</string>
+    <string name="parse_application">Untersuchung der App:</string>
+    <string name="parse_trackers">Untersuchung der Tracker:</string>
+    <string name="get_trackers_connection">Tracker erhalten: Warte auf Antwort des Servers</string>
+    <string name="get_trackers">Tracker erhalten</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>
