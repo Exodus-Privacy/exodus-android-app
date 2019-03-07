@@ -108,7 +108,7 @@
                         android:layout_marginTop="2dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textAlignment="center"
-                        android:layout_width="30dp"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         />
 
@@ -152,7 +152,7 @@
                         android:layout_marginTop="2dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textAlignment="center"
-                        android:layout_width="30dp"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
