@@ -12,7 +12,7 @@
     <string name="report_version">Versión verificada: </string>
     <string name="no_trackers">Ningún rastreador verificado ha sido encontrado</string>
     <string name="no_permissions">Esta applicación no requiere autorizaciones</string>
-    <string name="tested">No existe informe para la versión instalada, las informaciones mostradas se basan en otra versión (seguramente más antigua)</string>
+    <string name="tested">No existe informe para la versión instalada (%1$s), las informaciones mostradas se basan en otra versión (%2$s)</string>
     <string name="analysed">Esta applicación aún no ha sido analizada por Exodus Privacy.</string>
     <string name="no_package_manager">Parece que tu sistema no autoriza el acceso a la lista de aplicaciones instaladas.</string>
     <string name="no_app_found">Parece que no tienes ninguna aplicación de la plataforma que analizamos (Google Play).</string>
