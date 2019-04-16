@@ -12,7 +12,7 @@
     <string name="report_version">Getestete Version: </string>
     <string name="no_trackers">Es wurden keine Tracker gefunden</string>
     <string name="no_permissions">Diese App braucht keine Berechtigungen</string>
-    <string name="tested">Es gibt keinen Bericht für die installierte Version, die gezeigte Informationen basieren auf eine andere (wahrscheinlich ältere) Version</string>
+    <string name="tested">Es gibt keinen Bericht für die installierte Version (%1$s), die gezeigte Informationen basieren auf eine andere (%2$s) Version</string>
     <string name="analysed">Diese App wurde von Exodus noch nicht analysiert</string>
     <string name="no_package_manager">Ihr System scheint den Zugriff auf die Appliste nicht zu erlauben.</string>
     <string name="no_app_found">Es scheint, dass keine App aus der Quelle, die wir prüfen (Google Play Store), installiert ist.</string>

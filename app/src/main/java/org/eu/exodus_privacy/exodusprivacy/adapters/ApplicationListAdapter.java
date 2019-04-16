@@ -219,8 +219,12 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_red);
 
                 if(versionName != null && !report.version.equals(data.versionName)) {
+                    String string = context.getString(R.string.tested,versionName,report.version);
+                    appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 } else if (versionName == null && report.versionCode != versionCode) {
+                    String string = context.getString(R.string.tested,String.valueOf(versionCode),String.valueOf(report.versionCode));
+                    appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 }
 

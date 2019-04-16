@@ -12,7 +12,7 @@
     <string name="report_version">النسخة المُجرَّبة:</string>
     <string name="no_trackers">لم نعثر على أي متعقِّب قمنا بتجريبه</string>
     <string name="no_permissions">هذا التطبيق لا يتطلب أية تصريحات</string>
-    <string name="tested">ليس هناك أي تقرير عن النسخة المثبتة، إنّ البيانات المعروضة مستمدة مِن نسخة أخرى قديمة لنفس التطبيق</string>
+    <string name="tested">%1$s%2$sليس هناك أي تقرير عن النسخة المثبتة، إنّ البيانات المعروضة مستمدة مِن نسخة أخرى قديمة لنفس التطبيق</string>
     <string name="analysed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
     <string name="no_package_manager">يبدو أنّ نظام جهازك لا يسمح بالوصول إلى قائمة التطبيقات المثبة.</string>
     <string name="no_app_found">يبدو أنّك لم تقم بتثبيت أي تطبيق مِن المصدر الذي نقوم بفحصه (متجر جوجل للتطبيقات).</string>
