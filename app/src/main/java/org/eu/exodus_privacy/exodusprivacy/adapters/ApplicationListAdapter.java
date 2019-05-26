@@ -23,7 +23,9 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +46,7 @@ import java.util.regex.Pattern;
 
 public class ApplicationListAdapter extends RecyclerView.Adapter {
 
-    private List<PackageInfo> packages;
+    private List<ApplicationViewModel> applicationViewModels;
     private PackageManager packageManager;
     private OnAppClickListener onAppClickListener;
     private static final String gStore = "com.android.vending";
@@ -54,55 +56,95 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     private Context context;
 
 
-    private Comparator<PackageInfo> alphaPackageComparator = new Comparator<PackageInfo>() {
+    private Comparator<ApplicationViewModel> alphaPackageComparator = new Comparator<ApplicationViewModel>() {
         @Override
-        public int compare(PackageInfo pack1, PackageInfo pack2) {
-            String pkg1 = packageManager.getApplicationLabel(pack1.applicationInfo).toString();
-            String pkg2 = packageManager.getApplicationLabel(pack2.applicationInfo).toString();
-            return pkg1.compareToIgnoreCase(pkg2);
+        public int compare(ApplicationViewModel app1, ApplicationViewModel app2) {
+            return app1.label.toString().compareToIgnoreCase(app2.label.toString());
         }
     };
 
     public ApplicationListAdapter(Context context, PackageManager manager, OnAppClickListener listener) {
+        applicationViewModels = new ArrayList<>();
         onAppClickListener = listener;
         this.context = context;
         setPackageManager(manager);
     }
 
     private void setInstalledPackages(List<PackageInfo> installedPackages) {
-        packages = installedPackages;
-        applyStoreFilter();
-        Collections.sort(packages, alphaPackageComparator);
+        List<ApplicationViewModel> viewModels = convertPackagesToViewModels(installedPackages);
+        applyStoreFilter(viewModels);
+        Collections.sort(viewModels, alphaPackageComparator);
+        applicationViewModels = viewModels;
         notifyDataSetChanged();
     }
 
-    private void applyStoreFilter() {
-        List<PackageInfo> toRemove = new ArrayList<>();
-        for (PackageInfo pkg : packages) {
-            if (!gStore.equals(packageManager.getInstallerPackageName(pkg.packageName))) {
+    private void applyStoreFilter(List<ApplicationViewModel> apps) {
+        List<ApplicationViewModel> toRemove = new ArrayList<>();
+        for (ApplicationViewModel app : apps) {
+            if (!gStore.equals(app.installerPackageName)) {
 
-                String auid = Utils.getCertificateSHA1Fingerprint(packageManager,pkg.packageName);
-                String appuid = DatabaseManager.getInstance(context).getAUID(pkg.packageName);
+                String auid = Utils.getCertificateSHA1Fingerprint(packageManager,app.packageName);
+                String appuid = DatabaseManager.getInstance(context).getAUID(app.packageName);
                 if(!auid.equalsIgnoreCase(appuid)) {
-                    toRemove.add(pkg);
+                    toRemove.add(app);
                 }
             }
 
             try {
-                ApplicationInfo info = packageManager.getApplicationInfo(pkg.packageName,0);
+                ApplicationInfo info = packageManager.getApplicationInfo(app.packageName,0);
                 if(!info.enabled) {
-                    toRemove.add(pkg);
+                    toRemove.add(app);
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        packages.removeAll(toRemove);
+        apps.removeAll(toRemove);
+    }
+
+    private List<ApplicationViewModel> convertPackagesToViewModels(List<PackageInfo> infos) {
+        ArrayList<ApplicationViewModel> appsToBuild = new ArrayList<>(infos.size());
+        for (PackageInfo pi : infos) {
+            appsToBuild.add(buildViewModelFromPackageInfo(pi));
+        }
+        return appsToBuild;
+    }
+
+    private ApplicationViewModel buildViewModelFromPackageInfo(PackageInfo pi) {
+        ApplicationViewModel vm = new ApplicationViewModel();
+
+        vm.versionName = pi.versionName;
+        vm.packageName = pi.packageName;
+        vm.versionCode = pi.versionCode;
+        vm.requestedPermissions = pi.requestedPermissions;
+
+        DatabaseManager dm = DatabaseManager.getInstance(context);
+        if(vm.versionName != null)
+            vm.report = dm.getReportFor(vm.packageName, vm.versionName);
+        else {
+            vm.report = dm.getReportFor(vm.packageName, vm.versionCode);
+        }
+
+        if(vm.report != null) {
+            vm.trackers = dm.getTrackers(vm.report.trackers);
+        }
+
+        try {
+            vm.icon = packageManager.getApplicationIcon(vm.packageName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        vm.label = packageManager.getApplicationLabel(pi.applicationInfo);
+        vm.installerPackageName = packageManager.getInstallerPackageName(vm.packageName);
+        vm.isVisible = true;
+
+        return vm;
     }
 
     @Override
     public int getItemViewType(int position){
-        return (Pattern.compile(Pattern.quote(filter.trim()), Pattern.CASE_INSENSITIVE).matcher(packageManager.getApplicationLabel(packages.get(position).applicationInfo)).find())?DISPLAYED_APP:HIDDEN_APP;
+        return applicationViewModels.get(position).isVisible ? DISPLAYED_APP : HIDDEN_APP;
     }
 
     @NonNull
@@ -119,12 +161,17 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         if( viewHolder.getItemViewType() == DISPLAYED_APP) {
             final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
-            holder.setData(packages.get(position));
+            holder.setViewModel(applicationViewModels.get(position));
             //noinspection Convert2Lambda
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onAppClickListener.onAppClick(holder.packageInfo);
+                    try {
+                        PackageInfo packageInfo = packageManager.getPackageInfo(holder.viewModel.packageName, 0);
+                        onAppClickListener.onAppClick(packageInfo);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }else {
@@ -134,10 +181,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     @Override
     public int getItemCount() {
-        return packages.size();
+        return applicationViewModels.size();
     }
 
     public void setPackageManager(PackageManager manager) {
@@ -148,16 +194,31 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * This class holds the data needed to display an application cell in the RecyclerView
+     */
+    public class ApplicationViewModel {
+        public String packageName;
+        public String versionName;
+        public int versionCode;
+        public String[] requestedPermissions;
+        public @Nullable Report report;
+        public Set<Tracker> trackers;
+        public @Nullable Drawable icon;
+        public CharSequence label;
+        public String installerPackageName;
+        public boolean isVisible;
+    }
+
     class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
         ApplicationEmptyViewHolder(View itemView) {
             super(itemView);
         }
     }
 
-
     class ApplicationListViewHolder extends RecyclerView.ViewHolder {
 
-        PackageInfo packageInfo;
+        ApplicationViewModel viewModel;
         AppItemBinding appItemBinding;
 
         ApplicationListViewHolder(AppItemBinding binding) {
@@ -165,8 +226,8 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding = binding;
         }
 
-        public void setData(PackageInfo data) {
-            packageInfo = data;
+        void setViewModel(ApplicationViewModel vm) {
+            viewModel = vm;
 
             Context context = appItemBinding.getRoot().getContext();
 
@@ -176,22 +237,14 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding.appTrackerNb.setVisibility(View.VISIBLE);
             appItemBinding.appTracker.setVisibility(View.VISIBLE);
 
+            String versionName = viewModel.versionName;
+            long versionCode = viewModel.versionCode;
 
-            String packageName = packageInfo.packageName;
-            String versionName = packageInfo.versionName;
-            long versionCode = packageInfo.versionCode;
+            appItemBinding.appLogo.setImageDrawable(viewModel.icon);
 
-            //get logo
-            try {
-                appItemBinding.appLogo.setImageDrawable(packageManager.getApplicationIcon(packageName));
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-            //get name
-            appItemBinding.appName.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
+            appItemBinding.appName.setText(viewModel.label);
 
-            //get permissions
-            long size = packageInfo.requestedPermissions != null ? data.requestedPermissions.length : 0;
+            long size = viewModel.requestedPermissions != null ? viewModel.requestedPermissions.length : 0;
             appItemBinding.appPermissionNb.setText(String.valueOf(size));
             if(size == 0)
                 appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_green);
@@ -200,14 +253,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             else
                 appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_red);
 
-            //get reports
-            Report report;
-            if(versionName != null)
-                report = DatabaseManager.getInstance(context).getReportFor(packageName, versionName);
-            else
-                report = DatabaseManager.getInstance(context).getReportFor(packageName, versionCode);
+            Report report = viewModel.report;
             if(report != null) {
-                Set<Tracker> trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
+                Set<Tracker> trackers = viewModel.trackers;
 
                 size = trackers.size();
                 appItemBinding.appTrackerNb.setText(String.valueOf(size));
@@ -218,8 +266,8 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                 else
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_red);
 
-                if(versionName != null && !report.version.equals(data.versionName)) {
-                    String string = context.getString(R.string.tested,versionName,report.version);
+                if(versionName != null && !report.version.equals(viewModel.versionName)) {
+                    String string = context.getString(R.string.tested,versionName, report.version);
                     appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 } else if (versionName == null && report.versionCode != versionCode) {
@@ -227,7 +275,6 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                     appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 }
-
             } else {
                 appItemBinding.appTrackerNb.setVisibility(View.GONE);
                 appItemBinding.appTracker.setVisibility(View.GONE);
@@ -243,6 +290,12 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
 
     public void filter(String text) {
         filter = text;
+
+        Pattern p = Pattern.compile(Pattern.quote(filter.trim()), Pattern.CASE_INSENSITIVE);
+        for (ApplicationViewModel app : applicationViewModels) {
+            app.isVisible = p.matcher(app.label).find();
+        }
+
         notifyDataSetChanged();
     }
 }
