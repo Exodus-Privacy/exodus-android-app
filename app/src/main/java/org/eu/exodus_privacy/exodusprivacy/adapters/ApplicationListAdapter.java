@@ -167,7 +167,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     try {
-                        PackageInfo packageInfo = packageManager.getPackageInfo(holder.viewModel.packageName, 0);
+                        PackageInfo packageInfo = packageManager.getPackageInfo(holder.viewModel.packageName, PackageManager.GET_PERMISSIONS);
                         onAppClickListener.onAppClick(packageInfo);
                     } catch (PackageManager.NameNotFoundException e) {
                         e.printStackTrace();
