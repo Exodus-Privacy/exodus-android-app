@@ -8,8 +8,6 @@ gen/
 .gradle/
 build/
 /*/build/
-gradlew*
-gradle/wrapper/gradle-wrapper.jar
 
 # Local configuration file (sdk path, etc)
 local.properties
