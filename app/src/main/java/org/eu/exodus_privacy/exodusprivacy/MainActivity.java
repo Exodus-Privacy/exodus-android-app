@@ -20,13 +20,17 @@ package org.eu.exodus_privacy.exodusprivacy;
 
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.view.inputmethod.InputMethodManager;
 
@@ -38,15 +42,19 @@ import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    AppListFragment appList;
-    ReportFragment report;
-    SearchView searchView;
-    private Menu mMenu;
+    private AppListFragment appList;
+    private ReportFragment report;
+    private SearchView searchView;
+    private Menu toolbarMenu;
+    private MenuItem settingsMenuItem;
+    private String packageName;
+    private MainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final MainBinding mainBinding = DataBindingUtil.setContentView(this,R.layout.main);
+        binding = DataBindingUtil.setContentView(this,R.layout.main);
+        final MainBinding mainBinding = binding;
 
         NetworkListener networkListener = new NetworkListener() {
             @Override
@@ -84,13 +92,14 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack(null)
                     .commit();
 
+            packageName = packageInfo.packageName;
+
             searchView.clearFocus();
-            if (mMenu != null)
-                (mMenu.findItem(R.id.action_filter)).collapseActionView();
+            if (toolbarMenu != null)
+                (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             assert imm != null;
             imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
-
         };
 
         appList = AppListFragment.newInstance(networkListener,onAppClickListener);
@@ -106,14 +115,16 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0)
             finish();
-        else
+        else {
             getSupportFragmentManager().popBackStack();
+            report = null;
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mMenu = menu;
+        toolbarMenu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         searchView = (SearchView) menu.findItem(R.id.action_filter).getActionView();
@@ -131,6 +142,28 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        settingsMenuItem = menu.findItem(R.id.action_settings);
+        if (report != null)
+            settingsMenuItem.setVisible(true);
+        else
+            settingsMenuItem.setVisible(false);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.fromParts("package",packageName,null));
+            try {
+                startActivity(intent);
+            } catch(android.content.ActivityNotFoundException e) {
+                Snackbar bar = Snackbar.make(binding.fragmentContainer,R.string.no_settings,Snackbar.LENGTH_LONG);
+                bar.show();
+            }
+            return true;
+        }
+        return false;
     }
 }

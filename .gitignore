@@ -22,4 +22,10 @@ proguard/
 .idea
 *.iml
 
+#vim
+.*swp
+.*swo
+.tags
+
+
 captures/

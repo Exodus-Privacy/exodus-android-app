@@ -22,7 +22,9 @@
     <string name="parse_trackers">Processing Trackers:</string>
     <string name="get_trackers_connection">Getting trackers: Waiting for server connection</string>
     <string name="get_trackers">Getting trackers</string>
+    <string name="no_settings">This app doesn\'t have settings</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>
+    <string name="menu_action_settings">Application Settings</string>
 </resources>
