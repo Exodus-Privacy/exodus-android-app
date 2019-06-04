@@ -22,12 +22,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-
-import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
-import org.eu.exodus_privacy.exodusprivacy.R;
-import org.eu.exodus_privacy.exodusprivacy.objects.Application;
-import org.eu.exodus_privacy.exodusprivacy.objects.Report;
-import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +47,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.TimeZone;
+
 import java.util.concurrent.Semaphore;
+
+import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
+import org.eu.exodus_privacy.exodusprivacy.objects.Application;
+import org.eu.exodus_privacy.exodusprivacy.objects.Report;
+import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 /*
     Singleton that handle all network connection
@@ -255,6 +257,7 @@ public class NetworkManager {
                 packages.add(handleList.get(val));
             }
 
+            Collections.shuffle(packages);
 
             for(int i = 0; i < packages.size(); i++) {
                 mes.listener.onProgress(R.string.parse_application,i+1,packages.size());
