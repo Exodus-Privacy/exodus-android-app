@@ -18,6 +18,8 @@
 
 package org.eu.exodus_privacy.exodusprivacy;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
@@ -82,24 +84,30 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        ApplicationListAdapter.OnAppClickListener onAppClickListener = packageInfo -> {
+        ApplicationListAdapter.OnAppClickListener onAppClickListener = vm -> {
+            try {
+                PackageManager pm = getPackageManager();
+                PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
 
-            report = ReportFragment.newInstance(getPackageManager(),packageInfo);
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
-                    .replace(R.id.fragment_container,report)
-                    .addToBackStack(null)
-                    .commit();
+                report = ReportFragment.newInstance(pm,packageInfo);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
+                        .replace(R.id.fragment_container,report)
+                        .addToBackStack(null)
+                        .commit();
 
-            packageName = packageInfo.packageName;
+                packageName = packageInfo.packageName;
 
-            searchView.clearFocus();
-            if (toolbarMenu != null)
-                (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            assert imm != null;
-            imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
+                searchView.clearFocus();
+                if (toolbarMenu != null)
+                    (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert imm != null;
+                imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
         };
 
         appList = AppListFragment.newInstance(networkListener,onAppClickListener);

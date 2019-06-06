@@ -19,21 +19,14 @@
 package org.eu.exodus_privacy.exodusprivacy.adapters;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import org.eu.exodus_privacy.exodusprivacy.R;
-import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.databinding.AppItemBinding;
-import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
@@ -47,14 +40,10 @@ import java.util.regex.Pattern;
 public class ApplicationListAdapter extends RecyclerView.Adapter {
 
     private List<ApplicationViewModel> applicationViewModels;
-    private PackageManager packageManager;
     private OnAppClickListener onAppClickListener;
-    private static final String gStore = "com.android.vending";
     private String filter = "";
     private final int HIDDEN_APP = 0;
     private final int DISPLAYED_APP = 1;
-    private Context context;
-
 
     private Comparator<ApplicationViewModel> alphaPackageComparator = new Comparator<ApplicationViewModel>() {
         @Override
@@ -63,83 +52,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         }
     };
 
-    public ApplicationListAdapter(Context context, PackageManager manager, OnAppClickListener listener) {
+    public ApplicationListAdapter(Context context, OnAppClickListener listener) {
         applicationViewModels = new ArrayList<>();
         onAppClickListener = listener;
-        this.context = context;
-        displayApplicationList(manager);
-    }
-
-    private void setInstalledPackages(List<PackageInfo> installedPackages) {
-        List<ApplicationViewModel> viewModels = convertPackagesToViewModels(installedPackages);
-        applyStoreFilter(viewModels);
-        Collections.sort(viewModels, alphaPackageComparator);
-        applicationViewModels = viewModels;
-        notifyDataSetChanged();
-    }
-
-    private void applyStoreFilter(List<ApplicationViewModel> apps) {
-        List<ApplicationViewModel> toRemove = new ArrayList<>();
-        for (ApplicationViewModel app : apps) {
-            if (!gStore.equals(app.installerPackageName)) {
-
-                String auid = Utils.getCertificateSHA1Fingerprint(packageManager,app.packageName);
-                String appuid = DatabaseManager.getInstance(context).getAUID(app.packageName);
-                if(!auid.equalsIgnoreCase(appuid)) {
-                    toRemove.add(app);
-                }
-            }
-
-            try {
-                ApplicationInfo info = packageManager.getApplicationInfo(app.packageName,0);
-                if(!info.enabled) {
-                    toRemove.add(app);
-                }
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        apps.removeAll(toRemove);
-    }
-
-    private List<ApplicationViewModel> convertPackagesToViewModels(List<PackageInfo> infos) {
-        ArrayList<ApplicationViewModel> appsToBuild = new ArrayList<>(infos.size());
-        for (PackageInfo pi : infos) {
-            appsToBuild.add(buildViewModelFromPackageInfo(pi));
-        }
-        return appsToBuild;
-    }
-
-    private ApplicationViewModel buildViewModelFromPackageInfo(PackageInfo pi) {
-        ApplicationViewModel vm = new ApplicationViewModel();
-
-        vm.versionName = pi.versionName;
-        vm.packageName = pi.packageName;
-        vm.versionCode = pi.versionCode;
-        vm.requestedPermissions = pi.requestedPermissions;
-
-        DatabaseManager dm = DatabaseManager.getInstance(context);
-        if(vm.versionName != null)
-            vm.report = dm.getReportFor(vm.packageName, vm.versionName);
-        else {
-            vm.report = dm.getReportFor(vm.packageName, vm.versionCode);
-        }
-
-        if(vm.report != null) {
-            vm.trackers = dm.getTrackers(vm.report.trackers);
-        }
-
-        try {
-            vm.icon = packageManager.getApplicationIcon(vm.packageName);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        vm.label = packageManager.getApplicationLabel(pi.applicationInfo);
-        vm.installerPackageName = packageManager.getInstallerPackageName(vm.packageName);
-        vm.isVisible = true;
-
-        return vm;
     }
 
     @Override
@@ -161,17 +76,13 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         if( viewHolder.getItemViewType() == DISPLAYED_APP) {
             final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
-            holder.setViewModel(applicationViewModels.get(position));
+            ApplicationViewModel vm = applicationViewModels.get(position);
+            holder.setViewModel(vm);
             //noinspection Convert2Lambda
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        PackageInfo packageInfo = packageManager.getPackageInfo(holder.viewModel.packageName, PackageManager.GET_PERMISSIONS);
-                        onAppClickListener.onAppClick(packageInfo);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    onAppClickListener.onAppClick(vm);
                 }
             });
         }else {
@@ -186,28 +97,10 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         return applicationViewModels.size();
     }
 
-    public void displayApplicationList(PackageManager manager) {
-        packageManager = manager;
-        if(packageManager != null) {
-            List<PackageInfo> installedPackages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
-            setInstalledPackages(installedPackages);
-        }
-    }
-
-    /**
-     * This class holds the data needed to display an application cell in the RecyclerView
-     */
-    public class ApplicationViewModel {
-        public String packageName;
-        public String versionName;
-        public int versionCode;
-        public String[] requestedPermissions;
-        public @Nullable Report report;
-        public Set<Tracker> trackers;
-        public @Nullable Drawable icon;
-        public CharSequence label;
-        public String installerPackageName;
-        public boolean isVisible;
+    public void displayAppList(List<ApplicationViewModel> applications) {
+        applicationViewModels = applications;
+        Collections.sort(applicationViewModels, alphaPackageComparator);
+        filter(filter);
     }
 
     class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
@@ -284,7 +177,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     }
 
     public interface OnAppClickListener {
-        void onAppClick(PackageInfo packageInfo);
+        void onAppClick(ApplicationViewModel vm);
     }
 
 
