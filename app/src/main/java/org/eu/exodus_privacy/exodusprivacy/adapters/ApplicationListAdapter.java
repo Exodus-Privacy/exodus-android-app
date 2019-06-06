@@ -67,7 +67,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         applicationViewModels = new ArrayList<>();
         onAppClickListener = listener;
         this.context = context;
-        setPackageManager(manager);
+        displayApplicationList(manager);
     }
 
     private void setInstalledPackages(List<PackageInfo> installedPackages) {
@@ -186,7 +186,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         return applicationViewModels.size();
     }
 
-    public void setPackageManager(PackageManager manager) {
+    public void displayApplicationList(PackageManager manager) {
         packageManager = manager;
         if(packageManager != null) {
             List<PackageInfo> installedPackages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);

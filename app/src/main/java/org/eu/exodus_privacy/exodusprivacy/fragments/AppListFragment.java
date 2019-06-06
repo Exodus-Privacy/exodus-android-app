@@ -117,7 +117,7 @@ public class AppListFragment extends Fragment {
             applistBinding.layoutProgress.setVisibility(View.GONE);
             applistBinding.swipeRefresh.setRefreshing(false);
             if(packageManager != null && applistBinding.appList.getAdapter() != null) {
-                ((ApplicationListAdapter) applistBinding.appList.getAdapter()).setPackageManager(packageManager);
+                ((ApplicationListAdapter) applistBinding.appList.getAdapter()).displayApplicationList(packageManager);
             }
         }
     }
