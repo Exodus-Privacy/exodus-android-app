@@ -34,22 +34,25 @@ import android.view.ViewGroup;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.databinding.ApplistBinding;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
+import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.manager.NetworkManager;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppListFragment extends Fragment {
+public class AppListFragment extends Fragment implements ComputeAppListTask.Listener {
 
-
-    private PackageManager packageManager;
+    private @Nullable PackageManager packageManager;
     private NetworkListener networkListener;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
     private boolean startupRefresh;
     private ApplistBinding applistBinding;
-    private ApplicationListAdapter adapter;
+    private @Nullable ApplicationListAdapter adapter;
+    private List<ApplicationViewModel> applications;
 
     public static AppListFragment newInstance(NetworkListener networkListener, ApplicationListAdapter.OnAppClickListener appClickListener) {
         AppListFragment fragment = new AppListFragment();
@@ -62,6 +65,8 @@ public class AppListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        applications = new ArrayList<>();
     }
 
     @Override
@@ -87,13 +92,10 @@ public class AppListFragment extends Fragment {
                 startupRefresh = false;
             }
             applistBinding.noPackageManager.setVisibility(View.GONE);
-            applistBinding.noAppFound.setVisibility(View.GONE);
-            adapter = new ApplicationListAdapter(getActivity().getApplicationContext(),packageManager, onAppClickListener);
-            if(adapter.getItemCount() == 0) {
-                applistBinding.noAppFound.setVisibility(View.VISIBLE);
-            } else {
-                applistBinding.appList.setAdapter(adapter);
-            }
+            adapter = new ApplicationListAdapter(context, onAppClickListener);
+            applistBinding.appList.setAdapter(adapter);
+            onAppsComputed(applications);
+            displayAppListAsync();
         } else {
             applistBinding.noPackageManager.setVisibility(View.VISIBLE);
         }
@@ -116,9 +118,7 @@ public class AppListFragment extends Fragment {
         if(applistBinding != null) {
             applistBinding.layoutProgress.setVisibility(View.GONE);
             applistBinding.swipeRefresh.setRefreshing(false);
-            if(packageManager != null && applistBinding.appList.getAdapter() != null) {
-                ((ApplicationListAdapter) applistBinding.appList.getAdapter()).setPackageManager(packageManager);
-            }
+            displayAppListAsync();
         }
     }
 
@@ -175,6 +175,27 @@ public class AppListFragment extends Fragment {
     }
 
     public void filter(String filter){
-        adapter.filter(filter);
+        if(adapter != null) {
+            adapter.filter(filter);
+        }
+    }
+
+    private void displayAppListAsync() {
+        applistBinding.noAppFound.setVisibility(View.GONE);
+
+        new ComputeAppListTask(
+                new WeakReference<>(packageManager),
+                new WeakReference<>(DatabaseManager.getInstance(getActivity())),
+                new WeakReference<>(this)
+       ).execute();
+    }
+
+    @Override
+    public void onAppsComputed(List<ApplicationViewModel> apps) {
+        this.applications = apps;
+        applistBinding.noAppFound.setVisibility(apps.isEmpty() ? View.VISIBLE : View.GONE);
+        if(adapter != null) {
+            adapter.displayAppList(apps);
+        }
     }
 }
