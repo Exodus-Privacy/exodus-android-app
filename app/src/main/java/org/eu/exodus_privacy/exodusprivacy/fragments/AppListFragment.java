@@ -87,10 +87,6 @@ public class AppListFragment extends Fragment implements ComputeAppListTask.List
 
         applistBinding.appList.setLayoutManager(new LinearLayoutManager(context));
         if (packageManager != null) {
-            if(startupRefresh) {
-                startRefresh();
-                startupRefresh = false;
-            }
             applistBinding.noPackageManager.setVisibility(View.GONE);
             adapter = new ApplicationListAdapter(context, onAppClickListener);
             applistBinding.appList.setAdapter(adapter);
@@ -182,6 +178,10 @@ public class AppListFragment extends Fragment implements ComputeAppListTask.List
 
     private void displayAppListAsync() {
         applistBinding.noAppFound.setVisibility(View.GONE);
+        if (applications.isEmpty()) {
+            applistBinding.retrieveApp.setVisibility(View.VISIBLE);
+            applistBinding.logo.setVisibility(View.VISIBLE);
+        }
 
         new ComputeAppListTask(
                 new WeakReference<>(packageManager),
@@ -193,9 +193,17 @@ public class AppListFragment extends Fragment implements ComputeAppListTask.List
     @Override
     public void onAppsComputed(List<ApplicationViewModel> apps) {
         this.applications = apps;
+        applistBinding.retrieveApp.setVisibility(View.GONE);
+        applistBinding.logo.setVisibility(View.GONE);
         applistBinding.noAppFound.setVisibility(apps.isEmpty() ? View.VISIBLE : View.GONE);
         if(adapter != null) {
             adapter.displayAppList(apps);
+        }
+        if(!apps.isEmpty()) {
+            if(startupRefresh) {
+                startRefresh();
+                startupRefresh = false;
+            }
         }
     }
 }
