@@ -1,0 +1,4 @@
+- Améliration de la vitesse de navigation
+- Ajout d'un raccourci vers les paramètres des applications
+- Ajout du numéro de version lorsque la version de l'application ne correspond pas
+- Correction de bug
