@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_logo">Логотип приложения</string>
+    <string name="trackers_pct">Трекеры:</string>
+    <string name="permissions_pct">Разрешения:</string>
+    <string name="trackers">трекеров</string>
+    <string name="permissions">разрешений</string>
+    <string name="network_error">Сеть недоступна</string>
+    <string name="not_connected">Нет подключения к интернету</string>
+    <string name="json_error">Ошибка JSON</string>
+    <string name="installed">Установленная версия: </string>
+    <string name="report_version">Изученная версия: </string>
+    <string name="no_trackers">Не найдено ни одного известного трекера</string>
+    <string name="no_permissions">Это приложение не запрашивает никаких разрешений</string>
+    <string name="tested">Данные по установленной версии (%1$s) отсутствуют, показана информация на основе изученной (%2$s) версии</string>
+    <string name="analysed">Это приложение ещё не было изучено Exodus Privacy.</string>
+    <string name="no_package_manager">Похоже, ваша система не разрешает доступ к списку установленных приложений.</string>
+    <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play).</string>
+    <string name="get_reports_connection">Получение приложений: ожидание подключения к серверу</string>
+    <string name="get_reports">Получение приложений</string>
+    <string name="parse_application">Обработка приложений:</string>
+    <string name="parse_trackers">Обработка трекеров:</string>
+    <string name="get_trackers_connection">Получение трекеров: ожидание подключения к серверу</string>
+    <string name="get_trackers">Получение трекеров</string>
+    <string name="no_settings">Это приложение не имеет настроек</string>
+    <string name="menu_action_filter">Фильтр</string>
+    <string name="menu_action_settings">Настройки приложения</string>
+</resources>
