@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <data/>
@@ -25,37 +25,39 @@
                 android:layout_marginEnd="5dp"/>
             <LinearLayout
                 android:id="@+id/layout_infos"
-                android:orientation="vertical"
-                android:layout_centerInParent="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/app_outdated"
+                    android:layout_width="30dp"
+                    android:padding="3dp"
+                    android:layout_height="@dimen/app_item_square_height"
+                    android:background="@drawable/square_red"
+                    app:srcCompat="@drawable/ic_update"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp" />
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:textAlignment="center"
-                        android:background="@drawable/square_green"
-                        android:id="@+id/app_tracker_nb"
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/trackers"
-                        android:id="@+id/app_tracker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    >
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
                     <TextView
+                        android:id="@+id/app_tracker_nb"
+                        android:layout_width="30dp"
+                        android:layout_height="@dimen/app_item_square_height"
+                        android:background="@drawable/square_green"
                         android:textAlignment="center"
                         android:background="@drawable/square_green"
                         android:id="@+id/app_permission_nb"
@@ -81,25 +83,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
-        <TextView
-            android:layout_below="@+id/base_info"
-            android:id="@+id/other_version"
-            android:text="@string/tested"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_below="@+id/other_version"
-            android:id="@+id/analysed"
-            android:text="@string/analysed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_below="@+id/analysed"
-            android:layout_alignParentBottom="true"
-            style="?android:attr/listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-
     </RelativeLayout>
 </layout>

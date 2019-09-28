@@ -125,8 +125,8 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             Context context = appItemBinding.getRoot().getContext();
 
             //reinit view state
-            appItemBinding.otherVersion.setVisibility(View.GONE);
-            appItemBinding.analysed.setVisibility(View.GONE);
+            appItemBinding.appOutdated.setVisibility(View.GONE);
+            appItemBinding.appUnknown.setVisibility(View.GONE);
             appItemBinding.appTrackerNb.setVisibility(View.VISIBLE);
             appItemBinding.appTracker.setVisibility(View.VISIBLE);
 
@@ -160,18 +160,14 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_red);
 
                 if(versionName != null && !report.version.equals(viewModel.versionName)) {
-                    String string = context.getString(R.string.tested,versionName, report.version);
-                    appItemBinding.otherVersion.setText(string);
-                    appItemBinding.otherVersion.setVisibility(View.VISIBLE);
+                    appItemBinding.appOutdated.setVisibility(View.VISIBLE);
                 } else if (versionName == null && report.versionCode != versionCode) {
-                    String string = context.getString(R.string.tested,String.valueOf(versionCode),String.valueOf(report.versionCode));
-                    appItemBinding.otherVersion.setText(string);
-                    appItemBinding.otherVersion.setVisibility(View.VISIBLE);
+                    appItemBinding.appOutdated.setVisibility(View.VISIBLE);
                 }
             } else {
                 appItemBinding.appTrackerNb.setVisibility(View.GONE);
                 appItemBinding.appTracker.setVisibility(View.GONE);
-                appItemBinding.analysed.setVisibility(View.VISIBLE);
+                appItemBinding.appUnknown.setVisibility(View.VISIBLE);
             }
         }
     }
