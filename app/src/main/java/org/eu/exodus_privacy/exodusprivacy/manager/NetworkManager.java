@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.TimeZone;
 
 import java.util.concurrent.Semaphore;
@@ -201,8 +202,14 @@ public class NetworkManager {
                         JSONObject tracker = trackers.getJSONObject(trackerId);
                         Tracker track = parseTracker(tracker,trackerId);
                         trackersList.add(track);
+                        if (trackersList.size() == 20) {
+                            DatabaseManager.getInstance(mes.context).insertOrUpdateTrackers(trackersList);
+                            trackersList.clear();
+                        }
                     }
-                    DatabaseManager.getInstance(mes.context).insertOrUpdateTrackers(trackersList);
+                    if(!trackersList.isEmpty())
+                        DatabaseManager.getInstance(mes.context).insertOrUpdateTrackers(trackersList);
+                    trackersList.clear();
                 } catch (JSONException e) {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
@@ -225,40 +232,55 @@ public class NetworkManager {
 
             if(object != null) {
                 Map<String,String> handles = new HashMap<>();
+                ArrayList<String> packages = mes.args.getStringArrayList("packages");
+                if (packages == null)
+                    return;
+
                 try {
                     JSONArray applications = object.getJSONArray("applications");
+
+                    //manage handles map (handle,UAID)
                     for(int i = 0; i<applications.length(); i++) {
                         JSONObject app = applications.getJSONObject(i);
                         String handle = app.getString("handle");
                         String auid = app.getString("app_uid");
-                        handles.put(handle,auid);
+                        app.remove("id");
+                        app.remove("name");
+                        app.remove("creator");
+                        app.remove("icon_phash");
+                        app.remove("downloads");
+                        if (packages.contains(handle))
+                            handles.put(handle,auid);
+                        app.remove("app_uid");
                     }
+
+                    //remove app not analyzed by Exodus
+                    packages.retainAll(handles.keySet());
+
+                    // Add some random packages to avoid tracking
+                    Random rand = new Random(Thread.currentThread().getId());
+                    int alea = rand.nextInt(120) % 10 + 11;
+                    for(int i = 0 ; i < alea; i++) {
+                        int val = rand.nextInt(applications.length());
+                        JSONObject app = applications.getJSONObject(val);
+                        String handle = app.getString("handle");
+                        packages.add(handle);
+                    }
+                    //shuffle the list
+                    Collections.shuffle(packages);
+                    object.remove("applications");
+
                 } catch (JSONException e) {
+                    e.printStackTrace();
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
-                getReports(mes,handles);
+                object = null;
+                getReports(mes,handles,packages);
             }
             mes.listener.onSuccess();
         }
 
-        private void getReports(Message mes, Map<String,String> handles) {
-            ArrayList<String> packages = mes.args.getStringArrayList("packages");
-            if(packages == null)
-                return;
-
-            packages.retainAll(handles.keySet());
-
-            // Add some random packages to avoid tracking
-            Random rand = new Random(Thread.currentThread().getId());
-            int alea = rand.nextInt(120) % 10 + 11;
-            List<String> handleList = new ArrayList<>(handles.keySet());
-            for(int i = 0 ; i < alea; i++) {
-                int val = rand.nextInt(handleList.size());
-                packages.add(handleList.get(val));
-            }
-
-            Collections.shuffle(packages);
-
+        private void getReports(Message mes, Map<String, String> handles, ArrayList<String> packages) {
             for(int i = 0; i < packages.size(); i++) {
                 mes.listener.onProgress(R.string.parse_application,i+1,packages.size());
                 getReport(mes,packages.get(i),handles.get(packages.get(i)));
