@@ -1,11 +1,12 @@
 package org.eu.exodus_privacy.exodusprivacy.adapters;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.TrackerItemBinding;
@@ -13,7 +14,7 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 import java.util.Set;
 
-public class TrackerListAdapter extends android.support.v7.widget.RecyclerView.Adapter<TrackerListAdapter.TrackerListViewHolder>{
+public class TrackerListAdapter extends RecyclerView.Adapter<TrackerListAdapter.TrackerListViewHolder>{
 
     private Set<Tracker> trackersList;
     private int layout;

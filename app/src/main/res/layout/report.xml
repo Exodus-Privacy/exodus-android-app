@@ -121,7 +121,7 @@
 
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/trackers"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
@@ -166,7 +166,7 @@
                         />
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/permissions"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
