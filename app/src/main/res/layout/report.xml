@@ -19,6 +19,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/logo"
+                android:padding="10dp"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 />
@@ -33,25 +34,27 @@
                 <TextView
                     android:id="@+id/name"
                     android:text="test"
+                    android:layout_marginTop="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <TextView
-                    android:text="Creator"
                     android:id="@+id/creator"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Creator"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
                 <TextView
                     android:text="installed version"
                     android:id="@+id/installed_version"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="Report version"
                     android:id="@+id/report_version"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -59,17 +62,20 @@
                     android:autoLink="web"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/analysed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/analysed"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/analysed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/base_info"
+            android:text="@string/analysed"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            />
+        <LinearLayout
+            android:layout_below="@id/analysed"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
@@ -88,29 +94,30 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    >
+                    android:background="@drawable/square_purple"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="3dp">
                     <TextView
                         android:id="@+id/trackers_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
                         android:text="@string/trackers_pct"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/trackers_nb"
-                        android:text="99"
-                        android:background="@drawable/square_green"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textAlignment="center"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        />
+                        android:background="@drawable/square_green"
+                        android:text="99"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp" />
 
                 </LinearLayout>
 
@@ -131,7 +138,11 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/square_purple"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="3dp"
                     >
                     <TextView
                         android:id="@+id/permissions_title"
@@ -144,16 +155,14 @@
 
                     <TextView
                         android:id="@+id/permissions_nb"
-                        android:text="99"
-                        android:background="@drawable/square_green"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textAlignment="center"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/square_green"
+                        android:text="99"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         />
                 </LinearLayout>
 
