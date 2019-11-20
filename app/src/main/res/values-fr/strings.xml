@@ -37,8 +37,6 @@
     <string name="tracker_infos">Un pisteur est une partie du logiciel dédiée à la collecte de données sur vous et vos usages. <a href="https://reports.exodus-privacy.eu.org/fr/info/trackers/">En savoir plus…</a></string>
     <string name="permission_infos">Les permissions sont les actions que l\'application peut effectuer sur votre téléphone. <a href="https://reports.exodus-privacy.eu.org/fr/info/permissions/">En savoir plus…</a></string>
     <string name="permission_infos_dangerous">L\'icône <font color="red"><b>!</b></font> indique un niveau \'Dangereux\' ou \'Spécial\' d\'après les <a href="https://developer.android.com/guide/topics/permissions/overview">niveaux de protection de Google.</a></string>
-    <string name="tracker_presence">Présent dans: %1 applications</string>
-    <string name="tracker_web_page">Site web du pisteur➤</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filtrer</string>
