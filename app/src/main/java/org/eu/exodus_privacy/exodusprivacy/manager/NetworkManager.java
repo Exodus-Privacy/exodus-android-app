@@ -340,10 +340,12 @@ public class NetworkManager {
                 report.updateDate = Calendar.getInstance();
                 report.updateDate.setTimeZone(TimeZone.getTimeZone("UTC"));
                 report.updateDate.setTime(dateFormat.parse(object.getString("updated_at")));
+                report.updateDate.set(Calendar.MILLISECOND,0);
 
                 report.creationDate = Calendar.getInstance();
                 report.creationDate.setTimeZone(TimeZone.getTimeZone("UTC"));
                 report.creationDate.setTime(dateFormat.parse(object.getString("creation_date")));
+                report.creationDate.set(Calendar.MILLISECOND,0);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

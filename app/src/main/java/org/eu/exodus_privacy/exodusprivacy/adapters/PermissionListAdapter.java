@@ -40,7 +40,7 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
     @Override
     public int getItemCount() {
         if(permissionList == null || permissionList.size() == 0)
-            return 1;
+            return 0;
         else
             return permissionList.size();
     }
@@ -61,11 +61,21 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
 
         void setupData(Permission permission) {
             if(permission != null) {
-                if(permission.name != null)
-                    permissionItemBinding.permissionName.setText(permission.name);
+                if(permission.name != null) {
+                    permissionItemBinding.permissionShort.setText(permission.name);
+                    permissionItemBinding.permissionShort.setVisibility(View.VISIBLE);
+                }
                 else
-                    permissionItemBinding.permissionName.setText(permission.fullName);
+                    permissionItemBinding.permissionShort.setVisibility(View.GONE);
+
+                permissionItemBinding.permissionName.setText(permission.fullName.substring(permission.fullName.lastIndexOf(".")+1));
                 permissionItemBinding.permissionDescription.setText(permission.description);
+                if(permission.icon != null)
+                    permissionItemBinding.icon.setImageDrawable(permission.icon);
+                if(!permission.dangerous)
+                    permissionItemBinding.dangerous.setVisibility(View.GONE);
+                else
+                    permissionItemBinding.dangerous.setVisibility(View.VISIBLE);
                 manageExpanded(permission);
                 permissionItemBinding.mainLayout.setOnClickListener((View.OnClickListener) v -> {
                     if( permission.description != null && permission.description.trim().length() > 0) {
@@ -78,6 +88,9 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
             else {
                 permissionItemBinding.permissionName.setText(R.string.no_permissions);
                 permissionItemBinding.arrow.setText(" ");
+                permissionItemBinding.permissionShort.setVisibility(View.GONE);
+                permissionItemBinding.dangerous.setVisibility(View.GONE);
+                permissionItemBinding.permissionDescription.setVisibility(View.GONE);
             }
 
         }
@@ -90,7 +103,7 @@ public class PermissionListAdapter extends RecyclerView.Adapter<PermissionListAd
                 if( permission.description != null && permission.description.trim().length() > 0 )
                     permissionItemBinding.arrow.setText("▶");
                 else
-                    permissionItemBinding.arrow.setText("■");
+                    permissionItemBinding.arrow.setText("");
                 permissionItemBinding.permissionDescription.setVisibility(View.GONE);
 
             }
