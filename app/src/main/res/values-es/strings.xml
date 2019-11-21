@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Exodus Privacy</string>
+    <string name="app_logo">Logo de la application Logo</string>
+    <string name="trackers_pct">Rastreadores:</string>
+    <string name="permissions_pct">Autorizaciones:</string>
+    <string name="trackers">Rastreadores</string>
+    <string name="permissions">Autorizaciones</string>
+    <string name="network_error">Red no disponible</string>
+    <string name="not_connected">Sin conexión Internet</string>
+    <string name="json_error">Error JSON</string>
+    <string name="installed">Versión instalada: </string>
+    <string name="report_version">Versión verificada: </string>
+    <string name="no_trackers">Ningún rastreador verificado ha sido encontrado</string>
+    <string name="no_permissions">Esta applicación no requiere autorizaciones</string>
+    <string name="tested">No existe informe para la versión instalada (%1$s), las informaciones mostradas se basan en otra versión (%2$s)</string>
+    <string name="analysed">Esta applicación aún no ha sido analizada por Exodus Privacy.</string>
+    <string name="no_package_manager">Parece que tu sistema no autoriza el acceso a la lista de aplicaciones instaladas.</string>
+    <string name="no_app_found">Parece que no tienes ninguna aplicación de la plataforma que analizamos (Google Play).</string>
+    <string name="get_reports_connection">Obteniendo aplicaciones: Esperando conexión con el servidor</string>
+    <string name="get_reports">Obteniendo aplicaciones</string>
+    <string name="parse_application">Procesando aplicaciones:</string>
+    <string name="parse_trackers">Procesando rastreadores:</string>
+    <string name="get_trackers_connection">Obteniendo rastreadores: Esperando conexión con el servidor</string>
+    <string name="get_trackers">Obteniendo rastreadores</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Filtro</string>
+</resources>
