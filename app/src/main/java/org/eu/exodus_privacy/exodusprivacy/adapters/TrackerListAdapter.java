@@ -1,21 +1,29 @@
 package org.eu.exodus_privacy.exodusprivacy.adapters;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.TrackerItemBinding;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
-public class TrackerListAdapter extends android.support.v7.widget.RecyclerView.Adapter<TrackerListAdapter.TrackerListViewHolder>{
+public class TrackerListAdapter extends RecyclerView.Adapter<TrackerListAdapter.TrackerListViewHolder>{
 
-    private Set<Tracker> trackersList;
+    private List<Tracker> trackersList;
     private int layout;
 
     public TrackerListAdapter(Set<Tracker> trackerList, int resource) {
@@ -35,7 +43,7 @@ public class TrackerListAdapter extends android.support.v7.widget.RecyclerView.A
         if(trackersList == null || trackersList.size() == 0)
             holder.setupData(null);
         else
-            holder.setupData((Tracker) trackersList.toArray()[position]);
+            holder.setupData(trackersList.get(position));
     }
 
     @Override
@@ -46,8 +54,13 @@ public class TrackerListAdapter extends android.support.v7.widget.RecyclerView.A
             return trackersList.size();
     }
 
+    private Comparator<Tracker> alphaTrackerComparator = (track1, track2) -> track1.name.compareToIgnoreCase(track2.name);
+
     public void setTrackers(Set<Tracker> trackers) {
-        trackersList = trackers;
+        if(trackers != null) {
+            trackersList = new ArrayList<>(trackers);
+            Collections.sort(trackersList, alphaTrackerComparator);
+        }
     }
 
     class TrackerListViewHolder extends RecyclerView.ViewHolder {
@@ -62,8 +75,14 @@ public class TrackerListAdapter extends android.support.v7.widget.RecyclerView.A
         void setupData(Tracker tracker) {
             if(viewDataBinding instanceof TrackerItemBinding) {
                 TrackerItemBinding binding = (TrackerItemBinding) viewDataBinding;
-                if(tracker != null)
-                    binding.trackerName.setText(tracker.name);
+                if(tracker != null) {
+                    binding.trackerName.setText(tracker.name + " ➤");
+                    binding.getRoot().setOnClickListener(v -> {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("https://reports.exodus-privacy.eu.org/trackers/" + tracker.id + "/"));
+                        v.getContext().startActivity(intent);
+                    });
+                }
                 else
                     binding.trackerName.setText(R.string.no_trackers);
             }

@@ -280,9 +280,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         long creation = cursor.getLong(col++);
         report.creationDate = Calendar.getInstance();
         report.creationDate.setTimeInMillis(creation);
+        report.creationDate.set(Calendar.MILLISECOND,0);
         long update = cursor.getLong(col++);
         report.updateDate = Calendar.getInstance();
         report.updateDate.setTimeInMillis(update);
+        report.updateDate.set(Calendar.MILLISECOND,0);
         report.downloads = cursor.getString(col++);
         report.version = cursor.getString(col++);
         report.versionCode = cursor.getLong(col++);

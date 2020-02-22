@@ -20,33 +20,29 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PermissionInfo;
-import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.ReportViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.ReportBinding;
-import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
-import org.eu.exodus_privacy.exodusprivacy.objects.Permission;
-import org.eu.exodus_privacy.exodusprivacy.objects.Report;
-import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
+import org.eu.exodus_privacy.exodusprivacy.objects.ReportDisplay;
 public class ReportFragment  extends Fragment {
 
     private PackageManager packageManager;
@@ -85,136 +81,55 @@ public class ReportFragment  extends Fragment {
 
     public void updateComplete() {
         Context context = reportBinding.getRoot().getContext();
-        String packageName = packageInfo.packageName;
-        String versionName = packageInfo.versionName;
-        long versionCode = packageInfo.versionCode;
 
-        //setup logo
-        try {
-            reportBinding.logo.setImageDrawable(packageManager.getApplicationIcon(packageName));
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(context,packageManager,packageInfo);
+        ReportViewModel viewModel = new ReportViewModel();
+        viewModel.setReportDisplay(reportDisplay);
+        reportBinding.setReportInfo(viewModel);
 
-        //setup name
-        reportBinding.name.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
-
-        //setup permissions number
-        if (packageInfo.requestedPermissions != null) {
-            reportBinding.permissionsNb.setText(String.valueOf(packageInfo.requestedPermissions.length));
-            reportBinding.permissionsNb.setVisibility(View.VISIBLE);
-        }
-        else {
-            reportBinding.permissionsNb.setVisibility(View.GONE);
-        }
-
-        if(packageInfo.requestedPermissions != null){
-            if(packageInfo.requestedPermissions.length == 0)
-                reportBinding.permissionsNb.setBackgroundResource(R.drawable.square_green);
-            else if(packageInfo.requestedPermissions.length < 5)
-                reportBinding.permissionsNb.setBackgroundResource(R.drawable.square_yellow);
-            else
-                reportBinding.permissionsNb.setBackgroundResource(R.drawable.square_red);
-        }
-
-        //setup permissions list
-        List<Permission> requestedPermissions = null;
-        if (packageInfo.requestedPermissions != null && packageInfo.requestedPermissions.length > 0) {
-            requestedPermissions = new ArrayList<>();
-            for(int i = 0; i < packageInfo.requestedPermissions.length; i++) {
-                Permission permission = new Permission();
-                permission.fullName = packageInfo.requestedPermissions[i];
-                try {
-                    PermissionInfo permissionInfo = packageManager.getPermissionInfo(permission.fullName,PackageManager.GET_META_DATA);
-                    if(permissionInfo.loadDescription(packageManager) != null)
-                        permission.description = permissionInfo.loadDescription(packageManager).toString();
-                    if(permissionInfo.loadLabel(packageManager) != null)
-                        permission.name = permissionInfo.loadLabel(packageManager).toString();
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                requestedPermissions.add(permission);
-            }
-        }
 
         reportBinding.permissions.setLayoutManager(new LinearLayoutManager(context));
-        PermissionListAdapter permissionAdapter = new PermissionListAdapter(requestedPermissions);
+        PermissionListAdapter permissionAdapter = new PermissionListAdapter(reportDisplay.permissions);
         reportBinding.permissions.setNestedScrollingEnabled(false);
         reportBinding.permissions.setAdapter(permissionAdapter);
 
 
-        reportBinding.analysed.setVisibility(View.GONE);
-        reportBinding.trackerLayout.setVisibility(View.VISIBLE);
-
-        //get trackers
-        Report report = null;
-        if(versionName != null)
-            report = DatabaseManager.getInstance(context).getReportFor(packageName,versionName);
-        else
-            report = DatabaseManager.getInstance(context).getReportFor(packageName,versionCode);
-        Set<Tracker> trackers = null;
-        if(report != null) {
-            trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
-        } else {
-            reportBinding.analysed.setVisibility(View.VISIBLE);
-            reportBinding.trackerLayout.setVisibility(View.GONE);
-        }
-        //setup trackers report
-        if(trackers != null) {
-            reportBinding.trackersNb.setText(String.valueOf(trackers.size()));
-            reportBinding.trackersNb.setVisibility(View.VISIBLE);
-        } else {
-            reportBinding.trackersNb.setVisibility(View.GONE);
-        }
-        if(trackers != null){
-            if(trackers.size() == 0)
-                reportBinding.trackersNb.setBackgroundResource(R.drawable.square_green);
-            else if(trackers.size() < 5)
-                reportBinding.trackersNb.setBackgroundResource(R.drawable.square_yellow);
-            else
-                reportBinding.trackersNb.setBackgroundResource(R.drawable.square_red);
-        }
-
         //setup trackers lists
         reportBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
-        TrackerListAdapter trackerAdapter = new TrackerListAdapter(trackers,R.layout.tracker_item);
+        TrackerListAdapter trackerAdapter = new TrackerListAdapter(reportDisplay.trackers,R.layout.tracker_item);
         reportBinding.trackers.setNestedScrollingEnabled(false);
         reportBinding.trackers.setAdapter(trackerAdapter);
 
-        //setup creator
-        if(report != null)
-            reportBinding.creator.setText(DatabaseManager.getInstance(context).getCreator(report.appId));
-        else
-            reportBinding.creator.setVisibility(View.GONE);
+        reportBinding.reportDate.setText(viewModel.getReportDate(context));
+        reportBinding.creatorValue.setText(viewModel.getCreator(context));
+        reportBinding.codeSignature.setText(viewModel.getCodeSignatureInfo(context));
+        reportBinding.codePermission.setText(viewModel.getCodePermissionInfo(context));
 
-        //setup installed
-        String installed_str = "";
-        if(versionName != null)
-            installed_str = context.getString(R.string.installed) +" "+ versionName;
-        else
-            installed_str = context.getString(R.string.installed) +" "+ String.valueOf(versionCode);
-        reportBinding.installedVersion.setText(installed_str);
+        reportBinding.trackerExplanation.setText(getText(R.string.tracker_infos));
+        reportBinding.trackerExplanation.setMovementMethod(LinkMovementMethod.getInstance());
+        reportBinding.trackerExplanation.setClickable(true);
 
-        //setup reportversion
-        reportBinding.reportVersion.setVisibility(View.VISIBLE);
-        if(report != null) {
-            String report_str = "";
-            if (versionName != null && !report.version.equals(versionName)) {
-                report_str = context.getString(R.string.report_version) + " " + report.version;
-            } else if (versionName == null && report.versionCode != versionCode) {
-                report_str = context.getString(R.string.report_version) + " " + report.versionCode;
-            }
-            if(!report_str.isEmpty())
-                reportBinding.reportVersion.setText(report_str);
-            else
-                reportBinding.reportVersion.setVisibility(View.GONE);
+        reportBinding.permissionExplanationDangerous.setText(getText(R.string.permission_infos_dangerous));
+        reportBinding.permissionExplanationDangerous.setMovementMethod(LinkMovementMethod.getInstance());
+        reportBinding.permissionExplanationDangerous.setClickable(true);
+
+        reportBinding.permissionExplanation.setText(getText(R.string.permission_infos));
+        reportBinding.permissionExplanation.setMovementMethod(LinkMovementMethod.getInstance());
+        reportBinding.permissionExplanation.setClickable(true);
+
+        reportBinding.viewPlay.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id="+reportDisplay.packageName));
+            startActivity(intent);
+        });
+
+        if(reportDisplay.report != null) {
+            reportBinding.reportUrl.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://reports.exodus-privacy.eu.org/reports/" + reportDisplay.report.id + "/"));
+                startActivity(intent);
+            });
         }
-        else
-            reportBinding.reportVersion.setVisibility(View.GONE);
-
-        //setup report url
-        if(report != null)
-            reportBinding.reportUrl.setText("https://reports.exodus-privacy.eu.org/reports/"+report.id+"/");
     }
 
     public void setPackageManager(PackageManager packageManager) {

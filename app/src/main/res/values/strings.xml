@@ -10,8 +10,8 @@
     <string name="json_error">JSON Error</string>
     <string name="installed">Installed Version: </string>
     <string name="report_version">Tested Version: </string>
-    <string name="no_trackers">No tested trackers were found</string>
-    <string name="no_permissions">No permissions are requested by this application</string>
+    <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
+    <string name="no_permissions">This application doesn\'t require any permissions.</string>
     <string name="tested">There\'s no report for the installed version (%1$s), the information displayed is based on another (%2$s) version</string>
     <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
     <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
@@ -23,8 +23,23 @@
     <string name="get_trackers_connection">Getting trackers: Waiting for server connection</string>
     <string name="get_trackers">Getting trackers</string>
     <string name="no_settings">This app doesn\'t have settings</string>
+    <string name="logo">%1 Application Logo</string>
+    <string name="created_by">Created By</string>
+    <string name="created_date">This report has been created the</string>
+    <string name="and_updated">and updated the</string>
+    <string name="view_on_exodus">See on Exodus Privacy ➤</string>
+    <string name="view_on_google_play">See on Google Play ➤</string>
+    <string name="downloads">downloads</string>
+    <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
+    <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
+    <string name="code_permission_found">We have found the following permissions in the application:</string>
+    <string name="code_permission_not_found">This application doesn\'t require any permissions.</string>
+    <string name="tracker_infos">A tracker is a piece of software meant to collect data about you or your usages. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Learn more…</a></string>
+    <string name="permission_infos">Permissions are actions the application can do on your phone. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Learn more…</a></string>
+    <string name="permission_infos_dangerous">The icon <font color="red"><b>!</b></font> indicates a \'Dangerous\' or \'Special\' level according to <a href="https://developer.android.com/guide/topics/permissions/overview">Google\'s protection levels.</a></string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>
     <string name="menu_action_settings">Application Settings</string>
+
 </resources>

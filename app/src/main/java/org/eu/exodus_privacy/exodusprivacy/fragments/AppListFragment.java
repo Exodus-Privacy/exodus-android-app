@@ -22,15 +22,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
@@ -46,7 +47,8 @@ import java.util.List;
 
 public class AppListFragment extends Fragment implements ComputeAppListTask.Listener {
 
-    private @Nullable PackageManager packageManager;
+    private @Nullable
+    PackageManager packageManager;
     private NetworkListener networkListener;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
     private boolean startupRefresh;
