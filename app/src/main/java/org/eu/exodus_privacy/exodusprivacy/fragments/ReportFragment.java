@@ -43,7 +43,7 @@ import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.ReportBinding;
 import org.eu.exodus_privacy.exodusprivacy.objects.ReportDisplay;
-public class ReportFragment  extends Fragment {
+public class ReportFragment  extends Fragment implements Updatable {
 
     private PackageManager packageManager;
     private PackageInfo packageInfo = null;
@@ -75,11 +75,12 @@ public class ReportFragment  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         reportBinding = DataBindingUtil.inflate(inflater,R.layout.report,container,false);
-        updateComplete();
+        onUpdateComplete();
         return reportBinding.getRoot();
     }
 
-    public void updateComplete() {
+    @Override
+    public void onUpdateComplete() {
         Context context = reportBinding.getRoot().getContext();
 
         ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(context,packageManager,packageInfo);
@@ -132,11 +133,11 @@ public class ReportFragment  extends Fragment {
         }
     }
 
-    public void setPackageManager(PackageManager packageManager) {
+    private void setPackageManager(PackageManager packageManager) {
         this.packageManager = packageManager;
     }
 
-    public void setPackageInfo(PackageInfo packageInfo) {
+    private void setPackageInfo(PackageInfo packageInfo) {
         this.packageInfo = packageInfo;
     }
 

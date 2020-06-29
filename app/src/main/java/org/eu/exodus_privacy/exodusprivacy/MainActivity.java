@@ -40,14 +40,17 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
-import org.eu.exodus_privacy.exodusprivacy.fragments.AppListFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.Updatable;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppListFragment appList;
     private ReportFragment report;
+    private List<Updatable> fragments;
     private SearchView searchView;
     private Menu toolbarMenu;
     private MenuItem settingsMenuItem;
@@ -59,22 +62,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.main);
         final MainBinding mainBinding = binding;
+        fragments = new ArrayList<>();
 
         NetworkListener networkListener = new NetworkListener() {
             @Override
             public void onSuccess() {
                 runOnUiThread(() -> {
-                    appList.updateComplete();
-                    if(report != null)
-                        report.updateComplete();
+                    for(Updatable updatable : fragments){
 
+                        updatable.onUpdateComplete();
+                    }
                 });
             }
 
             @Override
             public void onError(String error) {
                 runOnUiThread(() -> {
-                    appList.updateComplete();
+                    for(Updatable updatable : fragments){
+                        updatable.onUpdateComplete();
+                    }
                     Snackbar bar = Snackbar.make(mainBinding.fragmentContainer,error,Snackbar.LENGTH_LONG);
                     bar.show();
                 });
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
 
                 report = ReportFragment.newInstance(pm,packageInfo);
+                fragments.add(report);
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
@@ -112,13 +119,17 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        appList = AppListFragment.newInstance(networkListener,onAppClickListener);
+        HomeFragment home = new HomeFragment();
+        fragments.add(home);
+        home.setNetworkListener(networkListener);
+        home.setOnAppClickListener(onAppClickListener);
 
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container,appList)
+        transaction.replace(R.id.fragment_container,home)
         .commit();
+        home.startRefresh();
     }
 
     @Override
@@ -127,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         else {
             getSupportFragmentManager().popBackStack();
-            report = null;
+            fragments.remove(fragments.size()-1);
         }
     }
 
@@ -142,19 +153,22 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                appList.filter(query);
+                HomeFragment home = (HomeFragment) fragments.get(0);
+                home.filter(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                appList.filter(newText);
+                HomeFragment home = (HomeFragment) fragments.get(0);
+                home.filter(newText);
                 return true;
             }
         });
 
         settingsMenuItem = menu.findItem(R.id.action_settings);
-        if (report != null)
+        Updatable fragment = fragments.get(fragments.size()-1);
+        if (fragment instanceof ReportFragment)
             settingsMenuItem.setVisible(true);
         else
             settingsMenuItem.setVisible(false);

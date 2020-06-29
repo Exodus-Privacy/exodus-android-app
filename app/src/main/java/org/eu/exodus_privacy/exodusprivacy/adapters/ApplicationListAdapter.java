@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.AppItemBinding;
+import org.eu.exodus_privacy.exodusprivacy.fragments.AppListFragment;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
@@ -43,9 +44,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
 
     private List<ApplicationViewModel> applicationViewModels;
     private OnAppClickListener onAppClickListener;
-    private String filter = "";
+    private Object filter = "";
+    private AppListFragment.Type filterType = AppListFragment.Type.NAME;
     private final int HIDDEN_APP = 0;
     private final int DISPLAYED_APP = 1;
+    private int displayedApp = 0;
 
     private Comparator<ApplicationViewModel> alphaPackageComparator = new Comparator<ApplicationViewModel>() {
         @Override
@@ -102,7 +105,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     public void displayAppList(List<ApplicationViewModel> applications) {
         applicationViewModels = applications;
         Collections.sort(applicationViewModels, alphaPackageComparator);
-        filter(filter);
+        filter(filterType,filter);
+    }
+
+    public int getDisplayedApps() {
+        return displayedApp;
     }
 
     class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
@@ -182,15 +189,37 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         void onAppClick(ApplicationViewModel vm);
     }
 
+    public void filter(AppListFragment.Type type, Object filterObject) {
+        displayedApp = 0;
+        if (type.equals(AppListFragment.Type.NAME)) {
+            filter = filterObject;
+            filterType = type;
+            String filterStr = (String) filterObject;
 
-    public void filter(String text) {
-        filter = text;
+            Pattern p = Pattern.compile(Pattern.quote(filterStr.trim()), Pattern.CASE_INSENSITIVE);
+            for (ApplicationViewModel app : applicationViewModels) {
+                app.isVisible = p.matcher(app.label).find();
+                if(app.isVisible)
+                    displayedApp++;
+            }
+        } else if(type.equals(AppListFragment.Type.TRACKER)) {
+            filter = filterObject;
+            filterType = type;
+            Long filterLng = (Long) filterObject;
 
-        Pattern p = Pattern.compile(Pattern.quote(filter.trim()), Pattern.CASE_INSENSITIVE);
-        for (ApplicationViewModel app : applicationViewModels) {
-            app.isVisible = p.matcher(app.label).find();
+            for (ApplicationViewModel app : applicationViewModels) {
+                app.isVisible = false;
+                if (app.trackers != null) {
+                    for (Tracker tracker : app.trackers) {
+                        if (tracker.id == filterLng) {
+                            app.isVisible = true;
+                            displayedApp++;
+                            break;
+                        }
+                    }
+                }
+            }
         }
-
         notifyDataSetChanged();
     }
 }
