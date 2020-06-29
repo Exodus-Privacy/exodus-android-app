@@ -151,9 +151,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             if(size == 0)
                 appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_green);
             else if (size < 5)
-                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_yellow);
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_light_yellow);
             else
-                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_red);
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_light_red);
 
             Report report = viewModel.report;
             if(report != null) {
@@ -164,9 +164,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                 if(size == 0)
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_green);
                 else if (size < 5)
-                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_yellow);
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_light_yellow);
                 else
-                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_red);
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_light_red);
 
                 if(versionName != null && !report.version.equals(viewModel.versionName)) {
                     String string = context.getString(R.string.tested,versionName, report.version);

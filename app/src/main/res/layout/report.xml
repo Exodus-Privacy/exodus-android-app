@@ -39,7 +39,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:textSize="30sp"
                 android:textColor="@color/colorPurple"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textAlignment="center"/>
 
             <View
                 android:id="@+id/dummy"

@@ -161,9 +161,9 @@ public class ReportViewModel extends BaseObservable {
         if (number == 0)
             return R.drawable.square_green;
         else if(number < 5)
-            return R.drawable.square_yellow;
+            return R.drawable.square_light_yellow;
         else
-            return R.drawable.square_red;
+            return R.drawable.square_light_red;
     }
 
 
