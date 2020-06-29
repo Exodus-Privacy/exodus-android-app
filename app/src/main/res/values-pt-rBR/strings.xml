@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Exodus Privacy</string>
+    <string name="app_name">Exodus</string>
     <string name="app_logo">Logo Da Aplicação</string>
     <string name="trackers_pct">Rastreadores:</string>
     <string name="permissions_pct">Permissões:</string>

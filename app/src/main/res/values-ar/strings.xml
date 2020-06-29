@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Exodus Privacy</string>
+    <string name="app_name">Exodus</string>
     <string name="app_logo">شعار التطبيق</string>
     <string name="trackers_pct">المتعقِّبون:</string>
     <string name="permissions_pct">التصريحات:</string>
