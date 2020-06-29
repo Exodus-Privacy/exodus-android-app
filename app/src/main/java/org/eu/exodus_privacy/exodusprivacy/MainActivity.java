@@ -40,12 +40,15 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
+import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
 import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.TrackerFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.Updatable;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem settingsMenuItem;
     private String packageName;
     private MainBinding binding;
+    private ApplicationListAdapter.OnAppClickListener onAppClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,12 +104,24 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        ApplicationListAdapter.OnAppClickListener onAppClickListener = vm -> {
+        TrackerListAdapter.OnTrackerClickListener onTrackerClickListener = id -> {
+            TrackerFragment tracker = TrackerFragment.newInstance(id);
+            tracker.setOnAppClickListener(onAppClickListener);
+            fragments.add(tracker);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
+                    .replace(R.id.fragment_container,tracker)
+                    .addToBackStack(null)
+                    .commit();
+        };
+
+        onAppClickListener = vm -> {
             try {
                 PackageManager pm = getPackageManager();
                 PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
 
-                ReportFragment report = ReportFragment.newInstance(pm,vm,packageInfo);
+                ReportFragment report = ReportFragment.newInstance(pm,vm,packageInfo,onTrackerClickListener);
                 fragments.add(report);
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();

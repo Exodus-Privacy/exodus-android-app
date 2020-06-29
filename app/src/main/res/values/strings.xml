@@ -37,6 +37,13 @@
     <string name="tracker_infos">A tracker is a piece of software meant to collect data about you or your usages. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Learn more…</a></string>
     <string name="permission_infos">Permissions are actions the application can do on your phone. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Learn more…</a></string>
     <string name="permission_infos_dangerous">The icon <font color="red"><b>!</b></font> indicates a \'Dangerous\' or \'Special\' level according to <a href="https://developer.android.com/guide/topics/permissions/overview">Google\'s protection levels.</a></string>
+    <string name="tracker_web_page">Tracker web page ➤</string>
+    <string name="detection_rules">Detection Rules</string>
+    <string name="code_signature">Code detection rule:</string>
+    <string name="network_signature">Network detection rule:</string>
+    <string name="tracker_presence">Present in %d of your applications</string>
+    <string name="tracker_presence_in">Present in:</string>
+    <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>

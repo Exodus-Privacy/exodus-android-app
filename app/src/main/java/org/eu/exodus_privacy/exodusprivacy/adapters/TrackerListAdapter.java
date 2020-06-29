@@ -3,7 +3,6 @@ package org.eu.exodus_privacy.exodusprivacy.adapters;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -24,11 +23,13 @@ import java.util.Set;
 public class TrackerListAdapter extends RecyclerView.Adapter<TrackerListAdapter.TrackerListViewHolder>{
 
     private List<Tracker> trackersList;
+    private OnTrackerClickListener trackerClickListener;
     private int layout;
 
-    public TrackerListAdapter(Set<Tracker> trackerList, int resource) {
+    public TrackerListAdapter(Set<Tracker> trackerList, int resource, OnTrackerClickListener listener) {
         setTrackers(trackerList);
         layout = resource;
+        trackerClickListener = listener;
     }
 
     @NonNull
@@ -78,9 +79,7 @@ public class TrackerListAdapter extends RecyclerView.Adapter<TrackerListAdapter.
                 if(tracker != null) {
                     binding.trackerName.setText(tracker.name + " ➤");
                     binding.getRoot().setOnClickListener(v -> {
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("https://reports.exodus-privacy.eu.org/trackers/" + tracker.id + "/"));
-                        v.getContext().startActivity(intent);
+                        trackerClickListener.onTrackerClick(tracker.id);
                     });
                 }
                 else
@@ -88,6 +87,10 @@ public class TrackerListAdapter extends RecyclerView.Adapter<TrackerListAdapter.
             }
 
         }
+    }
+
+    public interface OnTrackerClickListener{
+        public void onTrackerClick(long trackerId);
     }
 }
 

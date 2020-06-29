@@ -49,13 +49,15 @@ public class ReportFragment  extends Fragment implements Updatable {
     private PackageManager packageManager;
     private PackageInfo packageInfo = null;
     private ReportBinding reportBinding;
+    private TrackerListAdapter.OnTrackerClickListener trackerClickListener;
     private ApplicationViewModel model;
 
-    public static ReportFragment newInstance(PackageManager packageManager,ApplicationViewModel model, PackageInfo packageInfo) {
+    public static ReportFragment newInstance(PackageManager packageManager,ApplicationViewModel model, PackageInfo packageInfo, TrackerListAdapter.OnTrackerClickListener trackerClickListener) {
         ReportFragment fragment = new ReportFragment();
         fragment.setPackageManager(packageManager);
         fragment.setPackageInfo(packageInfo);
         fragment.setApplicationViewModel(model);
+        fragment.setOnTrackerClickListener(trackerClickListener);
         return fragment;
     }
 
@@ -107,7 +109,7 @@ public class ReportFragment  extends Fragment implements Updatable {
 
         //setup trackers lists
         reportBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
-        TrackerListAdapter trackerAdapter = new TrackerListAdapter(reportDisplay.trackers,R.layout.tracker_item);
+        TrackerListAdapter trackerAdapter = new TrackerListAdapter(reportDisplay.trackers,R.layout.tracker_item, trackerClickListener);
         reportBinding.trackers.setNestedScrollingEnabled(false);
         reportBinding.trackers.setAdapter(trackerAdapter);
 
@@ -149,6 +151,10 @@ public class ReportFragment  extends Fragment implements Updatable {
 
     private void setPackageInfo(PackageInfo packageInfo) {
         this.packageInfo = packageInfo;
+    }
+
+    private void setOnTrackerClickListener(TrackerListAdapter.OnTrackerClickListener listener) {
+        trackerClickListener = listener;
     }
 
     @Override
