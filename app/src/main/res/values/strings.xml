@@ -25,9 +25,9 @@
     <string name="no_settings">This app doesn\'t have settings</string>
     <string name="logo">%1 Application Logo</string>
     <string name="created_by">Created By</string>
-    <string name="created_date">This report has been created the</string>
-    <string name="and_updated">and updated the</string>
-    <string name="view_on_exodus">See on Exodus Privacy ➤</string>
+    <string name="created_date">Report created on</string>
+    <string name="and_updated">and updated on</string>
+    <string name="view_on_exodus">See on εxodus ➤</string>
     <string name="view_on_google_play">See on Google Play ➤</string>
     <string name="downloads">downloads</string>
     <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
