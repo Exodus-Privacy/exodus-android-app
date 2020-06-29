@@ -220,7 +220,7 @@ public class NetworkManager {
             mes.listener.onProgress(R.string.get_reports_connection,0,0);
             URL url;
             try {
-                url = new URL(apiUrl+"applications");
+                url = new URL(apiUrl+"applications?option=short");
             } catch (Exception e){
                 e.printStackTrace();
                 return;
@@ -244,11 +244,6 @@ public class NetworkManager {
                         JSONObject app = applications.getJSONObject(i);
                         String handle = app.getString("handle");
                         String auid = app.getString("app_uid");
-                        app.remove("id");
-                        app.remove("name");
-                        app.remove("creator");
-                        app.remove("icon_phash");
-                        app.remove("downloads");
                         if (packages.contains(handle))
                             handles.put(handle,auid);
                         app.remove("app_uid");
