@@ -138,8 +138,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Cursor cursor = db.query("applications",columns,where,whereArgs,null,null,null);
         if(cursor.moveToFirst()) {
             application.id = cursor.getLong(0);
-            cursor.close();
         }
+        cursor.close();
 
         for(Report report : application.reports) {
             insertOrUpdateReport(db,report,application.id);
@@ -185,10 +185,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     public Report getReportFor(String packageName, String version) {
+        SQLiteDatabase db = getReadableDatabase();
         String[] columns = {"id"};
         String where = "package = ?";
         String[] whereArgs = {packageName};
-        Cursor cursor = getReadableDatabase().query("applications",columns,where,whereArgs,null,null,null);
+        Cursor cursor = db.query("applications",columns,where,whereArgs,null,null,null);
         if(cursor.moveToFirst()) {
             long appId = cursor.getLong(0);
             cursor.close();
@@ -197,11 +198,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
             whereArgs[0] = String.valueOf(appId);
             whereArgs[1] = version;
             String order = "id ASC";
-            cursor = getReadableDatabase().query("reports",columns,where,whereArgs,null,null,order);
+            cursor = db.query("reports",columns,where,whereArgs,null,null,order);
             long reportId;
             if(cursor.moveToFirst()) {
                 reportId = cursor.getLong(0);
+                cursor.close();
             } else {
+                cursor.close();
                 columns = new String[2];
                 columns[0] = "id";
                 columns[1] = "creation";
@@ -210,10 +213,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 whereArgs[0] = String.valueOf(appId);
                 order = "creation DESC";
                 //search a recent reports
-                cursor = getReadableDatabase().query("reports",columns,where,whereArgs,null,null,order);
+                cursor = db.query("reports",columns,where,whereArgs,null,null,order);
                 if(cursor.moveToFirst()) {
                     reportId = cursor.getLong(0);
+                    cursor.close();
                 } else {
+                    cursor.close();
                     return null;
                 }
             }
@@ -226,10 +231,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     public Report getReportFor(String packageName, long version) {
+        SQLiteDatabase db = getReadableDatabase();
         String[] columns = {"id"};
         String where = "package = ?";
         String[] whereArgs = {packageName};
-        Cursor cursor = getReadableDatabase().query("applications",columns,where,whereArgs,null,null,null);
+        Cursor cursor = db.query("applications",columns,where,whereArgs,null,null,null);
         if(cursor.moveToFirst()) {
             long appId = cursor.getLong(0);
             cursor.close();
@@ -238,11 +244,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
             whereArgs[0] = String.valueOf(appId);
             whereArgs[1] = String.valueOf(version);
             String order = "id ASC";
-            cursor = getReadableDatabase().query("reports",columns,where,whereArgs,null,null,order);
+            cursor = db.query("reports",columns,where,whereArgs,null,null,order);
             long reportId;
             if(cursor.moveToFirst()) {
                 reportId = cursor.getLong(0);
+                cursor.close();
             } else {
+                cursor.close();
                 columns = new String[2];
                 columns[0] = "id";
                 columns[1] = "creation";
@@ -251,10 +259,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 whereArgs[0] = String.valueOf(appId);
                 order = "creation DESC";
                 //search a recent reports
-                cursor = getReadableDatabase().query("reports",columns,where,whereArgs,null,null,order);
+                cursor = db.query("reports",columns,where,whereArgs,null,null,order);
                 if(cursor.moveToFirst()) {
                     reportId = cursor.getLong(0);
+                    cursor.close();
                 } else {
+                    cursor.close();
                     return null;
                 }
             }
@@ -267,12 +277,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     private Report getReport(long reportId) {
+        SQLiteDatabase db = getReadableDatabase();
         String where = "id = ?";
         String[] whereArgs = {String.valueOf(reportId)};
-        Cursor cursor = getReadableDatabase().query("reports",null,where,whereArgs,null,null,null);
+        Cursor cursor = db.query("reports",null,where,whereArgs,null,null,null);
         //get report
-        if(!cursor.moveToFirst())
+        if(!cursor.moveToFirst()) {
+            cursor.close();
             return null;
+        }
 
         Report report = new Report();
         int col = 0;
@@ -289,12 +302,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         report.version = cursor.getString(col++);
         report.versionCode = cursor.getLong(col++);
         report.appId = cursor.getLong(col);
+        cursor.close();
 
         report.trackers = new HashSet<>();
         where = "report_id = ?";
         String[] columns = {"tracker_id"};
         String order = "tracker_id DESC";
-        cursor = getReadableDatabase().query("trackers_reports",columns,where,whereArgs,null,null,order);
+        cursor = db.query("trackers_reports",columns,where,whereArgs,null,null,order);
         //get trackersIds
         while (cursor.moveToNext()) {
             report.trackers.add(cursor.getLong(0));
@@ -317,10 +331,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return creator;
     }
 
-    private Tracker getTracker(long trackerId) {
+    public Tracker getTracker(long trackerId) {
+        SQLiteDatabase  db = getReadableDatabase();
         String where = "id = ?";
         String[] whereArgs = {String.valueOf(trackerId)};
-        Cursor cursor = getReadableDatabase().query("trackers",null,where,whereArgs,null,null,null,null);
+        Cursor cursor = db.query("trackers",null,where,whereArgs,null,null,null,null);
         Tracker tracker = null;
         if(cursor.moveToFirst())
         {
