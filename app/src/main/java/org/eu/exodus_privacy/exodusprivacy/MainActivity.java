@@ -39,17 +39,18 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
 import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.Updatable;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
+import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ReportFragment report;
     private List<Updatable> fragments;
     private SearchView searchView;
     private Menu toolbarMenu;
@@ -69,7 +70,14 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess() {
                 runOnUiThread(() -> {
                     for(Updatable updatable : fragments){
-
+                        if(updatable instanceof ReportFragment) {
+                            ApplicationViewModel model = ((ReportFragment) updatable).getModel();
+                            if(model.versionName == null)
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionCode);
+                            else
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName,model.versionName);
+                            model.trackers = DatabaseManager.getInstance(MainActivity.this).getTrackers(model.report.trackers);
+                        }
                         updatable.onUpdateComplete();
                     }
                 });
@@ -97,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager pm = getPackageManager();
                 PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
 
-                report = ReportFragment.newInstance(pm,packageInfo);
+                ReportFragment report = ReportFragment.newInstance(pm,vm,packageInfo);
                 fragments.add(report);
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();

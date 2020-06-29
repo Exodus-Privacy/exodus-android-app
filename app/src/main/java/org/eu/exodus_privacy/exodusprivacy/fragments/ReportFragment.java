@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.ReportViewModel;
+import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.ReportBinding;
@@ -48,14 +49,19 @@ public class ReportFragment  extends Fragment implements Updatable {
     private PackageManager packageManager;
     private PackageInfo packageInfo = null;
     private ReportBinding reportBinding;
+    private ApplicationViewModel model;
 
-    public static ReportFragment newInstance(PackageManager packageManager, PackageInfo packageInfo) {
+    public static ReportFragment newInstance(PackageManager packageManager,ApplicationViewModel model, PackageInfo packageInfo) {
         ReportFragment fragment = new ReportFragment();
         fragment.setPackageManager(packageManager);
         fragment.setPackageInfo(packageInfo);
+        fragment.setApplicationViewModel(model);
         return fragment;
     }
 
+    private void setApplicationViewModel(ApplicationViewModel model) {
+        this.model = model;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,9 +87,13 @@ public class ReportFragment  extends Fragment implements Updatable {
 
     @Override
     public void onUpdateComplete() {
+        onUpdateComplete(model);
+    }
+
+    public void onUpdateComplete(ApplicationViewModel model) {
         Context context = reportBinding.getRoot().getContext();
 
-        ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(context,packageManager,packageInfo);
+        ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(context,model,packageManager,packageInfo);
         ReportViewModel viewModel = new ReportViewModel();
         viewModel.setReportDisplay(reportDisplay);
         reportBinding.setReportInfo(viewModel);
@@ -145,5 +155,9 @@ public class ReportFragment  extends Fragment implements Updatable {
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.action_filter);
         item.setVisible(false);
+    }
+
+    public ApplicationViewModel getModel() {
+        return model;
     }
 }
