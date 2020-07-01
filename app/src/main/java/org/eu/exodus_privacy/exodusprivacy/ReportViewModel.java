@@ -93,7 +93,7 @@ public class ReportViewModel extends BaseObservable {
 
     @Bindable
     public boolean getCreatorVisibility() {
-        return reportDisplay.creator != null;
+        return reportDisplay.creator != null && !reportDisplay.creator.isEmpty();
     }
 
     @Bindable
@@ -168,6 +168,10 @@ public class ReportViewModel extends BaseObservable {
     @Bindable
     public String getSource() {
         return reportDisplay.source;
+    }
+
+    public String getViewOnStore() {
+        return reportDisplay.viewOnStore;
     }
 
 

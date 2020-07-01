@@ -29,6 +29,7 @@
     <string name="and_updated">et mis à jour le</string>
     <string name="view_on_exodus">Voir sur εxodus ➤</string>
     <string name="view_on_google_play">Voir sur Google Play ➤</string>
+    <string name="view_on_fdroid">Voir sur F-Droid ➤</string>
     <string name="downloads">téléchargements</string>
     <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application : </string>
     <string name="code_signature_not_found">Nous n’avons pas trouvé la signature de pisteurs que nous connaissons dans l’application. </string>

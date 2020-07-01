@@ -130,9 +130,12 @@ public class ReportFragment  extends Fragment implements Updatable {
         reportBinding.permissionExplanation.setMovementMethod(LinkMovementMethod.getInstance());
         reportBinding.permissionExplanation.setClickable(true);
 
-        reportBinding.viewPlay.setOnClickListener(v -> {
+        reportBinding.viewStore.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id="+reportDisplay.packageName));
+            if(reportDisplay.source.contains("google"))
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id="+reportDisplay.packageName));
+            else
+                intent.setData(Uri.parse("https://f-droid.org/packages/"+reportDisplay.packageName));
             startActivity(intent);
         });
 

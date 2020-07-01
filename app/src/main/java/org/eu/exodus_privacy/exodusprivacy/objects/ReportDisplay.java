@@ -28,6 +28,7 @@ public class ReportDisplay {
     public List<Permission> permissions;
     public Set<Tracker> trackers;
     public String source;
+    public String viewOnStore;
 
 
     private ReportDisplay(){
@@ -43,6 +44,7 @@ public class ReportDisplay {
 
         reportDisplay.report = model.report;
         reportDisplay.source = context.getString(R.string.source,model.source);
+        reportDisplay.viewOnStore = context.getString(model.source.equals("google")? R.string.view_on_google_play : R.string.view_on_fdroid);
 
         reportDisplay.trackers = model.trackers;
 
