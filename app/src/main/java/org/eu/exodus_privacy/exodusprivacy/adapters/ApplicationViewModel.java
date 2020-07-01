@@ -25,4 +25,5 @@ public class ApplicationViewModel {
     public CharSequence label;
     public String installerPackageName;
     public boolean isVisible;
+    public String source;
 }

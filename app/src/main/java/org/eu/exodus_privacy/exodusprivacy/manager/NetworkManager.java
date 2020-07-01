@@ -231,7 +231,7 @@ public class NetworkManager {
 
 
             if(object != null) {
-                Map<String,String> handles = new HashMap<>();
+                Map<String,Map<String,String>> handles = new HashMap<>();
                 ArrayList<String> packages = mes.args.getStringArrayList("packages");
                 if (packages == null)
                     return;
@@ -244,9 +244,14 @@ public class NetworkManager {
                         JSONObject app = applications.getJSONObject(i);
                         String handle = app.getString("handle");
                         String auid = app.getString("app_uid");
+                        String source = app.getString("source");
+                        Map<String,String> sources = handles.get(handle);
+                        if(sources == null)
+                            sources = new HashMap<>();
+
+                        sources.put(source,auid);
                         if (packages.contains(handle))
-                            handles.put(handle,auid);
-                        app.remove("app_uid");
+                            handles.put(handle,sources);
                     }
 
                     //remove app not analyzed by Exodus
@@ -259,6 +264,7 @@ public class NetworkManager {
                         int val = rand.nextInt(applications.length());
                         JSONObject app = applications.getJSONObject(val);
                         String handle = app.getString("handle");
+                        handles.put(handle,new HashMap<>());
                         packages.add(handle);
                     }
                     //shuffle the list
@@ -275,14 +281,14 @@ public class NetworkManager {
             mes.listener.onSuccess();
         }
 
-        private void getReports(Message mes, Map<String, String> handles, ArrayList<String> packages) {
+        private void getReports(Message mes, Map<String, Map<String,String>> handles, ArrayList<String> packages) {
             for(int i = 0; i < packages.size(); i++) {
                 mes.listener.onProgress(R.string.parse_application,i+1,packages.size());
                 getReport(mes,packages.get(i),handles.get(packages.get(i)));
             }
         }
 
-        private void getReport(Message mes, String handle, String auid) {
+        private void getReport(Message mes, String handle, Map<String,String> sources) {
             URL url;
             try {
                 url = new URL(apiUrl+"search/"+handle);
@@ -298,7 +304,7 @@ public class NetworkManager {
                     ArrayList<String> packages = mes.args.getStringArrayList("packages");
                     if(packages != null && packages.contains(handle)) {
                         Application app = parseApplication(application, handle);
-                        app.auid = auid;
+                        app.sources = sources;
                         DatabaseManager.getInstance(mes.context).insertOrUpdateApplication(app);
                     }
                 } catch (JSONException e) {
@@ -328,6 +334,7 @@ public class NetworkManager {
             report.id = object.getLong("id");
             report.downloads = object.getString("downloads");
             report.version = object.getString("version");
+            report.source = object.getString("source");
             if(!object.getString("version_code").isEmpty())
                 report.versionCode = Long.parseLong(object.getString("version_code"));
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());

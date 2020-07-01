@@ -15,7 +15,7 @@
     <string name="tested">There\'s no report for the installed version (%1$s), the information displayed is based on another (%2$s) version</string>
     <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
     <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
-    <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store).</string>
+    <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
     <string name="get_reports_connection">Getting applications: Waiting for server connection</string>
     <string name="get_reports">Getting applications</string>
     <string name="parse_application">Processing Applications:</string>
@@ -44,6 +44,7 @@
     <string name="tracker_presence">Present in %d of your applications</string>
     <string name="tracker_presence_in">Present in:</string>
     <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
+    <string name="source">Source: %s</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>

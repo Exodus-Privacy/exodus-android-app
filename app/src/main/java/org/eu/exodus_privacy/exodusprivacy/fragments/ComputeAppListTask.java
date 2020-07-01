@@ -12,6 +12,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel>> {
 
@@ -20,6 +21,7 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
     }
 
     private static final String gStore = "com.android.vending";
+    private static final String fdroid = "ord.fdroid.fdroid";
 
     private WeakReference<PackageManager> packageManagerRef;
     private WeakReference<DatabaseManager> databaseManagerRef;
@@ -39,9 +41,9 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
 
         List<ApplicationViewModel> vms = new ArrayList<>();
         if(packageManager != null && databaseManager != null) {
-                List<PackageInfo> installedPackages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
-            applyStoreFilter(installedPackages, databaseManager, packageManager);
-            vms = convertPackagesToViewModels(installedPackages, databaseManager, packageManager);
+            List<PackageInfo> installedPackages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+            vms = applyStoreFilter(installedPackages, databaseManager, packageManager);
+            convertPackagesToViewModels(vms, databaseManager, packageManager);
         }
         return vms;
     }
@@ -55,20 +57,22 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
         }
     }
 
-    private List<ApplicationViewModel> convertPackagesToViewModels(List<PackageInfo> infos,
+    private void  convertPackagesToViewModels(List<ApplicationViewModel> appsToBuild,
                                                                    DatabaseManager databaseManager,
                                                                    PackageManager packageManager) {
-        ArrayList<ApplicationViewModel> appsToBuild = new ArrayList<>(infos.size());
-        for (PackageInfo pi : infos) {
-            appsToBuild.add(buildViewModelFromPackageInfo(pi, databaseManager, packageManager));
+        for (ApplicationViewModel vm : appsToBuild) {
+            try {
+                PackageInfo pi = packageManager.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
+                buildViewModelFromPackageInfo(vm, pi, databaseManager, packageManager);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        return appsToBuild;
     }
 
-    private ApplicationViewModel buildViewModelFromPackageInfo(PackageInfo pi,
+    private void buildViewModelFromPackageInfo(ApplicationViewModel vm, PackageInfo pi,
                                                                DatabaseManager databaseManager,
                                                                PackageManager packageManager) {
-        ApplicationViewModel vm = new ApplicationViewModel();
 
         vm.versionName = pi.versionName;
         vm.packageName = pi.packageName;
@@ -76,9 +80,9 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
         vm.requestedPermissions = pi.requestedPermissions;
 
         if (vm.versionName != null)
-            vm.report = databaseManager.getReportFor(vm.packageName, vm.versionName);
+            vm.report = databaseManager.getReportFor(vm.packageName, vm.versionName, vm.source);
         else {
-            vm.report = databaseManager.getReportFor(vm.packageName, vm.versionCode);
+            vm.report = databaseManager.getReportFor(vm.packageName, vm.versionCode, vm.source);
         }
 
         if (vm.report != null) {
@@ -94,35 +98,41 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
         vm.label = packageManager.getApplicationLabel(pi.applicationInfo);
         vm.installerPackageName = packageManager.getInstallerPackageName(vm.packageName);
         vm.isVisible = true;
-
-        return vm;
     }
 
-    private void applyStoreFilter(List<PackageInfo> packageInfos,
+    private List<ApplicationViewModel> applyStoreFilter(List<PackageInfo> packageInfos,
                                   DatabaseManager databaseManager,
                                   PackageManager packageManager) {
-        List<PackageInfo> toRemove = new ArrayList<>();
+        List<ApplicationViewModel> result = new ArrayList<>();
         for (PackageInfo packageInfo : packageInfos) {
             String packageName = packageInfo.packageName;
             String installerPackageName = packageManager.getInstallerPackageName(packageName);
-            if (!gStore.equals(installerPackageName)) {
+            ApplicationViewModel vm = new ApplicationViewModel();
+            vm.packageName = packageName;
+            if (!gStore.equals(installerPackageName) && !fdroid.equals(installerPackageName)) {
                 String auid = Utils.getCertificateSHA1Fingerprint(packageManager, packageName);
-                String appuid = databaseManager.getAUID(packageName);
-                if(!auid.equalsIgnoreCase(appuid)) {
-                    toRemove.add(packageInfo);
+                Map<String,String> sources = databaseManager.getSources(packageName);
+                for(Map.Entry<String,String> entry : sources.entrySet()) {
+                    if(entry.getValue().equalsIgnoreCase(auid)) {
+                        vm.source = entry.getKey();
+                        break;
+                    }
                 }
+            } else if (gStore.equals(installerPackageName)) {
+                        vm.source = "google";
+            } else {
+                vm.source = "fdroid";
             }
-
+            ApplicationInfo appInfo = null;
             try {
-                ApplicationInfo appInfo = packageManager.getApplicationInfo(packageName,0);
-                if(!appInfo.enabled) {
-                    toRemove.add(packageInfo);
-                }
+                appInfo = packageManager.getApplicationInfo(packageName,0);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
+            if(vm.source != null && appInfo != null && appInfo.enabled)
+                result.add(vm);
         }
-        packageInfos.removeAll(toRemove);
+        return result;
     }
 
 }

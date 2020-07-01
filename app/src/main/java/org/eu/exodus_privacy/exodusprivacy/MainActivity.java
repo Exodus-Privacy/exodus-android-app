@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
                         if(updatable instanceof ReportFragment) {
                             ApplicationViewModel model = ((ReportFragment) updatable).getModel();
                             if(model.versionName == null)
-                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionCode);
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionCode, model.source);
                             else
-                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName,model.versionName);
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName,model.versionName,model.source);
                             model.trackers = DatabaseManager.getInstance(MainActivity.this).getTrackers(model.report.trackers);
                         }
                         updatable.onUpdateComplete();

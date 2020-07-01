@@ -112,13 +112,13 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         return displayedApp;
     }
 
-    class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
+    static class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
         ApplicationEmptyViewHolder(View itemView) {
             super(itemView);
         }
     }
 
-    class ApplicationListViewHolder extends RecyclerView.ViewHolder {
+    static class ApplicationListViewHolder extends RecyclerView.ViewHolder {
 
         ApplicationViewModel viewModel;
         AppItemBinding appItemBinding;
@@ -145,6 +145,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding.appLogo.setImageDrawable(viewModel.icon);
 
             appItemBinding.appName.setText(viewModel.label);
+            appItemBinding.source.setText(context.getString(R.string.source,viewModel.source));
 
             long size = viewModel.requestedPermissions != null ? viewModel.requestedPermissions.length : 0;
             appItemBinding.appPermissionNb.setText(String.valueOf(size));

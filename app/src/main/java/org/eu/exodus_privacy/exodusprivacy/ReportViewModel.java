@@ -12,7 +12,6 @@ import org.eu.exodus_privacy.exodusprivacy.objects.ReportDisplay;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class ReportViewModel extends BaseObservable {
@@ -164,6 +163,11 @@ public class ReportViewModel extends BaseObservable {
             return R.drawable.square_light_yellow;
         else
             return R.drawable.square_light_red;
+    }
+
+    @Bindable
+    public String getSource() {
+        return reportDisplay.source;
     }
 
 

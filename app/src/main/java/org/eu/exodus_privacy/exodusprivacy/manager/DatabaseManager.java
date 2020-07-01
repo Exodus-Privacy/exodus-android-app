@@ -29,8 +29,10 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class DatabaseManager extends SQLiteOpenHelper {
@@ -44,14 +46,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public static DatabaseManager getInstance(Context context) {
         if(instance == null)
-            instance = new DatabaseManager(context,"Exodus.db",null,2);
+            instance = new DatabaseManager(context,"Exodus.db",null,3);
         return instance;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table if not exists applications (id INTEGER primary key autoincrement, package TEXT, name TEXT, creator TEXT, auid TEXT);");
-        db.execSQL("Create Table if not exists reports (id INTEGER primary key, creation INTEGER, updateat INTEGER, downloads TEXT, version TEXT, version_code INTEGER, app_id INTEGER, foreign key(app_id) references applications(id));");
+        db.execSQL("Create Table if not exists applications (id INTEGER primary key autoincrement, package TEXT, name TEXT, creator TEXT, sources TEXT);");
+        db.execSQL("Create Table if not exists reports (id INTEGER primary key, creation INTEGER, updateat INTEGER, downloads TEXT, version TEXT, version_code INTEGER, app_id INTEGER, source TEXT, foreign key(app_id) references applications(id));");
         db.execSQL("Create Table if not exists trackers (id INTEGER primary key, name TEXT, creation_date INTEGER, code_signature TEXT, network_signature TEXT, website TEXT, description TEXT);");
 
         db.execSQL("Create Table if not exists trackers_reports (id INTEGER primary key autoincrement, tracker_id INTEGER, report_id INTEGER, foreign key(tracker_id) references trackers(id), foreign key(report_id) references reports(id));");
@@ -59,9 +61,35 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // do nothing
-        if(newVersion >= 2) {
+        if(oldVersion <= 1) {
             db.execSQL("Alter Table applications add column auid TEXT");
+        }
+        if (oldVersion <= 2) {
+            try {
+                db.beginTransaction();
+                db.execSQL("Alter Table reports add column source TEXT");
+                db.execSQL("Alter Table applications rename to old_apps");
+                db.execSQL("Create Table if not exists applications (id INTEGER primary key autoincrement, package TEXT, name TEXT, creator TEXT, sources TEXT);");
+
+                Cursor cursor = db.query("old_apps",null,null,null,null,null,null);
+                while (cursor.moveToNext()){
+                    ContentValues values = new ContentValues();
+                    values.put("package",cursor.getString(1));
+                    values.put("name",cursor.getString(2));
+                    values.put("creator",cursor.getString(3));
+                    String sources = "unknown:"+cursor.getString(4)+"|";
+                    values.put("sources",sources);
+                    db.insert("applications",null,values);
+                }
+                cursor.close();
+                db.execSQL("Drop Table old_apps");
+                db.setTransactionSuccessful();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                db.endTransaction();
+            }
+
         }
     }
 
@@ -122,7 +150,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put("package", application.packageName);
         values.put("name",application.name);
         values.put("creator",application.creator);
-        values.put("auid",application.auid);
+        values.put("sources",buildSourcesStr(application.sources));
 
         if(!existApplication(db, application.packageName)) {
             db.insert("applications", null, values);
@@ -155,6 +183,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put("version",report.version);
         values.put("version_code",report.versionCode);
         values.put("app_id",appId);
+        values.put("source",report.source);
 
         if(!existReport(db,report.id)) {
             values.put("id",report.id);
@@ -184,7 +213,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.insert("trackers_reports",null,values);
     }
 
-    public Report getReportFor(String packageName, String version) {
+    public Report getReportFor(String packageName, String version, String source) {
         SQLiteDatabase db = getReadableDatabase();
         String[] columns = {"id"};
         String where = "package = ?";
@@ -193,10 +222,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             long appId = cursor.getLong(0);
             cursor.close();
-            where = "app_id = ? and version = ?";
-            whereArgs = new String[2];
+            where = "app_id = ? and version = ? and source = ?";
+            whereArgs = new String[3];
             whereArgs[0] = String.valueOf(appId);
             whereArgs[1] = version;
+            whereArgs[2] = source;
             String order = "id ASC";
             cursor = db.query("reports",columns,where,whereArgs,null,null,order);
             long reportId;
@@ -208,9 +238,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 columns = new String[2];
                 columns[0] = "id";
                 columns[1] = "creation";
-                where = "app_id = ?";
-                whereArgs = new String[1];
+                where = "app_id = ? and source = ?";
+                whereArgs = new String[2];
                 whereArgs[0] = String.valueOf(appId);
+                whereArgs[1] = source;
                 order = "creation DESC";
                 //search a recent reports
                 cursor = db.query("reports",columns,where,whereArgs,null,null,order);
@@ -230,7 +261,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    public Report getReportFor(String packageName, long version) {
+    public Report getReportFor(String packageName, long version, String source) {
         SQLiteDatabase db = getReadableDatabase();
         String[] columns = {"id"};
         String where = "package = ?";
@@ -239,10 +270,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             long appId = cursor.getLong(0);
             cursor.close();
-            where = "app_id = ? and version_code = ?";
-            whereArgs = new String[2];
+            where = "app_id = ? and version_code = ? and source = ?";
+            whereArgs = new String[3];
             whereArgs[0] = String.valueOf(appId);
             whereArgs[1] = String.valueOf(version);
+            whereArgs[2] = source;
             String order = "id ASC";
             cursor = db.query("reports",columns,where,whereArgs,null,null,order);
             long reportId;
@@ -254,9 +286,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 columns = new String[2];
                 columns[0] = "id";
                 columns[1] = "creation";
-                where = "app_id = ?";
-                whereArgs = new String[1];
+                where = "app_id = ? and source = ?";
+                whereArgs = new String[2];
                 whereArgs[0] = String.valueOf(appId);
+                whereArgs[1] = source;
                 order = "creation DESC";
                 //search a recent reports
                 cursor = db.query("reports",columns,where,whereArgs,null,null,order);
@@ -301,7 +334,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         report.downloads = cursor.getString(col++);
         report.version = cursor.getString(col++);
         report.versionCode = cursor.getLong(col++);
-        report.appId = cursor.getLong(col);
+        report.appId = cursor.getLong(col++);
+        report.source = cursor.getString(col);
         cursor.close();
 
         report.trackers = new HashSet<>();
@@ -372,17 +406,39 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    public String getAUID(String packageName) {
+    public Map<String,String> getSources(String packageName) {
         String where = "package = ?";
         String[] whereArgs = {packageName};
-        String[] columns = {"auid"};
+        String[] columns = {"sources"};
         Cursor cursor = getReadableDatabase().query("applications",columns,where,whereArgs,null,null,null,null);
-        String uaid="";
+        String sourcesStr="";
         if(cursor.moveToFirst())
         {
-            uaid = cursor.getString(0);
+            sourcesStr = cursor.getString(0);
         }
         cursor.close();
-        return uaid;
+        return extractSources(sourcesStr);
+    }
+
+    private String buildSourcesStr(Map<String,String> sources) {
+        StringBuilder sourceStr = new StringBuilder();
+        for(Map.Entry<String,String> entry : sources.entrySet()) {
+            sourceStr.append(entry.getKey()).append(":").append(entry.getValue()).append("|");
+        }
+        return sourceStr.toString();
+    }
+
+    private Map<String, String> extractSources(String sourcesStr) {
+        Map<String,String> sources = new HashMap<>();
+        String[] sourceList = sourcesStr.split("\\|");
+        for(String sourceItem : sourceList){
+            if(!sourceItem.isEmpty()) {
+                System.out.println(sourceItem);
+                String[] data = sourceItem.split(":");
+                sources.put(data[0], data[1]);
+            }
+        }
+
+        return sources;
     }
 }

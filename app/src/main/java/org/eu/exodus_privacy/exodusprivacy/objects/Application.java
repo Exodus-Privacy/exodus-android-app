@@ -18,6 +18,8 @@
 
 package org.eu.exodus_privacy.exodusprivacy.objects;
 
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class Application {
@@ -26,7 +28,7 @@ public class Application {
     public String name;
     public String creator;
     public Set<Report> reports;
-    public String auid;
+    public Map<String,String> sources;
 
     @Override
     public boolean equals(Object o) {
@@ -36,14 +38,13 @@ public class Application {
         Application that = (Application) o;
 
         if (id != that.id) return false;
-        if (!auid.equals(that.auid)) return false;
-        return packageName.equals(that.packageName);
+        return packageName != null ? packageName.equals(that.packageName) : that.packageName == null;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + packageName.hashCode();
+        result = 31 * result + (packageName != null ? packageName.hashCode() : 0);
         return result;
     }
 }

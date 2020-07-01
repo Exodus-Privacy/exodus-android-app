@@ -9,6 +9,7 @@ import android.content.pm.PermissionInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
+import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 
@@ -26,6 +27,7 @@ public class ReportDisplay {
     public Drawable logo;
     public List<Permission> permissions;
     public Set<Tracker> trackers;
+    public String source;
 
 
     private ReportDisplay(){
@@ -40,6 +42,7 @@ public class ReportDisplay {
         reportDisplay.displayName = model.label.toString();
 
         reportDisplay.report = model.report;
+        reportDisplay.source = context.getString(R.string.source,model.source);
 
         reportDisplay.trackers = model.trackers;
 
