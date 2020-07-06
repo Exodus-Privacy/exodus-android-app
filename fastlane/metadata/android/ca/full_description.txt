@@ -1,0 +1,7 @@
+Exodus Privacy us ajuda a saber quins rastrejadors i permisos estan incrustats en les aplicacions instal·lades al vostre dispositiu.
+
+The app downloads reports from Exodus Privacy (https://exodus-privacy.eu.org/) and shows them to you app by app
+
+L'aplicació només pot detectar les aplicacions instal·lades des de la botiga Google Play.
+
+Codi font: https://github.com/Exodus-Privacy/exodus-android-app/
