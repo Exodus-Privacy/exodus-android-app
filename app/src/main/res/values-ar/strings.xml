@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Exodus</string>
     <string name="app_logo">شعار التطبيق</string>
@@ -15,14 +16,38 @@
     <string name="tested">%1$s%2$sليس هناك أي تقرير عن النسخة المثبتة، إنّ البيانات المعروضة مستمدة مِن نسخة أخرى قديمة لنفس التطبيق</string>
     <string name="analysed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
     <string name="no_package_manager">يبدو أنّ نظام جهازك لا يسمح بالوصول إلى قائمة التطبيقات المثبة.</string>
-    <string name="no_app_found">يبدو أنّك لم تقم بتثبيت أي تطبيق مِن المصدر الذي نقوم بفحصه (متجر جوجل للتطبيقات).</string>
+    <string name="no_app_found">يبدو أنه ليس لديك أي تطبيقات مثبتة من المصدر الذي نقوم باختباره (متجر Google Play أو F-Droid).</string>
     <string name="get_reports_connection">جلب التطبيقات: في انتظار الاتصال بالخادم</string>
     <string name="get_reports">جارٍ جلب التطبيقات</string>
     <string name="parse_application">فحص التطبيقات:</string>
     <string name="parse_trackers">فحص المتعقّبون:</string>
     <string name="get_trackers_connection">جلب المتعقّبين: في انتظار الاتصال بالخادم</string>
     <string name="get_trackers">جارٍ جلب المُتعقّبين</string>
-
+    <string name="no_settings">ليس لدى هذا التطبيق إعدادات</string>
+    <string name="logo">شعار تطبيق %1</string>
+    <string name="created_by">أنشأه</string>
+    <string name="created_date">تم إنشاء التقرير في</string>
+    <string name="and_updated">وتحديثه في</string>
+    <string name="view_on_exodus">رؤيته على εxodus ←</string>
+    <string name="view_on_google_play">رؤيته على متجر غوغل للتطبيقات ←</string>
+    <string name="view_on_fdroid">رؤيته على F-Droid ←</string>
+    <string name="downloads">تنزيلات</string>
+    <string name="code_signature_found">لقد وجدنا توقيع الرمز البرمجي للمتعقبين التاليين في التطبيق:</string>
+    <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
+    <string name="code_permission_found">لقد وجدنا التصريحات التالية في التطبيق:</string>
+    <string name="code_permission_not_found">هذا التطبيق لا يطلب صلاحيات.</string>
+    <string name="tracker_infos">المتعقب هو جزء من برنامج يهدف إلى جمع البيانات عنك أو عن استخداماتك. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">تعرف على المزيد…</a></string>
+    <string name="permission_infos">التصريحات هي إجراءات يمكن أن يقوم بها التطبيق على هاتفك. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">اعرف المزيد…</a></string>
+    <string name="permission_infos_dangerous">تشير الأيقونة <font color="red"><b>!</b></font> إلى درجات \'خطير\' أو \'خاص\' حسب تصنيف <a href="https://developer.android.com/guide/topics/permissions/overview">درجات الأمان لدى غوغل.</a></string>
+    <string name="tracker_web_page">صفحة الويب للمتعقب ←</string>
+    <string name="detection_rules">قواعد الكشف</string>
+    <string name="code_signature">قاعدة كشف الرمز:</string>
+    <string name="network_signature">القاعدة الشبكية للإكتشاف:</string>
+    <string name="tracker_presence">موجود في %d من تطبيقاتك</string>
+    <string name="tracker_presence_in">موجود في:</string>
+    <string name="no_app_found_tracker">يبدو أن هذا المتعقب غير موجود في تطبيقاتك</string>
+    <string name="source">المصدر: %s</string>
     <!-- Menu -->
     <string name="menu_action_filter">عامل التصفية</string>
+    <string name="menu_action_settings">إعدادات التطبيق</string>
 </resources>

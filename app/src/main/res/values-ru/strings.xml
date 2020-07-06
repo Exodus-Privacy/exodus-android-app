@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Exodus</string>
     <string name="app_logo">Логотип приложения</string>
     <string name="trackers_pct">Трекеры:</string>
     <string name="permissions_pct">Разрешения:</string>
@@ -14,7 +16,7 @@
     <string name="tested">Данные по установленной версии (%1$s) отсутствуют, показана информация на основе изученной (%2$s) версии</string>
     <string name="analysed">Это приложение ещё не было изучено Exodus Privacy.</string>
     <string name="no_package_manager">Похоже, ваша система не разрешает доступ к списку установленных приложений.</string>
-    <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play).</string>
+    <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
     <string name="get_reports_connection">Получение приложений: ожидание подключения к серверу</string>
     <string name="get_reports">Получение приложений</string>
     <string name="parse_application">Обработка приложений:</string>
@@ -22,6 +24,30 @@
     <string name="get_trackers_connection">Получение трекеров: ожидание подключения к серверу</string>
     <string name="get_trackers">Получение трекеров</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
+    <string name="logo">Логотип приложения %1</string>
+    <string name="created_by">Создано</string>
+    <string name="created_date">Отчёт создан</string>
+    <string name="and_updated">и обновлено</string>
+    <string name="view_on_exodus">εxodus ➤</string>
+    <string name="view_on_google_play">Google Play ➤</string>
+    <string name="view_on_fdroid">F-Droid ➤</string>
+    <string name="downloads">загрузок</string>
+    <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
+    <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
+    <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
+    <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
+    <string name="tracker_infos">Трекер — это часть приложения, предназначенная для сбора данных о вас или ваших действиях. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Подробнее…</a></string>
+    <string name="permission_infos">Разрешения — это действия, которые приложение сможет выполнять на вашем устройстве. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Подробнее…</a></string>
+    <string name="permission_infos_dangerous">Значок <font color="red"><b>!</b></font> обозначает уровень угрозы «Опасность» или «Особый» в соответствии с <a href="https://developer.android.com/guide/topics/permissions/overview">уровнем защиты Google</a>.</string>
+    <string name="tracker_web_page">Сайт трекера ➤</string>
+    <string name="detection_rules">Определяющие правила</string>
+    <string name="code_signature">Правило обнаружения кода:</string>
+    <string name="network_signature">Правило определения сети:</string>
+    <string name="tracker_presence">Присутствует в %d приложениях</string>
+    <string name="tracker_presence_in">Присутствует в:</string>
+    <string name="no_app_found_tracker">Этот трекер не присутствует в ваших приложениях</string>
+    <string name="source">Источник: %s</string>
+    <!-- Menu -->
     <string name="menu_action_filter">Фильтр</string>
     <string name="menu_action_settings">Настройки приложения</string>
 </resources>
