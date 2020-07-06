@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.main);
         final MainBinding mainBinding = binding;
+        getSupportActionBar().setTitle(R.string.app_title);
         fragments = new ArrayList<>();
 
         NetworkListener networkListener = new NetworkListener() {

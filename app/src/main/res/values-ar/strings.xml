@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Exodus</string>
     <string name="app_logo">شعار التطبيق</string>
     <string name="trackers_pct">المتعقِّبون:</string>
     <string name="permissions_pct">التصريحات:</string>
