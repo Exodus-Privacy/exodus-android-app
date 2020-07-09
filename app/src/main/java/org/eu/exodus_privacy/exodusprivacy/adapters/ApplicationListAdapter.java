@@ -53,7 +53,14 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     private Comparator<ApplicationViewModel> alphaPackageComparator = new Comparator<ApplicationViewModel>() {
         @Override
         public int compare(ApplicationViewModel app1, ApplicationViewModel app2) {
-            return app1.label.toString().compareToIgnoreCase(app2.label.toString());
+            if(app1.label != null && app2.label != null)
+                return app1.label.toString().compareToIgnoreCase(app2.label.toString());
+            else if(app2.label != null)
+                return -1;
+            else if(app1.label != null)
+                return 1;
+            else
+                return 0;
         }
     };
 

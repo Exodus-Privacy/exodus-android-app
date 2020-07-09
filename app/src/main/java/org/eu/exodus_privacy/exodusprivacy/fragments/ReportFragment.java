@@ -89,7 +89,8 @@ public class ReportFragment  extends Fragment implements Updatable {
 
     @Override
     public void onUpdateComplete() {
-        onUpdateComplete(model);
+        if(model != null)
+            onUpdateComplete(model);
     }
 
     public void onUpdateComplete(ApplicationViewModel model) {
