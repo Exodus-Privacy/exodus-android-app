@@ -128,7 +128,6 @@ public class ReportViewModel extends BaseObservable {
         if(reportDisplay.report == null)
             return reportDate;
 
-        System.out.println("crea "+reportDisplay.report.creationDate.getTimeInMillis()+" up"+reportDisplay.report.updateDate.getTimeInMillis());
 
         DateFormat dateFormat = SimpleDateFormat.getDateInstance(DateFormat.LONG);
         reportDate = context.getString(R.string.created_date)+" "+dateFormat.format(reportDisplay.report.creationDate.getTime());
