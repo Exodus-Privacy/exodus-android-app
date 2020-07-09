@@ -433,9 +433,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String[] sourceList = sourcesStr.split("\\|");
         for(String sourceItem : sourceList){
             if(!sourceItem.isEmpty()) {
-                System.out.println(sourceItem);
                 String[] data = sourceItem.split(":");
-                sources.put(data[0], data[1]);
+                if(data.length == 2)
+                    sources.put(data[0], data[1]);
             }
         }
 
