@@ -41,9 +41,9 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     private boolean startRefreshAsked;
     private boolean refreshInProgress;
 
-    private int lastResource;
-    private int lastProgress;
-    private int lastMaxProgress;
+    private int lastResource=0;
+    private int lastProgress=0;
+    private int lastMaxProgress=0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -124,6 +124,8 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         lastResource = resourceId;
         lastProgress = progress;
         lastMaxProgress = maxProgress;
+        if(lastResource == 0)
+            return;
         Activity activity = getActivity();
         if(activity == null)
             return;
@@ -131,9 +133,9 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
             if (homeBinding == null)
                 return;
             if(maxProgress > 0)
-                homeBinding.statusProgress.setText(getString(resourceId)+" "+progress+"/"+maxProgress);//fixme
+                homeBinding.statusProgress.setText(activity.getString(resourceId)+" "+progress+"/"+maxProgress);//fixme
             else
-                homeBinding.statusProgress.setText(getString(resourceId));
+                homeBinding.statusProgress.setText(activity.getString(resourceId));
             homeBinding.progress.setMax(maxProgress);
             homeBinding.progress.setProgress(progress);
         });
