@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                                 model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionCode, model.source);
                             else
                                 model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName,model.versionName,model.source);
-                            model.trackers = DatabaseManager.getInstance(MainActivity.this).getTrackers(model.report.trackers);
+                            if(model.report != null)
+                                model.trackers = DatabaseManager.getInstance(MainActivity.this).getTrackers(model.report.trackers);
                         }
                         updatable.onUpdateComplete();
                     }
