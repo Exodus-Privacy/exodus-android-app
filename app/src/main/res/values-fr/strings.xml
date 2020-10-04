@@ -1,26 +1,52 @@
 <resources>
-    <string name="app_name">Exodus Privacy</string>
     <string name="app_logo">Application Logo</string>
-    <string name="trackers">Pisteurs :</string>
-    <string name="permissions">Autorisations :</string>
+    <string name="trackers_pct">Pisteurs :</string>
+    <string name="permissions_pct">Autorisations :</string>
+    <string name="trackers">Pisteurs</string>
+    <string name="permissions">Autorisations</string>
     <string name="network_error">Réseau indisponible</string>
     <string name="not_connected">Aucune connexion Internet</string>
     <string name="json_error">Erreur JSON</string>
     <string name="installed">Version installée : </string>
     <string name="report_version">Version testée : </string>
-    <string name="no_trackers">Aucun pisteur testé n\'a été trouvé</string>
-    <string name="no_permissions">Aucune autorisation n\'est demandée par cette application</string>
-    <string name="tested">Il n\'y a pas de rapport pour la version installée, les informations affichées sont basées sur une autre version (vraisemblablement plus ancienne)</string>
+    <string name="no_trackers">L’application pourrait contenir un ou plusieurs pisteurs que nous n’avons pas encore identifiés.</string>
+    <string name="no_permissions">Cette application ne demande aucun autorisation.</string>
+    <string name="tested">Il n\'y a pas de rapport pour la version installée (%1$s), les informations affichées sont basées sur une autre version (%2$s)</string>
     <string name="analysed">Cette application n\'a pas encore été analysée par Exodus Privacy.</string>
     <string name="no_package_manager">Votre système semble ne pas donner accès aux applications installées.</string>
-    <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play).</string>
+    <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="get_reports_connection">Récupération des applications : en attente de connexion au serveur</string>
     <string name="get_reports">Récupération des applications</string>
     <string name="parse_application">Traitement des applications :</string>
     <string name="parse_trackers">Traitement des pisteurs :</string>
     <string name="get_trackers_connection">Récupération des pisteurs : en attente de connexion au serveur</string>
     <string name="get_trackers">Récupération des pisteurs</string>
+    <string name="no_settings">Cette app n\'a pas de paramêtre</string>
+    <string name="logo">Logo de l\'application %1</string>
+    <string name="created_by">Crée par</string>
+    <string name="created_date">Rapport créé le</string>
+    <string name="and_updated">et mis à jour le</string>
+    <string name="view_on_exodus">Voir sur εxodus ➤</string>
+    <string name="view_on_google_play">Voir sur Google Play ➤</string>
+    <string name="view_on_fdroid">Voir sur F-Droid ➤</string>
+    <string name="downloads">téléchargements</string>
+    <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application : </string>
+    <string name="code_signature_not_found">Nous n’avons pas trouvé la signature de pisteurs que nous connaissons dans l’application. </string>
+    <string name="code_permission_found">Nous avons trouvé les permissions suivantes dans cette application:</string>
+    <string name="code_permission_not_found">Cette application ne demande aucune autorisation.</string>
+    <string name="tracker_infos">Un pisteur est une partie du logiciel dédiée à la collecte de données sur vous et vos usages. <a href="https://reports.exodus-privacy.eu.org/fr/info/trackers/">En savoir plus…</a></string>
+    <string name="permission_infos">Les permissions sont les actions que l\'application peut effectuer sur votre téléphone. <a href="https://reports.exodus-privacy.eu.org/fr/info/permissions/">En savoir plus…</a></string>
+    <string name="permission_infos_dangerous">L\'icône <font color="red"><b>!</b></font> indique un niveau \'Dangereux\' ou \'Spécial\' d\'après les <a href="https://developer.android.com/guide/topics/permissions/overview">niveaux de protection de Google.</a></string>
+    <string name="tracker_web_page">Page web du pisteur ➤</string>
+    <string name="detection_rules">Règles de détection</string>
+    <string name="code_signature">Règle de détection(code):</string>
+    <string name="network_signature">Règle de détection(réseau):</string>
+    <string name="tracker_presence">Présent dans %d de vos applications</string>
+    <string name="tracker_presence_in">Présent dans:</string>
+    <string name="no_app_found_tracker">Ce pisteur ne semble pas être présent dans vos applications</string>
+    <string name="source">Source: %s</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filtrer</string>
+    <string name="menu_action_settings">Paramètres de l\'application</string>
 </resources>

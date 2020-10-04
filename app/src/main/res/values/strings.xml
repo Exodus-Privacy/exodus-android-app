@@ -1,26 +1,53 @@
 <resources>
-    <string name="app_name">Exodus Privacy</string>
     <string name="app_logo">Application Logo</string>
-    <string name="trackers">Trackers:</string>
-    <string name="permissions">Permissions:</string>
+    <string name="trackers_pct">Trackers:</string>
+    <string name="permissions_pct">Permissions:</string>
+    <string name="trackers">Trackers</string>
+    <string name="permissions">Permissions</string>
     <string name="network_error">Network Unavailable</string>
     <string name="not_connected">No Internet Connection</string>
     <string name="json_error">JSON Error</string>
     <string name="installed">Installed Version: </string>
     <string name="report_version">Tested Version: </string>
-    <string name="no_trackers">No tested trackers were found</string>
-    <string name="no_permissions">No permissions are requested by this application</string>
-    <string name="tested">There\'s no report for the installed version, informations displayed are based on another (presumably older) version</string>
+    <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
+    <string name="no_permissions">This application doesn\'t require any permissions.</string>
+    <string name="tested">There\'s no report for the installed version (%1$s), the information displayed is based on another (%2$s) version</string>
     <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
-    <string name="no_package_manager">Your system seems doesn\'t provide access to installed apps.</string>
-    <string name="no_app_found">You seems not having any apps installed by source we search for (Google Play).</string>
+    <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
+    <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
     <string name="get_reports_connection">Getting applications: Waiting for server connection</string>
     <string name="get_reports">Getting applications</string>
     <string name="parse_application">Processing Applications:</string>
     <string name="parse_trackers">Processing Trackers:</string>
     <string name="get_trackers_connection">Getting trackers: Waiting for server connection</string>
     <string name="get_trackers">Getting trackers</string>
+    <string name="no_settings">This app doesn\'t have settings</string>
+    <string name="logo">%1 Application Logo</string>
+    <string name="created_by">Created By</string>
+    <string name="created_date">Report created on</string>
+    <string name="and_updated">and updated on</string>
+    <string name="view_on_exodus">See on εxodus ➤</string>
+    <string name="view_on_google_play">See on Google Play ➤</string>
+    <string name="view_on_fdroid">See on F-Droid ➤</string>
+    <string name="downloads">downloads</string>
+    <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
+    <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
+    <string name="code_permission_found">We have found the following permissions in the application:</string>
+    <string name="code_permission_not_found">This application doesn\'t require any permissions.</string>
+    <string name="tracker_infos">A tracker is a piece of software meant to collect data about you or your usages. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Learn more…</a></string>
+    <string name="permission_infos">Permissions are actions the application can do on your phone. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Learn more…</a></string>
+    <string name="permission_infos_dangerous">The icon <font color="red"><b>!</b></font> indicates a \'Dangerous\' or \'Special\' level according to <a href="https://developer.android.com/guide/topics/permissions/overview">Google\'s protection levels.</a></string>
+    <string name="tracker_web_page">Tracker web page ➤</string>
+    <string name="detection_rules">Detection Rules</string>
+    <string name="code_signature">Code detection rule:</string>
+    <string name="network_signature">Network detection rule:</string>
+    <string name="tracker_presence">Present in %d of your applications</string>
+    <string name="tracker_presence_in">Present in:</string>
+    <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
+    <string name="source">Source: %s</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>
+    <string name="menu_action_settings">Application Settings</string>
+
 </resources>

@@ -1,0 +1,4 @@
+- Ajout de la page des pisteurs
+-  Ajout de la détection pour F-Droid
+- Correction de bug
+- Nouvelles Traductions (Italien, Russe, Grec , Arabe, Allemand et Catalan)

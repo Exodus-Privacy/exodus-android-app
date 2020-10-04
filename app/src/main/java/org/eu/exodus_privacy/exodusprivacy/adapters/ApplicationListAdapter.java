@@ -19,19 +19,20 @@
 package org.eu.exodus_privacy.exodusprivacy.adapters;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.AppItemBinding;
-import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
+import org.eu.exodus_privacy.exodusprivacy.fragments.AppListFragment;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,49 +42,36 @@ import java.util.regex.Pattern;
 
 public class ApplicationListAdapter extends RecyclerView.Adapter {
 
-    private List<PackageInfo> packages;
-    private PackageManager packageManager;
+    private List<ApplicationViewModel> applicationViewModels;
     private OnAppClickListener onAppClickListener;
-    private static final String gStore = "com.android.vending";
-    private String filter = "";
+    private Object filter = "";
+    private AppListFragment.Type filterType = AppListFragment.Type.NAME;
     private final int HIDDEN_APP = 0;
     private final int DISPLAYED_APP = 1;
+    private int displayedApp = 0;
 
-
-    private Comparator<PackageInfo> alphaPackageComparator = new Comparator<PackageInfo>() {
+    private Comparator<ApplicationViewModel> alphaPackageComparator = new Comparator<ApplicationViewModel>() {
         @Override
-        public int compare(PackageInfo pack1, PackageInfo pack2) {
-            String pkg1 = packageManager.getApplicationLabel(pack1.applicationInfo).toString();
-            String pkg2 = packageManager.getApplicationLabel(pack2.applicationInfo).toString();
-            return pkg1.compareToIgnoreCase(pkg2);
+        public int compare(ApplicationViewModel app1, ApplicationViewModel app2) {
+            if(app1.label != null && app2.label != null)
+                return app1.label.toString().compareToIgnoreCase(app2.label.toString());
+            else if(app2.label != null)
+                return -1;
+            else if(app1.label != null)
+                return 1;
+            else
+                return 0;
         }
     };
 
-    public ApplicationListAdapter(PackageManager manager, OnAppClickListener listener) {
+    public ApplicationListAdapter(Context context, OnAppClickListener listener) {
+        applicationViewModels = new ArrayList<>();
         onAppClickListener = listener;
-        setPackageManager(manager);
-    }
-
-    private void setInstalledPackages(List<PackageInfo> installedPackages) {
-        packages = installedPackages;
-        applyStoreFilter();
-        Collections.sort(packages, alphaPackageComparator);
-        notifyDataSetChanged();
-    }
-
-    private void applyStoreFilter() {
-        List<PackageInfo> toRemove = new ArrayList<>();
-        for (PackageInfo pkg : packages) {
-            if (!gStore.equals(packageManager.getInstallerPackageName(pkg.packageName))) {
-                toRemove.add(pkg);
-            }
-        }
-        packages.removeAll(toRemove);
     }
 
     @Override
     public int getItemViewType(int position){
-        return (Pattern.compile(Pattern.quote(filter.trim()), Pattern.CASE_INSENSITIVE).matcher(packageManager.getApplicationLabel(packages.get(position).applicationInfo)).find())?DISPLAYED_APP:HIDDEN_APP;
+        return applicationViewModels.get(position).isVisible ? DISPLAYED_APP : HIDDEN_APP;
     }
 
     @NonNull
@@ -100,12 +88,13 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         if( viewHolder.getItemViewType() == DISPLAYED_APP) {
             final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
-            holder.setData(packages.get(position));
+            ApplicationViewModel vm = applicationViewModels.get(position);
+            holder.setViewModel(vm);
             //noinspection Convert2Lambda
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onAppClickListener.onAppClick(holder.packageInfo);
+                    onAppClickListener.onAppClick(vm);
                 }
             });
         }else {
@@ -115,30 +104,30 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     @Override
     public int getItemCount() {
-        return packages.size();
+        return applicationViewModels.size();
     }
 
-    public void setPackageManager(PackageManager manager) {
-        packageManager = manager;
-        if(packageManager != null) {
-            List<PackageInfo> installedPackages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
-            setInstalledPackages(installedPackages);
-        }
+    public void displayAppList(List<ApplicationViewModel> applications) {
+        applicationViewModels = applications;
+        Collections.sort(applicationViewModels, alphaPackageComparator);
+        filter(filterType,filter);
     }
 
-    class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
+    public int getDisplayedApps() {
+        return displayedApp;
+    }
+
+    static class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
         ApplicationEmptyViewHolder(View itemView) {
             super(itemView);
         }
     }
 
+    static class ApplicationListViewHolder extends RecyclerView.ViewHolder {
 
-    class ApplicationListViewHolder extends RecyclerView.ViewHolder {
-
-        PackageInfo packageInfo;
+        ApplicationViewModel viewModel;
         AppItemBinding appItemBinding;
 
         ApplicationListViewHolder(AppItemBinding binding) {
@@ -146,8 +135,8 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding = binding;
         }
 
-        public void setData(PackageInfo data) {
-            packageInfo = data;
+        void setViewModel(ApplicationViewModel vm) {
+            viewModel = vm;
 
             Context context = appItemBinding.getRoot().getContext();
 
@@ -155,49 +144,90 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding.otherVersion.setVisibility(View.GONE);
             appItemBinding.analysed.setVisibility(View.GONE);
             appItemBinding.appTrackerNb.setVisibility(View.VISIBLE);
+            appItemBinding.appTracker.setVisibility(View.VISIBLE);
 
+            String versionName = viewModel.versionName;
+            long versionCode = viewModel.versionCode;
 
-            String packageName = packageInfo.packageName;
-            String versionName = packageInfo.versionName;
+            appItemBinding.appLogo.setImageDrawable(viewModel.icon);
 
-            //get logo
-            try {
-                appItemBinding.appLogo.setImageDrawable(packageManager.getApplicationIcon(packageName));
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-            //get name
-            appItemBinding.appName.setText(packageManager.getApplicationLabel(packageInfo.applicationInfo));
+            appItemBinding.appName.setText(viewModel.label);
+            appItemBinding.source.setText(context.getString(R.string.source,viewModel.source));
 
-            //get permissions
-            if(packageInfo.requestedPermissions != null) {
-                appItemBinding.appPermissionNb.setText(context.getString(R.string.permissions) + " " + String.valueOf(data.requestedPermissions.length));
-            } else {
-                appItemBinding.appPermissionNb.setText(context.getString(R.string.permissions) + " " + String.valueOf(0));
-            }
-            //get reports
-            Report report = DatabaseManager.getInstance(context).getReportFor(packageName, versionName);
+            long size = viewModel.requestedPermissions != null ? viewModel.requestedPermissions.length : 0;
+            appItemBinding.appPermissionNb.setText(String.valueOf(size));
+            if(size == 0)
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_green);
+            else if (size < 5)
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_light_yellow);
+            else
+                appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_light_red);
+
+            Report report = viewModel.report;
             if(report != null) {
-                Set<Tracker> trackers = DatabaseManager.getInstance(context).getTrackers(report.trackers);
-                appItemBinding.appTrackerNb.setText(context.getString(R.string.trackers) + " " + trackers.size());
-                if(!report.version.equals(data.versionName)) {
+                Set<Tracker> trackers = viewModel.trackers;
+
+                size = trackers.size();
+                appItemBinding.appTrackerNb.setText(String.valueOf(size));
+                if(size == 0)
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_green);
+                else if (size < 5)
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_light_yellow);
+                else
+                    appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_light_red);
+
+                if(versionName != null && !report.version.equals(viewModel.versionName)) {
+                    String string = context.getString(R.string.tested,versionName, report.version);
+                    appItemBinding.otherVersion.setText(string);
+                    appItemBinding.otherVersion.setVisibility(View.VISIBLE);
+                } else if (versionName == null && report.versionCode != versionCode) {
+                    String string = context.getString(R.string.tested,String.valueOf(versionCode),String.valueOf(report.versionCode));
+                    appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 }
-
             } else {
                 appItemBinding.appTrackerNb.setVisibility(View.GONE);
+                appItemBinding.appTracker.setVisibility(View.GONE);
                 appItemBinding.analysed.setVisibility(View.VISIBLE);
             }
         }
     }
 
     public interface OnAppClickListener {
-        void onAppClick(PackageInfo packageInfo);
+        void onAppClick(ApplicationViewModel vm);
     }
 
+    public void filter(AppListFragment.Type type, Object filterObject) {
+        displayedApp = 0;
+        if (type.equals(AppListFragment.Type.NAME)) {
+            filter = filterObject;
+            filterType = type;
+            String filterStr = (String) filterObject;
 
-    public void filter(String text) {
-        filter = text;
+            Pattern p = Pattern.compile(Pattern.quote(filterStr.trim()), Pattern.CASE_INSENSITIVE);
+            for (ApplicationViewModel app : applicationViewModels) {
+                app.isVisible = p.matcher(app.label).find();
+                if(app.isVisible)
+                    displayedApp++;
+            }
+        } else if(type.equals(AppListFragment.Type.TRACKER)) {
+            filter = filterObject;
+            filterType = type;
+            Long filterLng = (Long) filterObject;
+
+            for (ApplicationViewModel app : applicationViewModels) {
+                app.isVisible = false;
+                if (app.trackers != null) {
+                    for (Tracker tracker : app.trackers) {
+                        if (tracker.id == filterLng) {
+                            app.isVisible = true;
+                            displayedApp++;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         notifyDataSetChanged();
     }
 }

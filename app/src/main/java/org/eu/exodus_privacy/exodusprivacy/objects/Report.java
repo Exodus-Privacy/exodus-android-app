@@ -30,6 +30,7 @@ public class Report {
     public long versionCode;
     public Set<Long> trackers;
     public long appId;
+    public String source;
 
     @Override
     public boolean equals(Object o) {

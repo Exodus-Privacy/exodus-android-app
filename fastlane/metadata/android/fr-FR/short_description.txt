@@ -1,0 +1,1 @@
+Montre les pisteurs et permissions des applications installées

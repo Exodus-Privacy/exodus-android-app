@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_logo">Λογότυπο Εφαρμογής</string>
+    <string name="trackers_pct">Trackers:</string>
+    <string name="permissions_pct">Άδειες:</string>
+    <string name="trackers">Trackers</string>
+    <string name="permissions">Άδειες</string>
+    <string name="network_error">Το δίκτυο δεν είναι διαθέσιμο</string>
+    <string name="not_connected">Χωρίς σύνδεση στο Διαδίκτυο</string>
+    <string name="json_error">Σφάλμα JSON</string>
+    <string name="installed">Εγκατεστημένη Έκδοση: </string>
+    <string name="report_version">Δοκιμαστική έκδοση: </string>
+    <string name="no_trackers">Η εφαρμογή μπορεί να περιέχει tracker(s) που δεν γνωρίζουμε ακόμα.</string>
+    <string name="no_permissions">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
+    <string name="tested">Δεν υπάρχει αναφορά για την εγκατεστημένη έκδοση (%1$s), οι πληροφορίες που εμφανίζονται βασίζονται σε άλλη (%2$s) έκδοση</string>
+    <string name="analysed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
+    <string name="no_package_manager">Φαίνεται ότι το σύστημα σας δεν επιτρέπει την πρόσβαση στη λίστα των εγκατεστημένων εφαρμογών.</string>
+    <string name="no_app_found">Φαίνεται ότι δεν έχετε εγκαταστήσει εφαρμογές, από την πηγές που δοκιμάζουμε (Google Play store ή F-Droid).</string>
+    <string name="get_reports_connection">Λήψη αναφοράς εφαρμογών: Αναμονή για σύνδεση διακομιστή</string>
+    <string name="get_reports">Λήψη αναφοράς εφαρμογών</string>
+    <string name="parse_application">Επεξεργασία Εφαρμογών:</string>
+    <string name="parse_trackers">Επεξεργασία των Trackers:</string>
+    <string name="get_trackers_connection">Λήψη αναφοράς των trackers: Αναμονή για σύνδεση διακομιστή</string>
+    <string name="get_trackers">Λήψη αναφοράς των trackers</string>
+    <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>
+    <string name="logo">%1 Λογότυπο Εφαρμογής</string>
+    <string name="created_by">Δημιουργήθηκε από</string>
+    <string name="created_date">Η αναφορά δημιουργήθηκε στις</string>
+    <string name="and_updated">και ενημερώθηκε στις</string>
+    <string name="view_on_exodus">Δείτε στο εxodus ➤</string>
+    <string name="view_on_google_play">Δείτε στο Google Play ➤</string>
+    <string name="view_on_fdroid">Δείτε στο F-Droid ➤</string>
+    <string name="downloads">λήψεις</string>
+    <string name="code_signature_found">Εχουμε βρει υπογραφές κώδικα των παρακάτω trackers στην εφαρμογή:</string>
+    <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
+    <string name="code_permission_found">Βρήκαμε τα ακόλουθα δικαιώματα στην εφαρμογή:</string>
+    <string name="code_permission_not_found">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
+    <string name="tracker_infos">Το tracker είναι ένα λογισμικό που προορίζεται για να συλλέγει δεδομένα για εσάς, ή για τις ενέργειες που κάνετε. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Μάθετε περισσότερα…</a></string>
+    <string name="permission_infos">Οι άδειες, είναι οι ενέργειες που μπορεί εκτελέσει μια εφαρμογή στο τηλέφωνό σας. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Μάθετε περισσότερα…</a></string>
+    <string name="permission_infos_dangerous">Το εικονίδιο <font color="red"><b>!</b></font> υποδεικνύει ένα «Επικίνδυνο» ή «Ειδικό» επίπεδο, σύμφωνα με τα <a href="https://developer.android.com/guide/topics/permissions/overview">Επίπεδα προστασίας της Google.</a></string>
+    <string name="tracker_web_page">Ιστοσελίδα του Tracker ➤</string>
+    <string name="detection_rules">Κανόνες Ανίχνευσης</string>
+    <string name="code_signature">Κανόνας ανίχνευσης κώδικα:</string>
+    <string name="network_signature">Κανόνας ανίχνευσης δικτύου:</string>
+    <string name="tracker_presence">Παρών σε %d από τις εφαρμογές σας</string>
+    <string name="tracker_presence_in">Παρών σε:</string>
+    <string name="no_app_found_tracker">Αυτό το tracker φαίνεται να μην υπάρχει στις εφαρμογές σας</string>
+    <string name="source">Πηγή: %s</string>
+    <!-- Menu -->
+    <string name="menu_action_filter">Φίλτρο</string>
+    <string name="menu_action_settings">Ρυθμίσεις Εφαρμογής</string>
+</resources>

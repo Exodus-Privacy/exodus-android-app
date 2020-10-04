@@ -1,130 +1,444 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-    <data/>
-    <ScrollView
+    <data>
+        <import type="androidx.core.content.ContextCompat"/>
+        <import type="android.view.View"/>
+        <variable
+            name="reportInfo"
+            type="org.eu.exodus_privacy.exodusprivacy.ReportViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/base_info"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                />
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:src="@{reportInfo.logo}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <LinearLayout
-                android:layout_marginLeft="2dp"
-                android:layout_marginStart="2dp"
-                android:orientation="vertical"
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@{reportInfo.name}"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/logo"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="30sp"
+                android:textColor="@color/colorPurple"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+            <View
+                android:id="@+id/dummy"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+            <TextView
+                android:id="@+id/trackers_nb"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:text="@{reportInfo.trackerNumberStr}"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dummy"
+                android:background="@{ContextCompat.getDrawable(context,reportInfo.trackerColor)}"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:textColor="@color/textColorWhite"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/trackers_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/trackers"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toTopOf="@id/trackers_nb"
+                app:layout_constraintStart_toEndOf="@id/trackers_nb"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/permissions_nb"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:text="@{reportInfo.permissionNumberStr}"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/trackers_nb"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@{ContextCompat.getDrawable(context,reportInfo.permissionColor)}"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                android:textColor="@color/textColorWhite"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/permissions_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/permissions"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/trackers_nb"
+                app:layout_constraintStart_toEndOf="@id/permissions_nb"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/installed_version"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/installed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/permissions_nb"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/textColorDark"
+                />
+            <TextView
+                android:id="@+id/installed_version_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{reportInfo.installedVersion}"
+                app:layout_constraintStart_toEndOf="@id/installed_version"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/permissions_nb"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorDark"/>
+            <TextView
+                android:id="@+id/report_version"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/report_version"
+                android:visibility="@{reportInfo.reportVersionVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/installed_version_value"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/textColorDark"/>
+            <TextView
+                android:id="@+id/report_version_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{reportInfo.reportVersion}"
+                android:visibility="@{reportInfo.reportVersionVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toEndOf="@id/report_version"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/installed_version_value"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/source"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{reportInfo.source}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/report_version_value"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/creator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/created_by"
+                android:visibility="@{reportInfo.creatorVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/source"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/creator_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.creatorVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toEndOf="@id/creator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/source"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/report_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.reportVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/creator_value"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/textColorDarkLight"/>
+
+            <TextView
+                android:id="@+id/report_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
-                <TextView
-                    android:id="@+id/name"
-                    android:text="test"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:text="Creator"
-                    android:id="@+id/creator"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:text="installed version"
-                    android:id="@+id/installed_version"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:text="Report version"
-                    android:id="@+id/report_version"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/report_url"
-                    android:autoLink="web"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/analysed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/analysed"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_below="@id/base_info"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+                android:autoLink="web"
+                android:text="@string/view_on_exodus"
+                android:visibility="@{reportInfo.reportVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textAlignment="textEnd"
+                app:layout_constraintTop_toBottomOf="@id/report_date"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorPurple"/>
 
-            <LinearLayout
-                android:id="@+id/tracker_layout"
+            <TextView
+                android:id="@+id/view_store"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="50"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:text="@{reportInfo.viewOnStore}"
+                android:textAlignment="textEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/report_url"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorPurple"/>
 
-                <TextView
-                    android:id="@+id/trackers_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/trackers"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/trackers_nb_list"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:text="@{reportInfo.trackerNumberStr}"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/analysed"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@{ContextCompat.getDrawable(context,reportInfo.trackerColor)}"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textColor="@color/textColorWhite"
+                />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/trackers"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/trackers_title_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/trackers"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/analysed"
+                app:layout_constraintStart_toEndOf="@id/trackers_nb_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="@color/textColorDark"/>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="50"
+            <TextView
+                android:id="@+id/code_signature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/trackers_nb_list"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trackers"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:background="@color/colorPrimary"
-                    android:id="@+id/permissions_title"
-                    android:text="@string/permissions"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    />
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/code_signature"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/permissions"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-    </ScrollView>
+            <TextView
+                android:id="@+id/tracker_explanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.trackerVisibility ? View.VISIBLE : View.GONE}"
+                android:text="@string/tracker_infos"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/trackers"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/permissions_nb_list"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:text="@{reportInfo.permissionNumberStr}"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/tracker_explanation"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@{ContextCompat.getDrawable(context,reportInfo.permissionColor)}"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textColor="@color/textColorWhite"/>
+
+            <TextView
+                android:id="@+id/permissions_title_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/permissions"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/tracker_explanation"
+                app:layout_constraintStart_toEndOf="@id/permissions_nb_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="@color/textColorDark"/>
+
+            <TextView
+                android:id="@+id/code_permission"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/permissions_nb_list"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/permissions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/permission_explanation_dangerous"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/code_permission" />
+
+            <TextView
+                android:id="@+id/permission_explanation_dangerous"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.hasPermissionDangerous ? View.VISIBLE : View.GONE}"
+                android:text="@string/permission_infos_dangerous"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toTopOf="@id/permission_explanation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/permission_explanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{reportInfo.permissionVisibility ? View.VISIBLE : View.GONE}"
+                android:text="@string/permission_infos"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+
+            <TextView
+                android:id="@+id/analysed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/analysed"
+                android:visibility="@{reportInfo.trackerVisibility ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_store"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

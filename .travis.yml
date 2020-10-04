@@ -1,23 +1,26 @@
 language: android
 java: oraclejdk8
-cache: false
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
 android:
-  componentes:
+  components:
     - tools
     - platform-tools
-    - tools
-
-    - build-tools-27.0.3
-    - android-27
+    - build-tools-29.0.3
+    - android-29
     - extra-m2-repository
-    - sys-img-armeabi-v7a-android-27
+    - sys-img-armeabi-v7a-android-28
 
-before_script:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
-  - touch empty.file
-  - gradle wrapper --gradle-version 4.1 -b empty.file
-  - rm empty.file
 
 script:
   - ./gradlew assembleDebug
+  - ./gradlew test

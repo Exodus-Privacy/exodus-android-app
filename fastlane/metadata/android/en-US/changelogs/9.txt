@@ -1,0 +1,4 @@
+- Add Trackers Page
+- Add F-Droid detection Support
+- bug fix
+- New Translations (Italian, Russian, Greek, Arabic, German, and Catalan)

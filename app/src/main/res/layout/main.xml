@@ -8,12 +8,8 @@
     >
     <data/>
         <FrameLayout
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

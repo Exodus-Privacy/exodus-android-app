@@ -18,52 +18,83 @@
 
 package org.eu.exodus_privacy.exodusprivacy;
 
-import android.support.v4.app.FragmentManager;
-import android.app.SearchManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
+import android.provider.Settings;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.SearchView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
+import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
-import org.eu.exodus_privacy.exodusprivacy.fragments.AppListFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.TrackerFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.Updatable;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
+import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    AppListFragment appList;
-    ReportFragment report;
-    SearchView searchView;
-    private Menu mMenu;
+    private List<Updatable> fragments;
+    private SearchView searchView;
+    private Menu toolbarMenu;
+    private MenuItem settingsMenuItem;
+    private String packageName;
+    private MainBinding binding;
+    private ApplicationListAdapter.OnAppClickListener onAppClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final MainBinding mainBinding = DataBindingUtil.setContentView(this,R.layout.main);
+        binding = DataBindingUtil.setContentView(this,R.layout.main);
+        final MainBinding mainBinding = binding;
+        getSupportActionBar().setTitle(R.string.app_title);
+        fragments = new ArrayList<>();
 
         NetworkListener networkListener = new NetworkListener() {
             @Override
             public void onSuccess() {
                 runOnUiThread(() -> {
-                    appList.updateComplete();
-                    if(report != null)
-                        report.updateComplete();
-
+                    for(Updatable updatable : fragments){
+                        if(updatable instanceof ReportFragment) {
+                            ApplicationViewModel model = ((ReportFragment) updatable).getModel();
+                            if(model.versionName == null)
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionCode, model.source);
+                            else
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName,model.versionName,model.source);
+                            if(model.report != null)
+                                model.trackers = DatabaseManager.getInstance(MainActivity.this).getTrackers(model.report.trackers);
+                        }
+                        updatable.onUpdateComplete();
+                    }
                 });
             }
 
             @Override
             public void onError(String error) {
                 runOnUiThread(() -> {
-                    appList.updateComplete();
+                    for(Updatable updatable : fragments){
+                        updatable.onUpdateComplete();
+                    }
                     Snackbar bar = Snackbar.make(mainBinding.fragmentContainer,error,Snackbar.LENGTH_LONG);
                     bar.show();
                 });
@@ -75,45 +106,72 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        ApplicationListAdapter.OnAppClickListener onAppClickListener = packageInfo -> {
-
-            report = ReportFragment.newInstance(getPackageManager(),packageInfo);
+        TrackerListAdapter.OnTrackerClickListener onTrackerClickListener = id -> {
+            TrackerFragment tracker = TrackerFragment.newInstance(id);
+            tracker.setOnAppClickListener(onAppClickListener);
+            fragments.add(tracker);
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
-                    .replace(R.id.fragment_container,report)
+                    .replace(R.id.fragment_container,tracker)
                     .addToBackStack(null)
                     .commit();
-            searchView.clearFocus();
-            if (mMenu != null)
-                (mMenu.findItem(R.id.action_filter)).collapseActionView();
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            assert imm != null;
-            imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
-
         };
 
-        appList = AppListFragment.newInstance(networkListener,onAppClickListener);
+        onAppClickListener = vm -> {
+            try {
+                PackageManager pm = getPackageManager();
+                PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
+
+                ReportFragment report = ReportFragment.newInstance(pm,vm,packageInfo,onTrackerClickListener);
+                fragments.add(report);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
+                        .replace(R.id.fragment_container,report)
+                        .addToBackStack(null)
+                        .commit();
+
+                packageName = packageInfo.packageName;
+
+                searchView.clearFocus();
+                if (toolbarMenu != null)
+                    (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert imm != null;
+                imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        };
+
+        HomeFragment home = new HomeFragment();
+        fragments.add(home);
+        home.setNetworkListener(networkListener);
+        home.setOnAppClickListener(onAppClickListener);
 
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container,appList)
+        transaction.replace(R.id.fragment_container,home)
         .commit();
+        home.startRefresh();
     }
 
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0)
             finish();
-        else
+        else {
             getSupportFragmentManager().popBackStack();
+            fragments.remove(fragments.size()-1);
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mMenu = menu;
+        toolbarMenu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         searchView = (SearchView) menu.findItem(R.id.action_filter).getActionView();
@@ -121,16 +179,41 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                appList.filter(query);
+                HomeFragment home = (HomeFragment) fragments.get(0);
+                home.filter(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                appList.filter(newText);
+                HomeFragment home = (HomeFragment) fragments.get(0);
+                home.filter(newText);
                 return true;
             }
         });
+
+        settingsMenuItem = menu.findItem(R.id.action_settings);
+        Updatable fragment = fragments.get(fragments.size()-1);
+        if (fragment instanceof ReportFragment)
+            settingsMenuItem.setVisible(true);
+        else
+            settingsMenuItem.setVisible(false);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.fromParts("package",packageName,null));
+            try {
+                startActivity(intent);
+            } catch(android.content.ActivityNotFoundException e) {
+                Snackbar bar = Snackbar.make(binding.fragmentContainer,R.string.no_settings,Snackbar.LENGTH_LONG);
+                bar.show();
+            }
+            return true;
+        }
+        return false;
     }
 }

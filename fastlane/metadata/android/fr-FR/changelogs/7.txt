@@ -1,0 +1,4 @@
+- Amélioration de la vitesse de navigation (grâce à borsini)
+- Ajout d'un raccourci vers les paramètres des applications
+- Ajout du numéro de version lorsque la version de l'application ne correspond pas (grâce à tdelmas)
+- Correction de bug

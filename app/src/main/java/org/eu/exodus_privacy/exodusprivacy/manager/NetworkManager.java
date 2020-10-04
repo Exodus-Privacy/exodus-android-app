@@ -22,12 +22,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-
-import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
-import org.eu.exodus_privacy.exodusprivacy.R;
-import org.eu.exodus_privacy.exodusprivacy.objects.Application;
-import org.eu.exodus_privacy.exodusprivacy.objects.Report;
-import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,13 +36,26 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.TimeZone;
+
 import java.util.concurrent.Semaphore;
+
+import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
+import org.eu.exodus_privacy.exodusprivacy.objects.Application;
+import org.eu.exodus_privacy.exodusprivacy.objects.Report;
+import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 /*
     Singleton that handle all network connection
@@ -195,8 +202,14 @@ public class NetworkManager {
                         JSONObject tracker = trackers.getJSONObject(trackerId);
                         Tracker track = parseTracker(tracker,trackerId);
                         trackersList.add(track);
+                        if (trackersList.size() == 20) {
+                            DatabaseManager.getInstance(mes.context).insertOrUpdateTrackers(trackersList);
+                            trackersList.clear();
+                        }
                     }
-                    DatabaseManager.getInstance(mes.context).insertOrUpdateTrackers(trackersList);
+                    if(!trackersList.isEmpty())
+                        DatabaseManager.getInstance(mes.context).insertOrUpdateTrackers(trackersList);
+                    trackersList.clear();
                 } catch (JSONException e) {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
@@ -207,7 +220,7 @@ public class NetworkManager {
             mes.listener.onProgress(R.string.get_reports_connection,0,0);
             URL url;
             try {
-                url = new URL(apiUrl+"applications");
+                url = new URL(apiUrl+"applications?option=short");
             } catch (Exception e){
                 e.printStackTrace();
                 return;
@@ -218,45 +231,64 @@ public class NetworkManager {
 
 
             if(object != null) {
-                List<String> handles = new ArrayList<>();
+                Map<String,Map<String,String>> handles = new HashMap<>();
+                ArrayList<String> packages = mes.args.getStringArrayList("packages");
+                if (packages == null)
+                    return;
+
                 try {
                     JSONArray applications = object.getJSONArray("applications");
+
+                    //manage handles map (handle,UAID)
                     for(int i = 0; i<applications.length(); i++) {
                         JSONObject app = applications.getJSONObject(i);
                         String handle = app.getString("handle");
-                        handles.add(handle);
+                        String auid = app.getString("app_uid");
+                        String source = app.getString("source");
+                        Map<String,String> sources = handles.get(handle);
+                        if(sources == null)
+                            sources = new HashMap<>();
+
+                        sources.put(source,auid);
+                        if (packages.contains(handle))
+                            handles.put(handle,sources);
                     }
+
+                    //remove app not analyzed by Exodus
+                    packages.retainAll(handles.keySet());
+
+                    // Add some random packages to avoid tracking
+                    Random rand = new Random(Thread.currentThread().getId());
+                    int alea = rand.nextInt(120) % 10 + 11;
+                    for(int i = 0 ; i < alea; i++) {
+                        int val = rand.nextInt(applications.length());
+                        JSONObject app = applications.getJSONObject(val);
+                        String handle = app.getString("handle");
+                        handles.put(handle,new HashMap<>());
+                        packages.add(handle);
+                    }
+                    //shuffle the list
+                    Collections.shuffle(packages);
+                    object.remove("applications");
+
                 } catch (JSONException e) {
+                    e.printStackTrace();
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
-                getReports(mes,handles);
+                object = null;
+                getReports(mes,handles,packages);
             }
             mes.listener.onSuccess();
         }
 
-        private void getReports(Message mes, List<String> handles) {
-            ArrayList<String> packages = mes.args.getStringArrayList("packages");
-            if(packages == null)
-                return;
-
-            packages.retainAll(handles);
-
-            // Add some random packages to avoid tracking
-            Random rand = new Random(Thread.currentThread().getId());
-            int alea = rand.nextInt(120) % 10 + 11;
-            for(int i = 0 ; i < alea; i++) {
-                int val = rand.nextInt(handles.size());
-                packages.add(handles.get(val));
-            }
-
-
+        private void getReports(Message mes, Map<String, Map<String,String>> handles, ArrayList<String> packages) {
             for(int i = 0; i < packages.size(); i++) {
                 mes.listener.onProgress(R.string.parse_application,i+1,packages.size());
-                getReport(mes,packages.get(i));
+                getReport(mes,packages.get(i),handles.get(packages.get(i)));
             }
         }
 
-        private void getReport(Message mes, String handle) {
+        private void getReport(Message mes, String handle, Map<String,String> sources) {
             URL url;
             try {
                 url = new URL(apiUrl+"search/"+handle);
@@ -272,6 +304,7 @@ public class NetworkManager {
                     ArrayList<String> packages = mes.args.getStringArrayList("packages");
                     if(packages != null && packages.contains(handle)) {
                         Application app = parseApplication(application, handle);
+                        app.sources = sources;
                         DatabaseManager.getInstance(mes.context).insertOrUpdateApplication(app);
                     }
                 } catch (JSONException e) {
@@ -285,6 +318,7 @@ public class NetworkManager {
             application.packageName = packageName;
             application.creator = object.getString("creator");
             application.name = object.getString("name");
+
             //parse Report
             application.reports = new HashSet<>();
             JSONArray reports = object.getJSONArray("reports");
@@ -300,6 +334,7 @@ public class NetworkManager {
             report.id = object.getLong("id");
             report.downloads = object.getString("downloads");
             report.version = object.getString("version");
+            report.source = object.getString("source");
             if(!object.getString("version_code").isEmpty())
                 report.versionCode = Long.parseLong(object.getString("version_code"));
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
@@ -307,10 +342,12 @@ public class NetworkManager {
                 report.updateDate = Calendar.getInstance();
                 report.updateDate.setTimeZone(TimeZone.getTimeZone("UTC"));
                 report.updateDate.setTime(dateFormat.parse(object.getString("updated_at")));
+                report.updateDate.set(Calendar.MILLISECOND,0);
 
                 report.creationDate = Calendar.getInstance();
                 report.creationDate.setTimeZone(TimeZone.getTimeZone("UTC"));
                 report.creationDate.setTime(dateFormat.parse(object.getString("creation_date")));
+                report.creationDate.set(Calendar.MILLISECOND,0);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

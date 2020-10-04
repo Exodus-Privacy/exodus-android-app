@@ -1,0 +1,7 @@
+Exodus Privacy ti aiuta a sapere quali tracker e permessi sono incorporati nelle applicazioni installate sul tuo smartphone.
+
+L'app scarica i report da Exodus Privacy (https://exodus-privacy.eu.org/) e li mostra all'app per app
+
+L'applicazione può rilevare solo le applicazioni installate dal Google Play store.
+
+Codice sorgente: https://github.com/Exodus-Privacy/exodus-android-app/

@@ -1,0 +1,7 @@
+يساعدك Exodus Privacy على معرفة أي مِن المتعقبين والتصريحات المدمجة في التطبيقات المثبتة على جهازك.
+
+يقوم التطبيق بتحميل التقارير من Exodus Privacy (https://exodus-privacy.eu.org/) ويعرضها عليك تطبيقًا تلو الآخر
+
+بإمكان التطبيق اكتشاف التطبيقات المثبتة من متجر Google Play فقط.
+
+الرمز المصدري: https://github.com/Exodus-Privacy/exodus-android-app/

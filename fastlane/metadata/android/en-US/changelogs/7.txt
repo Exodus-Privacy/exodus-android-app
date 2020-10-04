@@ -1,0 +1,4 @@
+- speedup navigation (thanks to borsini)
+- add shortcut to apps settings
+- add version identifier when app version doesn't match (thanks to tdelmas)
+- bug fix
