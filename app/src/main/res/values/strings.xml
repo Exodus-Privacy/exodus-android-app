@@ -45,7 +45,10 @@
     <string name="tracker_presence_in">Present in:</string>
     <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
     <string name="source">Source: %s</string>
-
+    <string name="refresh">Refresh</string>
+    <string name="cancel">Cancel</string>
+    <string name="refresh_needed">Refresh needed</string>
+    <string name="refresh_needed_message">Data have not been update since %1$s.\n\nWould you like to refresh them?</string>
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>
     <string name="menu_action_settings">Application Settings</string>

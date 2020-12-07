@@ -1,7 +1,9 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.databinding.HomeBinding;
@@ -26,7 +29,11 @@ import org.eu.exodus_privacy.exodusprivacy.manager.NetworkManager;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment implements ComputeAppListTask.Listener, Updatable {
 
@@ -45,6 +52,8 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     private int lastProgress = 0;
     private int lastMaxProgress = 0;
     private int scrollTo = 0;
+    private String last_refresh;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (applications == null)
@@ -59,18 +68,24 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         Context context = homeBinding.getRoot().getContext();
         packageManager = context.getPackageManager();
         homeBinding.swipeRefresh.setOnRefreshListener(this::startRefresh);
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(Utils.APP_PREFS, MODE_PRIVATE);
+        last_refresh = sharedPreferences.getString(Utils.LAST_REFRESH, null);
+
         if (packageManager != null) {
             homeBinding.noPackageManager.setVisibility(View.GONE);
+
             onAppsComputed(applications);
             if (applications.isEmpty())
                 displayAppListAsync();
-            if (startRefreshAsked)
+            if (startRefreshAsked && last_refresh == null)
                 startRefresh();
             else if (refreshInProgress) {
                 homeBinding.layoutProgress.setVisibility(View.VISIBLE);
                 homeBinding.swipeRefresh.setRefreshing(true);
                 updateProgress(lastResource, lastProgress, lastMaxProgress);
             }
+
         } else {
             homeBinding.noPackageManager.setVisibility(View.VISIBLE);
         }
@@ -188,7 +203,25 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         appListFragment.setApplications(apps);
         if (!apps.isEmpty()) {
             if (startupRefresh) {
-                startRefresh();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(Utils.stringToDate(getContext(), last_refresh));
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                Date refreshAfter = cal.getTime();
+                Date currentDate = new Date();
+                if (last_refresh != null && !refreshInProgress && currentDate.after(refreshAfter)) {
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+                    dialogBuilder.setMessage(getString(R.string.refresh_needed_message, last_refresh));
+                    dialogBuilder.setPositiveButton(R.string.refresh, (dialog, id) -> {
+                        startRefresh();
+                        dialog.dismiss();
+                    });
+                    dialogBuilder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
+                    AlertDialog alertDialog = dialogBuilder.create();
+                    alertDialog.show();
+
+                } else if (last_refresh == null) {
+                    startRefresh();
+                }
                 startupRefresh = false;
             }
         }

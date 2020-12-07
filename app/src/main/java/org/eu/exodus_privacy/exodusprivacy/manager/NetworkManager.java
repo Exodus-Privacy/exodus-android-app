@@ -19,11 +19,13 @@
 package org.eu.exodus_privacy.exodusprivacy.manager;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
 import org.eu.exodus_privacy.exodusprivacy.objects.Application;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
@@ -53,6 +55,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /*
     Singleton that handle all network connection
@@ -113,15 +117,20 @@ public class NetworkManager {
         @Override
         public void run() {
             isRunning = true;
+            Message mes = null;
             while (isRunning) {
                 try {
                     sem.acquire();
-                    Message mes = messageQueue.remove(0);
+                    mes = messageQueue.remove(0);
                     //noinspection SwitchStatementWithTooFewBranches
                     switch (mes.type) {
                         case GET_REPORTS:
                             getTrackers(mes);
                             getApplications(mes);
+                            SharedPreferences sharedPreferences = mes.context.getSharedPreferences(Utils.APP_PREFS, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(Utils.LAST_REFRESH, Utils.dateToString(new Date()));
+                            editor.apply();
                             break;
                         default:
                             break;

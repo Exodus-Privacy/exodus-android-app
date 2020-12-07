@@ -1,9 +1,11 @@
 package org.eu.exodus_privacy.exodusprivacy;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.Build;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -12,13 +14,21 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
+    @SuppressWarnings("unused")
     public static final String TAG = "Exodus_privacy";
+
+    public static final String APP_PREFS = "app_prefs";
+    public static final String LAST_REFRESH = "last_refresh";
+
     @SuppressLint("PackageManagerGetSignatures")
     public static String getCertificateSHA1Fingerprint(PackageManager pm, String packageName) {
         int flags = PackageManager.GET_SIGNATURES;
@@ -83,6 +93,47 @@ public class Utils {
         }
         return str.toString();
     }
+
+
+    /**
+     * Convert a date in String -> format yyyy-MM-dd HH:mm:ss
+     *
+     * @param date Date
+     * @return String
+     */
+    public static String dateToString(Date date) {
+        if (date == null)
+            return null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
+
+    /**
+     * Convert String date from db to Date Object
+     *
+     * @param stringDate date to convert
+     * @return Date
+     */
+    public static Date stringToDate(Context context, String stringDate) {
+        if (stringDate == null)
+            return null;
+        Locale userLocale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            userLocale = context.getResources().getConfiguration().getLocales().get(0);
+        } else {
+            userLocale = context.getResources().getConfiguration().locale;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", userLocale);
+        Date date = null;
+        try {
+            date = dateFormat.parse(stringDate);
+        } catch (java.text.ParseException ignored) {
+
+        }
+        return date;
+    }
+
 
     /*
     Simple and not complete markdownToHtml converter
