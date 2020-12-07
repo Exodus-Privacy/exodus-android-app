@@ -29,9 +29,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    private String previousQuery = "";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         toolbarMenu = menu;
@@ -182,15 +182,21 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main, menu);
         MenuItem actionFilterItem = menu.findItem(R.id.action_filter);
         searchView = (SearchView) actionFilterItem.getActionView();
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                searchView.setQuery(previousQuery, false);
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                HomeFragment home = (HomeFragment) fragments.get(0);
-                home.filter(query);
+                previousQuery = query.trim();
                 if (!searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
                 menu.findItem(R.id.action_filter).collapseActionView();
+                HomeFragment home = (HomeFragment) fragments.get(0);
+                home.filter(query);
                 return false;
             }
 
