@@ -29,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -187,6 +188,13 @@ public class MainActivity extends AppCompatActivity {
                 searchView.setQuery(previousQuery, false);
             }
         });
+        ImageView searchClose = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
+        if (searchClose != null) {
+            searchClose.setOnClickListener(v -> {
+                previousQuery = "";
+                searchView.setQuery("", true);
+            });
+        }
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
