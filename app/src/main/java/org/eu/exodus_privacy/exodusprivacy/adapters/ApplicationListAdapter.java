@@ -86,13 +86,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
             ApplicationViewModel vm = applicationViewModels.get(position);
             holder.setViewModel(vm);
-            //noinspection Convert2Lambda
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onAppClickListener.onAppClick(vm, position);
-                }
-            });
+            holder.itemView.setOnClickListener(v -> onAppClickListener.onAppClick(vm, position));
         } else //noinspection RedundantSuppression
         {
             //noinspection unused
