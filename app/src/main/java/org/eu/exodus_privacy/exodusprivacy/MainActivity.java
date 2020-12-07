@@ -18,16 +18,16 @@
 
 package org.eu.exodus_privacy.exodusprivacy;
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Updatable> fragments;
     private SearchView searchView;
     private Menu toolbarMenu;
-    private MenuItem settingsMenuItem;
     private String packageName;
     private MainBinding binding;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
@@ -65,23 +64,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.main);
+        binding = DataBindingUtil.setContentView(this, R.layout.main);
         final MainBinding mainBinding = binding;
-        getSupportActionBar().setTitle(R.string.app_title);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.app_title);
+        }
         fragments = new ArrayList<>();
 
         NetworkListener networkListener = new NetworkListener() {
             @Override
             public void onSuccess() {
                 runOnUiThread(() -> {
-                    for(Updatable updatable : fragments){
-                        if(updatable instanceof ReportFragment) {
+                    for (Updatable updatable : fragments) {
+                        if (updatable instanceof ReportFragment) {
                             ApplicationViewModel model = ((ReportFragment) updatable).getModel();
-                            if(model.versionName == null)
+                            if (model.versionName == null)
                                 model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionCode, model.source);
                             else
-                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName,model.versionName,model.source);
-                            if(model.report != null)
+                                model.report = DatabaseManager.getInstance(MainActivity.this).getReportFor(model.packageName, model.versionName, model.source);
+                            if (model.report != null)
                                 model.trackers = DatabaseManager.getInstance(MainActivity.this).getTrackers(model.report.trackers);
                         }
                         updatable.onUpdateComplete();
@@ -92,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onError(String error) {
                 runOnUiThread(() -> {
-                    for(Updatable updatable : fragments){
+                    for (Updatable updatable : fragments) {
                         updatable.onUpdateComplete();
                     }
-                    Snackbar bar = Snackbar.make(mainBinding.fragmentContainer,error,Snackbar.LENGTH_LONG);
+                    Snackbar bar = Snackbar.make(mainBinding.fragmentContainer, error, Snackbar.LENGTH_LONG);
                     bar.show();
                 });
             }
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
-                    .replace(R.id.fragment_container,tracker)
+                    .replace(R.id.fragment_container, tracker)
                     .addToBackStack(null)
                     .commit();
         };
@@ -123,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager pm = getPackageManager();
                 PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
 
-                ReportFragment report = ReportFragment.newInstance(pm,vm,packageInfo,onTrackerClickListener);
+                ReportFragment report = ReportFragment.newInstance(pm, vm, packageInfo, onTrackerClickListener);
                 fragments.add(report);
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
-                        .replace(R.id.fragment_container,report)
+                        .replace(R.id.fragment_container, report)
                         .addToBackStack(null)
                         .commit();
 
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 searchView.clearFocus();
                 if (toolbarMenu != null)
                     (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 assert imm != null;
                 imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
             } catch (PackageManager.NameNotFoundException e) {
@@ -153,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container,home)
-        .commit();
+        transaction.replace(R.id.fragment_container, home)
+                .commit();
         home.startRefresh();
     }
 
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         else {
             getSupportFragmentManager().popBackStack();
-            fragments.remove(fragments.size()-1);
+            fragments.remove(fragments.size() - 1);
         }
     }
 
@@ -192,24 +193,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        settingsMenuItem = menu.findItem(R.id.action_settings);
-        Updatable fragment = fragments.get(fragments.size()-1);
-        if (fragment instanceof ReportFragment)
-            settingsMenuItem.setVisible(true);
-        else
-            settingsMenuItem.setVisible(false);
+        MenuItem settingsMenuItem = menu.findItem(R.id.action_settings);
+        Updatable fragment = fragments.get(fragments.size() - 1);
+        settingsMenuItem.setVisible(fragment instanceof ReportFragment);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            intent.setData(Uri.fromParts("package",packageName,null));
+            intent.setData(Uri.fromParts("package", packageName, null));
             try {
                 startActivity(intent);
-            } catch(android.content.ActivityNotFoundException e) {
-                Snackbar bar = Snackbar.make(binding.fragmentContainer,R.string.no_settings,Snackbar.LENGTH_LONG);
+            } catch (android.content.ActivityNotFoundException e) {
+                Snackbar bar = Snackbar.make(binding.fragmentContainer, R.string.no_settings, Snackbar.LENGTH_LONG);
                 bar.show();
             }
             return true;

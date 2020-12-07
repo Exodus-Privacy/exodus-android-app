@@ -44,7 +44,8 @@ import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.ReportBinding;
 import org.eu.exodus_privacy.exodusprivacy.objects.ReportDisplay;
-public class ReportFragment  extends Fragment implements Updatable {
+
+public class ReportFragment extends Fragment implements Updatable {
 
     private PackageManager packageManager;
     private PackageInfo packageInfo = null;
@@ -52,7 +53,7 @@ public class ReportFragment  extends Fragment implements Updatable {
     private TrackerListAdapter.OnTrackerClickListener trackerClickListener;
     private ApplicationViewModel model;
 
-    public static ReportFragment newInstance(PackageManager packageManager,ApplicationViewModel model, PackageInfo packageInfo, TrackerListAdapter.OnTrackerClickListener trackerClickListener) {
+    public static ReportFragment newInstance(PackageManager packageManager, ApplicationViewModel model, PackageInfo packageInfo, TrackerListAdapter.OnTrackerClickListener trackerClickListener) {
         ReportFragment fragment = new ReportFragment();
         fragment.setPackageManager(packageManager);
         fragment.setPackageInfo(packageInfo);
@@ -68,7 +69,7 @@ public class ReportFragment  extends Fragment implements Updatable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null && packageInfo == null) {
+        if (savedInstanceState != null && packageInfo == null) {
             packageInfo = savedInstanceState.getParcelable("PackageInfo");
         }
         setHasOptionsMenu(true);
@@ -81,22 +82,22 @@ public class ReportFragment  extends Fragment implements Updatable {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        reportBinding = DataBindingUtil.inflate(inflater,R.layout.report,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        reportBinding = DataBindingUtil.inflate(inflater, R.layout.report, container, false);
         onUpdateComplete();
         return reportBinding.getRoot();
     }
 
     @Override
     public void onUpdateComplete() {
-        if(model != null)
+        if (model != null)
             onUpdateComplete(model);
     }
 
     public void onUpdateComplete(ApplicationViewModel model) {
         Context context = reportBinding.getRoot().getContext();
 
-        ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(context,model,packageManager,packageInfo);
+        ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(context, model, packageManager, packageInfo);
         ReportViewModel viewModel = new ReportViewModel();
         viewModel.setReportDisplay(reportDisplay);
         reportBinding.setReportInfo(viewModel);
@@ -110,7 +111,7 @@ public class ReportFragment  extends Fragment implements Updatable {
 
         //setup trackers lists
         reportBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
-        TrackerListAdapter trackerAdapter = new TrackerListAdapter(reportDisplay.trackers,R.layout.tracker_item, trackerClickListener);
+        TrackerListAdapter trackerAdapter = new TrackerListAdapter(reportDisplay.trackers, R.layout.tracker_item, trackerClickListener);
         reportBinding.trackers.setNestedScrollingEnabled(false);
         reportBinding.trackers.setAdapter(trackerAdapter);
 
@@ -133,14 +134,14 @@ public class ReportFragment  extends Fragment implements Updatable {
 
         reportBinding.viewStore.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            if(reportDisplay.source.contains("google"))
-                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id="+reportDisplay.packageName));
+            if (reportDisplay.source.contains("google"))
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + reportDisplay.packageName));
             else
-                intent.setData(Uri.parse("https://f-droid.org/packages/"+reportDisplay.packageName));
+                intent.setData(Uri.parse("https://f-droid.org/packages/" + reportDisplay.packageName));
             startActivity(intent);
         });
 
-        if(reportDisplay.report != null) {
+        if (reportDisplay.report != null) {
             reportBinding.reportUrl.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("https://reports.exodus-privacy.eu.org/reports/" + reportDisplay.report.id + "/"));

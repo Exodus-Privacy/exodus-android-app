@@ -41,35 +41,35 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     private boolean startRefreshAsked;
     private boolean refreshInProgress;
 
-    private int lastResource=0;
-    private int lastProgress=0;
-    private int lastMaxProgress=0;
+    private int lastResource = 0;
+    private int lastProgress = 0;
+    private int lastMaxProgress = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(applications == null)
+        if (applications == null)
             applications = new ArrayList<>();
-        homeBinding = DataBindingUtil.inflate(inflater, R.layout.home,container,false);
+        homeBinding = DataBindingUtil.inflate(inflater, R.layout.home, container, false);
         appListFragment = new AppListFragment();
         appListFragment.setOnAppClickListener(onAppClickListener);
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.app_list_container,appListFragment);
+        transaction.replace(R.id.app_list_container, appListFragment);
         transaction.commit();
         Context context = homeBinding.getRoot().getContext();
         packageManager = context.getPackageManager();
         homeBinding.swipeRefresh.setOnRefreshListener(this::startRefresh);
-        if(packageManager != null) {
+        if (packageManager != null) {
             homeBinding.noPackageManager.setVisibility(View.GONE);
             onAppsComputed(applications);
-            if(applications.isEmpty())
+            if (applications.isEmpty())
                 displayAppListAsync();
-            if(startRefreshAsked)
+            if (startRefreshAsked)
                 startRefresh();
             else if (refreshInProgress) {
                 homeBinding.layoutProgress.setVisibility(View.VISIBLE);
                 homeBinding.swipeRefresh.setRefreshing(true);
-                updateProgress(lastResource,lastProgress,lastMaxProgress);
+                updateProgress(lastResource, lastProgress, lastMaxProgress);
             }
         } else {
             homeBinding.noPackageManager.setVisibility(View.VISIBLE);
@@ -77,8 +77,8 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         return homeBinding.getRoot();
     }
 
-    public void startRefresh(){
-        if(packageManager != null) {
+    public void startRefresh() {
+        if (packageManager != null) {
             refreshInProgress = true;
             homeBinding.layoutProgress.setVisibility(View.VISIBLE);
             homeBinding.swipeRefresh.setRefreshing(true);
@@ -124,16 +124,16 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         lastResource = resourceId;
         lastProgress = progress;
         lastMaxProgress = maxProgress;
-        if(lastResource == 0)
+        if (lastResource == 0)
             return;
         Activity activity = getActivity();
-        if(activity == null)
+        if (activity == null)
             return;
         activity.runOnUiThread(() -> {
             if (homeBinding == null)
                 return;
-            if(maxProgress > 0)
-                homeBinding.statusProgress.setText(activity.getString(resourceId)+" "+progress+"/"+maxProgress);//fixme
+            if (maxProgress > 0)
+                homeBinding.statusProgress.setText(activity.getString(resourceId) + " " + progress + "/" + maxProgress);//fixme
             else
                 homeBinding.statusProgress.setText(activity.getString(resourceId));
             homeBinding.progress.setMax(maxProgress);
@@ -144,12 +144,12 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
 
     public void setOnAppClickListener(ApplicationListAdapter.OnAppClickListener onAppClickListener) {
         this.onAppClickListener = onAppClickListener;
-        if(appListFragment != null)
+        if (appListFragment != null)
             appListFragment.setOnAppClickListener(onAppClickListener);
     }
 
-    public void filter(String filter){
-        appListFragment.setFilter(AppListFragment.Type.NAME,filter);
+    public void filter(String filter) {
+        appListFragment.setFilter(AppListFragment.Type.NAME, filter);
     }
 
     private void displayAppListAsync() {
@@ -173,8 +173,8 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         homeBinding.logo.setVisibility(View.GONE);
         homeBinding.noAppFound.setVisibility(apps.isEmpty() ? View.VISIBLE : View.GONE);
         appListFragment.setApplications(apps);
-        if(!apps.isEmpty()) {
-            if(startupRefresh) {
+        if (!apps.isEmpty()) {
+            if (startupRefresh) {
                 startRefresh();
                 startupRefresh = false;
             }

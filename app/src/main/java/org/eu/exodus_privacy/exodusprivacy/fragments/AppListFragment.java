@@ -32,7 +32,7 @@ public class AppListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //create binding
-        applistBinding = DataBindingUtil.inflate(inflater, R.layout.applist,container,false);
+        applistBinding = DataBindingUtil.inflate(inflater, R.layout.applist, container, false);
         //init variables
         if (applications == null)
             applications = new ArrayList<>();
@@ -40,28 +40,28 @@ public class AppListFragment extends Fragment {
         //configure list
         applistBinding.appList.setLayoutManager(new LinearLayoutManager(context));
         applistBinding.appList.setVerticalScrollBarEnabled(scrollbarEnabled);
-        adapter = new ApplicationListAdapter(context, onAppClickListener);
+        adapter = new ApplicationListAdapter(onAppClickListener);
         adapter.displayAppList(applications);
-        adapter.filter(filterType,filterObject);
+        adapter.filter(filterType, filterObject);
         applistBinding.appList.setAdapter(adapter);
         return applistBinding.getRoot();
     }
 
-    public void setOnAppClickListener(ApplicationListAdapter.OnAppClickListener listener){
+    public void setOnAppClickListener(ApplicationListAdapter.OnAppClickListener listener) {
         onAppClickListener = listener;
     }
 
-    public void setApplications(List<ApplicationViewModel> applicationList){
+    public void setApplications(List<ApplicationViewModel> applicationList) {
         applications = applicationList;
-        if(adapter != null)
+        if (adapter != null)
             adapter.displayAppList(applications);
     }
 
-    public void setFilter(Type type, Object filter){
+    public void setFilter(Type type, Object filter) {
         filterType = type;
         filterObject = filter;
-        if(adapter != null)
-            adapter.filter(type,filterObject);
+        if (adapter != null)
+            adapter.filter(type, filterObject);
     }
 
     public void disableScrollBar() {

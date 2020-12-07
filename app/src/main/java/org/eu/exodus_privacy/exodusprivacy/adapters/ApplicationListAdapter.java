@@ -40,44 +40,40 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class ApplicationListAdapter extends RecyclerView.Adapter {
+public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<ApplicationViewModel> applicationViewModels;
-    private OnAppClickListener onAppClickListener;
-    private Object filter = "";
-    private AppListFragment.Type filterType = AppListFragment.Type.NAME;
+    private final OnAppClickListener onAppClickListener;
     private final int HIDDEN_APP = 0;
     private final int DISPLAYED_APP = 1;
+    private final Comparator<ApplicationViewModel> alphaPackageComparator = (app1, app2) -> {
+        if (app1.label != null && app2.label != null)
+            return app1.label.toString().compareToIgnoreCase(app2.label.toString());
+        else if (app2.label != null)
+            return -1;
+        else if (app1.label != null)
+            return 1;
+        else
+            return 0;
+    };
+    private List<ApplicationViewModel> applicationViewModels;
+    private Object filter = "";
+    private AppListFragment.Type filterType = AppListFragment.Type.NAME;
     private int displayedApp = 0;
 
-    private Comparator<ApplicationViewModel> alphaPackageComparator = new Comparator<ApplicationViewModel>() {
-        @Override
-        public int compare(ApplicationViewModel app1, ApplicationViewModel app2) {
-            if(app1.label != null && app2.label != null)
-                return app1.label.toString().compareToIgnoreCase(app2.label.toString());
-            else if(app2.label != null)
-                return -1;
-            else if(app1.label != null)
-                return 1;
-            else
-                return 0;
-        }
-    };
-
-    public ApplicationListAdapter(Context context, OnAppClickListener listener) {
+    public ApplicationListAdapter(OnAppClickListener listener) {
         applicationViewModels = new ArrayList<>();
         onAppClickListener = listener;
     }
 
     @Override
-    public int getItemViewType(int position){
+    public int getItemViewType(int position) {
         return applicationViewModels.get(position).isVisible ? DISPLAYED_APP : HIDDEN_APP;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if( viewType == HIDDEN_APP)
+        if (viewType == HIDDEN_APP)
             return new ApplicationEmptyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.app_item_empty, parent, false));
         else
             return new ApplicationListViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.app_item, parent, false));
@@ -86,7 +82,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if( viewHolder.getItemViewType() == DISPLAYED_APP) {
+        if (viewHolder.getItemViewType() == DISPLAYED_APP) {
             final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
             ApplicationViewModel vm = applicationViewModels.get(position);
             holder.setViewModel(vm);
@@ -97,7 +93,8 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                     onAppClickListener.onAppClick(vm);
                 }
             });
-        }else {
+        } else //noinspection RedundantSuppression
+        {
             //noinspection unused
             final ApplicationEmptyViewHolder holder = (ApplicationEmptyViewHolder) viewHolder;
             //If something should be done for app that are hidden, it's here
@@ -112,14 +109,52 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
     public void displayAppList(List<ApplicationViewModel> applications) {
         applicationViewModels = applications;
         Collections.sort(applicationViewModels, alphaPackageComparator);
-        filter(filterType,filter);
+        filter(filterType, filter);
     }
 
     public int getDisplayedApps() {
         return displayedApp;
     }
 
-    static class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder{
+    public void filter(AppListFragment.Type type, Object filterObject) {
+        displayedApp = 0;
+        if (type.equals(AppListFragment.Type.NAME)) {
+            filter = filterObject;
+            filterType = type;
+            String filterStr = (String) filterObject;
+
+            Pattern p = Pattern.compile(Pattern.quote(filterStr.trim()), Pattern.CASE_INSENSITIVE);
+            for (ApplicationViewModel app : applicationViewModels) {
+                app.isVisible = p.matcher(app.label).find();
+                if (app.isVisible)
+                    displayedApp++;
+            }
+        } else if (type.equals(AppListFragment.Type.TRACKER)) {
+            filter = filterObject;
+            filterType = type;
+            Long filterLng = (Long) filterObject;
+
+            for (ApplicationViewModel app : applicationViewModels) {
+                app.isVisible = false;
+                if (app.trackers != null) {
+                    for (Tracker tracker : app.trackers) {
+                        if (tracker.id == filterLng) {
+                            app.isVisible = true;
+                            displayedApp++;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public interface OnAppClickListener {
+        void onAppClick(ApplicationViewModel vm);
+    }
+
+    static class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder {
         ApplicationEmptyViewHolder(View itemView) {
             super(itemView);
         }
@@ -152,11 +187,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
             appItemBinding.appLogo.setImageDrawable(viewModel.icon);
 
             appItemBinding.appName.setText(viewModel.label);
-            appItemBinding.source.setText(context.getString(R.string.source,viewModel.source));
+            appItemBinding.source.setText(context.getString(R.string.source, viewModel.source));
 
             long size = viewModel.requestedPermissions != null ? viewModel.requestedPermissions.length : 0;
             appItemBinding.appPermissionNb.setText(String.valueOf(size));
-            if(size == 0)
+            if (size == 0)
                 appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_green);
             else if (size < 5)
                 appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_light_yellow);
@@ -164,24 +199,24 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                 appItemBinding.appPermissionNb.setBackgroundResource(R.drawable.square_light_red);
 
             Report report = viewModel.report;
-            if(report != null) {
+            if (report != null) {
                 Set<Tracker> trackers = viewModel.trackers;
 
                 size = trackers.size();
                 appItemBinding.appTrackerNb.setText(String.valueOf(size));
-                if(size == 0)
+                if (size == 0)
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_green);
                 else if (size < 5)
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_light_yellow);
                 else
                     appItemBinding.appTrackerNb.setBackgroundResource(R.drawable.square_light_red);
 
-                if(versionName != null && !report.version.equals(viewModel.versionName)) {
-                    String string = context.getString(R.string.tested,versionName, report.version);
+                if (versionName != null && !report.version.equals(viewModel.versionName)) {
+                    String string = context.getString(R.string.tested, versionName, report.version);
                     appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 } else if (versionName == null && report.versionCode != versionCode) {
-                    String string = context.getString(R.string.tested,String.valueOf(versionCode),String.valueOf(report.versionCode));
+                    String string = context.getString(R.string.tested, String.valueOf(versionCode), String.valueOf(report.versionCode));
                     appItemBinding.otherVersion.setText(string);
                     appItemBinding.otherVersion.setVisibility(View.VISIBLE);
                 }
@@ -191,43 +226,5 @@ public class ApplicationListAdapter extends RecyclerView.Adapter {
                 appItemBinding.analysed.setVisibility(View.VISIBLE);
             }
         }
-    }
-
-    public interface OnAppClickListener {
-        void onAppClick(ApplicationViewModel vm);
-    }
-
-    public void filter(AppListFragment.Type type, Object filterObject) {
-        displayedApp = 0;
-        if (type.equals(AppListFragment.Type.NAME)) {
-            filter = filterObject;
-            filterType = type;
-            String filterStr = (String) filterObject;
-
-            Pattern p = Pattern.compile(Pattern.quote(filterStr.trim()), Pattern.CASE_INSENSITIVE);
-            for (ApplicationViewModel app : applicationViewModels) {
-                app.isVisible = p.matcher(app.label).find();
-                if(app.isVisible)
-                    displayedApp++;
-            }
-        } else if(type.equals(AppListFragment.Type.TRACKER)) {
-            filter = filterObject;
-            filterType = type;
-            Long filterLng = (Long) filterObject;
-
-            for (ApplicationViewModel app : applicationViewModels) {
-                app.isVisible = false;
-                if (app.trackers != null) {
-                    for (Tracker tracker : app.trackers) {
-                        if (tracker.id == filterLng) {
-                            app.isVisible = true;
-                            displayedApp++;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        notifyDataSetChanged();
     }
 }

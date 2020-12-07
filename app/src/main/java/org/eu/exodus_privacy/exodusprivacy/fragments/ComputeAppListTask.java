@@ -16,16 +16,11 @@ import java.util.Map;
 
 class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel>> {
 
-    interface Listener {
-        void onAppsComputed(List<ApplicationViewModel> apps);
-    }
-
     private static final String gStore = "com.android.vending";
     private static final String fdroid = "ord.fdroid.fdroid";
-
-    private WeakReference<PackageManager> packageManagerRef;
-    private WeakReference<DatabaseManager> databaseManagerRef;
-    private WeakReference<Listener> listenerRef;
+    private final WeakReference<PackageManager> packageManagerRef;
+    private final WeakReference<DatabaseManager> databaseManagerRef;
+    private final WeakReference<Listener> listenerRef;
 
     ComputeAppListTask(WeakReference<PackageManager> packageManagerRef,
                        WeakReference<DatabaseManager> databaseManagerRef,
@@ -40,7 +35,7 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
         DatabaseManager databaseManager = databaseManagerRef.get();
 
         List<ApplicationViewModel> vms = new ArrayList<>();
-        if(packageManager != null && databaseManager != null) {
+        if (packageManager != null && databaseManager != null) {
             List<PackageInfo> installedPackages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
             vms = applyStoreFilter(installedPackages, databaseManager, packageManager);
             convertPackagesToViewModels(vms, databaseManager, packageManager);
@@ -52,14 +47,14 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
     protected void onPostExecute(List<ApplicationViewModel> vms) {
         Listener listener = listenerRef.get();
 
-        if(listener != null) {
+        if (listener != null) {
             listener.onAppsComputed(vms);
         }
     }
 
-    private void  convertPackagesToViewModels(List<ApplicationViewModel> appsToBuild,
-                                                                   DatabaseManager databaseManager,
-                                                                   PackageManager packageManager) {
+    private void convertPackagesToViewModels(List<ApplicationViewModel> appsToBuild,
+                                             DatabaseManager databaseManager,
+                                             PackageManager packageManager) {
         for (ApplicationViewModel vm : appsToBuild) {
             try {
                 PackageInfo pi = packageManager.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
@@ -71,8 +66,8 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
     }
 
     private void buildViewModelFromPackageInfo(ApplicationViewModel vm, PackageInfo pi,
-                                                               DatabaseManager databaseManager,
-                                                               PackageManager packageManager) {
+                                               DatabaseManager databaseManager,
+                                               PackageManager packageManager) {
 
         vm.versionName = pi.versionName;
         vm.packageName = pi.packageName;
@@ -101,8 +96,8 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
     }
 
     private List<ApplicationViewModel> applyStoreFilter(List<PackageInfo> packageInfos,
-                                  DatabaseManager databaseManager,
-                                  PackageManager packageManager) {
+                                                        DatabaseManager databaseManager,
+                                                        PackageManager packageManager) {
         List<ApplicationViewModel> result = new ArrayList<>();
         for (PackageInfo packageInfo : packageInfos) {
             String packageName = packageInfo.packageName;
@@ -111,28 +106,32 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
             vm.packageName = packageName;
             if (!gStore.equals(installerPackageName) && !fdroid.equals(installerPackageName)) {
                 String auid = Utils.getCertificateSHA1Fingerprint(packageManager, packageName);
-                Map<String,String> sources = databaseManager.getSources(packageName);
-                for(Map.Entry<String,String> entry : sources.entrySet()) {
-                    if(entry.getValue().equalsIgnoreCase(auid)) {
+                Map<String, String> sources = databaseManager.getSources(packageName);
+                for (Map.Entry<String, String> entry : sources.entrySet()) {
+                    if (entry.getValue().equalsIgnoreCase(auid)) {
                         vm.source = entry.getKey();
                         break;
                     }
                 }
             } else if (gStore.equals(installerPackageName)) {
-                        vm.source = "google";
+                vm.source = "google";
             } else {
                 vm.source = "fdroid";
             }
             ApplicationInfo appInfo = null;
             try {
-                appInfo = packageManager.getApplicationInfo(packageName,0);
+                appInfo = packageManager.getApplicationInfo(packageName, 0);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-            if(vm.source != null && appInfo != null && appInfo.enabled)
+            if (vm.source != null && appInfo != null && appInfo.enabled)
                 result.add(vm);
         }
         return result;
+    }
+
+    interface Listener {
+        void onAppsComputed(List<ApplicationViewModel> apps);
     }
 
 }

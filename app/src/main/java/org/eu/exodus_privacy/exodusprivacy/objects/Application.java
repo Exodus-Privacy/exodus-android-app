@@ -19,7 +19,6 @@
 package org.eu.exodus_privacy.exodusprivacy.objects;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 public class Application {
@@ -28,7 +27,7 @@ public class Application {
     public String name;
     public String creator;
     public Set<Report> reports;
-    public Map<String,String> sources;
+    public Map<String, String> sources;
 
     @Override
     public boolean equals(Object o) {

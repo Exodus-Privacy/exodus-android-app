@@ -23,8 +23,10 @@ import java.util.EventListener;
 /*
     Listener working with the NetworkManager to handle events
 */
-public interface NetworkListener extends EventListener{
+public interface NetworkListener extends EventListener {
     void onSuccess();
+
     void onError(String error);
+
     void onProgress(int resourceId, int progress, int maxProgress);
 }

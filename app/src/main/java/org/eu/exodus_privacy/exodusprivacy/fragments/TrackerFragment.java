@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -75,17 +76,17 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        trackerBinding = DataBindingUtil.inflate(inflater, R.layout.tracker,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        trackerBinding = DataBindingUtil.inflate(inflater, R.layout.tracker, container, false);
         if (applications == null)
             applications = new ArrayList<>();
         appListFragment = new AppListFragment();
-        appListFragment.setFilter(AppListFragment.Type.TRACKER,trackerId);
+        appListFragment.setFilter(AppListFragment.Type.TRACKER, trackerId);
         appListFragment.disableScrollBar();
         appListFragment.setOnAppClickListener(onAppClickListener);
         FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.applications,appListFragment);
+        transaction.replace(R.id.applications, appListFragment);
         transaction.commit();
         Context context = trackerBinding.getRoot().getContext();
         packageManager = context.getPackageManager();
@@ -132,19 +133,19 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
         appListFragment.setApplications(apps);
         int total = appListFragment.getTotalApps();
         int displayedApps = appListFragment.getDisplayedApps();
-        int percent = displayedApps*100/total;
-        if(percent >=50)
+        int percent = displayedApps * 100 / total;
+        if (percent >= 50)
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_red);
-        else if(percent >=33)
+        else if (percent >= 33)
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_dark_orange);
-        else if(percent >=20)
+        else if (percent >= 20)
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_yellow);
         else
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_light_blue);
 
-        trackerBinding.trackerPresenceNb.setText(percent+"%");
+        trackerBinding.trackerPresenceNb.setText(String.format("%s%%", percent));
         Context context = trackerBinding.getRoot().getContext();
-        String presence = context.getResources().getString(R.string.tracker_presence,displayedApps);
+        String presence = context.getResources().getString(R.string.tracker_presence, displayedApps);
         trackerBinding.trackerPresence.setText(presence);
         trackerBinding.trackerPresenceTitle.setText(R.string.tracker_presence_in);
     }

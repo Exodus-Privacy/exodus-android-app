@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PermissionGroupInfo;
 import android.content.pm.PermissionInfo;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
@@ -31,7 +30,7 @@ public class ReportDisplay {
     public String viewOnStore;
 
 
-    private ReportDisplay(){
+    private ReportDisplay() {
 
     }
 
@@ -43,32 +42,32 @@ public class ReportDisplay {
         reportDisplay.displayName = model.label.toString();
 
         reportDisplay.report = model.report;
-        reportDisplay.source = context.getString(R.string.source,model.source);
-        reportDisplay.viewOnStore = context.getString(model.source.equals("google")? R.string.view_on_google_play : R.string.view_on_fdroid);
+        reportDisplay.source = context.getString(R.string.source, model.source);
+        reportDisplay.viewOnStore = context.getString(model.source.equals("google") ? R.string.view_on_google_play : R.string.view_on_fdroid);
 
         reportDisplay.trackers = model.trackers;
 
         if (reportDisplay.report != null)
-            reportDisplay.creator =  DatabaseManager.getInstance(context).getCreator(reportDisplay.report.appId);
+            reportDisplay.creator = DatabaseManager.getInstance(context).getCreator(reportDisplay.report.appId);
 
-        List<Permission> requestedPermissions= new ArrayList<>();
+        List<Permission> requestedPermissions = new ArrayList<>();
         if (info.requestedPermissions != null) {
-            for(int i = 0; i < info.requestedPermissions.length; i++) {
+            for (int i = 0; i < info.requestedPermissions.length; i++) {
                 Permission permission = new Permission();
                 permission.fullName = info.requestedPermissions[i];
                 try {
-                    PermissionInfo permissionInfo = manager.getPermissionInfo(permission.fullName,PackageManager.GET_META_DATA);
-                    if(permissionInfo.loadDescription(manager) != null)
+                    PermissionInfo permissionInfo = manager.getPermissionInfo(permission.fullName, PackageManager.GET_META_DATA);
+                    if (permissionInfo.loadDescription(manager) != null)
                         permission.description = permissionInfo.loadDescription(manager).toString();
-                    if(permissionInfo.loadLabel(manager) != null)
+                    if (permissionInfo.loadLabel(manager) != null)
                         permission.name = permissionInfo.loadLabel(manager).toString();
                     permission.dangerous = permissionInfo.protectionLevel == PermissionInfo.PROTECTION_DANGEROUS;
-                    if(permission.fullName.equals(Manifest.permission.WRITE_SETTINGS) || permission.fullName.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) //Special permissions
+                    if (permission.fullName.equals(Manifest.permission.WRITE_SETTINGS) || permission.fullName.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) //Special permissions
                         permission.dangerous = true;
 
                     if (permissionInfo.group != null) {
                         PermissionGroupInfo permissionGroupInfo = manager.getPermissionGroupInfo(permissionInfo.group, PackageManager.GET_META_DATA);
-                        if(permissionGroupInfo.loadIcon(manager) != null)
+                        if (permissionGroupInfo.loadIcon(manager) != null)
                             permission.icon = permissionGroupInfo.loadIcon(manager);
                     }
 
