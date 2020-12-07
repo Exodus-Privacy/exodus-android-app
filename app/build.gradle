@@ -4,13 +4,13 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
     defaultConfig {
-        applicationId "org.eu.exodus_privacy.exodusprivacy"
         minSdkVersion 17
         targetSdkVersion 30
         versionCode 10
         versionName "2.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    flavorDimensions "default"
     buildTypes {
         release {
             minifyEnabled false
@@ -19,6 +19,31 @@ android {
                 disable 'MissingTranslation'
             }
         }
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    productFlavors {
+        exodus {
+            applicationId "org.eu.exodus_privacy.exodusprivacy"
+        }
+        amal {
+            applicationId "app.fedilab.amal"
+        }
+    }
+
+    sourceSets {
+        exodus {
+            res.srcDirs = ['src/main/res', 'src/exodus/res']
+        }
+        amal {
+            res.srcDirs = ['src/main/res', 'src/amal/res']
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

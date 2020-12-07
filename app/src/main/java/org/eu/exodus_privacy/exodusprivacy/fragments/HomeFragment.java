@@ -204,8 +204,10 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         if (!apps.isEmpty()) {
             if (startupRefresh) {
                 Calendar cal = Calendar.getInstance();
-                cal.setTime(Utils.stringToDate(getContext(), last_refresh));
-                cal.add(Calendar.DAY_OF_YEAR, 1);
+                if (last_refresh != null) {
+                    cal.setTime(Utils.stringToDate(getContext(), last_refresh));
+                    cal.add(Calendar.DAY_OF_YEAR, 1);
+                }
                 Date refreshAfter = cal.getTime();
                 Date currentDate = new Date();
                 if (last_refresh != null && !refreshInProgress && currentDate.after(refreshAfter)) {
