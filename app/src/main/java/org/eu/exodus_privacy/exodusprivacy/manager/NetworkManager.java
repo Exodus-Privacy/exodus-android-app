@@ -44,6 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -93,7 +94,7 @@ public class NetworkManager {
         UNKNOWN
     }
 
-    private class NetworkProcessingThread extends Thread {
+    private static class NetworkProcessingThread extends Thread {
         private final String apiUrl = "https://reports.exodus-privacy.eu.org/api/";
         private final List<Message> messageQueue;
         private final Semaphore sem;
@@ -116,6 +117,7 @@ public class NetworkManager {
                 try {
                     sem.acquire();
                     Message mes = messageQueue.remove(0);
+                    //noinspection SwitchStatementWithTooFewBranches
                     switch (mes.type) {
                         case GET_REPORTS:
                             getTrackers(mes);
@@ -338,12 +340,18 @@ public class NetworkManager {
             try {
                 report.updateDate = Calendar.getInstance();
                 report.updateDate.setTimeZone(TimeZone.getTimeZone("UTC"));
-                report.updateDate.setTime(dateFormat.parse(object.getString("updated_at")));
+                Date date = dateFormat.parse(object.getString("updated_at"));
+                if (date != null) {
+                    report.updateDate.setTime(date);
+                }
                 report.updateDate.set(Calendar.MILLISECOND, 0);
 
                 report.creationDate = Calendar.getInstance();
                 report.creationDate.setTimeZone(TimeZone.getTimeZone("UTC"));
-                report.creationDate.setTime(dateFormat.parse(object.getString("creation_date")));
+                date = dateFormat.parse(object.getString("creation_date"));
+                if (date != null) {
+                    report.creationDate.setTime(date);
+                }
                 report.creationDate.set(Calendar.MILLISECOND, 0);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -367,7 +375,10 @@ public class NetworkManager {
             try {
                 tracker.creationDate = Calendar.getInstance();
                 tracker.creationDate.setTimeZone(TimeZone.getTimeZone("UTC"));
-                tracker.creationDate.setTime(dateFormat.parse(object.getString("creation_date")));
+                Date date = dateFormat.parse(object.getString("creation_date"));
+                if (date != null) {
+                    tracker.creationDate.setTime(date);
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -410,7 +421,7 @@ public class NetworkManager {
         }
     }
 
-    private class Message {
+    private static class Message {
         Message_Type type = Message_Type.UNKNOWN;
         Bundle args = new Bundle();
         NetworkListener listener;
