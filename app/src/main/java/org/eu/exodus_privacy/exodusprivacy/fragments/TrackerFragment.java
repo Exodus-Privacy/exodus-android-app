@@ -9,7 +9,6 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -97,11 +96,9 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_filter);
-        item.setVisible(false);
-        item = menu.findItem(R.id.action_settings);
-        item.setVisible(false);
-
+        menu.findItem(R.id.action_filter).setVisible(false);
+        menu.findItem(R.id.action_settings).setVisible(false);
+        menu.findItem(R.id.action_filter_options).setVisible(false);
     }
 
     private void displayAppListAsync() {
@@ -118,7 +115,7 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
         new ComputeAppListTask(
                 new WeakReference<>(packageManager),
                 new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this)
+                new WeakReference<>(this), ComputeAppListTask.order.DEFAULT
         ).execute();
     }
 

@@ -8,6 +8,11 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
     <item
+        android:id="@+id/action_filter_options"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="@string/menu_action_filter"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/menu_action_settings"

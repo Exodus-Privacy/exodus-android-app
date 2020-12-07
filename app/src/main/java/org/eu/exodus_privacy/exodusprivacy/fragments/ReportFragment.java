@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -164,8 +163,8 @@ public class ReportFragment extends Fragment implements Updatable {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_filter);
-        item.setVisible(false);
+        menu.findItem(R.id.action_filter).setVisible(false);
+        menu.findItem(R.id.action_filter_options).setVisible(false);
     }
 
     public ApplicationViewModel getModel() {

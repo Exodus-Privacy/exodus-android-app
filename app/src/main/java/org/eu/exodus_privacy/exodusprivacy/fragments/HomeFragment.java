@@ -190,7 +190,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         new ComputeAppListTask(
                 new WeakReference<>(packageManager),
                 new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this)
+                new WeakReference<>(this), ComputeAppListTask.order.DEFAULT
         ).execute();
     }
 
