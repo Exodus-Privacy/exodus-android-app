@@ -180,21 +180,25 @@ public class MainActivity extends AppCompatActivity {
         toolbarMenu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        searchView = (SearchView) menu.findItem(R.id.action_filter).getActionView();
-        searchView.setIconifiedByDefault(false);
+        MenuItem actionFilterItem = menu.findItem(R.id.action_filter);
+        searchView = (SearchView) actionFilterItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 HomeFragment home = (HomeFragment) fragments.get(0);
                 home.filter(query);
-                return true;
+                if (!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                menu.findItem(R.id.action_filter).collapseActionView();
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 HomeFragment home = (HomeFragment) fragments.get(0);
                 home.filter(newText);
-                return true;
+                return false;
             }
         });
 
