@@ -115,7 +115,7 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
         new ComputeAppListTask(
                 new WeakReference<>(packageManager),
                 new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this), ComputeAppListTask.order.DEFAULT
+                new WeakReference<>(this), null
         ).execute();
     }
 

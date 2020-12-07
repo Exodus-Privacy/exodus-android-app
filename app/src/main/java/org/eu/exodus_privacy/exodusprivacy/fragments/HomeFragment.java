@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
 
             onAppsComputed(applications);
             if (applications.isEmpty())
-                displayAppListAsync();
+                displayAppListAsync(null);
             if (startRefreshAsked && last_refresh == null)
                 startRefresh();
             else if (refreshInProgress) {
@@ -127,7 +127,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         refreshInProgress = false;
         homeBinding.layoutProgress.setVisibility(View.GONE);
         homeBinding.swipeRefresh.setRefreshing(false);
-        displayAppListAsync();
+        displayAppListAsync(null);
     }
 
     public void setNetworkListener(NetworkListener listener) {
@@ -180,7 +180,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         appListFragment.setFilter(AppListFragment.Type.NAME, filter);
     }
 
-    private void displayAppListAsync() {
+    private void displayAppListAsync(List<ComputeAppListTask.order> orderList) {
         homeBinding.noAppFound.setVisibility(View.GONE);
         if (applications.isEmpty()) {
             homeBinding.retrieveApp.setVisibility(View.VISIBLE);
@@ -190,7 +190,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         new ComputeAppListTask(
                 new WeakReference<>(packageManager),
                 new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this), ComputeAppListTask.order.DEFAULT
+                new WeakReference<>(this), orderList
         ).execute();
     }
 

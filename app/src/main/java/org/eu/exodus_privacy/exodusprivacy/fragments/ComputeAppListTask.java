@@ -22,15 +22,15 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
     private final WeakReference<DatabaseManager> databaseManagerRef;
     private final WeakReference<Listener> listenerRef;
 
-    order userOrderChoice;
+    List<order> userOrderChoices;
 
     ComputeAppListTask(WeakReference<PackageManager> packageManagerRef,
                        WeakReference<DatabaseManager> databaseManagerRef,
-                       WeakReference<Listener> listenerRef, order orderCoice) {
+                       WeakReference<Listener> listenerRef, List<order> orderChoices) {
         this.packageManagerRef = packageManagerRef;
         this.databaseManagerRef = databaseManagerRef;
         this.listenerRef = listenerRef;
-        userOrderChoice = orderCoice;
+        userOrderChoices = orderChoices;
     }
 
     protected List<ApplicationViewModel> doInBackground(Void... params) {
@@ -44,10 +44,17 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
             convertPackagesToViewModels(vms, databaseManager, packageManager);
         }
         //Reordering should done here
-        if (userOrderChoice != order.DEFAULT) {
-
+        if (userOrderChoices != null) {
+            vms = order(vms, userOrderChoices);
         }
         return vms;
+    }
+
+    private List<ApplicationViewModel> order(List<ApplicationViewModel> vms, List<order> orderChoices) {
+        List<ApplicationViewModel> applicationViewModels = new ArrayList<>();
+
+
+        return applicationViewModels;
     }
 
     public enum order {
