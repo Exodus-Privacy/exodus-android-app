@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private String packageName;
     private MainBinding binding;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
+    private int appPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.app_title);
         }
         fragments = new ArrayList<>();
-
+        appPosition = 0;
         NetworkListener networkListener = new NetworkListener() {
             @Override
             public void onSuccess() {
@@ -119,11 +120,11 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         };
 
-        onAppClickListener = vm -> {
+        onAppClickListener = (vm, position) -> {
             try {
                 PackageManager pm = getPackageManager();
                 PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
-
+                appPosition = position;
                 ReportFragment report = ReportFragment.newInstance(pm, vm, packageInfo, onTrackerClickListener);
                 fragments.add(report);
                 FragmentManager manager = getSupportFragmentManager();
@@ -166,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
         else {
             getSupportFragmentManager().popBackStack();
             fragments.remove(fragments.size() - 1);
+            Updatable updatable = fragments.get(fragments.size() - 1);
+            if (updatable instanceof HomeFragment) {
+                ((HomeFragment) updatable).scrollTo(appPosition);
+            }
         }
     }
 

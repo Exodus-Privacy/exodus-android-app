@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
+    public static final String TAG = "Exodus_privacy";
     @SuppressLint("PackageManagerGetSignatures")
     public static String getCertificateSHA1Fingerprint(PackageManager pm, String packageName) {
         int flags = PackageManager.GET_SIGNATURES;

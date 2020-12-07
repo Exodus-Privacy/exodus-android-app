@@ -93,6 +93,10 @@ public class AppListFragment extends Fragment {
         TRACKER
     }
 
+    public void scrollTo(int position) {
+        applistBinding.appList.scrollToPosition(position);
+    }
+
     public enum Order {
         NAME_ASC,
         NAME_DSC,

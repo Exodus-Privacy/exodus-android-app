@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     private int lastResource = 0;
     private int lastProgress = 0;
     private int lastMaxProgress = 0;
-
+    private int scrollTo = 0;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (applications == null)
@@ -92,6 +92,19 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         } else {
             startRefreshAsked = true;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (scrollTo > 0) {
+            appListFragment.scrollTo(scrollTo);
+            scrollTo = 0;
+        }
+    }
+
+    public void scrollTo(int position) {
+        scrollTo = position;
     }
 
     @Override

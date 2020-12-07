@@ -90,7 +90,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onAppClickListener.onAppClick(vm);
+                    onAppClickListener.onAppClick(vm, position);
                 }
             });
         } else //noinspection RedundantSuppression
@@ -151,7 +151,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     public interface OnAppClickListener {
-        void onAppClick(ApplicationViewModel vm);
+        void onAppClick(ApplicationViewModel vm, int position);
     }
 
     static class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder {
