@@ -86,7 +86,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             final ApplicationListViewHolder holder = (ApplicationListViewHolder) viewHolder;
             ApplicationViewModel vm = applicationViewModels.get(position);
             holder.setViewModel(vm);
-            holder.itemView.setOnClickListener(v -> onAppClickListener.onAppClick(vm, position));
+            holder.itemView.setOnClickListener(v -> onAppClickListener.onAppClick(vm));
         } else //noinspection RedundantSuppression
         {
             //noinspection unused
@@ -145,7 +145,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     public interface OnAppClickListener {
-        void onAppClick(ApplicationViewModel vm, int position);
+        void onAppClick(ApplicationViewModel vm);
     }
 
     static class ApplicationEmptyViewHolder extends RecyclerView.ViewHolder {

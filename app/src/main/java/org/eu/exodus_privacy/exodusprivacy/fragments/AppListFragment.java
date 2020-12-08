@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
@@ -28,6 +29,7 @@ public class AppListFragment extends Fragment {
     private Type filterType = Type.NAME;
     private Object filterObject = "";
     private boolean scrollbarEnabled = true;
+    private static int firstVisiblePosition = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,8 +40,21 @@ public class AppListFragment extends Fragment {
             applications = new ArrayList<>();
         Context context = applistBinding.getRoot().getContext();
         //configure list
-        applistBinding.appList.setLayoutManager(new LinearLayoutManager(context));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        applistBinding.appList.setLayoutManager(linearLayoutManager);
         applistBinding.appList.setVerticalScrollBarEnabled(scrollbarEnabled);
+        applistBinding.appList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                firstVisiblePosition = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+            }
+        });
         adapter = new ApplicationListAdapter(onAppClickListener);
         adapter.displayAppList(applications);
         adapter.filter(filterType, filterObject);
@@ -54,6 +69,8 @@ public class AppListFragment extends Fragment {
     public void setApplications(List<ApplicationViewModel> applicationList) {
         applications = applicationList;
         if (adapter != null)
+
+
             adapter.displayAppList(applications);
     }
 
@@ -93,8 +110,8 @@ public class AppListFragment extends Fragment {
         TRACKER
     }
 
-    public void scrollTo(int position) {
-        applistBinding.appList.scrollToPosition(position);
+    public void scrollTo() {
+        applistBinding.appList.scrollToPosition(firstVisiblePosition);
     }
 
     public enum Order {
