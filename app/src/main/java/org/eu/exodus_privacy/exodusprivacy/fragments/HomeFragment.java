@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     private int lastResource = 0;
     private int lastProgress = 0;
     private int lastMaxProgress = 0;
-    private int scrollTo = 0;
     private String last_refresh;
 
     @Override
@@ -112,15 +111,9 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     @Override
     public void onResume() {
         super.onResume();
-        if (scrollTo > 0) {
-            appListFragment.scrollTo(scrollTo);
-            scrollTo = 0;
-        }
+        appListFragment.scrollTo();
     }
 
-    public void scrollTo(int position) {
-        scrollTo = position;
-    }
 
     @Override
     public void onUpdateComplete() {
