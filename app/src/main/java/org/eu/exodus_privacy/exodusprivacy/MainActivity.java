@@ -28,8 +28,10 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -43,6 +45,7 @@ import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
+import org.eu.exodus_privacy.exodusprivacy.fragments.ComputeAppListTask;
 import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.TrackerFragment;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private String packageName;
     private MainBinding binding;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
+    private static ComputeAppListTask.order order = ComputeAppListTask.order.DEFAULT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         MenuItem actionFilterItem = menu.findItem(R.id.action_filter);
+
         searchView = (SearchView) actionFilterItem.getActionView();
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -208,12 +213,12 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         MenuItem settingsMenuItem = menu.findItem(R.id.action_settings);
         Updatable fragment = fragments.get(fragments.size() - 1);
         settingsMenuItem.setVisible(fragment instanceof ReportFragment);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -227,7 +232,53 @@ public class MainActivity extends AppCompatActivity {
                 bar.show();
             }
             return true;
+        } else if (item.getItemId() == R.id.action_filter_options) {
+            View menuItemView = findViewById(R.id.action_filter_options);
+            PopupMenu popup = new PopupMenu(binding.fragmentContainer.getContext(), menuItemView);
+            popup.getMenuInflater()
+                    .inflate(R.menu.popup_menu_filter, popup.getMenu());
+            MenuItem filterByNameMI = popup.getMenu().findItem(R.id.filter_by_name);
+            MenuItem lessTrackersMI = popup.getMenu().findItem(R.id.having_less_trackers);
+            MenuItem mostTrackersMI = popup.getMenu().findItem(R.id.having_most_trackers);
+            MenuItem lessPermissionsMI = popup.getMenu().findItem(R.id.having_less_permissions);
+            MenuItem mostPermissionsMI = popup.getMenu().findItem(R.id.having_most_permissions);
+            switch (order) {
+                case LESS_TRACKERS:
+                    lessTrackersMI.setChecked(true);
+                    break;
+                case MOST_TRACKERS:
+                    mostTrackersMI.setChecked(true);
+                    break;
+                case LESS_PERMISSIONS:
+                    lessPermissionsMI.setChecked(true);
+                    break;
+                case MOST_PERMISSIONS:
+                    mostPermissionsMI.setChecked(true);
+                    break;
+                default:
+                    filterByNameMI.setChecked(true);
+            }
+            popup.setOnMenuItemClickListener(filter_item -> {
+                if (filter_item.getItemId() == R.id.filter_by_name) {
+                    order = ComputeAppListTask.order.DEFAULT;
+                } else if (filter_item.getItemId() == R.id.having_less_trackers) {
+                    order = ComputeAppListTask.order.LESS_TRACKERS;
+                } else if (filter_item.getItemId() == R.id.having_most_trackers) {
+                    order = ComputeAppListTask.order.MOST_TRACKERS;
+                } else if (filter_item.getItemId() == R.id.having_most_permissions) {
+                    order = ComputeAppListTask.order.MOST_PERMISSIONS;
+                } else if (filter_item.getItemId() == R.id.having_less_permissions) {
+                    order = ComputeAppListTask.order.LESS_PERMISSIONS;
+                }
+                if (fragments != null && fragments.size() > 0 && fragments.get(0) instanceof HomeFragment) {
+                    HomeFragment home = (HomeFragment) fragments.get(0);
+                    home.displayAppListAsync(order);
+                }
+                return false;
+            });
+            popup.show();
         }
         return false;
     }
+
 }

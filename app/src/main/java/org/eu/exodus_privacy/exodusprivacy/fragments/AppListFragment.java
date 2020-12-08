@@ -66,11 +66,10 @@ public class AppListFragment extends Fragment {
         onAppClickListener = listener;
     }
 
+
     public void setApplications(List<ApplicationViewModel> applicationList) {
         applications = applicationList;
         if (adapter != null)
-
-
             adapter.displayAppList(applications);
     }
 

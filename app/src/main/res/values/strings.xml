@@ -53,4 +53,12 @@
     <string name="menu_action_filter">Filter</string>
     <string name="menu_action_settings">Application Settings</string>
 
+    <!-- Filters -->
+    <string name="filter_by_name">Filter by name</string>
+    <string name="having_most_trackers">Having most trackers</string>
+    <string name="having_less_trackers">Having less trackers</string>
+    <string name="having_most_permissions">Having most permissions</string>
+    <string name="having_less_permissions">Having less permissions</string>
+
+
 </resources>

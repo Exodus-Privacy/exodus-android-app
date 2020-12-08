@@ -11,10 +11,11 @@ import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel>> {
+public class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel>> {
 
     private static final String gStore = "com.android.vending";
     private static final String fdroid = "ord.fdroid.fdroid";
@@ -22,15 +23,15 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
     private final WeakReference<DatabaseManager> databaseManagerRef;
     private final WeakReference<Listener> listenerRef;
 
-    List<order> userOrderChoices;
+    order userOrderChoice;
 
     ComputeAppListTask(WeakReference<PackageManager> packageManagerRef,
                        WeakReference<DatabaseManager> databaseManagerRef,
-                       WeakReference<Listener> listenerRef, List<order> orderChoices) {
+                       WeakReference<Listener> listenerRef, order orderChoice) {
         this.packageManagerRef = packageManagerRef;
         this.databaseManagerRef = databaseManagerRef;
         this.listenerRef = listenerRef;
-        userOrderChoices = orderChoices;
+        userOrderChoice = orderChoice;
     }
 
     protected List<ApplicationViewModel> doInBackground(Void... params) {
@@ -44,18 +45,32 @@ class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel
             convertPackagesToViewModels(vms, databaseManager, packageManager);
         }
         //Reordering should done here
-        if (userOrderChoices != null) {
-            vms = order(vms, userOrderChoices);
+        if (userOrderChoice == null) {
+            userOrderChoice = order.DEFAULT;
+        }
+        vms = order(vms, userOrderChoice);
+        return vms;
+    }
+
+    private List<ApplicationViewModel> order(List<ApplicationViewModel> vms, order orderChoice) {
+        if (orderChoice == order.LESS_TRACKERS) {
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.requestedPermissions != null ? obj1.requestedPermissions.length : 0, obj2.requestedPermissions != null ? obj2.requestedPermissions.length : 0));
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.trackers != null ? obj1.trackers.size() : 0, obj2.trackers != null ? obj2.trackers.size() : 0));
+        } else if (orderChoice == order.MOST_TRACKERS) {
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj2.requestedPermissions != null ? obj2.requestedPermissions.length : 0, obj1.requestedPermissions != null ? obj1.requestedPermissions.length : 0));
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj2.trackers != null ? obj2.trackers.size() : 0, obj1.trackers != null ? obj1.trackers.size() : 0));
+        } else if (orderChoice == order.LESS_PERMISSIONS) {
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.trackers != null ? obj1.trackers.size() : 0, obj2.trackers != null ? obj2.trackers.size() : 0));
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.requestedPermissions != null ? obj1.requestedPermissions.length : 0, obj2.requestedPermissions != null ? obj2.requestedPermissions.length : 0));
+        } else if (orderChoice == order.MOST_PERMISSIONS) {
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj2.trackers != null ? obj2.trackers.size() : 0, obj1.trackers != null ? obj1.trackers.size() : 0));
+            Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj2.requestedPermissions != null ? obj2.requestedPermissions.length : 0, obj1.requestedPermissions != null ? obj1.requestedPermissions.length : 0));
+        } else {
+            Collections.sort(vms, (obj1, obj2) -> String.valueOf(obj1.label).compareToIgnoreCase(String.valueOf(obj2.label)));
         }
         return vms;
     }
 
-    private List<ApplicationViewModel> order(List<ApplicationViewModel> vms, List<order> orderChoices) {
-        List<ApplicationViewModel> applicationViewModels = new ArrayList<>();
-
-
-        return applicationViewModels;
-    }
 
     public enum order {
         DEFAULT,

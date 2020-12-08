@@ -24,6 +24,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import org.eu.exodus_privacy.exodusprivacy.BuildConfig;
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
@@ -99,7 +100,8 @@ public class NetworkManager {
     }
 
     private static class NetworkProcessingThread extends Thread {
-        private final String apiUrl = "https://reports.exodus-privacy.eu.org/api/";
+        private final String domain = BuildConfig.FLAVOR.compareTo("exodus") == 0 ? "reports.exodus-privacy.eu.org" : "exodus.phm.education.gouv.fr";
+        private final String apiUrl = "https://" + domain + "/api/";
         private final List<Message> messageQueue;
         private final Semaphore sem;
         boolean isRunning;
@@ -117,7 +119,7 @@ public class NetworkManager {
         @Override
         public void run() {
             isRunning = true;
-            Message mes = null;
+            Message mes;
             while (isRunning) {
                 try {
                     sem.acquire();
@@ -283,7 +285,6 @@ public class NetworkManager {
                     e.printStackTrace();
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
-                object = null;
                 getReports(mes, handles, packages);
             }
             mes.listener.onSuccess();

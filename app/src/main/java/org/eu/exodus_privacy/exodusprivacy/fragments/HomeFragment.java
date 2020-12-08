@@ -173,7 +173,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         appListFragment.setFilter(AppListFragment.Type.NAME, filter);
     }
 
-    private void displayAppListAsync(List<ComputeAppListTask.order> orderList) {
+    public void displayAppListAsync(ComputeAppListTask.order orderList) {
         homeBinding.noAppFound.setVisibility(View.GONE);
         if (applications.isEmpty()) {
             homeBinding.retrieveApp.setVisibility(View.VISIBLE);

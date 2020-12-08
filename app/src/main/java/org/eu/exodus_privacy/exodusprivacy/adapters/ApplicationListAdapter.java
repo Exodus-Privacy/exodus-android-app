@@ -34,8 +34,6 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -45,16 +43,6 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private final OnAppClickListener onAppClickListener;
     private final int HIDDEN_APP = 0;
     private final int DISPLAYED_APP = 1;
-    private final Comparator<ApplicationViewModel> alphaPackageComparator = (app1, app2) -> {
-        if (app1.label != null && app2.label != null)
-            return app1.label.toString().compareToIgnoreCase(app2.label.toString());
-        else if (app2.label != null)
-            return -1;
-        else if (app1.label != null)
-            return 1;
-        else
-            return 0;
-    };
     private List<ApplicationViewModel> applicationViewModels;
     private Object filter = "";
     private AppListFragment.Type filterType = AppListFragment.Type.NAME;
@@ -102,7 +90,6 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public void displayAppList(List<ApplicationViewModel> applications) {
         applicationViewModels = applications;
-        Collections.sort(applicationViewModels, alphaPackageComparator);
         filter(filterType, filter);
     }
 
