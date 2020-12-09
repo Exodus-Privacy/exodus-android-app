@@ -41,6 +41,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,7 +54,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
 
@@ -268,7 +268,7 @@ public class NetworkManager {
                     packages.retainAll(handles.keySet());
 
                     // Add some random packages to avoid tracking
-                    Random rand = new Random(Thread.currentThread().getId());
+                    SecureRandom rand = new SecureRandom();
                     int alea = rand.nextInt(120) % 10 + 11;
                     for (int i = 0; i < alea; i++) {
                         int val = rand.nextInt(applications.length());
