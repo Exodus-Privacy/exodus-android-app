@@ -38,6 +38,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.ReportViewModel;
+import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.PermissionListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
@@ -143,7 +144,7 @@ public class ReportFragment extends Fragment implements Updatable {
         if (reportDisplay.report != null) {
             reportBinding.reportUrl.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://reports.exodus-privacy.eu.org/reports/" + reportDisplay.report.id + "/"));
+                intent.setData(Uri.parse("https://" + Utils.getDomain() + "/reports/" + reportDisplay.report.id + "/"));
                 startActivity(intent);
             });
         }

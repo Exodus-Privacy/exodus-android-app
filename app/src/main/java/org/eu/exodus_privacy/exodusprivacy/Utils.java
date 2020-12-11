@@ -29,6 +29,10 @@ public class Utils {
     public static final String APP_PREFS = "app_prefs";
     public static final String LAST_REFRESH = "last_refresh";
 
+    public static String getDomain() {
+        return BuildConfig.FLAVOR.compareTo("exodus") == 0 ? "reports.exodus-privacy.eu.org" : "exodus.phm.education.gouv.fr";
+    }
+
     @SuppressLint("PackageManagerGetSignatures")
     public static String getCertificateSHA1Fingerprint(PackageManager pm, String packageName) {
         int flags = PackageManager.GET_SIGNATURES;

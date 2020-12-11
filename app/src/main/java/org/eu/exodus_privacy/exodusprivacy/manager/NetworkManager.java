@@ -24,7 +24,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
-import org.eu.exodus_privacy.exodusprivacy.BuildConfig;
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
@@ -112,7 +111,7 @@ public class NetworkManager {
     }
 
     private static class NetworkProcessingThread extends Thread {
-        private final String domain = BuildConfig.FLAVOR.compareTo("exodus") == 0 ? "reports.exodus-privacy.eu.org" : "exodus.phm.education.gouv.fr";
+        private final String domain = Utils.getDomain();
         private final String apiUrl = "https://" + domain + "/api/";
         private final List<Message> messageQueue;
         private final Semaphore sem;
@@ -146,7 +145,8 @@ public class NetworkManager {
                             editor.apply();
                             break;
                         case GET_SINGLE_REPORT:
-                            Application application = getApplicationsNoActions(mes);
+                            String packageName = mes.args.getString("package");
+                            Application application = getSingleReport(mes, packageName);
                             mes.listener.onSuccess(application);
                             break;
                         default:
@@ -246,25 +246,6 @@ public class NetworkManager {
         }
 
 
-        private Application getApplicationsNoActions(Message mes) {
-            URL url;
-            try {
-                url = new URL(apiUrl + "applications?option=short");
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-            JSONObject object = makeDataRequest(mes.context, mes.listener, url);
-
-            if (object != null) {
-                String packageName = mes.args.getString("package");
-                if (packageName == null)
-                    return null;
-                return getSingleReport(mes, packageName);
-            }
-            mes.listener.onSuccess(null);
-            return null;
-        }
 
         private void getApplications(Message mes) {
             mes.listener.onProgress(R.string.get_reports_connection, 0, 0);
