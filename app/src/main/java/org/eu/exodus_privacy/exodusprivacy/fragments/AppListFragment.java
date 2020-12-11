@@ -22,6 +22,7 @@ import java.util.List;
 
 public class AppListFragment extends Fragment {
 
+    private static int firstVisiblePosition = 0;
     private ApplistBinding applistBinding;
     private List<ApplicationViewModel> applications;
     private ApplicationListAdapter adapter;
@@ -29,7 +30,6 @@ public class AppListFragment extends Fragment {
     private Type filterType = Type.NAME;
     private Object filterObject = "";
     private boolean scrollbarEnabled = true;
-    private static int firstVisiblePosition = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,6 +86,7 @@ public class AppListFragment extends Fragment {
             applistBinding.appList.setVerticalScrollBarEnabled(false);
     }
 
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     public void enableScrollBar() {
         scrollbarEnabled = true;
         if (applistBinding != null)
@@ -104,21 +105,12 @@ public class AppListFragment extends Fragment {
         return adapter.getDisplayedApps();
     }
 
-    public enum Type {
-        NAME,
-        TRACKER
-    }
-
     public void scrollTo() {
         applistBinding.appList.scrollToPosition(firstVisiblePosition);
     }
 
-    public enum Order {
-        NAME_ASC,
-        NAME_DSC,
-        TRACKER_ASC,
-        TRACKER_DSC,
-        PERMISSIONS_ASC,
-        PERMISSIONS_DSC
+    public enum Type {
+        NAME,
+        TRACKER
     }
 }

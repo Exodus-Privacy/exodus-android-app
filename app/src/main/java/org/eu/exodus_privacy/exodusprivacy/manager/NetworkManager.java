@@ -76,6 +76,17 @@ public class NetworkManager {
         return instance;
     }
 
+
+    public void getSingleReport(Context context, NetworkListener listener, String packageName) {
+        Message mes = new Message();
+        mes.type = Message_Type.GET_SINGLE_REPORT;
+        mes.context = context;
+        mes.listener = listener;
+        mes.args = new Bundle();
+        mes.args.putString("package", packageName);
+        addMessageToQueue(mes);
+    }
+
     public void getReports(Context context, NetworkListener listener, ArrayList<String> packageList) {
         Message mes = new Message();
         mes.type = Message_Type.GET_REPORTS;
@@ -96,6 +107,7 @@ public class NetworkManager {
 
     private enum Message_Type {
         GET_REPORTS,
+        GET_SINGLE_REPORT,
         UNKNOWN
     }
 
@@ -124,7 +136,6 @@ public class NetworkManager {
                 try {
                     sem.acquire();
                     mes = messageQueue.remove(0);
-                    //noinspection SwitchStatementWithTooFewBranches
                     switch (mes.type) {
                         case GET_REPORTS:
                             getTrackers(mes);
@@ -133,6 +144,10 @@ public class NetworkManager {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString(Utils.LAST_REFRESH, Utils.dateToString(new Date()));
                             editor.apply();
+                            break;
+                        case GET_SINGLE_REPORT:
+                            Application application = getApplicationsNoActions(mes);
+                            mes.listener.onSuccess(application);
                             break;
                         default:
                             break;
@@ -144,6 +159,7 @@ public class NetworkManager {
         }
 
         private JSONObject makeDataRequest(Context context, NetworkListener listener, URL url) {
+
             if (!isConnectedToInternet(context)) {
                 listener.onError(context.getString(R.string.not_connected));
                 return null;
@@ -159,14 +175,17 @@ public class NetworkManager {
                 urlConnection.setRequestProperty("Authorization", "Token " + context.getString(R.string.exodus));
                 urlConnection.setDoInput(true);
             } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
-
             try {
                 inStream = urlConnection.getInputStream();
             } catch (Exception e) {
+
+                e.printStackTrace();
                 success = false;
                 inStream = urlConnection.getErrorStream();
+
             }
             JSONObject object = null;
             if (success) {
@@ -177,7 +196,6 @@ public class NetworkManager {
                     e.printStackTrace();
                 }
             }
-
             try {
                 if (inStream != null)
                     inStream.close();
@@ -225,6 +243,27 @@ public class NetworkManager {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
             }
+        }
+
+
+        private Application getApplicationsNoActions(Message mes) {
+            URL url;
+            try {
+                url = new URL(apiUrl + "applications?option=short");
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+            JSONObject object = makeDataRequest(mes.context, mes.listener, url);
+
+            if (object != null) {
+                String packageName = mes.args.getString("package");
+                if (packageName == null)
+                    return null;
+                return getSingleReport(mes, packageName);
+            }
+            mes.listener.onSuccess(null);
+            return null;
         }
 
         private void getApplications(Message mes) {
@@ -287,7 +326,7 @@ public class NetworkManager {
                 }
                 getReports(mes, handles, packages);
             }
-            mes.listener.onSuccess();
+            mes.listener.onSuccess(null);
         }
 
         private void getReports(Message mes, Map<String, Map<String, String>> handles, ArrayList<String> packages) {
@@ -320,6 +359,29 @@ public class NetworkManager {
                     mes.listener.onError(mes.context.getString(R.string.json_error));
                 }
             }
+        }
+
+
+        private Application getSingleReport(Message mes, String handle) {
+            URL url;
+            try {
+                url = new URL(apiUrl + "search/" + handle);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+            JSONObject object = makeDataRequest(mes.context, mes.listener, url);
+            if (object != null) {
+                try {
+                    JSONObject application = object.getJSONObject(handle);
+                    if (handle != null) {
+                        return parseApplication(application, handle);
+                    }
+                } catch (JSONException e) {
+                    mes.listener.onError(mes.context.getString(R.string.json_error));
+                }
+            }
+            return null;
         }
 
         private Application parseApplication(JSONObject object, String packageName) throws JSONException {
@@ -358,6 +420,7 @@ public class NetworkManager {
 
                 report.creationDate = Calendar.getInstance();
                 report.creationDate.setTimeZone(TimeZone.getTimeZone("UTC"));
+                report.creationDate.setTime(date);
                 date = dateFormat.parse(object.getString("creation_date"));
                 if (date != null) {
                     report.creationDate.setTime(date);
@@ -437,4 +500,5 @@ public class NetworkManager {
         NetworkListener listener;
         Context context;
     }
+
 }

@@ -28,6 +28,7 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Application;
 import org.eu.exodus_privacy.exodusprivacy.objects.Report;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -361,6 +362,33 @@ public class DatabaseManager extends SQLiteOpenHelper {
             creator = "";
         cursor.close();
         return creator;
+    }
+
+
+    public List<Tracker> getTrackers() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query("trackers", null, null, null, null, null, null, null);
+        List<Tracker> trackers = new ArrayList<>();
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            return null;
+        }
+        while (cursor.moveToNext()) {
+            Tracker tracker = new Tracker();
+            int col = 0;
+            tracker.id = cursor.getLong(col++);
+            tracker.name = cursor.getString(col++);
+            long creation = cursor.getLong(col++);
+            tracker.creationDate = Calendar.getInstance();
+            tracker.creationDate.setTimeInMillis(creation);
+            tracker.codeSignature = cursor.getString(col++);
+            tracker.networkSignature = cursor.getString(col++);
+            tracker.website = cursor.getString(col++);
+            tracker.description = cursor.getString(col);
+            trackers.add(tracker);
+        }
+        cursor.close();
+        return trackers;
     }
 
     public Tracker getTracker(long trackerId) {

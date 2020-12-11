@@ -51,7 +51,7 @@ public class ReportDisplay {
             reportDisplay.creator = DatabaseManager.getInstance(context).getCreator(reportDisplay.report.appId);
 
         List<Permission> requestedPermissions = new ArrayList<>();
-        if (info.requestedPermissions != null) {
+        if (info != null && manager != null && info.requestedPermissions != null) {
             for (int i = 0; i < info.requestedPermissions.length; i++) {
                 Permission permission = new Permission();
                 permission.fullName = info.requestedPermissions[i];

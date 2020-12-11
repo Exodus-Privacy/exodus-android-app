@@ -18,13 +18,16 @@
 
 package org.eu.exodus_privacy.exodusprivacy.listener;
 
+import org.eu.exodus_privacy.exodusprivacy.objects.Application;
+
 import java.util.EventListener;
+
 
 /*
     Listener working with the NetworkManager to handle events
 */
 public interface NetworkListener extends EventListener {
-    void onSuccess();
+    void onSuccess(Application application);
 
     void onError(String error);
 

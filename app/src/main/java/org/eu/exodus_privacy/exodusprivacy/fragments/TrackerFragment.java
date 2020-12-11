@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -27,11 +29,10 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.TrackerBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrackerFragment extends Fragment implements ComputeAppListTask.Listener, Updatable {
+public class TrackerFragment extends Fragment implements ComputeAppList.Listener, Updatable {
 
     private TrackerBinding trackerBinding;
     private long trackerId;
@@ -112,14 +113,14 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
             trackerBinding.retrieveApp.setVisibility(View.VISIBLE);
         }
 
-        new ComputeAppListTask(
-                new WeakReference<>(packageManager),
-                new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this), null
-        ).execute();
+        new Thread(() -> {
+            List<ApplicationViewModel> vms = ComputeAppList.compute(packageManager, DatabaseManager.getInstance(getActivity()), null);
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            Runnable myRunnable = () -> onAppsComputed(vms);
+            mainHandler.post(myRunnable);
+        }).start();
     }
 
-    @Override
     public void onAppsComputed(List<ApplicationViewModel> apps) {
         this.applications = apps;
         trackerBinding.retrieveApp.setVisibility(View.GONE);

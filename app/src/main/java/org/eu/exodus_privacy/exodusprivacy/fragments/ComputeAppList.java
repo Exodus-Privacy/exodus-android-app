@@ -3,40 +3,24 @@ package org.eu.exodus_privacy.exodusprivacy.fragments;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 
 import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationViewModel>> {
+public class ComputeAppList {
 
     private static final String gStore = "com.android.vending";
     private static final String fdroid = "ord.fdroid.fdroid";
-    private final WeakReference<PackageManager> packageManagerRef;
-    private final WeakReference<DatabaseManager> databaseManagerRef;
-    private final WeakReference<Listener> listenerRef;
 
-    order userOrderChoice;
 
-    ComputeAppListTask(WeakReference<PackageManager> packageManagerRef,
-                       WeakReference<DatabaseManager> databaseManagerRef,
-                       WeakReference<Listener> listenerRef, order orderChoice) {
-        this.packageManagerRef = packageManagerRef;
-        this.databaseManagerRef = databaseManagerRef;
-        this.listenerRef = listenerRef;
-        userOrderChoice = orderChoice;
-    }
-
-    protected List<ApplicationViewModel> doInBackground(Void... params) {
-        PackageManager packageManager = packageManagerRef.get();
-        DatabaseManager databaseManager = databaseManagerRef.get();
+    public static List<ApplicationViewModel> compute(PackageManager packageManager,
+                                                     DatabaseManager databaseManager, order userOrderChoice) {
 
         List<ApplicationViewModel> vms = new ArrayList<>();
         if (packageManager != null && databaseManager != null) {
@@ -52,7 +36,14 @@ public class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationVi
         return vms;
     }
 
-    private List<ApplicationViewModel> order(List<ApplicationViewModel> vms, order orderChoice) {
+    /**
+     * Filter List<ApplicationViewModel> with one of criteria of order
+     *
+     * @param vms         List<ApplicationViewModel>
+     * @param orderChoice order
+     * @return List<ApplicationViewModel>
+     */
+    private static List<ApplicationViewModel> order(List<ApplicationViewModel> vms, order orderChoice) {
         if (orderChoice == order.LESS_TRACKERS) {
             Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.requestedPermissions != null ? obj1.requestedPermissions.length : 0, obj2.requestedPermissions != null ? obj2.requestedPermissions.length : 0));
             Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.trackers != null ? obj1.trackers.size() : 0, obj2.trackers != null ? obj2.trackers.size() : 0));
@@ -71,18 +62,9 @@ public class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationVi
         return vms;
     }
 
-    @Override
-    protected void onPostExecute(List<ApplicationViewModel> vms) {
-        Listener listener = listenerRef.get();
-
-        if (listener != null) {
-            listener.onAppsComputed(vms);
-        }
-    }
-
-    private void convertPackagesToViewModels(List<ApplicationViewModel> appsToBuild,
-                                             DatabaseManager databaseManager,
-                                             PackageManager packageManager) {
+    private static void convertPackagesToViewModels(List<ApplicationViewModel> appsToBuild,
+                                                    DatabaseManager databaseManager,
+                                                    PackageManager packageManager) {
         for (ApplicationViewModel vm : appsToBuild) {
             try {
                 PackageInfo pi = packageManager.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
@@ -93,9 +75,9 @@ public class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationVi
         }
     }
 
-    private void buildViewModelFromPackageInfo(ApplicationViewModel vm, PackageInfo pi,
-                                               DatabaseManager databaseManager,
-                                               PackageManager packageManager) {
+    public static void buildViewModelFromPackageInfo(ApplicationViewModel vm, PackageInfo pi,
+                                                     DatabaseManager databaseManager,
+                                                     PackageManager packageManager) {
 
         vm.versionName = pi.versionName;
         vm.packageName = pi.packageName;
@@ -123,9 +105,9 @@ public class ComputeAppListTask extends AsyncTask<Void, Void, List<ApplicationVi
         vm.isVisible = true;
     }
 
-    private List<ApplicationViewModel> applyStoreFilter(List<PackageInfo> packageInfos,
-                                                        DatabaseManager databaseManager,
-                                                        PackageManager packageManager) {
+    private static List<ApplicationViewModel> applyStoreFilter(List<PackageInfo> packageInfos,
+                                                               DatabaseManager databaseManager,
+                                                               PackageManager packageManager) {
         List<ApplicationViewModel> result = new ArrayList<>();
         for (PackageInfo packageInfo : packageInfos) {
             String packageName = packageInfo.packageName;

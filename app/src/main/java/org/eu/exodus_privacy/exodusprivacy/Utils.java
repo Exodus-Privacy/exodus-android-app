@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     public static final String TAG = "Exodus_privacy";
 
     public static final String APP_PREFS = "app_prefs";

@@ -45,26 +45,28 @@ import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
-import org.eu.exodus_privacy.exodusprivacy.fragments.ComputeAppListTask;
+import org.eu.exodus_privacy.exodusprivacy.fragments.ComputeAppList;
 import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.TrackerFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.Updatable;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
+import org.eu.exodus_privacy.exodusprivacy.objects.Application;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static ComputeAppList.order order = ComputeAppList.order.DEFAULT;
     private List<Updatable> fragments;
     private SearchView searchView;
     private Menu toolbarMenu;
     private String packageName;
     private MainBinding binding;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
-    private static ComputeAppListTask.order order = ComputeAppListTask.order.DEFAULT;
+    private String previousQuery = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         fragments = new ArrayList<>();
         NetworkListener networkListener = new NetworkListener() {
             @Override
-            public void onSuccess() {
+            public void onSuccess(Application application) {
                 runOnUiThread(() -> {
                     for (Updatable updatable : fragments) {
                         if (updatable instanceof ReportFragment) {
@@ -172,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String previousQuery = "";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         toolbarMenu = menu;
@@ -260,15 +261,15 @@ public class MainActivity extends AppCompatActivity {
             }
             popup.setOnMenuItemClickListener(filter_item -> {
                 if (filter_item.getItemId() == R.id.filter_by_name) {
-                    order = ComputeAppListTask.order.DEFAULT;
+                    order = ComputeAppList.order.DEFAULT;
                 } else if (filter_item.getItemId() == R.id.having_less_trackers) {
-                    order = ComputeAppListTask.order.LESS_TRACKERS;
+                    order = ComputeAppList.order.LESS_TRACKERS;
                 } else if (filter_item.getItemId() == R.id.having_most_trackers) {
-                    order = ComputeAppListTask.order.MOST_TRACKERS;
+                    order = ComputeAppList.order.MOST_TRACKERS;
                 } else if (filter_item.getItemId() == R.id.having_most_permissions) {
-                    order = ComputeAppListTask.order.MOST_PERMISSIONS;
+                    order = ComputeAppList.order.MOST_PERMISSIONS;
                 } else if (filter_item.getItemId() == R.id.having_less_permissions) {
-                    order = ComputeAppListTask.order.LESS_PERMISSIONS;
+                    order = ComputeAppList.order.LESS_PERMISSIONS;
                 }
                 if (fragments != null && fragments.size() > 0 && fragments.get(0) instanceof HomeFragment) {
                     HomeFragment home = (HomeFragment) fragments.get(0);

@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,16 +28,17 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.HomeBinding;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.manager.NetworkManager;
+import org.eu.exodus_privacy.exodusprivacy.objects.Application;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class HomeFragment extends Fragment implements ComputeAppListTask.Listener, Updatable {
+public class HomeFragment extends Fragment implements ComputeAppList.Listener, Updatable {
 
     private @Nullable
     PackageManager packageManager;
@@ -126,8 +129,8 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
     public void setNetworkListener(NetworkListener listener) {
         this.networkListener = new NetworkListener() {
             @Override
-            public void onSuccess() {
-                listener.onSuccess();
+            public void onSuccess(Application application) {
+                listener.onSuccess(application);
             }
 
             @Override
@@ -154,7 +157,7 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
             if (homeBinding == null)
                 return;
             if (maxProgress > 0)
-                homeBinding.statusProgress.setText(activity.getString(resourceId) + " " + progress + "/" + maxProgress);//fixme
+                homeBinding.statusProgress.setText(String.format(Locale.getDefault(), "%s %d/%d", activity.getString(resourceId), progress, maxProgress));
             else
                 homeBinding.statusProgress.setText(activity.getString(resourceId));
             homeBinding.progress.setMax(maxProgress);
@@ -173,18 +176,19 @@ public class HomeFragment extends Fragment implements ComputeAppListTask.Listene
         appListFragment.setFilter(AppListFragment.Type.NAME, filter);
     }
 
-    public void displayAppListAsync(ComputeAppListTask.order orderList) {
+    public void displayAppListAsync(ComputeAppList.order orderList) {
         homeBinding.noAppFound.setVisibility(View.GONE);
         if (applications.isEmpty()) {
             homeBinding.retrieveApp.setVisibility(View.VISIBLE);
             homeBinding.logo.setVisibility(View.VISIBLE);
         }
 
-        new ComputeAppListTask(
-                new WeakReference<>(packageManager),
-                new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this), orderList
-        ).execute();
+        new Thread(() -> {
+            List<ApplicationViewModel> vms = ComputeAppList.compute(packageManager, DatabaseManager.getInstance(getActivity()), orderList);
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            Runnable myRunnable = () -> onAppsComputed(vms);
+            mainHandler.post(myRunnable);
+        }).start();
     }
 
     @Override
