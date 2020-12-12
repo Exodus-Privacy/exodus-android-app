@@ -1,5 +1,26 @@
 package org.eu.exodus_privacy.exodusprivacy;
+/*
+ * Copyright (C) 2020  Thomas Schneider
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 
+import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,6 +51,7 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
 
     private static final Pattern fdroidRegex = Pattern.compile("https?://f-droid\\.org/[\\w-]+/packages/([\\w.-]+)");
     private static final Pattern googleRegex = Pattern.compile("https?://play\\.google\\.com/store/apps/details\\?id=([\\w.-]+)");
+    private String app_id;
 
     ArrayList<Updatable> fragments;
     AppCheckActivityBinding binding;
@@ -55,7 +77,7 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
         String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (extraText != null) {
             Matcher matcher = fdroidRegex.matcher(extraText);
-            String app_id = null;
+            app_id = null;
             while (matcher.find()) {
                 app_id = matcher.group(1);
             }
@@ -78,7 +100,38 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
 
     @Override
     public void onSuccess(Application application) {
+
         runOnUiThread(() -> {
+
+
+            if (application == null) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CheckAppActivity.this);
+                dialogBuilder.setTitle(getString(R.string.app_not_analyzed_title));
+                dialogBuilder.setMessage(getString(R.string.app_not_analyzed));
+                dialogBuilder.setPositiveButton(R.string.submit, (dialog, id) -> {
+                    Uri uri;
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText(getString(R.string.app_name), app_id);
+                    clipboard.setPrimaryClip(clip);
+                    if (BuildConfig.FLAVOR.equals("exodus")) {
+                        uri = Uri.parse("https://reports.exodus-privacy.eu.org/");
+                    } else {
+                        uri = Uri.parse("https://exodus.phm.education.gouv.fr/reports/");
+                    }
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(browserIntent);
+                    dialog.dismiss();
+                    finish();
+                });
+                dialogBuilder.setNegativeButton(R.string.cancel, (dialog, id) -> {
+                    dialog.dismiss();
+                    finish();
+                });
+                AlertDialog alertDialog = dialogBuilder.create();
+                alertDialog.show();
+                return;
+            }
+
             ApplicationViewModel applicationViewModel = new ApplicationViewModel();
 
             applicationViewModel.packageName = application.packageName;
