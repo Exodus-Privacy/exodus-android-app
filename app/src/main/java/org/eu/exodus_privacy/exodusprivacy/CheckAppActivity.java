@@ -49,7 +49,7 @@ import java.util.regex.Pattern;
 
 public class CheckAppActivity extends AppCompatActivity implements NetworkListener, TrackerListAdapter.OnTrackerClickListener {
 
-    private static final Pattern fdroidRegex = Pattern.compile("https?://f-droid\\.org/[\\w-]+/packages/([\\w.-]+)");
+    private static final Pattern fdroidRegex = Pattern.compile("https?://f-droid\\.org/([\\w-]+/)?packages/([\\w.-]+)");
     private static final Pattern googleRegex = Pattern.compile("https?://play\\.google\\.com/store/apps/details\\?id=([\\w.-]+)");
     private String app_id;
 
@@ -72,14 +72,14 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
 
         super.onCreate(savedInstanceState);
 
-
         Intent intent = getIntent();
         String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
+
         if (extraText != null) {
             Matcher matcher = fdroidRegex.matcher(extraText);
             app_id = null;
             while (matcher.find()) {
-                app_id = matcher.group(1);
+                app_id = matcher.group(2);
             }
             if (app_id == null) {
                 matcher = googleRegex.matcher(extraText);
@@ -114,9 +114,9 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                     ClipData clip = ClipData.newPlainText(getString(R.string.app_name), app_id);
                     clipboard.setPrimaryClip(clip);
                     if (BuildConfig.FLAVOR.equals("exodus")) {
-                        uri = Uri.parse("https://reports.exodus-privacy.eu.org/");
+                        uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/");
                     } else {
-                        uri = Uri.parse("https://exodus.phm.education.gouv.fr/reports/");
+                        uri = Uri.parse("https://exodus.phm.education.gouv.fr/analysis/submit/");
                     }
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(browserIntent);
