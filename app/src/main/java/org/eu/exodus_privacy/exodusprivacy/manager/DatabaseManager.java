@@ -221,11 +221,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             long appId = cursor.getLong(0);
             cursor.close();
-            where = "app_id = ? and version = ? and source = ?";
-            whereArgs = new String[3];
-            whereArgs[0] = String.valueOf(appId);
-            whereArgs[1] = version;
-            whereArgs[2] = source;
+            if (source != null) {
+                where = "app_id = ? and version = ? and source = ?";
+                whereArgs = new String[3];
+                whereArgs[0] = String.valueOf(appId);
+                whereArgs[1] = version;
+                whereArgs[2] = source;
+            } else {
+                where = "app_id = ? and version = ?";
+                whereArgs = new String[2];
+                whereArgs[0] = String.valueOf(appId);
+                whereArgs[1] = version;
+            }
             String order = "id ASC";
             cursor = db.query("reports", columns, where, whereArgs, null, null, order);
             long reportId;
@@ -234,13 +241,20 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 cursor.close();
             } else {
                 cursor.close();
+
                 columns = new String[2];
                 columns[0] = "id";
                 columns[1] = "creation";
-                where = "app_id = ? and source = ?";
-                whereArgs = new String[2];
-                whereArgs[0] = String.valueOf(appId);
-                whereArgs[1] = source;
+                if (source != null) {
+                    where = "app_id = ? and source = ?";
+                    whereArgs = new String[2];
+                    whereArgs[0] = String.valueOf(appId);
+                    whereArgs[1] = source;
+                } else {
+                    where = "app_id = ?";
+                    whereArgs = new String[1];
+                    whereArgs[0] = String.valueOf(appId);
+                }
                 order = "creation DESC";
                 //search a recent reports
                 cursor = db.query("reports", columns, where, whereArgs, null, null, order);

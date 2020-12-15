@@ -53,6 +53,7 @@ import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ComputeAppList;
 import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
+import org.eu.exodus_privacy.exodusprivacy.fragments.MyTrackersFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ReportFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.TrackerFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.Updatable;
@@ -332,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(final int position) {
             switch (position) {
                 case 1:
-                    return new HomeFragment();
+                    return new MyTrackersFragment();
                 default:
                     return home;
             }
