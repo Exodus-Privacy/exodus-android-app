@@ -33,13 +33,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
@@ -68,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
     private MainBinding binding;
     private ApplicationListAdapter.OnAppClickListener onAppClickListener;
     private String previousQuery = "";
+    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+        int itemId = item.getItemId();
+        if (itemId == R.id.navigation_apps) {
+            binding.viewpager.setCurrentItem(0);
+        } else if (itemId == R.id.navigation_analytics) {
+            binding.viewpager.setCurrentItem(1);
+        }
+        return true;
+    };
+    private HomeFragment home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     for (Updatable updatable : fragments) {
                         updatable.onUpdateComplete();
                     }
-                    Snackbar bar = Snackbar.make(mainBinding.fragmentContainer, error, Snackbar.LENGTH_LONG);
+                    Snackbar bar = Snackbar.make(mainBinding.viewpager, error, Snackbar.LENGTH_LONG);
                     bar.show();
                 });
             }
@@ -114,8 +130,31 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
+        binding.navView.inflateMenu(R.menu.bottom_nav_menu);
+        binding.navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        binding.viewpager.setOffscreenPageLimit(2);
+
+
+        binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                MenuItem item = binding.navView.getMenu().getItem(position);
+                binding.navView.setSelectedItemId(item.getItemId());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         TrackerListAdapter.OnTrackerClickListener onTrackerClickListener = id -> {
             TrackerFragment tracker = TrackerFragment.newInstance(id);
@@ -131,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         onAppClickListener = (vm) -> {
             try {
+
                 PackageManager pm = getPackageManager();
                 PackageInfo packageInfo = pm.getPackageInfo(vm.packageName, PackageManager.GET_PERMISSIONS);
                 ReportFragment report = ReportFragment.newInstance(pm, vm, packageInfo, onTrackerClickListener);
@@ -141,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.fragment_container, report)
                         .addToBackStack(null)
                         .commit();
-
+                binding.fragmentContainer.setVisibility(View.VISIBLE);
                 packageName = packageInfo.packageName;
 
                 searchView.clearFocus();
@@ -149,22 +189,18 @@ public class MainActivity extends AppCompatActivity {
                     (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 assert imm != null;
-                imm.hideSoftInputFromWindow(mainBinding.fragmentContainer.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(mainBinding.viewpager.getWindowToken(), 0);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
         };
 
-        HomeFragment home = new HomeFragment();
+        home = new HomeFragment();
         fragments.add(home);
         home.setNetworkListener(networkListener);
         home.setOnAppClickListener(onAppClickListener);
-
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container, home)
-                .commit();
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        binding.viewpager.setAdapter(mPagerAdapter);
         home.startRefresh();
     }
 
@@ -224,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
@@ -233,13 +268,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 startActivity(intent);
             } catch (android.content.ActivityNotFoundException e) {
-                Snackbar bar = Snackbar.make(binding.fragmentContainer, R.string.no_settings, Snackbar.LENGTH_LONG);
+                Snackbar bar = Snackbar.make(binding.viewpager, R.string.no_settings, Snackbar.LENGTH_LONG);
                 bar.show();
             }
             return true;
         } else if (item.getItemId() == R.id.action_filter_options) {
             View menuItemView = findViewById(R.id.action_filter_options);
-            PopupMenu popup = new PopupMenu(binding.fragmentContainer.getContext(), menuItemView);
+            PopupMenu popup = new PopupMenu(binding.viewpager.getContext(), menuItemView);
             popup.getMenuInflater()
                     .inflate(R.menu.popup_menu_filter, popup.getMenu());
             MenuItem filterByNameMI = popup.getMenu().findItem(R.id.filter_by_name);
@@ -284,6 +319,29 @@ public class MainActivity extends AppCompatActivity {
             popup.show();
         }
         return false;
+    }
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+
+        ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(final int position) {
+            switch (position) {
+                case 1:
+                    return new HomeFragment();
+                default:
+                    return home;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
     }
 
 }
