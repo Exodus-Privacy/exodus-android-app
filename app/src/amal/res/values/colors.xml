@@ -3,7 +3,7 @@
     <color name="colorPrimary">#005e8b</color>
     <color name="colorPrimaryDark">#3d2b43</color>
     <color name="colorAccent">#007bff</color>
-
+    <color name="percent">#77005e8b</color>
     <color name="colorGreen">#6fc384</color>
     <color name="colorLightRed">#e46772</color>
     <color name="colorLightYellow">#ffdb66</color>

@@ -19,6 +19,7 @@ package org.eu.exodus_privacy.exodusprivacy.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,9 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MyTrackerItemBinding;
 import org.eu.exodus_privacy.exodusprivacy.objects.MyTracker;
-import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,13 +35,13 @@ public class MyTrackersListAdapter extends RecyclerView.Adapter<MyTrackersListAd
 
     private final TrackerClickListener trackerClickListener;
     private final List<MyTracker> myTrackers;
-    private List<Tracker> trackersList;
+    private final int max;
+    private int viewWidth = 0;
 
-    public MyTrackersListAdapter(List<MyTracker> mTrackers, TrackerClickListener listener) {
+    public MyTrackersListAdapter(List<MyTracker> mTrackers, TrackerClickListener listener, int maxValue) {
         myTrackers = mTrackers;
-        setTrackers(mTrackers);
         trackerClickListener = listener;
-
+        max = maxValue;
     }
 
     @NonNull
@@ -54,35 +53,33 @@ public class MyTrackersListAdapter extends RecyclerView.Adapter<MyTrackersListAd
 
     @Override
     public void onBindViewHolder(@NonNull MyTrackersListAdapter.TrackerListViewHolder holder, int position) {
-        Tracker tracker = trackersList.get(position);
-        if (tracker != null) {
-            holder.viewDataBinding.trackerName.setText(tracker.name);
-            holder.viewDataBinding.trackerCount.setText(String.valueOf(countOccurences(tracker.codeSignature)));
-            holder.viewDataBinding.getRoot().setOnClickListener(v -> trackerClickListener.onTrackerClick(tracker.id));
+        MyTracker myTracker = myTrackers.get(position);
+        if (myTrackers != null) {
+            holder.viewDataBinding.trackerName.setText(myTracker.tracker.name);
+            holder.viewDataBinding.trackerCount.setText(String.valueOf(myTracker.number));
+            holder.viewDataBinding.getRoot().setOnClickListener(v -> {
+                trackerClickListener.onTrackerClick(myTracker.tracker.id);
+            });
+            float percent = (float) myTracker.number / max;
+            holder.viewDataBinding.percent.getLayoutParams().width = (int) (viewWidth * percent);
+            holder.viewDataBinding.percentVal.setText(String.format("%s %%", myTracker.number * 100 / myTrackers.size()));
+            holder.viewDataBinding.percent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    holder.viewDataBinding.percent.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    if (viewWidth == 0) {
+                        viewWidth = holder.viewDataBinding.percent.getWidth();
+                        notifyDataSetChanged();
+                    }
+                }
+            });
         } else
             holder.viewDataBinding.trackerName.setText(R.string.no_trackers);
     }
 
     @Override
     public int getItemCount() {
-        return trackersList.size();
-    }
-
-    public void setTrackers(List<MyTracker> myTrackers) {
-        trackersList = new ArrayList<>();
-        if (myTrackers != null) {
-            for (MyTracker myTracker : myTrackers) {
-                trackersList.add(myTracker.tracker);
-            }
-        }
-    }
-
-    private int countOccurences(String signature) {
-        if (myTrackers == null) return 0;
-        for (MyTracker myTracker : myTrackers) {
-            if (myTracker.signature.compareTo(signature) == 0) return myTracker.number;
-        }
-        return 0;
+        return myTrackers.size();
     }
 
     public interface TrackerClickListener {

@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
     private Menu toolbarMenu;
     private String packageName;
     private MainBinding binding;
-    private ApplicationListAdapter.OnAppClickListener onAppClickListener;
-    private String previousQuery = "";
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
         int itemId = item.getItemId();
@@ -84,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     };
+    private ApplicationListAdapter.OnAppClickListener onAppClickListener;
+    private TrackerListAdapter.OnTrackerClickListener onTrackerClickListener;
+    private String previousQuery = "";
     private HomeFragment home;
 
     @Override
@@ -142,13 +143,19 @@ public class MainActivity extends AppCompatActivity {
         binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
                 MenuItem item = binding.navView.getMenu().getItem(position);
                 binding.navView.setSelectedItemId(item.getItemId());
+                if (binding.fragmentContainer.getVisibility() == View.VISIBLE) {
+                    while (fragments.size() > 0) {
+                        getSupportFragmentManager().popBackStack();
+                        fragments.remove(fragments.size() - 1);
+                    }
+                    binding.fragmentContainer.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -157,17 +164,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TrackerListAdapter.OnTrackerClickListener onTrackerClickListener = id -> {
+        onTrackerClickListener = id -> {
             TrackerFragment tracker = TrackerFragment.newInstance(id);
             tracker.setOnAppClickListener(onAppClickListener);
             fragments.add(tracker);
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
+            binding.fragmentContainer.setVisibility(View.VISIBLE);
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_left)
                     .replace(R.id.fragment_container, tracker)
                     .addToBackStack(null)
                     .commit();
         };
+
 
         onAppClickListener = (vm) -> {
             try {
@@ -256,8 +265,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         MenuItem settingsMenuItem = menu.findItem(R.id.action_settings);
-        Updatable fragment = fragments.get(fragments.size() - 1);
-        settingsMenuItem.setVisible(fragment instanceof ReportFragment);
+        if (fragments.size() > 0) {
+            Updatable fragment = fragments.get(fragments.size() - 1);
+            settingsMenuItem.setVisible(fragment instanceof ReportFragment);
+        }
         return true;
     }
 
@@ -331,9 +342,12 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment getItem(final int position) {
+            //noinspection SwitchStatementWithTooFewBranches
             switch (position) {
                 case 1:
-                    return new MyTrackersFragment();
+                    MyTrackersFragment myTrackersFragment = new MyTrackersFragment();
+                    myTrackersFragment.setOnTrackerClickListener(onTrackerClickListener);
+                    return myTrackersFragment;
                 default:
                     return home;
             }

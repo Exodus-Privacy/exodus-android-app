@@ -51,8 +51,6 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
 
     private static final Pattern fdroidRegex = Pattern.compile("https?://f-droid\\.org/([\\w-]+/)?packages/([\\w.-]+)");
     private static final Pattern googleRegex = Pattern.compile("https?://play\\.google\\.com/store/apps/details\\?id=([\\w.-]+)");
-    private String app_id;
-
     ArrayList<Updatable> fragments;
     AppCheckActivityBinding binding;
     TrackerListAdapter.OnTrackerClickListener onTrackerClickListener = id -> {
@@ -65,6 +63,7 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                 .addToBackStack(null)
                 .commit();
     };
+    private String app_id;
     private TrackerListAdapter.OnTrackerClickListener trackerClickListener;
 
     @Override

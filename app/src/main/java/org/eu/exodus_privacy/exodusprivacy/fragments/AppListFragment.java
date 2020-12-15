@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
@@ -22,7 +21,7 @@ import java.util.List;
 
 public class AppListFragment extends Fragment {
 
-    private static int firstVisiblePosition = 0;
+
     private ApplistBinding applistBinding;
     private List<ApplicationViewModel> applications;
     private ApplicationListAdapter adapter;
@@ -43,18 +42,6 @@ public class AppListFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         applistBinding.appList.setLayoutManager(linearLayoutManager);
         applistBinding.appList.setVerticalScrollBarEnabled(scrollbarEnabled);
-        applistBinding.appList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                firstVisiblePosition = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
-            }
-        });
         adapter = new ApplicationListAdapter(onAppClickListener);
         adapter.displayAppList(applications);
         adapter.filter(filterType, filterObject);
@@ -105,9 +92,6 @@ public class AppListFragment extends Fragment {
         return adapter.getDisplayedApps();
     }
 
-    public void scrollTo() {
-        applistBinding.appList.scrollToPosition(firstVisiblePosition);
-    }
 
     public enum Type {
         NAME,

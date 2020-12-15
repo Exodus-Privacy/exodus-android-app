@@ -114,7 +114,6 @@ public class HomeFragment extends Fragment implements ComputeAppList.Listener, U
     @Override
     public void onResume() {
         super.onResume();
-        appListFragment.scrollTo();
     }
 
 

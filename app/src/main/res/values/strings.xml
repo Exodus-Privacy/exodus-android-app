@@ -64,6 +64,7 @@
     <string name="app_not_analyzed_title">This app has not been analyzed!</string>
     <string name="title_apps">My apps</string>
     <string name="title_trackers">Trackers</string>
+    <string name="list_of_apps">See the list of apps</string>
 
 
 </resources>

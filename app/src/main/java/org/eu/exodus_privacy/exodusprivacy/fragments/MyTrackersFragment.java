@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.adapters.MyTrackersListAdapter;
+import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MyTrackersBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.MyTracker;
@@ -50,6 +51,8 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
 
     private Context context;
     private MyTrackersBinding trackerBinding;
+    private TrackerListAdapter.OnTrackerClickListener onTrackerClickListener;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +78,7 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
             List<PackageInfo> packageInstalled = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
             List<MyTracker> myTrackers = new ArrayList<>();
             List<String> added = new ArrayList<>();
+            int maxValue = 0;
             for (PackageInfo pkgInfo : packageInstalled) {
                 Report report;
                 if (pkgInfo.versionName != null)
@@ -102,10 +106,15 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
                     }
                 }
             }
+            for (MyTracker myTracker : myTrackers) {
+                if (myTracker.number > maxValue)
+                    maxValue = myTracker.number;
+            }
             Handler mainHandler = new Handler(Looper.getMainLooper());
+            int finalMaxValue = maxValue;
             Runnable myRunnable = () -> {
                 Collections.sort(myTrackers, (obj1, obj2) -> Integer.compare(obj2.number, obj1.number));
-                MyTrackersListAdapter myTrackersListAdapter = new MyTrackersListAdapter(myTrackers, MyTrackersFragment.this);
+                MyTrackersListAdapter myTrackersListAdapter = new MyTrackersListAdapter(myTrackers, MyTrackersFragment.this, finalMaxValue);
                 trackerBinding.trackers.setAdapter(myTrackersListAdapter);
                 trackerBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
                 trackerBinding.trackers.setVisibility(View.VISIBLE);
@@ -132,9 +141,12 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
         menu.findItem(R.id.action_filter_options).setVisible(false);
     }
 
+    public void setOnTrackerClickListener(TrackerListAdapter.OnTrackerClickListener listener) {
+        onTrackerClickListener = listener;
+    }
 
     @Override
     public void onTrackerClick(long trackerId) {
-
+        onTrackerClickListener.onTrackerClick(trackerId);
     }
 }

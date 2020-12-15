@@ -246,7 +246,6 @@ public class NetworkManager {
         }
 
 
-
         private void getApplications(Message mes) {
             mes.listener.onProgress(R.string.get_reports_connection, 0, 0);
             URL url;
