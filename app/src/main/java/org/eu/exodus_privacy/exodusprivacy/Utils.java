@@ -32,7 +32,7 @@ public class Utils {
     public static final String LAST_REFRESH = "last_refresh";
 
     public static String getDomain() {
-        return BuildConfig.FLAVOR.compareTo("exodus") == 0 ? "reports.exodus-privacy.eu.org" : "exodus.phm.education.gouv.fr";
+        return BuildConfig.FLAVOR.compareTo("amal") == 0 ? "exodus.phm.education.gouv.fr" : "reports.exodus-privacy.eu.org";
     }
 
     @SuppressLint("PackageManagerGetSignatures")

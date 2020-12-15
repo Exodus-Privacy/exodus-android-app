@@ -34,11 +34,17 @@ android {
         amal {
             applicationId "app.fedilab.amal"
         }
+        fedilab {
+            applicationId "app.fedilab.exodusprivacy"
+        }
     }
 
     sourceSets {
         exodus {
             res.srcDirs = ['src/main/res', 'src/exodus/res']
+        }
+        fedilab {
+            res.srcDirs = ['src/main/res', 'src/fedilab/res']
         }
         amal {
             res.srcDirs = ['src/main/res', 'src/amal/res']

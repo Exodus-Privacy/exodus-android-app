@@ -71,9 +71,17 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Context context = trackerBinding.getRoot().getContext();
+
         trackerBinding.loader.setVisibility(View.VISIBLE);
         trackerBinding.trackers.setVisibility(View.GONE);
+        trackerBinding.swipeRefresh.setOnRefreshListener(this::refresh);
+        trackerBinding.refresh.setOnClickListener(v -> refresh());
+        refresh();
+
+    }
+
+
+    private void refresh() {
         new Thread(() -> {
             DatabaseManager databaseManager = DatabaseManager.getInstance(getActivity());
             PackageManager packageManager = context.getPackageManager();
@@ -118,18 +126,25 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
             Handler mainHandler = new Handler(Looper.getMainLooper());
             int finalMaxValue = maxValue;
             Runnable myRunnable = () -> {
-                Collections.sort(myTrackers, (obj1, obj2) -> Integer.compare(obj2.number, obj1.number));
-                MyTrackersListAdapter myTrackersListAdapter = new MyTrackersListAdapter(myTrackers, MyTrackersFragment.this, finalMaxValue, appInstalled);
-                trackerBinding.trackers.setAdapter(myTrackersListAdapter);
-                trackerBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
-                trackerBinding.trackers.setVisibility(View.VISIBLE);
-                trackerBinding.loader.setVisibility(View.GONE);
+                if (myTrackers.size() > 0) {
+                    Collections.sort(myTrackers, (obj1, obj2) -> Integer.compare(obj2.number, obj1.number));
+                    MyTrackersListAdapter myTrackersListAdapter = new MyTrackersListAdapter(myTrackers, MyTrackersFragment.this, finalMaxValue, appInstalled);
+                    trackerBinding.trackers.setAdapter(myTrackersListAdapter);
+                    trackerBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
+                    trackerBinding.trackers.setVisibility(View.VISIBLE);
+                    trackerBinding.loader.setVisibility(View.GONE);
+                    trackerBinding.refresh.setVisibility(View.GONE);
+                } else {
+                    trackerBinding.refresh.setVisibility(View.VISIBLE);
+                    trackerBinding.trackers.setVisibility(View.GONE);
+                    trackerBinding.loader.setVisibility(View.GONE);
+                }
+                trackerBinding.swipeRefresh.setRefreshing(false);
             };
             mainHandler.post(myRunnable);
 
 
         }).start();
-
     }
 
     @Override
