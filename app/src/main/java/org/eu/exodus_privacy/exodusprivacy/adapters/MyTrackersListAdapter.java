@@ -35,13 +35,14 @@ public class MyTrackersListAdapter extends RecyclerView.Adapter<MyTrackersListAd
 
     private final TrackerClickListener trackerClickListener;
     private final List<MyTracker> myTrackers;
-    private final int max;
+    private final int max, installedApps;
     private int viewWidth = 0;
 
-    public MyTrackersListAdapter(List<MyTracker> mTrackers, TrackerClickListener listener, int maxValue) {
+    public MyTrackersListAdapter(List<MyTracker> mTrackers, TrackerClickListener listener, int maxValue, int appInstalled) {
         myTrackers = mTrackers;
         trackerClickListener = listener;
         max = maxValue;
+        installedApps = appInstalled;
     }
 
     @NonNull
@@ -57,12 +58,10 @@ public class MyTrackersListAdapter extends RecyclerView.Adapter<MyTrackersListAd
         if (myTrackers != null) {
             holder.viewDataBinding.trackerName.setText(myTracker.tracker.name);
             holder.viewDataBinding.trackerCount.setText(String.valueOf(myTracker.number));
-            holder.viewDataBinding.getRoot().setOnClickListener(v -> {
-                trackerClickListener.onTrackerClick(myTracker.tracker.id);
-            });
+            holder.viewDataBinding.getRoot().setOnClickListener(v -> trackerClickListener.onTrackerClick(myTracker.tracker.id));
             float percent = (float) myTracker.number / max;
             holder.viewDataBinding.percent.getLayoutParams().width = (int) (viewWidth * percent);
-            holder.viewDataBinding.percentVal.setText(String.format("%s %%", myTracker.number * 100 / myTrackers.size()));
+            holder.viewDataBinding.percentVal.setText(String.format("%s %%", myTracker.number * 100 / installedApps));
             holder.viewDataBinding.percent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {

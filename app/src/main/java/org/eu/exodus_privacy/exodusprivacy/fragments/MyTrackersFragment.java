@@ -34,6 +34,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
+import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.MyTrackersListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MyTrackersBinding;
@@ -46,6 +47,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
 
 public class MyTrackersFragment extends Fragment implements MyTrackersListAdapter.TrackerClickListener {
 
@@ -79,6 +81,9 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
             List<MyTracker> myTrackers = new ArrayList<>();
             List<String> added = new ArrayList<>();
             int maxValue = 0;
+
+            List<ApplicationViewModel> vms = ComputeAppList.compute(packageManager, DatabaseManager.getInstance(getActivity()), null);
+            int appInstalled = vms.size();
             for (PackageInfo pkgInfo : packageInstalled) {
                 Report report;
                 if (pkgInfo.versionName != null)
@@ -114,7 +119,7 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
             int finalMaxValue = maxValue;
             Runnable myRunnable = () -> {
                 Collections.sort(myTrackers, (obj1, obj2) -> Integer.compare(obj2.number, obj1.number));
-                MyTrackersListAdapter myTrackersListAdapter = new MyTrackersListAdapter(myTrackers, MyTrackersFragment.this, finalMaxValue);
+                MyTrackersListAdapter myTrackersListAdapter = new MyTrackersListAdapter(myTrackers, MyTrackersFragment.this, finalMaxValue, appInstalled);
                 trackerBinding.trackers.setAdapter(myTrackersListAdapter);
                 trackerBinding.trackers.setLayoutManager(new LinearLayoutManager(context));
                 trackerBinding.trackers.setVisibility(View.VISIBLE);

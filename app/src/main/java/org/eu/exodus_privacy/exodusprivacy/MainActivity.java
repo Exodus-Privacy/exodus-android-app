@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     binding.fragmentContainer.setVisibility(View.GONE);
                 }
+
             }
 
             @Override
@@ -268,6 +269,8 @@ public class MainActivity extends AppCompatActivity {
         if (fragments.size() > 0) {
             Updatable fragment = fragments.get(fragments.size() - 1);
             settingsMenuItem.setVisible(fragment instanceof ReportFragment);
+        } else {
+            settingsMenuItem.setVisible(false);
         }
         return true;
     }
