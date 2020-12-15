@@ -35,6 +35,7 @@ import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -112,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
                 //do nothing here
             }
         };
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         TrackerListAdapter.OnTrackerClickListener onTrackerClickListener = id -> {
             TrackerFragment tracker = TrackerFragment.newInstance(id);
