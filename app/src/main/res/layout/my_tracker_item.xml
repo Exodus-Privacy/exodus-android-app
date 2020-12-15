@@ -45,11 +45,13 @@
             app:layout_constraintTop_toBottomOf="@+id/percent" />
 
             <TextView
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:id="@+id/tracker_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textSize="18sp"
+                android:textColor="@color/textColorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tracker_name"

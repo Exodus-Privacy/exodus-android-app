@@ -54,14 +54,24 @@ public class MyTrackersListAdapter extends RecyclerView.Adapter<MyTrackersListAd
 
     @Override
     public void onBindViewHolder(@NonNull MyTrackersListAdapter.TrackerListViewHolder holder, int position) {
-        MyTracker myTracker = myTrackers.get(position);
+
         if (myTrackers != null) {
+            MyTracker myTracker = myTrackers.get(position);
             holder.viewDataBinding.trackerName.setText(myTracker.tracker.name);
-            holder.viewDataBinding.trackerCount.setText(String.valueOf(myTracker.number));
+            holder.viewDataBinding.trackerCount.setText(holder.viewDataBinding.trackerCount.getContext().getString(R.string.apps, String.valueOf(myTracker.number)));
             holder.viewDataBinding.getRoot().setOnClickListener(v -> trackerClickListener.onTrackerClick(myTracker.tracker.id));
-            float percent = (float) myTracker.number / max;
+            float percent = (float) myTracker.number / (float) max;
+            int percentApp = myTracker.number * 100 / installedApps;
             holder.viewDataBinding.percent.getLayoutParams().width = (int) (viewWidth * percent);
-            holder.viewDataBinding.percentVal.setText(String.format("%s %%", myTracker.number * 100 / installedApps));
+            holder.viewDataBinding.percentVal.setText(String.format("%s %%", percentApp));
+            if (percentApp >= 50)
+                holder.viewDataBinding.trackerCount.setBackgroundResource(R.drawable.square_red);
+            else if (percentApp >= 33)
+                holder.viewDataBinding.trackerCount.setBackgroundResource(R.drawable.square_dark_orange);
+            else if (percentApp >= 20)
+                holder.viewDataBinding.trackerCount.setBackgroundResource(R.drawable.square_yellow);
+            else
+                holder.viewDataBinding.trackerCount.setBackgroundResource(R.drawable.square_light_blue);
             holder.viewDataBinding.percent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
