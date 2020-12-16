@@ -112,10 +112,10 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                     ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText(getString(R.string.app_name), app_id);
                     clipboard.setPrimaryClip(clip);
-                    if (BuildConfig.FLAVOR.equals("amal")) {
-                        uri = Uri.parse("https://exodus.phm.education.gouv.fr/analysis/submit/");
+                    if (BuildConfig.FLAVOR.equals("exodus")) {
+                        uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/#" + app_id);
                     } else {
-                        uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/");
+                        uri = Uri.parse("https://exodus.phm.education.gouv.fr/analysis/submit/#" + app_id);
                     }
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(browserIntent);
@@ -126,6 +126,7 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                     dialog.dismiss();
                     finish();
                 });
+                dialogBuilder.setOnDismissListener(dialogInterface -> finish());
                 AlertDialog alertDialog = dialogBuilder.create();
                 alertDialog.show();
                 return;
