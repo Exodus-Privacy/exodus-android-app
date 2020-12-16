@@ -18,9 +18,6 @@ package org.eu.exodus_privacy.exodusprivacy;
  */
 
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -110,9 +107,7 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                 dialogBuilder.setMessage(getString(R.string.app_not_analyzed));
                 dialogBuilder.setPositiveButton(R.string.submit, (dialog, id) -> {
                     Uri uri;
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText(getString(R.string.app_name), app_id);
-                    clipboard.setPrimaryClip(clip);
+                    //noinspection ConstantConditions
                     if (BuildConfig.FLAVOR.equals("exodus")) {
                         uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/#" + app_id);
                     } else {
