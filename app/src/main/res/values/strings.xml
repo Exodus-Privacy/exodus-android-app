@@ -60,7 +60,7 @@
     <string name="having_most_permissions">Having most permissions</string>
     <string name="having_less_permissions">Having less permissions</string>
     <string name="submit">Submit</string>
-    <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically copied in your clipboard, you will only have to past it in website form.</string>
+    <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically pasted to the website form. You will only need to submit the form.</string>
     <string name="app_not_analyzed_title">This app has not been analyzed!</string>
 
 
