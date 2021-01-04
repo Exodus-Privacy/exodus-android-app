@@ -16,7 +16,7 @@ import java.util.Map;
 public class ComputeAppList {
 
     private static final String gStore = "com.android.vending";
-    private static final String fdroid = "ord.fdroid.fdroid";
+    private static final String fdroid = "org.fdroid.fdroid";
 
 
     public static List<ApplicationViewModel> compute(PackageManager packageManager,
@@ -32,7 +32,7 @@ public class ComputeAppList {
         if (userOrderChoice == null) {
             userOrderChoice = order.DEFAULT;
         }
-        vms = order(vms, userOrderChoice);
+        order(vms, userOrderChoice);
         return vms;
     }
 
@@ -41,9 +41,8 @@ public class ComputeAppList {
      *
      * @param vms         List<ApplicationViewModel>
      * @param orderChoice order
-     * @return List<ApplicationViewModel>
      */
-    private static List<ApplicationViewModel> order(List<ApplicationViewModel> vms, order orderChoice) {
+    private static void order(List<ApplicationViewModel> vms, order orderChoice) {
         if (orderChoice == order.LESS_TRACKERS) {
             Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.requestedPermissions != null ? obj1.requestedPermissions.length : 0, obj2.requestedPermissions != null ? obj2.requestedPermissions.length : 0));
             Collections.sort(vms, (obj1, obj2) -> Integer.compare(obj1.trackers != null ? obj1.trackers.size() : 0, obj2.trackers != null ? obj2.trackers.size() : 0));
@@ -59,7 +58,6 @@ public class ComputeAppList {
         } else {
             Collections.sort(vms, (obj1, obj2) -> String.valueOf(obj1.label).compareToIgnoreCase(String.valueOf(obj2.label)));
         }
-        return vms;
     }
 
     private static void convertPackagesToViewModels(List<ApplicationViewModel> appsToBuild,
