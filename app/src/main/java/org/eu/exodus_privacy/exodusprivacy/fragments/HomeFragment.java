@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -71,7 +72,7 @@ public class HomeFragment extends Fragment implements ComputeAppList.Listener, U
         packageManager = context.getPackageManager();
         homeBinding.swipeRefresh.setOnRefreshListener(this::startRefresh);
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(Utils.APP_PREFS, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Utils.APP_PREFS, MODE_PRIVATE);
         last_refresh = sharedPreferences.getString(Utils.LAST_REFRESH, null);
 
         if (packageManager != null) {
@@ -94,12 +95,13 @@ public class HomeFragment extends Fragment implements ComputeAppList.Listener, U
         return homeBinding.getRoot();
     }
 
+
     public void startRefresh() {
         if (packageManager != null) {
             refreshInProgress = true;
             homeBinding.layoutProgress.setVisibility(View.VISIBLE);
             homeBinding.swipeRefresh.setRefreshing(true);
-            List<PackageInfo> packageInstalled = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+            @SuppressLint("QueryPermissionsNeeded") List<PackageInfo> packageInstalled = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
             ArrayList<String> packageList = new ArrayList<>();
             for (PackageInfo pkgInfo : packageInstalled)
                 packageList.add(pkgInfo.packageName);
@@ -114,6 +116,9 @@ public class HomeFragment extends Fragment implements ComputeAppList.Listener, U
     @Override
     public void onResume() {
         super.onResume();
+        if (!refreshInProgress && homeBinding.layoutProgress.getVisibility() == View.VISIBLE) {
+            onUpdateComplete();
+        }
     }
 
 
