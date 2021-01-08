@@ -353,8 +353,8 @@ public class NetworkManager {
             JSONObject object = makeDataRequest(mes.context, mes.listener, url);
             if (object != null) {
                 try {
-                    JSONObject application = object.getJSONObject(handle);
                     if (handle != null) {
+                        JSONObject application = object.getJSONObject(handle);
                         return parseApplication(application, handle);
                     }
                 } catch (JSONException e) {
@@ -400,7 +400,7 @@ public class NetworkManager {
 
                 report.creationDate = Calendar.getInstance();
                 report.creationDate.setTimeZone(TimeZone.getTimeZone("UTC"));
-                report.creationDate.setTime(date);
+                report.creationDate.setTime(date!=null?date:new Date());
                 date = dateFormat.parse(object.getString("creation_date"));
                 if (date != null) {
                     report.creationDate.setTime(date);
