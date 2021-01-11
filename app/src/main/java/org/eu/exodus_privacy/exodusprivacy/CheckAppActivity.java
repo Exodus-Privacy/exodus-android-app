@@ -104,10 +104,11 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CheckAppActivity.this);
                 dialogBuilder.setTitle(getString(R.string.app_not_analyzed_title));
                 dialogBuilder.setMessage(getString(R.string.app_not_analyzed));
+                //noinspection RedundantSuppression
                 dialogBuilder.setPositiveButton(R.string.submit, (dialog, id) -> {
                     Uri uri;
                     //noinspection ConstantConditions
-                    if (BuildConfig.FLAVOR.equals("exodus")) {
+                    if (!BuildConfig.amal) {
                         uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/#" + app_id);
                     } else {
                         uri = Uri.parse("https://exodus.phm.education.gouv.fr/analysis/submit/#" + app_id);

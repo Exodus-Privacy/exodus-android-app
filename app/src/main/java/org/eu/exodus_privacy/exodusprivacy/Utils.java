@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.content.res.Resources;
 import android.os.Build;
-import android.util.DisplayMetrics;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -32,7 +30,7 @@ public class Utils {
     public static final String LAST_REFRESH = "last_refresh";
 
     public static String getDomain() {
-        return BuildConfig.FLAVOR.compareTo("amal") == 0 ? "exodus.phm.education.gouv.fr" : "reports.exodus-privacy.eu.org";
+        return BuildConfig.amal ? "exodus.phm.education.gouv.fr" : "reports.exodus-privacy.eu.org";
     }
 
     @SuppressLint("PackageManagerGetSignatures")
@@ -282,19 +280,5 @@ public class Utils {
             builder.append("</ul>\n");
         }
         return builder.toString();
-    }
-
-
-    /**
-     * Converts dp to pixel
-     *
-     * @param dp      float - the value in dp to convert
-     * @param context Context
-     * @return float - the converted value in pixel
-     */
-    public static float convertDpToPixel(float dp, Context context) {
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        return dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 }

@@ -3,13 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.eu.exodus_privacy.exodusprivacy">
 
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.MAIN" />
-        </intent>
-    </queries>
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
