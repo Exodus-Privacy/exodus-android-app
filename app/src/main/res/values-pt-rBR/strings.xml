@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_logo">Logo do aplicativo</string>
+    <string name="trackers_pct">Rastreadores:</string>
+    <string name="permissions_pct">Permissões:</string>
+    <string name="trackers">Rastreadores</string>
+    <string name="permissions">Permissões</string>
+    <string name="network_error">Rede indisponível</string>
+    <string name="not_connected">Sem conexão com à internet</string>
+    <string name="json_error">Erro JSON</string>
+    <string name="installed">Versão instalada: </string>
+    <string name="report_version">Versão testada: </string>
+    <string name="no_trackers">Esse aplicativo pode conter rastreadores que nós não conhecemos ainda.</string>
+    <string name="no_permissions">Este aplicativo não requer nenhuma permissão.</string>
+    <string name="tested">Não existe nenhum relatório para a versão instalada (%1$s), a informação exibida é baseada em outra versão (%2$s)</string>
+    <string name="analysed">Este app ainda não foi analisado pelo Exodus privacy.</string>
+    <string name="no_package_manager">Parece que o seu sistema não permite o acesso à lista de apps instalados.</string>
+    <string name="no_app_found">Parece que seu sistema não tem nenhum app instalado das fontes que nós testamos (Google Play Store ou F-Droid).</string>
+    <string name="get_reports_connection">Obtendo aplicativos: Aguardando pela conexão com o servidor</string>
+    <string name="get_reports">Obtendo aplicativos</string>
+    <string name="parse_application">Processando Aplicativos:</string>
+    <string name="parse_trackers">Processando Rastreadores:</string>
+    <string name="get_trackers_connection">Obtendo rastreadores: Aguardando pela conexão com o servidor</string>
+    <string name="get_trackers">Obtendo rastreadores</string>
+    <string name="no_settings">Este app não tem configurações</string>
+    <string name="logo">Logo do aplicativo %1</string>
+    <string name="created_by">Criado por:</string>
+    <string name="created_date">Relatório criado em</string>
+    <string name="and_updated">e atualizado em</string>
+    <string name="view_on_exodus">Ver no εxodus ➤</string>
+    <string name="view_on_google_play">Ver na Google Play ➤</string>
+    <string name="view_on_fdroid">Ver no F-Droid ➤</string>
+    <string name="downloads">downloads</string>
+    <string name="code_signature_found">Nós encontramos a assinatura de código desse respectivo rastreador no aplicativo:</string>
+    <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>
+    <string name="code_permission_found">Nós encontramos as seguintes permissões neste aplicativo:</string>
+    <string name="code_permission_not_found">Este aplicativo não requer nenhuma permissão.</string>
+    <string name="tracker_infos">Um rastreador é um pedaço de software destinado a coletar dados sobre você e seu uso. </string>
+    <string name="permission_infos">Permissões são ações que o aplicativo pode fazer no seu celular. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Aprenda mais…</a></string>
+    <string name="permission_infos_dangerous">O ícone <font color="red"><b>!</b></font> indica um level \'Perigoso\' ou \'Especial\' de acordo com os <a href="https://developer.android.com/guide/topics/permissions/overview">leveis de proteção do Google.</a></string>
+    <string name="tracker_web_page">Página web do rastreador</string>
+    <string name="detection_rules">Regras de detecção</string>
+    <string name="code_signature">Regra de detecção do código:</string>
+    <string name="network_signature">Regra de detecção da rede:</string>
+    <string name="tracker_presence">Presente em %d dos seus aplicativos</string>
+    <string name="tracker_presence_in">Presente em:</string>
+    <string name="no_app_found_tracker">Este rastreador parece não estar presente em seus aplicativos</string>
+    <string name="source">Fonte: %s</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Filtro</string>
+    <string name="menu_action_settings">Configurações do Aplicativo</string>
+
+</resources>
