@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/filter_by_name_grp"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/filter_by_name"
+            android:title="@string/filter_by_name" />
+        <item
+            android:id="@+id/having_less_trackers"
+            android:title="@string/having_less_trackers" />
+        <item
+            android:id="@+id/having_most_trackers"
+            android:title="@string/having_most_trackers" />
+        <item
+            android:id="@+id/having_less_permissions"
+            android:title="@string/having_less_permissions" />
+        <item
+            android:id="@+id/having_most_permissions"
+            android:title="@string/having_most_permissions" />
+    </group>
+</menu>

@@ -5,8 +5,13 @@
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_search"
         android:title="@string/menu_action_filter"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_filter_options"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="@string/menu_action_filter"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"

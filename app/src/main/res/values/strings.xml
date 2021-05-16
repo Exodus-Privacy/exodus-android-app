@@ -45,9 +45,28 @@
     <string name="tracker_presence_in">Present in:</string>
     <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
     <string name="source">Source: %s</string>
-
+    <string name="refresh">Refresh</string>
+    <string name="cancel">Cancel</string>
+    <string name="refresh_needed">Refresh needed</string>
+    <string name="refresh_needed_message">Data have not been update since %1$s.\n\nWould you like to refresh them?</string>
     <!-- Menu -->
     <string name="menu_action_filter">Filter</string>
     <string name="menu_action_settings">Application Settings</string>
+
+    <!-- Filters -->
+    <string name="filter_by_name">Filter by name</string>
+    <string name="having_most_trackers">Having most trackers</string>
+    <string name="having_less_trackers">Having less trackers</string>
+    <string name="having_most_permissions">Having most permissions</string>
+    <string name="having_less_permissions">Having less permissions</string>
+    <string name="submit">Submit</string>
+    <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically pasted to the website form. You will only need to submit the form.</string>
+    <string name="app_not_analyzed_title">This app has not been analyzed!</string>
+    <string name="title_apps">My apps</string>
+    <string name="title_trackers">Trackers</string>
+    <string name="list_of_apps">See the list of apps</string>
+    <string name="apps">%1$s apps</string>
+    <string name="nothing_here">Nothing to display currently. You can pull to refresh!</string>
+
 
 </resources>

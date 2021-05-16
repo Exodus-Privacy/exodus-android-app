@@ -1,6 +1,10 @@
 language: android
 java: oraclejdk8
 
+before_install:
+  - yes | sdkmanager "platforms;android-30"
+  - yes | sdkmanager "build-tools;30.0.2"
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -15,8 +19,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-29.0.3
-    - android-29
+    - build-tools-30.0.2
+    - android-30
     - extra-m2-repository
     - sys-img-armeabi-v7a-android-28
 

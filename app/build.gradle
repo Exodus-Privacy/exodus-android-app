@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
     defaultConfig {
-        applicationId "org.eu.exodus_privacy.exodusprivacy"
         minSdkVersion 17
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 10
         versionName "2.1.1"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+    flavorDimensions "default"
     buildTypes {
         release {
             minifyEnabled false
@@ -19,6 +19,67 @@ android {
                 disable 'MissingTranslation'
             }
         }
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    productFlavors {
+        exodus_google {
+            applicationId "org.eu.exodus_privacy.exodusprivacy"
+            buildConfigField "boolean", "amal", "false"
+        }
+        amal_google {
+            applicationId "app.fedilab.amal"
+            buildConfigField "boolean", "amal", "true"
+        }
+        fedilab_google {
+            applicationId "app.fedilab.exodusprivacy"
+            buildConfigField "boolean", "amal", "false"
+        }
+        exodus_fdroid {
+            applicationId "org.eu.exodus_privacy.exodusprivacy"
+            buildConfigField "boolean", "amal", "false"
+        }
+        amal_fdroid {
+            applicationId "app.fedilab.amal"
+            buildConfigField "boolean", "amal", "true"
+        }
+        fedilab_fdroid {
+            applicationId "app.fedilab.exodusprivacy"
+            buildConfigField "boolean", "amal", "false"
+        }
+    }
+
+    sourceSets {
+        exodus_google {
+            res.srcDirs = ['src/main/res', 'src/exodus/res']
+            manifest.srcFile 'src/google/AndroidManifest.xml'
+        }
+        fedilab_google {
+            res.srcDirs = ['src/main/res', 'src/fedilab/res']
+            manifest.srcFile 'src/google/AndroidManifest.xml'
+        }
+        amal_google {
+            res.srcDirs = ['src/main/res', 'src/amal/res']
+            manifest.srcFile 'src/google/AndroidManifest.xml'
+        }
+        exodus_fdroid {
+            res.srcDirs = ['src/main/res', 'src/exodus/res']
+            manifest.srcFile 'src/fdroid/AndroidManifest.xml'
+        }
+        fedilab_fdroid {
+            res.srcDirs = ['src/main/res', 'src/fedilab/res']
+            manifest.srcFile 'src/fdroid/AndroidManifest.xml'
+        }
+        amal_fdroid {
+            res.srcDirs = ['src/main/res', 'src/amal/res']
+            manifest.srcFile 'src/fdroid/AndroidManifest.xml'
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -31,13 +92,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation 'com.google.android.material:material:1.1.0'
-    testImplementation 'junit:junit:4.13'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.13.1'
 }

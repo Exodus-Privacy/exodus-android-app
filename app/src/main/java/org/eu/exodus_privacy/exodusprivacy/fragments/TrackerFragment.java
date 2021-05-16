@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -27,11 +29,10 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.TrackerBinding;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
 import org.eu.exodus_privacy.exodusprivacy.objects.Tracker;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrackerFragment extends Fragment implements ComputeAppListTask.Listener, Updatable {
+public class TrackerFragment extends Fragment implements ComputeAppList.Listener, Updatable {
 
     private TrackerBinding trackerBinding;
     private long trackerId;
@@ -75,17 +76,17 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        trackerBinding = DataBindingUtil.inflate(inflater, R.layout.tracker,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        trackerBinding = DataBindingUtil.inflate(inflater, R.layout.tracker, container, false);
         if (applications == null)
             applications = new ArrayList<>();
         appListFragment = new AppListFragment();
-        appListFragment.setFilter(AppListFragment.Type.TRACKER,trackerId);
+        appListFragment.setFilter(AppListFragment.Type.TRACKER, trackerId);
         appListFragment.disableScrollBar();
         appListFragment.setOnAppClickListener(onAppClickListener);
         FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.applications,appListFragment);
+        transaction.replace(R.id.applications, appListFragment);
         transaction.commit();
         Context context = trackerBinding.getRoot().getContext();
         packageManager = context.getPackageManager();
@@ -96,11 +97,9 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_filter);
-        item.setVisible(false);
-        item = menu.findItem(R.id.action_settings);
-        item.setVisible(false);
-
+        menu.findItem(R.id.action_filter).setVisible(false);
+        menu.findItem(R.id.action_settings).setVisible(false);
+        menu.findItem(R.id.action_filter_options).setVisible(false);
     }
 
     private void displayAppListAsync() {
@@ -114,14 +113,14 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
             trackerBinding.retrieveApp.setVisibility(View.VISIBLE);
         }
 
-        new ComputeAppListTask(
-                new WeakReference<>(packageManager),
-                new WeakReference<>(DatabaseManager.getInstance(getActivity())),
-                new WeakReference<>(this)
-        ).execute();
+        new Thread(() -> {
+            List<ApplicationViewModel> vms = ComputeAppList.compute(packageManager, DatabaseManager.getInstance(getActivity()), null);
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            Runnable myRunnable = () -> onAppsComputed(vms);
+            mainHandler.post(myRunnable);
+        }).start();
     }
 
-    @Override
     public void onAppsComputed(List<ApplicationViewModel> apps) {
         this.applications = apps;
         trackerBinding.retrieveApp.setVisibility(View.GONE);
@@ -132,19 +131,19 @@ public class TrackerFragment extends Fragment implements ComputeAppListTask.List
         appListFragment.setApplications(apps);
         int total = appListFragment.getTotalApps();
         int displayedApps = appListFragment.getDisplayedApps();
-        int percent = displayedApps*100/total;
-        if(percent >=50)
+        int percent = displayedApps * 100 / total;
+        if (percent >= 50)
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_red);
-        else if(percent >=33)
+        else if (percent >= 33)
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_dark_orange);
-        else if(percent >=20)
+        else if (percent >= 20)
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_yellow);
         else
             trackerBinding.trackerPresenceNb.setBackgroundResource(R.drawable.square_light_blue);
 
-        trackerBinding.trackerPresenceNb.setText(percent+"%");
+        trackerBinding.trackerPresenceNb.setText(String.format("%s%%", percent));
         Context context = trackerBinding.getRoot().getContext();
-        String presence = context.getResources().getString(R.string.tracker_presence,displayedApps);
+        String presence = context.getResources().getString(R.string.tracker_presence, displayedApps);
         trackerBinding.trackerPresence.setText(presence);
         trackerBinding.trackerPresenceTitle.setText(R.string.tracker_presence_in);
     }
