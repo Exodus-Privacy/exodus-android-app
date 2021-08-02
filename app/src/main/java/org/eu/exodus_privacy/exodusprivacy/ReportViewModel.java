@@ -2,7 +2,6 @@ package org.eu.exodus_privacy.exodusprivacy;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.view.View;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat;
 public class ReportViewModel extends BaseObservable {
     private ReportDisplay reportDisplay;
 
-    public void setReportDisplay(ReportDisplay report){
+    public void setReportDisplay(ReportDisplay report) {
         this.reportDisplay = report;
         notifyChange();
     }
@@ -54,8 +53,8 @@ public class ReportViewModel extends BaseObservable {
 
     @Bindable
     public boolean getHasPermissionDangerous() {
-        for(Permission perm : reportDisplay.permissions) {
-            if(perm.dangerous)
+        for (Permission perm : reportDisplay.permissions) {
+            if (perm.dangerous)
                 return true;
         }
         return false;
@@ -85,7 +84,7 @@ public class ReportViewModel extends BaseObservable {
         String creator = reportDisplay.creator != null ? reportDisplay.creator : "";
         if (reportDisplay.report != null && !reportDisplay.report.downloads.isEmpty()) {
             String download = reportDisplay.report.downloads;
-            download = download.replace("downloads",context.getString(R.string.downloads));
+            download = download.replace("downloads", context.getString(R.string.downloads));
             creator += " (" + download + ")";
         }
         return creator;
@@ -103,7 +102,7 @@ public class ReportViewModel extends BaseObservable {
 
     @Bindable
     public String getReportVersion() {
-        if(reportDisplay.report != null) {
+        if (reportDisplay.report != null) {
             if (reportDisplay.versionName != null && !reportDisplay.report.version.equals(reportDisplay.versionName)) {
                 return reportDisplay.report.version;
             } else if (reportDisplay.versionName == null && reportDisplay.report.versionCode != reportDisplay.versionCode) {
@@ -125,30 +124,30 @@ public class ReportViewModel extends BaseObservable {
 
     public String getReportDate(Context context) {
         String reportDate = "";
-        if(reportDisplay.report == null)
+        if (reportDisplay.report == null)
             return reportDate;
 
 
         DateFormat dateFormat = SimpleDateFormat.getDateInstance(DateFormat.LONG);
-        reportDate = context.getString(R.string.created_date)+" "+dateFormat.format(reportDisplay.report.creationDate.getTime());
-        if (reportDisplay.report.creationDate.getTime().compareTo(reportDisplay.report.updateDate.getTime())!=0)
-            reportDate += " "+context.getString(R.string.and_updated)+" "+dateFormat.format(reportDisplay.report.updateDate.getTime())+".";
+        reportDate = context.getString(R.string.created_date) + " " + dateFormat.format(reportDisplay.report.creationDate.getTime());
+        if (reportDisplay.report.creationDate.getTime().compareTo(reportDisplay.report.updateDate.getTime()) != 0)
+            reportDate += " " + context.getString(R.string.and_updated) + " " + dateFormat.format(reportDisplay.report.updateDate.getTime()) + ".";
         return reportDate;
     }
 
     public String getCodeSignatureInfo(Context context) {
-       if(reportDisplay.trackers != null && reportDisplay.trackers.size() > 0)
-           return context.getString(R.string.code_signature_found);
-       else if(reportDisplay.trackers != null)
-           return context.getString(R.string.code_signature_not_found);
-       else
-           return "";
+        if (reportDisplay.trackers != null && reportDisplay.trackers.size() > 0)
+            return context.getString(R.string.code_signature_found);
+        else if (reportDisplay.trackers != null)
+            return context.getString(R.string.code_signature_not_found);
+        else
+            return "";
     }
 
     public String getCodePermissionInfo(Context context) {
-        if(reportDisplay.permissions != null && reportDisplay.permissions.size() > 0)
+        if (reportDisplay.permissions != null && reportDisplay.permissions.size() > 0)
             return context.getString(R.string.code_permission_found);
-        else if(reportDisplay.permissions != null)
+        else if (reportDisplay.permissions != null)
             return context.getString(R.string.code_permission_not_found);
         else
             return "";
@@ -158,7 +157,7 @@ public class ReportViewModel extends BaseObservable {
     private int getColor(int number) {
         if (number == 0)
             return R.drawable.square_green;
-        else if(number < 5)
+        else if (number < 5)
             return R.drawable.square_light_yellow;
         else
             return R.drawable.square_light_red;
@@ -172,7 +171,6 @@ public class ReportViewModel extends BaseObservable {
     public String getViewOnStore() {
         return reportDisplay.viewOnStore;
     }
-
 
 
 }
