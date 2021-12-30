@@ -146,7 +146,7 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
             }
             applicationViewModel.report = reportToKeep;
             applicationViewModel.source = reportToKeep.source;
-            applicationViewModel.versionCode = (int) reportToKeep.versionCode;
+            applicationViewModel.versionCode = reportToKeep.versionCode;
             applicationViewModel.versionName = reportToKeep.version;
             applicationViewModel.trackers = DatabaseManager.getInstance(CheckAppActivity.this).getTrackers(reportToKeep.trackers);
             ReportDisplay reportDisplay = ReportDisplay.buildReportDisplay(CheckAppActivity.this, applicationViewModel, null, null);
