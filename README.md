@@ -1,5 +1,7 @@
 # Exodus Privacy
 
+[![Build Status](https://github.com/Exodus-Privacy/exodus-android-app/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/Exodus-Privacy/exodus-android-app/actions/workflows/main.yml) [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/Exodus-Privacy/exodus-android-app.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Exodus-Privacy/exodus-android-app/context:java)
+
 Exodus Privacy is an Android application.
 Exodus Privacy application let you know what trackers are embedded in apps installed on your smartphone. It let you also know the permissions required by any apps on your smartphone. 
 It helps you to take your privacy back!
