@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +15,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.HtmlCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -58,7 +58,7 @@ public class TrackerFragment extends Fragment implements ComputeAppList.Listener
         trackerBinding.name.setText(tracker.name);
         trackerBinding.codeDetection.setText(tracker.codeSignature);
         trackerBinding.networkDetection.setText(tracker.networkSignature);
-        trackerBinding.description.setText(Html.fromHtml(Utils.markdownToHtml(tracker.description)));
+        trackerBinding.description.setText(HtmlCompat.fromHtml(Utils.markdownToHtml(tracker.description), HtmlCompat.FROM_HTML_MODE_COMPACT));
         trackerBinding.description.setMovementMethod(LinkMovementMethod.getInstance());
         trackerBinding.description.setClickable(true);
         trackerBinding.trackerUrl.setOnClickListener(v -> {

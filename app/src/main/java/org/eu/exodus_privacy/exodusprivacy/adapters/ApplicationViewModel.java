@@ -15,7 +15,7 @@ import java.util.Set;
 public class ApplicationViewModel {
     public String packageName;
     public String versionName;
-    public int versionCode;
+    public Long versionCode;
     public String[] requestedPermissions;
     public @Nullable
     Report report;

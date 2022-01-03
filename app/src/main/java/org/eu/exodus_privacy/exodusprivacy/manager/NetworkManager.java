@@ -21,7 +21,9 @@ package org.eu.exodus_privacy.exodusprivacy.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 
 import org.eu.exodus_privacy.exodusprivacy.R;
@@ -461,14 +463,24 @@ public class NetworkManager {
         }
 
         private boolean isConnectedToInternet(Context context) {
-            //verify the connectivity
-            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            if (connectivityManager == null)
-                return false;
-            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if (networkInfo != null) {
-                NetworkInfo.State networkState = networkInfo.getState();
-                return networkState.equals(NetworkInfo.State.CONNECTED);
+            ConnectivityManager connectivityManager =
+                    (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                NetworkCapabilities capabilities =
+                        connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+
+                if (capabilities != null) {
+                    return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
+                }
+            } else {
+                if (connectivityManager == null)
+                    return false;
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                if (networkInfo != null) {
+                    NetworkInfo.State networkState = networkInfo.getState();
+                    return networkState.equals(NetworkInfo.State.CONNECTED);
+                }
             }
             return false;
         }

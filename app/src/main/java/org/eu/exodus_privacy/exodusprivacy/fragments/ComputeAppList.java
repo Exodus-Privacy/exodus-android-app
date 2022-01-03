@@ -4,6 +4,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import androidx.core.content.pm.PackageInfoCompat;
+
 import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.manager.DatabaseManager;
@@ -79,7 +81,7 @@ public class ComputeAppList {
 
         vm.versionName = pi.versionName;
         vm.packageName = pi.packageName;
-        vm.versionCode = pi.versionCode;
+        vm.versionCode = PackageInfoCompat.getLongVersionCode(pi);
         vm.requestedPermissions = pi.requestedPermissions;
 
         if (vm.versionName != null)
