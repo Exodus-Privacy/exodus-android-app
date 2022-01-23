@@ -15,6 +15,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import io.sentry.Sentry;
+
 public class ComputeAppList {
 
     private static final String gStore = "com.android.vending";
@@ -71,6 +73,7 @@ public class ComputeAppList {
                 buildViewModelFromPackageInfo(vm, pi, databaseManager, packageManager);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
         }
     }
@@ -98,6 +101,7 @@ public class ComputeAppList {
             vm.icon = packageManager.getApplicationIcon(vm.packageName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+            Sentry.captureException(e);
         }
 
         vm.label = packageManager.getApplicationLabel(pi.applicationInfo);
@@ -133,6 +137,7 @@ public class ComputeAppList {
                 appInfo = packageManager.getApplicationInfo(packageName, 0);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
             if (vm.source != null && appInfo != null && appInfo.enabled)
                 result.add(vm);
