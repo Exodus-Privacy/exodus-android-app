@@ -40,6 +40,10 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <meta-data android:name="io.sentry.dsn" android:value="https://8962f581b7aa451d941583f4bb1f745c@o1124524.ingest.sentry.io/6162821" />
+        <!-- Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+           We recommend adjusting this value in production. -->
+        <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />
     </application>
 
 </manifest>
