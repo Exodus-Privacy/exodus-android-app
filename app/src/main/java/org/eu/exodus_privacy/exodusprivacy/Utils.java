@@ -21,6 +21,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.sentry.Sentry;
+
 public class Utils {
 
     @SuppressWarnings({"unused", "RedundantSuppression"})
@@ -41,6 +43,7 @@ public class Utils {
             packageInfo = pm.getPackageInfo(packageName, flags);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+            Sentry.captureException(e);
         }
         assert packageInfo != null;
         Signature[] signatures = packageInfo.signatures;
@@ -56,6 +59,7 @@ public class Utils {
                 cf = CertificateFactory.getInstance("X509");
             } catch (CertificateException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
 
             try {
@@ -71,6 +75,7 @@ public class Utils {
                 }
             } catch (CertificateException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
         }
 

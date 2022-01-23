@@ -36,6 +36,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import io.sentry.Sentry;
+
 public class DatabaseManager extends SQLiteOpenHelper {
 
     private static DatabaseManager instance;
@@ -87,6 +89,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 db.setTransactionSuccessful();
             } catch (Exception e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             } finally {
                 db.endTransaction();
             }

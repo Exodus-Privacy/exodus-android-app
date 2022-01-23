@@ -60,6 +60,8 @@ import java.util.concurrent.Semaphore;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import io.sentry.Sentry;
+
 /*
     Singleton that handle all network connection
 */
@@ -178,6 +180,7 @@ public class NetworkManager {
                 urlConnection.setDoInput(true);
             } catch (Exception e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
                 return null;
             }
             try {
@@ -185,6 +188,7 @@ public class NetworkManager {
             } catch (Exception e) {
 
                 e.printStackTrace();
+                Sentry.captureException(e);
                 success = false;
                 inStream = urlConnection.getErrorStream();
 
@@ -196,6 +200,7 @@ public class NetworkManager {
                     object = new JSONObject(jsonStr);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Sentry.captureException(e);
                 }
             }
             try {
@@ -203,6 +208,7 @@ public class NetworkManager {
                     inStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
 
             return object;
@@ -215,6 +221,7 @@ public class NetworkManager {
                 url = new URL(apiUrl + "trackers");
             } catch (Exception e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
                 return;
             }
             JSONObject object = makeDataRequest(mes.context, mes.listener, url);
@@ -255,6 +262,7 @@ public class NetworkManager {
                 url = new URL(apiUrl + "applications?option=short");
             } catch (Exception e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
                 return;
             }
             JSONObject object = makeDataRequest(mes.context, mes.listener, url);
@@ -305,6 +313,7 @@ public class NetworkManager {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     mes.listener.onError(mes.context.getString(R.string.json_error));
+                    Sentry.captureException(e);
                 }
                 getReports(mes, handles, packages);
             }
@@ -324,6 +333,7 @@ public class NetworkManager {
                 url = new URL(apiUrl + "search/" + handle);
             } catch (Exception e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
                 return;
             }
             JSONObject object = makeDataRequest(mes.context, mes.listener, url);
@@ -350,6 +360,7 @@ public class NetworkManager {
                 url = new URL(apiUrl + "search/" + handle);
             } catch (Exception e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
                 return null;
             }
             JSONObject object = makeDataRequest(mes.context, mes.listener, url);
@@ -410,6 +421,7 @@ public class NetworkManager {
                 report.creationDate.set(Calendar.MILLISECOND, 0);
             } catch (ParseException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
             JSONArray trackersArray = object.getJSONArray("trackers");
             report.trackers = new HashSet<>();
@@ -436,6 +448,7 @@ public class NetworkManager {
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
             return tracker;
         }
@@ -456,6 +469,7 @@ public class NetworkManager {
                         isReading = false;
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Sentry.captureException(e);
                     isReading = false;
                 }
             } while (isReading);

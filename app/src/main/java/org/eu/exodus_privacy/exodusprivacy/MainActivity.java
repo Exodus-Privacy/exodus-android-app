@@ -64,6 +64,8 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Application;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.sentry.Sentry;
+
 public class MainActivity extends AppCompatActivity {
 
     private static ComputeAppList.order order = ComputeAppList.order.DEFAULT;
@@ -203,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(mainBinding.viewpager.getWindowToken(), 0);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
+                Sentry.captureException(e);
             }
         };
 
