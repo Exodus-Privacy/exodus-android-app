@@ -1,0 +1,22 @@
+---
+name: Build
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Generate debug build
+        run: ./gradlew assembleDebug
+      - name: Run tests
+        run: ./gradlew test

@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.pm.PackageInfoCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -97,7 +98,7 @@ public class MyTrackersFragment extends Fragment implements MyTrackersListAdapte
                 if (pkgInfo.versionName != null)
                     report = databaseManager.getReportFor(pkgInfo.packageName, pkgInfo.versionName, null);
                 else {
-                    report = databaseManager.getReportFor(pkgInfo.packageName, pkgInfo.versionCode, null);
+                    report = databaseManager.getReportFor(pkgInfo.packageName, PackageInfoCompat.getLongVersionCode(pkgInfo), null);
                 }
                 if (report != null) {
                     Set<Tracker> trackersApp = databaseManager.getTrackers(report.trackers);
