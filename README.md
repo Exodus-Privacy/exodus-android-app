@@ -16,5 +16,4 @@ It helps you to take your privacy back!
 If you want to help us improve this application, you can:
 
 - Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues)
-- Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app)
-- Join us on our [Matrix channel #exodus-android-app:matrix.org](https://matrix.to/#/#exodus-android-app:matrix.org)
+- Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app) (also bridged on [Matrix channel #exodus-android-app:matrix.org](https://matrix.to/#/#exodus-android-app:matrix.org))
