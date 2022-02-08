@@ -26,11 +26,22 @@
             android:textStyle="bold" />
 
         <TextView
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:text="@string/aboutExodusDesc"
+            android:textAlignment="center"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/privacyTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="@string/privacyPolicy"
             android:textAlignment="center"
             android:textColor="?android:textColorPrimary"
             android:textSize="16sp" />
