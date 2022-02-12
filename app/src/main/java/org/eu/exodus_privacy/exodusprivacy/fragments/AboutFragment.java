@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -34,6 +35,7 @@ public class AboutFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         Spannable privacyPolicy = (Spannable) HtmlCompat.fromHtml(
                 getString(R.string.privacyPolicy, privacyPolicyURL),
                 HtmlCompat.FROM_HTML_MODE_COMPACT
@@ -47,6 +49,13 @@ public class AboutFragment extends Fragment {
         }
         binding.privacyTV.setText(privacyPolicy);
         binding.privacyTV.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        menu.findItem(R.id.action_filter).setVisible(false);
+        menu.findItem(R.id.action_settings).setVisible(false);
+        menu.findItem(R.id.action_filter_options).setVisible(false);
     }
 
     @Override
