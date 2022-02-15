@@ -20,3 +20,8 @@ jobs:
         run: ./gradlew assembleDebug
       - name: Run tests
         run: ./gradlew test
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app_debug
+          path: app/build/outputs/apk/exodus_google/debug/*.apk
