@@ -51,6 +51,7 @@ import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.adapters.ApplicationViewModel;
 import org.eu.exodus_privacy.exodusprivacy.adapters.TrackerListAdapter;
 import org.eu.exodus_privacy.exodusprivacy.databinding.MainBinding;
+import org.eu.exodus_privacy.exodusprivacy.fragments.AboutFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.ComputeAppList;
 import org.eu.exodus_privacy.exodusprivacy.fragments.HomeFragment;
 import org.eu.exodus_privacy.exodusprivacy.fragments.MyTrackersFragment;
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
             binding.viewpager.setCurrentItem(0);
         } else if (itemId == R.id.navigation_analytics) {
             binding.viewpager.setCurrentItem(1);
+        } else if (itemId == R.id.aboutExodus) {
+            binding.viewpager.setCurrentItem(2);
         }
         return true;
     };
@@ -351,6 +354,8 @@ public class MainActivity extends AppCompatActivity {
                     MyTrackersFragment myTrackersFragment = new MyTrackersFragment();
                     myTrackersFragment.setOnTrackerClickListener(onTrackerClickListener);
                     return myTrackersFragment;
+                case 2:
+                    return new AboutFragment();
                 default:
                     return home;
             }
@@ -358,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
     }
 

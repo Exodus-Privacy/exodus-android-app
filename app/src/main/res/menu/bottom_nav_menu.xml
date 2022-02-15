@@ -10,5 +10,10 @@
         android:id="@+id/navigation_analytics"
         android:icon="@drawable/ic_baseline_analytics_24"
         android:title="@string/title_trackers" />
+
+    <item
+        android:id="@+id/aboutExodus"
+        android:icon="@drawable/ic_information"
+        android:title="@string/title_about" />
     
 </menu>
