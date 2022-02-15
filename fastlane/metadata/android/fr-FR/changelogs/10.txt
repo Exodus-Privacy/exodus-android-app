@@ -1,0 +1,5 @@
+- Ajout d'onglets sur l'application
+- Ajout d'une fonction pour trier les rapports
+- Ajout d'un lien vers la politique de confidentialité
+- Ajout d'une fonction pour visualiser un rapport ou soumettre une application à partir d'un lien via le menu partager d'Android
+- Correction de bugs
