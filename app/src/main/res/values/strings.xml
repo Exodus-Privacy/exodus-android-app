@@ -76,6 +76,8 @@
     <string name="aboutExodusTitle">About Exodus - Android Application</string>
     <string name="aboutExodusDesc">Exodus is an Android application that let you know what trackers are embedded in apps installed on your smartphone using the exodus platform. It let you also know the permissions required by any apps on your smartphone.\n\nIt helps you to take your privacy back!</string>
     <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Checkout our privacy policy here ➤&lt;/a&gt;</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

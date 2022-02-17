@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/appsFragment"
+        android:icon="@drawable/ic_baseline_apps_24"
+        android:title="@string/title_apps" />
+
+    <item
+        android:id="@+id/trackersFragment"
+        android:icon="@drawable/ic_baseline_analytics_24"
+        android:title="@string/title_trackers" />
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_information"
+        android:title="@string/title_about" />
+
+</menu>
