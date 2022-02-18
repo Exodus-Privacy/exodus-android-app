@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 30
+       targetSdkVersion 31
         versionCode 11
         versionName "2.2.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -15,7 +15,7 @@ android {
     flavorDimensions "default"
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             lint {
                 disable 'MissingTranslation'
