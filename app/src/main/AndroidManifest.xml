@@ -18,7 +18,6 @@
         android:largeHeap="true">
 
         <activity
-            android:exported="false"
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
@@ -28,7 +27,6 @@
         </activity>
 
         <activity
-            android:exported="false"
             android:name=".CheckAppActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:noHistory="true"
