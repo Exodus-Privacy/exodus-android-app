@@ -50,6 +50,7 @@
     <string name="refresh_needed">Refresh needed</string>
     <string name="refresh_needed_message">Data have not been update since %1$s.\n\nWould you like to refresh them?</string>
     <!-- Menu -->
+    <string name="menu_action_filter">Search</string>
     <string name="menu_action_filter">Filter</string>
     <string name="menu_action_settings">Application Settings</string>
 
