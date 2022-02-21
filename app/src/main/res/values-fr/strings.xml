@@ -48,7 +48,7 @@
     <string name="refresh">Actualiser</string>
     <string name="cancel">Annuler</string>
     <string name="refresh_needed">Actualisation nécessaire</string>
-    <string name="refresh_needed_message">Les données n\'ont pas été mise à jour depuis le%1$s.\n\nVoulez-vous les actualiser?</string>
+    <string name="refresh_needed_message">Les données n\'ont pas été mise à jour depuis le %1$s.\n\nVoulez-vous les actualiser?</string>
 
     <!-- Menu -->
     <string name="menu_action_search">Rechercher</string>
@@ -62,14 +62,14 @@
     <string name="having_most_permissions">Le plus d\'autorisations</string>
     <string name="having_less_permissions">Le moins d\'autorisations</string>
     <string name="submit">Soumettre</string>
-    <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est automatiquement collé dans le formulaire du site Web. Vous n\'aurez qu\'à commencer l\'analyse.</string>
+    <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est collé automatiquement dans le formulaire du site Web. Vous n\'aurez qu\'à commencer l\'analyse.</string>
     <string name="app_not_analyzed_title">Cette application n\'a jamais été analysée!</string>
     <string name="title_apps">Mes apps</string>
     <string name="title_trackers">Pisteurs</string>
     <string name="title_about">À propos</string>
     <string name="list_of_apps">Voir la liste des applications</string>
     <string name="apps">%1$s apps</string>
-    <string name="nothing_here">Rien à afficher pour le moment. Vous pouvez glisser vers le bas pour actualiser!</string>
+    <string name="nothing_here">Rien à afficher pour le moment.\nVous pouvez glisser vers le bas pour actualiser!</string>
 
     <!-- About Fragment -->
     <string name="aboutExodusTitle">À propos d\'Exodus - Application Android</string>
