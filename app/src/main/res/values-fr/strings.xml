@@ -21,9 +21,9 @@
     <string name="parse_trackers">Traitement des pisteurs :</string>
     <string name="get_trackers_connection">Récupération des pisteurs : en attente de connexion au serveur</string>
     <string name="get_trackers">Récupération des pisteurs</string>
-    <string name="no_settings">Cette app n\'a pas de paramêtre</string>
+    <string name="no_settings">Cette app n\'a pas de paramètre</string>
     <string name="logo">Logo de l\'application %1</string>
-    <string name="created_by">Crée par</string>
+    <string name="created_by">Créé par</string>
     <string name="created_date">Rapport créé le</string>
     <string name="and_updated">et mis à jour le</string>
     <string name="view_on_exodus">Voir sur εxodus ➤</string>
@@ -45,8 +45,34 @@
     <string name="tracker_presence_in">Présent dans:</string>
     <string name="no_app_found_tracker">Ce pisteur ne semble pas être présent dans vos applications</string>
     <string name="source">Source: %s</string>
+    <string name="refresh">Actualiser</string>
+    <string name="cancel">Annuler</string>
+    <string name="refresh_needed">Actualisation nécessaire</string>
+    <string name="refresh_needed_message">Les données n'ont pas été mise à jour depuis le%1$s.\n\nVoulez-vous les actualiser?</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">Rechercher</string>
     <string name="menu_action_filter">Filtrer</string>
     <string name="menu_action_settings">Paramètres de l\'application</string>
+    
+        <!-- Filters -->
+    <string name="filter_by_name">Filtrer par nom</string>
+    <string name="having_most_trackers">Le plus de pisteurs</string>
+    <string name="having_less_trackers">Le moins de pisteurs</string>
+    <string name="having_most_permissions">Le plus d'autorisations</string>
+    <string name="having_less_permissions">Le moins d'autorisations</string>
+    <string name="submit">Soumettre</string>
+    <string name="app_not_analyzed">Voulez-vous analyser l'application?\n\nL'identifiant de l'application est automatiquement collé dans le formulaire du site Web. Vous n'aurez qu'à commencer l'analyse.</string>
+    <string name="app_not_analyzed_title">Cette application n'a jamais été analysée!</string>
+    <string name="title_apps">Mes apps</string>
+    <string name="title_trackers">Pisteurs</string>
+    <string name="title_about">À propos</string>
+    <string name="list_of_apps">Voir la liste des applications</string>
+    <string name="apps">%1$s apps</string>
+    <string name="nothing_here">Rien à afficher pour le moment. Vous pouvez glisser vers le bas pour actualiser!</string>
+
+    <!-- About Fragment -->
+    <string name="aboutExodusTitle">À propos d'Exodus - Application Android</string>
+    <string name="aboutExodusDesc">Exodus est une application Android qui vous permet de savoir quels pisteurs sont présents dans les applications installées sur votre smartphone en utilisant la plateforme exodus. Elle vous permet aussi de connaitre les autorisations requises par les applications présentes sur votre smartphone.\n\nElle vous aide à garder votre vie privée!</string>
+    <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Voir notre politique de confidentialité ici ➤&lt;/a&gt;</string>
 </resources>
