@@ -73,6 +73,6 @@
 
     <!-- About Fragment -->
     <string name="aboutExodusTitle">À propos d\'Exodus - Application Android</string>
-    <string name="aboutExodusDesc">Exodus est une application Android qui vous permet de savoir quels pisteurs sont présents dans les applications installées sur votre smartphone en utilisant la plateforme exodus. Elle vous permet aussi de connaitre les autorisations requises par les applications présentes sur votre smartphone.\n\nElle vous aide à garder votre vie privée!</string>
+    <string name="aboutExodusDesc">Exodus est une application Android qui vous permet de savoir quels pisteurs sont présents dans les applications installées sur votre smartphone en utilisant la plateforme exodus. Elle vous permet aussi de connaitre les autorisations requises par les applications présentes sur votre smartphone.\n\nElle vous aide à protéger votre vie privée!</string>
     <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Voir notre politique de confidentialité ici ➤&lt;/a&gt;</string>
 </resources>
