@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Application Logo</string>
     <string name="trackers_pct">Pisteurs :</string>
     <string name="permissions_pct">Autorisations :</string>
