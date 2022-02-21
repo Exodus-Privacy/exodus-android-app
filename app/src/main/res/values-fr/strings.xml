@@ -62,7 +62,7 @@
     <string name="having_most_permissions">Le plus d\'autorisations</string>
     <string name="having_less_permissions">Le moins d\'autorisations</string>
     <string name="submit">Soumettre</string>
-    <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est automatiquement collé dans le formulaire du site Web. Vous n\'aurez qu'à commencer l'analyse.</string>
+    <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est automatiquement collé dans le formulaire du site Web. Vous n\'aurez qu\'à commencer l\'analyse.</string>
     <string name="app_not_analyzed_title">Cette application n\'a jamais été analysée!</string>
     <string name="title_apps">Mes apps</string>
     <string name="title_trackers">Pisteurs</string>
