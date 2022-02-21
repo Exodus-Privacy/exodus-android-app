@@ -55,7 +55,7 @@
     <string name="menu_action_filter">Filtrer</string>
     <string name="menu_action_settings">Paramètres de l\'application</string>
     
-        <!-- Filters -->
+    <!-- Filters -->
     <string name="filter_by_name">Filtrer par nom</string>
     <string name="having_most_trackers">Le plus de pisteurs</string>
     <string name="having_less_trackers">Le moins de pisteurs</string>
