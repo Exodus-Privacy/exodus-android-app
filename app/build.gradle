@@ -15,7 +15,7 @@ android {
     flavorDimensions "default"
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             lint {
                 disable 'MissingTranslation'
