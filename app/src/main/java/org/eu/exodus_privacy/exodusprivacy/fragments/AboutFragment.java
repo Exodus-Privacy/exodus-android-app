@@ -53,7 +53,7 @@ public class AboutFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        menu.findItem(R.id.action_filter).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
         menu.findItem(R.id.action_settings).setVisible(false);
         menu.findItem(R.id.action_filter_options).setVisible(false);
     }
