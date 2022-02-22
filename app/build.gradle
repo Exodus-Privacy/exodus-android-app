@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'org.jlleitschuh.gradle.ktlint' version '10.2.0'
 }
 
 android {
@@ -37,6 +38,10 @@ android {
     lint {
         lintConfig file("lint.xml")
     }
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {

@@ -45,12 +45,15 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
     private fun TextView.removeURLUnderline() {
         val spannable = SpannableString(text)
         for (urlSpan in spannable.getSpans(0, spannable.length, URLSpan::class.java)) {
-            spannable.setSpan(object : URLSpan(urlSpan.url) {
-                override fun updateDrawState(textPaint: TextPaint) {
-                    super.updateDrawState(textPaint)
-                    textPaint.isUnderlineText = false
-                }
-            }, spannable.getSpanStart(urlSpan), spannable.getSpanEnd(urlSpan), 0)
+            spannable.setSpan(
+                object : URLSpan(urlSpan.url) {
+                    override fun updateDrawState(textPaint: TextPaint) {
+                        super.updateDrawState(textPaint)
+                        textPaint.isUnderlineText = false
+                    }
+                },
+                spannable.getSpanStart(urlSpan), spannable.getSpanEnd(urlSpan), 0
+            )
         }
         text = spannable
     }

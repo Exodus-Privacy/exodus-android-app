@@ -22,5 +22,4 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
         super.onDestroyView()
         _binding = null
     }
-
 }
