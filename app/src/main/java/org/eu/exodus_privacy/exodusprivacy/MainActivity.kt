@@ -25,12 +25,5 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.setupWithNavController(navController)
 
         val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
-
-        viewModel.getAllTrackers()
-        viewModel.trackersList.observe(this) {
-            it.trackers.forEach { (key, value) ->
-                Log.d(TAG, "Tag $key, ${value.name}")
-            }
-        }
     }
 }

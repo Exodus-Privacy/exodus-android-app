@@ -20,6 +20,7 @@
         android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation" />
 
 </LinearLayout>
