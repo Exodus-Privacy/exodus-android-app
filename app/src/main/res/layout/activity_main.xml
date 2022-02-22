@@ -20,7 +20,6 @@
         android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
         app:menu="@menu/bottom_navigation" />
 
 </LinearLayout>
