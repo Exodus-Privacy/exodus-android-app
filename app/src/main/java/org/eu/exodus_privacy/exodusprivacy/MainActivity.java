@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
                 searchView.clearFocus();
                 if (toolbarMenu != null)
-                    (toolbarMenu.findItem(R.id.action_filter)).collapseActionView();
+                    (toolbarMenu.findItem(R.id.action_search)).collapseActionView();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 assert imm != null;
                 imm.hideSoftInputFromWindow(mainBinding.viewpager.getWindowToken(), 0);
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         toolbarMenu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        MenuItem actionFilterItem = menu.findItem(R.id.action_filter);
+        MenuItem actionFilterItem = menu.findItem(R.id.action_search);
 
         searchView = (SearchView) actionFilterItem.getActionView();
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
-                menu.findItem(R.id.action_filter).collapseActionView();
+                menu.findItem(R.id.action_search).collapseActionView();
                 HomeFragment home = (HomeFragment) fragments.get(0);
                 home.filter(query);
                 return false;
