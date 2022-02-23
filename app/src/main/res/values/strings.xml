@@ -65,7 +65,7 @@
     <string name="submit">Submit</string>
     <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically pasted to the website form. You will only need to submit the form.</string>
     <string name="app_not_analyzed_title">This app has not been analyzed!</string>
-    <string name="title_apps">My apps</string>
+    <string name="title_apps">Apps</string>
     <string name="title_trackers">Trackers</string>
     <string name="title_about">About</string>
     <string name="list_of_apps">See the list of apps</string>
@@ -73,7 +73,6 @@
     <string name="nothing_here">Nothing to display currently. You can pull to refresh!</string>
 
     <!-- About Fragment -->
-    <string name="about">About</string>
     <string name="aboutExodusTitle">Exodus - Android Application</string>
     <string name="aboutExodusDesc">Exodus is an Android application that let you know what trackers are embedded in apps installed on your smartphone using the exodus platform. It let you also know the permissions required by any apps on your smartphone.\n\nIt helps you to take your privacy back!</string>
     <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Checkout our privacy policy here ➤&lt;/a&gt;</string>

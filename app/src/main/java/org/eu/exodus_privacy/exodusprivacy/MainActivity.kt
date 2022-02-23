@@ -1,7 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
