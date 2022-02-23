@@ -1,11 +1,9 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
