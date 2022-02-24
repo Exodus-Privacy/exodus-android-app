@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -33,7 +32,6 @@ public class Utils {
         return "reports.exodus-privacy.eu.org";
     }
 
-    @SuppressLint("PackageManagerGetSignatures")
     public static String getCertificateSHA1Fingerprint(PackageManager pm, String packageName) {
         int flags = PackageManager.GET_SIGNATURES;
         PackageInfo packageInfo = null;

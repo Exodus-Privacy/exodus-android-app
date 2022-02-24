@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="MissingTranslation" severity="ignore" />
+    <issue id="QueryPermissionsNeeded" severity="ignore" />
+    <issue id="QueryAllPackagesPermission" severity="ignore" />
+    <issue id="PackageManagerGetSignatures" severity="ignore" />
+</lint>

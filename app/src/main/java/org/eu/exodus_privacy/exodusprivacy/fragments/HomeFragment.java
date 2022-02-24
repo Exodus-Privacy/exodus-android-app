@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -101,7 +100,7 @@ public class HomeFragment extends Fragment implements ComputeAppList.Listener, U
             refreshInProgress = true;
             homeBinding.layoutProgress.setVisibility(View.VISIBLE);
             homeBinding.swipeRefresh.setRefreshing(true);
-            @SuppressLint("QueryPermissionsNeeded") List<PackageInfo> packageInstalled = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+            List<PackageInfo> packageInstalled = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
             ArrayList<String> packageList = new ArrayList<>();
             for (PackageInfo pkgInfo : packageInstalled)
                 packageList.add(pkgInfo.packageName);

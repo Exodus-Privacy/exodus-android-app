@@ -17,9 +17,6 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            lint {
-                disable 'MissingTranslation'
-            }
         }
     }
 
@@ -33,7 +30,7 @@ android {
     lint {
         abortOnError false
         checkReleaseBuilds false
-        disable 'MissingTranslation'
+        lintConfig file("lint.xml")
     }
 }
 
