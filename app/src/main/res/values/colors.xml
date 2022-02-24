@@ -3,8 +3,8 @@
     <color name="colorPrimary">#684971</color>
     <color name="colorPrimaryDark">#3d2b43</color>
     <color name="colorAccent">#3d2b43</color>
+    <color name="colorAccentDark">#232225</color>
     <color name="colorAccentLight">#f4eff5</color>
-    <color name="colorBackground">#FFFFFF</color>
     <color name="percent">#77684971</color>
 
     <color name="colorGreen">#6fc384</color>

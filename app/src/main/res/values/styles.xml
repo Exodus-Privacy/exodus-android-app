@@ -3,18 +3,21 @@
     <!-- Base application theme. -->
     <style name="BaseTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:statusBarColor">?android:colorBackground</item>
-        <item name="android:navigationBarColor">?android:colorBackground</item>
     </style>
 
-    <!-- Inherit main theme to allow overriding Base Theme as per API levels -->
-    <style name="Theme.Exodus" parent="BaseTheme">
-        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation</item>
+    <!-- Inherit base theme to allow overriding Light Theme as per API levels -->
+    <style name="Theme.Exodus.Light" parent="BaseTheme">
+        <item name="android:navigationBarColor">@color/colorAccentLight</item>
+        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Light</item>
     </style>
 
-    <style name="Theme.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">?attr/colorOnSecondary</item>
+    <style name="Theme.BottomNavigation.Light" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/colorAccentLight</item>
     </style>
+
+    <style name="Theme.Exodus" parent="Theme.Exodus.Light" />
 
 </resources>

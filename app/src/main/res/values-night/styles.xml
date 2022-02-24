@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Inherit base theme to allow overriding Dark Theme as per API levels -->
+    <style name="Theme.Exodus.Dark" parent="BaseTheme">
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="android:navigationBarColor">@color/colorAccentDark</item>
+        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Dark</item>
+    </style>
+
+    <style name="Theme.BottomNavigation.Dark" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/colorAccentDark</item>
+    </style>
+
+    <style name="Theme.Exodus" parent="Theme.Exodus.Dark" />
+
+</resources>
