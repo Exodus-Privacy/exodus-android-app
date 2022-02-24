@@ -11,6 +11,7 @@ android {
         versionCode 12
         versionName "2.2.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        buildConfigField "String", "EXODUS_API_KEY", "\"$System.env.EXODUS_API_KEY\""
     }
     buildTypes {
         release {

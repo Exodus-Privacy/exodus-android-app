@@ -26,6 +26,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 
+import org.eu.exodus_privacy.exodusprivacy.BuildConfig;
 import org.eu.exodus_privacy.exodusprivacy.R;
 import org.eu.exodus_privacy.exodusprivacy.Utils;
 import org.eu.exodus_privacy.exodusprivacy.listener.NetworkListener;
@@ -174,7 +175,7 @@ public class NetworkManager {
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setRequestProperty("Accept", "application/json");
-                urlConnection.setRequestProperty("Authorization", "Token " + context.getString(R.string.exodus));
+                urlConnection.setRequestProperty("Authorization", "Token " + BuildConfig.EXODUS_API_KEY);
                 urlConnection.setDoInput(true);
             } catch (Exception e) {
                 e.printStackTrace();
