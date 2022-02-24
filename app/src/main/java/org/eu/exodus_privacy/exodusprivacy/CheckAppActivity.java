@@ -106,13 +106,8 @@ public class CheckAppActivity extends AppCompatActivity implements NetworkListen
                 dialogBuilder.setMessage(getString(R.string.app_not_analyzed));
                 //noinspection RedundantSuppression
                 dialogBuilder.setPositiveButton(R.string.submit, (dialog, id) -> {
-                    Uri uri;
+                    Uri uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/#" + app_id);
                     //noinspection ConstantConditions
-                    if (!BuildConfig.amal) {
-                        uri = Uri.parse("https://reports.exodus-privacy.eu.org/analysis/submit/#" + app_id);
-                    } else {
-                        uri = Uri.parse("https://exodus.phm.education.gouv.fr/analysis/submit/#" + app_id);
-                    }
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(browserIntent);
                     dialog.dismiss();

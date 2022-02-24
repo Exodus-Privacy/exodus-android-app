@@ -30,7 +30,7 @@ public class Utils {
     public static final String LAST_REFRESH = "last_refresh";
 
     public static String getDomain() {
-        return BuildConfig.amal ? "exodus.phm.education.gouv.fr" : "reports.exodus-privacy.eu.org";
+        return "reports.exodus-privacy.eu.org";
     }
 
     @SuppressLint("PackageManagerGetSignatures")
