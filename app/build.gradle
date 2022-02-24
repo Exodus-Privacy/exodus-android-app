@@ -28,8 +28,6 @@ android {
         dataBinding = true
     }
     lint {
-        abortOnError false
-        checkReleaseBuilds false
         lintConfig file("lint.xml")
     }
 }
