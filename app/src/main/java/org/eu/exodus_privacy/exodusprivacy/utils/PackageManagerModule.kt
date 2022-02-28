@@ -11,7 +11,6 @@ import dagger.hilt.components.SingletonComponent
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object PackageManagerModule {
