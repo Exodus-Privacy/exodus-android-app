@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -30,10 +29,9 @@ public class Utils {
     public static final String LAST_REFRESH = "last_refresh";
 
     public static String getDomain() {
-        return BuildConfig.amal ? "exodus.phm.education.gouv.fr" : "reports.exodus-privacy.eu.org";
+        return "reports.exodus-privacy.eu.org";
     }
 
-    @SuppressLint("PackageManagerGetSignatures")
     public static String getCertificateSHA1Fingerprint(PackageManager pm, String packageName) {
         int flags = PackageManager.GET_SIGNATURES;
         PackageInfo packageInfo = null;

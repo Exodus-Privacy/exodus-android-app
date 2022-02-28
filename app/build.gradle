@@ -11,49 +11,15 @@ android {
         versionCode 12
         versionName "2.2.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        buildConfigField "String", "EXODUS_API_KEY", "\"$System.env.EXODUS_API_KEY\""
     }
-    flavorDimensions "default"
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            lint {
-                disable 'MissingTranslation'
-            }
         }
     }
 
-
-    productFlavors {
-        exodus {
-            applicationId "org.eu.exodus_privacy.exodusprivacy"
-            buildConfigField "boolean", "amal", "false"
-        }
-        amal {
-            applicationId "app.fedilab.amal"
-            buildConfigField "boolean", "amal", "true"
-        }
-        fedilab {
-            applicationId "app.fedilab.exodusprivacy"
-            buildConfigField "boolean", "amal", "false"
-        }
-    }
-
-    sourceSets {
-        exodus {
-            res.srcDirs = ['src/main/res', 'src/exodus/res']
-            manifest.srcFile 'src/main/AndroidManifest.xml'
-        }
-        fedilab {
-            res.srcDirs = ['src/main/res', 'src/fedilab/res']
-            manifest.srcFile 'src/main/AndroidManifest.xml'
-        }
-        amal {
-            res.srcDirs = ['src/main/res', 'src/amal/res']
-            manifest.srcFile 'src/main/AndroidManifest.xml'
-        }
-
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -62,9 +28,7 @@ android {
         dataBinding = true
     }
     lint {
-        abortOnError false
-        checkReleaseBuilds false
-        disable 'MissingTranslation'
+        lintConfig file("lint.xml")
     }
 }
 
