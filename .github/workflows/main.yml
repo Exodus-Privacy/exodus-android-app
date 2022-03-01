@@ -24,9 +24,8 @@ jobs:
       - name: Run tests
         run: ./gradlew test
       - name: Execute exodus-standalone
-        uses: docker://exodusprivacy/exodus-standalone:v1.3.0
+        uses: docker://exodusprivacy/exodus-standalone:v1.3.1
         with:
-          entrypoint: /exodus_analyze.py
           args: /github/workspace/app/build/outputs/apk/debug/app-debug.apk
       - name: Upload APK
         uses: actions/upload-artifact@v2
