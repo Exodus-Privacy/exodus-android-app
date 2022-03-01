@@ -3,8 +3,7 @@
     <color name="colorPrimary">#684971</color>
     <color name="colorPrimaryDark">#3d2b43</color>
     <color name="colorAccent">#3d2b43</color>
-    <color name="colorAccentDark">#232225</color>
-    <color name="colorAccentLight">#f4eff5</color>
+    <color name="colorAccentTheme">#f4eff5</color>
     <color name="percent">#77684971</color>
 
     <color name="colorGreen">#6fc384</color>
@@ -15,10 +14,12 @@
     <color name="colorYellow">#ffc70f</color>
     <color name="colorDarkOrange">#ff8c00</color>
     <color name="colorRed">#e61718</color>
+    <color name="colorRedLight">#ef5d5d</color>
 
     <color name="colorPurple">#684971</color>
     <color name="textColorDark">#343A40</color>
     <color name="textColorDarkLight">#6C757D</color>
     <color name="textColorWhite">#FFFFFF</color>
     <color name="textDetection">#E83E8C</color>
+    <color name="colorGrey">#f2f2f2</color>
 </resources>

@@ -10,12 +10,12 @@
 
     <!-- Inherit base theme to allow overriding Light Theme as per API levels -->
     <style name="Theme.Exodus.Light" parent="BaseTheme">
-        <item name="android:navigationBarColor">@color/colorAccentLight</item>
+        <item name="android:navigationBarColor">@color/colorAccentTheme</item>
         <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Light</item>
     </style>
 
     <style name="Theme.BottomNavigation.Light" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">@color/colorAccentLight</item>
+        <item name="android:background">@color/colorAccentTheme</item>
     </style>
 
     <style name="Theme.Exodus" parent="Theme.Exodus.Light" />

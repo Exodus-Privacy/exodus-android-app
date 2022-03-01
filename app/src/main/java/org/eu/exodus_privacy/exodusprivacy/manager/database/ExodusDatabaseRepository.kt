@@ -21,10 +21,6 @@ class ExodusDatabaseRepository @Inject constructor(
         return trackerDataDao.getTrackers(listOfID)
     }
 
-    suspend fun updateTrackerData(trackerData: TrackerData) {
-        return trackerDataDao.updateTrackerData(trackerData)
-    }
-
     suspend fun deleteTrackerData(trackerData: TrackerData) {
         return trackerDataDao.deleteTrackerData(trackerData)
     }
