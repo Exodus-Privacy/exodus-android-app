@@ -24,5 +24,8 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.setupWithNavController(navController)
 
         val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+
+        // Populate trackers in database
+        viewModel.fetchAndSaveTrackers()
     }
 }
