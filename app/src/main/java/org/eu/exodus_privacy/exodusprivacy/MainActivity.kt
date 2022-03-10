@@ -31,7 +31,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.policyAgreement.observe(this) {
             if (it == false) {
-                ExodusDialogFragment().show(supportFragmentManager, TAG)
+                ExodusDialogFragment().apply {
+                    this.isCancelable = false
+                    this.show(supportFragmentManager, TAG)
+                }
             }
         }
 
