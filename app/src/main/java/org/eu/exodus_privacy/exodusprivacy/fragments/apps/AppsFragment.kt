@@ -5,21 +5,31 @@ import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import org.eu.exodus_privacy.exodusprivacy.MainActivityViewModel
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppsBinding
+import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
 
 @AndroidEntryPoint
 class AppsFragment : Fragment(R.layout.fragment_apps) {
 
+    private val TAG = AppsFragment::class.java.simpleName
+
     private var _binding: FragmentAppsBinding? = null
     private val binding get() = _binding!!
 
-    val TAG = AppsFragment::class.java.simpleName
+    private val viewModel: AppsViewModel by viewModels()
+    private val activityViewModel: MainActivityViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAppsBinding.bind(view)
+
+        // Fetch application list
+        viewModel.getAppList()
 
         // Setup menu actions
         val toolbar = binding.toolbar
@@ -38,6 +48,17 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 }
             }
             true
+        }
+
+        // Setup RecyclerView
+        val appsRVAdapter = AppsRVAdapter()
+        binding.appListRV.apply {
+            adapter = appsRVAdapter
+            layoutManager = LinearLayoutManager(view.context)
+        }
+
+        viewModel.appList.observe(viewLifecycleOwner) {
+            appsRVAdapter.setData(it)
         }
     }
 

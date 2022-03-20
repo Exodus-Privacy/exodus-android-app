@@ -2,6 +2,8 @@ package org.eu.exodus_privacy.exodusprivacy.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import androidx.core.content.pm.PackageInfoCompat
 import dagger.Module
 import dagger.Provides
@@ -20,19 +22,25 @@ object PackageManagerModule {
     @SuppressLint("QueryPermissionsNeeded")
     fun provideApplicationList(@ApplicationContext context: Context): MutableList<Application> {
         val packageManager = context.packageManager
-        val packageList = packageManager.getInstalledPackages(0)
+        val packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
         val applicationList = mutableListOf<Application>()
 
         packageList.forEach {
-            val app = Application(
-                it.applicationInfo.loadLabel(packageManager).toString(),
-                it.packageName,
-                it.applicationInfo.loadIcon(packageManager),
-                it.versionName,
-                PackageInfoCompat.getLongVersionCode(it)
-            )
-            applicationList.add(app)
+            if (packageManager.getLaunchIntentForPackage(it.packageName) != null) {
+                val appPerms = it.requestedPermissions?.toList() ?: emptyList()
+                val app = Application(
+                    it.applicationInfo.loadLabel(packageManager).toString(),
+                    it.packageName,
+                    it.applicationInfo.loadIcon(packageManager),
+                    it.versionName,
+                    PackageInfoCompat.getLongVersionCode(it),
+                    emptyList(),
+                    appPerms
+                )
+                applicationList.add(app)
+            }
         }
+        applicationList.sortBy { it.name }
         return applicationList
     }
 }

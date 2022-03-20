@@ -72,6 +72,12 @@
     <string name="apps">%1$s apps</string>
     <string name="nothing_here">Nothing to display currently. You can pull to refresh!</string>
 
+    <!-- Apps Fragment -->
+    <string name="app_version"><xliff:g id="rating">%1$s</xliff:g></string>
+    <string name="app_trackers"><xliff:g id="rating">%1$d</xliff:g></string>
+    <string name="app_perms"><xliff:g id="rating">%1$d</xliff:g></string>
+    <string name="not_available">N/A</string>
+
     <!-- About Fragment -->
     <string name="version"><xliff:g id="rating">%1$s</xliff:g> <xliff:g id="rating">%2$s</xliff:g>-<xliff:g id="rating">%3$d</xliff:g></string>
     <string name="website">Visit our website</string>
