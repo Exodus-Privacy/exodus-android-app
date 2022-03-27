@@ -1,7 +1,7 @@
-Exodus Privacy helps you to know which trackers and permissions are embedded in apps installed on your device.
+Exodus helps you to know which trackers and permissions are embedded in apps installed on your device.
 
-The app downloads reports from Exodus Privacy (https://exodus-privacy.eu.org/) and shows them to you app by app
+The app downloads reports from the εxodus platform (https://reports.exodus-privacy.eu.org/) and shows them to you app by app.
 
-The app can only detect apps installed from the Google Play store.
+This application is developed by the French non-profit organization Exodus Privacy, visit us at https://exodus-privacy.eu.org/en/.
 
-Source Code: https://github.com/Exodus-Privacy/exodus-android-app/
+Source Code: https://github.com/Exodus-Privacy/exodus-android-app
