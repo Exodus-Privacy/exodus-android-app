@@ -24,8 +24,6 @@
         android:id="@+id/appListRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="true"
-        android:paddingVertical="10dp"
         android:scrollbars="vertical" />
 
 </LinearLayout>

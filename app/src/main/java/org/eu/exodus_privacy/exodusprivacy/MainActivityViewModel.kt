@@ -70,22 +70,20 @@ class MainActivityViewModel @Inject constructor(
             val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
             if (appDetailList.isNotEmpty()) {
                 val latestExodusApp = appDetailList.maxByOrNull { it.version_code } ?: AppDetails()
-                if (latestExodusApp.trackers.isNotEmpty()) {
-                    val trackersList =
-                        exodusDatabaseRepository.getTrackers(latestExodusApp.trackers)
-                    val exodusApp = ExodusApplication(
-                        app.name,
-                        app.packageName,
-                        app.icon,
-                        app.versionName,
-                        app.versionCode,
-                        app.permissions,
-                        latestExodusApp.version_name,
-                        latestExodusApp.version_code.toLong(),
-                        trackersList
-                    )
-                    exodusAppList.add(exodusApp)
-                }
+                val trackersList =
+                    exodusDatabaseRepository.getTrackers(latestExodusApp.trackers)
+                val exodusApp = ExodusApplication(
+                    app.packageName,
+                    app.name,
+                    app.icon,
+                    app.versionName,
+                    app.versionCode,
+                    app.permissions,
+                    latestExodusApp.version_name,
+                    latestExodusApp.version_code.toLong(),
+                    trackersList
+                )
+                exodusAppList.add(exodusApp)
             }
         }
         // Save the generated data into database

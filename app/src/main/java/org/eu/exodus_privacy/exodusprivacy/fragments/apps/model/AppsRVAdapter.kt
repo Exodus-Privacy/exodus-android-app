@@ -1,10 +1,14 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps.model
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAppItemBinding
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
@@ -32,8 +36,33 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
             appIconIV.background = app.icon.toDrawable(context.resources)
             appNameTV.text = app.name
             appVersionTV.text = context.getString(R.string.app_version, app.versionName)
-            trackersChip.text = context.getString(R.string.num_trackers, app.exodusTrackers.size)
-            permsChip.text = context.getString(R.string.num_perms, app.permissions.size)
+            trackersChip.apply {
+                val trackerNum = app.exodusTrackers.size
+                text = context.getString(R.string.num_trackers, trackerNum)
+                setExodusColor(trackerNum)
+
+            }
+            permsChip.apply {
+                val permsNum = app.permissions.size
+                text = context.getString(R.string.num_perms, permsNum)
+                setExodusColor(permsNum)
+            }
         }
+    }
+
+    private fun Chip.setExodusColor(size: Int) {
+        val colorRed = ContextCompat.getColor(context, R.color.colorRedLight)
+        val colorYellow = ContextCompat.getColor(context, R.color.colorYellow)
+        val colorGreen = ContextCompat.getColor(context, R.color.colorGreen)
+
+        val drawable = GradientDrawable().apply {
+            cornerRadius = 50f
+            color = when (size) {
+                0 -> ColorStateList.valueOf(colorGreen)
+                in 1..4 -> ColorStateList.valueOf(colorYellow)
+                else -> ColorStateList.valueOf(colorRed)
+            }
+        }
+        this.chipIcon = drawable
     }
 }

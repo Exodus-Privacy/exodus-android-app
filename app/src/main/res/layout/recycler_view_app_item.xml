@@ -79,7 +79,7 @@
             android:layout_marginEnd="5dp"
             android:checkable="false"
             android:text="@string/num_trackers"
-            app:chipBackgroundColor="#E8DEF8"
+            app:chipBackgroundColor="@color/chipColor"
             app:chipCornerRadius="50dp"
             app:chipIconVisible="true" />
 
@@ -91,7 +91,7 @@
             android:layout_marginEnd="5dp"
             android:checkable="false"
             android:text="@string/num_perms"
-            app:chipBackgroundColor="#E8DEF8"
+            app:chipBackgroundColor="@color/chipColor"
             app:chipCornerRadius="50dp"
             app:chipIconVisible="true" />
     </LinearLayout>
