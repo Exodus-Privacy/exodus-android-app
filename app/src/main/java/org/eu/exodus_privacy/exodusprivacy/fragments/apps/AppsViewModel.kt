@@ -1,19 +1,16 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.eu.exodus_privacy.exodusprivacy.objects.Application
+import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
+import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import javax.inject.Inject
 
 @HiltViewModel
 class AppsViewModel @Inject constructor(
-    private val applicationList: MutableList<Application>,
+    exodusDatabaseRepository: ExodusDatabaseRepository
 ) : ViewModel() {
 
-    val appList: MutableLiveData<List<Application>> = MutableLiveData()
-
-    fun getAppList() {
-        appList.value = applicationList
-    }
+    val appList: LiveData<List<ExodusApplication>> = exodusDatabaseRepository.getAllApps()
 }

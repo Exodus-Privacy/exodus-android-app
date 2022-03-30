@@ -69,16 +69,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/appInfoLayout"
-        android:paddingHorizontal="64dp">
+        android:paddingStart="64dp">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/trackersChip"
             style="@style/Widget.Material3.Chip.Suggestion.Elevated"
             android:layout_width="wrap_content"
-            android:checkable="false"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:text="@string/trackers"
+            android:checkable="false"
+            android:text="@string/num_trackers"
             app:chipBackgroundColor="#E8DEF8"
             app:chipCornerRadius="50dp"
             app:chipIconVisible="true" />
@@ -87,10 +87,10 @@
             android:id="@+id/permsChip"
             style="@style/Widget.Material3.Chip.Suggestion.Elevated"
             android:layout_width="wrap_content"
-            android:checkable="false"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:text="@string/permissions"
+            android:checkable="false"
+            android:text="@string/num_perms"
             app:chipBackgroundColor="#E8DEF8"
             app:chipCornerRadius="50dp"
             app:chipIconVisible="true" />

@@ -2,9 +2,9 @@ package org.eu.exodus_privacy.exodusprivacy.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.core.content.pm.PackageInfoCompat
+import androidx.core.graphics.drawable.toBitmap
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,10 +31,9 @@ object PackageManagerModule {
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
-                    it.applicationInfo.loadIcon(packageManager),
+                    it.applicationInfo.loadIcon(packageManager).toBitmap(),
                     it.versionName,
                     PackageInfoCompat.getLongVersionCode(it),
-                    emptyList(),
                     appPerms
                 )
                 applicationList.add(app)

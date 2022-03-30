@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import org.eu.exodus_privacy.exodusprivacy.MainActivityViewModel
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
@@ -22,14 +21,10 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
     private val binding get() = _binding!!
 
     private val viewModel: AppsViewModel by viewModels()
-    private val activityViewModel: MainActivityViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAppsBinding.bind(view)
-
-        // Fetch application list
-        viewModel.getAppList()
 
         // Setup menu actions
         val toolbar = binding.toolbar
@@ -58,7 +53,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         }
 
         viewModel.appList.observe(viewLifecycleOwner) {
-            appsRVAdapter.setData(it)
+            appsRVAdapter.submitList(it)
         }
     }
 

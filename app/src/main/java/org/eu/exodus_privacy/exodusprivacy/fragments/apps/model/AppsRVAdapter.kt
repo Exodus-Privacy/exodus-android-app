@@ -2,15 +2,14 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.apps.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
+import androidx.core.graphics.drawable.toDrawable
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAppItemBinding
-import org.eu.exodus_privacy.exodusprivacy.objects.Application
+import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 
-class AppsRVAdapter : RecyclerView.Adapter<AppsRVAdapter.ViewHolder>() {
-
-    private var oldList = emptyList<Application>()
+class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(AppsDiffUtil()) {
 
     inner class ViewHolder(val binding: RecyclerViewAppItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -27,23 +26,14 @@ class AppsRVAdapter : RecyclerView.Adapter<AppsRVAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val context = holder.itemView.context
-        val app = oldList[position]
+        val app = getItem(position)
 
         holder.binding.apply {
-            appIconIV.background = app.icon
+            appIconIV.background = app.icon.toDrawable(context.resources)
             appNameTV.text = app.name
             appVersionTV.text = context.getString(R.string.app_version, app.versionName)
+            trackersChip.text = context.getString(R.string.num_trackers, app.exodusTrackers.size)
+            permsChip.text = context.getString(R.string.num_perms, app.permissions.size)
         }
-    }
-
-    override fun getItemCount(): Int {
-        return oldList.size
-    }
-
-    fun setData(newList: List<Application>) {
-        val diffUtil = AppsDiffUtil(oldList, newList)
-        val diffResult = DiffUtil.calculateDiff(diffUtil)
-        oldList = newList
-        diffResult.dispatchUpdatesTo(this)
     }
 }

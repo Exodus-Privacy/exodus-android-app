@@ -42,10 +42,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.appSetup.observe(this) {
             if (it == false && viewModel.policyAgreement.value == true) {
                 Log.d(TAG, "Refreshing trackers database")
-                viewModel.apply {
-                    fetchAndSaveTrackers()
-                    saveAppSetup(true)
-                }
+                viewModel.doInitialSetup()
             }
         }
     }

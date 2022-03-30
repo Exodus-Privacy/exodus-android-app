@@ -2,6 +2,7 @@ package org.eu.exodus_privacy.exodusprivacy.manager.network
 
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Trackers
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -12,10 +13,10 @@ interface ExodusAPIInterface {
     }
 
     @GET("trackers")
-    suspend fun getAllTrackers(): Trackers
+    suspend fun getAllTrackers(): Response<Trackers>
 
     @GET("search/{packageName}/details")
     suspend fun getAppDetails(
         @Path("packageName") packageName: String
-    ): List<AppDetails>
+    ): Response<List<AppDetails>>
 }
