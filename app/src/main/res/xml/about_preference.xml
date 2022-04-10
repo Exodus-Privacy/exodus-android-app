@@ -11,7 +11,7 @@
         android:summary="@string/srcCode_desc"
         android:title="@string/srcCode" />
     <Preference
-        android:icon="@drawable/ic_privacy_policy"
+        android:icon="@drawable/ic_spy"
         android:key="privPolicy"
         android:summary="@string/privPolicy_desc"
         android:title="@string/privPolicy" />

@@ -8,7 +8,17 @@
         <item name="android:statusBarColor">?android:colorBackground</item>
         <item name="preferenceTheme">@style/Theme.Exodus.Preference</item>
     </style>
-    
+
+    <style name="Theme.Exodus.Chip" parent="Widget.Material3.Chip.Suggestion.Elevated">
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="chipIconTint">@color/colorPrimaryDark</item>
+        <item name="chipBackgroundColor">@color/chipColor</item>
+        <item name="chipCornerRadius">50dp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="chipIconVisible">true</item>
+        <item name="android:checkable">false</item>
+    </style>
+
     <style name="Theme.Exodus.Preference" parent="PreferenceThemeOverlay">
         <item name="android:layout">@layout/fragment_about</item>
     </style>

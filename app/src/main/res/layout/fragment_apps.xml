@@ -13,13 +13,6 @@
         android:layout_height="wrap_content"
         app:title="@string/title_apps" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        android:elevation="1dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appListRV"
         android:layout_width="match_parent"

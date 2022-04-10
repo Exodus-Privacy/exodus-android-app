@@ -38,13 +38,13 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
             appVersionTV.text = context.getString(R.string.app_version, app.versionName)
             trackersChip.apply {
                 val trackerNum = app.exodusTrackers.size
-                text = context.getString(R.string.num_trackers, trackerNum)
+                text = trackerNum.toString()
                 setExodusColor(trackerNum)
 
             }
             permsChip.apply {
                 val permsNum = app.permissions.size
-                text = context.getString(R.string.num_perms, permsNum)
+                text = permsNum.toString()
                 setExodusColor(permsNum)
             }
         }
@@ -55,14 +55,11 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
         val colorYellow = ContextCompat.getColor(context, R.color.colorYellow)
         val colorGreen = ContextCompat.getColor(context, R.color.colorGreen)
 
-        val drawable = GradientDrawable().apply {
-            cornerRadius = 50f
-            color = when (size) {
-                0 -> ColorStateList.valueOf(colorGreen)
-                in 1..4 -> ColorStateList.valueOf(colorYellow)
-                else -> ColorStateList.valueOf(colorRed)
-            }
+        val colorStateList = when (size) {
+            0 -> ColorStateList.valueOf(colorGreen)
+            in 1..4 -> ColorStateList.valueOf(colorYellow)
+            else -> ColorStateList.valueOf(colorRed)
         }
-        this.chipIcon = drawable
+        this.chipBackgroundColor = colorStateList
     }
 }
