@@ -5,6 +5,7 @@
     <color name="colorAccent">#3d2b43</color>
     <color name="colorAccentTheme">#f4eff5</color>
     <color name="colorBackgroundTile">#d6c8db</color>
+    <color name="indicatorColor">#66684971</color>
     <color name="chipColor">#E8DEF8</color>
     <color name="percent">#77684971</color>
 

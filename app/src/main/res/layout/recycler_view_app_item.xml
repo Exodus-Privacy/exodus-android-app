@@ -13,9 +13,7 @@
     <RelativeLayout
         android:id="@+id/appInfoLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/chipLayout">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/appIconCV"
@@ -71,14 +69,26 @@
         android:id="@+id/chipLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true">
+        android:layout_below="@+id/appInfoLayout"
+        android:layout_marginStart="60dp"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/versionChip"
+            style="@style/Theme.Exodus.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipIcon="@drawable/ic_match"
+            app:textEndPadding="0dp"
+            app:textStartPadding="0dp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/trackersChip"
             style="@style/Theme.Exodus.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipIcon="@drawable/ic_spy"
+            app:chipIcon="@drawable/ic_tracker"
+            app:chipIconTint="@color/colorPrimary"
             tools:text="0" />
 
         <com.google.android.material.chip.Chip
@@ -88,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             app:chipIcon="@drawable/ic_list"
+            app:chipIconTint="@color/colorPrimary"
             tools:text="3" />
     </LinearLayout>
 

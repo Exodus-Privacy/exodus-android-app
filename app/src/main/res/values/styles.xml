@@ -11,12 +11,16 @@
 
     <style name="Theme.Exodus.Chip" parent="Widget.Material3.Chip.Suggestion.Elevated">
         <item name="android:layout_marginEnd">5dp</item>
-        <item name="chipIconTint">@color/colorPrimaryDark</item>
         <item name="chipBackgroundColor">@color/chipColor</item>
         <item name="chipCornerRadius">50dp</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="chipIconVisible">true</item>
         <item name="android:checkable">false</item>
+    </style>
+
+    <style name="Theme.Exodus.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.Exodus</item>
     </style>
 
     <style name="Theme.Exodus.Preference" parent="PreferenceThemeOverlay">

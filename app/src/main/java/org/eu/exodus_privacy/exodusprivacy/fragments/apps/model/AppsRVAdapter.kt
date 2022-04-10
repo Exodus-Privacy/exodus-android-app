@@ -1,7 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps.model
 
 import android.content.res.ColorStateList
-import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -40,12 +39,16 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
                 val trackerNum = app.exodusTrackers.size
                 text = trackerNum.toString()
                 setExodusColor(trackerNum)
-
             }
             permsChip.apply {
                 val permsNum = app.permissions.size
                 text = permsNum.toString()
                 setExodusColor(permsNum)
+            }
+            versionChip.chipIcon = when (app.versionCode) {
+                app.exodusVersionCode -> ContextCompat.getDrawable(context, R.drawable.ic_match)
+                0L -> ContextCompat.getDrawable(context, R.drawable.ic_unavailable)
+                else -> ContextCompat.getDrawable(context, R.drawable.ic_mismatch)
             }
         }
     }

@@ -77,8 +77,8 @@
     <string name="app_trackers"><xliff:g id="rating">%1$d</xliff:g></string>
     <string name="app_perms"><xliff:g id="rating">%1$d</xliff:g></string>
     <string name="not_available">N/A</string>
-    <string name="num_trackers"><xliff:g id="rating">%1$d</xliff:g> trackers</string>
-    <string name="num_perms"><xliff:g id="rating">%1$d</xliff:g> permissions</string>
+    <string name="fetching_trackers">Updating Trackers Database!</string>
+    <string name="fetching_apps">Updating Apps Database!</string>
 
     <!-- About Fragment -->
     <string name="version"><xliff:g id="rating">%1$s</xliff:g> <xliff:g id="rating">%2$s</xliff:g>-<xliff:g id="rating">%3$d</xliff:g></string>
