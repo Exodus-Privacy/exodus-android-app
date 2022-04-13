@@ -2,6 +2,7 @@ package org.eu.exodus_privacy.exodusprivacy.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -26,7 +27,7 @@ object PackageManagerModule {
         val applicationList = mutableListOf<Application>()
 
         packageList.forEach {
-            if (packageManager.getLaunchIntentForPackage(it.packageName) != null) {
+            if (validPackage(it.packageName, packageManager)) {
                 val appPerms = it.requestedPermissions?.toList() ?: emptyList()
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
@@ -41,5 +42,12 @@ object PackageManagerModule {
         }
         applicationList.sortBy { it.name }
         return applicationList
+    }
+
+    private fun validPackage(packageName: String, packageManager: PackageManager): Boolean {
+        val appInfo = packageManager.getApplicationInfo(packageName, 0)
+        return appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0
+                || appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0
+                || packageManager.getLaunchIntentForPackage(packageName) != null
     }
 }

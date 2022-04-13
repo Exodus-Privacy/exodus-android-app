@@ -52,8 +52,8 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
                 text = permsNum.toString()
                 setExodusColor(permsNum)
             }
-            versionChip.chipIcon = when (app.versionCode) {
-                app.exodusVersionCode -> ContextCompat.getDrawable(context, R.drawable.ic_match)
+            versionChip.chipIcon = when (app.exodusVersionCode) {
+                app.versionCode -> ContextCompat.getDrawable(context, R.drawable.ic_match)
                 0L -> ContextCompat.getDrawable(context, R.drawable.ic_unavailable)
                 else -> ContextCompat.getDrawable(context, R.drawable.ic_mismatch)
             }

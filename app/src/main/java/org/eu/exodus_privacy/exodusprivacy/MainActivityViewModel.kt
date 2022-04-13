@@ -81,33 +81,30 @@ class MainActivityViewModel @Inject constructor(
         val exodusAppList = mutableListOf<ExodusApplication>()
         applicationList.forEach { app ->
             val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
-            if (appDetailList.isNotEmpty()) {
-
-                // Look for current installed version in the list, otherwise pick the latest one
-                val currentApp =
-                    appDetailList.filter { it.version_code.toLong() == app.versionCode }
-                val latestExodusApp = if (currentApp.isNotEmpty()) {
-                    currentApp[0]
-                } else {
-                    appDetailList.maxByOrNull { it.version_code.toLong() } ?: AppDetails()
-                }
-
-                // Create and save app data with proper tracker info
-                val trackersList =
-                    exodusDatabaseRepository.getTrackers(latestExodusApp.trackers)
-                val exodusApp = ExodusApplication(
-                    app.packageName,
-                    app.name,
-                    app.icon,
-                    app.versionName,
-                    app.versionCode,
-                    app.permissions,
-                    latestExodusApp.version_name,
-                    latestExodusApp.version_code.toLong(),
-                    trackersList
-                )
-                exodusAppList.add(exodusApp)
+            // Look for current installed version in the list, otherwise pick the latest one
+            val currentApp =
+                appDetailList.filter { it.version_code.toLong() == app.versionCode }
+            val latestExodusApp = if (currentApp.isNotEmpty()) {
+                currentApp[0]
+            } else {
+                appDetailList.maxByOrNull { it.version_code.toLong() } ?: AppDetails()
             }
+
+            // Create and save app data with proper tracker info
+            val trackersList =
+                exodusDatabaseRepository.getTrackers(latestExodusApp.trackers)
+            val exodusApp = ExodusApplication(
+                app.packageName,
+                app.name,
+                app.icon,
+                app.versionName,
+                app.versionCode,
+                app.permissions,
+                latestExodusApp.version_name,
+                if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
+                trackersList
+            )
+            exodusAppList.add(exodusApp)
         }
         // Save the generated data into database
         exodusAppList.forEach {
