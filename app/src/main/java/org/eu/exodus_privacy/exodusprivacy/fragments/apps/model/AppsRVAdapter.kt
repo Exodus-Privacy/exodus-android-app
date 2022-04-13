@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAppItemBinding
+import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 
 class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(AppsDiffUtil()) {
@@ -32,6 +34,11 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
         val app = getItem(position)
 
         holder.binding.apply {
+            root.setOnClickListener {
+                val action =
+                    AppsFragmentDirections.actionAppsFragmentToAppDetailFragment(app.packageName)
+                it.findNavController().navigate(action)
+            }
             appIconIV.background = app.icon.toDrawable(context.resources)
             appNameTV.text = app.name
             appVersionTV.text = context.getString(R.string.app_version, app.versionName)

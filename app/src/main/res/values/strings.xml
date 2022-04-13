@@ -93,6 +93,8 @@
     <string name="twitter">Follow us on Twitter</string>
     <string name="twitter_desc">Stay updated with latest developments on Exodus Privacy project</string>
 
+    <!-- AppDetail Fragment -->
+
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>

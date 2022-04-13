@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.apps.AppsFragment">
+    tools:context=".fragments.apps.AppsFragment"
+    tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"

@@ -1,6 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
@@ -32,8 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
-        // Hide bottom navigation until setup is finished
-
         viewModel.policyAgreement.observe(this) {
             if (it == false) {
                 ExodusDialogFragment().apply {
@@ -47,6 +46,17 @@ class MainActivity : AppCompatActivity() {
         viewModel.appSetup.observe(this) {
             if (it == false && viewModel.policyAgreement.value == true) {
                 viewModel.doInitialSetup()
+            }
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.appDetailFragment -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
+                else -> {
+                    bottomNavigationView.visibility = View.VISIBLE
+                }
             }
         }
     }
