@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:theme="@style/Theme.Exodus">
+
+    <TextView
+        android:id="@+id/trackerTitleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="18sp"
+        app:drawableEndCompat="@drawable/ic_forward"
+        tools:text="Google Analytics" />
+
+</LinearLayout>

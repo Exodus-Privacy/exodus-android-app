@@ -88,8 +88,10 @@
             style="@style/Theme.Exodus.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
             app:chipIcon="@drawable/ic_tracker"
             app:chipIconTint="@color/colorPrimary"
+            tools:chipBackgroundColor="@color/colorGreen"
             tools:text="0" />
 
         <com.google.android.material.chip.Chip
@@ -98,8 +100,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:textColor="@color/colorPrimary"
             app:chipIcon="@drawable/ic_list"
             app:chipIconTint="@color/colorPrimary"
+            tools:chipBackgroundColor="@color/colorYellow"
             tools:text="3" />
     </LinearLayout>
 

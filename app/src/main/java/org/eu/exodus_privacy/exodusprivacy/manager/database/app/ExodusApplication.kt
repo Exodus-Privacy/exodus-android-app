@@ -7,6 +7,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
+import org.eu.exodus_privacy.exodusprivacy.objects.Source
 
 @Entity
 data class ExodusApplication(
@@ -18,5 +19,6 @@ data class ExodusApplication(
     val permissions: List<String> = emptyList(),
     val exodusVersionName: String = String(),
     val exodusVersionCode: Long = 0L,
-    val exodusTrackers: List<TrackerData> = emptyList()
+    val exodusTrackers: List<TrackerData> = emptyList(),
+    val source: Source = Source.GOOGLE
 )

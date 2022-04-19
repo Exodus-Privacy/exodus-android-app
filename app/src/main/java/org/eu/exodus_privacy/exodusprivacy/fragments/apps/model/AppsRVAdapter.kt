@@ -44,7 +44,7 @@ class AppsRVAdapter : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(A
             appVersionTV.text = context.getString(R.string.app_version, app.versionName)
             trackersChip.apply {
                 val trackerNum = app.exodusTrackers.size
-                text = trackerNum.toString()
+                text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
                 setExodusColor(trackerNum)
             }
             permsChip.apply {
