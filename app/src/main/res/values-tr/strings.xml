@@ -1,0 +1,81 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_title">εxodus</string>
+    <string name="app_name">Exodus</string>
+    <string name="app_logo">Uygulama Logosu</string>
+    <string name="trackers_pct">İzleyiciler:</string>
+    <string name="permissions_pct">İzinler:</string>
+    <string name="trackers">İzleyiciler</string>
+    <string name="permissions">İzinler</string>
+    <string name="network_error">Ağ kullanılamıyor</string>
+    <string name="not_connected">Ağ bağlantısı yok</string>
+    <string name="json_error">JSON Hatası</string>
+    <string name="installed">Yüklü Sürüm: </string>
+    <string name="report_version">Test Edilmiş Sürüm: </string>
+    <string name="no_trackers">Uygulama henüz bilmediğimiz izleyici(ler) içerebilir.</string>
+    <string name="no_permissions">Bu uygulama herhangi bir izin gerektirmiyor.</string>
+    <string name="tested">Yüklü sürüm (%1$s) için rapor yok, gösterilen bilgiler başka bir (%2$s) sürüme dayanıyor</string>
+    <string name="analysed">Bu uygulama henüz Exodus Privacy tarafından incelenmedi.</string>
+    <string name="no_package_manager">Sisteminiz yüklü uygulamalar listesine erişime izin vermiyor gibi görünüyor.</string>
+    <string name="no_app_found">Test ettiğimiz kaynaktan (Google Play Mağazası veya F-Droid) yüklü herhangi bir uygulamanız yok gibi görünüyor.</string>
+    <string name="get_reports_connection">Uygulamalar alınıyor: Sunucu bağlantısı bekleniyor</string>
+    <string name="get_reports">Uygulamalar alınıyor</string>
+    <string name="parse_application">Uygulamalar Çözümleniyor:</string>
+    <string name="parse_trackers">İzleyiciler Çözümleniyor:</string>
+    <string name="get_trackers_connection">İzleyiciler bulunuyor: Sunucu bağlantısı bekleniyor</string>
+    <string name="get_trackers">İzleyiciler bulunuyor</string>
+    <string name="no_settings">Bu uygulamanın ayarları yok</string>
+    <string name="logo">%1 Uygulama Logosu</string>
+    <string name="created_by">Tarafından oluşturuldu</string>
+    <string name="created_date">Rapor oluşturma tarihi</string>
+    <string name="and_updated">ve güncelleme tarihi</string>
+    <string name="view_on_exodus">εxodus\'ta görüntüle ➤</string>
+    <string name="view_on_google_play">Google Play\'de görüntüle ➤</string>
+    <string name="view_on_fdroid">F-Droid\'de görüntüle ➤</string>
+    <string name="downloads">indirilenler</string>
+    <string name="code_signature_found">Uygulamada aşağıdaki izleyicilerin kod imzasını bulduk:</string>
+    <string name="code_signature_not_found">Uygulamada bildiğimiz hiçbir izleyicinin kod imzasını bulamadık.</string>
+    <string name="code_permission_found">Uygulamada aşağıdaki izinleri bulduk:</string>
+    <string name="code_permission_not_found">Bu uygulama herhangi bir izin gerektirmiyor.</string>
+    <string name="tracker_infos">Bir izleyici sizin veya kullanımlarınız hakkında veri toplamayı amaçlayan bir yazılım parçasıdır. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Daha fazla bilgi edin…</a></string>
+    <string name="permission_infos">İzinler uygulamanın telefonunuzda yapabileceği eylemlerdir. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Daha fazla bilgi edin…</a></string>
+    <string name="permission_infos_dangerous"><font color="red"><b>!</b></font> simgesi, <a href="https://developer.android'e göre bir \'Tehlikeli\' veya \'Özel\' düzeyi belirtir. .com/guide/topics/permissions/overview">Google\'ın koruma düzeyleri.</a></string>
+    <string name="tracker_web_page">İzleyici web sayfası ➤</string>
+    <string name="detection_rules">Algılama Kuralları</string>
+    <string name="code_signature">Kod algılama kuralı:</string>
+    <string name="network_signature">Ağ algılama kuralı:</string>
+    <string name="tracker_presence">Uygulamalarınızın %d kadarında mevcut</string>
+    <string name="tracker_presence_in">İçinde mevcut:</string>
+    <string name="no_app_found_tracker">Bu izleyici uygulamalarınızda mevcut değil gibi görünüyor</string>
+    <string name="source">Kaynak: %s</string>
+    <string name="refresh">Yenile</string>
+    <string name="cancel">İptal</string>
+    <string name="refresh_needed">Yenileme gerekli</string>
+    <string name="refresh_needed_message">Veriler %1$s zamanından beri güncellenmiyor.\n\nOnları yenilemek ister misiniz?</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Arama</string>
+    <string name="menu_action_filter">Filtreleme</string>
+    <string name="menu_action_settings">Uygulama Ayarları</string>
+
+    <!-- Filters -->
+    <string name="filter_by_name">İsme göre filtrele</string>
+    <string name="having_most_trackers">Çoğu izleyiciye sahip</string>
+    <string name="having_less_trackers">Daha az izleyiciye sahip</string>
+    <string name="having_most_permissions">Çoğu izne sahip</string>
+    <string name="having_less_permissions">Daha az izne sahip</string>
+    <string name="submit">Gönder</string>
+    <string name="app_not_analyzed">Uygulamayı analiz etmek ister misiniz?\n\nUygulama kimliği otomatik olarak web sitesi formuna yapıştırılacaktır. Sadece formu göndermeniz yeterli olacaktır.</string>
+    <string name="app_not_analyzed_title">Bu uygulama analiz edilmedi!</string>
+    <string name="title_apps">Uygulamalarım</string>
+    <string name="title_trackers">İzleyiciler</string>
+    <string name="title_about">Hakkında</string>
+    <string name="list_of_apps">Uygulamaların listesini görün</string>
+    <string name="apps">%1$s uygulama</string>
+    <string name="nothing_here">Şu anda görüntülenecek bir şey yok. Yenilemek için aşağı çekebilirsiniz!</string>
+
+    <!-- About Fragment -->
+    <string name="aboutExodusTitle">Exodus Hakkında - Android Uygulaması</string>
+    <string name="aboutExodusDesc">Exodus, exodus platformunu kullanarak telefonunuzda yüklü uygulamalarda hangi izleyicilerin gömülü olduğunu size bildiren bir Android uygulamasıdır. Ayrıca telefonunuzdaki herhangi bir uygulamanın gerektirdiği izinleri de size bildirir.\n\nGizliliğinizi geri almanıza yardımcı olur!</string>
+    <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Gizlilik politikamıza buradan göz atın ➤&lt;/a&gt;</string>
+
+
+</resources>
