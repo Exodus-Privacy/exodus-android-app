@@ -38,7 +38,7 @@
     <string name="code_permission_not_found">Bu uygulama herhangi bir izin gerektirmiyor.</string>
     <string name="tracker_infos">Bir izleyici sizin veya kullanımlarınız hakkında veri toplamayı amaçlayan bir yazılım parçasıdır. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Daha fazla bilgi edin…</a></string>
     <string name="permission_infos">İzinler uygulamanın telefonunuzda yapabileceği eylemlerdir. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Daha fazla bilgi edin…</a></string>
-    <string name="permission_infos_dangerous"><font color="red"><b>!</b></font> simgesi, <a href="https://developer.android'e göre bir \'Tehlikeli\' veya \'Özel\' düzeyi belirtir. .com/guide/topics/permissions/overview">Google\'ın koruma düzeyleri.</a></string>
+    <string name="permission_infos_dangerous"><font color="red"><b>!</b></font> simgesi, <a href="https://developer.android.com/guide/topics/permissions/overview">Google\'ın koruma düzeylerine göre \'Tehlikeli\' veya \'Özel\' düzeyi belirtir..</a></string>
     <string name="tracker_web_page">İzleyici web sayfası ➤</string>
     <string name="detection_rules">Algılama Kuralları</string>
     <string name="code_signature">Kod algılama kuralı:</string>
