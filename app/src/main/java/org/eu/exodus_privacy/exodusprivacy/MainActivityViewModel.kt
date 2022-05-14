@@ -104,7 +104,9 @@ class MainActivityViewModel @Inject constructor(
                 latestExodusApp.version_name,
                 if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
                 trackersList,
-                if (latestExodusApp.version_code.isNotBlank()) Source.valueOf(latestExodusApp.source.uppercase()) else Source.UNKNOWN
+                if (latestExodusApp.version_code.isNotBlank()) Source.valueOf(latestExodusApp.source.uppercase()) else Source.UNKNOWN,
+                latestExodusApp.report,
+                latestExodusApp.updated
             )
             exodusAppList.add(exodusApp)
         }

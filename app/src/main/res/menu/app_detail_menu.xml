@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/openExodusPage"
+        android:icon="@drawable/ic_open"
+        android:title="@string/open_exodus_page"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/submitApp"
+        android:icon="@drawable/ic_request"
+        android:title="@string/submit_app"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/openStore"
+        android:icon="@drawable/ic_store"
+        android:title="@string/open_store"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/openAppInfo"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/open_app_info"
+        app:showAsAction="ifRoom" />
+
+</menu>

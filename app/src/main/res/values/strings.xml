@@ -94,6 +94,10 @@
     <string name="twitter_desc">Stay updated with latest developments on Exodus Privacy project</string>
 
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Open Exodus page</string>
+    <string name="submit_app">Submit app</string>
+    <string name="open_store">Open store</string>
+    <string name="open_app_info">Open app info</string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>

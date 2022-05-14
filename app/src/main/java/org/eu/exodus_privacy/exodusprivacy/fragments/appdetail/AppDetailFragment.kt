@@ -1,8 +1,14 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail
 
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
+import android.view.MenuItem
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
@@ -13,6 +19,7 @@ import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
+import org.eu.exodus_privacy.exodusprivacy.objects.Source
 
 @AndroidEntryPoint
 class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
@@ -20,8 +27,18 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
     private var _binding: FragmentAppDetailBinding? = null
     private val binding get() = _binding!!
 
+    private val TAG = AppDetailFragment::class.java.simpleName
+
     private val args: AppDetailFragmentArgs by navArgs()
     private val viewModel: AppDetailViewModel by viewModels()
+
+    companion object {
+        private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/en/reports/"
+        private const val exodusSubmitPage =
+            "https://reports.exodus-privacy.eu.org/en/analysis/submit/#"
+        private const val fDroidPackagePage = "https://f-droid.org/en/packages/"
+        private const val playPackagePage = "https://play.google.com/store/apps/details?id="
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,6 +52,59 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
 
         viewModel.app.observe(viewLifecycleOwner) { app ->
             binding.apply {
+                toolbar.apply {
+                    inflateMenu(R.menu.app_detail_menu)
+                    if (app.exodusVersionCode == 0L) {
+                        menu.findItem(R.id.openExodusPage)?.isVisible = false
+                    } else {
+                        menu.findItem(R.id.submitApp)?.isVisible = false
+                    }
+                    setOnMenuItemClickListener {
+                        // Set appropriate CustomTabsIntent for respective menu items
+                        val customTabsIntent = CustomTabsIntent.Builder().build()
+                        when (it.itemId) {
+                            R.id.openExodusPage -> {
+                                customTabsIntent.launchUrl(
+                                    view.context,
+                                    Uri.parse(exodusReportPage + app.report)
+                                )
+                            }
+                            R.id.submitApp -> {
+                                customTabsIntent.launchUrl(
+                                    view.context,
+                                    Uri.parse(exodusSubmitPage + app.packageName)
+                                )
+                            }
+                            R.id.openStore -> {
+                                when (app.source) {
+                                    Source.FDROID -> {
+                                        customTabsIntent.launchUrl(
+                                            view.context,
+                                            Uri.parse(fDroidPackagePage + app.packageName)
+                                        )
+                                    }
+                                    else -> {
+                                        customTabsIntent.launchUrl(
+                                            view.context,
+                                            Uri.parse(playPackagePage + app.packageName)
+                                        )
+                                    }
+                                }
+                            }
+                            R.id.openAppInfo -> {
+                                val intent =
+                                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                                        data = Uri.parse("package:" + app.packageName)
+                                    }
+                                startActivity(intent)
+                            }
+                            else -> {
+                                Log.d(TAG, "Unexpected itemId: ${it.itemId}")
+                            }
+                        }
+                        true
+                    }
+                }
                 appIconIV.background = app.icon.toDrawable(view.resources)
                 appNameTV.text = app.name
                 appVersionTV.text = app.versionName

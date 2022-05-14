@@ -20,5 +20,7 @@ data class ExodusApplication(
     val exodusVersionName: String = String(),
     val exodusVersionCode: Long = 0L,
     val exodusTrackers: List<TrackerData> = emptyList(),
-    val source: Source = Source.GOOGLE
+    val source: Source = Source.GOOGLE,
+    val report: Int = 0,
+    val updated: String = String()
 )
