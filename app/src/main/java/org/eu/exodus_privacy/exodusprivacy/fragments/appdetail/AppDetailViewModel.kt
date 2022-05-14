@@ -7,6 +7,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,5 +22,14 @@ class AppDetailViewModel @Inject constructor(
         viewModelScope.launch {
             app.value = exodusDatabaseRepository.getApp(packageName)
         }
+    }
+
+    fun getFormattedReportDate(date: String): String {
+        // Generate date object in currentSDF to format
+        val currentSDF = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
+        val currentDate = currentSDF.parse(date.split("T")[0])
+        // Format it
+        val sdf = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+        return sdf.format(currentDate!!)
     }
 }

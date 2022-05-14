@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -107,7 +106,36 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                 }
                 appIconIV.background = app.icon.toDrawable(view.resources)
                 appNameTV.text = app.name
-                appVersionTV.text = app.versionName
+                when (app.exodusVersionCode) {
+                    app.versionCode, 0L -> {
+                        appVersionTV.text = getString(R.string.version, app.versionName)
+                    }
+                    else -> {
+                        appVersionTV.visibility = View.GONE
+                        appInstalledVersionTV.apply {
+                            visibility = View.VISIBLE
+                            text = getString(
+                                R.string.installed_version,
+                                getString(R.string.version, app.exodusVersionName)
+                            )
+                        }
+                        appAnalyzedVersionTV.apply {
+                            visibility = View.VISIBLE
+                            text = getString(
+                                R.string.analyzed_version,
+                                getString(R.string.version, app.versionName)
+                            )
+                        }
+                    }
+                }
+                if (app.updated.isNotBlank()) {
+                    appReportTV.text = getString(
+                        R.string.report_date,
+                        viewModel.getFormattedReportDate(app.updated)
+                    )
+                } else {
+                    appReportTV.visibility = View.GONE
+                }
                 trackersChip.apply {
                     val trackerNum = app.exodusTrackers.size
                     text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()

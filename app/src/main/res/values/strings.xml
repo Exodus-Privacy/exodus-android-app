@@ -81,7 +81,7 @@
     <string name="fetching_apps">Updating Apps Database!</string>
 
     <!-- About Fragment -->
-    <string name="version"><xliff:g id="rating">%1$s</xliff:g> <xliff:g id="rating">%2$s</xliff:g>-<xliff:g id="rating">%3$d</xliff:g></string>
+    <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
     <string name="website">Visit our website</string>
     <string name="website_desc">Find more information on the Exodus Privacy project</string>
     <string name="srcCode">Check source code</string>
@@ -98,6 +98,10 @@
     <string name="submit_app">Submit app</string>
     <string name="open_store">Open store</string>
     <string name="open_app_info">Open app info</string>
+    <string name="version">Version <xliff:g id="version">%1$s</xliff:g></string>
+    <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Installed <xliff:g id="version">%1$s</xliff:g></string>
+    <string name="analyzed_version">Analyzed <xliff:g id="version">%1$s</xliff:g></string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>

@@ -34,45 +34,27 @@
             tools:src="@drawable/ic_logo" />
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/appInfoLayout"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/appNameTV"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/appIconCV"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/appNameTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textAlignment="center"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="22sp"
-            tools:text="@string/app_name" />
-
-        <TextView
-            android:id="@+id/appVersionTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAlignment="center"
-            android:textColor="?android:textColorSecondary"
-            android:textSize="16sp"
-            tools:text="3.0.0" />
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="22sp"
+        tools:text="@string/app_name" />
 
     <LinearLayout
         android:id="@+id/chipLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appInfoLayout"
+        android:layout_below="@+id/appNameTV"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="60dp"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.chip.Chip
@@ -117,6 +99,62 @@
             tools:text="3" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/appInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chipLayout"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/appInstalledVersionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/installed_version"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:text="Installed Version 3.0.0" />
+
+        <TextView
+            android:id="@+id/appAnalyzedVersionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/analyzed_version"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:text="Analyzed Version 3.0.0" />
+
+        <TextView
+            android:id="@+id/appVersionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/version"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            tools:text="Version 3.0.0" />
+
+        <TextView
+            android:id="@+id/appReportTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/report_date"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            tools:text="Report created on April 26, 2022" />
+    </LinearLayout>
 
 </RelativeLayout>

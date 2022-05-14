@@ -32,7 +32,7 @@ class AboutFragment : PreferenceFragmentCompat() {
 
         val type = BuildConfig.BUILD_TYPE.replaceFirstChar { it.uppercase() }
         binding.appVersionTV.text =
-            getString(R.string.version, type, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
+            getString(R.string.version_info, type, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
