@@ -32,7 +32,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
     private val viewModel: AppDetailViewModel by viewModels()
 
     companion object {
-        private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/en/reports/"
+        private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/reports/"
         private const val exodusSubmitPage =
             "https://reports.exodus-privacy.eu.org/analysis/submit/#"
         private const val fDroidPackagePage = "https://f-droid.org/packages/"
