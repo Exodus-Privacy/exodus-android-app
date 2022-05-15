@@ -34,8 +34,8 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
     companion object {
         private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/en/reports/"
         private const val exodusSubmitPage =
-            "https://reports.exodus-privacy.eu.org/en/analysis/submit/#"
-        private const val fDroidPackagePage = "https://f-droid.org/en/packages/"
+            "https://reports.exodus-privacy.eu.org/analysis/submit/#"
+        private const val fDroidPackagePage = "https://f-droid.org/packages/"
         private const val playPackagePage = "https://play.google.com/store/apps/details?id="
     }
 
