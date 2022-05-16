@@ -116,14 +116,14 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                             visibility = View.VISIBLE
                             text = getString(
                                 R.string.installed_version,
-                                getString(R.string.version, app.exodusVersionName)
+                                getString(R.string.version, app.versionName)
                             )
                         }
                         appAnalyzedVersionTV.apply {
                             visibility = View.VISIBLE
                             text = getString(
                                 R.string.analyzed_version,
-                                getString(R.string.version, app.versionName)
+                                getString(R.string.version, app.exodusVersionName)
                             )
                         }
                     }

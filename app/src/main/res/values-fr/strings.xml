@@ -26,9 +26,6 @@
     <string name="created_by">Créé par</string>
     <string name="created_date">Rapport créé le</string>
     <string name="and_updated">et mis à jour le</string>
-    <string name="view_on_exodus">Voir sur εxodus ➤</string>
-    <string name="view_on_google_play">Voir sur Google Play ➤</string>
-    <string name="view_on_fdroid">Voir sur F-Droid ➤</string>
     <string name="downloads">téléchargements</string>
     <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application : </string>
     <string name="code_signature_not_found">Nous n\'avons pas trouvé la signature de pisteurs que nous connaissons dans l\'application. </string>
@@ -52,15 +49,14 @@
 
     <!-- Menu -->
     <string name="menu_action_search">Rechercher</string>
-    <string name="menu_action_filter">Filtrer</string>
-    <string name="menu_action_settings">Paramètres de l\'application</string>
+    <string name="menu_action_filter">Trier par</string>
     
     <!-- Filters -->
-    <string name="filter_by_name">Filtrer par nom</string>
-    <string name="having_most_trackers">Le plus de pisteurs</string>
-    <string name="having_less_trackers">Le moins de pisteurs</string>
-    <string name="having_most_permissions">Le plus d\'autorisations</string>
-    <string name="having_less_permissions">Le moins d\'autorisations</string>
+	<string name="sort_by_name">Nom</string>
+    <string name="sort_by_trackers">Pisteurs</string>
+    <string name="sort_by_permissions">Autorisations</string>
+    <string name="sort_by_creation_date">Date de création</string>
+	
     <string name="submit">Soumettre</string>
     <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est collé automatiquement sur le site Web. Vous n\'aurez qu\'à commencer l\'analyse.</string>
     <string name="app_not_analyzed_title">Cette app n\'a jamais été analysée!</string>
@@ -70,9 +66,42 @@
     <string name="list_of_apps">Voir la liste des applications</string>
     <string name="apps">%1$s apps</string>
     <string name="nothing_here">Rien à afficher pour le moment.\nVous pouvez glisser vers le bas pour actualiser!</string>
+	
+	    <!-- Apps Fragment -->
+    <string name="app_version"><xliff:g id="rating">%1$s</xliff:g></string>
+    <string name="app_trackers"><xliff:g id="rating">%1$d</xliff:g></string>
+    <string name="app_perms"><xliff:g id="rating">%1$d</xliff:g></string>
+    <string name="not_available">N/A</string>
+    <string name="fetching_trackers">Mise à jour des pisteurs</string>
+    <string name="fetching_apps">Mise à jour des rapports</string>
+	
+	    <!-- About Fragment -->
+    <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
+    <string name="website">Visiter notre site Web</string>
+    <string name="website_desc">Trouver plus d\'informations sur Exodus Privacy</string>
+    <string name="srcCode">Voir notre code source</string>
+    <string name="srcCode_desc">Report issues, star, contribute PRs or just check the code</string>
+    <string name="privPolicy">Politique de confidentialité</string>
+    <string name="privPolicy_desc">Comprendre comment nous utilisons vos données</string>
+    <string name="email">Contacter Exodus Privacy</string>
+    <string name="email_desc">Contacter nous par email</string>
+    <string name="twitter">Nous suivre sur Twitter</string>
+    <string name="twitter_desc">Rester informé sur Exodus Privacy</string>
+	
+	 <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Voir sur Exodus</string>
+    <string name="submit_app">Soumettre l\'application</string>
+    <string name="open_store">Ouvrir le magasin d\'applications</string>
+    <string name="open_app_info">Ouvrir les paramètres</string>
+    <string name="version">Version <xliff:g id="version">%1$s</xliff:g></string>
+    <string name="report_date">Rapport créé le <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Installée <xliff:g id="version">%1$s</xliff:g></string>
+    <string name="analyzed_version">Analysée <xliff:g id="version">%1$s</xliff:g></string>
 
-    <!-- About Fragment -->
-    <string name="aboutExodusTitle">À propos d\'Exodus - Application Android</string>
-    <string name="aboutExodusDesc">Exodus est une application Android qui vous permet de savoir quels pisteurs sont présents dans les applications installées sur votre smartphone en utilisant la plateforme exodus. Elle vous permet aussi de connaitre les autorisations requises par les applications présentes sur votre smartphone.\n\nElle vous aide à protéger votre vie privée!</string>
-    <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Voir notre politique de confidentialité ici ➤&lt;/a&gt;</string>
+    <!-- Dialog Fragment -->
+    <string name="accept">Accepter</string>
+    <string name="reject">Refuser</string>
+    <string name="warning_title">Autoriser vous Exodus à transmettre des données nécessaires</string>
+    <string name="warning_desc">In order to run, this Application MUST collect and send data to Exodus Privacy servers which includes the list of applications installed on this device for tracker analysis. It doesn\'t contains any personal information.</string>
+
 </resources>
