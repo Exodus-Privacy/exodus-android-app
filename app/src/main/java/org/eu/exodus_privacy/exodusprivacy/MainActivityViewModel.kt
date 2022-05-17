@@ -13,7 +13,6 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
-import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.eu.exodus_privacy.exodusprivacy.objects.Status
 import org.eu.exodus_privacy.exodusprivacy.utils.DataStoreModule
 import javax.inject.Inject
@@ -104,7 +103,7 @@ class MainActivityViewModel @Inject constructor(
                 latestExodusApp.version_name,
                 if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
                 trackersList,
-                if (latestExodusApp.version_code.isNotBlank()) Source.valueOf(latestExodusApp.source.uppercase()) else Source.UNKNOWN,
+                app.source,
                 latestExodusApp.report,
                 latestExodusApp.updated
             )

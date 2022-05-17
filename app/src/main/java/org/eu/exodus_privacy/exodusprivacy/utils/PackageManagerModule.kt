@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
 import dagger.Module
@@ -12,11 +13,16 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
+import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object PackageManagerModule {
+
+    private const val GOOGLE_PLAY_STORE = "com.android.vending"
+    private const val AMAZON_APP_STORE = "com.amazon.venezia"
+    private const val FDROID = "org.fdroid.fdroid"
 
     @Singleton
     @Provides
@@ -35,13 +41,29 @@ object PackageManagerModule {
                     it.applicationInfo.loadIcon(packageManager).toBitmap(),
                     it.versionName,
                     PackageInfoCompat.getLongVersionCode(it),
-                    appPerms
+                    appPerms,
+                    getAppStore(it.packageName, packageManager)
                 )
                 applicationList.add(app)
             }
         }
         applicationList.sortBy { it.name }
         return applicationList
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getAppStore(packageName: String, packageManager: PackageManager): Source {
+        val appStore = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            packageManager.getInstallSourceInfo(packageName).installingPackageName
+        } else {
+            packageManager.getInstallerPackageName(packageName)
+        }
+        return when (appStore) {
+            GOOGLE_PLAY_STORE -> Source.GOOGLE
+            AMAZON_APP_STORE -> Source.AMAZON
+            FDROID -> Source.FDROID
+            else -> Source.UNKNOWN
+        }
     }
 
     private fun validPackage(packageName: String, packageManager: PackageManager): Boolean {
