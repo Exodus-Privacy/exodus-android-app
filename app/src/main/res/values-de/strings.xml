@@ -35,8 +35,6 @@
     <string name="code_signature_not_found">Wir haben keine Code-Signatur irgendeines Trackers in der App gefunden.</string>
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>
     <string name="code_permission_not_found">Diese App erfordert keine Berechtigungen.</string>
-    <string name="permission_infos">Berechtigungen sind Aktionen, die die Anwendung auf Ihrem Telefon ausführen kann. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Mehr erfahren…</a></string>
-    <string name="permission_infos_dangerous">Das Symbol <font color="red"><b>!</b></font> zeigt eine \'Gefährliche\' oder \'Spezial\' Stufe nach <a href="https://developer.android.com/guide/topics/permissions/overview">Googles Schutzstufen an.</a></string>
     <string name="tracker_web_page">Tracker-Webseite ➤</string>
     <string name="detection_rules">Erkennungsregeln</string>
     <string name="code_signature">Code-Erkennungsregel:</string>

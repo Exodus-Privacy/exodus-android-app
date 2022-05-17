@@ -35,8 +35,6 @@
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
-    <string name="permission_infos">Разрешения — это действия, которые приложение сможет выполнять на вашем устройстве. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Подробнее…</a></string>
-    <string name="permission_infos_dangerous">Значок <font color="red"><b>!</b></font> обозначает уровень угрозы «Опасность» или «Особый» в соответствии с <a href="https://developer.android.com/guide/topics/permissions/overview">уровнем защиты Google</a>.</string>
     <string name="tracker_web_page">Сайт трекера ➤</string>
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>

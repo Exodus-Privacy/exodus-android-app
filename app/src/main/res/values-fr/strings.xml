@@ -31,8 +31,6 @@
     <string name="code_signature_not_found">Nous n\'avons pas trouvé la signature de pisteurs que nous connaissons dans l\'application. </string>
     <string name="code_permission_found">Nous avons trouvé les autorisations suivantes dans cette application:</string>
     <string name="code_permission_not_found">Cette application ne demande aucune autorisation.</string>
-    <string name="permission_infos">Les autorisations sont les actions que l\'application peut effectuer sur votre téléphone. <a href="https://reports.exodus-privacy.eu.org/fr/info/permissions/">En savoir plus…</a></string>
-    <string name="permission_infos_dangerous">L\'icône <font color="red"><b>!</b></font> indique un niveau \'Dangereux\' ou \'Spécial\' d\'après les <a href="https://developer.android.com/guide/topics/permissions/overview">niveaux de protection de Google.</a></string>
     <string name="tracker_web_page">Page web du pisteur ➤</string>
     <string name="detection_rules">Règles de détection</string>
     <string name="code_signature">Règle de détection(code):</string>

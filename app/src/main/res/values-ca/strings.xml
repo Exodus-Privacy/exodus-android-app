@@ -35,8 +35,6 @@
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
     <string name="code_permission_found">Hem trobat els permisos següents a l\'aplicació:</string>
     <string name="code_permission_not_found">Aquesta aplicació no requereix cap permís.</string>
-    <string name="permission_infos">Els permisos són accions que l\'aplicació pot fer al telèfon. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Més informació…</a></string>
-    <string name="permission_infos_dangerous">La icona <font color="red"><b>!</b></font> indica nivell «perillós» o «especial» segons  <a href="https://developer.android.com/guide/topics/permissions/overview">els nivells de protecció de Google.</a></string>
     <string name="tracker_web_page">Pàgina web del rastrejador ➤</string>
     <string name="detection_rules">Regles de detecció</string>
     <string name="code_signature">Regla de detecció de codi:</string>

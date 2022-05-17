@@ -34,8 +34,6 @@
     <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>
     <string name="code_permission_found">Nós encontramos as seguintes permissões neste aplicativo:</string>
     <string name="code_permission_not_found">Este aplicativo não requer nenhuma permissão.</string>
-    <string name="permission_infos">Permissões são ações que o aplicativo pode fazer no seu celular. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Aprenda mais…</a></string>
-    <string name="permission_infos_dangerous">O ícone <font color="red"><b>!</b></font> indica um level \'Perigoso\' ou \'Especial\' de acordo com os <a href="https://developer.android.com/guide/topics/permissions/overview">leveis de proteção do Google.</a></string>
     <string name="tracker_web_page">Página web do rastreador</string>
     <string name="detection_rules">Regras de detecção</string>
     <string name="code_signature">Regra de detecção do código:</string>
