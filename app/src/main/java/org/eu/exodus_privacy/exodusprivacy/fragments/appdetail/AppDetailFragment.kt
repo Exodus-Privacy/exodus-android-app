@@ -32,10 +32,10 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
     private val viewModel: AppDetailViewModel by viewModels()
 
     companion object {
-        private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/en/reports/"
+        private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/reports/"
         private const val exodusSubmitPage =
-            "https://reports.exodus-privacy.eu.org/en/analysis/submit/#"
-        private const val fDroidPackagePage = "https://f-droid.org/en/packages/"
+            "https://reports.exodus-privacy.eu.org/analysis/submit/#"
+        private const val fDroidPackagePage = "https://f-droid.org/packages/"
         private const val playPackagePage = "https://play.google.com/store/apps/details?id="
     }
 
@@ -117,13 +117,13 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         appIVTV.visibility = View.VISIBLE
                         appInstalledVersionTV.apply {
                             visibility = View.VISIBLE
-                            text = app.exodusVersionName
+                            text = app.versionName
                         }
 
                         appAVTV.visibility = View.VISIBLE
                         appAnalyzedVersionTV.apply {
                             visibility = View.VISIBLE
-                            text = app.versionName
+                            text = app.exodusVersionName
                         }
                     }
                 }

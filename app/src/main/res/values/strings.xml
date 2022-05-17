@@ -28,9 +28,6 @@
     <string name="created_by">Created By</string>
     <string name="created_date">Report created on</string>
     <string name="and_updated">and updated on</string>
-    <string name="view_on_exodus">See on εxodus ➤</string>
-    <string name="view_on_google_play">See on Google Play ➤</string>
-    <string name="view_on_fdroid">See on F-Droid ➤</string>
     <string name="downloads">downloads</string>
     <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
     <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
@@ -53,15 +50,14 @@
     <string name="refresh_needed_message">Data have not been update since %1$s.\n\nWould you like to refresh them?</string>
     <!-- Menu -->
     <string name="menu_action_search">Search</string>
-    <string name="menu_action_filter">Filter</string>
-    <string name="menu_action_settings">Application Settings</string>
+    <string name="menu_action_filter">Sort by</string>
 
     <!-- Filters -->
-    <string name="filter_by_name">Filter by name</string>
-    <string name="having_most_trackers">Having most trackers</string>
-    <string name="having_less_trackers">Having less trackers</string>
-    <string name="having_most_permissions">Having most permissions</string>
-    <string name="having_less_permissions">Having less permissions</string>
+	<string name="sort_by_name">Name</string>
+    <string name="sort_by_trackers">Trackers</string>
+    <string name="sort_by_permissions">Permissions</string>
+    <string name="sort_by_creation_date">Creation date</string>
+
     <string name="submit">Submit</string>
     <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically pasted to the website form. You will only need to submit the form.</string>
     <string name="app_not_analyzed_title">This app has not been analyzed!</string>
@@ -78,7 +74,7 @@
     <string name="app_perms"><xliff:g id="rating">%1$d</xliff:g></string>
     <string name="not_available">N/A</string>
     <string name="fetching_trackers">Updating Trackers Database!</string>
-    <string name="fetching_apps">Updating Apps Database!</string>
+    <string name="fetching_apps">Updating reports Database!</string>
 
     <!-- About Fragment -->
     <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
@@ -94,10 +90,10 @@
     <string name="twitter_desc">Stay updated with latest developments on Exodus Privacy project</string>
 
     <!-- AppDetail Fragment -->
-    <string name="open_exodus_page">Open Exodus page</string>
+    <string name="open_exodus_page">Open on Exodus</string>
     <string name="submit_app">Submit app</string>
     <string name="open_store">Open store</string>
-    <string name="open_app_info">Open app info</string>
+    <string name="open_app_info">Open settings</string>
     <string name="version">Version</string>
     <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Installed Version</string>
