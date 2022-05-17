@@ -54,6 +54,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
         viewModel.app.observe(viewLifecycleOwner) { app ->
             binding.apply {
                 toolbar.apply {
+                    menu.clear()
                     inflateMenu(R.menu.app_detail_menu)
                     if (app.exodusVersionCode == 0L) {
                         menu.findItem(R.id.openExodusPage)?.isVisible = false
