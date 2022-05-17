@@ -110,19 +110,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/appInstalledVersionTV"
+            android:id="@+id/appIVTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/installed_version"
             android:textColor="?android:textColorPrimary"
-            android:textSize="16sp"
-            android:visibility="gone"
-            tools:text="Installed Version 3.0.0" />
+            android:textSize="15sp"
+            android:visibility="gone" />
 
         <TextView
-            android:id="@+id/appAnalyzedVersionTV"
+            android:id="@+id/appInstalledVersionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingHorizontal="5dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="17sp"
+            android:visibility="gone"
+            tools:text="3.0.0" />
+
+        <TextView
+            android:id="@+id/appAVTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -130,9 +141,30 @@
             android:maxLines="1"
             android:text="@string/analyzed_version"
             android:textColor="?android:textColorPrimary"
-            android:textSize="16sp"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/appAnalyzedVersionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingHorizontal="5dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="17sp"
             android:visibility="gone"
-            tools:text="Analyzed Version 3.0.0" />
+            tools:text="2.9.0" />
+
+        <TextView
+            android:id="@+id/appVTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/version"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/appVersionTV"
@@ -140,10 +172,10 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/version"
+            android:paddingHorizontal="5dp"
             android:textColor="?android:textColorPrimary"
-            android:textSize="16sp"
-            tools:text="Version 3.0.0" />
+            android:textSize="17sp"
+            tools:text="3.0.0" />
 
         <TextView
             android:id="@+id/appReportTV"
@@ -154,7 +186,7 @@
             android:maxLines="1"
             android:text="@string/report_date"
             android:textColor="?android:textColorPrimary"
-            android:textSize="16sp"
+            android:textSize="15sp"
             tools:text="Report created on April 26, 2022" />
     </LinearLayout>
 

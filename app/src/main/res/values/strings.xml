@@ -98,10 +98,10 @@
     <string name="submit_app">Submit app</string>
     <string name="open_store">Open store</string>
     <string name="open_app_info">Open app info</string>
-    <string name="version">Version <xliff:g id="version">%1$s</xliff:g></string>
+    <string name="version">Version</string>
     <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="installed_version">Installed <xliff:g id="version">%1$s</xliff:g></string>
-    <string name="analyzed_version">Analyzed <xliff:g id="version">%1$s</xliff:g></string>
+    <string name="installed_version">Installed Version</string>
+    <string name="analyzed_version">Analyzed Version</string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>

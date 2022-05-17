@@ -108,23 +108,22 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                 appNameTV.text = app.name
                 when (app.exodusVersionCode) {
                     app.versionCode, 0L -> {
-                        appVersionTV.text = getString(R.string.version, app.versionName)
+                        appVersionTV.text = app.versionName
                     }
                     else -> {
+                        appVTV.visibility = View.GONE
                         appVersionTV.visibility = View.GONE
+
+                        appIVTV.visibility = View.VISIBLE
                         appInstalledVersionTV.apply {
                             visibility = View.VISIBLE
-                            text = getString(
-                                R.string.installed_version,
-                                getString(R.string.version, app.exodusVersionName)
-                            )
+                            text = app.exodusVersionName
                         }
+
+                        appAVTV.visibility = View.VISIBLE
                         appAnalyzedVersionTV.apply {
                             visibility = View.VISIBLE
-                            text = getString(
-                                R.string.analyzed_version,
-                                getString(R.string.version, app.versionName)
-                            )
+                            text = app.versionName
                         }
                     }
                 }
