@@ -11,7 +11,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
@@ -31,7 +31,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
     private val TAG = AppDetailFragment::class.java.simpleName
 
     private val args: AppDetailFragmentArgs by navArgs()
-    private val viewModel: AppDetailViewModel by activityViewModels()
+    private val viewModel: AppDetailViewModel by viewModels()
 
     companion object {
         private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/reports/"
@@ -54,7 +54,6 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
         viewModel.app.observe(viewLifecycleOwner) { app ->
             binding.apply {
                 toolbar.apply {
-                    menu.clear()
                     inflateMenu(R.menu.app_detail_menu)
                     if (app.exodusVersionCode == 0L) {
                         menu.findItem(R.id.openExodusPage)?.isVisible = false

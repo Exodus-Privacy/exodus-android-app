@@ -7,7 +7,7 @@ import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -25,7 +25,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
     private var _binding: FragmentADTrackersBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: AppDetailViewModel by activityViewModels()
+    private val viewModel: AppDetailViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
