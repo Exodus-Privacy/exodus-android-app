@@ -35,7 +35,6 @@
     <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
     <string name="code_permission_found">Βρήκαμε τα ακόλουθα δικαιώματα στην εφαρμογή:</string>
     <string name="code_permission_not_found">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
-    <string name="tracker_infos">Το tracker είναι ένα λογισμικό που προορίζεται για να συλλέγει δεδομένα για εσάς, ή για τις ενέργειες που κάνετε. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Μάθετε περισσότερα…</a></string>
     <string name="permission_infos">Οι άδειες, είναι οι ενέργειες που μπορεί εκτελέσει μια εφαρμογή στο τηλέφωνό σας. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Μάθετε περισσότερα…</a></string>
     <string name="permission_infos_dangerous">Το εικονίδιο <font color="red"><b>!</b></font> υποδεικνύει ένα «Επικίνδυνο» ή «Ειδικό» επίπεδο, σύμφωνα με τα <a href="https://developer.android.com/guide/topics/permissions/overview">Επίπεδα προστασίας της Google.</a></string>
     <string name="tracker_web_page">Ιστοσελίδα του Tracker ➤</string>

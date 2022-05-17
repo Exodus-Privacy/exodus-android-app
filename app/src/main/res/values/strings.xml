@@ -14,7 +14,6 @@
     <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
     <string name="no_permissions">This application doesn\'t require any permissions.</string>
     <string name="tested">There\'s no report for the installed version (%1$s), the information displayed is based on another (%2$s) version</string>
-    <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
     <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
     <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
     <string name="get_reports_connection">Getting applications: Waiting for server connection</string>
@@ -29,11 +28,8 @@
     <string name="created_date">Report created on</string>
     <string name="and_updated">and updated on</string>
     <string name="downloads">downloads</string>
-    <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
-    <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
     <string name="code_permission_found">We have found the following permissions in the application:</string>
     <string name="code_permission_not_found">This application doesn\'t require any permissions.</string>
-    <string name="tracker_infos">A tracker is a piece of software meant to collect data about you or your usages. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Learn more…</a></string>
     <string name="permission_infos">Permissions are actions the application can do on your phone. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Learn more…</a></string>
     <string name="permission_infos_dangerous">The icon <font color="red"><b>!</b></font> indicates a \'Dangerous\' or \'Special\' level according to <a href="https://developer.android.com/guide/topics/permissions/overview">Google\'s protection levels.</a></string>
     <string name="tracker_web_page">Tracker web page ➤</string>
@@ -98,6 +94,13 @@
     <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Installed Version</string>
     <string name="analyzed_version">Analyzed Version</string>
+    <string name="learn_more">Learn more…</string>
+
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
+    <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
+    <string name="tracker_info">A tracker is a piece of software meant to collect data about you or your usages.</string>
+    <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>

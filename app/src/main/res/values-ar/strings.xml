@@ -35,7 +35,6 @@
     <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
     <string name="code_permission_found">لقد وجدنا التصريحات التالية في التطبيق:</string>
     <string name="code_permission_not_found">هذا التطبيق لا يطلب صلاحيات.</string>
-    <string name="tracker_infos">المتعقب هو جزء من برنامج يهدف إلى جمع البيانات عنك أو عن استخداماتك. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">تعرف على المزيد…</a></string>
     <string name="permission_infos">التصريحات هي إجراءات يمكن أن يقوم بها التطبيق على هاتفك. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">اعرف المزيد…</a></string>
     <string name="permission_infos_dangerous">تشير الأيقونة <font color="red"><b>!</b></font> إلى درجات \'خطير\' أو \'خاص\' حسب تصنيف <a href="https://developer.android.com/guide/topics/permissions/overview">درجات الأمان لدى غوغل.</a></string>
     <string name="tracker_web_page">صفحة الويب للمتعقب ←</string>
