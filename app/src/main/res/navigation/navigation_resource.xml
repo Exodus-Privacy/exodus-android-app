@@ -33,4 +33,14 @@
             android:name="packageName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/ADPermissionsFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADPermissionsFragment"
+        android:label="fragment_a_d_permissions"
+        tools:layout="@layout/fragment_a_d_permissions" />
+    <fragment
+        android:id="@+id/ADTrackersFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment"
+        android:label="fragment_a_d_trackers"
+        tools:layout="@layout/fragment_a_d_trackers" />
 </navigation>

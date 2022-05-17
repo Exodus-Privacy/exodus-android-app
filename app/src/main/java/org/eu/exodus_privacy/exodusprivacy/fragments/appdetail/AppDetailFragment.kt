@@ -15,9 +15,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
+import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 
 @AndroidEntryPoint
@@ -151,6 +153,25 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     else -> ContextCompat.getDrawable(view.context, R.drawable.ic_mismatch)
                 }
                 sourceChip.text = app.source.name.lowercase().replaceFirstChar { it.uppercase() }
+
+                // Setup ViewPager for trackers and permissions fragment
+                viewPager.adapter = AppDetailVPAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                    when (position) {
+                        0 -> {
+                            tab.apply {
+                                text = getString(R.string.trackers)
+                                icon = ContextCompat.getDrawable(view.context, R.drawable.ic_tracker)
+                            }
+                        }
+                        1 -> {
+                            tab.apply {
+                                text = getString(R.string.permissions)
+                                icon = ContextCompat.getDrawable(view.context, R.drawable.ic_permission)
+                            }
+                        }
+                    }
+                }.attach()
             }
         }
     }

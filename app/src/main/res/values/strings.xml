@@ -53,7 +53,7 @@
     <string name="menu_action_filter">Sort by</string>
 
     <!-- Filters -->
-	<string name="sort_by_name">Name</string>
+    <string name="sort_by_name">Name</string>
     <string name="sort_by_trackers">Trackers</string>
     <string name="sort_by_permissions">Permissions</string>
     <string name="sort_by_creation_date">Creation date</string>

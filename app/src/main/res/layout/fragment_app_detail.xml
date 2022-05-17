@@ -190,4 +190,18 @@
             tools:text="Report created on April 26, 2022" />
     </LinearLayout>
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appInfoLayout"
+        app:tabIndicatorFullWidth="true"
+        app:tabInlineLabel="true" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabLayout" />
+
 </RelativeLayout>
