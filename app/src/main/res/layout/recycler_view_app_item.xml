@@ -75,15 +75,6 @@
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/versionChip"
-            style="@style/Theme.Exodus.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:chipIcon="@drawable/ic_match"
-            app:textEndPadding="0dp"
-            app:textStartPadding="0dp" />
-
-        <com.google.android.material.chip.Chip
             android:id="@+id/trackersChip"
             style="@style/Theme.Exodus.Chip"
             android:layout_width="wrap_content"
@@ -105,6 +96,15 @@
             app:chipIconTint="@color/colorPrimary"
             tools:chipBackgroundColor="@color/colorYellow"
             tools:text="3" />
+			
+		<com.google.android.material.chip.Chip
+            android:id="@+id/versionChip"
+            style="@style/Theme.Exodus.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipIcon="@drawable/ic_match"
+            app:textEndPadding="0dp"
+            app:textStartPadding="0dp" />
     </LinearLayout>
 
 </RelativeLayout>

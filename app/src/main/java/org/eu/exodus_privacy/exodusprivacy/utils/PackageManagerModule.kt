@@ -21,8 +21,9 @@ import javax.inject.Singleton
 object PackageManagerModule {
 
     private const val GOOGLE_PLAY_STORE = "com.android.vending"
-    private const val AMAZON_APP_STORE = "com.amazon.venezia"
+    private const val AURORA_STORE = "com.aurora.store"
     private const val FDROID = "org.fdroid.fdroid"
+	private const val USER_INSTALL = "com.google.android.packageinstaller"
 
     @Singleton
     @Provides
@@ -60,8 +61,9 @@ object PackageManagerModule {
         }
         return when (appStore) {
             GOOGLE_PLAY_STORE -> Source.GOOGLE
-            AMAZON_APP_STORE -> Source.AMAZON
+            AURORA_STORE -> Source.GOOGLE
             FDROID -> Source.FDROID
+			USER_INSTALL -> Source.USER
             else -> Source.UNKNOWN
         }
     }

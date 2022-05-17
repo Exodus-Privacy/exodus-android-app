@@ -7,12 +7,8 @@
     <string name="network_error">Réseau indisponible</string>
     <string name="not_connected">Aucune connexion Internet</string>
     <string name="json_error">Erreur JSON</string>
-    <string name="installed">Version installée : </string>
-    <string name="report_version">Version testée : </string>
     <string name="no_trackers">L\'application pourrait contenir un ou plusieurs pisteurs que nous n\'avons pas encore identifiés.</string>
-    <string name="no_permissions">Cette application ne demande aucun autorisation.</string>
     <string name="tested">Il n\'y a pas de rapport pour la version installée (%1$s), les informations affichées sont basées sur une autre version (%2$s)</string>
-    <string name="analysed">Cette application n\'a pas encore été analysée par Exodus Privacy.</string>
     <string name="no_package_manager">Votre système semble ne pas donner accès aux applications installées.</string>
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="get_reports_connection">Récupération des applications : en attente de connexion au serveur</string>
@@ -23,14 +19,8 @@
     <string name="get_trackers">Récupération des pisteurs</string>
     <string name="no_settings">Cette app n\'a pas de paramètre</string>
     <string name="logo">Logo de l\'application %1</string>
-    <string name="created_by">Créé par</string>
     <string name="created_date">Rapport créé le</string>
     <string name="and_updated">et mis à jour le</string>
-    <string name="downloads">téléchargements</string>
-    <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application : </string>
-    <string name="code_signature_not_found">Nous n\'avons pas trouvé la signature de pisteurs que nous connaissons dans l\'application. </string>
-    <string name="code_permission_found">Nous avons trouvé les autorisations suivantes dans cette application:</string>
-    <string name="code_permission_not_found">Cette application ne demande aucune autorisation.</string>
     <string name="tracker_web_page">Page web du pisteur ➤</string>
     <string name="detection_rules">Règles de détection</string>
     <string name="code_signature">Règle de détection(code):</string>
@@ -76,29 +66,41 @@
     <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
     <string name="website">Visiter notre site Web</string>
     <string name="website_desc">Trouver plus d\'informations sur Exodus Privacy</string>
-    <string name="srcCode">Voir notre code source</string>
+    <string name="srcCode">Code source</string>
     <string name="srcCode_desc">Report issues, star, contribute PRs or just check the code</string>
     <string name="privPolicy">Politique de confidentialité</string>
-    <string name="privPolicy_desc">Comprendre comment nous utilisons vos données</string>
+    <string name="privPolicy_desc">Comment nous utilisons vos données</string>
     <string name="email">Contacter Exodus Privacy</string>
     <string name="email_desc">Contacter nous par email</string>
     <string name="twitter">Nous suivre sur Twitter</string>
-    <string name="twitter_desc">Rester informé sur Exodus Privacy</string>
+    <string name="twitter_desc">Rester informé sur notre actualité</string>
 	
 	 <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Voir sur Exodus</string>
     <string name="submit_app">Soumettre l\'application</string>
     <string name="open_store">Ouvrir le magasin d\'applications</string>
-    <string name="open_app_info">Ouvrir les paramètres</string>
+    <string name="open_app_info">Paramètres</string>
     <string name="version">Version</string>
     <string name="report_date">Rapport créé le <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="installed_version">Installée Version</string>
-    <string name="analyzed_version">Analysée Version</string>
+    <string name="installed_version">Version installée</string>
+    <string name="analyzed_version">Version analysée</string>
+
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application:</string>
+    <string name="code_signature_not_found">Nous n\'avons pas trouvé la signature de pisteurs que nous connaissons dans l\'application.</string>
+    <string name="tracker_info">Un pisteur est une partie du logiciel dédiée à la collecte de données sur vous et vos usages.</string>
+    <string name="analysed">Cette application n\'a pas encore été analysée par Exodus Privacy.</string>
+
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Nous avons trouvé les autorisations suivantes dans cette application:</string>
+    <string name="code_permission_not_found">Cette application ne demande aucune autorisation.</string>
+    <string name="permission_info">Les permissions sont les actions que l’application peut effectuer sur votre téléphone.</string>
+    <string name="permission_info_dangerous">L\'icône <font color="red"><b>!</b></font> indique un niveau \'Dangereux\' ou \'Spécial\' d\'après les niveaux de protection de Google.</string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accepter</string>
     <string name="reject">Refuser</string>
-    <string name="warning_title">Autoriser vous Exodus à transmettre des données nécessaires</string>
+    <string name="warning_title">Autoriser Exodus à transmettre des données ?</string>
     <string name="warning_desc">In order to run, this Application MUST collect and send data to Exodus Privacy servers which includes the list of applications installed on this device for tracker analysis. It doesn\'t contains any personal information.</string>
 
 </resources>
