@@ -84,6 +84,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.toolbarApps.setOnMenuItemClickListener(null)
         _binding = null
     }
 }

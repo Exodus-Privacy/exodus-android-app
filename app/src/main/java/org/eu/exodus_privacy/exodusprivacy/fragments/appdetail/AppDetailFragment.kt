@@ -178,6 +178,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.toolbarAD.setOnMenuItemClickListener(null)
         _binding = null
     }
 
