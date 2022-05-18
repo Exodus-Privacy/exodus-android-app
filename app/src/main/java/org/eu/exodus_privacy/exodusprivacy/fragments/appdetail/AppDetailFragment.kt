@@ -155,7 +155,10 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                 sourceChip.text = app.source.name.lowercase().replaceFirstChar { it.uppercase() }
 
                 // Setup ViewPager for trackers and permissions fragment
-                viewPager.adapter = AppDetailVPAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
+                viewPager.apply {
+                    adapter = AppDetailVPAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
+                    isUserInputEnabled = false
+                }
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     when (position) {
                         0 -> {

@@ -63,9 +63,9 @@
         android:id="@+id/trackersLearnTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
         android:layout_below="@+id/trackersInfoTV"
         android:text="@string/learn_more"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 
 </RelativeLayout>

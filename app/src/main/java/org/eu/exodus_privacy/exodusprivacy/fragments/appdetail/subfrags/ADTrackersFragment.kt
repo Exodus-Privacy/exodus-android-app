@@ -8,11 +8,13 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADTrackersBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
+import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADTrackersRVAdapter
 
 @AndroidEntryPoint
 class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
@@ -39,6 +41,16 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                         trackersStatusTV.text = getString(R.string.analysed)
                     }
                 } else {
+                    val adTrackersRVAdapter = ADTrackersRVAdapter()
+                    trackersRV.apply {
+                        adapter = adTrackersRVAdapter
+                        layoutManager = object : LinearLayoutManager(view.context) {
+                            override fun canScrollVertically(): Boolean {
+                                return false
+                            }
+                        }
+                    }
+                    adTrackersRVAdapter.submitList(app.exodusTrackers)
                     trackersStatusTV.text = getString(R.string.code_signature_found)
                 }
                 trackersChip.apply {
