@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - master
+      - '*'
     tags:
       - v*
   pull_request:
@@ -14,15 +14,15 @@ on:
       -'README.md'
   workflow_dispatch:
 jobs:
-  build:
+  debug:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Generate debug build
         run: ./gradlew assembleDebug
-      - name: Run tests
-        run: ./gradlew test
+      - name: Run Kotlin Linter
+        run: ./gradlew app:ktlintCheck --info
       - name: Execute exodus-standalone
         uses: docker://exodusprivacy/exodus-standalone:v1.3.1
         with:
