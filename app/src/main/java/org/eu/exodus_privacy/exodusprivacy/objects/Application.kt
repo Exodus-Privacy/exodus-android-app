@@ -11,6 +11,6 @@ data class Application(
     val icon: Bitmap = ColorDrawable(Color.TRANSPARENT).toBitmap(),
     val versionName: String = String(),
     val versionCode: Long = 0L,
-    val permissions: List<String> = emptyList(),
+    val permissions: List<Permission> = emptyList(),
     val source: Source = Source.UNKNOWN
 )

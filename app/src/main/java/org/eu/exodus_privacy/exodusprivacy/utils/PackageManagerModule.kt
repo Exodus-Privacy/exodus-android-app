@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.content.pm.PermissionInfo
 import android.os.Build
+import android.util.Log
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
 import dagger.Module
@@ -13,6 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
+import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import javax.inject.Singleton
 
@@ -25,6 +28,8 @@ object PackageManagerModule {
     private const val FDROID = "org.fdroid.fdroid"
     private const val USER_INSTALL = "com.google.android.packageinstaller"
 
+    private val TAG = PackageManagerModule::class.java.simpleName
+
     @Singleton
     @Provides
     @SuppressLint("QueryPermissionsNeeded")
@@ -36,13 +41,14 @@ object PackageManagerModule {
         packageList.forEach {
             if (validPackage(it.packageName, packageManager)) {
                 val appPerms = it.requestedPermissions?.toList() ?: emptyList()
+                val permsList = getPermissionList(appPerms.toMutableList(), packageManager)
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
                     it.applicationInfo.loadIcon(packageManager).toBitmap(),
                     it.versionName,
                     PackageInfoCompat.getLongVersionCode(it),
-                    appPerms,
+                    permsList,
                     getAppStore(it.packageName, packageManager)
                 )
                 applicationList.add(app)
@@ -73,5 +79,49 @@ object PackageManagerModule {
         return appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
             appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
             packageManager.getLaunchIntentForPackage(packageName) != null
+    }
+
+    private fun getPermissionList(
+        permissionList: MutableList<String>,
+        packageManager: PackageManager
+    ): List<Permission> {
+        val androidPerm = "android.permission."
+        // Filter list to only keep platform permissions
+        val filteredList = permissionList.filter {
+            it.startsWith(androidPerm)
+        }
+
+        // Remove prefix as we only have platform permissions remaining
+        val list = filteredList.map {
+            it.replace("[^>]*permission\\.".toRegex(), "")
+        }
+
+        val permsList = mutableListOf<Permission>()
+        list.forEach {
+            var permInfo: PermissionInfo? = null
+            try {
+                permInfo = packageManager.getPermissionInfo(
+                    "$androidPerm$it",
+                    PackageManager.GET_META_DATA
+                )
+            } catch (exception: PackageManager.NameNotFoundException) {
+                Log.d(TAG, "Unable to find info about $it")
+            }
+
+            val label = permInfo?.loadLabel(packageManager).toString()
+            val desc = permInfo?.loadDescription(packageManager).toString()
+
+            // Labels and desc can be null for undocumented permissions, filter them out
+            if (!label.startsWith(androidPerm) && desc != "null") {
+                permsList.add(
+                    Permission(
+                        it,
+                        permInfo?.loadLabel(packageManager).toString(),
+                        permInfo?.loadDescription(packageManager).toString(),
+                    )
+                )
+            }
+        }
+        return permsList
     }
 }

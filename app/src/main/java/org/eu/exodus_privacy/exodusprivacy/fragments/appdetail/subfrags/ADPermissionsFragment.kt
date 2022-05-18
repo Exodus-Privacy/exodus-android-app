@@ -8,11 +8,13 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADPermissionsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
+import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADPermissionsRVAdapter
 
 @AndroidEntryPoint
 class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
@@ -38,6 +40,16 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                 if (app.permissions.isEmpty()) {
                     permissionsRV.visibility = View.GONE
                 } else {
+                    val adPermissionsRVAdapter = ADPermissionsRVAdapter()
+                    permissionsRV.apply {
+                        adapter = adPermissionsRVAdapter
+                        layoutManager = object : LinearLayoutManager(view.context) {
+                            override fun canScrollVertically(): Boolean {
+                                return false
+                            }
+                        }
+                    }
+                    adPermissionsRVAdapter.submitList(app.permissions)
                     permissionsStatusTV.text = getString(R.string.code_permission_found)
                 }
                 permissionsChip.apply {
