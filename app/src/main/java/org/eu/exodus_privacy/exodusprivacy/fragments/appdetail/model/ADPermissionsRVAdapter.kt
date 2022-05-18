@@ -31,7 +31,7 @@ class ADPermissionsRVAdapter :
 
         holder.binding.apply {
             permissionTitleTV.text = app.permission
-            permissionSubTitleTV.text = app.label
+            permissionSubTitleTV.text = app.label.replaceFirstChar { it.uppercase() }
             expandBT.setOnClickListener {
                 if (permissionDescTV.isVisible) {
                     expandBT.setIconResource(R.drawable.ic_down)
