@@ -8,7 +8,7 @@
     tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarApps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/title_apps" />
@@ -17,7 +17,7 @@
         android:id="@+id/appListRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/toolbarApps"
         android:scrollbars="vertical"
         android:visibility="gone" />
 

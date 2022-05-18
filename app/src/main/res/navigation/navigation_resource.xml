@@ -9,7 +9,7 @@
         android:id="@+id/appsFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragment"
         android:label="fragment_apps"
-        tools:layout="@layout/fragment_apps" >
+        tools:layout="@layout/fragment_apps">
         <action
             android:id="@+id/action_appsFragment_to_appDetailFragment"
             app:destination="@id/appDetailFragment" />
@@ -23,12 +23,12 @@
         android:id="@+id/aboutFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.about.AboutFragment"
         android:label="AboutFragmentKT"
-        tools:layout="@layout/fragment_about"/>
+        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/appDetailFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragment"
         android:label="fragment_app_detail"
-        tools:layout="@layout/fragment_app_detail" >
+        tools:layout="@layout/fragment_app_detail">
         <argument
             android:name="packageName"
             app:argType="string" />

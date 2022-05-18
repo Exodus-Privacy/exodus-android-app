@@ -31,7 +31,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         _binding = FragmentAppsBinding.bind(view)
 
         // Setup menu actions
-        val toolbar = binding.toolbar
+        val toolbar = binding.toolbarApps
         toolbar.inflateMenu(R.menu.apps_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {

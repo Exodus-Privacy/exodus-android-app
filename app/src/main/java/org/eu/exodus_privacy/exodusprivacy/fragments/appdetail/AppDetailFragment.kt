@@ -47,13 +47,13 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
 
         viewModel.getApp(args.packageName)
 
-        binding.toolbar.setNavigationOnClickListener {
+        binding.toolbarAD.setNavigationOnClickListener {
             view.findNavController().navigateUp()
         }
 
         viewModel.app.observe(viewLifecycleOwner) { app ->
             binding.apply {
-                toolbar.apply {
+                toolbarAD.apply {
                     inflateMenu(R.menu.app_detail_menu)
                     if (app.exodusVersionCode == 0L) {
                         menu.findItem(R.id.openExodusPage)?.isVisible = false

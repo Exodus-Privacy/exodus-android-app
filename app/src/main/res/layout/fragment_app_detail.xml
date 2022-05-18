@@ -8,7 +8,7 @@
     tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarAD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
@@ -19,7 +19,7 @@
         style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/toolbarAD"
         android:layout_centerHorizontal="true"
         app:cardCornerRadius="10dp">
 
