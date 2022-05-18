@@ -1,1 +1,1 @@
-Show trackers and permissions from other installed apps
+Exodus helps you to know which trackers and permissions are embedded in apps installed on your device.

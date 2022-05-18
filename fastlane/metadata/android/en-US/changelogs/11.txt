@@ -1,3 +1,5 @@
-- Add new permission QUERY_ALL_PACKAGES
-- Bump dependencies
-- Fix translations
+- Add tabs on application
+- Add function to filter reports
+- Add link to privacy policy
+- Add function to show reports or submit application with link from Android share menu
+- Fix bugs

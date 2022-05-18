@@ -1,7 +1,7 @@
-Exodus Privacy vous aide à savoir quels sont les pisteurs et permissions embarqués dans les applications installées sur votre smartphone.
+Exodus vous aide à savoir quels sont les pisteurs et permissions embarqués dans les applications installées sur votre smartphone.
 
-L'application télécharge les rapports d'Exodus Privacy (https://exodus-privacy.eu.org/) et vous les montre application par application.
+L'application télécharge les rapports de la plateforme ɛxodus (https://reports.exodus-privacy.eu.org) et vous les montre application par application.
 
-L'application ne peut détecter que les applications installées depuis le Google Play Store.
+Cette application est développée par l'association à but non lucratif Exodus Privacy, venez nous voir sur https://exodus-privacy.eu.org/fr/.
 
-Code source: https://github.com/Exodus-Privacy/exodus-android-app/
+Code Source: https://github.com/Exodus-Privacy/exodus-android-app
