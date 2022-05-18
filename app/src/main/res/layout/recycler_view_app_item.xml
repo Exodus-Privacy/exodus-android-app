@@ -96,8 +96,8 @@
             app:chipIconTint="@color/colorPrimary"
             tools:chipBackgroundColor="@color/colorYellow"
             tools:text="3" />
-			
-		<com.google.android.material.chip.Chip
+
+        <com.google.android.material.chip.Chip
             android:id="@+id/versionChip"
             style="@style/Theme.Exodus.Chip"
             android:layout_width="wrap_content"
