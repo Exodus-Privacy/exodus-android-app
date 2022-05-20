@@ -1,9 +1,9 @@
-package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model
+package org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model
 
 import androidx.recyclerview.widget.DiffUtil
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 
-class ADTrackersDiffUtil : DiffUtil.ItemCallback<TrackerData>() {
+class TrackersDiffUtil : DiffUtil.ItemCallback<TrackerData>() {
     override fun areItemsTheSame(oldItem: TrackerData, newItem: TrackerData): Boolean {
         return oldItem.id == newItem.id
     }

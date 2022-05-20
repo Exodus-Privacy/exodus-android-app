@@ -41,6 +41,10 @@ class ExodusDatabaseRepository @Inject constructor(
         return if (list.isNotEmpty() && list.size == 1) list[0] else ExodusApplication()
     }
 
+    suspend fun getApps(listOfPackages: List<String>): List<ExodusApplication> {
+        return exodusApplicationDao.getApps(listOfPackages)
+    }
+
     fun getAllApps(): LiveData<List<ExodusApplication>> {
         return exodusApplicationDao.getAllApps()
     }

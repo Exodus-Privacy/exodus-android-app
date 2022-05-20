@@ -201,6 +201,8 @@ class ExodusUpdateService : LifecycleService() {
 
     private suspend fun fetchAndSaveApps() {
         val exodusAppList = mutableListOf<ExodusApplication>()
+        val trackersFinalList = mutableListOf<TrackerData>()
+
         applicationList.forEach { app ->
             val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
             // Look for current installed version in the list, otherwise pick the latest one
@@ -214,7 +216,7 @@ class ExodusUpdateService : LifecycleService() {
 
             // Create and save app data with proper tracker info
             val trackersList =
-                exodusDatabaseRepository.getTrackers(latestExodusApp.trackers)
+                exodusDatabaseRepository.getTrackers(latestExodusApp.trackers).toMutableList()
             val exodusApp = ExodusApplication(
                 app.packageName,
                 app.name,
@@ -224,17 +226,31 @@ class ExodusUpdateService : LifecycleService() {
                 app.permissions,
                 latestExodusApp.version_name,
                 if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
-                trackersList,
+                latestExodusApp.trackers,
                 app.source,
                 latestExodusApp.report,
                 latestExodusApp.updated
             )
             exodusAppList.add(exodusApp)
+
+            // Update tracker data regarding this app
+            for (trackers in trackersList) {
+                trackersFinalList.find { it.id == trackers.id }?.exodusApplications?.add(exodusApp.packageName)
+                    ?: run {
+                        trackers.presentOnDevice = true
+                        trackers.exodusApplications.add(exodusApp.packageName)
+                        trackersFinalList.add(trackers)
+                    }
+            }
+
             currentSize.postValue(currentSize.value!! + 1)
         }
         // Save the generated data into database
         exodusAppList.forEach {
             exodusDatabaseRepository.saveApp(it)
+        }
+        trackersFinalList.forEach {
+            exodusDatabaseRepository.saveTrackerData(it)
         }
     }
 }

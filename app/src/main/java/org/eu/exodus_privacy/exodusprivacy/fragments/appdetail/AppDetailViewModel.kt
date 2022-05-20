@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
@@ -17,10 +18,21 @@ class AppDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     val app: MutableLiveData<ExodusApplication> = MutableLiveData()
+    val trackers: MutableLiveData<List<TrackerData>> = MutableLiveData()
 
     fun getApp(packageName: String) {
         viewModelScope.launch {
             app.value = exodusDatabaseRepository.getApp(packageName)
+        }.invokeOnCompletion {
+            if (it == null) {
+                getTrackers(app.value!!.exodusTrackers)
+            }
+        }
+    }
+
+    private fun getTrackers(listOfID: List<Int>) {
+        viewModelScope.launch {
+            trackers.value = exodusDatabaseRepository.getTrackers(listOfID)
         }
     }
 

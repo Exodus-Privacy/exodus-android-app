@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADTrackersBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
-import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADTrackersRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model.TrackersRVAdapter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -44,18 +44,6 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                     if (app.exodusVersionCode == 0L) {
                         trackersStatusTV.text = getString(R.string.analysed)
                     }
-                } else {
-                    val adTrackersRVAdapter = ADTrackersRVAdapter()
-                    trackersRV.apply {
-                        adapter = adTrackersRVAdapter
-                        layoutManager = object : LinearLayoutManager(view.context) {
-                            override fun canScrollVertically(): Boolean {
-                                return false
-                            }
-                        }
-                    }
-                    adTrackersRVAdapter.submitList(app.exodusTrackers)
-                    trackersStatusTV.text = getString(R.string.code_signature_found)
                 }
                 trackersChip.apply {
                     val trackerNum = app.exodusTrackers.size
@@ -71,6 +59,22 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                         )
                     }
                 }
+            }
+        }
+
+        viewModel.trackers.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                val adTrackersRVAdapter = TrackersRVAdapter(true)
+                binding.trackersRV.apply {
+                    adapter = adTrackersRVAdapter
+                    layoutManager = object : LinearLayoutManager(view.context) {
+                        override fun canScrollVertically(): Boolean {
+                            return false
+                        }
+                    }
+                }
+                adTrackersRVAdapter.submitList(it)
+                binding.trackersStatusTV.text = getString(R.string.code_signature_found)
             }
         }
     }

@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import java.io.ByteArrayOutputStream
 
@@ -23,13 +22,13 @@ class ExodusDatabaseConverters {
     }
 
     @TypeConverter
-    fun toTrackerList(string: String): List<TrackerData> {
-        val listType = object : TypeToken<List<TrackerData>>() {}.type
+    fun toIntList(string: String): List<Int> {
+        val listType = object : TypeToken<List<Int>>() {}.type
         return Gson().fromJson(string, listType)
     }
 
     @TypeConverter
-    fun fromTrackerList(list: List<TrackerData>): String {
+    fun fromIntList(list: List<Int>): String {
         return Gson().toJson(list)
     }
 
