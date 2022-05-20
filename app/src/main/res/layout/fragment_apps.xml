@@ -13,37 +13,38 @@
         android:layout_height="wrap_content"
         app:title="@string/title_apps" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarApps"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:shimmer_direction="left_to_right">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/shimmerPlaceHolderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
+            </LinearLayout>
+        </ScrollView>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appListRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbarApps"
         android:scrollbars="vertical"
-        android:visibility="gone" />
-
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/setupPB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:indeterminate="true"
-        android:paddingHorizontal="20dp"
-        android:visibility="gone"
-        app:indicatorColor="@color/indicatorColor"
-        app:trackCornerRadius="50dp"
-        app:trackThickness="5dp" />
-
-    <TextView
-        android:id="@+id/setupTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/setupPB"
-        android:layout_marginTop="10dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAlignment="center"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="18sp"
         android:visibility="gone" />
 
 </RelativeLayout>

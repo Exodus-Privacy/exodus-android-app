@@ -1,8 +1,10 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
@@ -18,7 +20,6 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
-import org.eu.exodus_privacy.exodusprivacy.objects.Status
 import org.eu.exodus_privacy.exodusprivacy.utils.DataStoreModule
 import javax.inject.Inject
 
@@ -37,7 +38,6 @@ class ExodusUpdateService : LifecycleService() {
     private val serviceScope = CoroutineScope(Dispatchers.IO + job)
 
     private val currentSize: MutableLiveData<Int> = MutableLiveData(1)
-    private val dbStatus: MutableLiveData<Status> = MutableLiveData()
 
     @Inject
     lateinit var applicationList: MutableList<Application>
@@ -57,11 +57,19 @@ class ExodusUpdateService : LifecycleService() {
     @Inject
     lateinit var notificationManager: NotificationManager
 
+    @Inject
+    lateinit var notificationChannel: NotificationChannel
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         intent?.let {
             when (it.action) {
                 START_SERVICE -> {
+                    // Create notification channel on post-nougat devices
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        notificationManager.createNotificationChannel(notificationChannel)
+                    }
+
                     // Construct an ongoing notification and start the service
                     startForeground(
                         SERVICE_ID,
@@ -111,18 +119,14 @@ class ExodusUpdateService : LifecycleService() {
     private fun doInitialSetup() {
         serviceScope.launch {
             Log.d(TAG, "Refreshing trackers database")
-            dbStatus.postValue(Status.RUNNING_TRACKER)
             fetchAndSaveTrackers()
         }.invokeOnCompletion { trackerThrow ->
             if (trackerThrow == null) {
-                dbStatus.postValue(Status.COMPLETED_TRACKER)
                 serviceScope.launch {
                     Log.d(TAG, "Refreshing applications database")
-                    dbStatus.postValue(Status.RUNNING_APPS)
                     fetchAndSaveApps()
                 }.invokeOnCompletion { appsThrow ->
                     if (appsThrow == null) {
-                        dbStatus.postValue(Status.COMPLETED_APPS)
                         serviceScope.launch {
                             dataStoreModule.saveAppSetup(true)
                             // We are done, gracefully exit!
@@ -130,12 +134,10 @@ class ExodusUpdateService : LifecycleService() {
                             stopSelf()
                         }
                     } else {
-                        dbStatus.postValue(Status.FAILED_APPS)
                         Log.d(TAG, appsThrow.stackTrace.toString())
                     }
                 }
             } else {
-                dbStatus.postValue(Status.FAILED_TRACKER)
                 Log.d(TAG, trackerThrow.stackTrace.toString())
             }
         }

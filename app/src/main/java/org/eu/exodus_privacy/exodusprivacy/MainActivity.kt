@@ -1,9 +1,9 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val TAG = MainActivity::class.java.simpleName
 
+    private val viewModel: MainActivityViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition
         installSplashScreen()
@@ -32,8 +34,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
-
-        val viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
         viewModel.policyAgreement.observe(this) {
             if (it == false) {
@@ -64,11 +64,6 @@ class MainActivity : AppCompatActivity() {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
             }
-        }
-
-        // Create notification channel on post-nougat devices
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            viewModel.createNotificationChannels()
         }
     }
 }
