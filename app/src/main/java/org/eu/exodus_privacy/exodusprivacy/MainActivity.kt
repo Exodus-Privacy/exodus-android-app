@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.fetching_apps), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ExodusUpdateService::class.java)
                 intent.apply {
-                    action = ExodusUpdateService.START_SERVICE
+                    action = ExodusUpdateService.FIRST_TIME_START_SERVICE
                     startService(this)
                 }
             }

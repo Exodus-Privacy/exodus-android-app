@@ -3,6 +3,8 @@ package org.eu.exodus_privacy.exodusprivacy
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
@@ -29,6 +31,7 @@ class ExodusUpdateService : LifecycleService() {
     companion object {
         var IS_SERVICE_RUNNING = false
         const val SERVICE_ID = 1
+        const val FIRST_TIME_START_SERVICE = "first_time_start_service"
         const val START_SERVICE = "start_service"
         const val STOP_SERVICE = "stop_service"
     }
@@ -65,7 +68,7 @@ class ExodusUpdateService : LifecycleService() {
         super.onStartCommand(intent, flags, startId)
         intent?.let {
             when (it.action) {
-                START_SERVICE -> {
+                FIRST_TIME_START_SERVICE -> {
                     IS_SERVICE_RUNNING = true
 
                     // Create notification channel on post-nougat devices
@@ -76,16 +79,35 @@ class ExodusUpdateService : LifecycleService() {
                     // Construct an ongoing notification and start the service
                     startForeground(
                         SERVICE_ID,
-                        createNotification(currentSize.value!!, applicationList.size)
+                        createNotification(currentSize.value!!, applicationList.size, false, this)
                     )
 
                     // Do the initial setup
-                    doInitialSetup()
+                    updateAllDatabase(true)
 
                     currentSize.observe(this) { current ->
                         notificationManager.notify(
                             SERVICE_ID,
-                            createNotification(current, applicationList.size)
+                            createNotification(current, applicationList.size, false, this)
+                        )
+                    }
+                }
+                START_SERVICE -> {
+                    IS_SERVICE_RUNNING = true
+
+                    // Construct an ongoing notification and start the service
+                    startForeground(
+                        SERVICE_ID,
+                        createNotification(currentSize.value!!, applicationList.size, true, this)
+                    )
+
+                    // Update all database
+                    updateAllDatabase(false)
+
+                    currentSize.observe(this) { current ->
+                        notificationManager.notify(
+                            SERVICE_ID,
+                            createNotification(current, applicationList.size, false, this)
                         )
                     }
                 }
@@ -108,8 +130,13 @@ class ExodusUpdateService : LifecycleService() {
         IS_SERVICE_RUNNING = false
     }
 
-    private fun createNotification(currentSize: Int, totalSize: Int): Notification {
-        return notificationBuilder
+    private fun createNotification(
+        currentSize: Int,
+        totalSize: Int,
+        cancellable: Boolean,
+        context: Context
+    ): Notification {
+        val builder = notificationBuilder
             .setContentTitle(
                 getString(
                     R.string.updating_database,
@@ -118,10 +145,17 @@ class ExodusUpdateService : LifecycleService() {
                 )
             )
             .setProgress(totalSize + 1, currentSize, false)
-            .build()
+        if (cancellable) {
+            val intent = Intent(this, ExodusUpdateService::class.java)
+            intent.action = STOP_SERVICE
+            val pendingIntent =
+                PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            builder.addAction(R.drawable.ic_cancel, getString(R.string.cancel), pendingIntent)
+        }
+        return builder.build()
     }
 
-    private fun doInitialSetup() {
+    private fun updateAllDatabase(firstTime: Boolean) {
         serviceScope.launch {
             Log.d(TAG, "Refreshing trackers database")
             fetchAndSaveTrackers()
@@ -133,7 +167,7 @@ class ExodusUpdateService : LifecycleService() {
                 }.invokeOnCompletion { appsThrow ->
                     if (appsThrow == null) {
                         serviceScope.launch {
-                            dataStoreModule.saveAppSetup(true)
+                            if (firstTime) dataStoreModule.saveAppSetup(true)
                             // We are done, gracefully exit!
                             stopForeground(true)
                             stopSelf()
