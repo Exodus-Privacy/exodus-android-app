@@ -27,6 +27,7 @@ import javax.inject.Inject
 class ExodusUpdateService : LifecycleService() {
 
     companion object {
+        var IS_SERVICE_RUNNING = false
         const val SERVICE_ID = 1
         const val START_SERVICE = "start_service"
         const val STOP_SERVICE = "stop_service"
@@ -65,6 +66,8 @@ class ExodusUpdateService : LifecycleService() {
         intent?.let {
             when (it.action) {
                 START_SERVICE -> {
+                    IS_SERVICE_RUNNING = true
+
                     // Create notification channel on post-nougat devices
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         notificationManager.createNotificationChannel(notificationChannel)
@@ -89,6 +92,7 @@ class ExodusUpdateService : LifecycleService() {
                 STOP_SERVICE -> {
                     stopForeground(true)
                     stopSelf()
+                    IS_SERVICE_RUNNING = false
                 }
                 else -> {
                     Log.d(TAG, "Got an unhandled action: ${it.action}")
@@ -101,6 +105,7 @@ class ExodusUpdateService : LifecycleService() {
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
+        IS_SERVICE_RUNNING = false
     }
 
     private fun createNotification(currentSize: Int, totalSize: Int): Notification {
@@ -108,8 +113,8 @@ class ExodusUpdateService : LifecycleService() {
             .setContentTitle(
                 getString(
                     R.string.updating_database,
-                    currentSize + 1,
-                    totalSize
+                    currentSize,
+                    totalSize + 1
                 )
             )
             .setProgress(totalSize + 1, currentSize, false)

@@ -39,12 +39,18 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/appListRV"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:visibility="gone"
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbarApps"
-        android:scrollbars="vertical"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarApps">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/appListRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

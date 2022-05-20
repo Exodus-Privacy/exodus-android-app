@@ -3,6 +3,7 @@ package org.eu.exodus_privacy.exodusprivacy
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -45,7 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         // Populate trackers in database
         viewModel.appSetup.observe(this) {
-            if (it == false && viewModel.policyAgreement.value == true) {
+            if (it == false && viewModel.policyAgreement.value == true && !ExodusUpdateService.IS_SERVICE_RUNNING) {
+                Toast.makeText(this, getString(R.string.fetching_apps), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ExodusUpdateService::class.java)
                 intent.apply {
                     action = ExodusUpdateService.START_SERVICE
