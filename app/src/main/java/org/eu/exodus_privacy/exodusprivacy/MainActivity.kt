@@ -1,5 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -45,7 +47,11 @@ class MainActivity : AppCompatActivity() {
         // Populate trackers in database
         viewModel.appSetup.observe(this) {
             if (it == false && viewModel.policyAgreement.value == true) {
-                viewModel.doInitialSetup()
+                val intent = Intent(this, ExodusUpdateService::class.java)
+                intent.apply {
+                    action = ExodusUpdateService.START_SERVICE
+                    startService(this)
+                }
             }
         }
 
@@ -58,6 +64,11 @@ class MainActivity : AppCompatActivity() {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
             }
+        }
+
+        // Create notification channel on post-nougat devices
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            viewModel.createNotificationChannels()
         }
     }
 }
