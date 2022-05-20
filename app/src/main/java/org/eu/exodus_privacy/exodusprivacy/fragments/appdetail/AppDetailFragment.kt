@@ -21,6 +21,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
@@ -32,6 +33,9 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
 
     private val args: AppDetailFragmentArgs by navArgs()
     private val viewModel: AppDetailViewModel by viewModels()
+
+    @Inject
+    lateinit var customTabsIntent: CustomTabsIntent
 
     companion object {
         private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/reports/"
@@ -61,8 +65,6 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         menu.findItem(R.id.submitApp)?.isVisible = false
                     }
                     setOnMenuItemClickListener {
-                        // Set appropriate CustomTabsIntent for respective menu items
-                        val customTabsIntent = CustomTabsIntent.Builder().build()
                         when (it.itemId) {
                             R.id.openExodusPage -> {
                                 customTabsIntent.launchUrl(

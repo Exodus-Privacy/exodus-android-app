@@ -15,6 +15,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADPermissionsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADPermissionsRVAdapter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
@@ -25,6 +26,9 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
         private const val permissionsInfoPage =
             "https://reports.exodus-privacy.eu.org/en/info/permissions/"
     }
+
+    @Inject
+    lateinit var customTabsIntent: CustomTabsIntent
 
     private var _binding: FragmentADPermissionsBinding? = null
     private val binding get() = _binding!!
@@ -60,7 +64,6 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                 permissionsLearnGoogleTV.apply {
                     isClickable = true
                     setOnClickListener {
-                        val customTabsIntent = CustomTabsIntent.Builder().build()
                         customTabsIntent.launchUrl(
                             view.context,
                             Uri.parse(googleInfoPage)
@@ -70,7 +73,6 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                 permissionsLearnExodusTV.apply {
                     isClickable = true
                     setOnClickListener {
-                        val customTabsIntent = CustomTabsIntent.Builder().build()
                         customTabsIntent.launchUrl(
                             view.context,
                             Uri.parse(permissionsInfoPage)

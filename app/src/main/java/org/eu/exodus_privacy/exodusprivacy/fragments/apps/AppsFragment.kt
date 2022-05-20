@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.facebook.shimmer.Shimmer
 import dagger.hilt.android.AndroidEntryPoint
-import org.eu.exodus_privacy.exodusprivacy.MainActivityViewModel
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter

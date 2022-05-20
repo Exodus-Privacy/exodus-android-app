@@ -15,6 +15,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADTrackersBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADTrackersRVAdapter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
@@ -23,6 +24,9 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
         private const val trackersInfoPage =
             "https://reports.exodus-privacy.eu.org/en/info/trackers/"
     }
+
+    @Inject
+    lateinit var customTabsIntent: CustomTabsIntent
 
     private var _binding: FragmentADTrackersBinding? = null
     private val binding get() = _binding!!
@@ -61,7 +65,6 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                 trackersLearnTV.apply {
                     isClickable = true
                     setOnClickListener {
-                        val customTabsIntent = CustomTabsIntent.Builder().build()
                         customTabsIntent.launchUrl(
                             view.context,
                             Uri.parse(trackersInfoPage)
