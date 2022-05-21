@@ -8,6 +8,7 @@
     android:layout_marginBottom="5dp"
     android:clickable="true"
     android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     android:padding="10dp"
     tools:theme="@style/Theme.Exodus">
 

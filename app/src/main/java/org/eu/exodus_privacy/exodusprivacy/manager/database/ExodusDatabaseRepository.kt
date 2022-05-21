@@ -16,8 +16,9 @@ class ExodusDatabaseRepository @Inject constructor(
         return trackerDataDao.saveTrackerData(trackerData)
     }
 
-    suspend fun getTrackers(id: Int): List<TrackerData> {
-        return trackerDataDao.getTrackers(id)
+    suspend fun getTrackers(id: Int): TrackerData {
+        val list = trackerDataDao.getTrackers(id)
+        return if (list.isNotEmpty() && list.size == 1) list[0] else TrackerData()
     }
 
     fun getAllTrackers(): LiveData<List<TrackerData>> {

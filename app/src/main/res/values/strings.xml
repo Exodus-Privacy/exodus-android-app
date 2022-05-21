@@ -102,9 +102,12 @@
     <!-- Notification -->
     <string name="updates">Updates</string>
     <string name="updating_database">Updating reports database… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
-    
+
     <!-- Trackers Fragment -->
     <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</string>
+
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Open tracker page</string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>

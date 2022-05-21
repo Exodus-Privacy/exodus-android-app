@@ -18,7 +18,11 @@
         android:id="@+id/trackersFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersFragment"
         android:label="TrackersFragment"
-        tools:layout="@layout/fragment_trackers" />
+        tools:layout="@layout/fragment_trackers">
+        <action
+            android:id="@+id/action_trackersFragment_to_trackerDetailFragment"
+            app:destination="@id/trackerDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.about.AboutFragment"
@@ -32,6 +36,9 @@
         <argument
             android:name="packageName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_appDetailFragment_to_trackerDetailFragment"
+            app:destination="@id/trackerDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/ADPermissionsFragment"
@@ -42,5 +49,18 @@
         android:id="@+id/ADTrackersFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment"
         android:label="fragment_a_d_trackers"
-        tools:layout="@layout/fragment_a_d_trackers" />
+        tools:layout="@layout/fragment_a_d_trackers" >
+    </fragment>
+    <fragment
+        android:id="@+id/trackerDetailFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragment"
+        android:label="fragment_tracker_detail"
+        tools:layout="@layout/fragment_tracker_detail">
+        <argument
+            android:name="trackerID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_trackerDetailFragment_to_appDetailFragment"
+            app:destination="@id/appDetailFragment" />
+    </fragment>
 </navigation>

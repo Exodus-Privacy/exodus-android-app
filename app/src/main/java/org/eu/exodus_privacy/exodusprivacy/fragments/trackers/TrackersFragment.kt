@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
@@ -26,7 +27,8 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTrackersBinding.bind(view)
 
-        val trackersRVAdapter = TrackersRVAdapter(false)
+        val trackersRVAdapter =
+            TrackersRVAdapter(false, findNavController().currentDestination!!.id)
         binding.trackersListRV.apply {
             adapter = trackersRVAdapter
             layoutManager = LinearLayoutManager(view.context)

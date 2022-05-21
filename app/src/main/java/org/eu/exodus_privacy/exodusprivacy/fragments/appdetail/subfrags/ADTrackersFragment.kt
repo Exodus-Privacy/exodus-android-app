@@ -8,6 +8,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,7 +65,8 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
 
         viewModel.trackers.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                val adTrackersRVAdapter = TrackersRVAdapter(true)
+                val adTrackersRVAdapter =
+                    TrackersRVAdapter(true, findNavController().currentDestination!!.id)
                 binding.trackersRV.apply {
                     adapter = adTrackersRVAdapter
                     layoutManager = object : LinearLayoutManager(view.context) {

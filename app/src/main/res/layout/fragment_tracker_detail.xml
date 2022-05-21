@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".fragments.trackerdetail.TrackerDetailFragment"
+    tools:theme="@style/Theme.Exodus">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarTD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_back" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/trackerTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarTD"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="40dp"
+            android:textAlignment="center"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="22sp"
+            tools:text="Huawei Mobile Service (HMS) Core" />
+
+        <LinearLayout
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackerTitleTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" />
+
+    </RelativeLayout>
+
+</ScrollView>
