@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
-import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import javax.inject.Inject
 
@@ -13,6 +12,5 @@ class TrackersViewModel @Inject constructor(
     exodusDatabaseRepository: ExodusDatabaseRepository
 ) : ViewModel() {
 
-    val appList: LiveData<List<ExodusApplication>> = exodusDatabaseRepository.getAllApps()
     val trackersList: LiveData<List<TrackerData>> = exodusDatabaseRepository.getAllTrackers()
 }

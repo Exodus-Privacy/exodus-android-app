@@ -41,8 +41,12 @@ class ExodusUpdateService : LifecycleService() {
     private val job = SupervisorJob()
     private val serviceScope = CoroutineScope(Dispatchers.IO + job)
 
+    // Tracker and Apps
+    private val trackersList = mutableListOf<TrackerData>()
+    private val appList = mutableListOf<ExodusApplication>()
     private val currentSize: MutableLiveData<Int> = MutableLiveData(1)
 
+    // Inject required modules
     @Inject
     lateinit var applicationList: MutableList<Application>
 
@@ -114,6 +118,7 @@ class ExodusUpdateService : LifecycleService() {
                 STOP_SERVICE -> {
                     stopForeground(true)
                     stopSelf()
+                    notificationManager.cancel(SERVICE_ID)
                     IS_SERVICE_RUNNING = false
                 }
                 else -> {
@@ -158,15 +163,22 @@ class ExodusUpdateService : LifecycleService() {
     private fun updateAllDatabase(firstTime: Boolean) {
         serviceScope.launch {
             Log.d(TAG, "Refreshing trackers database")
-            fetchAndSaveTrackers()
+            fetchTrackers()
         }.invokeOnCompletion { trackerThrow ->
             if (trackerThrow == null) {
                 serviceScope.launch {
                     Log.d(TAG, "Refreshing applications database")
-                    fetchAndSaveApps()
+                    fetchApps()
                 }.invokeOnCompletion { appsThrow ->
                     if (appsThrow == null) {
                         serviceScope.launch {
+                            // All data is fetched, save it
+                            trackersList.forEach {
+                                exodusDatabaseRepository.saveTrackerData(it)
+                            }
+                            appList.forEach {
+                                exodusDatabaseRepository.saveApp(it)
+                            }
                             if (firstTime) dataStoreModule.saveAppSetup(true)
                             // We are done, gracefully exit!
                             stopForeground(true)
@@ -182,9 +194,9 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
-    private suspend fun fetchAndSaveTrackers() {
-        val trackersList = exodusAPIRepository.getAllTrackers()
-        for ((key, value) in trackersList.trackers) {
+    private suspend fun fetchTrackers() {
+        val list = exodusAPIRepository.getAllTrackers()
+        list.trackers.forEach { (key, value) ->
             val trackerData = TrackerData(
                 key.toInt(),
                 value.categories,
@@ -195,14 +207,11 @@ class ExodusUpdateService : LifecycleService() {
                 value.network_signature,
                 value.website
             )
-            exodusDatabaseRepository.saveTrackerData(trackerData)
+            trackersList.add(trackerData)
         }
     }
 
-    private suspend fun fetchAndSaveApps() {
-        val exodusAppList = mutableListOf<ExodusApplication>()
-        val trackersFinalList = mutableListOf<TrackerData>()
-
+    private suspend fun fetchApps() {
         applicationList.forEach { app ->
             val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
             // Look for current installed version in the list, otherwise pick the latest one
@@ -215,8 +224,6 @@ class ExodusUpdateService : LifecycleService() {
             }
 
             // Create and save app data with proper tracker info
-            val trackersList =
-                exodusDatabaseRepository.getTrackers(latestExodusApp.trackers).toMutableList()
             val exodusApp = ExodusApplication(
                 app.packageName,
                 app.name,
@@ -231,26 +238,17 @@ class ExodusUpdateService : LifecycleService() {
                 latestExodusApp.report,
                 latestExodusApp.updated
             )
-            exodusAppList.add(exodusApp)
+            appList.add(exodusApp)
 
             // Update tracker data regarding this app
-            for (trackers in trackersList) {
-                trackersFinalList.find { it.id == trackers.id }?.exodusApplications?.add(exodusApp.packageName)
-                    ?: run {
-                        trackers.presentOnDevice = true
-                        trackers.exodusApplications.add(exodusApp.packageName)
-                        trackersFinalList.add(trackers)
-                    }
+            latestExodusApp.trackers.forEach { id ->
+                trackersList.find { it.id == id }?.let {
+                    it.presentOnDevice = true
+                    it.exodusApplications.add(exodusApp.packageName)
+                }
             }
 
             currentSize.postValue(currentSize.value!! + 1)
-        }
-        // Save the generated data into database
-        exodusAppList.forEach {
-            exodusDatabaseRepository.saveApp(it)
-        }
-        trackersFinalList.forEach {
-            exodusDatabaseRepository.saveTrackerData(it)
         }
     }
 }
