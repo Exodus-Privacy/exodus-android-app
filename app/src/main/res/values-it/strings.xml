@@ -39,7 +39,6 @@
     <string name="detection_rules">Regole di rilevamento</string>
     <string name="code_signature">Regola di rilevamento (codice):</string>
     <string name="network_signature">Regola di rilevamento (rete):</string>
-    <string name="tracker_presence">Presente in %d applicazioni</string>
     <string name="tracker_presence_in">Presente in:</string>
     <string name="no_app_found_tracker">Questo tracker non sembra essere presente nelle tue applicazioni</string>
     <string name="source">Fonte: %s</string>

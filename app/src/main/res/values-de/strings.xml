@@ -39,7 +39,6 @@
     <string name="detection_rules">Erkennungsregeln</string>
     <string name="code_signature">Code-Erkennungsregel:</string>
     <string name="network_signature">Netzwerkerkennungsregel:</string>
-    <string name="tracker_presence">Vorhanden in %d der installierten Apps</string>
     <string name="tracker_presence_in">Vorhanden in:</string>
     <string name="no_app_found_tracker">Dieser Tracker scheint in den installierten Apps nicht vorhanden zu sein</string>
     <string name="source">Quelle: %s</string>

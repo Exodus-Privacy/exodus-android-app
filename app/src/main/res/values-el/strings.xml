@@ -39,7 +39,6 @@
     <string name="detection_rules">Κανόνες Ανίχνευσης</string>
     <string name="code_signature">Κανόνας ανίχνευσης κώδικα:</string>
     <string name="network_signature">Κανόνας ανίχνευσης δικτύου:</string>
-    <string name="tracker_presence">Παρών σε %d από τις εφαρμογές σας</string>
     <string name="tracker_presence_in">Παρών σε:</string>
     <string name="no_app_found_tracker">Αυτό το tracker φαίνεται να μην υπάρχει στις εφαρμογές σας</string>
     <string name="source">Πηγή: %s</string>

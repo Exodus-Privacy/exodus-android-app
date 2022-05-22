@@ -39,7 +39,6 @@
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>
     <string name="network_signature">Правило определения сети:</string>
-    <string name="tracker_presence">Присутствует в %d приложениях</string>
     <string name="tracker_presence_in">Присутствует в:</string>
     <string name="no_app_found_tracker">Этот трекер не присутствует в ваших приложениях</string>
     <string name="source">Источник: %s</string>

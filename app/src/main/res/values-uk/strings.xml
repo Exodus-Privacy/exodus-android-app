@@ -43,7 +43,6 @@
     <string name="detection_rules">Правила виявлення </string>
     <string name="code_signature">Код правила виявлення:</string>
     <string name="network_signature">Мережа правила виявлення:</string>
-    <string name="tracker_presence">Наявне в %d із Ваших застосунків</string>
     <string name="tracker_presence_in">Наявне в:</string>
     <string name="no_app_found_tracker">Схоже, цей відстежувач не присутній у Вашому застосунку</string>
     <string name="source">Джерело: %s</string>

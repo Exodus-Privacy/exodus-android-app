@@ -62,5 +62,9 @@
         <action
             android:id="@+id/action_trackerDetailFragment_to_appDetailFragment"
             app:destination="@id/appDetailFragment" />
+        <argument
+            android:name="percentage"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

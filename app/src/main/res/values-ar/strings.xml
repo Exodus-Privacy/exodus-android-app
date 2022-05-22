@@ -39,7 +39,6 @@
     <string name="detection_rules">قواعد الكشف</string>
     <string name="code_signature">قاعدة كشف الرمز:</string>
     <string name="network_signature">القاعدة الشبكية للإكتشاف:</string>
-    <string name="tracker_presence">موجود في %d من تطبيقاتك</string>
     <string name="tracker_presence_in">موجود في:</string>
     <string name="no_app_found_tracker">يبدو أن هذا المتعقب غير موجود في تطبيقاتك</string>
     <string name="source">المصدر: %s</string>

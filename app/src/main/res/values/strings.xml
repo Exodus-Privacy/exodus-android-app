@@ -24,10 +24,6 @@
     <string name="created_date">Report created on</string>
     <string name="and_updated">and updated on</string>
     <string name="tracker_web_page">Tracker web page ➤</string>
-    <string name="detection_rules">Detection Rules</string>
-    <string name="code_signature">Code detection rule:</string>
-    <string name="network_signature">Network detection rule:</string>
-    <string name="tracker_presence">Present in %d of your applications</string>
     <string name="tracker_presence_in">Present in:</string>
     <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
     <string name="source">Source: %s</string>
@@ -108,6 +104,11 @@
 
     <!-- TrackersDetail Fragment -->
     <string name="open_tracker_page">Open tracker page</string>
+    <string name="detection_rules">Detection Rules</string>
+    <string name="code_signature">Code detection rule:</string>
+    <string name="network_signature">Network detection rule:</string>
+    <string name="apps_list">Apps list</string>
+    <string name="trackers_presence">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</string>
 
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>

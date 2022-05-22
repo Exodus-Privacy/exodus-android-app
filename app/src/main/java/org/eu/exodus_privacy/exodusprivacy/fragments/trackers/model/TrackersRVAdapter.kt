@@ -43,6 +43,7 @@ class TrackersRVAdapter(
         val trackerApps = mutableSetOf<String>().apply {
             currentList.forEach { this.addAll(it.exodusApplications) }
         }
+        var trackerPercentage = 0F
         val app = getItem(position)
 
         // Fix padding for TrackersFragment
@@ -58,18 +59,11 @@ class TrackersRVAdapter(
         }
 
         holder.binding.apply {
-            root.setOnClickListener {
-                val action = if (currentDestinationId == R.id.appDetailFragment) {
-                    AppDetailFragmentDirections.actionAppDetailFragmentToTrackerDetailFragment(app.id)
-                } else {
-                    TrackersFragmentDirections.actionTrackersFragmentToTrackerDetailFragment(app.id)
-                }
-                holder.itemView.findNavController().navigate(action)
-            }
             trackerTitleTV.text = app.name
             if (showSuggestions) {
                 chipGroup.visibility = View.VISIBLE
                 trackersPB.visibility = View.GONE
+                chipGroup.removeAllViews()
                 app.categories.forEach {
                     val chip = Chip(context)
                     val chipStyle = ChipDrawable.createFromAttributes(
@@ -83,20 +77,34 @@ class TrackersRVAdapter(
                     chipGroup.addView(chip)
                 }
             } else {
-                val percentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
+                trackerPercentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
                 trackersStatusTV.text =
                     context.getString(
                         R.string.trackers_status,
-                        percentage.toInt(),
+                        trackerPercentage.toInt(),
                         app.exodusApplications.size
                     )
                 trackersPB.afterMeasured {
-                    val newWidth = (width * percentage) / 100
+                    val newWidth = (width * trackerPercentage) / 100
                     val params = layoutParams.apply {
                         width = newWidth.toInt()
                     }
                     layoutParams = params
                 }
+            }
+            root.setOnClickListener {
+                val action = if (currentDestinationId == R.id.appDetailFragment) {
+                    AppDetailFragmentDirections.actionAppDetailFragmentToTrackerDetailFragment(
+                        app.id,
+                        trackerPercentage.toInt()
+                    )
+                } else {
+                    TrackersFragmentDirections.actionTrackersFragmentToTrackerDetailFragment(
+                        app.id,
+                        trackerPercentage.toInt()
+                    )
+                }
+                holder.itemView.findNavController().navigate(action)
             }
         }
     }

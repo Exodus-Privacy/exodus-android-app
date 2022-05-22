@@ -25,7 +25,6 @@
     <string name="detection_rules">Règles de détection</string>
     <string name="code_signature">Règle de détection(code):</string>
     <string name="network_signature">Règle de détection(réseau):</string>
-    <string name="tracker_presence">Présent dans %d de vos applications</string>
     <string name="tracker_presence_in">Présent dans:</string>
     <string name="no_app_found_tracker">Ce pisteur ne semble pas être présent dans vos applications</string>
     <string name="source">Source: %s</string>

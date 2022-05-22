@@ -38,7 +38,6 @@
     <string name="detection_rules">Regras de detecção</string>
     <string name="code_signature">Regra de detecção do código:</string>
     <string name="network_signature">Regra de detecção da rede:</string>
-    <string name="tracker_presence">Presente em %d dos seus aplicativos</string>
     <string name="tracker_presence_in">Presente em:</string>
     <string name="no_app_found_tracker">Este rastreador parece não estar presente em seus aplicativos</string>
     <string name="source">Fonte: %s</string>
