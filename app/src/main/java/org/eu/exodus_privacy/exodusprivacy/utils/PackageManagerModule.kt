@@ -46,7 +46,7 @@ object PackageManagerModule {
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
                     it.applicationInfo.loadIcon(packageManager).toBitmap(),
-                    it.versionName,
+                    it.versionName ?: "",
                     PackageInfoCompat.getLongVersionCode(it),
                     permsList,
                     getAppStore(it.packageName, packageManager)
