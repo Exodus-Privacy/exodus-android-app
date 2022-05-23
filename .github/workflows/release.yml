@@ -2,6 +2,11 @@
 name: Release
 env:
     EXODUS_API_KEY: ${{secrets.EXODUS_API_KEY}}
+    KEYSTORE: ${{secrets.RELEASE_KEYSTORE}}
+    KEYSTORE_PGP_PASSPHRASE: ${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}
+    KEYSTORE_PASSWORD: ${{secrets.RELEASE_KEYSTORE_PASSPHRASE}}
+    KEYSTORE_ALIAS: ${{secrets.RELEASE_KEYSTORE_ALIAS}}
+    KEYSTORE_PASSPHRASE: ${{secrets.RELEASE_KEYSTORE_ALIAS_PASSPHRASE}}
 on:
   push:
     tags:
@@ -11,20 +16,23 @@ jobs:
     release:
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout the code ✅
+        - name: Checkout the code
           uses: actions/checkout@v3
-        - name: Setup Java JDK 🔧
+        - name: Setup Java JDK
           uses: actions/setup-java@v1
           with:
             java-version: 11
-        - name: Generate release build 🔧
+        - run: |
+            echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
+            gpg -d -passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" -batch release.keystore.asc > app/release.keystore
+        - name: Generate release build
           run: ./gradlew assemble
-        - name: Execute exodus-standalone 🔎
+        - name: Execute exodus-standalone
           uses: docker://exodusprivacy/exodus-standalone:v1.3.1
           with:
             args: /github/workspace/app/build/outputs/apk/release/app-release-signed.apk
-        - name: Upload APK 🚀
+        - name: Upload APK
           uses: actions/upload-artifact@v3
           with:
             name: app_release
-            path: app/build/outputs/apk/release/*.apk
+            path: app/build/outputs/apk/release/app-release-signed.apk
