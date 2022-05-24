@@ -1,18 +1,19 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model
 
+import android.app.Activity
 import android.content.Context
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.window.layout.WindowMetricsCalculator
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
+import dagger.hilt.android.internal.managers.FragmentComponentManager
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewTrackerItemBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragmentDirections
@@ -52,8 +53,8 @@ class TrackersRVAdapter(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
             )
-            val horMargin = convertPXToDP(20F, context).toInt()
-            val verMargin = convertPXToDP(10F, context).toInt()
+            val horMargin = convertPXToDP(20, context).toInt()
+            val verMargin = convertPXToDP(10, context).toInt()
             params.setMargins(horMargin, verMargin, horMargin, verMargin)
             holder.itemView.layoutParams = params
         }
@@ -83,8 +84,8 @@ class TrackersRVAdapter(
                         trackerPercentage.toInt(),
                         app.exodusApplications.size
                     )
-                trackersPB.afterMeasured {
-                    val newWidth = (width * trackerPercentage) / 100
+                trackersPB.apply {
+                    val newWidth = (getDisplayWidth(context) * trackerPercentage) / 100
                     val params = layoutParams.apply {
                         width = newWidth.toInt()
                     }
@@ -108,23 +109,18 @@ class TrackersRVAdapter(
         }
     }
 
-    private fun convertPXToDP(pixels: Float, context: Context): Float {
+    private fun convertPXToDP(pixels: Int, context: Context): Float {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-            pixels,
+            pixels.toFloat(),
             context.resources.displayMetrics
         )
     }
 
-    private inline fun ProgressBar.afterMeasured(crossinline f: ProgressBar.() -> Unit) {
-        viewTreeObserver.addOnGlobalLayoutListener(object :
-                ViewTreeObserver.OnGlobalLayoutListener {
-                override fun onGlobalLayout() {
-                    if (measuredWidth > 0 && measuredHeight > 0) {
-                        viewTreeObserver.removeOnGlobalLayoutListener(this)
-                        f()
-                    }
-                }
-            })
+    private fun getDisplayWidth(context: Context): Int {
+        val activity = FragmentComponentManager.findActivity(context) as Activity
+        val windowMetrics =
+            WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(activity)
+        return windowMetrics.bounds.width()
     }
 }
