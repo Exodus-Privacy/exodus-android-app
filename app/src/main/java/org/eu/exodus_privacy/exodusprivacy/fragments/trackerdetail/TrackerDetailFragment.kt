@@ -110,7 +110,11 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
 
                 // Tracker code and network signatures
                 codeSignTV.text = tracker.code_signature
-                networkSignTV.text = tracker.network_signature
+                if (tracker.network_signature.isNotEmpty()) {
+                    networkSignTV.text = tracker.network_signature
+                } else {
+                    networkSignTV.text = "NC"
+                }
             }
         }
 
