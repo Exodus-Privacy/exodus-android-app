@@ -43,8 +43,8 @@ class TrackersRVAdapter(
         val trackerApps = mutableSetOf<String>().apply {
             currentList.forEach { this.addAll(it.exodusApplications) }
         }
-        var trackerPercentage = 0F
         val app = getItem(position)
+        val trackerPercentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
 
         // Fix padding for TrackersFragment
         if (!showSuggestions) {
@@ -77,7 +77,6 @@ class TrackersRVAdapter(
                     chipGroup.addView(chip)
                 }
             } else {
-                trackerPercentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
                 trackersStatusTV.text =
                     context.getString(
                         R.string.trackers_status,
