@@ -51,10 +51,10 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
     implementation 'io.noties.markwon:core:4.6.2'
     implementation 'androidx.window:window:1.0.0'
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -67,7 +67,7 @@ dependencies {
     implementation "androidx.browser:browser:1.4.0"
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     implementation "com.facebook.shimmer:shimmer:0.5.0"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
     testImplementation 'junit:junit:4.13.2'
 
     // Navigation Components
@@ -81,7 +81,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // Hilt
-    def hilt_version = "2.41"
+    def hilt_version = '2.42'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
 
