@@ -134,7 +134,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                 if (app.updated.isNotBlank()) {
                     appReportTV.text = getString(
                         R.string.report_date,
-                        viewModel.getFormattedReportDate(app.updated)
+                        viewModel.getFormattedReportDate(app.updated, view.context)
                     )
                 } else {
                     appReportTV.visibility = View.GONE

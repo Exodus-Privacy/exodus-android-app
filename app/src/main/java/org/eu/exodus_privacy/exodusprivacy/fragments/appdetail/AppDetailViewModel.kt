@@ -1,5 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail
 
+import android.content.Context
+import android.text.format.DateFormat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,12 +38,12 @@ class AppDetailViewModel @Inject constructor(
         }
     }
 
-    fun getFormattedReportDate(date: String): String {
+    fun getFormattedReportDate(date: String, context: Context): String {
         // Generate date object in currentSDF to format
         val currentSDF = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
         val currentDate = currentSDF.parse(date.split("T")[0])
         // Format it
-        val sdf = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+        val sdf = DateFormat.getLongDateFormat(context)
         return sdf.format(currentDate!!)
     }
 }
