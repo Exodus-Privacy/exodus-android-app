@@ -80,9 +80,9 @@
             style="@style/Theme.Exodus.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/textColorDark"
             app:chipIcon="@drawable/ic_tracker"
-            app:chipIconTint="@color/colorPrimary"
+            app:chipIconTint="@color/textColorDark"
             tools:chipBackgroundColor="@color/colorGreen"
             tools:text="0" />
 
@@ -92,9 +92,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/textColorDark"
             app:chipIcon="@drawable/ic_permission"
-            app:chipIconTint="@color/colorPrimary"
+            app:chipIconTint="@color/textColorDark"
             tools:chipBackgroundColor="@color/colorYellow"
             tools:text="3" />
 

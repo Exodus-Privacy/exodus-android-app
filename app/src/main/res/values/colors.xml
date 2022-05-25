@@ -14,7 +14,7 @@
     <color name="colorLightYellow">#ffdb66</color>
 
     <color name="colorLightBlue">#17a2b8</color>
-    <color name="colorYellow">#ffc70f</color>
+    <color name="colorYellow">#ffd54d</color>
     <color name="colorDarkOrange">#ff8c00</color>
     <color name="colorRed">#e61718</color>
     <color name="colorRedLight">#ef5d5d</color>
@@ -23,6 +23,7 @@
     <color name="textColorDark">#343A40</color>
     <color name="textColorDarkLight">#6C757D</color>
     <color name="textColorWhite">#FFFFFF</color>
+    <color name="textColorLikeWhite">#f2f2f2</color>
     <color name="textDetection">#E83E8C</color>
     <color name="colorGrey">#d9d9d9</color>
 </resources>

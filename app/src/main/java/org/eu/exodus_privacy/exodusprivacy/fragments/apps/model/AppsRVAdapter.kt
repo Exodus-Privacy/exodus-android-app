@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps.model
 
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -8,12 +7,12 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAppItemBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 
 class AppsRVAdapter(
     private val currentDestinationId: Int
@@ -66,18 +65,5 @@ class AppsRVAdapter(
                 else -> ContextCompat.getDrawable(context, R.drawable.ic_mismatch)
             }
         }
-    }
-
-    private fun Chip.setExodusColor(size: Int) {
-        val colorRed = ContextCompat.getColor(context, R.color.colorRedLight)
-        val colorYellow = ContextCompat.getColor(context, R.color.colorYellow)
-        val colorGreen = ContextCompat.getColor(context, R.color.colorGreen)
-
-        val colorStateList = when (size) {
-            0 -> ColorStateList.valueOf(colorGreen)
-            in 1..4 -> ColorStateList.valueOf(colorYellow)
-            else -> ColorStateList.valueOf(colorRed)
-        }
-        this.chipBackgroundColor = colorStateList
     }
 }

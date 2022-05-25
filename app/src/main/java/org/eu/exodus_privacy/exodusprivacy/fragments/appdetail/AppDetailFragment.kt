@@ -1,7 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -14,13 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.chip.Chip
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
+import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -186,18 +185,5 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
         super.onDestroyView()
         binding.toolbarAD.setOnMenuItemClickListener(null)
         _binding = null
-    }
-
-    private fun Chip.setExodusColor(size: Int) {
-        val colorRed = ContextCompat.getColor(context, R.color.colorRedLight)
-        val colorYellow = ContextCompat.getColor(context, R.color.colorYellow)
-        val colorGreen = ContextCompat.getColor(context, R.color.colorGreen)
-
-        val colorStateList = when (size) {
-            0 -> ColorStateList.valueOf(colorGreen)
-            in 1..4 -> ColorStateList.valueOf(colorYellow)
-            else -> ColorStateList.valueOf(colorRed)
-        }
-        this.chipBackgroundColor = colorStateList
     }
 }
