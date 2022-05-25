@@ -8,10 +8,7 @@
     <string name="network_error">Rete non disponibile</string>
     <string name="not_connected">Nessuna connessione internet</string>
     <string name="json_error">Errore JSON</string>
-    <string name="installed">Versione installata: </string>
-    <string name="report_version">Versione testata: </string>
     <string name="no_trackers">Nessun tracciatore testato trovato</string>
-    <string name="no_permissions">Nessuna autorizzazione richiesta dall\'applicazione</string>
     <string name="tested">Non ci sono report per la versione installata (%1$s), le informazioni mostrate sono basate su un\'altra (%2$s) versione</string>
     <string name="analysed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
     <string name="no_package_manager">Sembra che il tuo sistema non permetta l\'accesso all\'elenco di app installate.</string>
@@ -24,13 +21,8 @@
     <string name="get_trackers">Rilevazione tracker</string>
     <string name="no_settings">Questa app non ha impostazioni</string>
     <string name="logo">%1 Logo dell\'applicazione</string>
-    <string name="created_by">Creato da</string>
     <string name="created_date">Report creato il</string>
     <string name="and_updated">ae aggiornato il</string>
-    <string name="view_on_exodus">Vedi su εxodus ➤</string>
-    <string name="view_on_google_play">Vedi su Google Play ➤</string>
-    <string name="view_on_fdroid">Vedi su F-Droid ➤</string>
-    <string name="downloads">scaricamenti</string>
     <string name="code_signature_found">Abbiamo trovato i codici di firma dei seguenti tracker nell\'applicazione:</string>
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
     <string name="code_permission_found">Abbiamo trovato i permessi seguenti nell\'applicazione:</string>
@@ -44,5 +36,4 @@
     <string name="source">Fonte: %s</string>
     <!-- Menu -->
     <string name="menu_action_filter">Filtra</string>
-    <string name="menu_action_settings">Impostazioni dell\'applicazione</string>
 </resources>

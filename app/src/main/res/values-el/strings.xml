@@ -8,10 +8,7 @@
     <string name="network_error">Το δίκτυο δεν είναι διαθέσιμο</string>
     <string name="not_connected">Χωρίς σύνδεση στο Διαδίκτυο</string>
     <string name="json_error">Σφάλμα JSON</string>
-    <string name="installed">Εγκατεστημένη Έκδοση: </string>
-    <string name="report_version">Δοκιμαστική έκδοση: </string>
     <string name="no_trackers">Η εφαρμογή μπορεί να περιέχει tracker(s) που δεν γνωρίζουμε ακόμα.</string>
-    <string name="no_permissions">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
     <string name="tested">Δεν υπάρχει αναφορά για την εγκατεστημένη έκδοση (%1$s), οι πληροφορίες που εμφανίζονται βασίζονται σε άλλη (%2$s) έκδοση</string>
     <string name="analysed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
     <string name="no_package_manager">Φαίνεται ότι το σύστημα σας δεν επιτρέπει την πρόσβαση στη λίστα των εγκατεστημένων εφαρμογών.</string>
@@ -24,13 +21,8 @@
     <string name="get_trackers">Λήψη αναφοράς των trackers</string>
     <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>
     <string name="logo">%1 Λογότυπο Εφαρμογής</string>
-    <string name="created_by">Δημιουργήθηκε από</string>
     <string name="created_date">Η αναφορά δημιουργήθηκε στις</string>
     <string name="and_updated">και ενημερώθηκε στις</string>
-    <string name="view_on_exodus">Δείτε στο εxodus ➤</string>
-    <string name="view_on_google_play">Δείτε στο Google Play ➤</string>
-    <string name="view_on_fdroid">Δείτε στο F-Droid ➤</string>
-    <string name="downloads">λήψεις</string>
     <string name="code_signature_found">Εχουμε βρει υπογραφές κώδικα των παρακάτω trackers στην εφαρμογή:</string>
     <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
     <string name="code_permission_found">Βρήκαμε τα ακόλουθα δικαιώματα στην εφαρμογή:</string>
@@ -44,5 +36,4 @@
     <string name="source">Πηγή: %s</string>
     <!-- Menu -->
     <string name="menu_action_filter">Φίλτρο</string>
-    <string name="menu_action_settings">Ρυθμίσεις Εφαρμογής</string>
 </resources>

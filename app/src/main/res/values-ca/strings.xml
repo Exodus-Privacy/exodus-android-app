@@ -8,10 +8,7 @@
     <string name="network_error">Xarxa no disponible</string>
     <string name="not_connected">No hi ha connexió a Internet</string>
     <string name="json_error">Error JSON</string>
-    <string name="installed">Versió instal·lada:</string>
-    <string name="report_version">Versió que s\'ha provat:</string>
     <string name="no_trackers">L\'aplicació podria contenir rastrejadors que encara no ho coneixem.</string>
-    <string name="no_permissions">Aquesta aplicació no requereix cap permís.</string>
     <string name="tested">No hi ha cap informe per a la versió instal·lada (%1$s), la informació mostrada es basa en un altre versió (%2$s)</string>
     <string name="analysed">Aquesta aplicació no ha estat analitzada encara per Exodus Privacy.</string>
     <string name="no_package_manager">Sembla que el sistema no permet l’accés a la llista d’aplicacions instal·lades.</string>
@@ -24,13 +21,8 @@
     <string name="get_trackers">S\'estan obtenint els rastrejadors</string>
     <string name="no_settings">Aquesta aplicació no té configuració</string>
     <string name="logo">Logo de l\'aplicació %1</string>
-    <string name="created_by">Creat per</string>
     <string name="created_date">S\'ha creat aquest informe el </string>
     <string name="and_updated">i actualitzat el</string>
-    <string name="view_on_exodus">Vegueu al εxodus ➤</string>
-    <string name="view_on_google_play">Vegueu al Google Play ➤</string>
-    <string name="view_on_fdroid">Vegeu a F-Droid ➤</string>
-    <string name="downloads">baixades</string>
     <string name="code_signature_found">Hem trobat la signatura del codi dels següents rastrejadors a l\'aplicació:</string>
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
     <string name="code_permission_found">Hem trobat els permisos següents a l\'aplicació:</string>
@@ -44,5 +36,4 @@
     <string name="source">Font: %s</string>
     <!-- Menu -->
     <string name="menu_action_filter">Filtre</string>
-    <string name="menu_action_settings">Paràmetres de l\'aplicació</string>
 </resources>

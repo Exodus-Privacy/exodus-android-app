@@ -9,10 +9,7 @@
     <string name="network_error">Мережа недоступна</string>
     <string name="not_connected">Нема зʼєднання з Інтернетом</string>
     <string name="json_error">Помилка JSON</string>
-    <string name="installed">Встановлена версія: </string>
-    <string name="report_version">Тестова версія: </string>
     <string name="no_trackers">Застосунок може містити відстежувачі, які нам ще не відомі.</string>
-    <string name="no_permissions">Цей застосунок не вимагає жодних дозволів.</string>
     <string name="tested">Ще нема звіту про цю встановлену версію (%1$s), інформація відображається на основі іншої версії (%2$s)</string>
     <string name="analysed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
     <string name="no_package_manager">Схоже, Ваша система не дозволяє доступ до списку встановлених застосунків.</string>
@@ -25,20 +22,12 @@
     <string name="get_trackers">Отимання відстежувачів</string>
     <string name="no_settings">Цей застосунок немає налаштувань</string>
     <string name="logo">%1 логотип застосунку</string>
-    <string name="created_by">Створено</string>
     <string name="created_date">Звіт створено</string>
     <string name="and_updated">і оновлено</string>
-    <string name="view_on_exodus">Переглянути на εxodus ➤</string>
-    <string name="view_on_google_play">Переглянути на Google Play ➤</string>
-    <string name="view_on_fdroid">Переглянути на F-Droid ➤</string>
-    <string name="downloads">завантажень</string>
     <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
     <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
     <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
     <string name="code_permission_not_found">Цей застосунок не вимагає дозволів.</string>
-    <string name="tracker_infos">Відстежувач — це частина ПЗ, що збирає дані про Вас і Ваше використання. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Дізнатися більше…</a></string>
-    <string name="permission_infos">Дозволи — це дії, які застосунок може робити на Вашому телефоні. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Дізнатися більше…</a></string>
-    <string name="permission_infos_dangerous">Значок <font color="red"><b>!</b></font> позначає \'Небезпечний\' або \'Особливий\' рівень згідно <a href="https://developer.android.com/guide/topics/permissions/overview">рівнів захисту Google.</a></string>
     <string name="tracker_web_page">Вебсторінка відстежувача ➤</string>
     <string name="detection_rules">Правила виявлення </string>
     <string name="code_signature">Код правила виявлення:</string>
@@ -53,14 +42,8 @@
     <!-- Menu -->
     <string name="menu_action_search">Пошук</string>
     <string name="menu_action_filter">Фільтр</string>
-    <string name="menu_action_settings">Налаштування застосунку</string>
 
     <!-- Filters -->
-    <string name="filter_by_name">Фільтр за назвою</string>
-    <string name="having_most_trackers">Має більше відстежувачів</string>
-    <string name="having_less_trackers">Має менше відстежувачів</string>
-    <string name="having_most_permissions">Має більше дозволів</string>
-    <string name="having_less_permissions">Має менше дозволів</string>
     <string name="submit">Надіслати</string>
     <string name="app_not_analyzed">Хочете проаналізувати застосунок?\n\nІдентифікатор застосунку автоматично буде задано у формі на вебсайті. Вам потрібно лише надіслати форму.</string>
     <string name="app_not_analyzed_title">Цей застосунок не аналізувався!</string>
@@ -72,9 +55,6 @@
     <string name="nothing_here">Нема що відображати. Можете потягнути вниз, щоб оновити!</string>
 
     <!-- About Fragment -->
-    <string name="aboutExodusTitle">Про Exodus — застосунок для Android</string>
-    <string name="aboutExodusDesc">Exodus — це застосунок для Android, що через платформу exodus дозволяє дізнатися які відстежувачі вбудовано у встановлені на Вашому смартфоні застосунки. Це дозволяє Вам також дізнатися, які дозволи вимагає будь-який застосунок на Вашому смартфоні.\n\nЦе допоможе Вам повернути собі приватність!</string>
-    <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Перевірте нашу політику приватності тут ➤&lt;/a&gt;</string>
 
 
 </resources>

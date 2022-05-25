@@ -7,10 +7,7 @@
     <string name="network_error">Rede indisponível</string>
     <string name="not_connected">Sem conexão com à internet</string>
     <string name="json_error">Erro JSON</string>
-    <string name="installed">Versão instalada: </string>
-    <string name="report_version">Versão testada: </string>
     <string name="no_trackers">Esse aplicativo pode conter rastreadores que nós não conhecemos ainda.</string>
-    <string name="no_permissions">Este aplicativo não requer nenhuma permissão.</string>
     <string name="tested">Não existe nenhum relatório para a versão instalada (%1$s), a informação exibida é baseada em outra versão (%2$s)</string>
     <string name="analysed">Este app ainda não foi analisado pelo Exodus privacy.</string>
     <string name="no_package_manager">Parece que o seu sistema não permite o acesso à lista de apps instalados.</string>
@@ -23,13 +20,8 @@
     <string name="get_trackers">Obtendo rastreadores</string>
     <string name="no_settings">Este app não tem configurações</string>
     <string name="logo">Logo do aplicativo %1</string>
-    <string name="created_by">Criado por:</string>
     <string name="created_date">Relatório criado em</string>
     <string name="and_updated">e atualizado em</string>
-    <string name="view_on_exodus">Ver no εxodus ➤</string>
-    <string name="view_on_google_play">Ver na Google Play ➤</string>
-    <string name="view_on_fdroid">Ver no F-Droid ➤</string>
-    <string name="downloads">downloads</string>
     <string name="code_signature_found">Nós encontramos a assinatura de código desse respectivo rastreador no aplicativo:</string>
     <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>
     <string name="code_permission_found">Nós encontramos as seguintes permissões neste aplicativo:</string>
@@ -44,6 +36,5 @@
 
     <!-- Menu -->
     <string name="menu_action_filter">Filtro</string>
-    <string name="menu_action_settings">Configurações do Aplicativo</string>
 
 </resources>
