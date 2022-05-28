@@ -13,12 +13,6 @@
     <string name="analysed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
     <string name="no_package_manager">Sembra che il tuo sistema non permetta l\'accesso all\'elenco di app installate.</string>
     <string name="no_app_found">Sembra che tu non abbia nessuna app installata dalla fonte che testiamo (Google Play store o F-Droid).</string>
-    <string name="get_reports_connection">Rilevazione applicazioni: in attesa della connessione al server</string>
-    <string name="get_reports">Rilevazione applicazioni</string>
-    <string name="parse_application">Elaborazione applicazioni:</string>
-    <string name="parse_trackers">Elaborazione tracciatori:</string>
-    <string name="get_trackers_connection">Rilevazione tracciatori: in attesa della connessione al server</string>
-    <string name="get_trackers">Rilevazione tracker</string>
     <string name="no_settings">Questa app non ha impostazioni</string>
     <string name="logo">%1 Logo dell\'applicazione</string>
     <string name="created_date">Report creato il</string>
@@ -27,7 +21,6 @@
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
     <string name="code_permission_found">Abbiamo trovato i permessi seguenti nell\'applicazione:</string>
     <string name="code_permission_not_found">Questa applicazione non richiede alcun permesso.</string>
-    <string name="tracker_web_page">Pagina web del tracker ➤</string>
     <string name="detection_rules">Regole di rilevamento</string>
     <string name="code_signature">Regola di rilevamento (codice):</string>
     <string name="network_signature">Regola di rilevamento (rete):</string>

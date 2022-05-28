@@ -13,12 +13,6 @@
     <string name="analysed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
     <string name="no_package_manager">Φαίνεται ότι το σύστημα σας δεν επιτρέπει την πρόσβαση στη λίστα των εγκατεστημένων εφαρμογών.</string>
     <string name="no_app_found">Φαίνεται ότι δεν έχετε εγκαταστήσει εφαρμογές, από την πηγές που δοκιμάζουμε (Google Play store ή F-Droid).</string>
-    <string name="get_reports_connection">Λήψη αναφοράς εφαρμογών: Αναμονή για σύνδεση διακομιστή</string>
-    <string name="get_reports">Λήψη αναφοράς εφαρμογών</string>
-    <string name="parse_application">Επεξεργασία Εφαρμογών:</string>
-    <string name="parse_trackers">Επεξεργασία των Trackers:</string>
-    <string name="get_trackers_connection">Λήψη αναφοράς των trackers: Αναμονή για σύνδεση διακομιστή</string>
-    <string name="get_trackers">Λήψη αναφοράς των trackers</string>
     <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>
     <string name="logo">%1 Λογότυπο Εφαρμογής</string>
     <string name="created_date">Η αναφορά δημιουργήθηκε στις</string>
@@ -27,7 +21,6 @@
     <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
     <string name="code_permission_found">Βρήκαμε τα ακόλουθα δικαιώματα στην εφαρμογή:</string>
     <string name="code_permission_not_found">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
-    <string name="tracker_web_page">Ιστοσελίδα του Tracker ➤</string>
     <string name="detection_rules">Κανόνες Ανίχνευσης</string>
     <string name="code_signature">Κανόνας ανίχνευσης κώδικα:</string>
     <string name="network_signature">Κανόνας ανίχνευσης δικτύου:</string>

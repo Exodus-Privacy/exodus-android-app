@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
-            app:chipIcon="@drawable/ic_tracker"
+            app:chipIcon="@drawable/ic_permission"
             app:chipIconTint="@color/colorPrimary"
             tools:chipBackgroundColor="@color/colorGreen"
             tools:text="0" />
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/permissionsTitleTV"
         android:text="@string/code_permission_not_found"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/permissionsRV"
@@ -57,7 +57,7 @@
         android:layout_below="@+id/permissionsRV"
         android:layout_marginTop="10dp"
         android:text="@string/permission_info_dangerous"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/permissionsLearnGoogleTV"
@@ -66,7 +66,7 @@
         android:layout_below="@+id/permissionsInfoGoogleTV"
         android:text="@string/learn_more"
         android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/permissionsInfoExodusTV"
@@ -75,7 +75,7 @@
         android:layout_below="@+id/permissionsLearnGoogleTV"
         android:layout_marginTop="10dp"
         android:text="@string/permission_info"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/permissionsLearnExodusTV"
@@ -84,6 +84,6 @@
         android:layout_below="@+id/permissionsInfoExodusTV"
         android:text="@string/learn_more"
         android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

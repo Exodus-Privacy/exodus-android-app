@@ -13,12 +13,6 @@
     <string name="analysed">Diese App wurde von Exodus Privacy noch nicht analysiert.</string>
     <string name="no_package_manager">Ihr System scheint den Zugriff auf die Appliste nicht zu erlauben.</string>
     <string name="no_app_found">Es scheint, dass keine App aus den Quellen, die wir prüfen (Google Play Store und F-Droid), installiert ist.</string>
-    <string name="get_reports_connection">App erhalten: Warte auf Antwort des Servers</string>
-    <string name="get_reports">App erhalten</string>
-    <string name="parse_application">Untersuchung der App:</string>
-    <string name="parse_trackers">Untersuchung der Tracker:</string>
-    <string name="get_trackers_connection">Tracker erhalten: Warte auf Antwort des Servers</string>
-    <string name="get_trackers">Tracker erhalten</string>
     <string name="no_settings">Diese App hat keine Einstellungen</string>
     <string name="logo">%1 Anwendungslogo</string>
     <string name="created_date">Bericht erstellt am</string>
@@ -27,7 +21,6 @@
     <string name="code_signature_not_found">Wir haben keine Code-Signatur irgendeines Trackers in der App gefunden.</string>
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>
     <string name="code_permission_not_found">Diese App erfordert keine Berechtigungen.</string>
-    <string name="tracker_web_page">Tracker-Webseite ➤</string>
     <string name="detection_rules">Erkennungsregeln</string>
     <string name="code_signature">Code-Erkennungsregel:</string>
     <string name="network_signature">Netzwerkerkennungsregel:</string>

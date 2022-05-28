@@ -13,12 +13,6 @@
     <string name="analysed">Это приложение ещё не было изучено Exodus Privacy.</string>
     <string name="no_package_manager">Похоже, ваша система не разрешает доступ к списку установленных приложений.</string>
     <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
-    <string name="get_reports_connection">Получение приложений: ожидание подключения к серверу</string>
-    <string name="get_reports">Получение приложений</string>
-    <string name="parse_application">Обработка приложений:</string>
-    <string name="parse_trackers">Обработка трекеров:</string>
-    <string name="get_trackers_connection">Получение трекеров: ожидание подключения к серверу</string>
-    <string name="get_trackers">Получение трекеров</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
     <string name="logo">Логотип приложения %1</string>
     <string name="created_date">Отчёт создан</string>
@@ -27,7 +21,6 @@
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
-    <string name="tracker_web_page">Сайт трекера ➤</string>
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>
     <string name="network_signature">Правило определения сети:</string>

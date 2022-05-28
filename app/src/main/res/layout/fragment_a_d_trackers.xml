@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/trackerTitleTV"
         android:text="@string/code_signature_not_found"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/trackersRV"
@@ -57,7 +57,7 @@
         android:layout_below="@+id/trackersRV"
         android:layout_marginTop="10dp"
         android:text="@string/tracker_info"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/trackersLearnTV"
@@ -66,6 +66,6 @@
         android:layout_below="@+id/trackersInfoTV"
         android:text="@string/learn_more"
         android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

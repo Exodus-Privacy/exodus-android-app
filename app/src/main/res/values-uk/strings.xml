@@ -14,12 +14,6 @@
     <string name="analysed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
     <string name="no_package_manager">Схоже, Ваша система не дозволяє доступ до списку встановлених застосунків.</string>
     <string name="no_app_found">Схоже, у Вас немає встановлених застосунків із джерел, які ми тестували (Google Play або F-Droid).</string>
-    <string name="get_reports_connection">Отримання застосунків: очікування на зʼєднання з сервером</string>
-    <string name="get_reports">Отримання застосунків</string>
-    <string name="parse_application">Обробка застосунків:</string>
-    <string name="parse_trackers">Обробка відстежувачів:</string>
-    <string name="get_trackers_connection">Отримання відстежувачів: очікування зʼєднання з сервером</string>
-    <string name="get_trackers">Отимання відстежувачів</string>
     <string name="no_settings">Цей застосунок немає налаштувань</string>
     <string name="logo">%1 логотип застосунку</string>
     <string name="created_date">Звіт створено</string>
@@ -28,7 +22,6 @@
     <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
     <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
     <string name="code_permission_not_found">Цей застосунок не вимагає дозволів.</string>
-    <string name="tracker_web_page">Вебсторінка відстежувача ➤</string>
     <string name="detection_rules">Правила виявлення </string>
     <string name="code_signature">Код правила виявлення:</string>
     <string name="network_signature">Мережа правила виявлення:</string>

@@ -13,12 +13,6 @@
     <string name="analysed">Aquesta aplicació no ha estat analitzada encara per Exodus Privacy.</string>
     <string name="no_package_manager">Sembla que el sistema no permet l’accés a la llista d’aplicacions instal·lades.</string>
     <string name="no_app_found">Sembla que no teniu cap aplicació instal·lada des de la font que provem (Google Play Store o F-Droid).</string>
-    <string name="get_reports_connection">S\'estan obtenint les aplicacions: s\'està esperant la connexió del servidor </string>
-    <string name="get_reports">S\'estan obtenint les aplicacions</string>
-    <string name="parse_application">S\'estan processant les aplicacions:</string>
-    <string name="parse_trackers">S\'estan processant els rastrejadors:</string>
-    <string name="get_trackers_connection">S\'estan obtenint els rastrejadors: s\'està esperant la connexió del servidor</string>
-    <string name="get_trackers">S\'estan obtenint els rastrejadors</string>
     <string name="no_settings">Aquesta aplicació no té configuració</string>
     <string name="logo">Logo de l\'aplicació %1</string>
     <string name="created_date">S\'ha creat aquest informe el </string>
@@ -27,7 +21,6 @@
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
     <string name="code_permission_found">Hem trobat els permisos següents a l\'aplicació:</string>
     <string name="code_permission_not_found">Aquesta aplicació no requereix cap permís.</string>
-    <string name="tracker_web_page">Pàgina web del rastrejador ➤</string>
     <string name="detection_rules">Regles de detecció</string>
     <string name="code_signature">Regla de detecció de codi:</string>
     <string name="network_signature">Regla de detecció de xarxa:</string>

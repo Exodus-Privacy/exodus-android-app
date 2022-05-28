@@ -13,12 +13,6 @@
     <string name="analysed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
     <string name="no_package_manager">يبدو أنّ نظام جهازك لا يسمح بالوصول إلى قائمة التطبيقات المثبة.</string>
     <string name="no_app_found">يبدو أنه ليس لديك أي تطبيقات مثبتة من المصدر الذي نقوم باختباره (متجر Google Play أو F-Droid).</string>
-    <string name="get_reports_connection">جلب التطبيقات: في انتظار الاتصال بالخادم</string>
-    <string name="get_reports">جارٍ جلب التطبيقات</string>
-    <string name="parse_application">فحص التطبيقات:</string>
-    <string name="parse_trackers">فحص المتعقّبون:</string>
-    <string name="get_trackers_connection">جلب المتعقّبين: في انتظار الاتصال بالخادم</string>
-    <string name="get_trackers">جارٍ جلب المُتعقّبين</string>
     <string name="no_settings">ليس لدى هذا التطبيق إعدادات</string>
     <string name="logo">شعار تطبيق %1</string>
     <string name="created_date">تم إنشاء التقرير في</string>
@@ -27,7 +21,6 @@
     <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
     <string name="code_permission_found">لقد وجدنا التصريحات التالية في التطبيق:</string>
     <string name="code_permission_not_found">هذا التطبيق لا يطلب صلاحيات.</string>
-    <string name="tracker_web_page">صفحة الويب للمتعقب ←</string>
     <string name="detection_rules">قواعد الكشف</string>
     <string name="code_signature">قاعدة كشف الرمز:</string>
     <string name="network_signature">القاعدة الشبكية للإكتشاف:</string>

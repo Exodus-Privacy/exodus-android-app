@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="?android:textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:drawableEndCompat="@drawable/ic_forward"
         tools:text="Google Analytics" />
 
