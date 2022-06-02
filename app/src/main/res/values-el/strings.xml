@@ -9,8 +9,7 @@
     <string name="not_connected">Χωρίς σύνδεση στο Διαδίκτυο</string>
     <string name="json_error">Σφάλμα JSON</string>
     <string name="no_trackers">Η εφαρμογή μπορεί να περιέχει tracker(s) που δεν γνωρίζουμε ακόμα.</string>
-    <string name="tested">Δεν υπάρχει αναφορά για την εγκατεστημένη έκδοση (%1$s), οι πληροφορίες που εμφανίζονται βασίζονται σε άλλη (%2$s) έκδοση</string>
-    <string name="analysed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
+    <string name="analyzed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
     <string name="no_package_manager">Φαίνεται ότι το σύστημα σας δεν επιτρέπει την πρόσβαση στη λίστα των εγκατεστημένων εφαρμογών.</string>
     <string name="no_app_found">Φαίνεται ότι δεν έχετε εγκαταστήσει εφαρμογές, από την πηγές που δοκιμάζουμε (Google Play store ή F-Droid).</string>
     <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>

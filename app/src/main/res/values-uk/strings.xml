@@ -10,8 +10,7 @@
     <string name="not_connected">Нема зʼєднання з Інтернетом</string>
     <string name="json_error">Помилка JSON</string>
     <string name="no_trackers">Застосунок може містити відстежувачі, які нам ще не відомі.</string>
-    <string name="tested">Ще нема звіту про цю встановлену версію (%1$s), інформація відображається на основі іншої версії (%2$s)</string>
-    <string name="analysed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
+    <string name="analyzed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
     <string name="no_package_manager">Схоже, Ваша система не дозволяє доступ до списку встановлених застосунків.</string>
     <string name="no_app_found">Схоже, у Вас немає встановлених застосунків із джерел, які ми тестували (Google Play або F-Droid).</string>
     <string name="no_settings">Цей застосунок немає налаштувань</string>
