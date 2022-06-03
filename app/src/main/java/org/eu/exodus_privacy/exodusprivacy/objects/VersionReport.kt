@@ -9,6 +9,6 @@ enum class VersionReport(
     @StringRes val stringIdRes: Int
 ) {
     MATCH(R.drawable.ic_match, R.string.version_equals),
-    UNAVAILABLE(R.drawable.ic_unavailable, R.string.analyzed),
+    UNAVAILABLE(R.drawable.ic_unavailable, R.string.version_unavailable),
     MISMATCH(R.drawable.ic_mismatch, R.string.version_mismatch);
 }

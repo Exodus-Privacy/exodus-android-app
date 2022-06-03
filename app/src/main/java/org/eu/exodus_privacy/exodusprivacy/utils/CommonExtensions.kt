@@ -43,9 +43,7 @@ fun Chip.setVersionReport(app: ExodusApplication) {
         Toast.makeText(
             context,
             context.getString(
-                versionReport.stringIdRes,
-                app.exodusVersionCode,
-                app.versionCode,
+                versionReport.stringIdRes
             ),
             Toast.LENGTH_LONG
         ).show()
