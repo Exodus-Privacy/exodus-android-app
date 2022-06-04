@@ -10,8 +10,8 @@
     <string name="not_connected">No Internet Connection</string>
     <string name="json_error">JSON Error</string>
     <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
-    <string name="version_equals" translatable="false">Installed Version = Analyzed Version</string>
-    <string name="version_mismatch" translatable="false">Installed Version &lt;&gt; Analyzed Version</string>
+    <string name="version_equals">Installed Version = Analyzed Version</string>
+    <string name="version_mismatch">Installed Version &lt;&gt; Analyzed Version</string>
     <string name="version_unavailable">This app hasn\'t been yet analyzed.</string>
     <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
     <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
