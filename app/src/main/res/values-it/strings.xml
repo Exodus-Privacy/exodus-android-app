@@ -9,8 +9,7 @@
     <string name="not_connected">Nessuna connessione internet</string>
     <string name="json_error">Errore JSON</string>
     <string name="no_trackers">Nessun tracciatore testato trovato</string>
-    <string name="tested">Non ci sono report per la versione installata (%1$s), le informazioni mostrate sono basate su un\'altra (%2$s) versione</string>
-    <string name="analysed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
+    <string name="analyzed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
     <string name="no_package_manager">Sembra che il tuo sistema non permetta l\'accesso all\'elenco di app installate.</string>
     <string name="no_app_found">Sembra che tu non abbia nessuna app installata dalla fonte che testiamo (Google Play store o F-Droid).</string>
     <string name="no_settings">Questa app non ha impostazioni</string>

@@ -20,6 +20,7 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
+import org.eu.exodus_privacy.exodusprivacy.utils.setVersionReport
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -149,11 +150,8 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     text = permsNum.toString()
                     setExodusColor(permsNum)
                 }
-                versionChip.chipIcon = when (app.exodusVersionCode) {
-                    app.versionCode -> ContextCompat.getDrawable(view.context, R.drawable.ic_match)
-                    0L -> ContextCompat.getDrawable(view.context, R.drawable.ic_unavailable)
-                    else -> ContextCompat.getDrawable(view.context, R.drawable.ic_mismatch)
-                }
+                versionChip.setVersionReport(app)
+
                 sourceChip.text = app.source.name.lowercase().replaceFirstChar { it.uppercase() }
 
                 // Setup ViewPager for trackers and permissions fragment

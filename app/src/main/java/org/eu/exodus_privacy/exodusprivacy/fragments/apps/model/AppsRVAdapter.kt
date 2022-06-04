@@ -2,7 +2,6 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.apps.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +12,7 @@ import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
+import org.eu.exodus_privacy.exodusprivacy.utils.setVersionReport
 
 class AppsRVAdapter(
     private val currentDestinationId: Int
@@ -59,11 +59,7 @@ class AppsRVAdapter(
                 text = permsNum.toString()
                 setExodusColor(permsNum)
             }
-            versionChip.chipIcon = when (app.exodusVersionCode) {
-                app.versionCode -> ContextCompat.getDrawable(context, R.drawable.ic_match)
-                0L -> ContextCompat.getDrawable(context, R.drawable.ic_unavailable)
-                else -> ContextCompat.getDrawable(context, R.drawable.ic_mismatch)
-            }
+            versionChip.setVersionReport(app)
         }
     }
 }

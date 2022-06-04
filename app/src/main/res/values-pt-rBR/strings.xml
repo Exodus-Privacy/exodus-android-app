@@ -8,8 +8,7 @@
     <string name="not_connected">Sem conexão com à internet</string>
     <string name="json_error">Erro JSON</string>
     <string name="no_trackers">Esse aplicativo pode conter rastreadores que nós não conhecemos ainda.</string>
-    <string name="tested">Não existe nenhum relatório para a versão instalada (%1$s), a informação exibida é baseada em outra versão (%2$s)</string>
-    <string name="analysed">Este app ainda não foi analisado pelo Exodus privacy.</string>
+    <string name="analyzed">Este app ainda não foi analisado pelo Exodus privacy.</string>
     <string name="no_package_manager">Parece que o seu sistema não permite o acesso à lista de apps instalados.</string>
     <string name="no_app_found">Parece que seu sistema não tem nenhum app instalado das fontes que nós testamos (Google Play Store ou F-Droid).</string>
     <string name="no_settings">Este app não tem configurações</string>

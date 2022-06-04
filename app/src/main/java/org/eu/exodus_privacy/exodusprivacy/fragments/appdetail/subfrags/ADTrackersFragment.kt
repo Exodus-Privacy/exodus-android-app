@@ -41,7 +41,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                 if (app.exodusTrackers.isEmpty()) {
                     trackersRV.visibility = View.GONE
                     if (app.exodusVersionCode == 0L) {
-                        trackersStatusTV.text = getString(R.string.analysed)
+                        trackersStatusTV.text = getString(R.string.analyzed)
                     }
                 }
                 trackersChip.apply {

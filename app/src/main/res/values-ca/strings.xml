@@ -9,8 +9,7 @@
     <string name="not_connected">No hi ha connexió a Internet</string>
     <string name="json_error">Error JSON</string>
     <string name="no_trackers">L\'aplicació podria contenir rastrejadors que encara no ho coneixem.</string>
-    <string name="tested">No hi ha cap informe per a la versió instal·lada (%1$s), la informació mostrada es basa en un altre versió (%2$s)</string>
-    <string name="analysed">Aquesta aplicació no ha estat analitzada encara per Exodus Privacy.</string>
+    <string name="analyzed">Aquesta aplicació no ha estat analitzada encara per Exodus Privacy.</string>
     <string name="no_package_manager">Sembla que el sistema no permet l’accés a la llista d’aplicacions instal·lades.</string>
     <string name="no_app_found">Sembla que no teniu cap aplicació instal·lada des de la font que provem (Google Play Store o F-Droid).</string>
     <string name="no_settings">Aquesta aplicació no té configuració</string>
