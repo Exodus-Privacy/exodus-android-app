@@ -22,6 +22,7 @@ jobs:
           uses: actions/setup-java@v1
           with:
             java-version: 11
+        - name: Decode Keystore
         - run: |
             echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
             gpg -d -passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" -batch release.keystore.asc > app/release.keystore
