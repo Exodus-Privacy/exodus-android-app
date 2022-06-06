@@ -72,7 +72,7 @@
     <string name="open_exodus_page">Open on Exodus</string>
     <string name="submit_app">Submit app</string>
     <string name="open_store">Open store</string>
-    <string name="open_app_info">Settings</string>
+    <string name="open_app_info">App Settings</string>
     <string name="version">Version</string>
     <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Installed Version</string>
