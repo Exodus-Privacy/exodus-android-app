@@ -6,6 +6,7 @@
     <string name="permissions">Autorisations</string>
     <string name="network_error">Réseau indisponible</string>
     <string name="not_connected">Aucune connexion Internet</string>
+    <string name="settings">Paramètres</string>
     <string name="json_error">Erreur JSON</string>
     <string name="no_trackers">L\'application pourrait contenir un ou plusieurs pisteurs que nous n\'avons pas encore identifiés.</string>
 	<string name="version_equals">Version installée = Version analysée</string>

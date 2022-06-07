@@ -8,6 +8,7 @@
     <string name="permissions">Permissions</string>
     <string name="network_error">Network Unavailable</string>
     <string name="not_connected">No Internet Connection</string>
+    <string name="settings">Settings</string>
     <string name="json_error">JSON Error</string>
     <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
     <string name="version_equals">Installed Version = Analyzed Version</string>
