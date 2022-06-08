@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - '*'
-    tags:
-      - v*
   pull_request:
     branches:
       - master
@@ -14,11 +12,15 @@ on:
       -'README.md'
   workflow_dispatch:
 jobs:
-  debug:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - name: Run Kotlin Linter
         run: ./gradlew app:ktlintCheck --info
       - name: Generate debug build
@@ -28,7 +30,7 @@ jobs:
         with:
           args: /github/workspace/app/build/outputs/apk/debug/app-debug.apk
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app_debug
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
