@@ -7,6 +7,7 @@ env:
     KEYSTORE_PASSWORD: ${{secrets.RELEASE_KEYSTORE_PASSPHRASE}}
     KEYSTORE_ALIAS: ${{secrets.RELEASE_KEYSTORE_ALIAS}}
     KEYSTORE_PASSPHRASE: ${{secrets.RELEASE_KEYSTORE_ALIAS_PASSPHRASE}}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 on:
   push:
     tags:
@@ -23,7 +24,7 @@ jobs:
           with:
             java-version: 11
         - name: Decode Keystore
-        - run: |
+          run: |
             echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
             gpg -d -passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" -batch release.keystore.asc > app/release.keystore
         - name: Generate release build
@@ -37,3 +38,9 @@ jobs:
           with:
             name: app_release
             path: app/build/outputs/apk/release/app-release-signed.apk
+        - name: Create release
+          if: github.event_name == 'push' && github.ref_type == 'tag'
+          run: gh release create ${{ github.ref }} --generate-notes
+        - name: Upload APK on release
+          if: github.event_name == 'push' && github.ref_type == 'tag'
+          run: gh release upload ${{ github.ref }} app/build/outputs/apk/release/app-release-signed.apk#exodus-android-app_${{ github.ref }}
