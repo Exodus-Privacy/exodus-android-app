@@ -1,5 +1,7 @@
 ---
 name: Build
+env:
+    EXODUS_API_KEY: ${{secrets.EXODUS_API_KEY}}
 on:
   push:
     branches:
