@@ -12,12 +12,12 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
@@ -49,6 +49,8 @@ class ExodusUpdateService : LifecycleService() {
     private val appList = mutableListOf<ExodusApplication>()
     private val currentSize: MutableLiveData<Int> = MutableLiveData(1)
 
+    private var networkConnected: Boolean = false
+
     // Inject required modules
     @Inject
     lateinit var applicationList: MutableList<Application>
@@ -74,18 +76,17 @@ class ExodusUpdateService : LifecycleService() {
     @Inject
     lateinit var notificationChannel: NotificationChannel
 
-    // Observers
-    private val networkObserver: (connected: Boolean) -> Unit = { connected ->
-        if (!connected) {
-            // No connection, close the service
-            stopService()
-        }
-    }
-
     override fun onCreate() {
         super.onCreate()
-        serviceScope.launch {
-            networkManager.addObserver(networkObserver)
+
+        lifecycleScope.launch {
+            networkManager.networkState.collect { connected ->
+                networkConnected = connected
+                if (!connected) {
+                    // No connection, close the service
+                    stopService()
+                }
+            }
         }
     }
 
@@ -94,56 +95,10 @@ class ExodusUpdateService : LifecycleService() {
         intent?.let {
             when (it.action) {
                 FIRST_TIME_START_SERVICE -> {
-                    checkConnection {
-                        IS_SERVICE_RUNNING = true
-
-                        // Create notification channel on post-nougat devices
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            notificationManager.createNotificationChannel(notificationChannel)
-                        }
-
-                        // Construct an ongoing notification and start the service
-                        startForeground(
-                            SERVICE_ID,
-                            createNotification(currentSize.value!!, applicationList.size, false, this)
-                        )
-
-                        // Do the initial setup
-                        updateAllDatabase(true)
-
-                        currentSize.observe(this) { current ->
-                            notificationManager.notify(
-                                SERVICE_ID,
-                                createNotification(current, applicationList.size, false, this)
-                            )
-                        }
-                    }
+                    launchFetch(true)
                 }
                 START_SERVICE -> {
-                    checkConnection {
-                        IS_SERVICE_RUNNING = true
-
-                        // Construct an ongoing notification and start the service
-                        startForeground(
-                            SERVICE_ID,
-                            createNotification(
-                                currentSize.value!!,
-                                applicationList.size,
-                                true,
-                                this
-                            )
-                        )
-
-                        // Update all database
-                        updateAllDatabase(false)
-
-                        currentSize.observe(this) { current ->
-                            notificationManager.notify(
-                                SERVICE_ID,
-                                createNotification(current, applicationList.size, false, this)
-                            )
-                        }
-                    }
+                    launchFetch(false)
                 }
                 STOP_SERVICE -> {
                     stopService()
@@ -156,22 +111,46 @@ class ExodusUpdateService : LifecycleService() {
         return START_REDELIVER_INTENT
     }
 
+    private fun launchFetch(firstTime: Boolean) {
+        networkManager.checkConnection()
+
+        if (networkConnected) {
+            IS_SERVICE_RUNNING = true
+
+            if (firstTime) {
+                // Create notification channel on post-nougat devices
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    notificationManager.createNotificationChannel(notificationChannel)
+                }
+            }
+
+            // Construct an ongoing notification and start the service
+            startForeground(
+                SERVICE_ID,
+                createNotification(
+                    currentSize.value!!,
+                    applicationList.size,
+                    !firstTime,
+                    this
+                )
+            )
+
+            // Update all database
+            updateAllDatabase(firstTime)
+
+            currentSize.observe(this) { current ->
+                notificationManager.notify(
+                    SERVICE_ID,
+                    createNotification(current, applicationList.size, false, this)
+                )
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
-        serviceScope.launch {
-            networkManager.removeObserver(networkObserver)
-        }
         IS_SERVICE_RUNNING = false
-    }
-
-    private fun checkConnection(action: () -> Unit) {
-        serviceScope.launch {
-            networkManager.checkConnection()
-            withContext(Dispatchers.Main) {
-                action.invoke()
-            }
-        }
     }
 
     private fun createNotification(

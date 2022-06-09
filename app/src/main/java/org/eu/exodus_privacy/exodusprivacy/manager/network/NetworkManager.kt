@@ -4,7 +4,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import java.net.URL
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,7 +18,11 @@ class NetworkManager @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
 
-    private var observers = mutableListOf<(connected: Boolean) -> Unit>()
+    private val _networkState = MutableStateFlow(checkURL())
+    val networkState: StateFlow<Boolean> = _networkState
+
+    private val _connectionObserver = MutableLiveData<Boolean>()
+    val connectionObserver: LiveData<Boolean> = _connectionObserver
 
     init {
         ContextCompat.getSystemService(
@@ -24,31 +32,17 @@ class NetworkManager @Inject constructor(
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
-                    doForEachObserver(checkURL())
+                    _networkState.value = checkURL()
+                    checkConnection()
                 }
 
                 override fun onLost(network: Network) {
                     super.onLost(network)
-                    doForEachObserver(false)
+                    _networkState.value = false
+                    checkConnection()
                 }
             }
         )
-    }
-
-    fun addObserver(observer: (connected: Boolean) -> Unit) {
-        this.observers.add(observer)
-    }
-
-    fun removeObserver(observer: (connected: Boolean) -> Unit) {
-        this.observers.remove(observer)
-    }
-
-    // Prevent concurrent modification exception
-    private fun doForEachObserver(connected: Boolean) {
-        val iterator = observers.iterator()
-        while (iterator.hasNext()) {
-            iterator.next().invoke(connected)
-        }
     }
 
     private fun checkURL(): Boolean {
@@ -63,8 +57,6 @@ class NetworkManager @Inject constructor(
     }
 
     fun checkConnection() {
-        observers.forEach {
-            it.invoke(checkURL())
-        }
+        _connectionObserver.postValue(_networkState.value)
     }
 }
