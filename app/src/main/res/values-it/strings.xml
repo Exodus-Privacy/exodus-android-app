@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo applicazione</string>
     <string name="trackers_pct">Tracciatori:</string>
     <string name="permissions_pct">Autorizzazioni:</string>
@@ -14,7 +13,7 @@
     <string name="no_app_found">Sembra che tu non abbia nessuna app installata dalla fonte che testiamo (Google Play store o F-Droid).</string>
     <string name="no_settings">Questa app non ha impostazioni</string>
     <string name="logo">%1 Logo dell\'applicazione</string>
-    <string name="created_date">Report creato il</string>
+    <string name="report_date">Report creato il <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">ae aggiornato il</string>
     <string name="code_signature_found">Abbiamo trovato i codici di firma dei seguenti tracker nell\'applicazione:</string>
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
@@ -26,6 +25,7 @@
     <string name="tracker_presence_in">Presente in:</string>
     <string name="no_app_found_tracker">Questo tracker non sembra essere presente nelle tue applicazioni</string>
     <string name="source">Fonte: %s</string>
+	
     <!-- Menu -->
     <string name="menu_action_filter">Filtra</string>
 </resources>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Логотип приложения</string>
     <string name="trackers_pct">Трекеры:</string>
     <string name="permissions_pct">Разрешения:</string>
@@ -14,7 +13,7 @@
     <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
     <string name="logo">Логотип приложения %1</string>
-    <string name="created_date">Отчёт создан</string>
+    <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">и обновлено</string>
     <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
@@ -26,6 +25,7 @@
     <string name="tracker_presence_in">Присутствует в:</string>
     <string name="no_app_found_tracker">Этот трекер не присутствует в ваших приложениях</string>
     <string name="source">Источник: %s</string>
+	
     <!-- Menu -->
     <string name="menu_action_filter">Фильтр</string>
 </resources>

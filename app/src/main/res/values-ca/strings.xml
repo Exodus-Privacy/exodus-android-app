@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo de l\'aplicació</string>
     <string name="trackers_pct">Rastrejadors:</string>
     <string name="permissions_pct">Permisos:</string>
@@ -14,7 +13,7 @@
     <string name="no_app_found">Sembla que no teniu cap aplicació instal·lada des de la font que provem (Google Play Store o F-Droid).</string>
     <string name="no_settings">Aquesta aplicació no té configuració</string>
     <string name="logo">Logo de l\'aplicació %1</string>
-    <string name="created_date">S\'ha creat aquest informe el </string>
+    <string name="report_date">S\'ha creat aquest informe el <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">i actualitzat el</string>
     <string name="code_signature_found">Hem trobat la signatura del codi dels següents rastrejadors a l\'aplicació:</string>
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
@@ -26,6 +25,7 @@
     <string name="tracker_presence_in">Present en:</string>
     <string name="no_app_found_tracker">Aquest rastrejador no sembla estar present en les vostres aplicacions</string>
     <string name="source">Font: %s</string>
+	
     <!-- Menu -->
     <string name="menu_action_filter">Filtre</string>
 </resources>

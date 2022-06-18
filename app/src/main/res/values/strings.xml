@@ -17,7 +17,6 @@
     <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
     <string name="no_settings">This app doesn\'t have settings</string>
     <string name="logo">%1 Application Logo</string>
-    <string name="created_date">Report created on</string>
     <string name="and_updated">and updated on</string>
     <string name="tracker_presence_in">Present in:</string>
     <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>

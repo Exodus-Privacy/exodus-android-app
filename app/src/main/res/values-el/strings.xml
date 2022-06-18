@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Λογότυπο Εφαρμογής</string>
     <string name="trackers_pct">Trackers:</string>
     <string name="permissions_pct">Άδειες:</string>
@@ -14,7 +13,7 @@
     <string name="no_app_found">Φαίνεται ότι δεν έχετε εγκαταστήσει εφαρμογές, από την πηγές που δοκιμάζουμε (Google Play store ή F-Droid).</string>
     <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>
     <string name="logo">%1 Λογότυπο Εφαρμογής</string>
-    <string name="created_date">Η αναφορά δημιουργήθηκε στις</string>
+    <string name="report_date">Η αναφορά δημιουργήθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">και ενημερώθηκε στις</string>
     <string name="code_signature_found">Εχουμε βρει υπογραφές κώδικα των παρακάτω trackers στην εφαρμογή:</string>
     <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
@@ -26,6 +25,7 @@
     <string name="tracker_presence_in">Παρών σε:</string>
     <string name="no_app_found_tracker">Αυτό το tracker φαίνεται να μην υπάρχει στις εφαρμογές σας</string>
     <string name="source">Πηγή: %s</string>
+	
     <!-- Menu -->
     <string name="menu_action_filter">Φίλτρο</string>
 </resources>

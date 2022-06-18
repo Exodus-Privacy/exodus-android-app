@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">شعار التطبيق</string>
     <string name="trackers_pct">المتعقِّبون:</string>
     <string name="permissions_pct">التصريحات:</string>
@@ -14,7 +13,7 @@
     <string name="no_app_found">يبدو أنه ليس لديك أي تطبيقات مثبتة من المصدر الذي نقوم باختباره (متجر Google Play أو F-Droid).</string>
     <string name="no_settings">ليس لدى هذا التطبيق إعدادات</string>
     <string name="logo">شعار تطبيق %1</string>
-    <string name="created_date">تم إنشاء التقرير في</string>
+    <string name="report_date">تم إنشاء التقرير في <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">وتحديثه في</string>
     <string name="code_signature_found">لقد وجدنا توقيع الرمز البرمجي للمتعقبين التاليين في التطبيق:</string>
     <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
@@ -26,6 +25,7 @@
     <string name="tracker_presence_in">موجود في:</string>
     <string name="no_app_found_tracker">يبدو أن هذا المتعقب غير موجود في تطبيقاتك</string>
     <string name="source">المصدر: %s</string>
+	
     <!-- Menu -->
     <string name="menu_action_filter">عامل التصفية</string>
 </resources>

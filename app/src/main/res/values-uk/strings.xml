@@ -15,7 +15,7 @@
     <string name="no_app_found">Схоже, у Вас немає встановлених застосунків із джерел, які ми тестували (Google Play або F-Droid).</string>
     <string name="no_settings">Цей застосунок немає налаштувань</string>
     <string name="logo">%1 логотип застосунку</string>
-    <string name="created_date">Звіт створено</string>
+    <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">і оновлено</string>
     <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
     <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
@@ -31,6 +31,7 @@
     <string name="cancel">Скасувати</string>
     <string name="refresh_needed">Потрібне оновлення</string>
     <string name="refresh_needed_message">Дані не оновлюються з %1$s.\n\nБажаєте оновити їх?</string>
+	
     <!-- Menu -->
     <string name="menu_action_search">Пошук</string>
     <string name="menu_action_filter">Фільтр</string>

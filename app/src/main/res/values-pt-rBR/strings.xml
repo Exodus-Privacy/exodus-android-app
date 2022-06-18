@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo do aplicativo</string>
     <string name="trackers_pct">Rastreadores:</string>
     <string name="permissions_pct">Permissões:</string>
@@ -13,7 +13,7 @@
     <string name="no_app_found">Parece que seu sistema não tem nenhum app instalado das fontes que nós testamos (Google Play Store ou F-Droid).</string>
     <string name="no_settings">Este app não tem configurações</string>
     <string name="logo">Logo do aplicativo %1</string>
-    <string name="created_date">Relatório criado em</string>
+    <string name="report_date">Relatório criado em <xliff:g id="date">%1$s</xliff:g></string>
     <string name="and_updated">e atualizado em</string>
     <string name="code_signature_found">Nós encontramos a assinatura de código desse respectivo rastreador no aplicativo:</string>
     <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>

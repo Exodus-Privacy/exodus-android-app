@@ -10,7 +10,7 @@
     <string name="no_trackers">L\'application pourrait contenir un ou plusieurs pisteurs que nous n\'avons pas encore identifiés.</string>
 	<string name="version_equals">Version installée = Version analysée</string>
     <string name="version_mismatch">Version installée &lt;&gt; Version analysée</string>
-    <string name="version_unavailable">Cette application n\'a pas encore été analysée.</string>
+    <string name="version_unavailable">Cette application n\'a jamais été analysée.</string>
     <string name="no_package_manager">Votre système semble ne pas donner accès aux applications installées.</string>
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="no_settings">Cette app n\'a pas de paramètre</string>
@@ -63,7 +63,7 @@
     <string name="privPolicy_desc">Comment nous traitons vos données</string>
     <string name="email">Contacter Exodus Privacy</string>
     <string name="email_desc">Contacter nous par mail</string>
-    <string name="twitter">Suivez nous sur Twitter</string>
+    <string name="twitter">Suivez-nous sur Twitter</string>
     <string name="twitter_desc">Rester informé sur notre actualité</string>
 	
 	<!-- AppDetail Fragment -->
