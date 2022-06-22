@@ -132,11 +132,21 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         }
                     }
                 }
-                if (app.updated.isNotBlank()) {
-                    appReportTV.text = getString(
-                        R.string.report_date,
-                        viewModel.getFormattedReportDate(app.updated, view.context)
-                    )
+                if (app.created.isNotBlank()) {
+                    if (app.updated.isNotBlank() && app.created != app.updated) {
+                        appReportTV.text = getString(
+                            R.string.report_date,
+                            viewModel.getFormattedReportDate(app.created, view.context)
+                        ) + " " + getString(
+                            R.string.updated,
+                            viewModel.getFormattedReportDate(app.updated, view.context)
+                        )
+                    } else {
+                        appReportTV.text = getString(
+                            R.string.report_date,
+                            viewModel.getFormattedReportDate(app.created, view.context)
+                        )
+                    }
                 } else {
                     appReportTV.visibility = View.GONE
                 }

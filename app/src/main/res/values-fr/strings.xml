@@ -15,7 +15,7 @@
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="no_settings">Cette app n\'a pas de paramètre</string>
     <string name="logo">Logo de l\'application %1</string>
-    <string name="and_updated">et mis à jour le</string>
+    <string name="updated">et mis à jour le <xliff:g id="date">%1$s</xliff:g></string>
     <string name="tracker_presence_in">Présent dans:</string>
     <string name="no_app_found_tracker">Ce pisteur ne semble pas être présent dans vos applications</string>
     <string name="source">Source: %s</string>

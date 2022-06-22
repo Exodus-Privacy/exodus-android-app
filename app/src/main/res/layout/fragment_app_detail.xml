@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:text="@string/report_date"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="15sp"

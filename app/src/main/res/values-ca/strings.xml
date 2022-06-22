@@ -14,7 +14,7 @@
     <string name="no_settings">Aquesta aplicació no té configuració</string>
     <string name="logo">Logo de l\'aplicació %1</string>
     <string name="report_date">S\'ha creat aquest informe el <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="and_updated">i actualitzat el</string>
+    <string name="updated">i actualitzat el <xliff:g id="date">%1$s</xliff:g></string>
     <string name="code_signature_found">Hem trobat la signatura del codi dels següents rastrejadors a l\'aplicació:</string>
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
     <string name="code_permission_found">Hem trobat els permisos següents a l\'aplicació:</string>
