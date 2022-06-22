@@ -22,5 +22,6 @@ data class ExodusApplication(
     val exodusTrackers: List<Int> = emptyList(),
     val source: Source = Source.GOOGLE,
     val report: Int = 0,
+    val created: String = String()
     val updated: String = String()
 )
