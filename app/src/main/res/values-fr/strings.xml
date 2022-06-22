@@ -10,12 +10,11 @@
     <string name="no_trackers">L\'application pourrait contenir un ou plusieurs pisteurs que nous n\'avons pas encore identifiés.</string>
 	<string name="version_equals">Version installée = Version analysée</string>
     <string name="version_mismatch">Version installée &lt;&gt; Version analysée</string>
-    <string name="version_unavailable">Cette application n\'a jamais été analysée.</string>
+    <string name="version_unavailable">Application jamais analysée</string>
     <string name="no_package_manager">Votre système semble ne pas donner accès aux applications installées.</string>
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="no_settings">Cette app n\'a pas de paramètre</string>
     <string name="logo">Logo de l\'application %1</string>
-    <string name="created_date">Rapport créé le</string>
     <string name="and_updated">et mis à jour le</string>
     <string name="tracker_presence_in">Présent dans:</string>
     <string name="no_app_found_tracker">Ce pisteur ne semble pas être présent dans vos applications</string>
@@ -55,15 +54,13 @@
 	
 	<!-- About Fragment -->
     <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
-    <string name="website">Visiter notre site Web</string>
+    <string name="website">Site Web</string>
     <string name="website_desc">En savoir plus sur Exodus Privacy</string>
-    <string name="srcCode">Voir notre code source</string>
     <string name="srcCode_desc">Signaler des bugs, contribuer au code source</string>
     <string name="privPolicy">Politique de confidentialité</string>
     <string name="privPolicy_desc">Comment nous traitons vos données</string>
-    <string name="email">Contacter Exodus Privacy</string>
+    <string name="email">Mail</string>
     <string name="email_desc">Contacter nous par mail</string>
-    <string name="twitter">Suivez-nous sur Twitter</string>
     <string name="twitter_desc">Rester informé sur notre actualité</string>
 	
 	<!-- AppDetail Fragment -->

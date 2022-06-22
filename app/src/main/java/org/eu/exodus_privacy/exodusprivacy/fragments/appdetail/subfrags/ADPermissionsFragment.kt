@@ -22,7 +22,7 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
         private const val googleInfoPage =
             "https://developer.android.com/guide/topics/permissions/overview"
         private const val permissionsInfoPage =
-            "https://reports.exodus-privacy.eu.org/en/info/permissions/"
+            "https://reports.exodus-privacy.eu.org/info/permissions/"
     }
 
     @Inject

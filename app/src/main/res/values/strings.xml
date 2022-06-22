@@ -12,7 +12,7 @@
     <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
     <string name="version_equals">Installed Version = Analyzed Version</string>
     <string name="version_mismatch">Installed Version &lt;&gt; Analyzed Version</string>
-    <string name="version_unavailable">This app hasn\'t been yet analyzed.</string>
+    <string name="version_unavailable">App never analyzed</string>
     <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
     <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
     <string name="no_settings">This app doesn\'t have settings</string>
@@ -56,15 +56,15 @@
 
     <!-- About Fragment -->
     <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
-    <string name="website">Visit our website</string>
+    <string name="website">Website</string>
     <string name="website_desc">Find more information on the Exodus Privacy project</string>
-    <string name="srcCode">Check source code</string>
+    <string name="srcCode" translatable="false">Github</string>
     <string name="srcCode_desc">Report issues, star, contribute PRs or just check the code</string>
     <string name="privPolicy">Privacy policy</string>
     <string name="privPolicy_desc">Learn how we handle your data</string>
-    <string name="email">Contact Exodus Privacy</string>
+    <string name="email">Mail</string>
     <string name="email_desc">Reach out to us via email</string>
-    <string name="twitter">Follow us on Twitter</string>
+    <string name="twitter" translatable="false">Twitter</string>
     <string name="twitter_desc">Stay updated with latest developments on Exodus Privacy project</string>
 
     <!-- AppDetail Fragment -->

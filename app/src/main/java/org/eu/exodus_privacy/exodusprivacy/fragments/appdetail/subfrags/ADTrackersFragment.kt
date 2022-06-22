@@ -21,7 +21,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
 
     companion object {
         private const val trackersInfoPage =
-            "https://reports.exodus-privacy.eu.org/en/info/trackers/"
+            "https://reports.exodus-privacy.eu.org/info/trackers/"
     }
 
     @Inject
