@@ -133,7 +133,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     }
                 }
                 if (app.created.isNotBlank()) {
-                    if (app.updated.isNotBlank() && app.created != app.updated) {
+                    if (viewModel.getFormattedReportDate(app.created, view.context) != viewModel.getFormattedReportDate(app.updated, view.context)) {
                         appReportTV.text = getString(
                             R.string.report_date,
                             viewModel.getFormattedReportDate(app.created, view.context)
