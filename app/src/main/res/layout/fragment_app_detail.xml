@@ -181,6 +181,16 @@
                 android:textColor="?android:textColorPrimary"
                 android:textSize="17sp"
                 tools:text="3.0.0" />
+            
+            <TextView
+              android:id="@+id/appSameVersionTV"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/appVersionTV"
+              android:layout_marginTop="10dp"
+              android:text="@string/same_version"
+              android:textSize="15sp"
+              android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/appReportTV"
