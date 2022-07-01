@@ -94,7 +94,7 @@ object PackageManagerModule {
             var permInfo: PermissionInfo? = null
             try {
                 permInfo = packageManager.getPermissionInfo(
-                    "$it",
+                    it,
                     PackageManager.GET_META_DATA
                 )
             } catch (exception: PackageManager.NameNotFoundException) {
