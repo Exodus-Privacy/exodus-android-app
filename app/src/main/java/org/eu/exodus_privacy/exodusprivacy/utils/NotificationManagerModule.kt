@@ -41,7 +41,6 @@ object NotificationManagerModule {
         )
     }
 
-    @Singleton
     @Provides
     fun provideUpdateNotification(
         @ApplicationContext context: Context

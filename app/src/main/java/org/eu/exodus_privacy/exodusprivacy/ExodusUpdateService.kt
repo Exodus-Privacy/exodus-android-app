@@ -8,9 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +22,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseReposi
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
+import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.utils.DataStoreModule
@@ -46,9 +49,14 @@ class ExodusUpdateService : LifecycleService() {
     private val appList = mutableListOf<ExodusApplication>()
     private val currentSize: MutableLiveData<Int> = MutableLiveData(1)
 
+    private var networkConnected: Boolean = false
+
     // Inject required modules
     @Inject
     lateinit var applicationList: MutableList<Application>
+
+    @Inject
+    lateinit var networkManager: NetworkManager
 
     @Inject
     lateinit var exodusAPIRepository: ExodusAPIRepository
@@ -68,58 +76,32 @@ class ExodusUpdateService : LifecycleService() {
     @Inject
     lateinit var notificationChannel: NotificationChannel
 
+    override fun onCreate() {
+        super.onCreate()
+
+        lifecycleScope.launch {
+            networkManager.networkState.collect { connected ->
+                networkConnected = connected
+                if (!connected) {
+                    // No connection, close the service
+                    stopService()
+                }
+            }
+        }
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         intent?.let {
             when (it.action) {
                 FIRST_TIME_START_SERVICE -> {
-                    IS_SERVICE_RUNNING = true
-
-                    // Create notification channel on post-nougat devices
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        notificationManager.createNotificationChannel(notificationChannel)
-                    }
-
-                    // Construct an ongoing notification and start the service
-                    startForeground(
-                        SERVICE_ID,
-                        createNotification(currentSize.value!!, applicationList.size, false, this)
-                    )
-
-                    // Do the initial setup
-                    updateAllDatabase(true)
-
-                    currentSize.observe(this) { current ->
-                        notificationManager.notify(
-                            SERVICE_ID,
-                            createNotification(current, applicationList.size, false, this)
-                        )
-                    }
+                    launchFetch(true)
                 }
                 START_SERVICE -> {
-                    IS_SERVICE_RUNNING = true
-
-                    // Construct an ongoing notification and start the service
-                    startForeground(
-                        SERVICE_ID,
-                        createNotification(currentSize.value!!, applicationList.size, true, this)
-                    )
-
-                    // Update all database
-                    updateAllDatabase(false)
-
-                    currentSize.observe(this) { current ->
-                        notificationManager.notify(
-                            SERVICE_ID,
-                            createNotification(current, applicationList.size, false, this)
-                        )
-                    }
+                    launchFetch(false)
                 }
                 STOP_SERVICE -> {
-                    stopForeground(true)
-                    stopSelf()
-                    notificationManager.cancel(SERVICE_ID)
-                    IS_SERVICE_RUNNING = false
+                    stopService()
                 }
                 else -> {
                     Log.d(TAG, "Got an unhandled action: ${it.action}")
@@ -127,6 +109,42 @@ class ExodusUpdateService : LifecycleService() {
             }
         }
         return START_REDELIVER_INTENT
+    }
+
+    private fun launchFetch(firstTime: Boolean) {
+        networkManager.checkConnection()
+
+        if (networkConnected) {
+            IS_SERVICE_RUNNING = true
+
+            if (firstTime) {
+                // Create notification channel on post-nougat devices
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    notificationManager.createNotificationChannel(notificationChannel)
+                }
+            }
+
+            // Construct an ongoing notification and start the service
+            startForeground(
+                SERVICE_ID,
+                createNotification(
+                    currentSize.value!!,
+                    applicationList.size,
+                    !firstTime,
+                    this
+                )
+            )
+
+            // Update all database
+            updateAllDatabase(firstTime)
+
+            currentSize.observe(this) { current ->
+                notificationManager.notify(
+                    SERVICE_ID,
+                    createNotification(current, applicationList.size, false, this)
+                )
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -161,6 +179,11 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private fun updateAllDatabase(firstTime: Boolean) {
+        Toast.makeText(
+            this,
+            getString(R.string.fetching_apps),
+            Toast.LENGTH_SHORT
+        ).show()
         serviceScope.launch {
             Log.d(TAG, "Refreshing trackers database")
             fetchTrackers()
@@ -181,8 +204,7 @@ class ExodusUpdateService : LifecycleService() {
                             }
                             if (firstTime) dataStoreModule.saveAppSetup(true)
                             // We are done, gracefully exit!
-                            stopForeground(true)
-                            stopSelf()
+                            stopService()
                         }
                     } else {
                         Log.d(TAG, appsThrow.stackTrace.toString())
@@ -195,60 +217,75 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private suspend fun fetchTrackers() {
-        val list = exodusAPIRepository.getAllTrackers()
-        list.trackers.forEach { (key, value) ->
-            val trackerData = TrackerData(
-                key.toInt(),
-                value.categories,
-                value.code_signature,
-                value.creation_date,
-                value.description,
-                value.name,
-                value.network_signature,
-                value.website
-            )
-            trackersList.add(trackerData)
+        try {
+            val list = exodusAPIRepository.getAllTrackers()
+            list.trackers.forEach { (key, value) ->
+                val trackerData = TrackerData(
+                    key.toInt(),
+                    value.categories,
+                    value.code_signature,
+                    value.creation_date,
+                    value.description,
+                    value.name,
+                    value.network_signature,
+                    value.website
+                )
+                trackersList.add(trackerData)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Unable to fetch trackers", e)
         }
     }
 
     private suspend fun fetchApps() {
-        applicationList.forEach { app ->
-            val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
-            // Look for current installed version in the list, otherwise pick the latest one
-            val currentApp =
-                appDetailList.filter { it.version_code.toLong() == app.versionCode }
-            val latestExodusApp = if (currentApp.isNotEmpty()) {
-                currentApp[0]
-            } else {
-                appDetailList.maxByOrNull { it.version_code.toLong() } ?: AppDetails()
-            }
-
-            // Create and save app data with proper tracker info
-            val exodusApp = ExodusApplication(
-                app.packageName,
-                app.name,
-                app.icon,
-                app.versionName,
-                app.versionCode,
-                app.permissions,
-                latestExodusApp.version_name,
-                if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
-                latestExodusApp.trackers,
-                app.source,
-                latestExodusApp.report,
-                latestExodusApp.updated
-            )
-            appList.add(exodusApp)
-
-            // Update tracker data regarding this app
-            latestExodusApp.trackers.forEach { id ->
-                trackersList.find { it.id == id }?.let {
-                    it.presentOnDevice = true
-                    it.exodusApplications.add(exodusApp.packageName)
+        try {
+            applicationList.forEach { app ->
+                val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
+                // Look for current installed version in the list, otherwise pick the latest one
+                val currentApp =
+                    appDetailList.filter { it.version_code.toLong() == app.versionCode }
+                val latestExodusApp = if (currentApp.isNotEmpty()) {
+                    currentApp[0]
+                } else {
+                    appDetailList.maxByOrNull { it.version_code.toLong() } ?: AppDetails()
                 }
-            }
 
-            currentSize.postValue(currentSize.value!! + 1)
+                // Create and save app data with proper tracker info
+                val exodusApp = ExodusApplication(
+                    app.packageName,
+                    app.name,
+                    app.icon,
+                    app.versionName,
+                    app.versionCode,
+                    app.permissions,
+                    latestExodusApp.version_name,
+                    if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
+                    latestExodusApp.trackers,
+                    app.source,
+                    latestExodusApp.report,
+                    latestExodusApp.updated
+                )
+                appList.add(exodusApp)
+
+                // Update tracker data regarding this app
+                latestExodusApp.trackers.forEach { id ->
+                    trackersList.find { it.id == id }?.let {
+                        it.presentOnDevice = true
+                        it.exodusApplications.add(exodusApp.packageName)
+                    }
+                }
+
+                currentSize.postValue(currentSize.value!! + 1)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Unable to fetch apps", e)
         }
+    }
+
+    private fun stopService() {
+        job.cancel()
+        notificationManager.cancel(SERVICE_ID)
+        stopForeground(true)
+        stopSelf()
     }
 }

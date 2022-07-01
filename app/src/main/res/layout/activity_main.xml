@@ -8,14 +8,19 @@
     tools:context=".MainActivity"
     tools:theme="@style/Theme.Exodus">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/fragmentCoordinator"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation_resource" />
+        android:layout_weight="1">
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_resource" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavView"
