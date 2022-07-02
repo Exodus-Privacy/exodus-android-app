@@ -130,6 +130,11 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                             visibility = View.VISIBLE
                             text = app.exodusVersionName
                         }
+                        if (app.versionName != app.exodusVersionName) {
+                            appSameVersionTV.visibility = View.GONE
+                        } else {
+                            appSameVersionTV.visibility = View.VISIBLE
+                        }
                     }
                 }
                 if (app.created.isNotBlank()) {

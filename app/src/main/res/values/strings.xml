@@ -77,6 +77,7 @@
 	<string name="updated">and updated on <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Installed Version</string>
     <string name="analyzed_version">Analyzed Version</string>
+    <string name="same_version">Same app version may be different following Android version and device used.</string>
     <string name="learn_more">Learn more…</string>
 
     <!-- ADTrackers Fragment -->

@@ -73,7 +73,8 @@
     <string name="report_date">Rapport créé le <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Version installée</string>
     <string name="analyzed_version">Version analysée</string>
-	<string name="learn_more">En savoir plus…</string>
+    <string name="same_version">La même version de l\'application peut être différente suivant la version d\'Android et l\'appareil utilisé.</string>
+    <string name="learn_more">En savoir plus…</string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application:</string>
