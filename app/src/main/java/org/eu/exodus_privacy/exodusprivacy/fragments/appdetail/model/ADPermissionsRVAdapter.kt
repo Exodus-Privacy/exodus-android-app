@@ -32,14 +32,19 @@ class ADPermissionsRVAdapter :
         holder.binding.apply {
             permissionTitleTV.text = app.permission
             permissionSubTitleTV.text = app.label.replaceFirstChar { it.uppercase() }
-            expandBT.setOnClickListener {
-                if (permissionDescTV.isVisible) {
-                    expandBT.setIconResource(R.drawable.ic_down)
-                    permissionDescTV.visibility = View.GONE
-                } else {
-                    expandBT.setIconResource(R.drawable.ic_up)
-                    permissionDescTV.text = app.description
-                    permissionDescTV.visibility = View.VISIBLE
+            if (app.description.isNullOrEmpty() || app.description == "null") {
+                permissionDescTV.visibility = View.GONE
+                expandBT.visibility = View.GONE
+            } else {
+                expandBT.setOnClickListener {
+                    if (permissionDescTV.isVisible) {
+                        expandBT.setIconResource(R.drawable.ic_down)
+                        permissionDescTV.visibility = View.GONE
+                    } else {
+                        expandBT.setIconResource(R.drawable.ic_up)
+                        permissionDescTV.text = app.description
+                        permissionDescTV.visibility = View.VISIBLE
+                    }
                 }
             }
         }

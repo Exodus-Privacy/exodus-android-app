@@ -88,43 +88,39 @@ object PackageManagerModule {
         permissionList: MutableList<String>,
         packageManager: PackageManager
     ): List<Permission> {
-        val androidPerm = "android.permission."
-        // Filter list to only keep platform permissions
-        val filteredList = permissionList.filter {
-            it.startsWith(androidPerm)
-        }
-
-        // Remove prefix as we only have platform permissions remaining
-        val list = filteredList.map {
-            it.replace("[^>]*permission\\.".toRegex(), "")
-        }
-
+        val list = permissionList
         val permsList = mutableListOf<Permission>()
         list.forEach {
             var permInfo: PermissionInfo? = null
             try {
                 permInfo = packageManager.getPermissionInfo(
-                    "$androidPerm$it",
+                    it,
                     PackageManager.GET_META_DATA
                 )
             } catch (exception: PackageManager.NameNotFoundException) {
                 Log.d(TAG, "Unable to find info about $it")
             }
-
             val label = permInfo?.loadLabel(packageManager).toString()
-            val desc = permInfo?.loadDescription(packageManager).toString()
 
             // Labels and desc can be null for undocumented permissions, filter them out
-            if (!label.startsWith(androidPerm) && desc != "null") {
+            if (label != "null") {
                 permsList.add(
                     Permission(
-                        it,
+                        it.replace("[^>]*[a-z][.]".toRegex(), ""),
                         permInfo?.loadLabel(packageManager).toString(),
                         permInfo?.loadDescription(packageManager).toString(),
                     )
                 )
+            } else {
+                permsList.add(
+                    Permission(
+                        it.replace("[^>]*[a-z][.]".toRegex(), ""),
+                        it,
+                    )
+                )
             }
         }
+        permsList.sortBy { it.permission }
         return permsList
     }
 }
