@@ -15,9 +15,9 @@ interface ExodusApplicationDao {
     @Query("SELECT * FROM exodusapplication WHERE packageName=:packageName")
     suspend fun getApp(packageName: String): List<ExodusApplication>
 
-    @Query("SELECT * FROM exodusapplication WHERE packageName IN (:listOfPackages)")
+    @Query("SELECT * FROM exodusapplication WHERE packageName IN (:listOfPackages) ORDER BY name")
     suspend fun getApps(listOfPackages: List<String>): List<ExodusApplication>
 
-    @Query("SELECT * FROM exodusapplication")
+    @Query("SELECT * FROM exodusapplication ORDER BY name")
     fun getAllApps(): LiveData<List<ExodusApplication>>
 }

@@ -2,13 +2,14 @@ package org.eu.exodus_privacy.exodusprivacy
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
@@ -35,6 +36,22 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
 
+        // Show or hide the connection message depending on the network
+        viewModel.networkConnection.observe(this) { connected ->
+            if (!connected) {
+                Snackbar
+                    .make(
+                        binding.fragmentCoordinator,
+                        R.string.not_connected,
+                        Snackbar.LENGTH_LONG
+                    )
+                    .setAction(R.string.settings) {
+                        startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                    }
+                    .show()
+            }
+        }
+
         viewModel.policyAgreement.observe(this) {
             if (it == false) {
                 ExodusDialogFragment().apply {
@@ -47,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         // Populate trackers in database
         viewModel.appSetup.observe(this) {
             if (it == false && viewModel.policyAgreement.value == true && !ExodusUpdateService.IS_SERVICE_RUNNING) {
-                Toast.makeText(this, getString(R.string.fetching_apps), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ExodusUpdateService::class.java)
                 intent.apply {
                     action = ExodusUpdateService.FIRST_TIME_START_SERVICE
