@@ -263,6 +263,7 @@ class ExodusUpdateService : LifecycleService() {
                     latestExodusApp.trackers,
                     app.source,
                     latestExodusApp.report,
+                    latestExodusApp.created,
                     latestExodusApp.updated
                 )
                 appList.add(exodusApp)

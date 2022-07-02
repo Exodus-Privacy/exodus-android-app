@@ -14,7 +14,7 @@
     <string name="no_settings">Diese App hat keine Einstellungen</string>
     <string name="logo">%1 Anwendungslogo</string>
     <string name="report_date">Bericht erstellt am <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="and_updated">und zuletzt aktualisiert am</string>
+    <string name="updated">und zuletzt aktualisiert am <xliff:g id="date">%1$s</xliff:g></string>
     <string name="code_signature_found">Wir haben die Code-Signatur der folgenden Tracker in der Anwendung gefunden:</string>
     <string name="code_signature_not_found">Wir haben keine Code-Signatur irgendeines Trackers in der App gefunden.</string>
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>

@@ -14,7 +14,7 @@
     <string name="no_settings">Это приложение не имеет настроек</string>
     <string name="logo">Логотип приложения %1</string>
     <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="and_updated">и обновлено</string>
+    <string name="updated">и обновлено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>

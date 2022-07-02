@@ -16,7 +16,7 @@
     <string name="no_settings">Цей застосунок немає налаштувань</string>
     <string name="logo">%1 логотип застосунку</string>
     <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="and_updated">і оновлено</string>
+    <string name="updated">і оновлено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
     <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
     <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
