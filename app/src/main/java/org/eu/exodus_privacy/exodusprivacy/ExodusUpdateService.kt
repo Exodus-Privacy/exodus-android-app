@@ -250,23 +250,23 @@ class ExodusUpdateService : LifecycleService() {
                     appDetailList.maxByOrNull { it.version_code.toLong() } ?: AppDetails()
                 }
 
-            // Create and save app data with proper tracker info
-            val exodusApp = ExodusApplication(
-                app.packageName,
-                app.name,
-                app.icon,
-                app.versionName,
-                app.versionCode,
-                app.permissions,
-                latestExodusApp.version_name,
-                if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
-                latestExodusApp.trackers,
-                app.source,
-                latestExodusApp.report,
-                latestExodusApp.created,
-                latestExodusApp.updated
-            )
-            appList.add(exodusApp)
+                // Create and save app data with proper tracker info
+                val exodusApp = ExodusApplication(
+                    app.packageName,
+                    app.name,
+                    app.icon,
+                    app.versionName,
+                    app.versionCode,
+                    app.permissions,
+                    latestExodusApp.version_name,
+                    if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
+                    latestExodusApp.trackers,
+                    app.source,
+                    latestExodusApp.report,
+                    latestExodusApp.created,
+                    latestExodusApp.updated
+                )
+                appList.add(exodusApp)
 
                 // Update tracker data regarding this app
                 latestExodusApp.trackers.forEach { id ->
