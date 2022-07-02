@@ -8,7 +8,8 @@ on:
       - master
   pull_request:
     branches:
-      - '*'
+      - master
+      - kotlinRewrite
     paths-ignore:
       -'fastlane/**'
       -'README.md'
