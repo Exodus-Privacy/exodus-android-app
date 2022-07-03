@@ -29,7 +29,7 @@ jobs:
       - name: Decode Keystore
         run: |
           echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
-          gpg -d -passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" -batch release.keystore.asc > app/release.keystore
+          gpg -d --passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" --batch release.keystore.asc > app/release.keystore
       - name: Generate release build
         run: ./gradlew assemble
       - name: Execute exodus-standalone
