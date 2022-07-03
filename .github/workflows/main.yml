@@ -1,7 +1,9 @@
 ---
 name: Build
+
 env:
     EXODUS_API_KEY: ${{secrets.EXODUS_API_KEY}}
+
 on:
   push:
     branches:
@@ -14,6 +16,7 @@ on:
       -'fastlane/**'
       -'README.md'
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +32,7 @@ jobs:
       - name: Run tests
         run: ./gradlew test
       - name: Execute exodus-standalone
-        uses: docker://exodusprivacy/exodus-standalone:v1.3.1
+        uses: docker://exodusprivacy/exodus-standalone:v1.3.2
         with:
           args: /github/workspace/app/build/outputs/apk/debug/app-debug.apk
       - name: Upload APK

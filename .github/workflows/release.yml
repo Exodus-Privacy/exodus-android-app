@@ -1,5 +1,6 @@
 ---
 name: Release
+
 env:
     EXODUS_API_KEY: ${{secrets.EXODUS_API_KEY}}
     KEYSTORE: ${{secrets.RELEASE_KEYSTORE}}
@@ -8,11 +9,13 @@ env:
     KEYSTORE_ALIAS: ${{secrets.RELEASE_KEYSTORE_ALIAS}}
     KEYSTORE_PASSPHRASE: ${{secrets.RELEASE_KEYSTORE_ALIAS_PASSPHRASE}}
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 on:
   push:
     tags:
       - release-v*
   workflow_dispatch:
+
 jobs:
     release:
         runs-on: ubuntu-latest
@@ -30,7 +33,7 @@ jobs:
         - name: Generate release build
           run: ./gradlew assemble
         - name: Execute exodus-standalone
-          uses: docker://exodusprivacy/exodus-standalone:v1.3.1
+          uses: docker://exodusprivacy/exodus-standalone:v1.3.2
           with:
             args: /github/workspace/app/build/outputs/apk/release/app-release-signed.apk
         - name: Upload APK
