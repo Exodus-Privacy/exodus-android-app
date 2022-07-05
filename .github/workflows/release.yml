@@ -29,21 +29,21 @@ jobs:
       - name: Decode Keystore
         run: |
           echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
-          gpg -d -passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" -batch release.keystore.asc > app/release.keystore
+          gpg -d --passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" --batch release.keystore.asc > app/release.keystore
       - name: Generate release build
         run: ./gradlew assemble
       - name: Execute exodus-standalone
         uses: docker://exodusprivacy/exodus-standalone:v1.3.2
         with:
-          args: /github/workspace/app/build/outputs/apk/release/app-release-signed.apk
+          args: /github/workspace/app/build/outputs/apk/release/app-release.apk
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: app_release
-          path: app/build/outputs/apk/release/app-release-signed.apk
+          path: app/build/outputs/apk/release/app-release.apk
       - name: Create release
         if: github.event_name == 'push' && github.ref_type == 'tag'
         run: gh release create ${{ github.ref }} --generate-notes
       - name: Upload APK on release
         if: github.event_name == 'push' && github.ref_type == 'tag'
-        run: gh release upload ${{ github.ref }} app/build/outputs/apk/release/app-release-signed.apk#exodus-android-app_${{ github.ref }}
+        run: gh release upload ${{ github.ref }} app/build/outputs/apk/release/app-release.apk#exodus-android-app_${{ github.ref }}
