@@ -14,9 +14,6 @@ on:
   push:
     tags:
       - release-v*
-  pull_request:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:
