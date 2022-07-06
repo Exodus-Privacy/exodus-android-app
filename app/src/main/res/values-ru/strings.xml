@@ -1,31 +1,38 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Логотип приложения</string>
-    <string name="trackers_pct">Трекеры:</string>
-    <string name="permissions_pct">Разрешения:</string>
     <string name="trackers">трекеров</string>
     <string name="permissions">разрешений</string>
-    <string name="network_error">Сеть недоступна</string>
     <string name="not_connected">Нет подключения к интернету</string>
-    <string name="json_error">Ошибка JSON</string>
-    <string name="no_trackers">Не найдено ни одного известного трекера</string>
-    <string name="analyzed">Это приложение ещё не было изучено Exodus Privacy.</string>
-    <string name="no_package_manager">Похоже, ваша система не разрешает доступ к списку установленных приложений.</string>
     <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
     <string name="logo">Логотип приложения %1</string>
+    <string name="title_trackers">трекеров</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Фильтр</string>
+	
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
     <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">и обновлено <xliff:g id="date">%1$s</xliff:g></string>
+	
+    <!-- ADTrackers Fragment -->
     <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
+    <string name="analyzed">Это приложение ещё не было изучено Exodus Privacy.</string>
+	
+    <!-- ADPermissions Fragment -->
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
+
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>
     <string name="network_signature">Правило определения сети:</string>
-    <string name="tracker_presence_in">Присутствует в:</string>
-    <string name="no_app_found_tracker">Этот трекер не присутствует в ваших приложениях</string>
-    <string name="source">Источник: %s</string>
 	
-    <!-- Menu -->
-    <string name="menu_action_filter">Фильтр</string>
+    <!-- Dialog Fragment -->
 </resources>

@@ -1,76 +1,56 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Application Logo</string>
-    <string name="trackers_pct">Pisteurs :</string>
-    <string name="permissions_pct">Autorisations :</string>
     <string name="trackers">Pisteurs</string>
     <string name="permissions">Autorisations</string>
-    <string name="network_error">Réseau indisponible</string>
     <string name="not_connected">Aucune connexion Internet</string>
     <string name="settings">Paramètres</string>
-    <string name="json_error">Erreur JSON</string>
-    <string name="no_trackers">L\'application pourrait contenir un ou plusieurs pisteurs que nous n\'avons pas encore identifiés.</string>
-	<string name="version_equals">Version installée = Version analysée</string>
+    <string name="version_equals">Version installée = Version analysée</string>
     <string name="version_mismatch">Version installée &lt;&gt; Version analysée</string>
     <string name="version_unavailable">Application jamais analysée</string>
-    <string name="no_package_manager">Votre système semble ne pas donner accès aux applications installées.</string>
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="no_settings">Cette app n\'a pas de paramètre</string>
     <string name="logo">Logo de l\'application %1</string>
-    <string name="updated">et mis à jour le <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="tracker_presence_in">Présent dans:</string>
-    <string name="no_app_found_tracker">Ce pisteur ne semble pas être présent dans vos applications</string>
-    <string name="source">Source: %s</string>
     <string name="refresh">Actualiser</string>
     <string name="cancel">Annuler</string>
     <string name="refresh_needed">Actualisation nécessaire</string>
     <string name="refresh_needed_message">Les rapports n\'ont pas été mise à jour depuis le %1$s.\n\nVoulez-vous les actualiser ?</string>
-
-    <!-- Menu -->
-    <string name="menu_action_search">Rechercher</string>
-    <string name="menu_action_filter">Trier par</string>
-    
-    <!-- Filters -->
-	<string name="sort_by_name">Nom</string>
-    <string name="sort_by_trackers">Pisteurs</string>
-    <string name="sort_by_permissions">Autorisations</string>
-    <string name="sort_by_creation_date">Date de création</string>
-	
     <string name="submit">Soumettre</string>
     <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est collé automatiquement sur le site Web. Vous n\'aurez qu\'à commencer l\'analyse.</string>
     <string name="app_not_analyzed_title">Cette application n\'a jamais été analysée !</string>
     <string name="title_apps">Mes apps</string>
     <string name="title_trackers">Pisteurs</string>
     <string name="title_about">À propos</string>
-    <string name="list_of_apps">Voir la liste des applications</string>
-    <string name="apps">%1$s apps</string>
     <string name="nothing_here">Rien à afficher pour le moment.\nGlisser vers le bas pour actualiser!</string>
+
+    <!-- Menu -->
+    <string name="menu_action_search">Rechercher</string>
+    <string name="menu_action_filter">Trier par</string>
+    
+    <!-- Filters -->
+    <string name="sort_by_name">Nom</string>
+    <string name="sort_by_creation_date">Date de création</string>
 	
 	<!-- Apps Fragment -->
-    <string name="app_version"><xliff:g id="rating">%1$s</xliff:g></string>
-    <string name="app_trackers"><xliff:g id="rating">%1$d</xliff:g></string>
-    <string name="app_perms"><xliff:g id="rating">%1$d</xliff:g></string>
-    <string name="not_available">N/A</string>
-    <string name="fetching_trackers">Mise à jour des pisteurs</string>
     <string name="fetching_apps">Mise à jour des rapports</string>
 	
 	<!-- About Fragment -->
-    <string name="version_info"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
     <string name="website">Site Web</string>
     <string name="website_desc">En savoir plus sur Exodus Privacy</string>
     <string name="srcCode_desc">Signaler des bugs, contribuer au code source</string>
     <string name="privPolicy">Politique de confidentialité</string>
     <string name="privPolicy_desc">Comment nous traitons vos données</string>
     <string name="email">Mail</string>
-    <string name="email_desc">Contacter nous par mail</string>
+    <string name="email_desc">Contactez-nous par mail</string>
     <string name="twitter_desc">Rester informé sur notre actualité</string>
 	
 	<!-- AppDetail Fragment -->
-    <string name="open_exodus_page">Voir sur Exodus</string>
+    <string name="open_exodus_page">Ouvrir sur Exodus Privacy</string>
     <string name="submit_app">Soumettre l\'application</string>
     <string name="open_store">Ouvrir le magasin d\'applications</string>
     <string name="open_app_info">Paramètres de l\'application</string>
     <string name="version">Version</string>
     <string name="report_date">Rapport créé le <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">et mis à jour le <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Version installée</string>
     <string name="analyzed_version">Version analysée</string>
     <string name="same_version">La même version de l\'application peut être différente suivant la version d\'Android et l\'appareil utilisé.</string>

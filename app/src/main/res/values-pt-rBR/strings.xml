@@ -1,32 +1,38 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo do aplicativo</string>
-    <string name="trackers_pct">Rastreadores:</string>
-    <string name="permissions_pct">Permissões:</string>
     <string name="trackers">Rastreadores</string>
     <string name="permissions">Permissões</string>
-    <string name="network_error">Rede indisponível</string>
     <string name="not_connected">Sem conexão com à internet</string>
-    <string name="json_error">Erro JSON</string>
-    <string name="no_trackers">Esse aplicativo pode conter rastreadores que nós não conhecemos ainda.</string>
-    <string name="analyzed">Este app ainda não foi analisado pelo Exodus privacy.</string>
-    <string name="no_package_manager">Parece que o seu sistema não permite o acesso à lista de apps instalados.</string>
     <string name="no_app_found">Parece que seu sistema não tem nenhum app instalado das fontes que nós testamos (Google Play Store ou F-Droid).</string>
     <string name="no_settings">Este app não tem configurações</string>
     <string name="logo">Logo do aplicativo %1</string>
-    <string name="report_date">Relatório criado em <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">e atualizado em <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="code_signature_found">Nós encontramos a assinatura de código desse respectivo rastreador no aplicativo:</string>
-    <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>
-    <string name="code_permission_found">Nós encontramos as seguintes permissões neste aplicativo:</string>
-    <string name="code_permission_not_found">Este aplicativo não requer nenhuma permissão.</string>
-    <string name="detection_rules">Regras de detecção</string>
-    <string name="code_signature">Regra de detecção do código:</string>
-    <string name="network_signature">Regra de detecção da rede:</string>
-    <string name="tracker_presence_in">Presente em:</string>
-    <string name="no_app_found_tracker">Este rastreador parece não estar presente em seus aplicativos</string>
-    <string name="source">Fonte: %s</string>
+    <string name="title_trackers">Rastreadores</string>
 
     <!-- Menu -->
     <string name="menu_action_filter">Filtro</string>
-
+	
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <string name="report_date">Relatório criado em <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">e atualizado em <xliff:g id="date">%1$s</xliff:g></string>
+    
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Nós encontramos a assinatura de código desse respectivo rastreador no aplicativo:</string>
+    <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>
+    <string name="analyzed">Este app ainda não foi analisado pelo Exodus privacy.</string>
+	
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Nós encontramos as seguintes permissões neste aplicativo:</string>
+    <string name="code_permission_not_found">Este aplicativo não requer nenhuma permissão.</string>
+    
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">Regras de detecção</string>
+    <string name="code_signature">Regra de detecção do código:</string>
+    <string name="network_signature">Regra de detecção da rede:</string>
+    
+	<!-- Dialog Fragment -->
 </resources>

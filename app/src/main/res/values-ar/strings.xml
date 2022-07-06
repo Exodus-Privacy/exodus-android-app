@@ -1,31 +1,38 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">شعار التطبيق</string>
-    <string name="trackers_pct">المتعقِّبون:</string>
-    <string name="permissions_pct">التصريحات:</string>
     <string name="trackers">المتعقِّبون</string>
     <string name="permissions">التصريحات</string>
-    <string name="network_error">الشبكة غير متوفرة</string>
     <string name="not_connected">لا يوجد اتصال بشبكة الانترنت</string>
-    <string name="json_error">خطأ JSON</string>
-    <string name="no_trackers">لم نعثر على أي متعقِّب قمنا بتجريبه</string>
-    <string name="analyzed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
-    <string name="no_package_manager">يبدو أنّ نظام جهازك لا يسمح بالوصول إلى قائمة التطبيقات المثبة.</string>
     <string name="no_app_found">يبدو أنه ليس لديك أي تطبيقات مثبتة من المصدر الذي نقوم باختباره (متجر Google Play أو F-Droid).</string>
     <string name="no_settings">ليس لدى هذا التطبيق إعدادات</string>
     <string name="logo">شعار تطبيق %1</string>
+    <string name="title_trackers">المتعقِّبون</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">عامل التصفية</string>
+	
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
     <string name="report_date">تم إنشاء التقرير في <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">وتحديثه في <xliff:g id="date">%1$s</xliff:g></string>
+	
+    <!-- ADTrackers Fragment -->
     <string name="code_signature_found">لقد وجدنا توقيع الرمز البرمجي للمتعقبين التاليين في التطبيق:</string>
     <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
+    <string name="analyzed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
+	
+    <!-- ADPermissions Fragment -->
     <string name="code_permission_found">لقد وجدنا التصريحات التالية في التطبيق:</string>
     <string name="code_permission_not_found">هذا التطبيق لا يطلب صلاحيات.</string>
+	
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
     <string name="detection_rules">قواعد الكشف</string>
     <string name="code_signature">قاعدة كشف الرمز:</string>
     <string name="network_signature">القاعدة الشبكية للإكتشاف:</string>
-    <string name="tracker_presence_in">موجود في:</string>
-    <string name="no_app_found_tracker">يبدو أن هذا المتعقب غير موجود في تطبيقاتك</string>
-    <string name="source">المصدر: %s</string>
 	
-    <!-- Menu -->
-    <string name="menu_action_filter">عامل التصفية</string>
+	<!-- Dialog Fragment -->
 </resources>

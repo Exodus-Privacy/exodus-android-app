@@ -1,53 +1,50 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_title">εxodus</string>
-    <string name="app_name">Exodus</string>
     <string name="app_logo">Логотип застосунка</string>
-    <string name="trackers_pct">Відстежувачі:</string>
-    <string name="permissions_pct">Дозволи:</string>
     <string name="trackers">Відстежувачі</string>
     <string name="permissions">Дозволи</string>
-    <string name="network_error">Мережа недоступна</string>
     <string name="not_connected">Нема зʼєднання з Інтернетом</string>
-    <string name="json_error">Помилка JSON</string>
-    <string name="no_trackers">Застосунок може містити відстежувачі, які нам ще не відомі.</string>
-    <string name="analyzed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
-    <string name="no_package_manager">Схоже, Ваша система не дозволяє доступ до списку встановлених застосунків.</string>
     <string name="no_app_found">Схоже, у Вас немає встановлених застосунків із джерел, які ми тестували (Google Play або F-Droid).</string>
     <string name="no_settings">Цей застосунок немає налаштувань</string>
     <string name="logo">%1 логотип застосунку</string>
-    <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">і оновлено <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
-    <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
-    <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
-    <string name="code_permission_not_found">Цей застосунок не вимагає дозволів.</string>
-    <string name="detection_rules">Правила виявлення </string>
-    <string name="code_signature">Код правила виявлення:</string>
-    <string name="network_signature">Мережа правила виявлення:</string>
-    <string name="tracker_presence_in">Наявне в:</string>
-    <string name="no_app_found_tracker">Схоже, цей відстежувач не присутній у Вашому застосунку</string>
-    <string name="source">Джерело: %s</string>
     <string name="refresh">Оновити</string>
     <string name="cancel">Скасувати</string>
     <string name="refresh_needed">Потрібне оновлення</string>
     <string name="refresh_needed_message">Дані не оновлюються з %1$s.\n\nБажаєте оновити їх?</string>
-	
-    <!-- Menu -->
-    <string name="menu_action_search">Пошук</string>
-    <string name="menu_action_filter">Фільтр</string>
-
-    <!-- Filters -->
     <string name="submit">Надіслати</string>
     <string name="app_not_analyzed">Хочете проаналізувати застосунок?\n\nІдентифікатор застосунку автоматично буде задано у формі на вебсайті. Вам потрібно лише надіслати форму.</string>
     <string name="app_not_analyzed_title">Цей застосунок не аналізувався!</string>
     <string name="title_apps">Мої програми</string>
     <string name="title_trackers">Відстежувачі</string>
     <string name="title_about">Про</string>
-    <string name="list_of_apps">Переглянути список застосунків</string>
-    <string name="apps">%1$s застосунків</string>
     <string name="nothing_here">Нема що відображати. Можете потягнути вниз, щоб оновити!</string>
+	
+    <!-- Menu -->
+    <string name="menu_action_search">Пошук</string>
+    <string name="menu_action_filter">Фільтр</string>
 
+    <!-- Filters -->
     <!-- About Fragment -->
-
-
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">і оновлено <xliff:g id="date">%1$s</xliff:g></string>
+    
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
+    <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
+    <string name="analyzed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
+    
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
+    <string name="code_permission_not_found">Цей застосунок не вимагає дозволів.</string>
+    
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">Правила виявлення </string>
+    <string name="code_signature">Код правила виявлення:</string>
+    <string name="network_signature">Мережа правила виявлення:</string>
+    
+	<!-- Dialog Fragment -->
 </resources>

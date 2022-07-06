@@ -8,10 +8,10 @@
             android:title="@string/sort_by_name" />
         <item
             android:id="@+id/sort_by_trackers"
-            android:title="@string/sort_by_trackers" />
+            android:title="@string/trackers" />
         <item
             android:id="@+id/sort_by_permissions"
-            android:title="@string/sort_by_permissions" />
+            android:title="@string/permissions" />
         <item
             android:id="@+id/sort_by_creation_date"
             android:title="@string/sort_by_creation_date" />

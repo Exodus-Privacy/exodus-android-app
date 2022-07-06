@@ -1,31 +1,38 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Λογότυπο Εφαρμογής</string>
-    <string name="trackers_pct">Trackers:</string>
-    <string name="permissions_pct">Άδειες:</string>
     <string name="trackers">Trackers</string>
     <string name="permissions">Άδειες</string>
-    <string name="network_error">Το δίκτυο δεν είναι διαθέσιμο</string>
     <string name="not_connected">Χωρίς σύνδεση στο Διαδίκτυο</string>
-    <string name="json_error">Σφάλμα JSON</string>
-    <string name="no_trackers">Η εφαρμογή μπορεί να περιέχει tracker(s) που δεν γνωρίζουμε ακόμα.</string>
-    <string name="analyzed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
-    <string name="no_package_manager">Φαίνεται ότι το σύστημα σας δεν επιτρέπει την πρόσβαση στη λίστα των εγκατεστημένων εφαρμογών.</string>
     <string name="no_app_found">Φαίνεται ότι δεν έχετε εγκαταστήσει εφαρμογές, από την πηγές που δοκιμάζουμε (Google Play store ή F-Droid).</string>
     <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>
     <string name="logo">%1 Λογότυπο Εφαρμογής</string>
+    <string name="title_trackers">Trackers</string>
+
+    <!-- Menu -->
+	<string name="menu_action_filter">Φίλτρο</string>
+	
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
     <string name="report_date">Η αναφορά δημιουργήθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">και ενημερώθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
+	
+    <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Εχουμε βρει υπογραφές κώδικα των παρακάτω trackers στην εφαρμογή:</string>
     <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
+    <string name="analyzed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
+	
+    <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Βρήκαμε τα ακόλουθα δικαιώματα στην εφαρμογή:</string>
     <string name="code_permission_not_found">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
+	
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Κανόνες Ανίχνευσης</string>
     <string name="code_signature">Κανόνας ανίχνευσης κώδικα:</string>
     <string name="network_signature">Κανόνας ανίχνευσης δικτύου:</string>
-    <string name="tracker_presence_in">Παρών σε:</string>
-    <string name="no_app_found_tracker">Αυτό το tracker φαίνεται να μην υπάρχει στις εφαρμογές σας</string>
-    <string name="source">Πηγή: %s</string>
 	
-    <!-- Menu -->
-    <string name="menu_action_filter">Φίλτρο</string>
+    <!-- Dialog Fragment -->
 </resources>
