@@ -52,7 +52,9 @@ class AppsRVAdapter(
             trackersChip.apply {
                 val trackerNum = app.exodusTrackers.size
                 text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
-                setExodusColor(trackerNum)
+                if (text != "?") {
+                    setExodusColor(trackerNum)
+                }
             }
             permsChip.apply {
                 val permsNum = app.permissions.size

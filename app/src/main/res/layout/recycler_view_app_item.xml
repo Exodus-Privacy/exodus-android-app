@@ -80,9 +80,7 @@
             style="@style/Theme.Exodus.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/textColorDark"
             app:chipIcon="@drawable/ic_tracker"
-            app:chipIconTint="@color/textColorDark"
             tools:chipBackgroundColor="@color/colorGreen"
             tools:text="0" />
 
