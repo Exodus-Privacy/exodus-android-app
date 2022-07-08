@@ -47,9 +47,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                 trackersChip.apply {
                     val trackerNum = app.exodusTrackers.size
                     text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
-                    if (text != "?") {
-                        setExodusColor(trackerNum)
-                    }
+                    setExodusColor(trackerNum)
                 }
                 trackersLearnTV.apply {
                     isClickable = true

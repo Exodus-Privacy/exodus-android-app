@@ -158,9 +158,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                 trackersChip.apply {
                     val trackerNum = app.exodusTrackers.size
                     text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
-                    if (text != "?") {
-                        setExodusColor(trackerNum)
-                    }
+                    setExodusColor(trackerNum)
                 }
                 permsChip.apply {
                     val permsNum = app.permissions.size
