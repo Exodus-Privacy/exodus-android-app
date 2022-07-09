@@ -34,6 +34,7 @@
     <string name="fetching_apps">Mise à jour des rapports</string>
 	
 	<!-- About Fragment -->
+    <string name="chooseTheme">Thème</string>
     <string name="website">Site Web</string>
     <string name="website_desc">En savoir plus sur Exodus Privacy</string>
     <string name="srcCode_desc">Signaler des bugs, contribuer au code source</string>
@@ -88,5 +89,9 @@
     <string name="reject">Refuser</string>
     <string name="warning_title">Autoriser Exodus à transmettre des données ?</string>
     <string name="warning_desc">Pour fonctionner, l\'application DOIT envoyer sur les serveurs d\'Exodus Privacy, la liste des applications installées sur l\'appareil pour l\'analyse des pisteurs. Ces données ne contiennent aucune information personnelle.</string>
+    <string name="title_theme">Sélectionner un thème</string>
+    <string name="dark_theme">Sombre</string>
+    <string name="light_theme">Clair</string>
+    <string name="system_theme">Paramètres par défaut</string>
 
 </resources>
