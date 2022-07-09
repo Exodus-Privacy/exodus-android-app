@@ -40,7 +40,7 @@ class AboutFragment : PreferenceFragmentCompat() {
         toolbar.inflateMenu(R.menu.about_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.chooseTheme -> {ThemeDialogFragment().show(childFragmentManager,tag)}
+                R.id.chooseTheme -> { ThemeDialogFragment().show(childFragmentManager, tag) }
             }
             true
         }
