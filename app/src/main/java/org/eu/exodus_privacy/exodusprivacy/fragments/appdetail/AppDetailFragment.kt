@@ -138,18 +138,20 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     }
                 }
                 if (app.created.isNotBlank()) {
-                    if (viewModel.getFormattedReportDate(app.created, view.context) != viewModel.getFormattedReportDate(app.updated, view.context)) {
+                    val dateCreated = viewModel.getFormattedReportDate(app.created, view.context)
+                    val dateUpdated = viewModel.getFormattedReportDate(app.updated, view.context)
+                    if (dateCreated != dateUpdated) {
                         appReportTV.text = getString(
                             R.string.report_date,
-                            viewModel.getFormattedReportDate(app.created, view.context)
+                            dateCreated
                         ) + " " + getString(
                             R.string.updated,
-                            viewModel.getFormattedReportDate(app.updated, view.context)
+                            dateUpdated
                         )
                     } else {
                         appReportTV.text = getString(
                             R.string.report_date,
-                            viewModel.getFormattedReportDate(app.created, view.context)
+                            dateCreated
                         )
                     }
                 } else {
