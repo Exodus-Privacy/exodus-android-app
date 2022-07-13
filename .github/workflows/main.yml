@@ -1,34 +1,42 @@
 ---
 name: Build
+
+env:
+    EXODUS_API_KEY: ${{secrets.EXODUS_API_KEY}}
+
 on:
   push:
     branches:
       - master
-    tags:
-      - v*
   pull_request:
     branches:
       - master
+      - kotlinRewrite
     paths-ignore:
       -'fastlane/**'
       -'README.md'
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - name: Generate debug build
         run: ./gradlew assembleDebug
       - name: Run tests
         run: ./gradlew test
       - name: Execute exodus-standalone
-        uses: docker://exodusprivacy/exodus-standalone:v1.3.1
+        uses: docker://exodusprivacy/exodus-standalone:v1.3.2
         with:
           args: /github/workspace/app/build/outputs/apk/debug/app-debug.apk
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app_debug
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/app-debug.apk

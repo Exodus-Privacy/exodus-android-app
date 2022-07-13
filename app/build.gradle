@@ -13,10 +13,19 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         buildConfigField "String", "EXODUS_API_KEY", "\"$System.env.EXODUS_API_KEY\""
     }
+    signingConfigs {
+        releaseConfig {
+            storeFile file("release.keystore")
+            storePassword System.getenv('KEYSTORE_PASSWORD')
+            keyAlias System.getenv('KEYSTORE_ALIAS')
+            keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
 
