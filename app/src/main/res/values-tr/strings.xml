@@ -1,6 +1,4 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_title" translatable="false">εxodus</string>
-    <string name="app_name" translatable="false">Exodus</string>
     <string name="app_logo">Uygulama Logosu</string>
     <string name="trackers">İzleyiciler</string>
     <string name="permissions">İzinler</string>
@@ -23,35 +21,19 @@
     <string name="title_trackers">İzleyiciler</string>
     <string name="title_about">Hakkında</string>
     <string name="nothing_here">Şu anda görüntülenecek bir şey yok. Yenilemek için aşağı kaydırabilirsiniz!</string>
-	
-    <!-- Menu -->
     <string name="menu_action_search">Arama</string>
     <string name="menu_action_filter">Sıralama ölçütü</string>
-
-    <!-- Filters -->
     <string name="sort_by_name">Ad</string>
     <string name="sort_by_creation_date">Oluşturulma tarihi</string>
-
-    <!-- Apps Fragment -->
-    <string name="app_version" translatable="false"><xliff:g id="rating">%1$s</xliff:g></string>
-    <string name="app_trackers" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
-    <string name="app_perms" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
     <string name="fetching_apps">Rapor veritabanı güncelleniyor!</string>
-
-    <!-- About Fragment -->
-    <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
     <string name="website">Web sitesi</string>
     <string name="website_desc">Exodus Privacy projesi hakkında daha fazla bilgi edinin</string>
-    <string name="srcCode" translatable="false">Github</string>
-    <string name="srcCode_desc">Sorunları bildirin, yıldız verin, PR'lara katkıda bulunun veya kodu kontrol edin</string>
+    <string name="srcCode_desc">Sorunları bildirin, yıldız verin, PR\'lara katkıda bulunun veya kodu kontrol edin</string>
     <string name="privPolicy">Gizlilik Politikası</string>
     <string name="privPolicy_desc">Verilerinizi nasıl işlediğimizi öğrenin</string>
     <string name="email">Posta</string>
     <string name="email_desc">Bize e-posta ile ulaşın</string>
-    <string name="twitter" translatable="false">Twitter</string>
     <string name="twitter_desc">Exodus Privacy projesindeki son gelişmelerden haberdar olun</string>
-
-    <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Exodus Privacy\'de aç</string>
     <string name="submit_app">Uygulamayı gönder</string>
     <string name="open_store">Mağazayı aç</string>
@@ -63,38 +45,26 @@
     <string name="analyzed_version">Analiz Edilmiş Sürüm</string>
     <string name="same_version">Aynı uygulama sürümü, Android versiyonunu ve kullanılan cihazı takip ederek farklı olabilir.</string>
     <string name="learn_more">Daha fazla bilgi edinin...</string>
-
-    <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Uygulamada aşağıdaki izleyicilerin kod imzasını bulduk:</string>
     <string name="code_signature_not_found">Uygulamada bildiğimiz hiçbir izleyicinin kod imzasını bulamadık.</string>
     <string name="tracker_info">Bir izleyici, sizin veya kullanımınız hakkında veri toplamayı amaçlayan bir yazılım parçasıdır.</string>
     <string name="analyzed">Bu uygulama henüz Exodus Privacy tarafından analiz edilmedi.</string>
-
-    <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Uygulamada aşağıdaki izinleri bulduk:</string>
     <string name="code_permission_not_found">Bu uygulama herhangi bir izin gerektirmiyor.</string>
     <string name="permission_info">İzinler, uygulamanın telefonunuzda gerçekleştirebileceği eylemlerdir.</string>
     <string name="permission_info_dangerous"><font color="red"><b>!</b></font> simgesi Google\'ın koruma seviyelerine göre \'Tehlikeli\' veya \'Özel\' seviyesini gösterir.</string>
-
-    <!-- Notification -->
     <string name="updates">Güncellemeler</string>
     <string name="updating_database">Rapor veritabanı güncelleniyor... (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
-
-    <!-- Trackers Fragment -->
     <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulama</string>
-
-    <!-- TrackersDetail Fragment -->
     <string name="open_tracker_page">İzleyici sayfasını aç</string>
     <string name="detection_rules">Tespit Kuralları</string>
     <string name="code_signature">Kod saptama kuralı:</string>
     <string name="network_signature">Ağ saptama kuralı:</string>
     <string name="apps_list">Uygulama listesi</string>
     <string name="trackers_presence">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulama) oranında mevcut</string>
-
-    <!-- Dialog Fragment -->
     <string name="accept">Kabul et</string>
     <string name="reject">Reddet</string>
-    <string name="warning_title">Exodus'un gerekli verileri iletmesine izin verilsin mi?</string>
+    <string name="warning_title">Exodus\'un gerekli verileri iletmesine izin verilsin mi?</string>
     <string name="warning_desc">Bu uygulamanın çalışması için veri toplaması ve Exodus Privacy sunucularına izleyici analizi için bu cihazda yüklü uygulamaların listesini içeren verileri göndermesi GEREKİR. Herhangi bir kişisel bilgi içermez.</string>
 
 </resources>
