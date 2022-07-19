@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.BuildConfig
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAboutBinding
+import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ThemeDialogFragment
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -33,6 +34,16 @@ class AboutFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAboutBinding.bind(view)
+
+        val toolbar = binding.toolbar
+        toolbar.menu.clear()
+        toolbar.inflateMenu(R.menu.about_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.chooseTheme -> { ThemeDialogFragment().show(childFragmentManager, tag) }
+            }
+            true
+        }
 
         val type = BuildConfig.BUILD_TYPE.replaceFirstChar { it.uppercase() }
         binding.appVersionTV.text =
