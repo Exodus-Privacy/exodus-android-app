@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    tools:theme="@style/Theme.Exodus"
     android:orientation="vertical"
-    tools:context=".fragments.about.AboutFragment">
+    tools:context=".fragments.about.AboutFragment"
+    tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"

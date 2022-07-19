@@ -8,7 +8,11 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplicatio
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerDataDao
 
-@Database(entities = [TrackerData::class, ExodusApplication::class], version = 1, exportSchema = false)
+@Database(
+    entities = [TrackerData::class, ExodusApplication::class],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(ExodusDatabaseConverters::class)
 abstract class ExodusDatabase : RoomDatabase() {
 

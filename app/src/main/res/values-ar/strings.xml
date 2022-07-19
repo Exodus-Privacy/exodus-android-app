@@ -10,29 +10,29 @@
 
     <!-- Menu -->
     <string name="menu_action_filter">عامل التصفية</string>
-	
+
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
     <!-- AppDetail Fragment -->
     <string name="report_date">تم إنشاء التقرير في <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">وتحديثه في <xliff:g id="date">%1$s</xliff:g></string>
-	
+
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">لقد وجدنا توقيع الرمز البرمجي للمتعقبين التاليين في التطبيق:</string>
     <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
     <string name="analyzed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
-	
+
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">لقد وجدنا التصريحات التالية في التطبيق:</string>
     <string name="code_permission_not_found">هذا التطبيق لا يطلب صلاحيات.</string>
-	
+
     <!-- Notification -->
     <!-- Trackers Fragment -->
     <!-- TrackersDetail Fragment -->
     <string name="detection_rules">قواعد الكشف</string>
     <string name="code_signature">قاعدة كشف الرمز:</string>
     <string name="network_signature">القاعدة الشبكية للإكتشاف:</string>
-	
-	<!-- Dialog Fragment -->
+
+    <!-- Dialog Fragment -->
 </resources>

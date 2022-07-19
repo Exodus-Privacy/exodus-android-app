@@ -10,19 +10,19 @@
 
     <!-- Menu -->
     <string name="menu_action_filter">Фильтр</string>
-	
+
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
     <!-- AppDetail Fragment -->
     <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">и обновлено <xliff:g id="date">%1$s</xliff:g></string>
-	
+
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
     <string name="analyzed">Это приложение ещё не было изучено Exodus Privacy.</string>
-	
+
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
@@ -33,6 +33,6 @@
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>
     <string name="network_signature">Правило определения сети:</string>
-	
+
     <!-- Dialog Fragment -->
 </resources>
