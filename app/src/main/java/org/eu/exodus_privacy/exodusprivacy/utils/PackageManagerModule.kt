@@ -77,11 +77,11 @@ object PackageManagerModule {
     private fun validPackage(packageName: String, packageManager: PackageManager): Boolean {
         val appInfo = packageManager.getApplicationInfo(packageName, 0)
         return (
-                appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
-                        appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
-                        packageManager.getLaunchIntentForPackage(packageName) != null
-                ) &&
-                appInfo.enabled
+            appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
+                appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
+                packageManager.getLaunchIntentForPackage(packageName) != null
+            ) &&
+            appInfo.enabled
     }
 
     private fun getPermissionList(
