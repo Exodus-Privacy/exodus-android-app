@@ -1,11 +1,11 @@
 package org.eu.exodus_privacy.exodusprivacy.utils
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,8 +24,8 @@ object NotificationManagerModule {
     @Provides
     fun provideNotificationManagerInstance(
         @ApplicationContext context: Context
-    ): NotificationManager {
-        return context.getSystemService(NotificationManager::class.java)
+    ): NotificationManagerCompat {
+        return NotificationManagerCompat.from(context)
     }
 
     @Singleton
@@ -33,12 +33,11 @@ object NotificationManagerModule {
     @RequiresApi(Build.VERSION_CODES.O)
     fun provideUpdateNotificationChannel(
         @ApplicationContext context: Context
-    ): NotificationChannel {
-        return NotificationChannel(
-            UPDATES,
-            context.getString(R.string.updates),
-            NotificationManager.IMPORTANCE_LOW
-        )
+    ): NotificationChannelCompat {
+        return NotificationChannelCompat
+            .Builder(UPDATES, NotificationManagerCompat.IMPORTANCE_LOW)
+            .setName(context.getString(R.string.updates))
+            .build()
     }
 
     @Provides
