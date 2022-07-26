@@ -88,9 +88,8 @@ object PackageManagerModule {
         permissionList: MutableList<String>,
         packageManager: PackageManager
     ): List<Permission> {
-        val list = permissionList
         val permsList = mutableListOf<Permission>()
-        list.forEach {
+        permissionList.forEach {
             var permInfo: PermissionInfo? = null
             try {
                 permInfo = packageManager.getPermissionInfo(
@@ -100,21 +99,22 @@ object PackageManagerModule {
             } catch (exception: PackageManager.NameNotFoundException) {
                 Log.d(TAG, "Unable to find info about $it")
             }
+            val name = it
             val label = permInfo?.loadLabel(packageManager).toString()
 
             // Labels and desc can be null for undocumented permissions, filter them out
             if (label != "null") {
                 permsList.add(
                     Permission(
-                        it.replace("[^>]*[a-z][.]".toRegex(), ""),
-                        permInfo?.loadLabel(packageManager).toString(),
+                        name.replace("[^>]*[a-z][.]".toRegex(), ""),
+                        label,
                         permInfo?.loadDescription(packageManager).toString(),
                     )
                 )
             } else {
                 permsList.add(
                     Permission(
-                        it.replace("[^>]*[a-z][.]".toRegex(), ""),
+                        name.replace("[^>]*[a-z][.]".toRegex(), ""),
                         it,
                     )
                 )
