@@ -120,7 +120,7 @@ object PackageManagerModule {
                 )
             }
         }
-        permsList.sortBy { it.permission }
+        permsList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.permission })
         return permsList
     }
 }
