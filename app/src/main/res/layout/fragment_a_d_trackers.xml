@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/trackersInfoTV"
         android:text="@string/learn_more"
-        android:textColor="@color/colorPrimary"
+        android:textColor="?android:textColorPrimary"
         android:textSize="15sp" />
 
 </RelativeLayout>
