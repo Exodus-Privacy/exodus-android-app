@@ -2,12 +2,8 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail
 
 import android.net.Uri
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.TextPaint
 import android.text.method.LinkMovementMethod
-import android.text.style.URLSpan
 import android.view.View
-import android.widget.TextView
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -101,7 +97,6 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                         markwon.setMarkdown(this, tracker.description)
                         movementMethod = LinkMovementMethod.getInstance()
                         isClickable = true
-                        removeUnderlineFromLinks()
                     }
                 } else {
                     trackerDescTV.visibility = View.GONE
@@ -140,21 +135,5 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
         super.onDestroyView()
         binding.toolbarTD.setOnMenuItemClickListener(null)
         _binding = null
-    }
-
-    private fun TextView.removeUnderlineFromLinks() {
-        val spannable = SpannableString(text)
-        for (urlSpan in spannable.getSpans(0, spannable.length, URLSpan::class.java)) {
-            spannable.setSpan(
-                object : URLSpan(urlSpan.url) {
-                    override fun updateDrawState(textPaint: TextPaint) {
-                        super.updateDrawState(textPaint)
-                        textPaint.isUnderlineText = false
-                    }
-                },
-                spannable.getSpanStart(urlSpan), spannable.getSpanEnd(urlSpan), 0
-            )
-        }
-        text = spannable
     }
 }
