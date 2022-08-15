@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
+        android:icon="@drawable/ic_link"
+        android:key="alternatives"
+        android:summary="@string/alternatives_desc"
+        android:title="@string/alternatives" />
+    <Preference
         android:icon="@drawable/ic_website"
         android:key="website"
         android:summary="@string/website_desc"

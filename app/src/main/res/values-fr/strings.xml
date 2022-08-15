@@ -35,6 +35,8 @@
 	
 	<!-- About Fragment -->
     <string name="chooseTheme">Thème</string>
+    <string name="alternatives">Et après ?</string>
+    <string name="alternatives_desc">Des alternatives existent !</string>
     <string name="website">Site Web</string>
     <string name="website_desc">En savoir plus sur Exodus Privacy</string>
     <string name="srcCode_desc">Signaler des bugs, contribuer au code source</string>
