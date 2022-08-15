@@ -35,6 +35,8 @@
 	
 	<!-- About Fragment -->
     <string name="chooseTheme">Thème</string>
+    <string name="alternatives">Et après ?</string>
+    <string name="alternatives_desc">Des alternatives existent !</string>
     <string name="website">Site Web</string>
     <string name="website_desc">En savoir plus sur Exodus Privacy</string>
     <string name="srcCode_desc">Signaler des bugs, contribuer au code source</string>
@@ -55,7 +57,7 @@
     <string name="installed_version">Version installée</string>
     <string name="analyzed_version">Version analysée</string>
     <string name="same_version">La même version de l\'application peut être différente suivant la version d\'Android et l\'appareil utilisé.</string>
-    <string name="learn_more">En savoir plus…</string>
+    <string name="learn_more"><u>En savoir plus…</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application:</string>
@@ -88,7 +90,7 @@
     <string name="accept">Accepter</string>
     <string name="reject">Refuser</string>
     <string name="warning_title">Autoriser Exodus à transmettre des données ?</string>
-    <string name="warning_desc">Pour fonctionner, l\'application DOIT envoyer sur les serveurs d\'Exodus Privacy, la liste des applications installées sur l\'appareil pour l\'analyse des pisteurs. Ces données ne contiennent aucune information personnelle.</string>
+    <string name="warning_desc">Pour fonctionner, l\'application doit envoyer sur les serveurs d\'Exodus Privacy la liste des applications installées sur l\'appareil pour l\'analyse des pisteurs. Ces données ne contiennent aucune information personnelle.</string>
     <string name="title_theme">Sélectionner un thème</string>
     <string name="dark_theme">Sombre</string>
     <string name="light_theme">Clair</string>

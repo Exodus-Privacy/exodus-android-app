@@ -24,6 +24,7 @@ class AboutFragment : PreferenceFragmentCompat() {
     lateinit var customTabsIntent: CustomTabsIntent
 
     companion object {
+        private const val alternativesURL = "https://reports.exodus-privacy.eu.org/info/next/"
         private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org"
@@ -52,6 +53,11 @@ class AboutFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.about_preference, rootKey)
+
+        findPreference<Preference>("alternatives")?.setOnPreferenceClickListener {
+            customTabsIntent.launchUrl(it.context, Uri.parse(alternativesURL))
+            true
+        }
 
         findPreference<Preference>("website")?.setOnPreferenceClickListener {
             customTabsIntent.launchUrl(it.context, Uri.parse(websiteURL))

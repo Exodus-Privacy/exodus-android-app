@@ -111,7 +111,7 @@
             android:paddingHorizontal="45dp"
             android:text="@string/code_signature"
             android:textColor="?android:textColorPrimary"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/codeSignTV"
@@ -121,8 +121,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:paddingHorizontal="45dp"
-            android:text="@string/code_signature"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?android:textColorPrimary"
             android:textSize="15sp" />
 
         <TextView
@@ -137,7 +136,7 @@
             android:paddingHorizontal="45dp"
             android:text="@string/network_signature"
             android:textColor="?android:textColorPrimary"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/networkSignTV"
@@ -147,7 +146,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:paddingHorizontal="45dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?android:textColorPrimary"
             android:textSize="15sp" />
 
         <TextView

@@ -41,6 +41,8 @@
     <!-- About Fragment -->
     <string name="chooseTheme">Theme</string>
     <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
+    <string name="alternatives">What\'s next ?</string>
+    <string name="alternatives_desc">Some alternatives exist !</string>
     <string name="website">Website</string>
     <string name="website_desc">Find more information on the Exodus Privacy project</string>
     <string name="srcCode" translatable="false">Github</string>
@@ -63,7 +65,7 @@
     <string name="installed_version">Installed Version</string>
     <string name="analyzed_version">Analyzed Version</string>
     <string name="same_version">Same app version may be different following Android version and device used.</string>
-    <string name="learn_more">Learn more…</string>
+    <string name="learn_more"><u>Learn more…</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
@@ -96,7 +98,7 @@
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>
     <string name="warning_title">Allow Exodus to transmit required data?</string>
-    <string name="warning_desc">In order to run, this Application MUST collect and send data to Exodus Privacy servers which includes the list of applications installed on this device for tracker analysis. It doesn\'t contains any personal information.</string>
+    <string name="warning_desc">In order to run, this Application must collect and send data to Exodus Privacy servers which includes the list of applications installed on this device for tracker analysis. It doesn\'t contains any personal information.</string>
     <string name="title_theme">Choose a theme</string>
     <string name="dark_theme">Dark</string>
     <string name="light_theme">Light</string>
