@@ -41,7 +41,7 @@ object PackageManagerModule {
         packageList.forEach {
             if (validPackage(it.packageName, packageManager)) {
                 val appPerms = it.requestedPermissions?.toList() ?: emptyList()
-                val permsList = getPermissionList(appPerms.toMutableList(), packageManager)
+                val permsList = getPermissionList(appPerms, packageManager)
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
@@ -85,37 +85,38 @@ object PackageManagerModule {
     }
 
     private fun getPermissionList(
-        permissionList: MutableList<String>,
+        permissionList: List<String>,
         packageManager: PackageManager
     ): List<Permission> {
         val permsList = mutableListOf<Permission>()
-        permissionList.forEach {
+        permissionList.forEach { permissionName ->
             var permInfo: PermissionInfo? = null
             try {
                 permInfo = packageManager.getPermissionInfo(
-                    it,
+                    permissionName,
                     PackageManager.GET_META_DATA
                 )
             } catch (exception: PackageManager.NameNotFoundException) {
-                Log.d(TAG, "Unable to find info about $it")
+                Log.d(TAG, "Unable to find info about $permissionName")
             }
-            val name = it
-            val label = permInfo?.loadLabel(packageManager).toString()
+
+            // Encapsulate regex modification
+            val permissionString = permissionName.replace("[^>]*[a-z][.]".toRegex(), "")
 
             // Labels and desc can be null for undocumented permissions, filter them out
-            if (label != "null") {
+            permInfo?.loadLabel(packageManager)?.let { label ->
                 permsList.add(
                     Permission(
-                        name.replace("[^>]*[a-z][.]".toRegex(), ""),
-                        label,
-                        permInfo?.loadDescription(packageManager).toString(),
+                        permissionString,
+                        label.toString(),
+                        permInfo.loadDescription(packageManager)?.toString() ?: "",
                     )
                 )
-            } else {
+            } ?: run {
                 permsList.add(
                     Permission(
-                        name.replace("[^>]*[a-z][.]".toRegex(), ""),
-                        it,
+                        permissionString,
+                        permissionName,
                     )
                 )
             }
