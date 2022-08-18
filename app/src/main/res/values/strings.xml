@@ -41,8 +41,8 @@
     <!-- About Fragment -->
     <string name="chooseTheme">Theme</string>
     <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
-    <string name="alternatives">What\'s next ?</string>
-    <string name="alternatives_desc">Some alternatives exist !</string>
+    <string name="alternatives">What\'s next?</string>
+    <string name="alternatives_desc">Some alternatives exist!</string>
     <string name="website">Website</string>
     <string name="website_desc">Find more information on the Exodus Privacy project</string>
     <string name="srcCode" translatable="false">Github</string>
