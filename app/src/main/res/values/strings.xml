@@ -44,13 +44,13 @@
     <string name="website">Website</string>
     <string name="website_desc">Find more information on the Exodus Privacy project</string>
     <string name="srcCode" translatable="false">Github</string>
-    <string name="srcCode_desc">Report issues, star, contribute PRs or just check the code</string>
+    <string name="srcCode_desc">View the source code, contribute or report bugs</string>
     <string name="privPolicy">Privacy policy</string>
     <string name="privPolicy_desc">Learn how we handle your data</string>
     <string name="email">Mail</string>
     <string name="email_desc">Reach out to us via email</string>
     <string name="twitter" translatable="false">Twitter</string>
-    <string name="twitter_desc">Stay updated with latest developments on Exodus Privacy project</string>
+    <string name="twitter_desc">Stay updated on Exodus Privacy project</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Open on Exodus Privacy</string>

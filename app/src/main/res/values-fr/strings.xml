@@ -37,12 +37,12 @@
     <string name="chooseTheme">Thème</string>
     <string name="website">Site Web</string>
     <string name="website_desc">En savoir plus sur Exodus Privacy</string>
-    <string name="srcCode_desc">Signaler des bugs, contribuer ou consulter le code source</string>
+    <string name="srcCode_desc">Signaler des bugs, consulter le code source</string>
     <string name="privPolicy">Politique de confidentialité</string>
     <string name="privPolicy_desc">Comment nous traitons vos données</string>
     <string name="email">Mail</string>
     <string name="email_desc">Contactez-nous par mail</string>
-    <string name="twitter_desc">Se tenir au courant de notre actualité</string>
+    <string name="twitter_desc">S'informer de notre actualité</string>
 	
 	<!-- AppDetail Fragment -->
     <string name="open_exodus_page">Ouvrir sur Exodus Privacy</string>
