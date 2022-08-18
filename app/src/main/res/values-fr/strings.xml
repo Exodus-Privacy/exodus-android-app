@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">Logo de l'Application</string>
+    <string name="app_logo">Logo de l\'application</string>
     <string name="trackers">Pisteurs</string>
     <string name="permissions">Autorisations</string>
     <string name="not_connected">Aucune connexion Internet</string>
