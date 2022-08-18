@@ -44,7 +44,7 @@
     <string name="website">Website</string>
     <string name="website_desc">Find more information on the Exodus Privacy project</string>
     <string name="srcCode" translatable="false">Github</string>
-    <string name="srcCode_desc">View the source code, contribute or report bugs</string>
+    <string name="srcCode_desc">Report bugs, view the source code</string>
     <string name="privPolicy">Privacy policy</string>
     <string name="privPolicy_desc">Learn how we handle your data</string>
     <string name="email">Mail</string>
