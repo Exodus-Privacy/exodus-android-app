@@ -57,7 +57,7 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
@@ -71,34 +71,34 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
     // Navigation Components
-    def nav_version = "2.5.1"
+    def nav_version = '2.5.1'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // Retrofit and Moshi
-    def retrofit_version = "2.9.0"
+    def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // Hilt
-    def hilt_version = "2.43.1"
+    def hilt_version = '2.43.2'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
 
     // Lifecycle
-    def lifecycle_version = "2.5.1"
+    def lifecycle_version = '2.5.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
 
     // Room
-    def room_version = "2.4.3"
+    def room_version = '2.4.3'
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
 
     // KTX
-    implementation 'androidx.fragment:fragment-ktx:1.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
     implementation 'androidx.activity:activity-ktx:1.5.1'
 
 }
