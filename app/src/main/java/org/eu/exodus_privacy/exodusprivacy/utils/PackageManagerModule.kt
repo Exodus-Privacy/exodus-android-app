@@ -26,7 +26,7 @@ object PackageManagerModule {
     private const val GOOGLE_PLAY_STORE = "com.android.vending"
     private const val AURORA_STORE = "com.aurora.store"
     private const val FDROID = "org.fdroid.fdroid"
-    private const val USER_INSTALL = "com.google.android.packageinstaller"
+    private val SYSTEM: String? = null
 
     private val TAG = PackageManagerModule::class.java.simpleName
 
@@ -69,8 +69,8 @@ object PackageManagerModule {
             GOOGLE_PLAY_STORE -> Source.GOOGLE
             AURORA_STORE -> Source.GOOGLE
             FDROID -> Source.FDROID
-            USER_INSTALL -> Source.USER
-            else -> Source.UNKNOWN
+            SYSTEM -> Source.SYSTEM
+            else -> Source.USER
         }
     }
 
@@ -120,7 +120,7 @@ object PackageManagerModule {
                 )
             }
         }
-        permsList.sortBy { it.permission }
+        permsList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.permission })
         return permsList
     }
 }

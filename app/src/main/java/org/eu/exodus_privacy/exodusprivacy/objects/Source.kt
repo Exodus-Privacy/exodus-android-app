@@ -4,5 +4,5 @@ enum class Source {
     GOOGLE,
     FDROID,
     USER,
-    UNKNOWN
+    SYSTEM
 }
