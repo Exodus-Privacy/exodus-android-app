@@ -12,5 +12,5 @@ data class Application(
     val versionName: String = String(),
     val versionCode: Long = 0L,
     val permissions: List<Permission> = emptyList(),
-    val source: Source = Source.UNKNOWN
+    val source: Source = Source.SYSTEM
 )
