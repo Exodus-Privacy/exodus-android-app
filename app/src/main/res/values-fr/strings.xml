@@ -25,15 +25,15 @@
     <!-- Menu -->
     <string name="menu_action_search">Rechercher</string>
     <string name="menu_action_filter">Trier par</string>
-    
+
     <!-- Filters -->
     <string name="sort_by_name">Nom</string>
     <string name="sort_by_creation_date">Date de création</string>
-	
-	<!-- Apps Fragment -->
+
+    <!-- Apps Fragment -->
     <string name="fetching_apps">Mise à jour des rapports</string>
-	
-	<!-- About Fragment -->
+
+    <!-- About Fragment -->
     <string name="chooseTheme">Thème</string>
     <string name="alternatives">Et après ?</string>
     <string name="alternatives_desc">Des alternatives existent !</string>
@@ -45,8 +45,8 @@
     <string name="email">Mail</string>
     <string name="email_desc">Contactez-nous par mail</string>
     <string name="twitter_desc">S\'informer de notre actualité</string>
-	
-	<!-- AppDetail Fragment -->
+
+    <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Ouvrir sur Exodus Privacy</string>
     <string name="submit_app">Soumettre l\'application</string>
     <string name="open_store">Ouvrir le magasin d\'applications</string>
@@ -70,8 +70,8 @@
     <string name="code_permission_not_found">Cette application ne demande aucune autorisation.</string>
     <string name="permission_info">Les autorisations sont les actions que l’application peut effectuer sur votre téléphone.</string>
     <string name="permission_info_dangerous">L\'icône <font color="red"><b>!</b></font> indique un niveau \'Dangereux\' ou \'Spécial\' d\'après les niveaux de protection de Google.</string>
-	
-	<!-- Notification -->
+
+    <!-- Notification -->
     <string name="updates">Mise à jour</string>
     <string name="updating_database">Mise à jour des rapports… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
 
