@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import io.noties.markwon.Markwon
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -37,6 +39,12 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTrackerDetailBinding.bind(view)
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
+        reenterTransition = MaterialFadeThrough()
+        returnTransition = MaterialFadeThrough()
 
         viewModel.getTracker(args.trackerID)
 

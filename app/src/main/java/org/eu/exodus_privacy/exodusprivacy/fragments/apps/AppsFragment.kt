@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -29,6 +31,12 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAppsBinding.bind(view)
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
+        reenterTransition = MaterialFadeThrough()
+        returnTransition = MaterialFadeThrough()
 
         // Setup menu actions
         val toolbar = binding.toolbarApps
