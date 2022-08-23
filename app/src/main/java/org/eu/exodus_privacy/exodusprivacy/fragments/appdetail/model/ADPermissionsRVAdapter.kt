@@ -32,7 +32,7 @@ class ADPermissionsRVAdapter :
         holder.binding.apply {
             permissionTitleTV.text = app.permission
             permissionSubTitleTV.text = app.label.replaceFirstChar { it.uppercase() }
-            if (app.description.isNullOrEmpty() || app.description == "null") {
+            if (app.description.isEmpty() || app.description == "null") {
                 permissionDescTV.visibility = View.GONE
                 expandBT.visibility = View.GONE
             } else {

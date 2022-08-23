@@ -7,6 +7,7 @@ import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.BuildConfig
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -25,7 +26,7 @@ class AboutFragment : PreferenceFragmentCompat() {
 
     companion object {
         private const val alternativesURL = "https://reports.exodus-privacy.eu.org/info/next/"
-        private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy"
+        private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org"
         private const val twitterURL = "https://twitter.com/ExodusPrivacy"
@@ -35,6 +36,10 @@ class AboutFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAboutBinding.bind(view)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
+        reenterTransition = MaterialFadeThrough()
+        returnTransition = MaterialFadeThrough()
 
         val toolbar = binding.toolbar
         toolbar.menu.clear()
