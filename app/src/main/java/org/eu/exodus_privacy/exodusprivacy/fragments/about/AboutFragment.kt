@@ -25,7 +25,7 @@ class AboutFragment : PreferenceFragmentCompat() {
 
     companion object {
         private const val alternativesURL = "https://reports.exodus-privacy.eu.org/info/next/"
-        private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy"
+        private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org"
         private const val twitterURL = "https://twitter.com/ExodusPrivacy"
