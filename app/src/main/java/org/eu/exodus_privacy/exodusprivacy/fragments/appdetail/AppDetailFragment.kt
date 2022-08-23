@@ -177,13 +177,17 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         0 -> {
                             tab.apply {
                                 text = getString(R.string.trackers)
-                                icon = ContextCompat.getDrawable(view.context, R.drawable.ic_tracker)
+                                icon =
+                                    ContextCompat.getDrawable(view.context, R.drawable.ic_tracker)
                             }
                         }
                         1 -> {
                             tab.apply {
                                 text = getString(R.string.permissions)
-                                icon = ContextCompat.getDrawable(view.context, R.drawable.ic_permission)
+                                icon = ContextCompat.getDrawable(
+                                    view.context,
+                                    R.drawable.ic_permission
+                                )
                             }
                         }
                     }

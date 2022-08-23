@@ -10,29 +10,29 @@
 
     <!-- Menu -->
     <string name="menu_action_filter">Filtra</string>
-	
+
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
     <!-- AppDetail Fragment -->
     <string name="report_date">Report creato il <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">ae aggiornato il <xliff:g id="date">%1$s</xliff:g></string>
-	
+
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Abbiamo trovato i codici di firma dei seguenti tracker nell\'applicazione:</string>
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
     <string name="analyzed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
-    
+
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Abbiamo trovato i permessi seguenti nell\'applicazione:</string>
     <string name="code_permission_not_found">Questa applicazione non richiede alcun permesso.</string>
-	
+
     <!-- Notification -->
     <!-- Trackers Fragment -->
     <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Regole di rilevamento</string>
     <string name="code_signature">Regola di rilevamento (codice):</string>
     <string name="network_signature">Regola di rilevamento (rete):</string>
-	
+
     <!-- Dialog Fragment -->
 </resources>

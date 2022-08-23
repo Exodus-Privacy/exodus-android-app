@@ -39,11 +39,11 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:visibility="gone"
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbarApps">
+        android:layout_below="@+id/toolbarApps"
+        android:visibility="gone">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/appListRV"

@@ -240,7 +240,8 @@ class ExodusUpdateService : LifecycleService() {
     private suspend fun fetchApps() {
         try {
             applicationList.forEach { app ->
-                val appDetailList = exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
+                val appDetailList =
+                    exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
                 // Look for current installed version in the list, otherwise pick the latest one
                 val currentApp =
                     appDetailList.filter { it.version_code.toLong() == app.versionCode }

@@ -49,8 +49,7 @@
         android:id="@+id/ADTrackersFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment"
         android:label="fragment_a_d_trackers"
-        tools:layout="@layout/fragment_a_d_trackers" >
-    </fragment>
+        tools:layout="@layout/fragment_a_d_trackers"></fragment>
     <fragment
         android:id="@+id/trackerDetailFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragment"
@@ -64,7 +63,7 @@
             app:destination="@id/appDetailFragment" />
         <argument
             android:name="percentage"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>

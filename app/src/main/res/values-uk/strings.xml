@@ -17,7 +17,7 @@
     <string name="title_trackers">Відстежувачі</string>
     <string name="title_about">Про</string>
     <string name="nothing_here">Нема що відображати. Можете потягнути вниз, щоб оновити!</string>
-	
+
     <!-- Menu -->
     <string name="menu_action_search">Пошук</string>
     <string name="menu_action_filter">Фільтр</string>
@@ -29,22 +29,22 @@
     <!-- AppDetail Fragment -->
     <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">і оновлено <xliff:g id="date">%1$s</xliff:g></string>
-    
+
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
     <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
     <string name="analyzed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
-    
+
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
     <string name="code_permission_not_found">Цей застосунок не вимагає дозволів.</string>
-    
+
     <!-- Notification -->
     <!-- Trackers Fragment -->
     <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Правила виявлення </string>
     <string name="code_signature">Код правила виявлення:</string>
     <string name="network_signature">Мережа правила виявлення:</string>
-    
-	<!-- Dialog Fragment -->
+
+    <!-- Dialog Fragment -->
 </resources>

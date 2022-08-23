@@ -102,8 +102,6 @@ object PackageManagerModule {
 
             // Encapsulate regex modification
             val permissionString = permissionName.replace("[^>]*[a-z][.]".toRegex(), "")
-
-            // Labels and desc can be null for undocumented permissions, filter them out
             permInfo?.loadLabel(packageManager)?.let { label ->
                 permsList.add(
                     Permission(

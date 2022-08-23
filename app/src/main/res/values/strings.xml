@@ -23,7 +23,7 @@
     <string name="title_trackers">Trackers</string>
     <string name="title_about">About</string>
     <string name="nothing_here">Nothing to display currently. You can pull to refresh!</string>
-	
+
     <!-- Menu -->
     <string name="menu_action_search">Search</string>
     <string name="menu_action_filter">Sort by</string>
@@ -61,7 +61,7 @@
     <string name="open_app_info">App Settings</string>
     <string name="version">Version</string>
     <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
-	<string name="updated">and updated on <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">and updated on <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Installed Version</string>
     <string name="analyzed_version">Analyzed Version</string>
     <string name="same_version">Same app version may be different following Android version and device used.</string>
