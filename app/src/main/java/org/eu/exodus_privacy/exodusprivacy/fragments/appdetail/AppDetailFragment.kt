@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
-import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 import org.eu.exodus_privacy.exodusprivacy.utils.setVersionReport
 import javax.inject.Inject
@@ -41,8 +40,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
         private const val exodusReportPage = "https://reports.exodus-privacy.eu.org/reports/"
         private const val exodusSubmitPage =
             "https://reports.exodus-privacy.eu.org/analysis/submit/#"
-        private const val fDroidPackagePage = "https://f-droid.org/packages/"
-        private const val playPackagePage = "https://play.google.com/store/apps/details?id="
+        private const val storePage = "market://details?id="
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,20 +78,10 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                                 )
                             }
                             R.id.openStore -> {
-                                when (app.source) {
-                                    Source.FDROID -> {
-                                        customTabsIntent.launchUrl(
-                                            view.context,
-                                            Uri.parse(fDroidPackagePage + app.packageName)
-                                        )
-                                    }
-                                    else -> {
-                                        customTabsIntent.launchUrl(
-                                            view.context,
-                                            Uri.parse(playPackagePage + app.packageName)
-                                        )
-                                    }
-                                }
+                                customTabsIntent.launchUrl(
+                                    view.context,
+                                    Uri.parse(storePage + app.packageName)
+                                )
                             }
                             R.id.openAppInfo -> {
                                 val intent =
