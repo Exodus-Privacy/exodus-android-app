@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/appsFragment"
+        android:icon="@drawable/navbar_app"
+        android:title="@string/title_apps" />
+
+    <item
+        android:id="@+id/trackersFragment"
+        android:icon="@drawable/navbar_tracker"
+        android:title="@string/title_trackers" />
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/navbar_information"
+        android:title="@string/title_about" />
+
+</menu>

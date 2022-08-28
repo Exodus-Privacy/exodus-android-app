@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:icon="@drawable/ic_link"
+        android:key="alternatives"
+        android:summary="@string/alternatives_desc"
+        android:title="@string/alternatives" />
+    <Preference
+        android:icon="@drawable/ic_website"
+        android:key="website"
+        android:summary="@string/website_desc"
+        android:title="@string/website" />
+    <Preference
+        android:icon="@drawable/ic_source"
+        android:key="srcCode"
+        android:summary="@string/srcCode_desc"
+        android:title="@string/srcCode" />
+    <Preference
+        android:icon="@drawable/ic_spy"
+        android:key="privPolicy"
+        android:summary="@string/privPolicy_desc"
+        android:title="@string/privPolicy" />
+    <Preference
+        android:icon="@drawable/ic_email"
+        android:key="email"
+        android:summary="@string/email_desc"
+        android:title="@string/email" />
+    <Preference
+        android:icon="@drawable/ic_twitter"
+        android:key="twitter"
+        android:summary="@string/twitter_desc"
+        android:title="@string/twitter" />
+</PreferenceScreen>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_resource"
+    app:startDestination="@id/appsFragment">
+
+    <fragment
+        android:id="@+id/appsFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragment"
+        android:label="fragment_apps"
+        tools:layout="@layout/fragment_apps">
+        <action
+            android:id="@+id/action_appsFragment_to_appDetailFragment"
+            app:destination="@id/appDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackersFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersFragment"
+        android:label="TrackersFragment"
+        tools:layout="@layout/fragment_trackers">
+        <action
+            android:id="@+id/action_trackersFragment_to_trackerDetailFragment"
+            app:destination="@id/trackerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.about.AboutFragment"
+        android:label="AboutFragmentKT"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/appDetailFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragment"
+        android:label="fragment_app_detail"
+        tools:layout="@layout/fragment_app_detail">
+        <argument
+            android:name="packageName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_appDetailFragment_to_trackerDetailFragment"
+            app:destination="@id/trackerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ADPermissionsFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADPermissionsFragment"
+        android:label="fragment_a_d_permissions"
+        tools:layout="@layout/fragment_a_d_permissions" />
+    <fragment
+        android:id="@+id/ADTrackersFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment"
+        android:label="fragment_a_d_trackers"
+        tools:layout="@layout/fragment_a_d_trackers"></fragment>
+    <fragment
+        android:id="@+id/trackerDetailFragment"
+        android:name="org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragment"
+        android:label="fragment_tracker_detail"
+        tools:layout="@layout/fragment_tracker_detail">
+        <argument
+            android:name="trackerID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_trackerDetailFragment_to_appDetailFragment"
+            app:destination="@id/appDetailFragment" />
+        <argument
+            android:name="percentage"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+</navigation>

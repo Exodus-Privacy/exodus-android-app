@@ -3,6 +3,10 @@
     <color name="colorPrimary">#684971</color>
     <color name="colorPrimaryDark">#3d2b43</color>
     <color name="colorAccent">#3d2b43</color>
+    <color name="colorAccentTheme">#f4eff5</color>
+    <color name="colorBackgroundTile">#d6c8db</color>
+    <color name="indicatorColor">#66684971</color>
+    <color name="chipColor">#E8DEF8</color>
     <color name="percent">#77684971</color>
 
     <color name="colorGreen">#6fc384</color>
@@ -10,13 +14,16 @@
     <color name="colorLightYellow">#ffdb66</color>
 
     <color name="colorLightBlue">#17a2b8</color>
-    <color name="colorYellow">#ffc70f</color>
+    <color name="colorYellow">#ffd54d</color>
     <color name="colorDarkOrange">#ff8c00</color>
     <color name="colorRed">#e61718</color>
+    <color name="colorRedLight">#CF4845</color>
 
     <color name="colorPurple">#684971</color>
     <color name="textColorDark">#343A40</color>
     <color name="textColorDarkLight">#6C757D</color>
     <color name="textColorWhite">#FFFFFF</color>
+    <color name="textColorLikeWhite">#f2f2f2</color>
     <color name="textDetection">#E83E8C</color>
+    <color name="colorGrey">#d9d9d9</color>
 </resources>

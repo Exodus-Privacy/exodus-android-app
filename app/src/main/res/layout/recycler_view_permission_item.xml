@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:theme="@style/Theme.Exodus">
+
+    <LinearLayout
+        android:id="@+id/permInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/expandBT"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/permissionTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="17sp"
+            tools:text="CAMERA" />
+
+        <TextView
+            android:id="@+id/permissionSubTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="15sp"
+            tools:text="Take pictures and videos" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/expandBT"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:icon="@drawable/ic_down"
+        app:iconTint="?android:textColorPrimary" />
+
+    <TextView
+        android:id="@+id/permissionDescTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/permInfoLayout"
+        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="10dp"
+        android:textColor="?android:textColorSecondary"
+        android:textSize="15sp"
+        android:visibility="gone"
+        tools:text="Take pictures and videos" />
+
+</RelativeLayout>
