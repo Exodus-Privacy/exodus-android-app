@@ -1,0 +1,1 @@
+Exodus cihazınızda yüklü uygulamalarda hangi izleyicilerin ve izinlerin gömülü olduğunu bilmenize yardımcı olur.
