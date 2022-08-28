@@ -1,0 +1,7 @@
+- Rewrited app in Kotlin
+- Added Android 12 support
+- Added dark mode
+- Added new permission FOREGROUND_SERVICE
+- Update translations
+
+⚠ App need Android 5.0 to run

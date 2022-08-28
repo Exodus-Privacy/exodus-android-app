@@ -1,0 +1,7 @@
+- Réécriture de l'application en Kotlin
+- Ajout du support pour Android 12
+- Ajout du mode sombre
+- Ajout de la permission FOREGROUND_SERVICE
+- Mise à jour des traductions
+
+⚠ L'application nécessite Android 5.0 pour fonctionner
