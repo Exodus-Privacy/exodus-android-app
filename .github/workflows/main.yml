@@ -1,9 +1,7 @@
 ---
 name: Build
-
 env:
     EXODUS_API_KEY: ${{secrets.EXODUS_API_KEY}}
-
 on:
   push:
     branches:
@@ -11,12 +9,10 @@ on:
   pull_request:
     branches:
       - master
-      - kotlinRewrite
     paths-ignore:
       -'fastlane/**'
       -'README.md'
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,10 +23,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Run Kotlin Linter
+        run: ./gradlew app:ktlintCheck --info
       - name: Generate debug build
         run: ./gradlew assembleDebug
-      - name: Run tests
-        run: ./gradlew test
       - name: Execute exodus-standalone
         uses: docker://exodusprivacy/exodus-standalone:v1.3.2
         with:

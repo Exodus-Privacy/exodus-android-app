@@ -1,52 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">App Logo</string>
-    <string name="trackers_pct">Tracker:</string>
-    <string name="permissions_pct">Berechtigungen:</string>
     <string name="trackers">Tracker</string>
     <string name="permissions">Berechtigungen</string>
-    <string name="network_error">Netzwerk nicht verfügbar</string>
     <string name="not_connected">Keine Verbindung</string>
-    <string name="json_error">JSON Fehler</string>
-    <string name="installed">Installierte Version: </string>
-    <string name="report_version">Getestete Version: </string>
-    <string name="no_trackers">Diese Anwendung könnte Tracker, die uns unbekannt sind, enthalten.</string>
-    <string name="no_permissions">Diese App braucht keine Berechtigungen</string>
-    <string name="tested">Es gibt keinen Bericht für die installierte Version (%1$s), die gezeigte Informationen basieren auf einer anderen Version (%2$s)</string>
-    <string name="analysed">Diese App wurde von Exodus Privacy noch nicht analysiert.</string>
-    <string name="no_package_manager">Ihr System scheint den Zugriff auf die Appliste nicht zu erlauben.</string>
     <string name="no_app_found">Es scheint, dass keine App aus den Quellen, die wir prüfen (Google Play Store und F-Droid), installiert ist.</string>
-    <string name="get_reports_connection">App erhalten: Warte auf Antwort des Servers</string>
-    <string name="get_reports">App erhalten</string>
-    <string name="parse_application">Untersuchung der App:</string>
-    <string name="parse_trackers">Untersuchung der Tracker:</string>
-    <string name="get_trackers_connection">Tracker erhalten: Warte auf Antwort des Servers</string>
-    <string name="get_trackers">Tracker erhalten</string>
     <string name="no_settings">Diese App hat keine Einstellungen</string>
     <string name="logo">%1 Anwendungslogo</string>
-    <string name="created_by">Erstellt von</string>
-    <string name="created_date">Bericht erstellt am</string>
-    <string name="and_updated">und zuletzt aktualisiert am</string>
-    <string name="view_on_exodus">Siehe auf εxodus ➤</string>
-    <string name="view_on_google_play">Siehe auf Google Play ➤</string>
-    <string name="view_on_fdroid">Siehe auf F-Droid ➤</string>
-    <string name="downloads">downloads</string>
+    <string name="title_trackers">Tracker</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Filter</string>
+
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <string name="report_date">Bericht erstellt am <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">und zuletzt aktualisiert am <xliff:g id="date">%1$s</xliff:g></string>
+
+    <!-- ADTrackers Fragment -->
+    <string name="analyzed">Diese App wurde von Exodus Privacy noch nicht analysiert.</string>
     <string name="code_signature_found">Wir haben die Code-Signatur der folgenden Tracker in der Anwendung gefunden:</string>
     <string name="code_signature_not_found">Wir haben keine Code-Signatur irgendeines Trackers in der App gefunden.</string>
+
+    <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>
     <string name="code_permission_not_found">Diese App erfordert keine Berechtigungen.</string>
-    <string name="tracker_infos">Ein Tracker ist eine Software, die Daten über Sie oder Ihre Nutzung erfassen soll. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Erfahre mehr…</a></string>
-    <string name="permission_infos">Berechtigungen sind Aktionen, die die Anwendung auf Ihrem Telefon ausführen kann. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Mehr erfahren…</a></string>
-    <string name="permission_infos_dangerous">Das Symbol <font color="red"><b>!</b></font> zeigt eine \'Gefährliche\' oder \'Spezial\' Stufe nach <a href="https://developer.android.com/guide/topics/permissions/overview">Googles Schutzstufen an.</a></string>
-    <string name="tracker_web_page">Tracker-Webseite ➤</string>
+
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Erkennungsregeln</string>
     <string name="code_signature">Code-Erkennungsregel:</string>
     <string name="network_signature">Netzwerkerkennungsregel:</string>
-    <string name="tracker_presence">Vorhanden in %d der installierten Apps</string>
-    <string name="tracker_presence_in">Vorhanden in:</string>
-    <string name="no_app_found_tracker">Dieser Tracker scheint in den installierten Apps nicht vorhanden zu sein</string>
-    <string name="source">Quelle: %s</string>
-    <!-- Menu -->
-    <string name="menu_action_filter">Filter</string>
-    <string name="menu_action_settings">Anwendungs-Einstellungen</string>
+
+    <!-- Dialog Fragment -->
 </resources>

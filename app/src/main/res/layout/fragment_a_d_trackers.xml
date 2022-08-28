@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".fragments.appdetail.subfrags.ADTrackersFragment"
+    tools:theme="@style/Theme.Exodus">
+
+    <LinearLayout
+        android:id="@+id/trackerTitleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/trackersChip"
+            style="@style/Theme.Exodus.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipIcon="@drawable/ic_tracker"
+            tools:text="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/trackers"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/trackersStatusTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trackerTitleTV"
+        android:text="@string/code_signature_not_found"
+        android:textSize="15sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trackersRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trackersStatusTV"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/trackersInfoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trackersRV"
+        android:layout_marginTop="10dp"
+        android:text="@string/tracker_info"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/trackersLearnTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trackersInfoTV"
+        android:text="@string/learn_more"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="15sp" />
+
+</RelativeLayout>

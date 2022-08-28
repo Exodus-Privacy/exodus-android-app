@@ -1,52 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo applicazione</string>
-    <string name="trackers_pct">Tracciatori:</string>
-    <string name="permissions_pct">Autorizzazioni:</string>
     <string name="trackers">Tracciatori</string>
     <string name="permissions">Autorizzazioni</string>
-    <string name="network_error">Rete non disponibile</string>
     <string name="not_connected">Nessuna connessione internet</string>
-    <string name="json_error">Errore JSON</string>
-    <string name="installed">Versione installata: </string>
-    <string name="report_version">Versione testata: </string>
-    <string name="no_trackers">Nessun tracciatore testato trovato</string>
-    <string name="no_permissions">Nessuna autorizzazione richiesta dall\'applicazione</string>
-    <string name="tested">Non ci sono report per la versione installata (%1$s), le informazioni mostrate sono basate su un\'altra (%2$s) versione</string>
-    <string name="analysed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
-    <string name="no_package_manager">Sembra che il tuo sistema non permetta l\'accesso all\'elenco di app installate.</string>
     <string name="no_app_found">Sembra che tu non abbia nessuna app installata dalla fonte che testiamo (Google Play store o F-Droid).</string>
-    <string name="get_reports_connection">Rilevazione applicazioni: in attesa della connessione al server</string>
-    <string name="get_reports">Rilevazione applicazioni</string>
-    <string name="parse_application">Elaborazione applicazioni:</string>
-    <string name="parse_trackers">Elaborazione tracciatori:</string>
-    <string name="get_trackers_connection">Rilevazione tracciatori: in attesa della connessione al server</string>
-    <string name="get_trackers">Rilevazione tracker</string>
     <string name="no_settings">Questa app non ha impostazioni</string>
     <string name="logo">%1 Logo dell\'applicazione</string>
-    <string name="created_by">Creato da</string>
-    <string name="created_date">Report creato il</string>
-    <string name="and_updated">ae aggiornato il</string>
-    <string name="view_on_exodus">Vedi su εxodus ➤</string>
-    <string name="view_on_google_play">Vedi su Google Play ➤</string>
-    <string name="view_on_fdroid">Vedi su F-Droid ➤</string>
-    <string name="downloads">scaricamenti</string>
+    <string name="title_trackers">Tracciatori</string>
+
+    <!-- Menu -->
+    <string name="menu_action_filter">Filtra</string>
+
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <string name="report_date">Report creato il <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">ae aggiornato il <xliff:g id="date">%1$s</xliff:g></string>
+
+    <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Abbiamo trovato i codici di firma dei seguenti tracker nell\'applicazione:</string>
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
+    <string name="analyzed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
+
+    <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Abbiamo trovato i permessi seguenti nell\'applicazione:</string>
     <string name="code_permission_not_found">Questa applicazione non richiede alcun permesso.</string>
-    <string name="tracker_infos">Un tracker è un software destinato a raccogliere dati su di te o sui tuoi utilizzi. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Per saperne di più…</a></string>
-    <string name="permission_infos">Le autorizzazioni sono azioni che l\'applicazione può fare sul tuo telefono. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Per saperne di più…</a></string>
-    <string name="permission_infos_dangerous">L\'icona <font color="red"><b>!</b></font> indica un livello \'Pericoloso\' o \'Speciale\' in base ai <a href="https://developer.android.com/guide/topics/permissions/overview">livelli di protezione di Google.</a></string>
-    <string name="tracker_web_page">Pagina web del tracker ➤</string>
+
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Regole di rilevamento</string>
     <string name="code_signature">Regola di rilevamento (codice):</string>
     <string name="network_signature">Regola di rilevamento (rete):</string>
-    <string name="tracker_presence">Presente in %d applicazioni</string>
-    <string name="tracker_presence_in">Presente in:</string>
-    <string name="no_app_found_tracker">Questo tracker non sembra essere presente nelle tue applicazioni</string>
-    <string name="source">Fonte: %s</string>
-    <!-- Menu -->
-    <string name="menu_action_filter">Filtra</string>
-    <string name="menu_action_settings">Impostazioni dell\'applicazione</string>
+
+    <!-- Dialog Fragment -->
 </resources>

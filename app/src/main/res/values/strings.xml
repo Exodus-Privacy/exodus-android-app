@@ -1,81 +1,107 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_title">εxodus</string>
-    <string name="app_name">Exodus</string>
+    <string name="app_title" translatable="false">εxodus</string>
+    <string name="app_name" translatable="false">Exodus</string>
     <string name="app_logo">Application Logo</string>
-    <string name="trackers_pct">Trackers:</string>
-    <string name="permissions_pct">Permissions:</string>
     <string name="trackers">Trackers</string>
     <string name="permissions">Permissions</string>
-    <string name="network_error">Network Unavailable</string>
     <string name="not_connected">No Internet Connection</string>
-    <string name="json_error">JSON Error</string>
-    <string name="installed">Installed Version: </string>
-    <string name="report_version">Tested Version: </string>
-    <string name="no_trackers">The application could contain tracker(s) we do not know yet.</string>
-    <string name="no_permissions">This application doesn\'t require any permissions.</string>
-    <string name="tested">There\'s no report for the installed version (%1$s), the information displayed is based on another (%2$s) version</string>
-    <string name="analysed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
-    <string name="no_package_manager">It appears that your system doesn\'t allow access to the list of installed apps.</string>
+    <string name="settings">Settings</string>
+    <string name="version_equals">Installed Version = Analyzed Version</string>
+    <string name="version_mismatch">Installed Version &lt;&gt; Analyzed Version</string>
+    <string name="version_unavailable">App never analyzed</string>
     <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
-    <string name="get_reports_connection">Getting applications: Waiting for server connection</string>
-    <string name="get_reports">Getting applications</string>
-    <string name="parse_application">Processing Applications:</string>
-    <string name="parse_trackers">Processing Trackers:</string>
-    <string name="get_trackers_connection">Getting trackers: Waiting for server connection</string>
-    <string name="get_trackers">Getting trackers</string>
     <string name="no_settings">This app doesn\'t have settings</string>
     <string name="logo">%1 Application Logo</string>
-    <string name="created_by">Created By</string>
-    <string name="created_date">Report created on</string>
-    <string name="and_updated">and updated on</string>
-    <string name="view_on_exodus">See on εxodus ➤</string>
-    <string name="view_on_google_play">See on Google Play ➤</string>
-    <string name="view_on_fdroid">See on F-Droid ➤</string>
-    <string name="downloads">downloads</string>
-    <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
-    <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
-    <string name="code_permission_found">We have found the following permissions in the application:</string>
-    <string name="code_permission_not_found">This application doesn\'t require any permissions.</string>
-    <string name="tracker_infos">A tracker is a piece of software meant to collect data about you or your usages. <a href="https://reports.exodus-privacy.eu.org/en/info/trackers/">Learn more…</a></string>
-    <string name="permission_infos">Permissions are actions the application can do on your phone. <a href="https://reports.exodus-privacy.eu.org/en/info/permissions/">Learn more…</a></string>
-    <string name="permission_infos_dangerous">The icon <font color="red"><b>!</b></font> indicates a \'Dangerous\' or \'Special\' level according to <a href="https://developer.android.com/guide/topics/permissions/overview">Google\'s protection levels.</a></string>
-    <string name="tracker_web_page">Tracker web page ➤</string>
-    <string name="detection_rules">Detection Rules</string>
-    <string name="code_signature">Code detection rule:</string>
-    <string name="network_signature">Network detection rule:</string>
-    <string name="tracker_presence">Present in %d of your applications</string>
-    <string name="tracker_presence_in">Present in:</string>
-    <string name="no_app_found_tracker">This tracker seems not be present in your applications</string>
-    <string name="source">Source: %s</string>
     <string name="refresh">Refresh</string>
     <string name="cancel">Cancel</string>
     <string name="refresh_needed">Refresh needed</string>
     <string name="refresh_needed_message">Data have not been update since %1$s.\n\nWould you like to refresh them?</string>
-    <!-- Menu -->
-    <string name="menu_action_search">Search</string>
-    <string name="menu_action_filter">Filter</string>
-    <string name="menu_action_settings">Application Settings</string>
-
-    <!-- Filters -->
-    <string name="filter_by_name">Filter by name</string>
-    <string name="having_most_trackers">Having most trackers</string>
-    <string name="having_less_trackers">Having less trackers</string>
-    <string name="having_most_permissions">Having most permissions</string>
-    <string name="having_less_permissions">Having less permissions</string>
     <string name="submit">Submit</string>
     <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically pasted to the website form. You will only need to submit the form.</string>
     <string name="app_not_analyzed_title">This app has not been analyzed!</string>
-    <string name="title_apps">My apps</string>
+    <string name="title_apps">Apps</string>
     <string name="title_trackers">Trackers</string>
     <string name="title_about">About</string>
-    <string name="list_of_apps">See the list of apps</string>
-    <string name="apps">%1$s apps</string>
     <string name="nothing_here">Nothing to display currently. You can pull to refresh!</string>
 
-    <!-- About Fragment -->
-    <string name="aboutExodusTitle">About Exodus - Android Application</string>
-    <string name="aboutExodusDesc">Exodus is an Android application that let you know what trackers are embedded in apps installed on your smartphone using the exodus platform. It let you also know the permissions required by any apps on your smartphone.\n\nIt helps you to take your privacy back!</string>
-    <string name="privacyPolicy">&#8226; &lt;a href="<xliff:g id="exodus">%1$s</xliff:g>"&gt;Checkout our privacy policy here ➤&lt;/a&gt;</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Search</string>
+    <string name="menu_action_filter">Sort by</string>
 
+    <!-- Filters -->
+    <string name="sort_by_name">Name</string>
+    <string name="sort_by_creation_date">Creation date</string>
+
+    <!-- Apps Fragment -->
+    <string name="app_version" translatable="false"><xliff:g id="rating">%1$s</xliff:g></string>
+    <string name="app_trackers" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
+    <string name="app_perms" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
+    <string name="fetching_apps">Updating reports database!</string>
+
+    <!-- About Fragment -->
+    <string name="chooseTheme">Theme</string>
+    <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
+    <string name="alternatives">What\'s next?</string>
+    <string name="alternatives_desc">Some alternatives exist!</string>
+    <string name="website">Website</string>
+    <string name="website_desc">Find more information on the Exodus Privacy project</string>
+    <string name="srcCode" translatable="false">Github</string>
+    <string name="srcCode_desc">Report bugs, view the source code</string>
+    <string name="privPolicy">Privacy policy</string>
+    <string name="privPolicy_desc">Learn how we handle your data</string>
+    <string name="email">Mail</string>
+    <string name="email_desc">Reach out to us via email</string>
+    <string name="twitter" translatable="false">Twitter</string>
+    <string name="twitter_desc">Stay updated on Exodus Privacy project</string>
+
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Open on Exodus Privacy</string>
+    <string name="submit_app">Submit app</string>
+    <string name="open_store">Open store</string>
+    <string name="open_app_info">App Settings</string>
+    <string name="version">Version</string>
+    <string name="report_date">Report created on <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">and updated on <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Installed Version</string>
+    <string name="analyzed_version">Analyzed Version</string>
+    <string name="same_version">Same app version may be different following Android version and device used.</string>
+    <string name="learn_more"><u>Learn more…</u></string>
+
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">We have found code signature of the following trackers in the application:</string>
+    <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
+    <string name="tracker_info">A tracker is a piece of software meant to collect data about you or your usages.</string>
+    <string name="analyzed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
+
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">We have found the following permissions in the application:</string>
+    <string name="code_permission_not_found">This application doesn\'t require any permissions.</string>
+    <string name="permission_info">Permissions are actions the application can do on your phone.</string>
+    <string name="permission_info_dangerous">The icon <font color="red"><b>!</b></font> indicates a \'Dangerous\' or \'Special\' level according to Google\'s protection levels.</string>
+
+    <!-- Notification -->
+    <string name="updates">Updates</string>
+    <string name="updating_database">Updating reports database… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+
+    <!-- Trackers Fragment -->
+    <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</string>
+
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Open tracker page</string>
+    <string name="detection_rules">Detection Rules</string>
+    <string name="code_signature">Code detection rule:</string>
+    <string name="network_signature">Network detection rule:</string>
+    <string name="apps_list">Apps list</string>
+    <string name="trackers_presence">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</string>
+
+    <!-- Dialog Fragment -->
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="warning_title">Allow Exodus to transmit required data?</string>
+    <string name="warning_desc">In order to run, this Application must collect and send data to Exodus Privacy servers which includes the list of applications installed on this device for tracker analysis. It doesn\'t contain any personal information.</string>
+    <string name="title_theme">Choose a theme</string>
+    <string name="dark_theme">Dark</string>
+    <string name="light_theme">Light</string>
+    <string name="system_theme">System Default</string>
 
 </resources>

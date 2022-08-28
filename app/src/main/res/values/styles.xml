@@ -1,17 +1,41 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="BaseTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">?android:colorBackground</item>
+        <item name="preferenceTheme">@style/Theme.Exodus.Preference</item>
     </style>
 
-    <style name="AppTheme.Popup" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="Theme.Exodus.Chip" parent="Widget.Material3.Chip.Suggestion.Elevated">
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="chipBackgroundColor">@color/chipColor</item>
+        <item name="chipCornerRadius">50dp</item>
+        <item name="chipIconVisible">true</item>
+        <item name="android:checkable">false</item>
     </style>
+
+    <style name="Theme.Exodus.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.Exodus</item>
+    </style>
+
+    <style name="Theme.Exodus.Preference" parent="PreferenceThemeOverlay">
+        <item name="android:layout">@layout/fragment_about</item>
+    </style>
+
+    <!-- Inherit base theme to allow overriding Light Theme as per API levels -->
+    <style name="Theme.Exodus.Light" parent="BaseTheme">
+        <item name="android:navigationBarColor">@color/colorAccentTheme</item>
+        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Light</item>
+    </style>
+
+    <style name="Theme.BottomNavigation.Light" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/colorAccentTheme</item>
+    </style>
+
+    <style name="Theme.Exodus" parent="Theme.Exodus.Light" />
 
 </resources>

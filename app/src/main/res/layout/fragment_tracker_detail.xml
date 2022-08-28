@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    android:scrollbars="none"
+    tools:context=".fragments.trackerdetail.TrackerDetailFragment"
+    tools:theme="@style/Theme.Exodus">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarTD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/trackerTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarTD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="40dp"
+            android:textAlignment="center"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="22sp"
+            tools:text="Huawei Mobile Service (HMS) Core" />
+
+        <LinearLayout
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackerTitleTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/trackerPresenceTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chipGroup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="40dp"
+            android:text="@string/trackers_presence"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp"
+            android:visibility="gone"
+            tools:text="Present in 56% (50 apps) of your applications" />
+
+        <TextView
+            android:id="@+id/trackerDescTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackerPresenceTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:paddingHorizontal="40dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/trackerWebURLTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackerDescTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="40dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp"
+            tools:text="https://www.huaweicentral.com/hms-core/" />
+
+        <TextView
+            android:id="@+id/trackerDetectTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackerWebURLTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="45dp"
+            android:text="@string/detection_rules"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/codeDetectTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trackerDetectTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="45dp"
+            android:text="@string/code_signature"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/codeSignTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/codeDetectTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="45dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/networkDetectTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/codeSignTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="45dp"
+            android:text="@string/network_signature"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/networkSignTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/networkDetectTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="45dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/appsListTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/networkSignTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="45dp"
+            android:text="@string/apps_list"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/appsListRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appsListTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</ScrollView>

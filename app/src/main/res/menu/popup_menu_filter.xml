@@ -4,19 +4,16 @@
         android:id="@+id/filter_by_name_grp"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/filter_by_name"
-            android:title="@string/filter_by_name" />
+            android:id="@+id/sort_by_name"
+            android:title="@string/sort_by_name" />
         <item
-            android:id="@+id/having_less_trackers"
-            android:title="@string/having_less_trackers" />
+            android:id="@+id/sort_by_trackers"
+            android:title="@string/trackers" />
         <item
-            android:id="@+id/having_most_trackers"
-            android:title="@string/having_most_trackers" />
+            android:id="@+id/sort_by_permissions"
+            android:title="@string/permissions" />
         <item
-            android:id="@+id/having_less_permissions"
-            android:title="@string/having_less_permissions" />
-        <item
-            android:id="@+id/having_most_permissions"
-            android:title="@string/having_most_permissions" />
+            android:id="@+id/sort_by_creation_date"
+            android:title="@string/sort_by_creation_date" />
     </group>
 </menu>
