@@ -11,6 +11,9 @@ It helps you to take your privacy back!
   <a href="https://github.com/Exodus-Privacy/exodus-android-app/releases">
     <img src="https://img.shields.io/github/v/release/Exodus-Privacy/exodus-android-app" alt="GitHub release (latest by date)"/>
   </a>
+  <a href="https://crowdin.com/project/exodus-android-app">
+    <img src="https://badges.crowdin.net/exodus-android-app/localized.svg" alt="Crowdin"/>
+  </a>
 </p>
 
 <p align="center">
