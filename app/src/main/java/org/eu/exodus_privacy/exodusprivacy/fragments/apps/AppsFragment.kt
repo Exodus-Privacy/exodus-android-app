@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +18,7 @@ import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 
 @AndroidEntryPoint
 class AppsFragment : Fragment(R.layout.fragment_apps) {
@@ -27,7 +29,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
     private val binding get() = _binding!!
 
     private val viewModel: AppsViewModel by viewModels()
-
+    private lateinit var appsRVAdapter: AppsRVAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAppsBinding.bind(view)
@@ -42,9 +44,12 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         val toolbar = binding.toolbarApps
         toolbar.menu.clear()
         toolbar.inflateMenu(R.menu.apps_menu)
+
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.action_search -> {}
+                R.id.action_search -> {
+
+                }
                 R.id.action_filter -> {
                     val menuItemView = view.findViewById<View>(R.id.action_filter)
                     val popupMenu = PopupMenu(context, menuItemView)
@@ -59,7 +64,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         }
 
         // Setup RecyclerView
-        val appsRVAdapter = AppsRVAdapter(findNavController().currentDestination!!.id)
+         appsRVAdapter = AppsRVAdapter(findNavController().currentDestination!!.id)
         binding.appListRV.apply {
             adapter = appsRVAdapter
             layoutManager = LinearLayoutManager(view.context)
@@ -78,6 +83,8 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
                 appsRVAdapter.submitList(it)
+                populateList(it)
+
             } else {
                 binding.shimmerLayout.visibility = View.VISIBLE
             }
@@ -95,7 +102,48 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         }
     }
 
-    override fun onResume() {
+    private fun populateList(appList: List<ExodusApplication>) {
+        try {
+            if (appList.isNotEmpty()) {
+                val searchView = view?.findViewById<SearchView>(R.id.action_search)
+                with(searchView) {
+
+                    searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                        override fun onQueryTextChange(newText: String): Boolean {
+                            filter(newText, appList)
+                            return false
+                        }
+
+                        override fun onQueryTextSubmit(query: String): Boolean {
+                            filter(query, appList)
+                            return false
+                        }
+
+                    })
+
+
+                }
+
+            }
+        } catch (e: Exception) {
+
+        }
+
+    }
+
+    private fun filter(text: String, appList: List<ExodusApplication>) {
+
+        val searchList = mutableListOf<ExodusApplication>()
+        for (item in appList) {
+            if (item.name.lowercase().contains(text.lowercase())) {
+                searchList.add(item)
+            }
+        }
+        if (searchList.isNotEmpty()) {
+            appsRVAdapter.submitList(searchList)
+        }
+    }
+   override fun onResume() {
         super.onResume()
         binding.shimmerLayout.startShimmer()
     }
