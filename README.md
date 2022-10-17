@@ -30,7 +30,7 @@ It helps you to take your privacy back!
 
 ## Screenshots
 
-<p align="center"/>
+<p align="center">
   <a href="./fastlane/metadata/android/en-US/images/phoneScreenshots/app_list.png">
     <img src="https://github.com/Exodus-Privacy/exodus-android-app/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/app_list.png" height="600">
   </a>
