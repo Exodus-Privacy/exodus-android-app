@@ -11,7 +11,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseReposi
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
