@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 14
         versionName "3.0.1"
         testInstrumentationRunner 'org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner'
