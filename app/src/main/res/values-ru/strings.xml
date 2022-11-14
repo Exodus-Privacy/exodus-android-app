@@ -3,36 +3,85 @@
     <string name="trackers">трекеров</string>
     <string name="permissions">разрешений</string>
     <string name="not_connected">Нет подключения к интернету</string>
+    <string name="settings">Настройки</string>
+    <string name="version_equals">Установленная версия = изученная версия</string>
+    <string name="version_mismatch">Установленная версия &lt;&gt; изученная версия</string>
+    <string name="version_unavailable">Приложение ранее не изучалось</string>
     <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
     <string name="logo">Логотип приложения %1</string>
+    <string name="refresh">Обновить</string>
+    <string name="cancel">Отмена</string>
+    <string name="refresh_needed">Требуется обновление</string>
+    <string name="refresh_needed_message">Данные не обновлялись с %1$s.\n\nОбновить их?</string>
+    <string name="submit">Отправить</string>
+    <string name="app_not_analyzed">Изучить приложение?\n\nИдентификатор приложения будет автоматически вставлен в форму на сайте. Вам нужно будет только отправить форму.</string>
+    <string name="app_not_analyzed_title">Приложение не изучено!</string>
+    <string name="title_apps">Приложения</string>
     <string name="title_trackers">трекеров</string>
-
+    <string name="title_about">О программе</string>
+    <string name="nothing_here">Нечего показывать. Потяните для обновления!</string>
     <!-- Menu -->
+    <string name="menu_action_search">Поиск</string>
     <string name="menu_action_filter">Фильтр</string>
-
     <!-- Filters -->
+    <string name="sort_by_name">Название</string>
+    <string name="sort_by_creation_date">Дата создания</string>
     <!-- Apps Fragment -->
+    <string name="fetching_apps">Обновление базы отчётов!</string>
     <!-- About Fragment -->
+    <string name="chooseTheme">Тема</string>
+    <string name="alternatives">Что дальше?</string>
+    <string name="alternatives_desc">Есть несколько вариантов!</string>
+    <string name="website">Сайт</string>
+    <string name="website_desc">Узнайте больше о проекте Exodus Privacy</string>
+    <string name="srcCode_desc">Сообщить об ошибках, просмотреть исходный код</string>
+    <string name="privPolicy">Политика конфиденциальности</string>
+    <string name="privPolicy_desc">Узнайте, как мы обрабатываем ваши данные</string>
+    <string name="email">Почта</string>
+    <string name="email_desc">Свяжитесь с нами по электронной почте</string>
+    <string name="twitter_desc">Будьте в курсе событий проекта Exodus Privacy</string>
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Открыть на Exodus Privacy</string>
+    <string name="submit_app">Отправить приложение</string>
+    <string name="open_store">Открыть магазин</string>
+    <string name="open_app_info">Настройки приложения</string>
+    <string name="version">Версия</string>
     <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">и обновлено <xliff:g id="date">%1$s</xliff:g></string>
-
+    <string name="installed_version">Установленная версия</string>
+    <string name="analyzed_version">Изученная версия</string>
+    <string name="same_version">Одна и та же версия приложения может отличаться в зависимости от версии Android и используемого устройства.</string>
+    <string name="learn_more"><u>Узнать больше…</u></string>
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
+    <string name="tracker_info">Трекер — это часть программного обеспечения, предназначенная для сбора данных о вас или ваших действиях.</string>
     <string name="analyzed">Это приложение ещё не было изучено Exodus Privacy.</string>
-
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
-
+    <string name="permission_info">Разрешения — это действия, которые приложение может выполнять на вашем устройстве.</string>
+    <string name="permission_info_dangerous">Значок <font color="red"><b></b></font> указывает «Опасные» или «Специальные» в соответствии с уровнями защиты Google.</string>
     <!-- Notification -->
+    <string name="updates">Обновления</string>
+    <string name="updating_database">Обновление базы отчётов… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
     <!-- Trackers Fragment -->
+    <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | приложений: <xliff:g id="apps">%2$d</xliff:g></string>
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Открыть страницу трекера</string>
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>
     <string name="network_signature">Правило определения сети:</string>
-
+    <string name="apps_list">Список приложений</string>
+    <string name="trackers_presence">Присутствует в <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g>) ваших приложений</string>
     <!-- Dialog Fragment -->
+    <string name="accept">Принять</string>
+    <string name="reject">Отклонить</string>
+    <string name="warning_title">Разрешить Exodus передавать требуемые данные?</string>
+    <string name="warning_desc">Для выполнения своей функции данное приложение должно собирать и отправлять на серверы проекта Exodus Privacy данные, включающие список приложений, установленных на этом устройстве, для анализа наличия трекеров. Эти данные не содержат никакой личной информации.</string>
+    <string name="title_theme">Выбор темы</string>
+    <string name="dark_theme">Тёмная</string>
+    <string name="light_theme">Светлая</string>
+    <string name="system_theme">Системная</string>
 </resources>

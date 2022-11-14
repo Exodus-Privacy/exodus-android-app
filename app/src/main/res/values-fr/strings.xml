@@ -8,7 +8,7 @@
     <string name="version_mismatch">Version installée &lt;&gt; Version analysée</string>
     <string name="version_unavailable">Application jamais analysée</string>
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
-    <string name="no_settings">Cette app n\'a pas de paramètres</string>
+    <string name="no_settings">Cette application n\'a pas de paramètres</string>
     <string name="logo">Logo de l\'application %1</string>
     <string name="refresh">Actualiser</string>
     <string name="cancel">Annuler</string>
@@ -60,7 +60,7 @@
     <string name="learn_more"><u>En savoir plus…</u></string>
 
     <!-- ADTrackers Fragment -->
-    <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application :</string>
+    <string name="code_signature_found">Nous avons trouvé la signature des pisteurs suivants dans cette application : </string>
     <string name="code_signature_not_found">Nous n\'avons pas trouvé la signature de pisteurs que nous connaissons dans cette application.</string>
     <string name="tracker_info">Un pisteur est une partie du logiciel dédiée à la collecte de données sur vous et vos usages.</string>
     <string name="analyzed">Cette application n\'a pas encore été analysée par Exodus Privacy.</string>
@@ -91,9 +91,9 @@
     <string name="reject">Refuser</string>
     <string name="warning_title">Autoriser Exodus à transmettre les données nécessaires ?</string>
     <string name="warning_desc">Pour fonctionner, l\'application doit envoyer sur les serveurs d\'Exodus Privacy la liste des applications installées sur l\'appareil pour l\'analyse des pisteurs. Ces données ne contiennent aucune information personnelle.</string>
-    <string name="title_theme">Sélectionner un thème</string>
+    <string name="title_theme">Choisissez un thème</string>
     <string name="dark_theme">Sombre</string>
     <string name="light_theme">Clair</string>
-    <string name="system_theme">Paramètres par défaut</string>
+    <string name="system_theme">Par défaut (Système)</string>
 
 </resources>

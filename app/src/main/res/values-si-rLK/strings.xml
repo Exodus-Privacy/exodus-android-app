@@ -1,0 +1,58 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">යෙදුමේ ලාංඡනය</string>
+    <string name="trackers">ලුහුබැඳිම්</string>
+    <string name="permissions">අවසර</string>
+    <string name="not_connected">අන්තර්ජාල සම්බන්ධතාවයක් නැත</string>
+    <string name="settings">සැකසුම්</string>
+    <string name="no_app_found">අපි පරීක්‍ෂා කරන මූලාශ්‍ර වෙතින් (ගූගල් ප්ලේ හෝ එෆ්-ඩ්‍රොයිඩ්) ඔබ කිසිදු යෙදුමක් ස්ථාපනය කර නැති සෙයකි.</string>
+    <string name="no_settings">මෙම යෙදුමේ සැකසුම් නැත</string>
+    <string name="logo">යෙදුමේ ලාංඡනය %1</string>
+    <string name="refresh">නැවුම්</string>
+    <string name="cancel">අවලංගු</string>
+    <string name="submit">යොමන්න</string>
+    <string name="title_apps">යෙදුම්</string>
+    <string name="title_trackers">ලුහුබැඳිම්</string>
+    <string name="title_about">පිළිබඳව</string>
+    <!-- Menu -->
+    <string name="menu_action_search">සොයන්න</string>
+    <string name="menu_action_filter">පෙරහන</string>
+    <!-- Filters -->
+    <string name="sort_by_name">නම</string>
+    <string name="sort_by_creation_date">සෑදූ දිනය</string>
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <string name="chooseTheme">තේමාව</string>
+    <string name="alternatives">ඊලඟට කුමක්ද?</string>
+    <string name="website">අඩවිය</string>
+    <string name="privPolicy">රහස්‍යතා ප්‍රතිපත්තිය</string>
+    <string name="email">තැපෑල</string>
+    <!-- AppDetail Fragment -->
+    <string name="submit_app">යෙදුම යොමන්න</string>
+    <string name="open_store">ගබඩාව අරින්න</string>
+    <string name="open_app_info">යෙදුමේ සැකසුම්</string>
+    <string name="version">අනුවාදය</string>
+    <string name="installed_version">ස්ථාපිත අනුවාදය</string>
+    <string name="analyzed_version">විශ්ලේෂිත අනුවාදය</string>
+    <string name="learn_more"><u>තව දැනගන්න…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">අපට යෙදුම තුළ පහත ලුහුබැඳීම්වල කේත අත්සන් හමු විය:</string>
+    <string name="code_signature_not_found">යෙදුම තුළ අප දන්නා කිසිදු ලුහුබැඳීමක කේත අත්සනක් හමු නොවිණි.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">අපට යෙදුම තුළ පහත අවසර හමු විය:</string>
+    <string name="code_permission_not_found">මෙම යෙදුමට කිසිම අවසරයක් අවශ්‍ය නොවේ.</string>
+    <!-- Notification -->
+    <string name="updates">යාවත්කාල</string>
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">අනාවරණ නීති</string>
+    <string name="code_signature">කේත අනාවරණ නීතිය:</string>
+    <string name="network_signature">ජාල අනාවරණ නීතිය:</string>
+    <string name="apps_list">යෙදුම් ලේඛනය</string>
+    <!-- Dialog Fragment -->
+    <string name="accept">පිළිගන්න</string>
+    <string name="reject">ප්‍රතික්‍ෂේප</string>
+    <string name="title_theme">තේමාවක් තෝරන්න</string>
+    <string name="dark_theme">අඳුරු</string>
+    <string name="light_theme">දීප්ත</string>
+    <string name="system_theme">පද්ධතියේ පෙරනිමි</string>
+</resources>

@@ -15,7 +15,6 @@
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Encontramos a assinatura do código dos seguintes rastreadores na aplicação:</string>
     <string name="code_signature_not_found">Não encontrámos a assinatura do código de nenhum rastreador na aplicação.</string>
-    <string name="analyzed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Encontramos as seguintes permissões na aplicação:</string>
     <string name="code_permission_not_found">Esta aplicação não necessita de permissões.</string>

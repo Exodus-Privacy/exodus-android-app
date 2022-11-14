@@ -1,0 +1,87 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Applicatielogo</string>
+    <string name="trackers">Trackers</string>
+    <string name="permissions">Machtigingen</string>
+    <string name="not_connected">Geen internetverbinding</string>
+    <string name="settings">Instellingen</string>
+    <string name="version_equals">Geïnstalleerde versie = Geanalyseerde versie</string>
+    <string name="version_mismatch">Geïnstalleerde versie &lt;&gt; Geanalyseerde versie</string>
+    <string name="version_unavailable">App nooit geanalyseerd</string>
+    <string name="no_app_found">Het lijkt erop dat je geen apps hebt geïnstalleerd van de bron die we testen (Google Play store of F-Droid).</string>
+    <string name="no_settings">Deze app heeft geen instellingen</string>
+    <string name="logo">Applicatie logo %1</string>
+    <string name="refresh">Vernieuwen</string>
+    <string name="cancel">Annuleren</string>
+    <string name="refresh_needed">Vernieuwen nodig</string>
+    <string name="refresh_needed_message">Gegevens zijn niet bijgewerkt sinds %1$s.\n\nWilt u ze verniewen?</string>
+    <string name="submit">Indienen</string>
+    <string name="app_not_analyzed">Wilt u de app analyseren?\n\nDe app-id wordt automatisch in het formulier op de website geplakt. U hoeft alleen het formulier in te dienen.</string>
+    <string name="app_not_analyzed_title">Deze app is niet geanalyseerd!</string>
+    <string name="title_apps">Apps</string>
+    <string name="title_trackers">Trackers</string>
+    <string name="title_about">Over ons</string>
+    <string name="nothing_here">Nog niets te zien. Scrol naar beneden om te vernieuwen!</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Zoeken</string>
+    <string name="menu_action_filter">Sorteren op</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Naam</string>
+    <string name="sort_by_creation_date">Aanmaakdatum</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Bijwerken van rapporten!</string>
+    <!-- About Fragment -->
+    <string name="chooseTheme">Thema</string>
+    <string name="alternatives">Wat nu?</string>
+    <string name="alternatives_desc">Er bestaan alternatieven!</string>
+    <string name="website">Website</string>
+    <string name="website_desc">Meer informatie over het Exodus Privacy project</string>
+    <string name="srcCode_desc">Bugs rapporteren, de broncode bekijken</string>
+    <string name="privPolicy">Privacybeleid</string>
+    <string name="privPolicy_desc">Lees hoe wij met uw gegevens omgaan</string>
+    <string name="email">Mail</string>
+    <string name="email_desc">Contacteer ons via e-mail</string>
+    <string name="twitter_desc">Blijf op de hoogte van het Exodus Privacy project</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Open op Exodus Privacy</string>
+    <string name="submit_app">App indienen</string>
+    <string name="open_store">Open store</string>
+    <string name="open_app_info">App instellingen</string>
+    <string name="version">Versie</string>
+    <string name="report_date">Rapport aangemaakt op <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">en bijgewerkt op <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Geïnstalleerde versie</string>
+    <string name="analyzed_version">Geanalyseerde versie</string>
+    <string name="same_version">Dezelfde app-versie kan verschillen naargelang de gebruikte Android-versie en het toestel.</string>
+    <string name="learn_more"><u>Meer informatie…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">We hebben handtekeningen gevonden van de volgende trackers in de toepassing:</string>
+    <string name="code_signature_not_found">We hebben geen handtekening gevonden van een tracker die we kennen in de applicatie.</string>
+    <string name="tracker_info">Een tracker is een stukje software dat bedoeld is om gegevens over u of uw gebruik te verzamelen.</string>
+    <string name="analyzed">Deze app is nog niet geanalyseerd door Exodus Privacy.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">We hebben de volgende machtigingen in de toepassing gevonden:</string>
+    <string name="code_permission_not_found">Deze toepassing vereist geen machtigingen.</string>
+    <string name="permission_info">Machtigingen zijn acties die de toepassing op uw telefoon kan uitvoeren.</string>
+    <string name="permission_info_dangerous">Het <font color="red"><b>!</b></font> pictogram geeft een \'Gevaarlijk\' of \'Speciaal\' niveau aan volgens de beschermingsniveaus van Google.</string>
+    <!-- Notification -->
+    <string name="updates">Updates</string>
+    <string name="updating_database">Rapporten bijwerken… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</string>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Open tracker pagina</string>
+    <string name="detection_rules">Detectieregels</string>
+    <string name="code_signature">Detectieregels (code):</string>
+    <string name="network_signature">Detectieregels (netwerk):</string>
+    <string name="apps_list">Apps lijst</string>
+    <string name="trackers_presence">Aanwezig in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) van uw toepassingen</string>
+    <!-- Dialog Fragment -->
+    <string name="accept">Accepteren</string>
+    <string name="reject">Weigeren</string>
+    <string name="warning_title">Exodus toestaan om vereiste gegevens te verzenden?</string>
+    <string name="warning_desc">Om te kunnen functioneren, moet deze toepassing gegevens verzamelen en verzenden naar de servers van Exodus Privacy, waaronder de lijst van op dit apparaat geïnstalleerde toepassingen voor trackeranalyse. Deze gegevens bevatten geen persoonlijke informatie.</string>
+    <string name="title_theme">Kies een thema</string>
+    <string name="dark_theme">Donker</string>
+    <string name="light_theme">Licht</string>
+    <string name="system_theme">Standaardinstellingen</string>
+</resources>

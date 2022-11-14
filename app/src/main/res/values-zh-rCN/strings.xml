@@ -1,0 +1,87 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">应用程序徽标</string>
+    <string name="trackers">跟踪器</string>
+    <string name="permissions">权限</string>
+    <string name="not_connected">没有互联网连接</string>
+    <string name="settings">设置</string>
+    <string name="version_equals">已安装版本 = 已分析版本</string>
+    <string name="version_mismatch">已安装版本 &lt;&gt; 已分析版本</string>
+    <string name="version_unavailable">从未分析过应用</string>
+    <string name="no_app_found">您似乎没有从我们测试的源安装任何应用 (Google Play 商店或 F-Droid)。</string>
+    <string name="no_settings">此应用没有设置</string>
+    <string name="logo">%1 应用程序图标</string>
+    <string name="refresh">刷新</string>
+    <string name="cancel">取消</string>
+    <string name="refresh_needed">需要刷新</string>
+    <string name="refresh_needed_message">数据自 %1$s以来没有更新过。\n\n您想要刷新它们吗？</string>
+    <string name="submit">提交</string>
+    <string name="app_not_analyzed">您想要分析应用吗？\n\n应用 Id 将被自动粘贴到网站表单上。 您只需要提交表单。</string>
+    <string name="app_not_analyzed_title">此应用尚未被分析！</string>
+    <string name="title_apps">应用</string>
+    <string name="title_trackers">跟踪器</string>
+    <string name="title_about">关于</string>
+    <string name="nothing_here">当前没有要显示的内容。您可以下拉刷新！</string>
+    <!-- Menu -->
+    <string name="menu_action_search">搜索</string>
+    <string name="menu_action_filter">筛选器</string>
+    <!-- Filters -->
+    <string name="sort_by_name">名称</string>
+    <string name="sort_by_creation_date">创建日期</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">正在更新报告数据库！</string>
+    <!-- About Fragment -->
+    <string name="chooseTheme">主题</string>
+    <string name="alternatives">接下来呢？</string>
+    <string name="alternatives_desc">存在替代品！</string>
+    <string name="website">网站</string>
+    <string name="website_desc">发现关于 Exodus Privacy 项目的更多信息</string>
+    <string name="srcCode_desc">报告错误，查看源代码</string>
+    <string name="privPolicy">隐私政策</string>
+    <string name="privPolicy_desc">了解我们如何处理您的数据</string>
+    <string name="email">电邮</string>
+    <string name="email_desc">通过电子邮件联系我们</string>
+    <string name="twitter_desc">了解 Exodus Privacy 项目动态</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">在 Exodus Privacy 上打开</string>
+    <string name="submit_app">提交应用</string>
+    <string name="open_store">打开商店</string>
+    <string name="open_app_info">应用设置</string>
+    <string name="version">版本</string>
+    <string name="report_date">报告创建于 <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">并更新于 <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">已安装版本</string>
+    <string name="analyzed_version">已分析版本</string>
+    <string name="same_version">所使用的 Android 版本和设备不同，同一应用的版本或许会不一样。</string>
+    <string name="learn_more"><u>了解更多…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">我们在应用中发现了以下跟踪器的代码签名:</string>
+    <string name="code_signature_not_found">我们尚未在应用程序中发现任何我们知道的跟踪器的代码签名。</string>
+    <string name="tracker_info">跟踪器是用于收集有关您或您的使用情况的软件。</string>
+    <string name="analyzed">Exodus Privacy 尚未分析此应用。</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">我们在应用程序中发现了以下权限:</string>
+    <string name="code_permission_not_found">此应用程序不需要任何权限。</string>
+    <string name="permission_info">权限是应用可以在你的手机上执行的操作.</string>
+    <string name="permission_info_dangerous">根据谷歌的保护级别，图标 <font color="red"><b>!</b></font>表示“危险”或“特殊”级别。</string>
+    <!-- Notification -->
+    <string name="updates">更新</string>
+    <string name="updating_database">正在更新报告数据库… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> 个应用</string>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">打开追踪器页面</string>
+    <string name="detection_rules">检测规则</string>
+    <string name="code_signature">代码检测规则：</string>
+    <string name="network_signature">网络检测规则:</string>
+    <string name="apps_list">应用列表</string>
+    <string name="trackers_presence">存在于 <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> 个应用) 的应用中</string>
+    <!-- Dialog Fragment -->
+    <string name="accept">同意</string>
+    <string name="reject">拒绝</string>
+    <string name="warning_title">允许 Exodus 传送所需数据？</string>
+    <string name="warning_desc">为了运行，此应用必须收集数据并将其发送到 Exodus Privacy 服务器，其中包括安装在此设备上的应用程序列表以进行跟踪器分析。 它不包含任何个人信息。</string>
+    <string name="title_theme">选择一个主题</string>
+    <string name="dark_theme">深色</string>
+    <string name="light_theme">浅色</string>
+    <string name="system_theme">系统默认</string>
+</resources>

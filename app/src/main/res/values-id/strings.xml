@@ -1,0 +1,27 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Logo Aplikasi</string>
+    <string name="trackers">Pelacak</string>
+    <string name="permissions">Izin</string>
+    <string name="not_connected">Tidak Ada Koneksi Internet</string>
+    <string name="no_app_found">Sepertinya Anda tidak mempunyai aplikasi terpasang dari sumber yang kami uji (Google Play Store atau F-Droid).</string>
+    <string name="no_settings">Aplikasi ini tidak mempunyai pengaturan</string>
+    <string name="logo">%1 Logo Aplikasi</string>
+    <!-- Menu -->
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Kami telah menemukan tanda kode pelacak berikut pada aplikasi ini:</string>
+    <string name="code_signature_not_found">Kami belum menemukan tanda kode dari pelacak yang kami ketahui di aplikasi ini.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Kami telah menemukan izin berikut pada aplikasi ini:</string>
+    <string name="code_permission_not_found">Aplikasi ini tidak membutuhkan izin apa pun.</string>
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">Aturan Pendeteksian</string>
+    <string name="code_signature">Aturan pendeteksian kode:</string>
+    <string name="network_signature">Aturan pendeteksian jaringan:</string>
+    <!-- Dialog Fragment -->
+</resources>

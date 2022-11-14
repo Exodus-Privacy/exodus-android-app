@@ -1,38 +1,29 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">App Logo</string>
+    <string name="app_logo">App-Logo</string>
     <string name="trackers">Tracker</string>
     <string name="permissions">Berechtigungen</string>
     <string name="not_connected">Keine Verbindung</string>
-    <string name="no_app_found">Es scheint, dass keine App aus den Quellen, die wir prüfen (Google Play Store und F-Droid), installiert ist.</string>
+    <string name="no_app_found">Es sieht so aus, dass keine App aus den Quellen, die wir prüfen (Google Play Store und F-Droid), installiert ist.</string>
     <string name="no_settings">Diese App hat keine Einstellungen</string>
     <string name="logo">%1 Anwendungslogo</string>
-    <string name="title_trackers">Tracker</string>
-
     <!-- Menu -->
-    <string name="menu_action_filter">Filter</string>
-
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
     <!-- AppDetail Fragment -->
     <string name="report_date">Bericht erstellt am <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">und zuletzt aktualisiert am <xliff:g id="date">%1$s</xliff:g></string>
-
     <!-- ADTrackers Fragment -->
-    <string name="analyzed">Diese App wurde von Exodus Privacy noch nicht analysiert.</string>
     <string name="code_signature_found">Wir haben die Code-Signatur der folgenden Tracker in der Anwendung gefunden:</string>
     <string name="code_signature_not_found">Wir haben keine Code-Signatur irgendeines Trackers in der App gefunden.</string>
-
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>
     <string name="code_permission_not_found">Diese App erfordert keine Berechtigungen.</string>
-
     <!-- Notification -->
     <!-- Trackers Fragment -->
     <!-- TrackersDetail Fragment -->
     <string name="detection_rules">Erkennungsregeln</string>
     <string name="code_signature">Code-Erkennungsregel:</string>
     <string name="network_signature">Netzwerkerkennungsregel:</string>
-
     <!-- Dialog Fragment -->
 </resources>

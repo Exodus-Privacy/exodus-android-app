@@ -1,0 +1,28 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Aplikazioaren logoa</string>
+    <string name="trackers">Aztarnariak</string>
+    <string name="permissions">Baimenak</string>
+    <string name="not_connected">Ez dago interneteko konexiorik</string>
+    <string name="no_app_found">Badirudi ez duzula aztertzen ditugun iturrietatik (Google Play Store edo F-Droid) instalatutako aplikaziorik.</string>
+    <string name="no_settings">Aplikazio honek ez du ezarpenik</string>
+    <string name="logo">%1 aplikazioaren logoa</string>
+    <!-- Menu -->
+    <string name="menu_action_filter">Iragazkia</string>
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Aztarnari hauen kode-sinaketa aurkitu dugu aplikazioan:</string>
+    <string name="code_signature_not_found">Ez dugu aurkitu aplikazioan ezagutzen dugun edozein aztarnariren kode-sinaketarik.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Ondorengo baimen hauek aurkitu ditugu aplikazioan:</string>
+    <string name="code_permission_not_found">Aplikazio honek ez du baimenik behar.</string>
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">Detekzio arauak</string>
+    <string name="code_signature">Kode-detekzio arauak:</string>
+    <string name="network_signature">Sare-detekzio araua:</string>
+    <!-- Dialog Fragment -->
+</resources>

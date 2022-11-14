@@ -1,0 +1,28 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">অ্যাপ্লিকেশন লোগো</string>
+    <string name="trackers">ট্র্যাকার</string>
+    <string name="permissions">অনুমতিসমূহ</string>
+    <string name="not_connected">কোনো ইন্টারনেট সংযোগ নেই</string>
+    <string name="no_app_found">মনে হয় আমরা যে উৎস (গুগল প্লে স্টোর বা এফ-ড্রয়েড) থেকে অ্যাপ পরীক্ষা করি তার থেকে কোনো অ্যাপ ইনস্টল করা নেই।</string>
+    <string name="no_settings">এই অ্যাপে কোনো সেটিংস নেই</string>
+    <string name="logo">%1 অ্যাপ্লিকেশন লোগো</string>
+    <!-- Menu -->
+    <string name="menu_action_filter">ফিল্টার</string>
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">আমরা অ্যাপ্লিকেশনটিতে নিম্নলিখিত ট্র্যাকারের কোডের স্বাক্ষর পেয়েছি:</string>
+    <string name="code_signature_not_found">আমরা অ্যাপ্লিকেশনটিতে জানা কোনো ট্র্যাকারের কোড স্বাক্ষর খুঁজে পাইনি।</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">আমরা অ্যাপ্লিকেশনটিতে নিম্নলিখিত অনুমতিগুলি পেয়েছি:</string>
+    <string name="code_permission_not_found">এই অ্যাপ্লিকেশনটির জন্য কোনও অনুমতির প্রয়োজন নেই।</string>
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">শনাক্তকরণ নিয়ম</string>
+    <string name="code_signature">কোড সনাক্তকরণের নিয়ম:</string>
+    <string name="network_signature">নেটওয়ার্ক সনাক্তকরণের নিয়ম:</string>
+    <!-- Dialog Fragment -->
+</resources>

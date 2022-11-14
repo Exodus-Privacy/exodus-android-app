@@ -1,0 +1,28 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">アプリ ロゴ</string>
+    <string name="trackers">トラッカー</string>
+    <string name="permissions">権限</string>
+    <string name="not_connected">インターネットに接続されていません</string>
+    <string name="no_app_found">私たちがテストしたソース（Google Play ストアまたは F-Droid）からアプリがインストールされていないようです。</string>
+    <string name="no_settings">このアプリには設定がありません</string>
+    <string name="logo">%1 アプリ ロゴ</string>
+    <!-- Menu -->
+    <string name="menu_action_filter">フィルター</string>
+    <!-- Filters -->
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <!-- AppDetail Fragment -->
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">アプリから次のトラッカーのコードの徴候が見つかりました。</string>
+    <string name="code_signature_not_found">アプリから既知のトラッカーのコードの徴候は発見されませんでした。</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">アプリで次の権限が見つかりました：</string>
+    <string name="code_permission_not_found">このアプリは権限を必要としません。</string>
+    <!-- Notification -->
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="detection_rules">検出ルール</string>
+    <string name="code_signature">コード検出ルール：</string>
+    <string name="network_signature">ネットワーク検出ルール：</string>
+    <!-- Dialog Fragment -->
+</resources>
