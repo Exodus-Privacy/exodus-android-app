@@ -25,6 +25,7 @@ android {
                 )
             }
         }
+        resConfigs 'en', 'ar', 'ca', 'el', 'fr', 'it', 'pt_BR', 'ru', 'tr', 'uk'
     }
     signingConfigs {
         releaseConfig {
@@ -44,6 +45,10 @@ android {
         }
     }
     buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
         release {
             minifyEnabled true
             shrinkResources true
