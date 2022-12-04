@@ -103,7 +103,7 @@ dependencies {
 
     // KTX
     implementation 'androidx.fragment:fragment-ktx:1.5.4'
-    implementation 'androidx.activity:activity-ktx:1.6.1'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
 
     // Tests
     androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0', {
