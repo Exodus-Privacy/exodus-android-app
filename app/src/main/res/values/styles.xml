@@ -11,7 +11,9 @@
 
     <style name="Theme.Exodus.Chip" parent="Widget.Material3.Chip.Suggestion.Elevated">
         <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:textColor">@color/m3_chip_text_color</item>
         <item name="chipBackgroundColor">@color/chipColor</item>
+        <item name="chipIconTint">@color/m3_chip_text_color</item>
         <item name="chipCornerRadius">50dp</item>
         <item name="chipIconVisible">true</item>
         <item name="android:checkable">false</item>

@@ -32,6 +32,10 @@ fun Chip.setExodusColor(size: Int) {
         this.setTextColor(textColorStateList)
         this.chipBackgroundColor = backgroundColorStateList
     } else {
+        val colorForeground =
+            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.m3_chip_text_color))
+        this.chipIconTint = colorForeground
+        this.setTextColor(colorForeground)
         val colorBackground = ContextCompat.getColor(context, R.color.chipColor)
         this.chipBackgroundColor = ColorStateList.valueOf(colorBackground)
     }
