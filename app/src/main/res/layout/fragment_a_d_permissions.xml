@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/permissionsTitleTV"
+        android:layout_marginTop="5dp"
         android:text="@string/code_permission_not_found"
         android:textSize="15sp" />
 
@@ -55,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/permissionsRV"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/permission_info_dangerous"
         android:textSize="15sp" />
 
@@ -72,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/permissionsLearnGoogleTV"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/permission_info"
         android:textSize="15sp" />
 
