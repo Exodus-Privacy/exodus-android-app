@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/trackerTitleTV"
+        android:layout_marginTop="5dp"
         android:text="@string/code_signature_not_found"
         android:textSize="15sp" />
 
@@ -52,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/trackersRV"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/tracker_info"
         android:textSize="15sp" />
 

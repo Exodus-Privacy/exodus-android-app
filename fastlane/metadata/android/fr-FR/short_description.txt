@@ -1,1 +1,1 @@
-Exodus vous aide à savoir quels sont les pisteurs et permissions embarqués dans les applications installées sur votre smartphone.
+Exodus vous montre les pisteurs et permissions des apps de votre smartphone.
