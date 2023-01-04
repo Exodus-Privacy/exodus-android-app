@@ -1,0 +1,3 @@
+- Updated dependencies
+- Some improvements
+- Fixed download reports and trackers

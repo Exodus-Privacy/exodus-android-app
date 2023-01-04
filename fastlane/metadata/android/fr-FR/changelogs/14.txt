@@ -1,0 +1,3 @@
+- Mises à jour des dépendances
+- Quelques améliorations
+- Correction du téléchargement des rapports et des pisteurs
