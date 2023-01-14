@@ -52,6 +52,7 @@
     <string name="email">Mail</string>
     <string name="email_desc">Reach out to us via email</string>
     <string name="twitter" translatable="false">Twitter</string>
+    <string name="mastodon" translatable="false">Mastodon</string>
     <string name="twitter_desc">Stay updated on Exodus Privacy project</string>
 
     <!-- AppDetail Fragment -->
