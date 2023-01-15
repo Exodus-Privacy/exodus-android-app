@@ -91,7 +91,7 @@ class AboutFragment : PreferenceFragmentCompat() {
             customTabsIntent.launchUrl(it.context, Uri.parse(twitterURL))
             true
         }
-        
+
         findPreference<Preference>("mastodon")?.setOnPreferenceClickListener {
             customTabsIntent.launchUrl(it.context, Uri.parse(mastodonURL))
             true
