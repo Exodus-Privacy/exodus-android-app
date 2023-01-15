@@ -79,8 +79,9 @@ class TrackersRVAdapter(
                 }
             } else {
                 trackersStatusTV.text =
-                    context.getString(
-                        R.string.trackers_status,
+                    context.resources.getQuantityString(
+                        R.plurals.trackers_status,
+                        app.exodusApplications.size,
                         trackerPercentage.toInt(),
                         app.exodusApplications.size
                     )
