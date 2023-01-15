@@ -54,7 +54,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingHorizontal="40dp"
-            android:text="@string/trackers_presence"
+            android:text="@plurals/trackers_presence"
             android:textColor="?android:textColorPrimary"
             android:textSize="15sp"
             android:visibility="gone"
