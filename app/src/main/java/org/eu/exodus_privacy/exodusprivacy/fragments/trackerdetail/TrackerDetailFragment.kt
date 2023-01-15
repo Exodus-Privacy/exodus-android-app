@@ -91,8 +91,9 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 // Show presence if tracker is present on device
                 if (args.percentage != 0) {
                     trackerPresenceTV.visibility = View.VISIBLE
-                    trackerPresenceTV.text = getString(
-                        R.string.trackers_presence,
+                    trackerPresenceTV.text = resources.getQuantityString(
+                        R.plurals.trackers_presence,
+                        tracker.exodusApplications.size,
                         args.percentage,
                         tracker.exodusApplications.size
                     )
