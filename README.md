@@ -1,6 +1,6 @@
 <h1 align="center">Exodus - Android Application</h1>
 
-Exodus is an Android application that let you know what trackers are embedded in apps installed on your smartphone using [the εxodus plateform](https://github.com/Exodus-Privacy/exodus). It let you also know the permissions required by any apps on your smartphone.
+Exodus is an Android application that lets you know what trackers are embedded in apps installed on your smartphone using [the εxodus plateform](https://github.com/Exodus-Privacy/exodus). It also lets you know the permissions required by any apps on your smartphone.
 
 It helps you to take your privacy back!
 
@@ -46,26 +46,26 @@ It helps you to take your privacy back!
 
 If you want to help us improve this application, you can:
 - [Translate app](https://github.com/Exodus-Privacy/exodus-android-app#translation)
-- Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to reports bugs
-- Open [discussions](https://github.com/Exodus-Privacy/exodus-android-app/discussions) to propose ideas or features requests
+- Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs
+- Open [discussions](https://github.com/Exodus-Privacy/exodus-android-app/discussions) to propose ideas or feature requests
 - Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app) (also bridged on [Matrix channel #exodus-android-app:matrix.org](https://matrix.to/#/#exodus-android-app:matrix.org))
 
 
 ### Translation
 
-Do you want helping to translate app? Contribute here:
+Do you want to help translate the application? Contribute here:
 
 https://crowdin.com/project/exodus-android-app
 
-- Exodus is full translated in 2 languages and 35 languages can be translated in Crowdin.
+- Exodus is fully translated into 2 languages and 35 languages can be translated in Crowdin.
 - You can translate app on Github but remember to insert a backslash `\` before any apostrophe `'`.
 
 ### Development
 
 **If you would like to improve app code and have skills about development, you are most welcome.**
 - You can find work in [issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) or in [Exodus project](https://github.com/Exodus-Privacy/exodus-android-app/projects/1).
-- Before submit pull requests please, execute Kotlin Liner.
-- Do not create pull requests to update dependencies, we have [debendabot](https://github.com/Exodus-Privacy/exodus-android-app/blob/master/.github/dependabot.yml).
+- Before submitting pull requests please, execute Kotlin Liner.
+- Do not create pull requests to update dependencies, we have [dependabot](https://github.com/Exodus-Privacy/exodus-android-app/blob/master/.github/dependabot.yml).
 
 **Build APK Debug**
 
