@@ -15,7 +15,7 @@ android {
         targetSdk 32
         versionCode 14
         versionName "3.0.1"
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner'
         buildConfigField "String", "EXODUS_API_KEY", "\"$System.env.EXODUS_API_KEY\""
     }
     signingConfigs {
@@ -31,10 +31,14 @@ android {
             signingConfig signingConfigs.releaseConfig
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -73,6 +77,8 @@ dependencies {
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'com.google.ar:core:1.30.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
 
     // Navigation Components
     def nav_version = '2.5.3'
@@ -105,11 +111,30 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.5.4'
     implementation 'androidx.activity:activity-ktx:1.5.1'
 
-    // Tests
+    // unit tests
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    testImplementation "androidx.test:core:1.5.0"
+    testImplementation "androidx.test:runner:1.5.2"
+    testImplementation "androidx.test:rules:1.5.0"
+    testImplementation 'com.google.dagger:hilt-android-testing:2.45'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
+    kaptTest 'com.google.dagger:hilt-compiler:2.45'
+
+    // instrumentation tests
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.45'
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.45'
+    androidTestImplementation "androidx.test:core:1.5.0"
+    androidTestImplementation "androidx.test:core-ktx:1.5.0"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:rules:1.5.0"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    androidTestImplementation "com.squareup.okhttp3:okhttp-tls:3.14.9"
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.14.9'
+    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.5.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    testImplementation 'junit:junit:4.13.2'
-
 }
