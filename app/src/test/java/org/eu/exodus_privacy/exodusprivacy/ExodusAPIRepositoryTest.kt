@@ -13,7 +13,6 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -23,18 +22,11 @@ import okhttp3.mockwebserver.SocketPolicy
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIInterface
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
-import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
-import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Trackers
 import org.junit.Rule
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
-import javax.net.ssl.SSLSocketFactory
 
 const val FAKE_PATH = "/api/requests/"
 const val FAKE_PORT = 34567
@@ -98,7 +90,7 @@ object FakeExodusModule {
 @HiltAndroidTest
 @Config(application = HiltTestApplication::class)
 @RunWith(AndroidJUnit4::class)
-class ExodusUpdateServiceTest {
+class ExodusAPIRepositoryTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
