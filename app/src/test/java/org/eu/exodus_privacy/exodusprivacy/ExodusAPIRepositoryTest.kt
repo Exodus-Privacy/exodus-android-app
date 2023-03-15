@@ -1,15 +1,12 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.rule.ServiceTestRule
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
-import org.junit.Assert.*
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
-import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,7 +19,13 @@ import okhttp3.mockwebserver.SocketPolicy
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIInterface
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
@@ -32,8 +35,8 @@ const val FAKE_PATH = "/api/requests/"
 const val FAKE_PORT = 34567
 const val FAKE_RESPONSE =
     """
-        { "trackers": {
-    "1": {
+        { "trackers": 
+        {"1": {
       "id": 1,
       "name": "Teemo",
       "description": "Placeholder",
@@ -50,7 +53,6 @@ const val FAKE_RESPONSE =
 }   
 """
 
-
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
@@ -61,7 +63,7 @@ object FakeExodusModule {
     @Provides
     fun provideExodusAPIInstance(okHttpClient: OkHttpClient): ExodusAPIInterface {
         return Retrofit.Builder()
-            .baseUrl("http://localhost:${FAKE_PORT}${FAKE_PATH}")
+            .baseUrl("http://localhost:$FAKE_PORT$FAKE_PATH")
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
@@ -94,18 +96,31 @@ class ExodusAPIRepositoryTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
+    @get:Rule
+    val serviceRule = ServiceTestRule()
+
     @Inject
     lateinit var exodusAPIRepository: ExodusAPIRepository
+
+    private val mockWebServer = MockWebServer()
+    private val socketPolicy = SocketPolicy.NO_RESPONSE
+
+    @Before
+    fun setup() {
+        mockWebServer.start(FAKE_PORT)
+        mockWebServer.url(FAKE_PATH)
+    }
+
+    @After
+    fun teardown() {
+        mockWebServer.shutdown()
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun exodusAPIRepoShouldTimeOut() = runTest {
         // given
         hiltRule.inject()
-        val mockWebServer = MockWebServer()
-        val socketPolicy = SocketPolicy.NO_RESPONSE
-        mockWebServer.start(FAKE_PORT)
-        mockWebServer.url(FAKE_PATH)
 
         // when
         val mockResponse = MockResponse()
@@ -114,22 +129,19 @@ class ExodusAPIRepositoryTest {
             .setSocketPolicy(socketPolicy)
         mockWebServer.enqueue(mockResponse)
 
-
         // then
         val exception =
-        try {
-            exodusAPIRepository.getAllTrackers()
-        } catch (
-            exception: java.net.SocketTimeoutException
-        ) {
-            exception
-        }
+            try {
+                exodusAPIRepository.getAllTrackers()
+            } catch (
+                exception: java.net.SocketTimeoutException
+            ) {
+                exception
+            }
 
         assertEquals(
             exception.toString(),
             "java.net.SocketTimeoutException: timeout"
         )
-
-        mockWebServer.shutdown()
     }
 }
