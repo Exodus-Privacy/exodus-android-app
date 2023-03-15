@@ -4,7 +4,9 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Binder
 import android.os.Build
+import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationChannelCompat
@@ -90,6 +92,17 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
+    // Allow binding to exodus update service
+    private val binder = LocalBinder()
+    inner class LocalBinder : Binder() {
+        // Return this instance of LocalService so clients can call public methods
+        fun getService(): ExodusUpdateService = this@ExodusUpdateService
+    }
+    override fun onBind(intent: Intent): IBinder {
+        super.onBind(intent)
+        return binder
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         intent?.let {
@@ -118,7 +131,7 @@ class ExodusUpdateService : LifecycleService() {
             IS_SERVICE_RUNNING = true
 
             if (firstTime) {
-                // Create notification channel on post-nougat devices
+                // Create notification channesl on post-nougat devices
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
@@ -216,7 +229,7 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
-    private suspend fun fetchTrackers() {
+    suspend fun fetchTrackers() {
         try {
             val list = exodusAPIRepository.getAllTrackers()
             list.trackers.forEach { (key, value) ->
@@ -237,7 +250,7 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
-    private suspend fun fetchApps() {
+    suspend fun fetchApps() {
         try {
             applicationList.forEach { app ->
                 val appDetailList =
