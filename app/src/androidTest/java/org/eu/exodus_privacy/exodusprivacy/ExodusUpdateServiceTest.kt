@@ -3,7 +3,6 @@ package org.eu.exodus_privacy.exodusprivacy
 import android.content.Intent
 import android.os.IBinder
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.Module
 import dagger.Provides
@@ -12,9 +11,8 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.test.*
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.runTest
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
@@ -29,8 +27,6 @@ import org.junit.Rule
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.net.URL
-import java.util.concurrent.CountDownLatch
 import javax.inject.Singleton
 
 const val FAKE_PATH = "/api/requests/"
@@ -142,7 +138,7 @@ class ExodusUpdateServiceTest {
         // then
         val exception =
             try {
-              service.exodusAPIRepository.getAllTrackers()
+                service.exodusAPIRepository.getAllTrackers()
             } catch (
                 exception: java.net.SocketTimeoutException
             ) {
