@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +20,7 @@ import javax.inject.Singleton
 class NetworkManager @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
+    private val TAG = NetworkManager::class.java.simpleName
 
     private val _networkState = MutableStateFlow(checkURL())
     val networkState: StateFlow<Boolean> = _networkState
@@ -57,6 +59,7 @@ class NetworkManager @Inject constructor(
                 .connect()
             true
         } catch (e: Exception) {
+            Log.d(TAG, "Network Error", e)
             false
         }
     }
