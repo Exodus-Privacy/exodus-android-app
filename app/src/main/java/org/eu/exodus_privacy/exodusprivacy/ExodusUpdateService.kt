@@ -44,7 +44,7 @@ class ExodusUpdateService : LifecycleService() {
     private val TAG = ExodusUpdateService::class.java.simpleName
 
     private val job = SupervisorJob()
-    private val serviceScope = CoroutineScope(Dispatchers.IO + job)
+    private val serviceScope = CoroutineScope(job)
 
     // Tracker and Apps
     private val trackersList = mutableListOf<TrackerData>()
@@ -229,7 +229,7 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
-    suspend fun fetchTrackers() {
+    private suspend fun fetchTrackers() {
         try {
             val list = exodusAPIRepository.getAllTrackers()
             list.trackers.forEach { (key, value) ->
@@ -250,7 +250,7 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
-    suspend fun fetchApps() {
+    private suspend fun fetchApps() {
         try {
             applicationList.forEach { app ->
                 val appDetailList =
