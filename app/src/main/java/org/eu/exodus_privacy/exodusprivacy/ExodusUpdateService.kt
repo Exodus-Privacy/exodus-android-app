@@ -17,7 +17,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
@@ -86,6 +85,7 @@ class ExodusUpdateService : LifecycleService() {
                 networkConnected = connected
                 if (!connected) {
                     // No connection, close the service
+                    Log.d(TAG, "No Internet Connection. Stopping Service.")
                     stopService()
                 }
             }
@@ -125,7 +125,6 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private fun launchFetch(firstTime: Boolean) {
-        networkManager.checkConnection()
 
         if (networkConnected) {
             IS_SERVICE_RUNNING = true

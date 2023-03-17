@@ -1,9 +1,12 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.network
 
 import android.util.Log
+import android.widget.Toast
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Trackers
 import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
@@ -15,13 +18,20 @@ class ExodusAPIRepository @Inject constructor(
 ) {
     private val TAG = ExodusAPIRepository::class.java.simpleName
 
+    @Inject
+    lateinit var networkManager: NetworkManager
+
     suspend fun getAllTrackers(): Trackers {
         return withContext(ioDispatcher) {
-            val result = exodusAPIInterface.getAllTrackers()
-            return@withContext if (result.isSuccessful && result.body() != null) {
-                result.body()!!
+            if (networkManager.isExodusReachable()) { // Do network calls in coroutine
+                val result = exodusAPIInterface.getAllTrackers()
+                return@withContext if (result.isSuccessful && result.body() != null) {
+                    result.body()!!
+                } else {
+                    Log.d(TAG, "Failed to get trackers, response code: ${result.code()}")
+                    Trackers()
+                }
             } else {
-                Log.d(TAG, "Failed to get trackers, response code: ${result.code()}")
                 Trackers()
             }
         }
@@ -29,11 +39,15 @@ class ExodusAPIRepository @Inject constructor(
 
     suspend fun getAppDetails(packageName: String): List<AppDetails> {
         return withContext(ioDispatcher) {
-            val result = exodusAPIInterface.getAppDetails(packageName)
-            return@withContext if (result.isSuccessful && result.body() != null) {
-                result.body()!!
+            if (networkManager.isExodusReachable()) {
+                val result = exodusAPIInterface.getAppDetails(packageName)
+                return@withContext if (result.isSuccessful && result.body() != null) {
+                    result.body()!!
+                } else {
+                    Log.d(TAG, "Failed to get app details, response code: ${result.code()}")
+                    emptyList()
+                }
             } else {
-                Log.d(TAG, "Failed to get app details, response code: ${result.code()}")
                 emptyList()
             }
         }
