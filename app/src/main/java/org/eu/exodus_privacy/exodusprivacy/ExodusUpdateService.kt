@@ -137,7 +137,7 @@ class ExodusUpdateService : LifecycleService() {
                 }
             }
 
-            // Construct an ongoing notification and start the service
+            // Construct an ongoing notification
             startForeground(
                 SERVICE_ID,
                 createNotification(
