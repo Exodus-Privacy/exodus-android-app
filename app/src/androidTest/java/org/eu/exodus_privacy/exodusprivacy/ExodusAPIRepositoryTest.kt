@@ -133,7 +133,6 @@ class ExodusUpdateServiceTest {
             .setSocketPolicy(socketPolicy)
         mockWebServer.enqueue(mockResponse)
         val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
-        service.startService(serviceIntent)
 
         // then
         val exception =
