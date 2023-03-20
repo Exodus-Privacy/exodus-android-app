@@ -1,12 +1,9 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.network
 
 import android.util.Log
-import android.widget.Toast
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Trackers
 import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
