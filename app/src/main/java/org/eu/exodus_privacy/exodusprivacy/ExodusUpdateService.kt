@@ -130,7 +130,7 @@ class ExodusUpdateService : LifecycleService() {
             IS_SERVICE_RUNNING = true
 
             if (firstTime) {
-                // Create notification channesl on post-nougat devices
+                // Create notification channels on post-nougat devices
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
