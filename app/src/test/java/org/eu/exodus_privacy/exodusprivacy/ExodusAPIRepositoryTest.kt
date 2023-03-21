@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ServiceTestRule
 import dagger.Module
@@ -10,6 +11,7 @@ import dagger.hilt.android.testing.HiltTestApplication
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,6 +21,7 @@ import okhttp3.mockwebserver.SocketPolicy
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIInterface
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
+import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -28,7 +31,6 @@ import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Inject
 import javax.inject.Singleton
 
 const val FAKE_PATH = "/api/requests/"
@@ -99,8 +101,8 @@ class ExodusAPIRepositoryTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
-    @Inject
-    lateinit var exodusAPIRepository: ExodusAPIRepository
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val testDispatcher = StandardTestDispatcher()
 
     private val mockWebServer = MockWebServer()
     private val socketPolicy = SocketPolicy.NO_RESPONSE
@@ -118,9 +120,20 @@ class ExodusAPIRepositoryTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun exodusAPIRepoShouldTimeOut() = runTest {
+    fun exodusAPIRepoShouldTimeOut() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
+
+        @OptIn(ExperimentalCoroutinesApi::class)
+        val exodusAPIRepository = ExodusAPIRepository(
+            FakeExodusModule.provideExodusAPIInstance(
+                FakeExodusModule.provideOkHttpClient(
+                    FakeExodusModule.provideInterceptor()
+                )
+            ),
+            NetworkManager(ApplicationProvider.getApplicationContext()),
+            testDispatcher
+        )
 
         // when
         val mockResponse = MockResponse()
