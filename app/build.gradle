@@ -77,7 +77,6 @@ dependencies {
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-    implementation 'com.google.ar:core:1.30.0'
     implementation 'androidx.test.ext:junit-ktx:1.1.5'
 
     // Navigation Components
@@ -130,7 +129,6 @@ dependencies {
     androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.test:rules:1.5.0"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-    androidTestImplementation "com.squareup.okhttp3:okhttp-tls:3.14.9"
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.14.9'
     androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.5.0', {
