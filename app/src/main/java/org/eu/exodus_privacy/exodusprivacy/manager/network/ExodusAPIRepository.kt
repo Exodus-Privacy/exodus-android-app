@@ -11,12 +11,10 @@ import javax.inject.Inject
 
 class ExodusAPIRepository @Inject constructor(
     private val exodusAPIInterface: ExodusAPIInterface,
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val networkManager: NetworkManager,
+    @IoDispatcher val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     private val TAG = ExodusAPIRepository::class.java.simpleName
-
-    @Inject
-    lateinit var networkManager: NetworkManager
 
     suspend fun getAllTrackers(): Trackers {
         return withContext(ioDispatcher) {
