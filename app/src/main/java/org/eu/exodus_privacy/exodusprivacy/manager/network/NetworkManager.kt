@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,8 +20,9 @@ import javax.inject.Singleton
 class NetworkManager @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
+    private val TAG = NetworkManager::class.java.simpleName
 
-    private val _networkState = MutableStateFlow(checkURL())
+    private val _networkState = MutableStateFlow(false)
     val networkState: StateFlow<Boolean> = _networkState
 
     private val _connectionObserver = MutableLiveData<Boolean>()
@@ -37,31 +39,40 @@ class NetworkManager @Inject constructor(
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
-                    _networkState.value = checkURL()
-                    checkConnection()
+                    _networkState.value = true
+                    postNetworkStateValue()
                 }
 
                 override fun onLost(network: Network) {
                     super.onLost(network)
                     _networkState.value = false
-                    checkConnection()
+                    postNetworkStateValue()
                 }
             }
         )
     }
 
-    private fun checkURL(): Boolean {
+    private fun postNetworkStateValue() {
+        _connectionObserver.postValue(_networkState.value)
+    }
+
+    private fun checkExodusURL(): Boolean {
         return try {
             URL(ExodusAPIInterface.BASE_URL)
                 .openConnection()
                 .connect()
             true
         } catch (e: Exception) {
+            Log.d(TAG, "Could Not Reach Exodus API URL", e)
             false
         }
     }
 
     fun checkConnection() {
-        _connectionObserver.postValue(_networkState.value)
+        postNetworkStateValue()
+    }
+
+    fun isExodusReachable(): Boolean {
+        return checkExodusURL()
     }
 }

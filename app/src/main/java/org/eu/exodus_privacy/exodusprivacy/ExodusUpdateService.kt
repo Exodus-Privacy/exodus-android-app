@@ -4,7 +4,9 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Binder
 import android.os.Build
+import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationChannelCompat
@@ -15,7 +17,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
@@ -42,7 +43,7 @@ class ExodusUpdateService : LifecycleService() {
     private val TAG = ExodusUpdateService::class.java.simpleName
 
     private val job = SupervisorJob()
-    private val serviceScope = CoroutineScope(Dispatchers.IO + job)
+    private val serviceScope = CoroutineScope(job)
 
     // Tracker and Apps
     private val trackersList = mutableListOf<TrackerData>()
@@ -84,10 +85,22 @@ class ExodusUpdateService : LifecycleService() {
                 networkConnected = connected
                 if (!connected) {
                     // No connection, close the service
+                    Log.d(TAG, "No Internet Connection. Stopping Service.")
                     stopService()
                 }
             }
         }
+    }
+
+    // Allow binding to exodus update service
+    private val binder = LocalBinder()
+    inner class LocalBinder : Binder() {
+        // Return this instance of LocalService so clients can call public methods
+        fun getService(): ExodusUpdateService = this@ExodusUpdateService
+    }
+    override fun onBind(intent: Intent): IBinder {
+        super.onBind(intent)
+        return binder
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -112,19 +125,18 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private fun launchFetch(firstTime: Boolean) {
-        networkManager.checkConnection()
 
         if (networkConnected) {
             IS_SERVICE_RUNNING = true
 
             if (firstTime) {
-                // Create notification channel on post-nougat devices
+                // Create notification channels on post-nougat devices
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
             }
 
-            // Construct an ongoing notification and start the service
+            // Construct an ongoing notification
             startForeground(
                 SERVICE_ID,
                 createNotification(
