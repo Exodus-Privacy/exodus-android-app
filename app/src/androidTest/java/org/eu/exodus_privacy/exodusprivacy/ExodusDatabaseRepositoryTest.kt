@@ -4,29 +4,23 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.icu.util.Output
-import androidx.core.graphics.drawable.toIcon
 import androidx.core.graphics.scale
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabase
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.manipulation.Ordering
 import java.io.InputStream
-import java.io.OutputStream
-import java.io.OutputStreamWriter
 import javax.inject.Inject
 
 @HiltAndroidTest
@@ -43,11 +37,11 @@ class ExodusDatabaseRepositoryTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
 
-    private lateinit var exodusAppEntry : ExodusApplication
-    private lateinit var context : Context
-    private lateinit var assets : AssetManager
-    private lateinit var bitmapStream : InputStream
-    private lateinit var image : Bitmap
+    private lateinit var exodusAppEntry: ExodusApplication
+    private lateinit var context: Context
+    private lateinit var assets: AssetManager
+    private lateinit var bitmapStream: InputStream
+    private lateinit var image: Bitmap
 
     private val packageName = "com.test.testapp"
     private val name = "TestApp"
@@ -112,36 +106,30 @@ class ExodusDatabaseRepositoryTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun exodusDatabaseRepoReturnsImage() = runTest(testDispatcher) {
+    fun exodusDatabaseRepoReturnsApp() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
 
         // then
-        val newImage : Bitmap
-        if (image.width > 50) {
-            newImage = image.scale(50, 50)
-            exodusAppEntry = ExodusApplication(
-                packageName,
-                name,
-                newImage,
-                versionName,
-                versionCode,
-                permissions,
-                exodusVersionName,
-                exodusVersionCode,
-                exodusTrackers,
-                source,
-                report,
-                created,
-                updated
-            )
-        } else {
-            newImage = image
-        }
+        exodusAppEntry = ExodusApplication(
+            packageName,
+            name,
+            image.scale(50, 50),
+            versionName,
+            versionCode,
+            permissions,
+            exodusVersionName,
+            exodusVersionCode,
+            exodusTrackers,
+            source,
+            report,
+            created,
+            updated
+        )
 
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         val retrievedApp = exodusDatabaseRepository.getApp(packageName)
 
-        assert( retrievedApp.icon.sameAs(newImage) )
+        assert(retrievedApp.icon.sameAs(image.scale(50, 50)))
     }
 }
