@@ -45,7 +45,7 @@ object PackageManagerModule {
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
-                    it.applicationInfo.loadIcon(packageManager).toBitmap(),
+                    it.applicationInfo.loadIcon(packageManager).toBitmap(50, 50),
                     it.versionName ?: "",
                     PackageInfoCompat.getLongVersionCode(it),
                     permsList,
