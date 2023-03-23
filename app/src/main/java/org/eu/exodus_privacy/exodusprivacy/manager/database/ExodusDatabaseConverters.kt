@@ -53,7 +53,7 @@ class ExodusDatabaseConverters {
     @TypeConverter
     fun toBitmap(byteArray: ByteArray?): Bitmap {
         return if (byteArray == null) {
-            Bitmap.createBitmap(96,96,Bitmap.Config.RGB_565)
+            Bitmap.createBitmap(96, 96, Bitmap.Config.RGB_565)
         } else {
             BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
         }

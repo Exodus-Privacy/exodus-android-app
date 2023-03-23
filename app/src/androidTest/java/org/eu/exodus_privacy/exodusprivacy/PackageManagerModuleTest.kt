@@ -45,9 +45,8 @@ class PackageManagerModuleTest {
         val appList = service.applicationList
 
         // then
-
         appList.forEach {
-            assert( it.icon.width == resolution && it.icon.height == resolution )
+            assert(it.icon.width == resolution && it.icon.height == resolution)
         }
     }
 }
