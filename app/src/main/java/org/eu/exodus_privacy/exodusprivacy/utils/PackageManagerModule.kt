@@ -29,7 +29,7 @@ object PackageManagerModule {
     private val SYSTEM: String? = null
 
     private val TAG = PackageManagerModule::class.java.simpleName
-    private val resolution = 144
+    private val resolution = 96
 
     @Singleton
     @Provides
