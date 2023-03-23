@@ -29,6 +29,7 @@ object PackageManagerModule {
     private val SYSTEM: String? = null
 
     private val TAG = PackageManagerModule::class.java.simpleName
+    private val resolution = 144
 
     @Singleton
     @Provides
@@ -45,7 +46,7 @@ object PackageManagerModule {
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
-                    it.applicationInfo.loadIcon(packageManager).toBitmap(50, 50),
+                    it.applicationInfo.loadIcon(packageManager).toBitmap(resolution, resolution),
                     it.versionName ?: "",
                     PackageInfoCompat.getLongVersionCode(it),
                     permsList,
