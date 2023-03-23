@@ -23,9 +23,11 @@ class PackageManagerModuleTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
 
+    private val resolution = 144
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun iconsInAppListNotGreater50Px() = runTest(testDispatcher) {
+    fun iconsInAppListNotGreaterResolution() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
 
@@ -45,7 +47,7 @@ class PackageManagerModuleTest {
         // then
 
         appList.forEach {
-            assert( it.icon.width <= 50 && it.icon.height <= 50 )
+            assert( it.icon.width <= resolution && it.icon.height <= resolution )
         }
     }
 }

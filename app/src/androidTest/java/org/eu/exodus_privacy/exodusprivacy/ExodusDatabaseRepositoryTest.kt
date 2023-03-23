@@ -56,6 +56,8 @@ class ExodusDatabaseRepositoryTest {
     private val created = ""
     private val updated = ""
 
+    private val resolution = 144
+
     @Before
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().context
@@ -114,7 +116,7 @@ class ExodusDatabaseRepositoryTest {
         exodusAppEntry = ExodusApplication(
             packageName,
             name,
-            image.scale(50, 50),
+            image.scale(resolution, resolution),
             versionName,
             versionCode,
             permissions,
@@ -130,6 +132,6 @@ class ExodusDatabaseRepositoryTest {
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         val retrievedApp = exodusDatabaseRepository.getApp(packageName)
 
-        assert(retrievedApp.icon.sameAs(image.scale(50, 50)))
+        assert(retrievedApp.icon.sameAs(image.scale(resolution, resolution)))
     }
 }
