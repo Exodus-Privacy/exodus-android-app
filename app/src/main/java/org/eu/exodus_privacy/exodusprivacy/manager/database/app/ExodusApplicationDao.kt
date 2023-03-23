@@ -10,14 +10,14 @@ import androidx.room.Query
 interface ExodusApplicationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveApp(exodusApplication: ExodusApplication)
+    suspend fun insertApp(exodusApplication: ExodusApplication)
 
     @Query("SELECT * FROM exodusapplication WHERE packageName=:packageName")
-    suspend fun getApp(packageName: String): List<ExodusApplication>
+    suspend fun queryApp(packageName: String): List<ExodusApplication>
 
     @Query("SELECT * FROM exodusapplication WHERE packageName IN (:listOfPackages) ORDER BY name COLLATE NOCASE")
-    suspend fun getApps(listOfPackages: List<String>): List<ExodusApplication>
+    suspend fun queryApps(listOfPackages: List<String>): List<ExodusApplication>
 
     @Query("SELECT * FROM exodusapplication ORDER BY name COLLATE NOCASE")
-    fun getAllApps(): LiveData<List<ExodusApplication>>
+    fun queryAllApps(): LiveData<List<ExodusApplication>>
 }

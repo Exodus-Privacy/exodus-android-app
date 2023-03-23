@@ -34,19 +34,19 @@ class ExodusDatabaseRepository @Inject constructor(
     }
 
     suspend fun saveApp(exodusApplication: ExodusApplication) {
-        return exodusApplicationDao.saveApp(exodusApplication)
+        return exodusApplicationDao.insertApp(exodusApplication)
     }
 
     suspend fun getApp(packageName: String): ExodusApplication {
-        val list = exodusApplicationDao.getApp(packageName)
+        val list = exodusApplicationDao.queryApp(packageName)
         return if (list.isNotEmpty() && list.size == 1) list[0] else ExodusApplication()
     }
 
     suspend fun getApps(listOfPackages: List<String>): List<ExodusApplication> {
-        return exodusApplicationDao.getApps(listOfPackages)
+        return exodusApplicationDao.queryApps(listOfPackages)
     }
 
     fun getAllApps(): LiveData<List<ExodusApplication>> {
-        return exodusApplicationDao.getAllApps()
+        return exodusApplicationDao.queryAllApps()
     }
 }
