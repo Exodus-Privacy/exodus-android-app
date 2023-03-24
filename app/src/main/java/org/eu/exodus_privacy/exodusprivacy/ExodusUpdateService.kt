@@ -136,17 +136,6 @@ class ExodusUpdateService : LifecycleService() {
                 }
             }
 
-            // Construct an ongoing notification
-            startForeground(
-                SERVICE_ID,
-                createNotification(
-                    currentSize.value!!,
-                    applicationList.size,
-                    !firstTime,
-                    this
-                )
-            )
-
             // Update all database
             updateAllDatabase(firstTime)
 
