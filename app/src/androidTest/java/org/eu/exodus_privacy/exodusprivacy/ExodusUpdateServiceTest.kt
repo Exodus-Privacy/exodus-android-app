@@ -3,8 +3,6 @@ package org.eu.exodus_privacy.exodusprivacy
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
-import android.os.IBinder
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -53,6 +51,5 @@ class ExodusUpdateServiceTest {
         val serviceRuns = ActivityManager.RunningServiceInfo.FLAG_STARTED
 
         assert(serviceRuns == 1)
-
     }
 }
