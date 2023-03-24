@@ -29,7 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".ExodusUpdateService" />
+        <service
+            android:name=".ExodusUpdateService"
+            android:exported="false"
+            />
     </application>
 
 </manifest>
