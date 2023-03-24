@@ -1,8 +1,10 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.Module
 import dagger.Provides
@@ -18,7 +20,9 @@ import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.SocketPolicy
+import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIInterface
+import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -27,6 +31,7 @@ import org.junit.Rule
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Inject
 import javax.inject.Singleton
 
 const val FAKE_PATH = "/api/requests/"
@@ -100,8 +105,13 @@ class ExodusAPIRepositoryTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
 
+    @Inject
+    lateinit var exodusAPIRepository: ExodusAPIRepository
+    private lateinit var context: Context
+
     @Before
     fun setup() {
+        context = InstrumentationRegistry.getInstrumentation().context
         mockWebServer.start(FAKE_PORT)
         mockWebServer.url(FAKE_PATH)
     }
@@ -117,27 +127,17 @@ class ExodusAPIRepositoryTest {
         // given
         hiltRule.inject()
 
-        val serviceIntent = Intent(
-            ApplicationProvider.getApplicationContext(),
-            ExodusUpdateService::class.java
-        ).apply {
-            action = ExodusUpdateService.START_SERVICE
-        }
-
-        val binder: IBinder = serviceRule.bindService(serviceIntent)
-
         // when
         val mockResponse = MockResponse()
             .setBody(FAKE_RESPONSE)
             .setResponseCode(200)
             .setSocketPolicy(socketPolicy)
         mockWebServer.enqueue(mockResponse)
-        val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
 
         // then
         val exception =
             try {
-                service.exodusAPIRepository.getAllTrackers()
+                exodusAPIRepository.getAllTrackers()
             } catch (
                 exception: java.net.SocketTimeoutException
             ) {
