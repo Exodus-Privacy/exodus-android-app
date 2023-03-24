@@ -88,7 +88,7 @@ object FakeExodusModule {
 }
 
 @HiltAndroidTest
-class ExodusUpdateServiceTest {
+class ExodusAPIRepositoryTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
@@ -113,7 +113,7 @@ class ExodusUpdateServiceTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun exodusUpdateServiceShouldTimeOut() = runTest(testDispatcher) {
+    fun exodusAPIRepositoryShouldTimeOut() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
 
