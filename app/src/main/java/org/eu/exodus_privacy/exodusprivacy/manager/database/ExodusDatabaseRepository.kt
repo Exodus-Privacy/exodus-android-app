@@ -25,9 +25,9 @@ class ExodusDatabaseRepository @Inject constructor(
         }
     }
 
-    suspend fun getTrackers(id: Int): TrackerData {
+    suspend fun getTracker(id: Int): TrackerData {
         return withContext(ioDispatcher) {
-            val list = trackerDataDao.getTrackers(id)
+            val list = trackerDataDao.queryTrackerById(id)
             return@withContext if (list.isNotEmpty() && list.size == 1) {
                 list[0]
             } else {
@@ -38,12 +38,12 @@ class ExodusDatabaseRepository @Inject constructor(
     }
 
     fun getAllTrackers(): LiveData<List<TrackerData>> {
-        return trackerDataDao.getAllTrackers()
+        return trackerDataDao.queryAllTrackers()
     }
 
     suspend fun getTrackers(listOfID: List<Int>): List<TrackerData> {
         return withContext(ioDispatcher) {
-            trackerDataDao.getTrackers(listOfID)
+            trackerDataDao.queryTrackersByIdList(listOfID)
         }
     }
 
