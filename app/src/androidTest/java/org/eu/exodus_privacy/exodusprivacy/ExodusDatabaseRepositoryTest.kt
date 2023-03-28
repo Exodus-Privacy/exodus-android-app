@@ -4,19 +4,21 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
 import androidx.core.graphics.scale
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsViewModel
+import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersViewModel
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
-import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Tracker
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.junit.Assert.assertEquals
@@ -41,14 +43,18 @@ class ExodusDatabaseRepositoryTest {
     private val testDispatcher = StandardTestDispatcher()
 
     private lateinit var exodusAppEntry: ExodusApplication
+    private lateinit var exodusAppEntry2: ExodusApplication
     private lateinit var exodusTrackerDataEntry: TrackerData
+    private lateinit var exodusTrackerDataEntry2: TrackerData
     private lateinit var context: Context
     private lateinit var assets: AssetManager
     private lateinit var bitmapStream: InputStream
     private lateinit var image: Bitmap
 
     private val packageName = "com.test.testapp"
+    private val packageName2 = "com.test.testapp2"
     private val name = "TestApp"
+    private val name2 = "TestApp2"
     private val versionName = "v1.0.0"
     private val versionCode = 1L
     private val permissions = emptyList<Permission>()
@@ -74,6 +80,22 @@ class ExodusDatabaseRepositoryTest {
             packageName,
             name,
             image,
+            versionName,
+            versionCode,
+            permissions,
+            exodusVersionName,
+            exodusVersionCode,
+            exodusTrackers,
+            source,
+            report,
+            created,
+            updated
+        )
+
+        exodusAppEntry2 = ExodusApplication(
+            packageName2,
+            name2,
+            image.scale(resolution, resolution),
             versionName,
             versionCode,
             permissions,
@@ -152,6 +174,40 @@ class ExodusDatabaseRepositoryTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
+    fun exodusDatabaseRepoReturnsApps() = runTest(testDispatcher) {
+        // given
+        hiltRule.inject()
+
+        // then
+        exodusDatabaseRepository.saveApp(exodusAppEntry2)
+        exodusDatabaseRepository.saveApp(exodusAppEntry2)
+        val retrievedApp = exodusDatabaseRepository.getApps(
+            listOf(packageName, packageName2)
+        )
+
+        assert(retrievedApp.isNotEmpty())
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun exodusDatabaseRepoReturnsAllApps() = runTest(testDispatcher) {
+        // given
+        hiltRule.inject()
+
+        // then
+        exodusDatabaseRepository.saveApp(exodusAppEntry)
+        exodusDatabaseRepository.saveApp(exodusAppEntry2)
+        val trackerViewModel = TrackersViewModel(exodusDatabaseRepository)
+
+        launch(Dispatchers.Main) {
+            trackerViewModel.trackersList.observeForever {
+                assert(!trackerViewModel.trackersList.value.isNullOrEmpty())
+            }
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
     fun exodusDatabaseRepoReturnsTracker() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
@@ -182,8 +238,12 @@ class ExodusDatabaseRepositoryTest {
         // then
         exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry)
         exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry2)
-        val retrievedTrackers = exodusDatabaseRepository.getAllTrackers()
+        val appsViewModel = AppsViewModel(exodusDatabaseRepository)
 
-        assert(!retrievedTrackers.value.isNullOrEmpty())
+        launch(Dispatchers.Main) {
+            appsViewModel.appList.observeForever {
+                assert(!appsViewModel.appList.value.isNullOrEmpty())
+            }
+        }
     }
 }
