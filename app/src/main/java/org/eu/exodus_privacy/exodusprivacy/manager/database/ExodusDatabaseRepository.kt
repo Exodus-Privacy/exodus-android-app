@@ -20,8 +20,9 @@ class ExodusDatabaseRepository @Inject constructor(
     private val TAG = ExodusDatabaseRepository::class.java.simpleName
 
     suspend fun saveTrackerData(trackerData: TrackerData) {
-        return withContext(ioDispatcher) {
-            trackerDataDao.saveTrackerData(trackerData)
+        withContext(ioDispatcher) {
+            Log.d(TAG, "Adding Tracker ${trackerData.name} to DB.")
+            trackerDataDao.insertTrackerData(trackerData)
         }
     }
 
@@ -48,13 +49,13 @@ class ExodusDatabaseRepository @Inject constructor(
     }
 
     suspend fun deleteTrackerData(trackerData: TrackerData) {
-        return withContext(ioDispatcher) {
+        withContext(ioDispatcher) {
             trackerDataDao.deleteTrackerData(trackerData)
         }
     }
 
     suspend fun saveApp(exodusApplication: ExodusApplication) {
-        return withContext(ioDispatcher) {
+        withContext(ioDispatcher) {
             exodusApplicationDao.insertApp(exodusApplication)
         }
     }
