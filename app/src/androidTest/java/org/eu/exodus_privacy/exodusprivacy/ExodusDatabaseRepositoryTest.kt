@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.core.graphics.scale
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
@@ -14,6 +15,8 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
+import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Tracker
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.junit.Assert.assertEquals
@@ -38,6 +41,7 @@ class ExodusDatabaseRepositoryTest {
     private val testDispatcher = StandardTestDispatcher()
 
     private lateinit var exodusAppEntry: ExodusApplication
+    private lateinit var exodusTrackerDataEntry: TrackerData
     private lateinit var context: Context
     private lateinit var assets: AssetManager
     private lateinit var bitmapStream: InputStream
@@ -81,6 +85,17 @@ class ExodusDatabaseRepositoryTest {
             created,
             updated
         )
+
+        exodusTrackerDataEntry = TrackerData(
+            id = 0,
+            categories = emptyList(),
+            code_signature = "",
+            creation_date = "01.01.1970",
+            description = "Lorem Ipsum",
+            name = "TestTracker",
+            network_signature = "Unknown",
+            website = "example.com"
+        )
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -112,7 +127,6 @@ class ExodusDatabaseRepositoryTest {
         // given
         hiltRule.inject()
 
-        // then
         exodusAppEntry = ExodusApplication(
             packageName,
             name,
@@ -129,9 +143,47 @@ class ExodusDatabaseRepositoryTest {
             updated
         )
 
+        // then
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         val retrievedApp = exodusDatabaseRepository.getApp(packageName)
 
         assert(retrievedApp.icon.sameAs(image.scale(resolution, resolution)))
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun exodusDatabaseRepoReturnsTracker() = runTest(testDispatcher) {
+        // given
+        hiltRule.inject()
+
+        // then
+        exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry)
+        val retrievedTracker = exodusDatabaseRepository.getTracker(0)
+
+        assert(retrievedTracker.name == "TestTracker")
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun exodusDatabaseRepoReturnsAllTrackers() = runTest(testDispatcher) {
+        // given
+        hiltRule.inject()
+        val exodusTrackerDataEntry2 = TrackerData(
+            id = 1,
+            categories = emptyList(),
+            code_signature = "",
+            creation_date = "01.01.1970",
+            description = "Lorem Ipsum",
+            name = "TestTracker2",
+            network_signature = "Unknown",
+            website = "example.com"
+        )
+
+        // then
+        exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry)
+        exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry2)
+        val retrievedTrackers = exodusDatabaseRepository.getAllTrackers()
+
+        assert(!retrievedTrackers.value.isNullOrEmpty())
     }
 }
