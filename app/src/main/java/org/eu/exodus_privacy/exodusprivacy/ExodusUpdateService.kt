@@ -287,6 +287,10 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
+    fun serviceRuns() : Boolean {
+        return IS_SERVICE_RUNNING
+    }
+
     private fun stopService() {
         job.cancel()
         notificationManager.cancel(SERVICE_ID)
