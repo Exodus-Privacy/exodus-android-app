@@ -287,7 +287,7 @@ class ExodusUpdateService : LifecycleService() {
         }
     }
 
-    fun serviceRuns() : Boolean {
+    fun serviceRuns(): Boolean {
         return IS_SERVICE_RUNNING
     }
 

@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy
 
-import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
@@ -8,20 +7,21 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.*
-import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
-import org.eu.exodus_privacy.exodusprivacy.utils.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.runTest
+import org.eu.exodus_privacy.exodusprivacy.utils.DispatcherModule
+import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Module
 @TestInstallIn(
@@ -32,7 +32,7 @@ object FakeDispatcherModule {
     @OptIn(ExperimentalCoroutinesApi::class)
     @IoDispatcher
     @Provides
-    fun providesIoDispatcher() : CoroutineDispatcher =
+    fun providesIoDispatcher(): CoroutineDispatcher =
         StandardTestDispatcher(TestCoroutineScheduler())
 }
 
@@ -44,7 +44,7 @@ class ExodusUpdateServiceTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
-    private val testDispatcher : CoroutineDispatcher =
+    private val testDispatcher: CoroutineDispatcher =
         FakeDispatcherModule.providesIoDispatcher()
 
     @OptIn(ExperimentalCoroutinesApi::class)
