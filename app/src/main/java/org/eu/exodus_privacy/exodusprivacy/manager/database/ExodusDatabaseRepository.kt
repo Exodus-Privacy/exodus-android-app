@@ -32,7 +32,7 @@ class ExodusDatabaseRepository @Inject constructor(
             return@withContext if (list.isNotEmpty() && list.size == 1) {
                 list[0]
             } else {
-                Log.d(TAG, "Failed to get trackers from DB returning empty TrackerData()")
+                Log.w(TAG, "Failed to get trackers from DB returning empty TrackerData()")
                 TrackerData()
             }
         }

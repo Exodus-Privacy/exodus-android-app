@@ -85,7 +85,7 @@ class ExodusUpdateService : LifecycleService() {
                 networkConnected = connected
                 if (!connected) {
                     // No connection, close the service
-                    Log.d(TAG, "No Internet Connection. Stopping Service.")
+                    Log.w(TAG, "No Internet Connection. Stopping Service.")
                     stopService()
                 }
             }
@@ -117,7 +117,7 @@ class ExodusUpdateService : LifecycleService() {
                     stopService()
                 }
                 else -> {
-                    Log.d(TAG, "Got an unhandled action: ${it.action}")
+                    Log.w(TAG, "Got an unhandled action: ${it.action}")
                 }
             }
         }
@@ -219,11 +219,11 @@ class ExodusUpdateService : LifecycleService() {
                             stopService()
                         }
                     } else {
-                        Log.d(TAG, appsThrow.stackTrace.toString())
+                        Log.e(TAG, appsThrow.stackTrace.toString())
                     }
                 }
             } else {
-                Log.d(TAG, trackerThrow.stackTrace.toString())
+                Log.e(TAG, trackerThrow.stackTrace.toString())
             }
         }
     }
