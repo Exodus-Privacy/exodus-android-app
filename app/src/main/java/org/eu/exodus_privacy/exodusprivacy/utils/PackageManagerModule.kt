@@ -41,6 +41,7 @@ object PackageManagerModule {
 
         packageList.forEach {
             if (validPackage(it.packageName, packageManager)) {
+                Log.d(TAG, "Found app: ${it.packageName}.")
                 val appPerms = it.requestedPermissions?.toList() ?: emptyList()
                 val permsList = getPermissionList(appPerms, packageManager)
                 val app = Application(
@@ -66,6 +67,7 @@ object PackageManagerModule {
         } else {
             packageManager.getInstallerPackageName(packageName)
         }
+        Log.d(TAG, "Found AppStore: $appStore for app: $packageName.")
         return when (appStore) {
             GOOGLE_PLAY_STORE -> Source.GOOGLE
             AURORA_STORE -> Source.GOOGLE
@@ -98,7 +100,7 @@ object PackageManagerModule {
                     PackageManager.GET_META_DATA
                 )
             } catch (exception: PackageManager.NameNotFoundException) {
-                Log.d(TAG, "Unable to find info about $permissionName")
+                Log.d(TAG, "Unable to find info about $permissionName.")
             }
 
             // Encapsulate regex modification
