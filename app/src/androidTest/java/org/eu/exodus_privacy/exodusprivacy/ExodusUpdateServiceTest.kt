@@ -3,16 +3,38 @@ package org.eu.exodus_privacy.exodusprivacy
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.os.IBinder
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.runTest
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
+import kotlinx.coroutines.*
+import kotlinx.coroutines.test.*
+import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
+import org.eu.exodus_privacy.exodusprivacy.utils.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Module
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [DispatcherModule::class]
+)
+object FakeDispatcherModule {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @IoDispatcher
+    @Provides
+    fun providesIoDispatcher() : CoroutineDispatcher =
+        StandardTestDispatcher(TestCoroutineScheduler())
+}
 
 @HiltAndroidTest
 class ExodusUpdateServiceTest {
@@ -22,8 +44,11 @@ class ExodusUpdateServiceTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
+    private val testDispatcher : CoroutineDispatcher =
+        FakeDispatcherModule.providesIoDispatcher()
+
     @OptIn(ExperimentalCoroutinesApi::class)
-    private val testDispatcher = StandardTestDispatcher()
+    val testScope: TestScope = TestScope(testDispatcher)
 
     private lateinit var context: Context
 
@@ -34,7 +59,7 @@ class ExodusUpdateServiceTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun serviceShouldBeStarted() = runTest(testDispatcher) {
+    fun serviceShouldBeStarted() = testScope.runTest {
         hiltRule.inject()
 
         val serviceIntent = Intent(
@@ -47,9 +72,11 @@ class ExodusUpdateServiceTest {
             "org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService"
         )
 
+        val binder: IBinder = serviceRule.bindService(serviceIntent)
+        val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
         serviceRule.startService(serviceIntent)
-        val serviceRuns = ActivityManager.RunningServiceInfo.FLAG_STARTED
+        val serviceRuns = service.serviceRuns()
 
-        assert(serviceRuns == 1)
+        assert(serviceRuns)
     }
 }
