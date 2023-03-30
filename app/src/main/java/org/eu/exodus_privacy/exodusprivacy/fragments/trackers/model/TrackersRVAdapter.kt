@@ -2,6 +2,7 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,9 @@ import dagger.hilt.android.internal.managers.FragmentComponentManager
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewTrackerItemBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragmentDirections
+import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersFragmentDirections
+import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersViewModel
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 
 class TrackersRVAdapter(
@@ -25,6 +28,8 @@ class TrackersRVAdapter(
     private val currentDestinationId: Int,
 ) :
     ListAdapter<TrackerData, TrackersRVAdapter.ViewHolder>(TrackersDiffUtil()) {
+
+    private val TAG = TrackersRVAdapter::class.java.simpleName
 
     inner class ViewHolder(val binding: RecyclerViewTrackerItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -45,6 +50,8 @@ class TrackersRVAdapter(
             currentList.forEach { this.addAll(it.exodusApplications) }
         }
         val app = getItem(position)
+        Log.d(TAG,"ApplicationsList in TrackerData: ${app.exodusApplications}. Size: ${app.exodusApplications.size}.")
+        Log.d(TAG,"All apps having trackers: $trackerApps. Size: ${trackerApps.size}.")
         val trackerPercentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
 
         // Fix padding for TrackersFragment
