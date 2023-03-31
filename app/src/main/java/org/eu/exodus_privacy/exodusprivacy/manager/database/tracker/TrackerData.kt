@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.database.tracker
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -15,5 +16,5 @@ data class TrackerData(
     val website: String = String(),
     var presentOnDevice: Boolean = false,
     val exodusApplications: MutableList<String> = mutableListOf(),
-    var totalNumberOfAppsHavingTrackers: Int = 0
+    @ColumnInfo(defaultValue = 0.toString()) var totalNumberOfAppsHavingTrackers: Int = 0
 )
