@@ -85,7 +85,7 @@ class ExodusUpdateService : LifecycleService() {
                 networkConnected = connected
                 if (!connected) {
                     // No connection, close the service
-                    Log.d(TAG, "No Internet Connection. Stopping Service.")
+                    Log.w(TAG, "No Internet Connection. Stopping Service.")
                     stopService()
                 }
             }
@@ -117,7 +117,7 @@ class ExodusUpdateService : LifecycleService() {
                     stopService()
                 }
                 else -> {
-                    Log.d(TAG, "Got an unhandled action: ${it.action}")
+                    Log.w(TAG, "Got an unhandled action: ${it.action}.")
                 }
             }
         }
@@ -197,12 +197,12 @@ class ExodusUpdateService : LifecycleService() {
             Toast.LENGTH_SHORT
         ).show()
         serviceScope.launch {
-            Log.d(TAG, "Refreshing trackers database")
+            Log.d(TAG, "Refreshing trackers database.")
             fetchTrackers()
         }.invokeOnCompletion { trackerThrow ->
             if (trackerThrow == null) {
                 serviceScope.launch {
-                    Log.d(TAG, "Refreshing applications database")
+                    Log.d(TAG, "Refreshing applications database.")
                     fetchApps()
                 }.invokeOnCompletion { appsThrow ->
                     if (appsThrow == null) {
@@ -211,19 +211,21 @@ class ExodusUpdateService : LifecycleService() {
                             trackersList.forEach {
                                 exodusDatabaseRepository.saveTrackerData(it)
                             }
+                            Log.d(TAG, "Done saving tracker data.")
                             appList.forEach {
                                 exodusDatabaseRepository.saveApp(it)
                             }
+                            Log.d(TAG, "Done saving app details.")
                             if (firstTime) dataStoreModule.saveAppSetup(true)
                             // We are done, gracefully exit!
                             stopService()
                         }
                     } else {
-                        Log.d(TAG, appsThrow.stackTrace.toString())
+                        Log.e(TAG, appsThrow.stackTrace.toString())
                     }
                 }
             } else {
-                Log.d(TAG, trackerThrow.stackTrace.toString())
+                Log.e(TAG, trackerThrow.stackTrace.toString())
             }
         }
     }
@@ -245,7 +247,7 @@ class ExodusUpdateService : LifecycleService() {
                 trackersList.add(trackerData)
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Unable to fetch trackers", e)
+            Log.e(TAG, "Unable to fetch trackers.", e)
         }
     }
 
@@ -292,7 +294,7 @@ class ExodusUpdateService : LifecycleService() {
                 currentSize.postValue(currentSize.value!! + 1)
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Unable to fetch apps", e)
+            Log.e(TAG, "Unable to fetch apps.", e)
         }
     }
 

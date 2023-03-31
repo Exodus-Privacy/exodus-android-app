@@ -19,14 +19,17 @@ class ExodusAPIRepository @Inject constructor(
     suspend fun getAllTrackers(): Trackers {
         return withContext(ioDispatcher) {
             if (networkManager.isExodusReachable()) { // Do network calls in coroutine
+                Log.d(TAG, "Attempting download of tracker data.")
                 val result = exodusAPIInterface.getAllTrackers()
                 return@withContext if (result.isSuccessful && result.body() != null) {
+                    Log.d(TAG, "Success!")
                     result.body()!!
                 } else {
-                    Log.d(TAG, "Failed to get trackers, response code: ${result.code()}")
+                    Log.w(TAG, "Failed to get trackers, response code: ${result.code()}. Returning empty Trackers object.")
                     Trackers()
                 }
             } else {
+                Log.w(TAG, "Could not reach exodus api. Returning empty Trackers object.")
                 Trackers()
             }
         }
@@ -35,14 +38,17 @@ class ExodusAPIRepository @Inject constructor(
     suspend fun getAppDetails(packageName: String): List<AppDetails> {
         return withContext(ioDispatcher) {
             if (networkManager.isExodusReachable()) {
+                Log.d(TAG, "Attempting download of app details on $packageName.")
                 val result = exodusAPIInterface.getAppDetails(packageName)
                 return@withContext if (result.isSuccessful && result.body() != null) {
+                    Log.d(TAG, "Success!")
                     result.body()!!
                 } else {
-                    Log.d(TAG, "Failed to get app details, response code: ${result.code()}")
+                    Log.w(TAG, "Failed to get app details, response code: ${result.code()}. Returning emptyList.")
                     emptyList()
                 }
             } else {
+                Log.w(TAG, "Could not reach exodus api. Returning emptyList.")
                 emptyList()
             }
         }

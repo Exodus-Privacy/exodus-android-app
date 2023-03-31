@@ -29,6 +29,7 @@ object PackageManagerModule {
     private val SYSTEM: String? = null
 
     private val TAG = PackageManagerModule::class.java.simpleName
+    private val resolution = 96
 
     @Singleton
     @Provides
@@ -40,12 +41,13 @@ object PackageManagerModule {
 
         packageList.forEach {
             if (validPackage(it.packageName, packageManager)) {
+                Log.d(TAG, "Found app: ${it.packageName}.")
                 val appPerms = it.requestedPermissions?.toList() ?: emptyList()
                 val permsList = getPermissionList(appPerms, packageManager)
                 val app = Application(
                     it.applicationInfo.loadLabel(packageManager).toString(),
                     it.packageName,
-                    it.applicationInfo.loadIcon(packageManager).toBitmap(),
+                    it.applicationInfo.loadIcon(packageManager).toBitmap(resolution, resolution),
                     it.versionName ?: "",
                     PackageInfoCompat.getLongVersionCode(it),
                     permsList,
@@ -65,6 +67,7 @@ object PackageManagerModule {
         } else {
             packageManager.getInstallerPackageName(packageName)
         }
+        Log.d(TAG, "Found AppStore: $appStore for app: $packageName.")
         return when (appStore) {
             GOOGLE_PLAY_STORE -> Source.GOOGLE
             AURORA_STORE -> Source.GOOGLE
@@ -97,7 +100,7 @@ object PackageManagerModule {
                     PackageManager.GET_META_DATA
                 )
             } catch (exception: PackageManager.NameNotFoundException) {
-                Log.d(TAG, "Unable to find info about $permissionName")
+                Log.d(TAG, "Unable to find info about $permissionName.")
             }
 
             // Encapsulate regex modification

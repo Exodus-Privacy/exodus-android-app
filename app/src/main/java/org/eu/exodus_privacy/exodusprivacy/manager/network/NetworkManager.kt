@@ -38,12 +38,14 @@ class NetworkManager @Inject constructor(
                 .build(),
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
+                    Log.d(TAG, "Network available.")
                     super.onAvailable(network)
                     _networkState.value = true
                     postNetworkStateValue()
                 }
 
                 override fun onLost(network: Network) {
+                    Log.w(TAG, "Network not available.")
                     super.onLost(network)
                     _networkState.value = false
                     postNetworkStateValue()
@@ -63,7 +65,7 @@ class NetworkManager @Inject constructor(
                 .connect()
             true
         } catch (e: Exception) {
-            Log.d(TAG, "Could Not Reach Exodus API URL", e)
+            Log.e(TAG, "Could Not Reach Exodus API URL.", e)
             false
         }
     }

@@ -20,7 +20,7 @@ class TrackerDetailViewModel @Inject constructor(
 
     fun getTracker(trackerID: Int) {
         viewModelScope.launch {
-            tracker.value = exodusDatabaseRepository.getTrackers(trackerID)
+            tracker.value = exodusDatabaseRepository.getTracker(trackerID)
         }
     }
 
