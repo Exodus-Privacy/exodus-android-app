@@ -49,10 +49,19 @@ class TrackersRVAdapter(
         val trackerApps = mutableSetOf<String>().apply {
             currentList.forEach { this.addAll(it.exodusApplications) }
         }
+
         val app = getItem(position)
+        val totalNumberOfAppsHavingTrackers: Int = currentList[0].totalNumberOfAppsHavingTrackers
+
         Log.d(TAG,"ApplicationsList in TrackerData: ${app.exodusApplications}. Size: ${app.exodusApplications.size}.")
         Log.d(TAG,"All apps having trackers: $trackerApps. Size: ${trackerApps.size}.")
-        val trackerPercentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
+
+        val trackerPercentage =
+            if (totalNumberOfAppsHavingTrackers != 0) {
+                (app.exodusApplications.size / totalNumberOfAppsHavingTrackers.toFloat()) * 100
+            } else {
+                0.toFloat()
+            }
 
         // Fix padding for TrackersFragment
         if (!showSuggestions) {
