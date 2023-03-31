@@ -17,6 +17,13 @@ android {
         versionName "3.0.1"
         testInstrumentationRunner 'org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner'
         buildConfigField "String", "EXODUS_API_KEY", "\"$System.env.EXODUS_API_KEY\""
+        javaCompileOptions {
+            annotationProcessorOptions {
+                compilerArgumentProviders(
+                        new RoomSchemaArgProvider(new File(projectDir, "schemas"))
+                )
+            }
+        }
     }
     signingConfigs {
         releaseConfig {
@@ -39,6 +46,10 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+    }
+    sourceSets {
+        // Adds exported schema location as test app assets.
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -128,6 +139,7 @@ dependencies {
     androidTestImplementation "androidx.test:core-ktx:1.5.0"
     androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.test:rules:1.5.0"
+    androidTestImplementation "androidx.room:room-testing:2.4.1"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.14.9'
     androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
@@ -136,3 +148,20 @@ dependencies {
     })
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
 }
+
+class RoomSchemaArgProvider implements CommandLineArgumentProvider {
+
+    @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
+    File schemaDir
+
+    RoomSchemaArgProvider(File schemaDir) {
+        this.schemaDir = schemaDir
+    }
+
+    @Override
+    Iterable<String> asArguments() {
+        return ["-Aroom.schemaLocation=${schemaDir.path}".toString()]
+    }
+}
+

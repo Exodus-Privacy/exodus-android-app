@@ -13,7 +13,7 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Constants
 @Database(
     entities = [TrackerData::class, ExodusApplication::class],
     version = Constants.currentDatabaseVersion,
-    exportSchema = false,
+    exportSchema = true,
     autoMigrations = [
         AutoMigration(
             from = Constants.previousDatabaseVersion,
