@@ -51,6 +51,7 @@ class ExodusUpdateService : LifecycleService() {
     private val currentSize: MutableLiveData<Int> = MutableLiveData(1)
 
     private var networkConnected: Boolean = false
+    private var totalNumberOfAppsHavingTrackers = 0
 
     // Inject required modules
     @Inject
@@ -266,22 +267,25 @@ class ExodusUpdateService : LifecycleService() {
 
                 // Create and save app data with proper tracker info
                 val exodusApp = ExodusApplication(
-                    app.packageName,
-                    app.name,
-                    app.icon,
-                    app.versionName,
-                    app.versionCode,
-                    app.permissions,
-                    latestExodusApp.version_name,
-                    if (latestExodusApp.version_code.isNotBlank()) latestExodusApp.version_code.toLong() else 0L,
-                    latestExodusApp.trackers,
-                    app.source,
-                    latestExodusApp.report,
-                    latestExodusApp.created,
-                    latestExodusApp.updated
+                    packageName = app.packageName,
+                    name = app.name,
+                    icon = app.icon,
+                    versionName = app.versionName,
+                    versionCode = app.versionCode,
+                    permissions = app.permissions,
+                    exodusVersionName = latestExodusApp.version_name,
+                    exodusVersionCode =
+                    if (latestExodusApp.version_code.isNotBlank())
+                        latestExodusApp.version_code.toLong()
+                    else
+                        0L,
+                    exodusTrackers = latestExodusApp.trackers,
+                    source = app.source,
+                    report = latestExodusApp.report,
+                    created = latestExodusApp.created,
+                    updated = latestExodusApp.updated
                 )
                 appList.add(exodusApp)
-
                 // Update tracker data regarding this app
                 latestExodusApp.trackers.forEach { id ->
                     trackersList.find { it.id == id }?.let {
@@ -289,8 +293,15 @@ class ExodusUpdateService : LifecycleService() {
                         it.exodusApplications.add(exodusApp.packageName)
                     }
                 }
-
                 currentSize.postValue(currentSize.value!! + 1)
+            }
+            // count apps having trackers
+            totalNumberOfAppsHavingTrackers =
+                appList.count {
+                    it.exodusTrackers.isNotEmpty()
+            }
+            trackersList.forEach {
+                it.totalNumberOfAppsHavingTrackers = totalNumberOfAppsHavingTrackers
             }
         } catch (e: Exception) {
             Log.e(TAG, "Unable to fetch apps.", e)
