@@ -299,7 +299,7 @@ class ExodusUpdateService : LifecycleService() {
             totalNumberOfAppsHavingTrackers =
                 appList.count {
                     it.exodusTrackers.isNotEmpty()
-            }
+                }
             trackersList.forEach {
                 it.totalNumberOfAppsHavingTrackers = totalNumberOfAppsHavingTrackers
             }

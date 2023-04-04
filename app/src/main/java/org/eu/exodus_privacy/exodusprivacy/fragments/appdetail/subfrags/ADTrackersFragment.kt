@@ -78,8 +78,8 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                 }
                 val trackersList = arrayListOf<String>()
                 it.forEach { item -> trackersList.add(item.name) }
-                Log.d(TAG,"Submitting following trackers for app ${viewModel.app.value?.name}:")
-                Log.d(TAG,"$trackersList.")
+                Log.d(TAG, "Submitting following trackers for app ${viewModel.app.value?.name}:")
+                Log.d(TAG, "$trackersList.")
                 adTrackersRVAdapter.submitList(it)
                 binding.trackersStatusTV.text = getString(R.string.code_signature_found)
             }

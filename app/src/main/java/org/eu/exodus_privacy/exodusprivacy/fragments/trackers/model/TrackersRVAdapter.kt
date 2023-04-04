@@ -18,9 +18,7 @@ import dagger.hilt.android.internal.managers.FragmentComponentManager
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewTrackerItemBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragmentDirections
-import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersFragmentDirections
-import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersViewModel
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 
 class TrackersRVAdapter(
@@ -53,8 +51,8 @@ class TrackersRVAdapter(
         val app = getItem(position)
         val totalNumberOfAppsHavingTrackers: Int = currentList[0].totalNumberOfAppsHavingTrackers
 
-        Log.d(TAG,"ApplicationsList in TrackerData: ${app.exodusApplications}. Size: ${app.exodusApplications.size}.")
-        Log.d(TAG,"All apps having trackers: $trackerApps. Size: ${trackerApps.size}.")
+        Log.d(TAG, "ApplicationsList in TrackerData: ${app.exodusApplications}. Size: ${app.exodusApplications.size}.")
+        Log.d(TAG, "All apps having trackers: $trackerApps. Size: ${trackerApps.size}.")
 
         val trackerPercentage =
             if (totalNumberOfAppsHavingTrackers != 0) {
