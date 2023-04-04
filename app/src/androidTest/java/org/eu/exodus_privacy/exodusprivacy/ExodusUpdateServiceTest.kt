@@ -23,19 +23,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@Module
-@TestInstallIn(
-    components = [SingletonComponent::class],
-    replaces = [DispatcherModule::class]
-)
-object FakeDispatcherModule {
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @IoDispatcher
-    @Provides
-    fun providesIoDispatcher(): CoroutineDispatcher =
-        StandardTestDispatcher(TestCoroutineScheduler())
-}
-
 @HiltAndroidTest
 class ExodusUpdateServiceTest {
     @get:Rule
@@ -44,8 +31,8 @@ class ExodusUpdateServiceTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
-    private val testDispatcher: CoroutineDispatcher =
-        FakeDispatcherModule.providesIoDispatcher()
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val testDispatcher = StandardTestDispatcher()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val testScope: TestScope = TestScope(testDispatcher)
