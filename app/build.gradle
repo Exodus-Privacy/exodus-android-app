@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -27,15 +28,30 @@ android {
     }
     signingConfigs {
         releaseConfig {
-            storeFile file("release.keystore")
-            storePassword System.getenv('KEYSTORE_PASSWORD')
-            keyAlias System.getenv('KEYSTORE_ALIAS')
-            keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+            // check wether we are in release workflow or on dev system
+            if ( System.getenv("KEYSTORE_FILE") != null )
+            {
+                storeFile file(System.getenv('KEYSTORE_FILE'))
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEYSTORE_ALIAS')
+                keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+            } else {
+                storeFile file("release.keystore")
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEYSTORE_ALIAS')
+                keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+            }
         }
     }
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            debuggable true
         }
     }
     compileOptions {
