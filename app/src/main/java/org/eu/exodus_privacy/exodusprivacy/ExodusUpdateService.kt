@@ -257,7 +257,7 @@ class ExodusUpdateService : LifecycleService() {
                 val appDetailList =
                     exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
 
-                val remoteVersionCodes : ArrayList<String> = arrayListOf()
+                val remoteVersionCodes: ArrayList<String> = arrayListOf()
                 val localVersionCode = app.versionCode
 
                 appDetailList.forEach { remoteVersionCodes.add(it.version_code) }
@@ -331,7 +331,7 @@ class ExodusUpdateService : LifecycleService() {
         stopSelf()
     }
 
-    private fun String.toLongOrZero() : Long {
+    private fun String.toLongOrZero(): Long {
         return if (this.isNotBlank()) {
             this.toLong()
         } else {
