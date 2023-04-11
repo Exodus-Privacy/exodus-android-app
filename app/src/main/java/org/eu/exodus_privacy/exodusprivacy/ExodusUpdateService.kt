@@ -285,6 +285,7 @@ class ExodusUpdateService : LifecycleService() {
                     created = latestExodusApp.created,
                     updated = latestExodusApp.updated
                 )
+
                 appList.add(exodusApp)
                 // Update tracker data regarding this app
                 latestExodusApp.trackers.forEach { id ->
@@ -295,16 +296,21 @@ class ExodusUpdateService : LifecycleService() {
                 }
                 currentSize.postValue(currentSize.value!! + 1)
             }
-            // count apps having trackers
-            totalNumberOfAppsHavingTrackers =
-                appList.count {
-                    it.exodusTrackers.isNotEmpty()
-                }
+
+            val totalNumberOfAppsHavingTrackers = countAppsHavingTrackers(appList)
             trackersList.forEach {
                 it.totalNumberOfAppsHavingTrackers = totalNumberOfAppsHavingTrackers
             }
         } catch (e: Exception) {
             Log.e(TAG, "Unable to fetch apps.", e)
+        }
+    }
+
+    fun countAppsHavingTrackers(
+        appList: MutableList<ExodusApplication>
+    ): Int {
+        return appList.count {
+            it.exodusTrackers.isNotEmpty()
         }
     }
 
