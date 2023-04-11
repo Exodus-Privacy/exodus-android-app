@@ -136,8 +136,7 @@ class ExodusUpdateService : LifecycleService() {
                 }
             }
 
-            // Construct an ongoing notification
-            startForeground(
+            notificationManager.notify(
                 SERVICE_ID,
                 createNotification(
                     currentSize.value!!,
@@ -296,6 +295,10 @@ class ExodusUpdateService : LifecycleService() {
         } catch (e: Exception) {
             Log.e(TAG, "Unable to fetch apps.", e)
         }
+    }
+
+    fun serviceRuns(): Boolean {
+        return IS_SERVICE_RUNNING
     }
 
     private fun stopService() {

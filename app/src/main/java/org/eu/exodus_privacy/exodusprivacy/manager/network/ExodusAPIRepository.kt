@@ -2,7 +2,6 @@ package org.eu.exodus_privacy.exodusprivacy.manager.network
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.Trackers
@@ -12,7 +11,7 @@ import javax.inject.Inject
 class ExodusAPIRepository @Inject constructor(
     private val exodusAPIInterface: ExodusAPIInterface,
     private val networkManager: NetworkManager,
-    @IoDispatcher val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    @IoDispatcher val ioDispatcher: CoroutineDispatcher
 ) {
     private val TAG = ExodusAPIRepository::class.java.simpleName
 
