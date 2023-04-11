@@ -11,10 +11,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
+import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 
 @HiltAndroidTest
 class ExodusUpdateServiceTest {
@@ -57,10 +57,10 @@ class ExodusUpdateServiceTest {
         val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
         serviceRule.startService(serviceIntent)
 
-        //when
+        // when
         val serviceRuns = service.serviceRuns()
 
-        //then
+        // then
         assert(serviceRuns)
     }
 

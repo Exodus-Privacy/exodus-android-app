@@ -5,19 +5,14 @@ import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.core.graphics.scale
-import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsViewModel
-import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersViewModel
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabase
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
@@ -29,7 +24,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.io.InputStream
-import java.util.concurrent.CountDownLatch
 
 @HiltAndroidTest
 class ExodusDatabaseRepositoryTest {
@@ -150,16 +144,14 @@ class ExodusDatabaseRepositoryTest {
         val dataBaseExceptionMessage = "android.database.sqlite.SQLiteBlobTooBigException: Row too big to fit into CursorWindow"
         val javaIllegalStateExceptionMessage = "java.lang.IllegalStateException: Couldn't read row"
 
-            try {
-                exodusDatabaseRepository.getApp(packageName)
-            } catch (
-                exception: java.lang.Exception
-            ) {
-                exceptions.add(exception.toString())
-            }
+        try {
+            exodusDatabaseRepository.getApp(packageName)
+        } catch (
+            exception: java.lang.Exception
+        ) { exceptions.add(exception.toString()) }
         assert(
-            dataBaseExceptionMessage in exceptions[0]
-                    || javaIllegalStateExceptionMessage in exceptions[0]
+            dataBaseExceptionMessage in exceptions[0] ||
+                javaIllegalStateExceptionMessage in exceptions[0]
         )
     }
 
