@@ -2,6 +2,7 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
@@ -23,6 +24,8 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
         private const val trackersInfoPage =
             "https://reports.exodus-privacy.eu.org/info/trackers/"
     }
+
+    private val TAG = ADTrackersFragment::class.java.simpleName
 
     @Inject
     lateinit var customTabsIntent: CustomTabsIntent
@@ -73,6 +76,10 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                         }
                     }
                 }
+                val trackersList = arrayListOf<String>()
+                it.forEach { item -> trackersList.add(item.name) }
+                Log.d(TAG, "Submitting following trackers for app ${viewModel.app.value?.name}:")
+                Log.d(TAG, "$trackersList.")
                 adTrackersRVAdapter.submitList(it)
                 binding.trackersStatusTV.text = getString(R.string.code_signature_found)
             }

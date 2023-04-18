@@ -2,6 +2,7 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,8 @@ class TrackersRVAdapter(
 ) :
     ListAdapter<TrackerData, TrackersRVAdapter.ViewHolder>(TrackersDiffUtil()) {
 
+    private val TAG = TrackersRVAdapter::class.java.simpleName
+
     inner class ViewHolder(val binding: RecyclerViewTrackerItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -41,11 +44,22 @@ class TrackersRVAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val context = holder.itemView.context
-        val trackerApps = mutableSetOf<String>().apply {
-            currentList.forEach { this.addAll(it.exodusApplications) }
-        }
+
         val app = getItem(position)
-        val trackerPercentage = (app.exodusApplications.size / trackerApps.size.toFloat()) * 100
+        val totalNumberOfAppsHavingTrackers: Int = currentList[0].totalNumberOfAppsHavingTrackers
+
+        Log.d(
+            TAG,
+            "ApplicationsList in TrackerData: ${app.exodusApplications}. " +
+                "Size: ${app.exodusApplications.size}."
+        )
+
+        val trackerPercentage =
+            if (totalNumberOfAppsHavingTrackers != 0) {
+                (app.exodusApplications.size / totalNumberOfAppsHavingTrackers.toFloat()) * 100
+            } else {
+                0.toFloat()
+            }
 
         // Fix padding for TrackersFragment
         if (!showSuggestions) {
