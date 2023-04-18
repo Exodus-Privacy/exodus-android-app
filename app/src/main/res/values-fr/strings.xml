@@ -78,7 +78,7 @@
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
-        <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
     </plurals>
 
     <!-- TrackersDetail Fragment -->
@@ -89,7 +89,7 @@
     <string name="apps_list">Liste des applications</string>
     <plurals name="trackers_presence">
         <item quantity="one">Présent dans <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) de vos applications</item>
-        <item quantity="many">Présent dans <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) de vos applications</item>
+        <item quantity="other">Présent dans <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) de vos applications</item>
     </plurals>
 
     <!-- Dialog Fragment -->
