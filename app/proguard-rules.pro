@@ -18,8 +18,16 @@
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
-#-renamesourcefileattribute SourceFile
+-renamesourcefileattribute SourceFile
+
+# keep most of the things
+-keep class org.eu.exodus_privacy.exodusprivacy.** { *;}
+
+# Print info
+-printconfiguration full-r8-config.txt
+-printusage usage.txt
+

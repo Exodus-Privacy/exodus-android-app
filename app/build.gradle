@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -27,15 +28,30 @@ android {
     }
     signingConfigs {
         releaseConfig {
-            storeFile file("release.keystore")
-            storePassword System.getenv('KEYSTORE_PASSWORD')
-            keyAlias System.getenv('KEYSTORE_ALIAS')
-            keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+            // check wether we are in release workflow or on dev system
+            if ( System.getenv("KEYSTORE_FILE") != null )
+            {
+                storeFile file(System.getenv('KEYSTORE_FILE'))
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEYSTORE_ALIAS')
+                keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+            } else {
+                storeFile file("release.keystore")
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEYSTORE_ALIAS')
+                keyPassword System.getenv('KEYSTORE_PASSPHRASE')
+            }
         }
     }
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            debuggable true
         }
     }
     compileOptions {
@@ -69,6 +85,9 @@ kapt {
 
 dependencies {
 
+    // r8
+    implementation 'com.android.tools:r8:8.0.40'
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -99,6 +118,10 @@ dependencies {
     def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // okhttp
+    def okhttp_version = '4.10.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     // Hilt
     def hilt_version = '2.45'
@@ -141,11 +164,7 @@ dependencies {
     androidTestImplementation "androidx.test:rules:1.5.0"
     androidTestImplementation "androidx.room:room-testing:2.4.1"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.14.9'
-    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.5.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
 }
 

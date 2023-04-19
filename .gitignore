@@ -29,3 +29,6 @@ proguard/
 
 
 captures/
+
+usage.txt
+full-r8-config.txt

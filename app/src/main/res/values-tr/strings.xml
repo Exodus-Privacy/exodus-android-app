@@ -55,13 +55,19 @@
     <string name="permission_info_dangerous"><font color="red"><b>!</b></font> simgesi Google\'ın koruma seviyelerine göre \'Tehlikeli\' veya \'Özel\' seviyesini gösterir.</string>
     <string name="updates">Güncellemeler</string>
     <string name="updating_database">Rapor veritabanı güncelleniyor... (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
-    <string name="trackers_status"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulama</string>
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulama</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulamalar</item>
+    </plurals>
     <string name="open_tracker_page">İzleyici sayfasını aç</string>
     <string name="detection_rules">Tespit Kuralları</string>
     <string name="code_signature">Kod saptama kuralı:</string>
     <string name="network_signature">Ağ saptama kuralı:</string>
     <string name="apps_list">Uygulama listesi</string>
-    <string name="trackers_presence">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulama) oranında mevcut</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulama) oranında mevcut</item>
+        <item quantity="other">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulamalar) oranında mevcut</item>
+    </plurals>
     <string name="accept">Kabul et</string>
     <string name="reject">Reddet</string>
     <string name="warning_title">Exodus\'un gerekli verileri iletmesine izin verilsin mi?</string>

@@ -256,34 +256,40 @@ class ExodusUpdateService : LifecycleService() {
             applicationList.forEach { app ->
                 val appDetailList =
                     exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
+
+                val remoteVersionCodes: ArrayList<String> = arrayListOf()
+                val localVersionCode = app.versionCode
+
+                appDetailList.forEach { remoteVersionCodes.add(it.version_code) }
+                Log.d(TAG, "List of remote version codes for ${app.name}\n$remoteVersionCodes")
+                Log.d(TAG, "Local version code for ${app.name}\n$localVersionCode")
+
                 // Look for current installed version in the list, otherwise pick the latest one
                 val currentApp =
-                    appDetailList.filter { it.version_code.toLong() == app.versionCode }
+                    appDetailList.filter { it.version_code.toLongOrZero() == app.versionCode }
+
+                // if a matching version code was found, use this as our exodus app
                 val latestExodusApp = if (currentApp.isNotEmpty()) {
                     currentApp[0]
-                } else {
-                    appDetailList.maxByOrNull { it.version_code.toLong() } ?: AppDetails()
+                } else { // otherwise use highest number of version codes found
+                    appDetailList.maxByOrNull { it.version_code.toLongOrZero() } ?: AppDetails()
                 }
 
                 // Create and save app data with proper tracker info
                 val exodusApp = ExodusApplication(
-                    packageName = app.packageName,
-                    name = app.name,
-                    icon = app.icon,
-                    versionName = app.versionName,
-                    versionCode = app.versionCode,
-                    permissions = app.permissions,
-                    exodusVersionName = latestExodusApp.version_name,
-                    exodusVersionCode =
-                    if (latestExodusApp.version_code.isNotBlank())
-                        latestExodusApp.version_code.toLong()
-                    else
-                        0L,
-                    exodusTrackers = latestExodusApp.trackers,
-                    source = app.source,
-                    report = latestExodusApp.report,
-                    created = latestExodusApp.created,
-                    updated = latestExodusApp.updated
+                    app.packageName,
+                    app.name,
+                    app.icon,
+                    app.versionName,
+                    app.versionCode,
+                    app.permissions,
+                    latestExodusApp.version_name,
+                    latestExodusApp.version_code.toLongOrZero(),
+                    latestExodusApp.trackers,
+                    app.source,
+                    latestExodusApp.report,
+                    latestExodusApp.created,
+                    latestExodusApp.updated
                 )
 
                 appList.add(exodusApp)
@@ -297,7 +303,7 @@ class ExodusUpdateService : LifecycleService() {
                 currentSize.postValue(currentSize.value!! + 1)
             }
 
-            val totalNumberOfAppsHavingTrackers = countAppsHavingTrackers(appList)
+            totalNumberOfAppsHavingTrackers = countAppsHavingTrackers(appList)
             trackersList.forEach {
                 it.totalNumberOfAppsHavingTrackers = totalNumberOfAppsHavingTrackers
             }
@@ -323,5 +329,13 @@ class ExodusUpdateService : LifecycleService() {
         notificationManager.cancel(SERVICE_ID)
         stopForeground(true)
         stopSelf()
+    }
+
+    private fun String.toLongOrZero(): Long {
+        return if (this.isNotBlank()) {
+            this.toLong()
+        } else {
+            0L
+        }
     }
 }
