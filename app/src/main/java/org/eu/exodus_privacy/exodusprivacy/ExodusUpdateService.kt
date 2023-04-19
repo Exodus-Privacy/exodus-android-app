@@ -303,7 +303,7 @@ class ExodusUpdateService : LifecycleService() {
                 currentSize.postValue(currentSize.value!! + 1)
             }
 
-            val totalNumberOfAppsHavingTrackers = countAppsHavingTrackers(appList)
+            totalNumberOfAppsHavingTrackers = countAppsHavingTrackers(appList)
             trackersList.forEach {
                 it.totalNumberOfAppsHavingTrackers = totalNumberOfAppsHavingTrackers
             }
