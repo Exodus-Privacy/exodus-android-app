@@ -3,6 +3,7 @@ package org.eu.exodus_privacy.exodusprivacy.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
 import android.os.Build
@@ -14,6 +15,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.*
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
@@ -36,28 +38,80 @@ object PackageManagerModule {
     @SuppressLint("QueryPermissionsNeeded")
     fun provideApplicationList(@ApplicationContext context: Context): MutableList<Application> {
         val packageManager = context.packageManager
-        val packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        val packages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        val permissionsMap = generatePermissionsMap(packages, packageManager)
         val applicationList = mutableListOf<Application>()
-
-        packageList.forEach {
-            if (validPackage(it.packageName, packageManager)) {
-                Log.d(TAG, "Found app: ${it.packageName}.")
-                val appPerms = it.requestedPermissions?.toList() ?: emptyList()
-                val permsList = getPermissionList(appPerms, packageManager)
+        packages.forEach { packageInfo ->
+            if (validPackage(packageInfo, packageManager)) {
+                Log.d(TAG, "Found package: ${packageInfo.packageName}.")
                 val app = Application(
-                    it.applicationInfo.loadLabel(packageManager).toString(),
-                    it.packageName,
-                    it.applicationInfo.loadIcon(packageManager).toBitmap(resolution, resolution),
-                    it.versionName ?: "",
-                    PackageInfoCompat.getLongVersionCode(it),
-                    permsList,
-                    getAppStore(it.packageName, packageManager)
+                    packageInfo.applicationInfo.loadLabel(packageManager).toString(),
+                    packageInfo.packageName,
+                    packageInfo.applicationInfo.loadIcon(packageManager).toBitmap(resolution, resolution),
+                    packageInfo.versionName ?: "",
+                    PackageInfoCompat.getLongVersionCode(packageInfo),
+                    permissionsMap[packageInfo.packageName] ?: emptyList(),
+                    getAppStore(packageInfo.packageName, packageManager)
                 )
+                Log.d(TAG, "Add app: $app")
                 applicationList.add(app)
             }
         }
         applicationList.sortBy { it.name }
         return applicationList
+    }
+
+    fun generatePermissionsMap(
+        packages: List<PackageInfo>, packageManager: PackageManager
+    ): MutableMap<String, List<Permission>> {
+        val packagesWithPermissions = packages.filterNot { it.requestedPermissions == null }
+        Log.d(TAG, "Packages with perms: $packagesWithPermissions")
+        val permissionInfoSet = packagesWithPermissions.fold(
+            hashSetOf<String>()
+        ) { acc, next ->
+            if (next.requestedPermissions != null) {
+                acc.addAll(next.requestedPermissions)
+            }
+            acc
+        }
+        Log.d(TAG, "Permission Info Set: $permissionInfoSet")
+        val permissionMap = hashMapOf<String, List<Permission>>()
+        val permissionSet = permissionInfoSet.map { permissionName ->
+            generatePermission(permissionName, packageManager)
+        }
+        Log.d(TAG, "Permission Set: $permissionSet")
+        packagesWithPermissions.forEach { packageInfo ->
+            permissionMap[packageInfo.packageName] = permissionSet.filter { perm ->
+                packageInfo.requestedPermissions.any { reqPerm ->
+                    reqPerm == perm.permission
+                }
+            }
+        }
+        return permissionMap
+    }
+
+    private fun generatePermission(name: String, packageManager: PackageManager): Permission {
+        var permInfo: PermissionInfo? = null
+        try {
+            permInfo = packageManager.getPermissionInfo(
+                name,
+                PackageManager.GET_META_DATA
+            )
+        } catch (exception: PackageManager.NameNotFoundException) {
+            Log.d(TAG, "Unable to find info about $name.")
+        }
+        permInfo?.loadLabel(packageManager)?.let { label ->
+            return Permission(
+                name,
+                label.toString(),
+                permInfo.loadDescription(packageManager)?.toString() ?: ""
+            )
+        } ?: run {
+            return Permission(
+                name,
+                name
+            )
+        }
     }
 
     @Suppress("DEPRECATION")
@@ -76,53 +130,14 @@ object PackageManagerModule {
             else -> Source.USER
         }
     }
-
-    private fun validPackage(packageName: String, packageManager: PackageManager): Boolean {
-        val appInfo = packageManager.getApplicationInfo(packageName, 0)
+    private fun validPackage(packageInfo: PackageInfo, packageManager: PackageManager): Boolean {
+        val appInfo = packageInfo.applicationInfo
+        val packageName = packageInfo.packageName
         return (
             appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
                 appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
                 packageManager.getLaunchIntentForPackage(packageName) != null
             ) &&
             appInfo.enabled
-    }
-
-    private fun getPermissionList(
-        permissionList: List<String>,
-        packageManager: PackageManager
-    ): List<Permission> {
-        val permsList = mutableListOf<Permission>()
-        permissionList.forEach { permissionName ->
-            var permInfo: PermissionInfo? = null
-            try {
-                permInfo = packageManager.getPermissionInfo(
-                    permissionName,
-                    PackageManager.GET_META_DATA
-                )
-            } catch (exception: PackageManager.NameNotFoundException) {
-                Log.d(TAG, "Unable to find info about $permissionName.")
-            }
-
-            // Encapsulate regex modification
-            val permissionString = permissionName.replace("[^>]*[a-z][.]".toRegex(), "")
-            permInfo?.loadLabel(packageManager)?.let { label ->
-                permsList.add(
-                    Permission(
-                        permissionString,
-                        label.toString(),
-                        permInfo.loadDescription(packageManager)?.toString() ?: "",
-                    )
-                )
-            } ?: run {
-                permsList.add(
-                    Permission(
-                        permissionString,
-                        permissionName,
-                    )
-                )
-            }
-        }
-        permsList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.permission })
-        return permsList
     }
 }
