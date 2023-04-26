@@ -88,8 +88,10 @@ class PackageManagerModuleTest {
         hiltRule.inject()
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
         val packageManagerModule = PackageManagerModule
-        val installedApps = context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
-        val installedAppsWithPermissions = installedApps.filterNot { it.requestedPermissions == null }
+        val installedApps =
+            context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        val installedAppsWithPermissions =
+            installedApps.filterNot { it.requestedPermissions == null }
 
         // when
         val appList = packageManagerModule.provideApplicationList(context)
@@ -116,7 +118,8 @@ class PackageManagerModuleTest {
         hiltRule.inject()
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
         val packageManager = context.packageManager
-        val installedApps = context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES)
+        val installedApps =
+            context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES)
         var count = 0
         // when
         for (pkg in installedApps) {
@@ -125,16 +128,12 @@ class PackageManagerModuleTest {
             val comparePkgInfo = packageManager.getApplicationInfo(pkg.packageName, 0)
             val applicationInfoObjectsAreTheSame =
                 appInfo.packageName == comparePkgInfo.packageName &&
-                        appInfo.enabled == comparePkgInfo.enabled &&
-                        appInfo.flags == comparePkgInfo.flags &&
-                        appInfo.icon == comparePkgInfo.icon
+                    appInfo.enabled == comparePkgInfo.enabled &&
+                    appInfo.flags == comparePkgInfo.flags &&
+                    appInfo.icon == comparePkgInfo.icon
             // then
             assert(applicationInfoObjectsAreTheSame)
             count += 1
         }
-
-
-
-
     }
 }

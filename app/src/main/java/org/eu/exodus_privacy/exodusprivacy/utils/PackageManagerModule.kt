@@ -15,7 +15,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.*
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
@@ -62,7 +61,8 @@ object PackageManagerModule {
     }
 
     fun generatePermissionsMap(
-        packages: List<PackageInfo>, packageManager: PackageManager
+        packages: List<PackageInfo>,
+        packageManager: PackageManager
     ): MutableMap<String, List<Permission>> {
         val packagesWithPermissions = packages.filterNot { it.requestedPermissions == null }
         Log.d(TAG, "Packages with perms: $packagesWithPermissions")
