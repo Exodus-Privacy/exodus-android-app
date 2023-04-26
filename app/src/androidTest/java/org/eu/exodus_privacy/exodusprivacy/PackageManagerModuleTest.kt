@@ -108,4 +108,33 @@ class PackageManagerModuleTest {
             }
         }
     }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun applicationInfoObjectsAreTheSame() = runTest(testDispatcher) {
+        // given
+        hiltRule.inject()
+        val context = ApplicationProvider.getApplicationContext<android.content.Context>()
+        val packageManager = context.packageManager
+        val installedApps = context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES)
+        var count = 0
+        // when
+        for (pkg in installedApps) {
+            pkg.applicationInfo.name
+            val appInfo = pkg.applicationInfo
+            val comparePkgInfo = packageManager.getApplicationInfo(pkg.packageName, 0)
+            val applicationInfoObjectsAreTheSame =
+                appInfo.packageName == comparePkgInfo.packageName &&
+                        appInfo.enabled == comparePkgInfo.enabled &&
+                        appInfo.flags == comparePkgInfo.flags &&
+                        appInfo.icon == comparePkgInfo.icon
+            // then
+            assert(applicationInfoObjectsAreTheSame)
+            count += 1
+        }
+
+
+
+
+    }
 }
