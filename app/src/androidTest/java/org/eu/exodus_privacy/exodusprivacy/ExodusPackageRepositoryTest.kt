@@ -10,12 +10,14 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.eu.exodus_privacy.exodusprivacy.utils.PackageManagerModule
+import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
+import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.PackageManagerModule
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
 
 @HiltAndroidTest
-class PackageManagerModuleTest {
+class ExodusPackageRepositoryTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
@@ -24,6 +26,9 @@ class PackageManagerModuleTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
+
+    @Inject
+    lateinit var exodusPackageRepository: ExodusPackageRepository
 
     private val resolution = 96
 
@@ -44,7 +49,8 @@ class PackageManagerModuleTest {
         val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
 
         // when
-        val appList = service.applicationList
+        val valid = exodusPackageRepository.getValidPackageList()
+        val appList = exodusPackageRepository.getApplicationList(valid)
 
         // then
         appList.forEach {
@@ -62,10 +68,9 @@ class PackageManagerModuleTest {
         val packageManager = context.packageManager
         val packages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
         val packagesWithPermissions = packages.filterNot { it.requestedPermissions == null }
-        val packageManagerModule = PackageManagerModule
 
         // when
-        val permissionsMap = packageManagerModule.generatePermissionsMap(packages, packageManager)
+        val permissionsMap = exodusPackageRepository.generatePermissionsMap(packages, packageManager)
 
         // then
         val youtubePackage =
@@ -87,14 +92,15 @@ class PackageManagerModuleTest {
         // given
         hiltRule.inject()
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
-        val packageManagerModule = PackageManagerModule
+
         val installedApps =
             context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
         val installedAppsWithPermissions =
             installedApps.filterNot { it.requestedPermissions == null }
 
         // when
-        val appList = packageManagerModule.provideApplicationList(context)
+        val valid = exodusPackageRepository.getValidPackageList()
+        val appList = exodusPackageRepository.getApplicationList(valid)
         val appsWithPermissions = appList.filter { it.permissions.isNotEmpty() }
 
         // then
@@ -117,7 +123,9 @@ class PackageManagerModuleTest {
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
         val packageManager = context.packageManager
         val installedApps =
-            context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES)
+            context.packageManager.getInstalledPackages(
+                PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES
+            )
         var count = 0
         // when
         for (pkg in installedApps) {
