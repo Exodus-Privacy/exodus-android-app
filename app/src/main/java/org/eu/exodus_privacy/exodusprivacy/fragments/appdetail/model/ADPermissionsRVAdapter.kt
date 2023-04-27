@@ -30,7 +30,7 @@ class ADPermissionsRVAdapter :
         val app = getItem(position)
 
         holder.binding.apply {
-            val permissionName = app.permission.replace("[^>]*[a-z][.]".toRegex(), "")
+            val permissionName = app.permission.trim { it.isLowerCase() || it == '.' }
             permissionTitleTV.text = permissionName
             permissionSubTitleTV.text = app.label.replaceFirstChar { it.uppercase() }
             if (app.description.isEmpty() || app.description == "null") {
