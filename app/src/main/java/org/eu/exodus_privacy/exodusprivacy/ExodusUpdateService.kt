@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -25,6 +26,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
+import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.utils.DataStoreModule
 import javax.inject.Inject
@@ -52,13 +54,16 @@ class ExodusUpdateService : LifecycleService() {
 
     private var networkConnected: Boolean = false
     private var totalNumberOfAppsHavingTrackers = 0
+    private var validPackages = listOf<PackageInfo>()
 
     // Inject required modules
-    @Inject
-    lateinit var applicationList: MutableList<Application>
+    var applicationList = mutableListOf<Application>()
 
     @Inject
     lateinit var networkManager: NetworkManager
+
+    @Inject
+    lateinit var exodusPackageRepository: ExodusPackageRepository
 
     @Inject
     lateinit var exodusAPIRepository: ExodusAPIRepository
@@ -126,6 +131,9 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private fun launchFetch(firstTime: Boolean) {
+        // create list of installed packages, that are system apps or launchable
+        validPackages = exodusPackageRepository.getValidPackageList()
+        val numberOfInstalledPackages = validPackages.size
 
         if (networkConnected) {
             IS_SERVICE_RUNNING = true
@@ -141,7 +149,7 @@ class ExodusUpdateService : LifecycleService() {
                 SERVICE_ID,
                 createNotification(
                     currentSize.value!!,
-                    applicationList.size,
+                    numberOfInstalledPackages,
                     !firstTime,
                     this
                 )
@@ -153,7 +161,7 @@ class ExodusUpdateService : LifecycleService() {
             currentSize.observe(this) { current ->
                 notificationManager.notify(
                     SERVICE_ID,
-                    createNotification(current, applicationList.size, false, this)
+                    createNotification(current, numberOfInstalledPackages, false, this)
                 )
             }
         }
@@ -253,6 +261,7 @@ class ExodusUpdateService : LifecycleService() {
 
     private suspend fun fetchApps() {
         try {
+            applicationList = exodusPackageRepository.getApplicationList(validPackages)
             applicationList.forEach { app ->
                 val appDetailList =
                     exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
