@@ -101,11 +101,9 @@ class PackageManagerModuleTest {
         installedAppsWithPermissions.forEach { pkg ->
             appsWithPermissions.forEach { app ->
                 if (pkg.packageName == app.packageName) {
-                    val reqPerm = mutableListOf<String>()
-                    pkg.requestedPermissions.forEach { reqPerm.add(it) }
-                    val compPerm = mutableListOf<String>()
-                    app.permissions.forEach { compPerm.add(it.permission) }
-                    assert(reqPerm.size == compPerm.size)
+                    app.permissions.forEach {
+                        assert(pkg.requestedPermissions.contains(it.permission))
+                    }
                 }
             }
         }
