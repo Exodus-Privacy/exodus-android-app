@@ -46,7 +46,8 @@ object PackageManagerModule {
                 val app = Application(
                     packageInfo.applicationInfo.loadLabel(packageManager).toString(),
                     packageInfo.packageName,
-                    packageInfo.applicationInfo.loadIcon(packageManager).toBitmap(resolution, resolution),
+                    packageInfo.applicationInfo.loadIcon(packageManager)
+                        .toBitmap(resolution, resolution),
                     packageInfo.versionName ?: "",
                     PackageInfoCompat.getLongVersionCode(packageInfo),
                     permissionsMap[packageInfo.packageName] ?: emptyList(),
@@ -86,6 +87,13 @@ object PackageManagerModule {
                     reqPerm == perm.permission
                 }
             }
+        }
+        permissionMap.map { permMapData ->
+            permMapData
+                .value
+                .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) {
+                    it.permission
+                })
         }
         return permissionMap
     }
@@ -130,14 +138,15 @@ object PackageManagerModule {
             else -> Source.USER
         }
     }
+
     private fun validPackage(packageInfo: PackageInfo, packageManager: PackageManager): Boolean {
         val appInfo = packageInfo.applicationInfo
         val packageName = packageInfo.packageName
         return (
-            appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
-                appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
-                packageManager.getLaunchIntentForPackage(packageName) != null
-            ) &&
-            appInfo.enabled
+                appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
+                        appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
+                        packageManager.getLaunchIntentForPackage(packageName) != null
+                ) &&
+                appInfo.enabled
     }
 }
