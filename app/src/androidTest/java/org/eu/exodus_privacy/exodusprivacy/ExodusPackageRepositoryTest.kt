@@ -11,7 +11,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
-import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.PackageManagerModule
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject

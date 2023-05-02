@@ -1,8 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.packageinfo
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import dagger.Module
 import dagger.Provides

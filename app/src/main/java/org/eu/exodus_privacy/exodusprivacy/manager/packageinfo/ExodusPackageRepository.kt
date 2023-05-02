@@ -8,7 +8,8 @@ import android.os.Build
 import android.util.Log
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
@@ -25,7 +26,6 @@ class ExodusPackageRepository @Inject constructor(
     private val FDROID = "org.fdroid.fdroid"
     private val SYSTEM: String? = null
     private val resolution = 96
-    private val repoJob = SupervisorJob()
 
     suspend fun getApplicationList(
         validPackages: List<PackageInfo>
@@ -93,9 +93,9 @@ class ExodusPackageRepository @Inject constructor(
             permissionMap.forEach { permMapData ->
                 permMapData
                     .value
-                    .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) {
-                        it.permission
-                    })
+                    .sortedWith(
+                        compareBy(String.CASE_INSENSITIVE_ORDER) { it.permission }
+                    )
             }
             return@withContext permissionMap
         }
@@ -146,12 +146,10 @@ class ExodusPackageRepository @Inject constructor(
         val appInfo = packageInfo.applicationInfo
         val packageName = packageInfo.packageName
         return (
-                appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
-                        appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
-                        packageManager.getLaunchIntentForPackage(packageName) != null
-                ) &&
-                appInfo.enabled
+            appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
+                appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
+                packageManager.getLaunchIntentForPackage(packageName) != null
+            ) &&
+            appInfo.enabled
     }
-
-
 }
