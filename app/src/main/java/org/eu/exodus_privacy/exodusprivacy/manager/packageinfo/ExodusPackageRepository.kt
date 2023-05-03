@@ -79,12 +79,17 @@ class ExodusPackageRepository @Inject constructor(
             }
             Log.d(TAG, "Permission Info Set: $permissionInfoSet")
             val permissionMap = hashMapOf<String, List<Permission>>()
-            val permissionSet = permissionInfoSet.map { permissionName ->
+            var permissionList = permissionInfoSet.map { permissionName ->
                 generatePermission(permissionName, packageManager)
             }
-            Log.d(TAG, "Permission Set: $permissionSet")
+            permissionList = permissionList.sortedWith(
+                compareBy(String.CASE_INSENSITIVE_ORDER) {
+                    it.shortName
+                }
+            )
+            Log.d(TAG, "Permission List: $permissionList")
             packagesWithPermissions.forEach { packageInfo ->
-                permissionMap[packageInfo.packageName] = permissionSet.filter { perm ->
+                permissionMap[packageInfo.packageName] = permissionList.filter { perm ->
                     packageInfo.requestedPermissions.any { reqPerm ->
                         reqPerm == perm.longName
                     }
