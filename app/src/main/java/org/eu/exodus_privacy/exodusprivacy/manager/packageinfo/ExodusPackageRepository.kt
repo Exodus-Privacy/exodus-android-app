@@ -109,7 +109,10 @@ class ExodusPackageRepository @Inject constructor(
         } catch (exception: PackageManager.NameNotFoundException) {
             Log.d(TAG, "Unable to find info about $longName.")
         }
-        val shortName = longName.split('.').last()
+        var shortName = longName.substringAfterLast('.')
+        if (shortName.matches("[a-z].".toRegex())) { // we may
+            shortName = longName.replace("[^>]*[a-z][.]".toRegex(), "")
+        }
         permInfo?.loadLabel(packageManager)?.let { label ->
             return Permission(
                 shortName,
