@@ -120,7 +120,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // okhttp
-    def okhttp_version = '4.10.0'
+    def okhttp_version = '4.11.0'
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     // Hilt
