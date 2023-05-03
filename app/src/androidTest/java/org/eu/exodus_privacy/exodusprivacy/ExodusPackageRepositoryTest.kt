@@ -79,7 +79,7 @@ class ExodusPackageRepositoryTest {
         compareYoutubePackage?.forEach { perm ->
             assert(
                 youtubePackage.requestedPermissions.any {
-                    it.contains(perm.permission)
+                    it.contains(perm.longName)
                 }
             )
         }
@@ -107,7 +107,7 @@ class ExodusPackageRepositoryTest {
             appsWithPermissions.forEach { app ->
                 if (pkg.packageName == app.packageName) {
                     app.permissions.forEach {
-                        assert(pkg.requestedPermissions.contains(it.permission))
+                        assert(pkg.requestedPermissions.contains(it.longName))
                     }
                 }
             }

@@ -86,41 +86,37 @@ class ExodusPackageRepository @Inject constructor(
             packagesWithPermissions.forEach { packageInfo ->
                 permissionMap[packageInfo.packageName] = permissionSet.filter { perm ->
                     packageInfo.requestedPermissions.any { reqPerm ->
-                        reqPerm == perm.permission
+                        reqPerm == perm.longName
                     }
                 }
-            }
-            permissionMap.forEach { permMapData ->
-                permMapData
-                    .value
-                    .sortedWith(
-                        compareBy(String.CASE_INSENSITIVE_ORDER) { it.permission }
-                    )
             }
             return@withContext permissionMap
         }
     }
 
-    private fun generatePermission(name: String, packageManager: PackageManager): Permission {
+    private fun generatePermission(longName: String, packageManager: PackageManager): Permission {
         var permInfo: PermissionInfo? = null
         try {
             permInfo = packageManager.getPermissionInfo(
-                name,
+                longName,
                 PackageManager.GET_META_DATA
             )
         } catch (exception: PackageManager.NameNotFoundException) {
-            Log.d(TAG, "Unable to find info about $name.")
+            Log.d(TAG, "Unable to find info about $longName.")
         }
+        val shortName = longName.split('.').last()
         permInfo?.loadLabel(packageManager)?.let { label ->
             return Permission(
-                name,
+                shortName,
+                longName,
                 label.toString(),
                 permInfo.loadDescription(packageManager)?.toString() ?: ""
             )
         } ?: run {
             return Permission(
-                name,
-                name
+                shortName,
+                longName,
+                longName
             )
         }
     }
