@@ -152,7 +152,7 @@ dependencies {
     testImplementation "androidx.test:runner:1.5.2"
     testImplementation "androidx.test:rules:1.5.0"
     testImplementation 'com.google.dagger:hilt-android-testing:2.45'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
     kaptTest 'com.google.dagger:hilt-compiler:2.45'
 
     // instrumentation tests
@@ -164,7 +164,7 @@ dependencies {
     androidTestImplementation "androidx.test:rules:1.5.0"
     androidTestImplementation "androidx.room:room-testing:2.4.1"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
 }
 
