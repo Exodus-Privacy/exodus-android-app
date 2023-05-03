@@ -1,11 +1,14 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -57,6 +60,32 @@ class MainActivity : AppCompatActivity() {
                 ExodusDialogFragment().apply {
                     this.isCancelable = false
                     this.show(supportFragmentManager, TAG)
+                }
+            }
+        }
+
+        val isNotificationPermissionGranted = ContextCompat.checkSelfPermission(
+            this,
+            "android.permission.POST_NOTIFICATIONS"
+        )
+
+        if (isNotificationPermissionGranted == PackageManager.PERMISSION_GRANTED) {
+            viewModel.savePostNotificationPermissionGranted(true)
+        } else {
+            viewModel.savePostNotificationPermissionGranted(false)
+        }
+
+        viewModel.notificationPermissionRequested.observe(this) { requested ->
+            viewModel.notificationPermissionGranted.observe(this) { granted ->
+                if (!granted && !requested) {
+                    // ToDo: https://developer.android.com/training/permissions/requesting#request-permission
+                    ActivityResultContracts.RequestPermission()
+                }
+                if (!granted) {
+                    // do nothing
+                }
+                if (granted) {
+                    // do nothing
                 }
             }
         }
