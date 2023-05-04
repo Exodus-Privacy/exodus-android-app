@@ -1,20 +1,24 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -55,6 +59,7 @@ class ExodusUpdateService : LifecycleService() {
     private var networkConnected: Boolean = false
     private var totalNumberOfAppsHavingTrackers = 0
     private var validPackages = listOf<PackageInfo>()
+    private var notificationPermGranted = false
 
     // Inject required modules
     var applicationList = mutableListOf<Application>()
@@ -138,31 +143,41 @@ class ExodusUpdateService : LifecycleService() {
         if (networkConnected) {
             IS_SERVICE_RUNNING = true
 
-            if (firstTime) {
-                // Create notification channels on post-nougat devices
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    notificationManager.createNotificationChannel(notificationChannel)
-                }
-            }
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationPermGranted = true
 
-            notificationManager.notify(
-                SERVICE_ID,
-                createNotification(
-                    currentSize.value!!,
-                    numberOfInstalledPackages,
-                    !firstTime,
-                    this
+                if (firstTime) {
+                    // Create notification channels on post-nougat devices
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        notificationManager.createNotificationChannel(notificationChannel)
+                    }
+                }
+
+                notificationManager.notify(
+                    SERVICE_ID,
+                    createNotification(
+                        currentSize.value!!,
+                        numberOfInstalledPackages,
+                        !firstTime,
+                        this
+                    )
                 )
-            )
+            }
 
             // Update all database
             updateAllDatabase(firstTime)
 
-            currentSize.observe(this) { current ->
-                notificationManager.notify(
-                    SERVICE_ID,
-                    createNotification(current, numberOfInstalledPackages, false, this)
-                )
+            if (notificationPermGranted) {
+                currentSize.observe(this) { current ->
+                    notificationManager.notify(
+                        SERVICE_ID,
+                        createNotification(current, numberOfInstalledPackages, false, this)
+                    )
+                }
             }
         }
     }
