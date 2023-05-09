@@ -18,7 +18,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -32,7 +31,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
-import org.eu.exodus_privacy.exodusprivacy.utils.DataStoreModule
+import org.eu.exodus_privacy.exodusprivacy.manager.storage.DataStoreModule
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -75,9 +74,6 @@ class ExodusUpdateService : LifecycleService() {
 
     @Inject
     lateinit var exodusDatabaseRepository: ExodusDatabaseRepository
-
-    @Inject
-    lateinit var dataStoreModule: DataStoreModule
 
     @Inject
     lateinit var notificationBuilder: NotificationCompat.Builder
@@ -239,7 +235,6 @@ class ExodusUpdateService : LifecycleService() {
                                 exodusDatabaseRepository.saveApp(it)
                             }
                             Log.d(TAG, "Done saving app details.")
-                            if (firstTime) dataStoreModule.saveAppSetup(true)
                             // We are done, gracefully exit!
                             stopService()
                         }
