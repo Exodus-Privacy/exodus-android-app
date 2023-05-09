@@ -1,52 +1,30 @@
-package org.eu.exodus_privacy.exodusprivacy.utils
+package org.eu.exodus_privacy.exodusprivacy.manager.storage
 
-import android.content.Context
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.core.stringSetPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
+import androidx.datastore.preferences.core.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-@Singleton
-class DataStoreModule @Inject constructor(
-    @ApplicationContext private val context: Context,
-) {
+@Module
+@InstallIn(SingletonComponent::class)
+class DataStoreModule {
 
-    private val preferenceDataStoreName = "exodusPreferences"
-    private val Context.dataStore by preferencesDataStore(preferenceDataStoreName)
-
-    private val PRIV_AGREE = booleanPreferencesKey("policyAgreement")
-    val policyAgreement = context.dataStore.data.map { it[PRIV_AGREE] ?: false }
-
-    private val APP_SETUP = booleanPreferencesKey("appSetup")
-    val appSetup = context.dataStore.data.map { it[APP_SETUP] ?: false }
-
-    private val NOTIFICATION_PERMS = stringSetPreferencesKey("notificationPerms")
-    val notificationPerms = context.dataStore.data.map {
-        it[NOTIFICATION_PERMS] ?: setOf("not_granted", "not_requested")
+    @Provides
+    fun providesGson(): Gson {
+        return Gson()
     }
 
-    suspend fun saveNotificationPerms(status: Set<String>) {
-        context.dataStore.edit {
-            it[NOTIFICATION_PERMS] = status
-        }
+    @Provides
+    fun providesPreferencesKey(): Preferences.Key<String> {
+        return stringPreferencesKey("ExodusSettings")
     }
 
-    suspend fun savePolicyAgreement(status: Boolean) {
-        context.dataStore.edit {
-            it[PRIV_AGREE] = status
-        }
-    }
-
-    suspend fun saveAppSetup(status: Boolean) {
-        context.dataStore.edit {
-            it[APP_SETUP] = status
-        }
+    @Provides
+    fun providesTypeToken(): TypeToken<Map<String, ExodusConfig>> {
+        return object : TypeToken<Map<String, ExodusConfig>>() {}
     }
 }
+
