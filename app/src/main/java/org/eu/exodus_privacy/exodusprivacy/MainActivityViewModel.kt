@@ -32,11 +32,8 @@ class MainActivityViewModel @Inject constructor(
     // TODO: Somehow need to load the data and close the collection, maybe do like before
     private fun loadConfigs() {
         runBlocking {
-            configStorage.getAll().collect { value ->
-                config = value
-                Log.d(TAG, "Collecting config: $config from Storage.")
-                cancel()
-            }
+            Log.d(TAG, "Collecting config: $config from Storage.")
+            config = configStorage.getAll().first()
             Log.d(TAG, "Done Collecting.")
         }
     }
