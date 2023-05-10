@@ -52,13 +52,10 @@ class DataStoreRepository<ExodusConfig> @Inject constructor(
         }
     }
 
-    override fun insert(data: Map<String, ExodusConfig>): Flow<Int> {
-        return flow {
-            dataStore.edit {
-                val jsonString = gson.toJson(data, typeToken.type)
-                it[preferenceKey] = jsonString
-                emit(OPERATION_SUCCESS)
-            }
+    override suspend fun insert(data: Map<String, ExodusConfig>) {
+        dataStore.edit {
+            val jsonString = gson.toJson(data, typeToken.type)
+            it[preferenceKey] = jsonString
         }
     }
 

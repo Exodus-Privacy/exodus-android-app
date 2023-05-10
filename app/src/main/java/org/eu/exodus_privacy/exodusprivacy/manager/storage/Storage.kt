@@ -3,7 +3,7 @@ package org.eu.exodus_privacy.exodusprivacy.manager.storage
 import kotlinx.coroutines.flow.Flow
 
 interface Storage<T> {
-    fun insert(data: Map<String, T>): Flow<Int>
+    suspend fun insert(data: Map<String, T>)
 
     fun get(key: String): Flow<T>
 
