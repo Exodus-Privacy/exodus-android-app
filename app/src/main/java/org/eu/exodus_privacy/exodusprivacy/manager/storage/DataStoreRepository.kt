@@ -46,6 +46,12 @@ class DataStoreRepository<ExodusConfig> @Inject constructor(
         }
     }
 
+    override fun get(key: String): Flow<ExodusConfig> {
+        return getAll().map { cachedData ->
+            cachedData[key]!!
+        }
+    }
+
     override fun insert(data: Map<String, ExodusConfig>): Flow<Int> {
         return flow {
             dataStore.edit {
@@ -53,12 +59,6 @@ class DataStoreRepository<ExodusConfig> @Inject constructor(
                 it[preferenceKey] = jsonString
                 emit(OPERATION_SUCCESS)
             }
-        }
-    }
-
-    override fun get(key: String): Flow<ExodusConfig> {
-        return getAll().map { cachedData ->
-            cachedData[key]!!
         }
     }
 
