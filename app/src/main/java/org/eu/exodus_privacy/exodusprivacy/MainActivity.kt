@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val TAG = MainActivity::class.java.simpleName
     private val viewModel: MainActivityViewModel by viewModels()
-    private val permission = "android.permission.POST_NOTIFICATIONS"
-    private val REQUEST_CODE_POST_NOTIFICATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition
@@ -109,5 +107,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        viewModel.saveAppSetup(true)
     }
 }
