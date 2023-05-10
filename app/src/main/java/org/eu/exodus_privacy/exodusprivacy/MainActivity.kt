@@ -85,4 +85,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        viewModel.saveNotificationPermissionRequested(true)
+        startInitial()
+    }
+
+    private fun startInitial() {
+        viewModel.config.observe(this) { config ->
+            if (!config["app_setup"]?.enable!! &&
+                config["privacy_policy"]?.enable!! &&
+                !ExodusUpdateService.IS_SERVICE_RUNNING) {
+                Log.d(TAG, "Populating database for the first time.")
+                val intent = Intent(this, ExodusUpdateService::class.java)
+                intent.apply {
+                    action = ExodusUpdateService.FIRST_TIME_START_SERVICE
+                    startService(this)
+                }
+            }
+        }
+    }
 }
