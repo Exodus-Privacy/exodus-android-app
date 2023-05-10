@@ -22,11 +22,11 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
     private val gson: Gson,
     private val preferenceKey: Preferences.Key<String>,
     private val typeToken: TypeToken<Map<String, ExodusConfig>>,
+    private val name: DataStoreName,
     @ApplicationContext val context: Context
 ) : ExodusStorage<ExodusConfig> {
 
-    private val preferenceDataStoreName = "exodusPreferences"
-    private val Context.dataStore by preferencesDataStore(preferenceDataStoreName)
+    private val Context.dataStore by preferencesDataStore(name.name)
     private val dataStore = context.dataStore
 
     private fun defaults(): String {

@@ -8,9 +8,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+data class DataStoreName(val name: String)
+
 @Module
 @InstallIn(SingletonComponent::class)
-class ExodusDataStoreModule {
+object ExodusDataStoreModule {
 
     @Provides
     fun providesGson(): Gson {
@@ -25,6 +27,11 @@ class ExodusDataStoreModule {
     @Provides
     fun providesTypeToken(): TypeToken<Map<String, ExodusConfig>> {
         return object : TypeToken<Map<String, ExodusConfig>>() {}
+    }
+
+    @Provides
+    fun providesDataStoreName(): DataStoreName {
+        return DataStoreName("exodusPreferences")
     }
 }
 
