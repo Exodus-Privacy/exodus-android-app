@@ -37,15 +37,12 @@ class ExodusDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Initialize the config
         exodusDialogViewModel.config.observe(this) {}
-        return MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.warning_title))
+        return MaterialAlertDialogBuilder(requireContext()).setTitle(getString(R.string.warning_title))
             .setMessage(
                 HtmlCompat.fromHtml(
-                    getString(R.string.warning_desc),
-                    HtmlCompat.FROM_HTML_MODE_COMPACT
+                    getString(R.string.warning_desc), HtmlCompat.FROM_HTML_MODE_COMPACT
                 )
-            )
-            .setPositiveButton(getString(R.string.accept)) { _, _ ->
+            ).setPositiveButton(getString(R.string.accept)) { _, _ ->
                 Log.d(TAG, "Permission to transmit data granted!")
                 exodusDialogViewModel.savePolicyAgreement(true)
                 Log.d(TAG, "Version is: $version")
@@ -56,17 +53,14 @@ class ExodusDialogFragment : DialogFragment() {
                         requestPermission()
                     }
                 }
-            }
-            .setNegativeButton(getString(R.string.reject)) { _, _ ->
+            }.setNegativeButton(getString(R.string.reject)) { _, _ ->
                 activity?.finish()
-            }
-            .create()
+            }.create()
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission())
-    {
-            isGranted: Boolean ->
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
         if (isGranted) {
             exodusDialogViewModel.saveNotificationPermissionRequested(true)
         } else {
@@ -75,8 +69,10 @@ class ExodusDialogFragment : DialogFragment() {
     }
 
     private fun isNotificationPermissionGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(requireContext(),permission) ==
-                PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun requestPermission() {
@@ -85,9 +81,7 @@ class ExodusDialogFragment : DialogFragment() {
 
     private fun startInitial() {
         exodusDialogViewModel.config.observe(this) { config ->
-            if (!config["app_setup"]?.enable!! &&
-                config["privacy_policy"]?.enable!! &&
-                !ExodusUpdateService.IS_SERVICE_RUNNING) {
+            if (!config["app_setup"]?.enable!! && config["privacy_policy"]?.enable!! && !ExodusUpdateService.IS_SERVICE_RUNNING) {
                 Log.d(TAG, "Populating database for the first time.")
                 val intent = Intent(requireContext(), ExodusUpdateService::class.java)
                 intent.apply {
