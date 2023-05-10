@@ -144,6 +144,7 @@ class ExodusUpdateService : LifecycleService() {
                     Manifest.permission.POST_NOTIFICATIONS
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
+                Log.d(TAG, "Permission to post notification was granted.")
                 notificationPermGranted = true
 
                 if (firstTime) {
