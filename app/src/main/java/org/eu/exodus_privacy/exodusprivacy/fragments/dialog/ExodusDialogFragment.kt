@@ -3,6 +3,7 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.dialog
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
 import org.eu.exodus_privacy.exodusprivacy.MainActivityViewModel
 import org.eu.exodus_privacy.exodusprivacy.R
-import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
 
 @AndroidEntryPoint
 class ExodusDialogFragment : DialogFragment() {
@@ -24,6 +24,7 @@ class ExodusDialogFragment : DialogFragment() {
     private val TAG = ExodusDialogFragment::class.java.simpleName
     private val exodusDialogViewModel: MainActivityViewModel by viewModels()
     private val permission = "android.permission.POST_NOTIFICATIONS"
+    val version = Build.VERSION.SDK_INT
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,10 +48,14 @@ class ExodusDialogFragment : DialogFragment() {
             .setPositiveButton(getString(R.string.accept)) { _, _ ->
                 Log.d(TAG, "Permission to transmit data granted!")
                 exodusDialogViewModel.savePolicyAgreement(true)
-                if (!isNotificationPermissionGranted()) {
-                    requestPermission()
+                Log.d(TAG, "Version is: $version")
+                if (version < 30) {
+                    startInitial()
+                } else {
+                    if (!isNotificationPermissionGranted()) {
+                        requestPermission()
+                    }
                 }
-                startInitial()
             }
             .setNegativeButton(getString(R.string.reject)) { _, _ ->
                 activity?.finish()
@@ -91,6 +96,6 @@ class ExodusDialogFragment : DialogFragment() {
                 }
             }
         }
+        exodusDialogViewModel.saveAppSetup(true)
     }
-
 }
