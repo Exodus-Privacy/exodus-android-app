@@ -28,13 +28,15 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_POST_NOTIFICATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val config = viewModel.config
         // Handle the splash screen transition
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.d("MainActivity", "ContentView was set.")
+        Log.d(TAG, "ContentView was set.")
 
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment =
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         // Show or hide the connection message depending on the network
         viewModel.networkConnection.observe(this) { connected ->
+            Log.d(TAG, "Observing Network Connection.")
             if (!connected) {
                 Snackbar
                     .make(
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (!viewModel.config["privacy_policy"]?.enable!!) {
+        if (config["privacy_policy"]?.enable!!) {
             Log.d(TAG, "Policy Agreement was: ${viewModel.config["privacy_policy"]?.enable!!}")
             ExodusDialogFragment().apply {
                 this.isCancelable = false
@@ -67,13 +70,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (!isNotificationPermissionGranted() &&
-            !viewModel.config["notification_perm"]?.enable!!) {
+            config["notification_perm"]?.enable!!) {
             requestNotificationPermission()
         }
 
         // Populate trackers in database
-        if (!viewModel.config["app_setup"]?.enable!! &&
-            viewModel.config["privacy_policy"]?.enable!! &&
+        if (config["app_setup"]?.enable!! &&
+            config["privacy_policy"]?.enable!! &&
             !ExodusUpdateService.IS_SERVICE_RUNNING) {
             val intent = Intent(this, ExodusUpdateService::class.java)
             intent.apply {
