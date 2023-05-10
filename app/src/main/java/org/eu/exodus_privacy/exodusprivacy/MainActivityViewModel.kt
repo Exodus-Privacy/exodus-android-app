@@ -16,13 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val configStorage: DataStoreRepository<ExodusConfig>
+    private val configStorage: DataStoreRepository<ExodusConfig>,
+    private val networkManager: NetworkManager
 ) : ViewModel() {
 
     var config = mapOf<String, ExodusConfig>()
-
-    @Inject
-    lateinit var networkManager: NetworkManager
 
     init {
         loadConfigs()
