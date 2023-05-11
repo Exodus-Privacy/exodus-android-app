@@ -1,17 +1,18 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.content.pm.PackageManager
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.DataStoreRepository
-import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,34 +21,36 @@ class MainActivityViewModel @Inject constructor(
     private val networkManager: NetworkManager
 ) : ViewModel() {
 
-    var config = mapOf<String, ExodusConfig>()
-
-    init {
-        loadConfigs()
-    }
+    val config = configStorage.getAll().asLiveData()
+    var agreedToPrivacyPolicy = false
 
     private val TAG = MainActivityViewModel::class.java.simpleName
-    // TODO: Somehow need to load the data and close the collection, maybe do like before
-    private fun loadConfigs() {
-        runBlocking {
-            Log.d(TAG, "Collecting config: $config from Storage.")
-            config = configStorage.getAll().first()
-            Log.d(TAG, "Done Collecting.")
-        }
-    }
 
-    fun saveNotificationPermission(status: Boolean) {
-        val newConfig = config as MutableMap
+    fun saveNotificationPermissionRequested(status: Boolean) {
+        Log.d(TAG, "Got status for notification permission: $status.")
+        val newConfig = config.value as MutableMap
         newConfig["notification_perm"] = ExodusConfig("notification_requested", status)
         viewModelScope.launch {
+            Log.d(TAG, "Saving new config: $newConfig.")
             configStorage.insert(newConfig)
         }
     }
 
     fun saveAppSetup(status: Boolean) {
-        val newConfig = config as MutableMap
+        val newConfig = config.value as MutableMap
         newConfig["app_setup"] = ExodusConfig("is_setup_complete", status)
         viewModelScope.launch {
+            Log.d(TAG, "Saving new config: $newConfig.")
+            configStorage.insert(newConfig)
+        }
+    }
+
+    fun savePolicyAgreement(status: Boolean) {
+        Log.d(TAG, "Got status for policy agreement: $status.")
+        val newConfig = config.value as MutableMap
+        newConfig["privacy_policy"] = ExodusConfig("privacy_policy_consent", status)
+        viewModelScope.launch {
+            Log.d(TAG, "Saving new config: $newConfig.")
             configStorage.insert(newConfig)
         }
     }
