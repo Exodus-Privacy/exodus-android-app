@@ -3,6 +3,8 @@ package org.eu.exodus_privacy.exodusprivacy.utils
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
@@ -25,25 +27,14 @@ class DataStoreModule @Inject constructor(
     private val APP_SETUP = booleanPreferencesKey("appSetup")
     val appSetup = context.dataStore.data.map { it[APP_SETUP] ?: false }
 
-    private val NOTIFICATION_PERM_REQUESTED = booleanPreferencesKey("requested")
-    val notificationPermRequested = context.dataStore.data.map {
-        it[NOTIFICATION_PERM_REQUESTED] ?: false
+    private val NOTIFICATION_PERMS = stringSetPreferencesKey("notificationPerms")
+    val notificationPerms = context.dataStore.data.map {
+        it[NOTIFICATION_PERMS] ?: setOf("not_granted", "not_requested")
     }
 
-    private val NOTIFICATION_PERM_GRANTED = booleanPreferencesKey("granted")
-    val notificationPermGranted = context.dataStore.data.map {
-        it[NOTIFICATION_PERM_GRANTED] ?: false
-    }
-
-    suspend fun saveNotificationPermRequested(status: Boolean) {
+    suspend fun saveNotificationPerms(status: Set<String>) {
         context.dataStore.edit {
-            it[NOTIFICATION_PERM_REQUESTED] = status
-        }
-    }
-
-    suspend fun saveNotificationPermGranted(status: Boolean) {
-        context.dataStore.edit {
-            it[NOTIFICATION_PERM_GRANTED] = status
+            it[NOTIFICATION_PERMS] = status
         }
     }
 
