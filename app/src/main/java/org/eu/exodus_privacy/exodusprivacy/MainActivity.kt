@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -18,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -28,15 +31,12 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_POST_NOTIFICATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val config = viewModel.config
         // Handle the splash screen transition
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.d(TAG, "ContentView was set.")
 
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment =
@@ -61,31 +61,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (config["privacy_policy"]?.enable!!) {
-            Log.d(TAG, "Policy Agreement was: ${viewModel.config["privacy_policy"]?.enable!!}")
-            ExodusDialogFragment().apply {
-                this.isCancelable = false
-                this.show(supportFragmentManager, TAG)
+        viewModel.config.observe(this) { config ->
+            Log.d(TAG, "Config was: $config.")
+            if (!config["privacy_policy"]?.enable!!) {
+                Log.d(TAG, "Policy Agreement was: ${config["privacy_policy"]?.enable!!}")
+                ExodusDialogFragment().apply {
+                    this.isCancelable = false
+                    this.show(supportFragmentManager, TAG)
+                }
             }
         }
 
-        if (!isNotificationPermissionGranted() &&
-            config["notification_perm"]?.enable!!) {
-            requestNotificationPermission()
-        }
-
-        // Populate trackers in database
-        if (config["app_setup"]?.enable!! &&
-            config["privacy_policy"]?.enable!! &&
-            !ExodusUpdateService.IS_SERVICE_RUNNING) {
-            val intent = Intent(this, ExodusUpdateService::class.java)
-            intent.apply {
-                action = ExodusUpdateService.FIRST_TIME_START_SERVICE
-                startService(this)
-            }
-            viewModel.saveAppSetup(true)
-        }
-
+        // Set Up Navigation
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.appDetailFragment,
@@ -97,36 +84,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_CODE_POST_NOTIFICATION -> {
-                viewModel.saveNotificationPermission(true)
-            }
-            else -> {
-                viewModel.saveNotificationPermission(false)
-            }
-        }
-    }
-
-    private fun isNotificationPermissionGranted(): Boolean {
-        // Check if permission is granted
-        return ContextCompat.checkSelfPermission(this,permission) ==
-                PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun requestNotificationPermission() {
-        Log.d("MainActivity", "Requesting Notification Permission.")
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(permission),
-            REQUEST_CODE_POST_NOTIFICATION
-        )
     }
 }
