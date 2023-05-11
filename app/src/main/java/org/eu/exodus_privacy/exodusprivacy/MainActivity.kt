@@ -53,7 +53,15 @@ class MainActivity : AppCompatActivity() {
                         Snackbar.LENGTH_LONG
                     )
                     .setAction(R.string.settings) {
-                        startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                        try {
+                            startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
+                        } catch (ex: android.content.ActivityNotFoundException ) {
+                            try {
+                                startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                            } catch (ex: android.content.ActivityNotFoundException ) {
+                                startActivity(Intent(Settings.ACTION_SETTINGS))
+                            }
+                        }
                     }
                     .show()
             }
@@ -107,6 +115,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.saveAppSetup(true)
     }
 }
