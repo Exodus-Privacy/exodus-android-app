@@ -1,7 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.storage
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
@@ -19,12 +18,12 @@ private const val OPERATION_SUCCESS = 1
 data class ExodusConfig(val type: String, var enable: Boolean)
 
 @Singleton
-class DataStoreRepository<ExodusConfig> @Inject constructor(
+class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
     private val gson: Gson,
     private val preferenceKey: Preferences.Key<String>,
     private val typeToken: TypeToken<Map<String, ExodusConfig>>,
     @ApplicationContext val context: Context
-) : Storage<ExodusConfig> {
+) : ExodusStorage<ExodusConfig> {
 
     private val preferenceDataStoreName = "exodusPreferences"
     private val Context.dataStore by preferencesDataStore(preferenceDataStoreName)

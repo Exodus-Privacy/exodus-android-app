@@ -31,7 +31,6 @@ import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
-import org.eu.exodus_privacy.exodusprivacy.manager.storage.DataStoreModule
 import javax.inject.Inject
 
 @AndroidEntryPoint

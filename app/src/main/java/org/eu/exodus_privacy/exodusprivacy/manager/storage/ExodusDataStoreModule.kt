@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DataStoreModule {
+class ExodusDataStoreModule {
 
     @Provides
     fun providesGson(): Gson {
