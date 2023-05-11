@@ -80,6 +80,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 binding.shimmerLayout.visibility = View.GONE
                 appsRVAdapter.submitList(it)
             } else {
+                binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.VISIBLE
                 Snackbar.make(
                     binding.shimmerLayout,
