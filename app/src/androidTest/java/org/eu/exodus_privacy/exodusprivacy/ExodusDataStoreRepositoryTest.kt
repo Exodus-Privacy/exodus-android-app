@@ -60,18 +60,20 @@ class ExodusDataStoreRepositoryTest {
     @Before
     fun setup() {
         context = getInstrumentation().targetContext
-        dataStoreRepository = ExodusDataStoreRepository(
-            Gson(),
-            stringPreferencesKey("testKey"),
-            object : TypeToken<Map<String, ExodusConfig>>() {},
-            DataStoreName("testDataStore"),
-            context
-        )
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testReturnsDefaults() = runTest {
+        // given
+        dataStoreRepository = ExodusDataStoreRepository(
+            Gson(),
+            stringPreferencesKey("testKey"),
+            object : TypeToken<Map<String, ExodusConfig>>() {},
+            DataStoreName("testDataStore1"),
+            context
+        )
+
         // when
         val defaults = dataStoreRepository.getAll().first()
 
@@ -85,6 +87,14 @@ class ExodusDataStoreRepositoryTest {
     @Test
     fun testInsertsAndRetrievesCorrectVal() = runTest {
         // given
+        dataStoreRepository = ExodusDataStoreRepository(
+            Gson(),
+            stringPreferencesKey("testKey"),
+            object : TypeToken<Map<String, ExodusConfig>>() {},
+            DataStoreName("testDataStore2"),
+            context
+        )
+
         val newValues = mapOf(
             "privacy_policy" to ExodusConfig("privacy_policy_consent", true),
             "app_setup" to ExodusConfig("is_setup_complete", true),
@@ -105,6 +115,14 @@ class ExodusDataStoreRepositoryTest {
     @Test
     fun testInsertsAppSetupCOrrectly() = runTest {
         // given
+        dataStoreRepository = ExodusDataStoreRepository(
+            Gson(),
+            stringPreferencesKey("testKey"),
+            object : TypeToken<Map<String, ExodusConfig>>() {},
+            DataStoreName("testDataStore3"),
+            context
+        )
+
         val values = mapOf(
             "privacy_policy" to ExodusConfig("privacy_policy_consent", true),
             "app_setup" to ExodusConfig("is_setup_complete", true),
