@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.d("MainActivity", "ContentView was set.")
 
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment =
@@ -61,18 +63,22 @@ class MainActivity : AppCompatActivity() {
         checkNotificationPermission()
         viewModel.notificationPermissions.observe(this) { info ->
             notificationPerms = info
+            Log.d(TAG,"Notification Perm was: $info")
+            requestNotificationPermission(notificationPerms)
         }
-        requestNotificationPermission(notificationPerms)
+        Log.d(TAG,"Notification Perm was after observe: $notificationPerms")
 
         viewModel.policyAgreement.observe(this) { agreed ->
+            if (!agreed) {
+                Log.d(TAG, "Policy Agreement was: $agreed")
+                ExodusDialogFragment().apply {
+                    this.isCancelable = false
+                    this.show(supportFragmentManager, TAG)
+                }
+            }
             policyAgreed = agreed
         }
-        if (!policyAgreed) {
-            ExodusDialogFragment().apply {
-                this.isCancelable = false
-                this.show(supportFragmentManager, TAG)
-            }
-        }
+        Log.d(TAG, "Policy Agreement was after observe: $policyAgreed")
 
         // Populate trackers in database
         viewModel.appSetup.observe(this) {
@@ -127,6 +133,7 @@ class MainActivity : AppCompatActivity() {
 
     fun requestNotificationPermission(currentPermission: Set<String>) {
         if (currentPermission.contains("not_requested") && currentPermission.contains("not_granted")) {
+            Log.d("MainActivity", "Requesting Notification Permission.")
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(permission),
@@ -134,5 +141,4 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
 }
