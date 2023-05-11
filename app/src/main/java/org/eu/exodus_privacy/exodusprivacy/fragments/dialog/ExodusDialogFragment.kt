@@ -90,6 +90,5 @@ class ExodusDialogFragment : DialogFragment() {
                 }
             }
         }
-        exodusDialogViewModel.saveAppSetup(true)
     }
 }
