@@ -30,6 +30,8 @@ import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
+import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
+import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusDataStoreRepository
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import javax.inject.Inject
 
@@ -73,6 +75,9 @@ class ExodusUpdateService : LifecycleService() {
 
     @Inject
     lateinit var exodusDatabaseRepository: ExodusDatabaseRepository
+
+    @Inject
+    lateinit var exodusDataStoreRepository: ExodusDataStoreRepository<ExodusConfig>
 
     @Inject
     lateinit var notificationBuilder: NotificationCompat.Builder
@@ -235,6 +240,7 @@ class ExodusUpdateService : LifecycleService() {
                                 exodusDatabaseRepository.saveApp(it)
                             }
                             Log.d(TAG, "Done saving app details.")
+                            exodusDataStoreRepository.insertAppSetup(ExodusConfig("is_setup_complete", true))
                             // We are done, gracefully exit!
                             stopService()
                         }
