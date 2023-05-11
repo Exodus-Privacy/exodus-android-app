@@ -46,7 +46,7 @@ class ExodusDialogFragment : DialogFragment() {
                 Log.d(TAG, "Permission to transmit data granted!")
                 exodusDialogViewModel.savePolicyAgreement(true)
                 Log.d(TAG, "Version is: $version")
-                if (version < 30) {
+                if (version < 33) {
                     startInitial()
                 } else {
                     if (!isNotificationPermissionGranted()) {
