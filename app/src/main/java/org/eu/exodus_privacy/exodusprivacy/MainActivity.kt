@@ -105,4 +105,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE_POST_NOTIFICATION -> {
+                viewModel.saveNotificationPermissions(setOf("granted", "requested"))
+            }
+            else -> {
+                viewModel.saveNotificationPermissions(setOf("not_granted", "requested"))
+            }
+
+        }
+
+    }
 }
