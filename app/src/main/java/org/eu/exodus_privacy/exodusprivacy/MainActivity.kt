@@ -5,9 +5,10 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
@@ -22,8 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val TAG = MainActivity::class.java.simpleName
-
     private val viewModel: MainActivityViewModel by viewModels()
+    private val permission = "android.permission.POST_NOTIFICATIONS"
+    private val REQUEST_CODE_POST_NOTIFICATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition
@@ -55,41 +57,31 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.policyAgreement.observe(this) {
-            if (it == false) {
+        // Check if permission is granted
+        if (ContextCompat.checkSelfPermission(this,permission) ==
+            PackageManager.PERMISSION_GRANTED)
+        {
+            viewModel.saveNotificationPermissions(setOf("granted", "not_requested"))
+        } else {
+            viewModel.saveNotificationPermissions(setOf("not_granted", "not_requested"))
+        }
+        viewModel.notificationPermissions.observe(this) {info ->
+            if (info.contains("not_requested") && info.contains("not_granted")) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(permission),
+                    REQUEST_CODE_POST_NOTIFICATION
+                )
+            }
+        }
+        viewModel.policyAgreement.observe(this) { agreed ->
+            if (agreed == false) {
                 ExodusDialogFragment().apply {
                     this.isCancelable = false
                     this.show(supportFragmentManager, TAG)
                 }
             }
         }
-
-        val isNotificationPermissionGranted = ContextCompat.checkSelfPermission(
-            this,
-            "android.permission.POST_NOTIFICATIONS"
-        )
-
-        if (isNotificationPermissionGranted == PackageManager.PERMISSION_GRANTED) {
-            viewModel.savePostNotificationPermissionGranted(true)
-        } else {
-            viewModel.savePostNotificationPermissionGranted(false)
-        }
-
-        viewModel.notificationPermissionRequested.observe(this) { requested ->
-            viewModel.notificationPermissionGranted.observe(this) { granted ->
-                if (!granted && !requested) {
-                    // ToDo: https://developer.android.com/training/permissions/requesting#request-permission
-                    ActivityResultContracts.RequestPermission()
-                }
-                if (!granted) {
-                    // do nothing
-                }
-                if (granted) {
-                    // do nothing
-                }
-            }
-        }
-
         // Populate trackers in database
         viewModel.appSetup.observe(this) {
             if (it == false && viewModel.policyAgreement.value == true && !ExodusUpdateService.IS_SERVICE_RUNNING) {
