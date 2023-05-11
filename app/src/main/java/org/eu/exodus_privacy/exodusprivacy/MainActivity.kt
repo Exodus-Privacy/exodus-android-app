@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModels()
     private val permission = "android.permission.POST_NOTIFICATIONS"
     private val REQUEST_CODE_POST_NOTIFICATION = 1
-    private var policyAgreed = false
-    private var notificationPerms = setOf("not_granted", "not_requested")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition
@@ -59,36 +57,30 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-        // ToDo: Observe seems to do work asynchronously - we need to handle this differently
-        checkNotificationPermission()
-        viewModel.notificationPermissions.observe(this) { info ->
-            notificationPerms = info
-            Log.d(TAG,"Notification Perm was: $info")
-            requestNotificationPermission(notificationPerms)
-        }
-        Log.d(TAG,"Notification Perm was after observe: $notificationPerms")
 
-        viewModel.policyAgreement.observe(this) { agreed ->
-            if (!agreed) {
-                Log.d(TAG, "Policy Agreement was: $agreed")
-                ExodusDialogFragment().apply {
-                    this.isCancelable = false
-                    this.show(supportFragmentManager, TAG)
-                }
+        if (!viewModel.config["privacy_policy"]?.enable!!) {
+            Log.d(TAG, "Policy Agreement was: ${viewModel.config["privacy_policy"]?.enable!!}")
+            ExodusDialogFragment().apply {
+                this.isCancelable = false
+                this.show(supportFragmentManager, TAG)
             }
-            policyAgreed = agreed
         }
-        Log.d(TAG, "Policy Agreement was after observe: $policyAgreed")
+
+        if (!isNotificationPermissionGranted() &&
+            !viewModel.config["notification_perm"]?.enable!!) {
+            requestNotificationPermission()
+        }
 
         // Populate trackers in database
-        viewModel.appSetup.observe(this) {
-            if (it == false && viewModel.policyAgreement.value == true && !ExodusUpdateService.IS_SERVICE_RUNNING) {
-                val intent = Intent(this, ExodusUpdateService::class.java)
-                intent.apply {
-                    action = ExodusUpdateService.FIRST_TIME_START_SERVICE
-                    startService(this)
-                }
+        if (!viewModel.config["app_setup"]?.enable!! &&
+            viewModel.config["privacy_policy"]?.enable!! &&
+            !ExodusUpdateService.IS_SERVICE_RUNNING) {
+            val intent = Intent(this, ExodusUpdateService::class.java)
+            intent.apply {
+                action = ExodusUpdateService.FIRST_TIME_START_SERVICE
+                startService(this)
             }
+            viewModel.saveAppSetup(true)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -112,33 +104,26 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_CODE_POST_NOTIFICATION -> {
-                viewModel.saveNotificationPermissions(setOf("granted", "requested"))
+                viewModel.saveNotificationPermission(true)
             }
             else -> {
-                viewModel.saveNotificationPermissions(setOf("not_granted", "requested"))
+                viewModel.saveNotificationPermission(false)
             }
         }
     }
 
-    fun checkNotificationPermission() {
+    private fun isNotificationPermissionGranted(): Boolean {
         // Check if permission is granted
-        if (ContextCompat.checkSelfPermission(this,permission) ==
-            PackageManager.PERMISSION_GRANTED)
-        {
-            viewModel.saveNotificationPermissions(setOf("granted", "not_requested"))
-        } else {
-            viewModel.saveNotificationPermissions(setOf("not_granted", "not_requested"))
-        }
+        return ContextCompat.checkSelfPermission(this,permission) ==
+                PackageManager.PERMISSION_GRANTED
     }
 
-    fun requestNotificationPermission(currentPermission: Set<String>) {
-        if (currentPermission.contains("not_requested") && currentPermission.contains("not_granted")) {
-            Log.d("MainActivity", "Requesting Notification Permission.")
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(permission),
-                REQUEST_CODE_POST_NOTIFICATION
-            )
-        }
+    private fun requestNotificationPermission() {
+        Log.d("MainActivity", "Requesting Notification Permission.")
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(permission),
+            REQUEST_CODE_POST_NOTIFICATION
+        )
     }
 }
