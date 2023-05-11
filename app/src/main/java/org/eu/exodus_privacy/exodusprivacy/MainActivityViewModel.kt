@@ -19,7 +19,6 @@ class MainActivityViewModel @Inject constructor(
 ) : ViewModel() {
 
     val config = configStorage.getAll().asLiveData()
-    var agreedToPrivacyPolicy = false
 
     private val TAG = MainActivityViewModel::class.java.simpleName
 
