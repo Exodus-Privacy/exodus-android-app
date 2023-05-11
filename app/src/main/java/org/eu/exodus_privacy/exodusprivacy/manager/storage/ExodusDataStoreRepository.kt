@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -56,6 +57,16 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
             val jsonString = gson.toJson(data, typeToken.type)
             it[preferenceKey] = jsonString
         }
+    }
+
+    override suspend fun insertAppSetup(data: ExodusConfig) {
+        val currentData = getAll().first() as MutableMap
+        currentData["app_setup"] = data
+        dataStore.edit {
+            val jsonString = gson.toJson(currentData, typeToken.type)
+            it[preferenceKey] = jsonString
+        }
+
     }
 
     override fun clearAll(): Flow<Int> {
