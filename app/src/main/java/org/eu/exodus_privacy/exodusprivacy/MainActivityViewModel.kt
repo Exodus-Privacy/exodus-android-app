@@ -17,9 +17,11 @@ class MainActivityViewModel @Inject constructor(
     private val configStorage: ExodusDataStoreRepository<ExodusConfig>,
     private val networkManager: NetworkManager
 ) : ViewModel() {
+    init {
+        networkManager.checkConnection()
+    }
 
     val config = configStorage.getAll().asLiveData()
-
     private val TAG = MainActivityViewModel::class.java.simpleName
 
     fun saveNotificationPermissionRequested(status: Boolean) {
