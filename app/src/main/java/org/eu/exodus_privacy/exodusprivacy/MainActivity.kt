@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-
+        // ToDo: Observe seems to do work asynchronously - we need to handle this differently
         checkNotificationPermission()
         viewModel.notificationPermissions.observe(this) { info ->
             notificationPerms = info
