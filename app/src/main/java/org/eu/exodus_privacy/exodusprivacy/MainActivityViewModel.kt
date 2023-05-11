@@ -20,18 +20,11 @@ class MainActivityViewModel @Inject constructor(
 
     val policyAgreement = dataStoreModule.policyAgreement.asLiveData()
     val appSetup = dataStoreModule.appSetup.asLiveData()
-    val notificationPermissionRequested = dataStoreModule.notificationPermRequested.asLiveData()
-    val notificationPermissionGranted = dataStoreModule.notificationPermGranted.asLiveData()
+    val notificationPermissions = dataStoreModule.notificationPerms.asLiveData()
 
-    fun savePostNotificationPermissionRequested(status: Boolean) {
+    fun saveNotificationPermissions(status: Set<String>) {
         viewModelScope.launch {
-            dataStoreModule.saveNotificationPermRequested(status)
-        }
-    }
-
-    fun savePostNotificationPermissionGranted(status: Boolean) {
-        viewModelScope.launch {
-            dataStoreModule.saveNotificationPermGranted(status)
+            dataStoreModule.saveNotificationPerms(status)
         }
     }
 
