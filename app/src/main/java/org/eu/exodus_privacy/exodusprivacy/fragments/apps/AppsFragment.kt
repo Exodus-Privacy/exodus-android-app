@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
@@ -80,6 +81,19 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 appsRVAdapter.submitList(it)
             } else {
                 binding.shimmerLayout.visibility = View.VISIBLE
+                Snackbar.make(
+                    binding.shimmerLayout,
+                    R.string.refresh_needed,
+                    Snackbar.LENGTH_INDEFINITE
+                ).setAction(R.string.refresh) {
+                    if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
+                        val intent = Intent(view.context, ExodusUpdateService::class.java)
+                        intent.apply {
+                            action = ExodusUpdateService.START_SERVICE
+                            activity?.startService(this)
+                        }
+                    }
+                }.show()
             }
         }
 
