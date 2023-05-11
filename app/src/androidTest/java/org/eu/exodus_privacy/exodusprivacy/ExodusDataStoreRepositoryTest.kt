@@ -100,4 +100,23 @@ class ExodusDataStoreRepositoryTest {
         assert(values.containsValue(ExodusConfig("is_setup_complete", true)))
         assert(values.containsValue(ExodusConfig("notification_requested", true)))
     }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testInsertsAppSetupCOrrectly() = runTest {
+        // given
+        val values = mapOf(
+            "privacy_policy" to ExodusConfig("privacy_policy_consent", true),
+            "app_setup" to ExodusConfig("is_setup_complete", true),
+            "notification_perm" to ExodusConfig("notification_requested", true)
+        )
+
+        // when
+        dataStoreRepository.insert(values)
+        dataStoreRepository.insertAppSetup(ExodusConfig("is_setup_complete", false))
+        val appSetup = dataStoreRepository.get("app_setup").first()
+
+        // then
+        assert(appSetup == ExodusConfig("is_setup_complete", false))
+    }
 }
