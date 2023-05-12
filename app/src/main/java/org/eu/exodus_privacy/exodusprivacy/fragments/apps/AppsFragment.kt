@@ -82,19 +82,6 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
             } else {
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.VISIBLE
-                Snackbar.make(
-                    binding.shimmerLayout,
-                    R.string.refresh_needed,
-                    Snackbar.LENGTH_INDEFINITE
-                ).setAction(R.string.refresh) {
-                    if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
-                        val intent = Intent(view.context, ExodusUpdateService::class.java)
-                        intent.apply {
-                            action = ExodusUpdateService.START_SERVICE
-                            activity?.startService(this)
-                        }
-                    }
-                }.show()
             }
         }
 
