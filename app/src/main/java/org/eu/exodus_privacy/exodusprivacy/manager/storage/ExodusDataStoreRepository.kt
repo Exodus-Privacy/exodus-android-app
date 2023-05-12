@@ -31,11 +31,13 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
     private val dataStore = context.dataStore
 
     private fun defaults(): String {
-        return gson.toJson( mapOf(
-            "privacy_policy" to ExodusConfig("privacy_policy_consent", false),
-            "app_setup" to ExodusConfig("is_setup_complete", false),
-            "notification_perm" to ExodusConfig("notification_requested", false)
-        ))
+        return gson.toJson(
+            mapOf(
+                "privacy_policy" to ExodusConfig("privacy_policy_consent", false),
+                "app_setup" to ExodusConfig("is_setup_complete", false),
+                "notification_perm" to ExodusConfig("notification_requested", false)
+            )
+        )
     }
 
     override fun getAll(): Flow<Map<String, ExodusConfig>> {
@@ -66,7 +68,6 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
             val jsonString = gson.toJson(currentData, typeToken.type)
             it[preferenceKey] = jsonString
         }
-
     }
 
     override fun clearAll(): Flow<Int> {
@@ -77,5 +78,4 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
             }
         }
     }
-
 }

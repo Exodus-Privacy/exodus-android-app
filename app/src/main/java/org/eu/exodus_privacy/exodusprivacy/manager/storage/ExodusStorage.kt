@@ -9,7 +9,7 @@ interface ExodusStorage<T> {
 
     fun get(key: String): Flow<T>
 
-    fun getAll(): Flow<Map<String,T>>
+    fun getAll(): Flow<Map<String, T>>
 
     fun clearAll(): Flow<Int>
 }

@@ -1,17 +1,12 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -19,7 +14,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -46,24 +40,19 @@ class MainActivity : AppCompatActivity() {
         viewModel.networkConnection.observe(this) { connected ->
             Log.d(TAG, "Observing Network Connection.")
             if (!connected) {
-                Snackbar
-                    .make(
-                        binding.fragmentCoordinator,
-                        R.string.not_connected,
-                        Snackbar.LENGTH_LONG
-                    )
-                    .setAction(R.string.settings) {
+                Snackbar.make(
+                    binding.fragmentCoordinator, R.string.not_connected, Snackbar.LENGTH_LONG
+                ).setAction(R.string.settings) {
+                    try {
+                        startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
+                    } catch (ex: android.content.ActivityNotFoundException) {
                         try {
-                            startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
-                        } catch (ex: android.content.ActivityNotFoundException ) {
-                            try {
-                                startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-                            } catch (ex: android.content.ActivityNotFoundException ) {
-                                startActivity(Intent(Settings.ACTION_SETTINGS))
-                            }
+                            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                        } catch (ex: android.content.ActivityNotFoundException) {
+                            startActivity(Intent(Settings.ACTION_SETTINGS))
                         }
                     }
-                    .show()
+                }.show()
             }
         }
 
@@ -81,10 +70,10 @@ class MainActivity : AppCompatActivity() {
         // Set Up Navigation
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.appDetailFragment,
-                R.id.trackerDetailFragment -> {
+                R.id.appDetailFragment, R.id.trackerDetailFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
+
                 else -> {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
@@ -106,8 +95,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.config.observe(this) { config ->
             if (!config["app_setup"]?.enable!! &&
                 config["privacy_policy"]?.enable!! &&
-                !ExodusUpdateService.IS_SERVICE_RUNNING) {
-                Log.d(TAG, "Populating database for the first time.")
+                !ExodusUpdateService.IS_SERVICE_RUNNING
+            ) {
+                Log.d(
+                    TAG, "Populating database for the first time."
+                )
                 val intent = Intent(this, ExodusUpdateService::class.java)
                 intent.apply {
                     action = ExodusUpdateService.FIRST_TIME_START_SERVICE
