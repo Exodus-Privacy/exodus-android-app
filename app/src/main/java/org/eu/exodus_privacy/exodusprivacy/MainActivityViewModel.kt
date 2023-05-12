@@ -34,15 +34,6 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    fun saveAppSetup(status: Boolean) {
-        val newConfig = config.value as MutableMap
-        newConfig["app_setup"] = ExodusConfig("is_setup_complete", status)
-        viewModelScope.launch {
-            Log.d(TAG, "Saving new config: $newConfig.")
-            configStorage.insert(newConfig)
-        }
-    }
-
     fun savePolicyAgreement(status: Boolean) {
         Log.d(TAG, "Got status for policy agreement: $status.")
         val newConfig = config.value as MutableMap
