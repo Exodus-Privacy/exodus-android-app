@@ -60,12 +60,7 @@ class ExodusDialogFragment : DialogFragment() {
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            exodusDialogViewModel.saveNotificationPermissionRequested(true)
-        } else {
-            exodusDialogViewModel.saveNotificationPermissionRequested(true)
-        }
+    ) { _: Boolean -> exodusDialogViewModel.saveNotificationPermissionRequested(true)
     }
 
     private fun isNotificationPermissionGranted(): Boolean {
