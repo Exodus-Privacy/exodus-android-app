@@ -140,7 +140,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
 
     // Room
-    def room_version = '2.4.3'
+    def room_version = '2.5.1'
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
@@ -168,7 +168,7 @@ dependencies {
     androidTestImplementation "androidx.test:core-ktx:1.5.0"
     androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.test:rules:1.5.0"
-    androidTestImplementation "androidx.room:room-testing:2.4.1"
+    androidTestImplementation "androidx.room:room-testing:2.5.1"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
