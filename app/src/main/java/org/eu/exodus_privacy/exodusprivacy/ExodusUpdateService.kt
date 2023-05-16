@@ -193,6 +193,21 @@ class ExodusUpdateService : LifecycleService() {
         cancellable: Boolean,
         context: Context
     ): Notification {
+        val builder = setUpNotification(
+            currentSize,
+            totalSize,
+            cancellable,
+            context
+        )
+        return builder.build()
+    }
+
+    private fun setUpNotification(
+        currentSize: Int,
+        totalSize: Int,
+        cancellable: Boolean,
+        context: Context
+    ) : NotificationCompat.Builder {
         val builder = notificationBuilder
             .setContentTitle(
                 getString(
@@ -209,7 +224,7 @@ class ExodusUpdateService : LifecycleService() {
                 PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
             builder.addAction(R.drawable.ic_cancel, getString(R.string.cancel), pendingIntent)
         }
-        return builder.build()
+        return builder
     }
 
     private fun updateAllDatabase(firstTime: Boolean) {
