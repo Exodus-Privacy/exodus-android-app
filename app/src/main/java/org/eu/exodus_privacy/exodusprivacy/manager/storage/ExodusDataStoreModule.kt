@@ -1,6 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.storage
 
-import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.Module
@@ -34,4 +35,3 @@ object ExodusDataStoreModule {
         return DataStoreName("exodusPreferences")
     }
 }
-
