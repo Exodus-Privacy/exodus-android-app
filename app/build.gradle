@@ -29,7 +29,7 @@ android {
     }
     signingConfigs {
         releaseConfig {
-            // check wether we are in release workflow or on dev system
+            // check whether we are in release workflow or on dev system
             if ( System.getenv("KEYSTORE_FILE") != null )
             {
                 storeFile file(System.getenv('KEYSTORE_FILE'))
