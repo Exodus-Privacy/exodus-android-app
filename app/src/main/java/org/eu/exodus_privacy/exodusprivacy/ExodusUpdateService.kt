@@ -207,7 +207,7 @@ class ExodusUpdateService : LifecycleService() {
         totalSize: Int,
         cancellable: Boolean,
         context: Context
-    ) : NotificationCompat.Builder {
+    ): NotificationCompat.Builder {
         val builder = notificationBuilder
             .setContentTitle(
                 getString(
