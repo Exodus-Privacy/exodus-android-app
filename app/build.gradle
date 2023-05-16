@@ -129,7 +129,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     // Hilt
-    def hilt_version = '2.45'
+    def hilt_version = '2.46.1'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
 
@@ -157,13 +157,13 @@ dependencies {
     testImplementation "androidx.test:core:1.5.0"
     testImplementation "androidx.test:runner:1.5.2"
     testImplementation "androidx.test:rules:1.5.0"
-    testImplementation 'com.google.dagger:hilt-android-testing:2.45'
+    testImplementation 'com.google.dagger:hilt-android-testing:2.46.1'
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
-    kaptTest 'com.google.dagger:hilt-compiler:2.45'
+    kaptTest 'com.google.dagger:hilt-compiler:2.46.1'
 
     // instrumentation tests
-    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.45'
-    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.45'
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.46.1'
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.46.1'
     androidTestImplementation "androidx.test:core:1.5.0"
     androidTestImplementation "androidx.test:core-ktx:1.5.0"
     androidTestImplementation "androidx.test:runner:1.5.2"
