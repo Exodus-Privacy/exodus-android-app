@@ -364,9 +364,9 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private fun stopService() {
-        job.cancel()
+        IS_SERVICE_RUNNING = false
         notificationManager.cancel(SERVICE_ID)
-        stopForeground(true)
+        job.cancel()
         stopSelf()
     }
 
