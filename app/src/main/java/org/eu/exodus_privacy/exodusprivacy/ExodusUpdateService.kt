@@ -182,9 +182,9 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     override fun onDestroy() {
+        Log.d(TAG, "onDestroy called.")
+        stopService()
         super.onDestroy()
-        job.cancel()
-        IS_SERVICE_RUNNING = false
     }
 
     private fun createNotification(
