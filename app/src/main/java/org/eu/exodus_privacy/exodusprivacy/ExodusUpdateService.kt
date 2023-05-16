@@ -217,6 +217,7 @@ class ExodusUpdateService : LifecycleService() {
                 )
             )
             .setProgress(totalSize + 1, currentSize, false)
+            .setTimeoutAfter(5000L)
         if (cancellable) {
             val intent = Intent(this, ExodusUpdateService::class.java)
             intent.action = STOP_SERVICE
