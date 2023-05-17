@@ -1,0 +1,7 @@
+Exodus pomaga dowiedzieć się, które moduły śledzące i uprawnienia są osadzone w aplikacjach zainstalowanych na Twoim urządzeniu.
+
+Aplikacja pobiera raporty z platformy εxodus (https://reports.exodus-privacy.eu.org/) i wyświetla je aplikacja po aplikacji.
+
+Ta aplikacja została opracowana przez francuską organizację non-profit Exodus Privacy, odwiedź nas na https://exodus-privacy.eu.org/en/.
+
+Kod źródłowy: https://github.com/Exodus-Privacy/exodus-android-app
