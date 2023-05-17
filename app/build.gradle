@@ -25,7 +25,7 @@ android {
                 )
             }
         }
-        resConfigs 'en', 'ar', 'ca', 'de', 'el', 'fr', 'it', 'pt_BR', 'ru', 'tr', 'uk'
+        resourceConfigurations += ['en', 'ar', 'ca', 'de', 'el', 'fr', 'it', 'pt_BR', 'ru', 'tr', 'uk']
     }
     signingConfigs {
         releaseConfig {
