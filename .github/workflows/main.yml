@@ -25,7 +25,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 17
       - name: Run Kotlin Linter
         run: ./gradlew app:ktlintCheck --info
       - name: Generate debug build
