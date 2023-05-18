@@ -4,7 +4,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
-import android.os.Build
 import android.util.Log
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -14,10 +13,12 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
+import org.eu.exodus_privacy.exodusprivacy.utils.getInstalledPackagesList
+import org.eu.exodus_privacy.exodusprivacy.utils.getSource
 import javax.inject.Inject
 
 class ExodusPackageRepository @Inject constructor(
-    val packageManager: PackageManager,
+    private val packageManager: PackageManager,
     @IoDispatcher val ioDispatcher: CoroutineDispatcher
 ) {
     private val TAG = ExodusPackageRepository::class.java.simpleName
