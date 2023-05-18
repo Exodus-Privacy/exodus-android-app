@@ -28,7 +28,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 17
       - name: Decode Keystore
         run: |
           echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
