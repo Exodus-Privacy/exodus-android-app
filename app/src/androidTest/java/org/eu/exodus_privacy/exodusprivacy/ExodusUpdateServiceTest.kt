@@ -9,9 +9,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestScope
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.junit.Before
 import org.junit.Rule
@@ -24,12 +21,6 @@ class ExodusUpdateServiceTest {
 
     @get:Rule
     val serviceRule = ServiceTestRule()
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    private val testDispatcher = StandardTestDispatcher()
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val testScope: TestScope = TestScope(testDispatcher)
 
     private lateinit var context: Context
 
@@ -93,6 +84,7 @@ class ExodusUpdateServiceTest {
 
                 serviceRule.unbindService()
             }
+
             override fun onServiceDisconnected(name: ComponentName?) {}
         }
     }

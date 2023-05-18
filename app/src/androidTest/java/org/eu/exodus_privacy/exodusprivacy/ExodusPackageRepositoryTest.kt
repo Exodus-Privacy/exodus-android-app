@@ -1,8 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.IBinder
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -23,7 +21,6 @@ class ExodusPackageRepositoryTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
 
     @Inject
@@ -37,16 +34,6 @@ class ExodusPackageRepositoryTest {
         // given
         hiltRule.inject()
 
-        val serviceIntent = Intent(
-            ApplicationProvider.getApplicationContext(),
-            ExodusUpdateService::class.java
-        ).apply {
-            action = ExodusUpdateService.START_SERVICE
-        }
-
-        val binder: IBinder = serviceRule.bindService(serviceIntent)
-        val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
-
         // when
         val valid = exodusPackageRepository.getValidPackageList()
         val appList = exodusPackageRepository.getApplicationList(valid)
@@ -57,7 +44,6 @@ class ExodusPackageRepositoryTest {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun packageInfoContainsPermissions() = runTest(testDispatcher) {
         // given
@@ -69,7 +55,8 @@ class ExodusPackageRepositoryTest {
         val packagesWithPermissions = packages.filterNot { it.requestedPermissions == null }
 
         // when
-        val permissionsMap = exodusPackageRepository.generatePermissionsMap(packages, packageManager)
+        val permissionsMap =
+            exodusPackageRepository.generatePermissionsMap(packages, packageManager)
 
         // then
         val youtubePackage =
@@ -85,7 +72,6 @@ class ExodusPackageRepositoryTest {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun applicationListContainsPermissions() = runTest(testDispatcher) {
         // given
@@ -114,7 +100,6 @@ class ExodusPackageRepositoryTest {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun applicationInfoObjectsAreTheSame() = runTest(testDispatcher) {
         // given
@@ -126,6 +111,7 @@ class ExodusPackageRepositoryTest {
                 PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES
             )
         var count = 0
+
         // when
         for (pkg in installedApps) {
             pkg.applicationInfo.name
@@ -136,6 +122,7 @@ class ExodusPackageRepositoryTest {
                     appInfo.enabled == comparePkgInfo.enabled &&
                     appInfo.flags == comparePkgInfo.flags &&
                     appInfo.icon == comparePkgInfo.icon
+
             // then
             assert(applicationInfoObjectsAreTheSame)
             count += 1
