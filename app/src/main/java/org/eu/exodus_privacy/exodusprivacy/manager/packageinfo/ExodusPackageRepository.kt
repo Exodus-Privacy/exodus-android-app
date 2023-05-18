@@ -152,13 +152,4 @@ class ExodusPackageRepository @Inject constructor(
             ) &&
             appInfo.enabled
     }
-
-    private fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
-        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            this.getInstalledPackages(flags)
-        } else {
-            val newFlags = PackageManager.PackageInfoFlags.of(flags.toLong())
-            this.getInstalledPackages(newFlags)
-        }
-    }
 }
