@@ -1,14 +1,16 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
+import org.eu.exodus_privacy.exodusprivacy.utils.getInstalledPackagesList
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
@@ -28,7 +30,6 @@ class ExodusPackageRepositoryTest {
 
     private val resolution = 96
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun iconsInAppListIsResolution() = runTest(testDispatcher) {
         // given
@@ -51,7 +52,7 @@ class ExodusPackageRepositoryTest {
 
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
         val packageManager = context.packageManager
-        val packages = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        val packages = packageManager.getInstalledPackagesList(PackageManager.GET_PERMISSIONS)
         val packagesWithPermissions = packages.filterNot { it.requestedPermissions == null }
 
         // when
@@ -79,7 +80,7 @@ class ExodusPackageRepositoryTest {
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
 
         val installedApps =
-            context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+            context.packageManager.getInstalledPackagesList(PackageManager.GET_PERMISSIONS)
         val installedAppsWithPermissions =
             installedApps.filterNot { it.requestedPermissions == null }
 
@@ -107,16 +108,28 @@ class ExodusPackageRepositoryTest {
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
         val packageManager = context.packageManager
         val installedApps =
-            context.packageManager.getInstalledPackages(
+            context.packageManager.getInstalledPackagesList(
                 PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES
             )
         var count = 0
 
         // when
+        var comparePkgInfo: ApplicationInfo
         for (pkg in installedApps) {
             pkg.applicationInfo.name
             val appInfo = pkg.applicationInfo
-            val comparePkgInfo = packageManager.getApplicationInfo(pkg.packageName, 0)
+            comparePkgInfo = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                @Suppress("DEPRECATION")
+                packageManager.getApplicationInfo(
+                    pkg.packageName,
+                    0
+                )
+            } else {
+                packageManager.getApplicationInfo(
+                    pkg.packageName,
+                    PackageManager.ApplicationInfoFlags.of(0.toLong())
+                )
+            }
             val applicationInfoObjectsAreTheSame =
                 appInfo.packageName == comparePkgInfo.packageName &&
                     appInfo.enabled == comparePkgInfo.enabled &&
