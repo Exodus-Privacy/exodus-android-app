@@ -130,7 +130,6 @@ class ExodusPackageRepository @Inject constructor(
         }
     }
 
-
     private fun getAppStore(packageName: String, packageManager: PackageManager): Source {
         val appStore = packageManager.getSource(packageName)
         Log.d(TAG, "Found AppStore: $appStore for app: $packageName.")
