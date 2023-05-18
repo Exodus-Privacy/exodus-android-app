@@ -52,7 +52,7 @@ class ExodusPackageRepository @Inject constructor(
     }
 
     fun getValidPackageList(): MutableList<PackageInfo> {
-        val packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        val packageList = packageManager.getInstalledPackagesList(PackageManager.GET_PERMISSIONS)
         val validPackages = mutableListOf<PackageInfo>()
         packageList.forEach { pkgInfo ->
             if (validPackage(pkgInfo, packageManager)) {
@@ -155,5 +155,14 @@ class ExodusPackageRepository @Inject constructor(
                 packageManager.getLaunchIntentForPackage(packageName) != null
             ) &&
             appInfo.enabled
+    }
+
+    private fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
+        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            this.getInstalledPackages(flags)
+        } else {
+            val newFlags = PackageManager.PackageInfoFlags.of(flags.toLong())
+            this.getInstalledPackages(newFlags)
+        }
     }
 }
