@@ -129,13 +129,9 @@ class ExodusPackageRepository @Inject constructor(
         }
     }
 
-    @Suppress("DEPRECATION")
+
     private fun getAppStore(packageName: String, packageManager: PackageManager): Source {
-        val appStore = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            packageManager.getInstallSourceInfo(packageName).installingPackageName
-        } else {
-            packageManager.getInstallerPackageName(packageName)
-        }
+        val appStore = packageManager.getSource(packageName)
         Log.d(TAG, "Found AppStore: $appStore for app: $packageName.")
         return when (appStore) {
             GOOGLE_PLAY_STORE -> Source.GOOGLE
