@@ -35,6 +35,7 @@
 
     <!-- About Fragment -->
     <string name="chooseTheme">Thème</string>
+    <string name="analyze_desc">Effectuer une nouvelle analyse</string>
     <string name="alternatives">Et après ?</string>
     <string name="alternatives_desc">Des alternatives existent !</string>
     <string name="website">Site Web</string>
