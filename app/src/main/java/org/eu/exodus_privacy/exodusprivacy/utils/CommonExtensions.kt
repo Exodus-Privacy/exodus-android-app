@@ -43,8 +43,8 @@ fun Chip.setExodusColor(size: Int) {
 
 fun Chip.setVersionReport(app: ExodusApplication) {
     val versionReport = when (app.exodusVersionCode) {
-        app.versionCode -> VersionReport.MATCH
         0L -> VersionReport.UNAVAILABLE
+        app.versionCode -> VersionReport.MATCH
         else -> VersionReport.MISMATCH
     }
     chipIcon = ContextCompat.getDrawable(context, versionReport.iconIdRes)
