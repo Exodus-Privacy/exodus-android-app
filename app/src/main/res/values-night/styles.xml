@@ -3,6 +3,7 @@
 
     <!-- Inherit base theme to allow overriding Dark Theme as per API levels -->
     <style name="Theme.Exodus.Dark" parent="BaseTheme">
+        <item name="chipIconTint">@color/textColorLikeWhite</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="android:navigationBarColor">@color/colorAccentTheme</item>
         <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Dark</item>
