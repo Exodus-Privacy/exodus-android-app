@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -85,13 +86,11 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.swipeRefreshLayout.isRefreshing = false
-            if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
-                val intent = Intent(view.context, ExodusUpdateService::class.java)
-                intent.apply {
-                    action = ExodusUpdateService.START_SERVICE
-                    activity?.startService(this)
-                }
-            }
+            updateReports(view.context)
+        }
+
+        binding.updateReportsFAB.setOnClickListener {
+            updateReports(view.context)
         }
     }
 
@@ -109,5 +108,15 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         super.onDestroyView()
         binding.toolbarApps.setOnMenuItemClickListener(null)
         _binding = null
+    }
+
+    private fun updateReports(context: Context) {
+        if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
+            val intent = Intent(context, ExodusUpdateService::class.java)
+            intent.apply {
+                action = ExodusUpdateService.START_SERVICE
+                activity?.startService(this)
+            }
+        }
     }
 }
