@@ -7,6 +7,7 @@
     <color name="colorBackgroundTile">#d6c8db</color>
     <color name="indicatorColor">#66684971</color>
     <color name="chipColor">#E8DEF8</color>
+    <color name="chipIconTintColor">#343A40</color>
     <color name="percent">#77684971</color>
 
     <color name="colorGreen">#6fc384</color>
