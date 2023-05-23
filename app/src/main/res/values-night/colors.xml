@@ -3,4 +3,5 @@
     <color name="colorAccentTheme">#232225</color>
     <color name="colorGrey">#262626</color>
     <color name="chipColor">#4A4458</color>
+    <color name="chipIconTintColor">#f2f2f2</color>
 </resources>
