@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
@@ -39,6 +40,8 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         reenterTransition = MaterialFadeThrough()
         returnTransition = MaterialFadeThrough()
 
+        val updateReportsFab = binding.updateReportsFAB
+
         // Setup menu actions
         val toolbar = binding.toolbarApps
         toolbar.menu.clear()
@@ -64,6 +67,18 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         binding.appListRV.apply {
             adapter = appsRVAdapter
             layoutManager = LinearLayoutManager(view.context)
+            addOnScrollListener(
+                object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        if (dy > 0 && updateReportsFab.isExtended) {
+                            updateReportsFab.shrink()
+                        } else if (dy < 0 && !updateReportsFab.isExtended) {
+                            updateReportsFab.extend()
+                        }
+                    }
+                }
+            )
         }
 
         // Setup Shimmer Layout
@@ -89,7 +104,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
             updateReports(view.context)
         }
 
-        binding.updateReportsFAB.setOnClickListener {
+        updateReportsFab.setOnClickListener {
             updateReports(view.context)
         }
     }
