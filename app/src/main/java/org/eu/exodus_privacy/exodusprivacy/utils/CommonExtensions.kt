@@ -1,6 +1,9 @@
 package org.eu.exodus_privacy.exodusprivacy.utils
 
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.os.Build
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
@@ -34,7 +37,7 @@ fun Chip.setExodusColor(size: Int) {
         this.chipBackgroundColor = backgroundColorStateList
     } else {
         val colorForeground =
-            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.m3_chip_text_color))
+            ColorStateList.valueOf(ContextCompat.getColor(context, com.google.android.material.R.color.m3_chip_text_color))
         this.chipIconTint = colorForeground
         this.setTextColor(colorForeground)
         val colorBackground = ContextCompat.getColor(context, R.color.chipColor)
@@ -44,8 +47,8 @@ fun Chip.setExodusColor(size: Int) {
 
 fun Chip.setVersionReport(app: ExodusApplication) {
     val versionReport = when (app.exodusVersionCode) {
-        app.versionCode -> VersionReport.MATCH
         0L -> VersionReport.UNAVAILABLE
+        app.versionCode -> VersionReport.MATCH
         else -> VersionReport.MISMATCH
     }
     chipIcon = ContextCompat.getDrawable(context, versionReport.iconIdRes)

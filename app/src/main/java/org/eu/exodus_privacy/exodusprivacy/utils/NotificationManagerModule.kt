@@ -48,6 +48,5 @@ object NotificationManagerModule {
             .setSmallIcon(R.drawable.ic_update)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(true)
-            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
     }
 }

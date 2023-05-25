@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -43,6 +44,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
         private const val exodusSubmitPage =
             "https://reports.exodus-privacy.eu.org/analysis/submit/#"
         private const val storePage = "market://details?id="
+        private const val GPPage = "https://play.google.com/store/apps/details?id="
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -86,10 +88,17 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                                 )
                             }
                             R.id.openStore -> {
-                                customTabsIntent.launchUrl(
-                                    view.context,
-                                    Uri.parse(storePage + app.packageName)
-                                )
+                                try {
+                                    customTabsIntent.launchUrl(
+                                        view.context,
+                                        Uri.parse(storePage + app.packageName)
+                                    )
+                                } catch (e: ActivityNotFoundException) {
+                                    customTabsIntent.launchUrl(
+                                        view.context,
+                                        Uri.parse(GPPage + app.packageName)
+                                    )
+                                }
                             }
                             R.id.openAppInfo -> {
                                 val intent =

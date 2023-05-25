@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.about
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -109,8 +110,12 @@ class AboutFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("email")?.setOnPreferenceClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("mailto:$emailID")
-            startActivity(intent)
-            true
+            try {
+                startActivity(intent)
+                true
+            } catch (e: ActivityNotFoundException) {
+                false
+            }
         }
     }
 
