@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
 import androidx.core.view.doOnPreDraw
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -71,10 +72,10 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
-                        if (dy > 0 && updateReportsFab.isExtended) {
-                            updateReportsFab.shrink()
-                        } else if (dy < 0 && !updateReportsFab.isExtended) {
-                            updateReportsFab.extend()
+                        if (dy > 0 && updateReportsFab.isVisible) {
+                            updateReportsFab.hide()
+                        } else if (dy < 0 && !updateReportsFab.isVisible) {
+                            updateReportsFab.show()
                         }
                     }
                 }

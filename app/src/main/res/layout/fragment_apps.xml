@@ -52,15 +52,15 @@
             android:scrollbars="vertical" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/updateReportsFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        android:text="@string/refresh"
-        app:backgroundTint="@color/chipColor"
-        app:icon="@drawable/ic_update" />
+        android:contentDescription="@string/refresh"
+        android:src="@drawable/ic_update"
+        app:backgroundTint="@color/chipColor" />
 
 </RelativeLayout>
