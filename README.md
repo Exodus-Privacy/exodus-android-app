@@ -46,8 +46,7 @@ It helps you to take your privacy back!
 
 If you want to help us improve this application, you can:
 - [Translate app](https://github.com/Exodus-Privacy/exodus-android-app#translation)
-- Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs
-- Open [discussions](https://github.com/Exodus-Privacy/exodus-android-app/discussions) to propose ideas or feature requests
+- Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs and propose ideas or feature requests
 - Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app) (also bridged on [Matrix channel #exodus-android-app:matrix.org](https://matrix.to/#/#exodus-android-app:matrix.org))
 
 
@@ -57,7 +56,7 @@ Do you want to help translate the application? Contribute here:
 
 https://crowdin.com/project/exodus-android-app
 
-- Exodus is fully translated into 2 languages and 35 languages can be translated in Crowdin.
+- Exodus is fully translated into 2 languages and 36 languages can be translated in Crowdin.
 - You can translate app on Github but remember to insert a backslash `\` before any apostrophe `'`.
 
 ### Development
@@ -84,6 +83,15 @@ https://crowdin.com/project/exodus-android-app
 ```
 ./gradlew test
 ```
+
+**Execute instrumented tests**
+
+```
+./gradlew connectedAndroidTest
+```
+
+- To execute test move [network_security_config.xml](/doc/network_security_config.xml) in [/app/src/main/res/xml](/app/src/main/res/xml)
+- Add ```android:networkSecurityConfig="@xml/network_security_config"``` in [AndroidManifest.xml](/app/src/main/AndroidManifest.xml)
 
 ### Links
 
