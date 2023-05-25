@@ -63,3 +63,22 @@ fun Chip.setVersionReport(app: ExodusApplication) {
 fun getLanguage(): String {
     return Locale.getDefault().language
 }
+
+fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
+    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        @Suppress("DEPRECATION")
+        this.getInstalledPackages(flags)
+    } else {
+        val newFlags = PackageManager.PackageInfoFlags.of(flags.toLong())
+        this.getInstalledPackages(newFlags)
+    }
+}
+
+fun PackageManager.getSource(packageName: String): String? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        this.getInstallSourceInfo(packageName).installingPackageName
+    } else {
+        @Suppress("DEPRECATION")
+        this.getInstallerPackageName(packageName)
+    }
+}
