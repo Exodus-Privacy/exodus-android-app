@@ -1,6 +1,9 @@
 package org.eu.exodus_privacy.exodusprivacy.utils
 
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.os.Build
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
@@ -33,7 +36,7 @@ fun Chip.setExodusColor(size: Int) {
         this.chipBackgroundColor = backgroundColorStateList
     } else {
         val colorForeground =
-            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.m3_chip_text_color))
+            ColorStateList.valueOf(ContextCompat.getColor(context, com.google.android.material.R.color.m3_chip_text_color))
         this.chipIconTint = colorForeground
         this.setTextColor(colorForeground)
         val colorBackground = ContextCompat.getColor(context, R.color.chipColor)
@@ -56,5 +59,24 @@ fun Chip.setVersionReport(app: ExodusApplication) {
             ),
             Toast.LENGTH_LONG
         ).show()
+    }
+}
+
+fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
+    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        @Suppress("DEPRECATION")
+        this.getInstalledPackages(flags)
+    } else {
+        val newFlags = PackageManager.PackageInfoFlags.of(flags.toLong())
+        this.getInstalledPackages(newFlags)
+    }
+}
+
+fun PackageManager.getSource(packageName: String): String? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        this.getInstallSourceInfo(packageName).installingPackageName
+    } else {
+        @Suppress("DEPRECATION")
+        this.getInstallerPackageName(packageName)
     }
 }

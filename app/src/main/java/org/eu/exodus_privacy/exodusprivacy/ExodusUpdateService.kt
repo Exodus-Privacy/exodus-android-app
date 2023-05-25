@@ -1,15 +1,18 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -27,8 +30,9 @@ import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
+import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
+import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusDataStoreRepository
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
-import org.eu.exodus_privacy.exodusprivacy.utils.DataStoreModule
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -55,6 +59,7 @@ class ExodusUpdateService : LifecycleService() {
     private var networkConnected: Boolean = false
     private var totalNumberOfAppsHavingTrackers = 0
     private var validPackages = listOf<PackageInfo>()
+    private var notificationPermGranted = false
 
     // Inject required modules
     var applicationList = mutableListOf<Application>()
@@ -72,7 +77,7 @@ class ExodusUpdateService : LifecycleService() {
     lateinit var exodusDatabaseRepository: ExodusDatabaseRepository
 
     @Inject
-    lateinit var dataStoreModule: DataStoreModule
+    lateinit var exodusDataStoreRepository: ExodusDataStoreRepository<ExodusConfig>
 
     @Inject
     lateinit var notificationBuilder: NotificationCompat.Builder
@@ -138,39 +143,48 @@ class ExodusUpdateService : LifecycleService() {
         if (networkConnected) {
             IS_SERVICE_RUNNING = true
 
-            if (firstTime) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                Log.d(TAG, "Permission to post notification was granted.")
+                notificationPermGranted = true
+
                 // Create notification channels on post-nougat devices
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
-            }
 
-            notificationManager.notify(
-                SERVICE_ID,
-                createNotification(
-                    currentSize.value!!,
-                    numberOfInstalledPackages,
-                    !firstTime,
-                    this
+                notificationManager.notify(
+                    SERVICE_ID,
+                    createNotification(
+                        currentSize.value!!,
+                        numberOfInstalledPackages,
+                        !firstTime,
+                        this
+                    )
                 )
-            )
+            }
 
             // Update all database
             updateAllDatabase(firstTime)
 
-            currentSize.observe(this) { current ->
-                notificationManager.notify(
-                    SERVICE_ID,
-                    createNotification(current, numberOfInstalledPackages, false, this)
-                )
+            if (notificationPermGranted) {
+                currentSize.observe(this) { current ->
+                    notificationManager.notify(
+                        SERVICE_ID,
+                        createNotification(current, numberOfInstalledPackages, false, this)
+                    )
+                }
             }
         }
     }
 
     override fun onDestroy() {
+        Log.d(TAG, "onDestroy called.")
+        stopService()
         super.onDestroy()
-        job.cancel()
-        IS_SERVICE_RUNNING = false
     }
 
     private fun createNotification(
@@ -179,6 +193,21 @@ class ExodusUpdateService : LifecycleService() {
         cancellable: Boolean,
         context: Context
     ): Notification {
+        val builder = setUpNotification(
+            currentSize,
+            totalSize,
+            cancellable,
+            context
+        )
+        return builder.build()
+    }
+
+    private fun setUpNotification(
+        currentSize: Int,
+        totalSize: Int,
+        cancellable: Boolean,
+        context: Context
+    ): NotificationCompat.Builder {
         val builder = notificationBuilder
             .setContentTitle(
                 getString(
@@ -188,6 +217,7 @@ class ExodusUpdateService : LifecycleService() {
                 )
             )
             .setProgress(totalSize + 1, currentSize, false)
+            .setTimeoutAfter(5000L)
         if (cancellable) {
             val intent = Intent(this, ExodusUpdateService::class.java)
             intent.action = STOP_SERVICE
@@ -195,7 +225,7 @@ class ExodusUpdateService : LifecycleService() {
                 PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
             builder.addAction(R.drawable.ic_cancel, getString(R.string.cancel), pendingIntent)
         }
-        return builder.build()
+        return builder
     }
 
     private fun updateAllDatabase(firstTime: Boolean) {
@@ -224,7 +254,7 @@ class ExodusUpdateService : LifecycleService() {
                                 exodusDatabaseRepository.saveApp(it)
                             }
                             Log.d(TAG, "Done saving app details.")
-                            if (firstTime) dataStoreModule.saveAppSetup(true)
+                            exodusDataStoreRepository.insertAppSetup(ExodusConfig("is_setup_complete", true))
                             // We are done, gracefully exit!
                             stopService()
                         }
@@ -334,9 +364,9 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private fun stopService() {
-        job.cancel()
+        IS_SERVICE_RUNNING = false
         notificationManager.cancel(SERVICE_ID)
-        stopForeground(true)
+        job.cancel()
         stopSelf()
     }
 

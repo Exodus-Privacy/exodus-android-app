@@ -2,14 +2,12 @@ package org.eu.exodus_privacy.exodusprivacy
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.rule.ServiceTestRule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import okhttp3.Interceptor
@@ -29,6 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.time.Duration.Companion.seconds
 
 const val FAKE_PATH = "/api/requests/"
 const val FAKE_PORT = 34567
@@ -93,12 +92,8 @@ class ExodusAPIRepositoryTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
-    @get:Rule
-    val serviceRule = ServiceTestRule()
-
     private val mockWebServer = MockWebServer()
     private val socketPolicy = SocketPolicy.NO_RESPONSE
-    @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
 
     @Inject
@@ -117,9 +112,8 @@ class ExodusAPIRepositoryTest {
         mockWebServer.shutdown()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun exodusAPIRepositoryShouldTimeOut() = runTest(testDispatcher) {
+    fun exodusAPIRepositoryShouldTimeOut() = runTest(testDispatcher, timeout = 12.seconds) {
         // given
         hiltRule.inject()
 

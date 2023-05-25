@@ -7,10 +7,8 @@ import android.graphics.BitmapFactory
 import androidx.core.graphics.scale
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabase
@@ -30,10 +28,6 @@ class ExodusDatabaseRepositoryTest {
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
-    @get:Rule
-    val serviceRule = ServiceTestRule()
-
-    @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()
 
     private lateinit var exodusAppEntry: ExodusApplication
@@ -124,6 +118,17 @@ class ExodusDatabaseRepositoryTest {
             network_signature = "Unknown",
             website = "example.com"
         )
+
+        exodusTrackerDataEntry2 = TrackerData(
+            id = 1,
+            categories = emptyList(),
+            code_signature = "",
+            creation_date = "01.01.1970",
+            description = "Lorem Ipsum",
+            name = "TestTracker2",
+            network_signature = "Unknown",
+            website = "example.com"
+        )
     }
 
     @After
@@ -132,30 +137,31 @@ class ExodusDatabaseRepositoryTest {
         testDB.close()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun exodusDatabaseRepoShouldCrash() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
 
-        // then
+        // when
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         val exceptions = arrayListOf<String>()
-        val dataBaseExceptionMessage = "android.database.sqlite.SQLiteBlobTooBigException: Row too big to fit into CursorWindow"
+        val dataBaseExceptionMessage =
+            "android.database.sqlite.SQLiteBlobTooBigException: Row too big to fit into CursorWindow"
         val javaIllegalStateExceptionMessage = "java.lang.IllegalStateException: Couldn't read row"
 
+        // then
         try {
             exodusDatabaseRepository.getApp(packageName)
         } catch (
             exception: java.lang.Exception
-        ) { exceptions.add(exception.toString()) }
+        ) {
+            exceptions.add(exception.toString())
+        }
         assert(
-            dataBaseExceptionMessage in exceptions[0] ||
-                javaIllegalStateExceptionMessage in exceptions[0]
+            dataBaseExceptionMessage in exceptions[0] || javaIllegalStateExceptionMessage in exceptions[0]
         )
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun exodusDatabaseRepoReturnsApp() = runTest(testDispatcher) {
         // given
@@ -177,14 +183,14 @@ class ExodusDatabaseRepositoryTest {
             updated
         )
 
-        // then
+        // when
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         val retrievedApp = exodusDatabaseRepository.getApp(packageName)
 
+        // then
         assert(retrievedApp.icon.sameAs(image.scale(resolution, resolution)))
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun exodusDatabaseRepoReturnsApps() = runTest(testDispatcher) {
         // given
@@ -206,26 +212,41 @@ class ExodusDatabaseRepositoryTest {
             updated
         )
 
-        // then
+        // when
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         exodusDatabaseRepository.saveApp(exodusAppEntry2)
         val retrievedApp = exodusDatabaseRepository.getApps(
             listOf(packageName, packageName2)
         )
 
+        // then
         assert(retrievedApp.isNotEmpty())
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun exodusDatabaseRepoReturnsTracker() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
 
-        // then
+        // when
         exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry)
         val retrievedTracker = exodusDatabaseRepository.getTracker(0)
 
+        // then
         assert(retrievedTracker.name == "TestTracker")
+    }
+
+    @Test
+    fun exodusDatabaseRepoReturnsTrackers() = runTest(testDispatcher) {
+        // given
+        hiltRule.inject()
+        exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry)
+        exodusDatabaseRepository.saveTrackerData(exodusTrackerDataEntry2)
+
+        // when
+        val retrievedTrackers = exodusDatabaseRepository.getTrackers(listOf(0, 1))
+
+        // then
+        assert(retrievedTrackers.isNotEmpty())
     }
 }
