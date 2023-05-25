@@ -27,6 +27,7 @@ class AboutFragment : PreferenceFragmentCompat() {
     lateinit var customTabsIntent: CustomTabsIntent
 
     companion object {
+        private const val analyzeURL = "https://reports.exodus-privacy.eu.org/analysis/submit/"
         private const val alternativesURL = "https://reports.exodus-privacy.eu.org/info/next/"
         private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
@@ -76,6 +77,11 @@ class AboutFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.about_preference, rootKey)
 
+        findPreference<Preference>("analyze")?.setOnPreferenceClickListener {
+            customTabsIntent.launchUrl(it.context, Uri.parse(analyzeURL))
+            true
+        }
+
         findPreference<Preference>("alternatives")?.setOnPreferenceClickListener {
             customTabsIntent.launchUrl(it.context, Uri.parse(alternativesURL))
             true
@@ -85,14 +91,13 @@ class AboutFragment : PreferenceFragmentCompat() {
             customTabsIntent.launchUrl(it.context, Uri.parse(getLocaleWebsiteURL()))
             true
         }
-
-        findPreference<Preference>("srcCode")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(sourceCodeURL))
+        findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
+            customTabsIntent.launchUrl(it.context, Uri.parse(privacyPolicyURL))
             true
         }
 
-        findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(privacyPolicyURL))
+        findPreference<Preference>("srcCode")?.setOnPreferenceClickListener {
+            customTabsIntent.launchUrl(it.context, Uri.parse(sourceCodeURL))
             true
         }
 
