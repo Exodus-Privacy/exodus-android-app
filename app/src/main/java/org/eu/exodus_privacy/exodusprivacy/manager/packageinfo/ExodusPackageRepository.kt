@@ -4,7 +4,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
-import android.os.Build
 import android.util.Log
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -14,10 +13,12 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
 import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
+import org.eu.exodus_privacy.exodusprivacy.utils.getInstalledPackagesList
+import org.eu.exodus_privacy.exodusprivacy.utils.getSource
 import javax.inject.Inject
 
 class ExodusPackageRepository @Inject constructor(
-    val packageManager: PackageManager,
+    private val packageManager: PackageManager,
     @IoDispatcher val ioDispatcher: CoroutineDispatcher
 ) {
     private val TAG = ExodusPackageRepository::class.java.simpleName
@@ -52,7 +53,7 @@ class ExodusPackageRepository @Inject constructor(
     }
 
     fun getValidPackageList(): MutableList<PackageInfo> {
-        val packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        val packageList = packageManager.getInstalledPackagesList(PackageManager.GET_PERMISSIONS)
         val validPackages = mutableListOf<PackageInfo>()
         packageList.forEach { pkgInfo ->
             if (validPackage(pkgInfo, packageManager)) {
@@ -129,13 +130,8 @@ class ExodusPackageRepository @Inject constructor(
         }
     }
 
-    @Suppress("DEPRECATION")
     private fun getAppStore(packageName: String, packageManager: PackageManager): Source {
-        val appStore = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            packageManager.getInstallSourceInfo(packageName).installingPackageName
-        } else {
-            packageManager.getInstallerPackageName(packageName)
-        }
+        val appStore = packageManager.getSource(packageName)
         Log.d(TAG, "Found AppStore: $appStore for app: $packageName.")
         return when (appStore) {
             GOOGLE_PLAY_STORE -> Source.GOOGLE
