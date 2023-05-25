@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.objects.VersionReport
+import java.util.Locale
 
 fun Chip.setExodusColor(size: Int) {
     if (this.text != "?") {
@@ -60,6 +61,10 @@ fun Chip.setVersionReport(app: ExodusApplication) {
             Toast.LENGTH_LONG
         ).show()
     }
+}
+
+fun getLanguage(): String {
+    return Locale.getDefault().language
 }
 
 fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
