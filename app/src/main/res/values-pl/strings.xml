@@ -41,6 +41,7 @@
     <!-- About Fragment -->
     <string name="chooseTheme">Motyw</string>
     <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
+    <string name="analyze_desc">Przeprowadzanie nowej analizy</string>
     <string name="alternatives">Co dalej?</string>
     <string name="alternatives_desc">Istnieją pewne alternatywy!</string>
     <string name="website">Strona</string>
