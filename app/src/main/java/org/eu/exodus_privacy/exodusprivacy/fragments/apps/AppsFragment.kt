@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
 import androidx.core.view.doOnPreDraw
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
@@ -38,6 +41,8 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         reenterTransition = MaterialFadeThrough()
         returnTransition = MaterialFadeThrough()
 
+        val updateReportsFab = binding.updateReportsFAB
+
         // Setup menu actions
         val toolbar = binding.toolbarApps
         toolbar.menu.clear()
@@ -63,6 +68,18 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         binding.appListRV.apply {
             adapter = appsRVAdapter
             layoutManager = LinearLayoutManager(view.context)
+            addOnScrollListener(
+                object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        if (dy > 0 && updateReportsFab.isVisible) {
+                            updateReportsFab.hide()
+                        } else if (dy < 0 && !updateReportsFab.isVisible) {
+                            updateReportsFab.show()
+                        }
+                    }
+                }
+            )
         }
 
         // Setup Shimmer Layout
@@ -79,19 +96,18 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 binding.shimmerLayout.visibility = View.GONE
                 appsRVAdapter.submitList(it)
             } else {
+                binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.VISIBLE
             }
         }
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.swipeRefreshLayout.isRefreshing = false
-            if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
-                val intent = Intent(view.context, ExodusUpdateService::class.java)
-                intent.apply {
-                    action = ExodusUpdateService.START_SERVICE
-                    activity?.startService(this)
-                }
-            }
+            updateReports(view.context)
+        }
+
+        updateReportsFab.setOnClickListener {
+            updateReports(view.context)
         }
     }
 
@@ -109,5 +125,15 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         super.onDestroyView()
         binding.toolbarApps.setOnMenuItemClickListener(null)
         _binding = null
+    }
+
+    private fun updateReports(context: Context) {
+        if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
+            val intent = Intent(context, ExodusUpdateService::class.java)
+            intent.apply {
+                action = ExodusUpdateService.START_SERVICE
+                activity?.startService(this)
+            }
+        }
     }
 }
