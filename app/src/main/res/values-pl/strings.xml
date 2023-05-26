@@ -1,6 +1,4 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_title" translatable="false">εxodus</string>
-    <string name="app_name" translatable="false">Exodus</string>
     <string name="app_logo">Logo Aplikacji</string>
     <string name="trackers">Skrypty</string>
     <string name="permissions">Uprawnienia</string>
@@ -33,27 +31,20 @@
     <string name="sort_by_creation_date">Data utowrzenia</string>
 
     <!-- Apps Fragment -->
-    <string name="app_version" translatable="false"><xliff:g id="rating">%1$s</xliff:g></string>
-    <string name="app_trackers" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
-    <string name="app_perms" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
     <string name="fetching_apps">Aktualizacja bazy raportów!</string>
 
     <!-- About Fragment -->
     <string name="chooseTheme">Motyw</string>
-    <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
     <string name="analyze_desc">Przeprowadzanie nowej analizy</string>
     <string name="alternatives">Co dalej?</string>
     <string name="alternatives_desc">Istnieją pewne alternatywy!</string>
     <string name="website">Strona</string>
     <string name="website_desc">Znajdź więcej informacji na temat projektu Exodus Privacy</string>
-    <string name="srcCode" translatable="false">Github</string>
     <string name="srcCode_desc">Zgłaszaj błędy, przeglądaj kod źródłowy</string>
     <string name="privPolicy">Polityka prywatności</string>
     <string name="privPolicy_desc">Dowiedz się, jak postępujemy z Twoimi danymi</string>
     <string name="email">Email</string>
     <string name="email_desc">Skontaktuj się z nami przez e-mail</string>
-    <string name="twitter" translatable="false">Twitter</string>
-    <string name="mastodon" translatable="false">Mastodon</string>
     <string name="twitter_desc">Bądź na bieżąco z projektem Exodus Privacy</string>
 
     <!-- AppDetail Fragment -->
@@ -113,3 +104,4 @@
     <string name="system_theme">Systemowy</string>
 
 </resources>
+
