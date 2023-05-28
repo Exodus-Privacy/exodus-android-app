@@ -3,6 +3,7 @@ package org.eu.exodus_privacy.exodusprivacy
 import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -208,6 +209,11 @@ class ExodusUpdateService : LifecycleService() {
         cancellable: Boolean,
         context: Context
     ): NotificationCompat.Builder {
+        val notificationIntent = Intent(context, MainActivity::class.java)
+        val notificationPendingIntent: PendingIntent? = TaskStackBuilder.create(context).run {
+            addNextIntentWithParentStack(notificationIntent)
+            getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        }
         val builder = notificationBuilder
             .setContentTitle(
                 getString(
@@ -218,6 +224,7 @@ class ExodusUpdateService : LifecycleService() {
             )
             .setProgress(totalSize + 1, currentSize, false)
             .setTimeoutAfter(5000L)
+            .setContentIntent(notificationPendingIntent)
         if (cancellable) {
             val intent = Intent(this, ExodusUpdateService::class.java)
             intent.action = STOP_SERVICE
