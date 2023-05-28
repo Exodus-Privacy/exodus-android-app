@@ -1,0 +1,7 @@
+Exodus Privacy helpt u te weten welke trackers en machtigingen zijn opgenomen in apps die op uw apparaat zijn geïnstalleerd.
+
+De app downloadt rapporten van Exodus Privacy (https://exodus-privacy.eu.org/) en toont ze u app voor app
+
+De app kan alleen apps detecteren die vanuit de Google Play store zijn geïnstalleerd.
+
+Broncode: https://github.com/Exodus-Privacy/exodus-android-app/

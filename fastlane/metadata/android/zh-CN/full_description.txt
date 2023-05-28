@@ -1,0 +1,7 @@
+Exodus Privacy可以帮助你知道哪些追踪器和权限被嵌入到你的设备上安装的应用程序中。
+
+应用从 Exodus Privacy 下载报告 （https://exodus-privacy.eu.org/）并一个程序一个程序地展示给你
+
+应用程序只能检测从谷歌 Play 商店安装的应用程序。
+
+源代码： https://github.com/Exodus-Privacy/expulus-android-app/
