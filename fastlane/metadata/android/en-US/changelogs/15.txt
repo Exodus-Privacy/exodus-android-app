@@ -1,0 +1,5 @@
+- Fix crashs and bugs
+- Bump dependencies
+- Add support to Android 13
+- Add themed icon for Android 13
+- Add button to refresh reports

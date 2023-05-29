@@ -56,6 +56,7 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
                 binding.shimmerLayout.visibility = View.GONE
                 trackersRVAdapter.submitList(sortedList)
             } else {
+                binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.VISIBLE
             }
         }

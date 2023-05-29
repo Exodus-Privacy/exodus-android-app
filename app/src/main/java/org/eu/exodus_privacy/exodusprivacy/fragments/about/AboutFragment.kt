@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.about
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,7 @@ import org.eu.exodus_privacy.exodusprivacy.BuildConfig
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAboutBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ThemeDialogFragment
+import org.eu.exodus_privacy.exodusprivacy.utils.getLanguage
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,13 +27,21 @@ class AboutFragment : PreferenceFragmentCompat() {
     lateinit var customTabsIntent: CustomTabsIntent
 
     companion object {
+        private const val analyzeURL = "https://reports.exodus-privacy.eu.org/analysis/submit/"
         private const val alternativesURL = "https://reports.exodus-privacy.eu.org/info/next/"
         private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
-        private const val websiteURL = "https://exodus-privacy.eu.org"
+        private const val websiteURL = "https://exodus-privacy.eu.org/"
         private const val twitterURL = "https://twitter.com/ExodusPrivacy"
         private const val mastodonURL = "https://framapiaf.org/@exodus"
         private const val emailID = "contact@exodus-privacy.eu.org"
+    }
+
+    private fun getLocaleWebsiteURL(): String {
+        return if (getLanguage() != "fr")
+            websiteURL + "en"
+        else
+            websiteURL + "fr"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,23 +77,27 @@ class AboutFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.about_preference, rootKey)
 
+        findPreference<Preference>("analyze")?.setOnPreferenceClickListener {
+            customTabsIntent.launchUrl(it.context, Uri.parse(analyzeURL))
+            true
+        }
+
         findPreference<Preference>("alternatives")?.setOnPreferenceClickListener {
             customTabsIntent.launchUrl(it.context, Uri.parse(alternativesURL))
             true
         }
 
         findPreference<Preference>("website")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(websiteURL))
+            customTabsIntent.launchUrl(it.context, Uri.parse(getLocaleWebsiteURL()))
+            true
+        }
+        findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
+            customTabsIntent.launchUrl(it.context, Uri.parse(privacyPolicyURL))
             true
         }
 
         findPreference<Preference>("srcCode")?.setOnPreferenceClickListener {
             customTabsIntent.launchUrl(it.context, Uri.parse(sourceCodeURL))
-            true
-        }
-
-        findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(privacyPolicyURL))
             true
         }
 
@@ -101,8 +115,12 @@ class AboutFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("email")?.setOnPreferenceClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("mailto:$emailID")
-            startActivity(intent)
-            true
+            try {
+                startActivity(intent)
+                true
+            } catch (e: ActivityNotFoundException) {
+                false
+            }
         }
     }
 

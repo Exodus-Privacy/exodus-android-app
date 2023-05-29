@@ -1,0 +1,1 @@
+Mostra rastreadores e permissões das aplicações instaladas

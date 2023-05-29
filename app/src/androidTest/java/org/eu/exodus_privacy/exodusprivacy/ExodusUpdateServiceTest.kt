@@ -1,16 +1,14 @@
 package org.eu.exodus_privacy.exodusprivacy
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.IBinder
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.junit.Before
 import org.junit.Rule
@@ -24,44 +22,39 @@ class ExodusUpdateServiceTest {
     @get:Rule
     val serviceRule = ServiceTestRule()
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    private val testDispatcher = StandardTestDispatcher()
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val testScope: TestScope = TestScope(testDispatcher)
-
     private lateinit var context: Context
 
     @Before
     fun setup() {
-        context = InstrumentationRegistry.getInstrumentation().context
+        context = InstrumentationRegistry.getInstrumentation().targetContext
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun serviceShouldBeStarted() = testScope.runTest {
+    fun serviceShouldBeStarted() {
         // given
         hiltRule.inject()
 
         val serviceIntent = Intent(
             context,
             ExodusUpdateService::class.java
-        ).apply {
-            action = ExodusUpdateService.START_SERVICE
-        }.setClassName(
-            "org.eu.exodus_privacy.exodusprivacy",
-            "org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService"
         )
-
-        val binder: IBinder = serviceRule.bindService(serviceIntent)
-        val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
         serviceRule.startService(serviceIntent)
 
-        // when
-        val serviceRuns = service.serviceRuns()
+        object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
+                val service = (binder as ExodusUpdateService.LocalBinder).getService()
 
-        // then
-        assert(serviceRuns)
+                // when
+                val serviceRuns = service.serviceRuns()
+
+                // then
+                assert(serviceRuns)
+
+                serviceRule.unbindService()
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {}
+        }
     }
 
     @Test
@@ -72,24 +65,27 @@ class ExodusUpdateServiceTest {
         val serviceIntent = Intent(
             context,
             ExodusUpdateService::class.java
-        ).apply {
-            action = ExodusUpdateService.START_SERVICE
-        }.setClassName(
-            "org.eu.exodus_privacy.exodusprivacy",
-            "org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService"
         )
+        serviceRule.startService(serviceIntent)
 
-        val binder: IBinder = serviceRule.bindService(serviceIntent)
-        val service: ExodusUpdateService = (binder as ExodusUpdateService.LocalBinder).getService()
+        object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
+                val service = (binder as ExodusUpdateService.LocalBinder).getService()
 
-        // when
-        val appsList = mutableListOf(
-            ExodusApplication(exodusTrackers = listOf(0)),
-            ExodusApplication(exodusTrackers = listOf(1)),
-            ExodusApplication(exodusTrackers = listOf())
-        )
+                // when
+                val appsList = mutableListOf(
+                    ExodusApplication(exodusTrackers = listOf(0)),
+                    ExodusApplication(exodusTrackers = listOf(1)),
+                    ExodusApplication(exodusTrackers = listOf())
+                )
 
-        // then
-        assert(service.countAppsHavingTrackers(appsList) == 2)
+                // then
+                assert(service.countAppsHavingTrackers(appsList) == 2)
+
+                serviceRule.unbindService()
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {}
+        }
     }
 }

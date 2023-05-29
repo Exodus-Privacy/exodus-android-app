@@ -1,0 +1,5 @@
+- Corrections des plantages et bogues
+- Mise à jour des dépendances
+- Ajout du support d'Android 13
+- Ajout de l'icône adaptative sur Android 13
+- Ajout d'un button pour actualiser les rapports

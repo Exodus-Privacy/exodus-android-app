@@ -1,0 +1,7 @@
+Exodus Privacy membantu Anda untuk mengetahui pelacak mana dan izin apa yang dikandung dalam aplikasi yang terpasang di perangkat Anda.
+
+Aplikasi ini mengunduh laporan dari Exodus Privacy (https://exodus-privacy.eu.org/) dan memperlihatkan kepada Anda per aplikasi
+
+Aplikasi ini hanya bisa mendeteksi aplikasi yang terpasang dari Google Play Store.
+
+Kode Sumber: https://github.com/Exodus-Privacy/exodus-android-app/
