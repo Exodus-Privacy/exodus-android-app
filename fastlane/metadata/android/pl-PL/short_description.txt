@@ -1,1 +1,1 @@
-Exodus pokazuje moduły śledzące i uprawnienia w aplikacjach zainstalowanych na urządzeniu.
+Exodus pokazuje moduły śledzące i uprawnienia w aplikacjach na urządzeniu.
