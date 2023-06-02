@@ -1,0 +1,7 @@
+Exodus Privacy-k zure gailuan instalatutako aplikazioetan zein aztarnari eta baimen dauden jakiten lagunduko dizu.
+
+Aplikazioak txostenak Exodus Privacy-tik (https://exodus-privacy.eu.org/) deskargatu eta aplikazioz aplikazio erakusten dizkizu
+
+Aplikazioak Google Play biltegitik instalatutako aplikazioak soilik antzeman ditzake.
+
+Iturburu kodea: https://github.com/Exodus-Privacy/exodus-android-app/
