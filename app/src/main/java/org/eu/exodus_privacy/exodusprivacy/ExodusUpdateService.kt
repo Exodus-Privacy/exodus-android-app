@@ -64,6 +64,7 @@ class ExodusUpdateService : LifecycleService() {
 
     // Inject required modules
     var applicationList = mutableListOf<Application>()
+    private var applicationListAfterUninstall = mutableListOf<Application>()
 
     @Inject
     lateinit var networkManager: NetworkManager
@@ -138,6 +139,7 @@ class ExodusUpdateService : LifecycleService() {
 
     private fun launchFetch(firstTime: Boolean) {
         // create list of installed packages, that are system apps or launchable
+
         validPackages = exodusPackageRepository.getValidPackageList()
         val numberOfInstalledPackages = validPackages.size
 
@@ -242,6 +244,7 @@ class ExodusUpdateService : LifecycleService() {
             Toast.LENGTH_SHORT
         ).show()
         serviceScope.launch {
+            if (!firstTime) removeUninstalledApps()
             Log.d(TAG, "Refreshing trackers database.")
             fetchTrackers()
         }.invokeOnCompletion { trackerThrow ->
@@ -355,6 +358,27 @@ class ExodusUpdateService : LifecycleService() {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Unable to fetch apps.", e)
+        }
+    }
+
+    private suspend fun removeUninstalledApps() {
+        try {
+            applicationListAfterUninstall =
+                exodusPackageRepository.getApplicationList(validPackages)
+            val packageNameListAfterUninstall = mutableListOf<String>()
+            applicationListAfterUninstall.forEach { packageNameListAfterUninstall.add(it.packageName) }
+            val packageNameList = exodusDatabaseRepository.getAllPackageNames().toMutableList()
+            val listOfPackageNameToBeRemove = mutableListOf<String>()
+            if (packageNameList.size > packageNameListAfterUninstall.size) {
+                packageNameList.forEach {
+                    if (!packageNameListAfterUninstall.contains(it)) {
+                        listOfPackageNameToBeRemove.add(it)
+                    }
+                }
+                exodusDatabaseRepository.deleteApps(listOfPackageNameToBeRemove)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Unable to remove apps.", e)
         }
     }
 
