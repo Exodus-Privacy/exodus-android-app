@@ -20,4 +20,10 @@ interface ExodusApplicationDao {
 
     @Query("SELECT * FROM exodusapplication ORDER BY name COLLATE NOCASE")
     fun queryAllApps(): LiveData<List<ExodusApplication>>
+
+    @Query("DELETE FROM exodusapplication WHERE packageName IN (:listOfPackages)")
+    suspend fun deleteApp(listOfPackages: List<String>)
+
+    @Query("SELECT packageName FROM exodusapplication")
+    suspend fun getPackageNames(): List<String>
 }
