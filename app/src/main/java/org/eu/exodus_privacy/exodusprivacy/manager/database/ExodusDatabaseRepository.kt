@@ -88,4 +88,14 @@ class ExodusDatabaseRepository @Inject constructor(
         Log.d(TAG, "Querying all apps as live data.")
         return exodusApplicationDao.queryAllApps()
     }
+
+    suspend fun deleteApps(listOfPackages: List<String>) {
+        Log.d(TAG, "Deleting all uninstalled apps.")
+        return exodusApplicationDao.deleteApp(listOfPackages)
+    }
+
+    suspend fun getAllPackageNames(): List<String> {
+        Log.d(TAG, "Fetching all ExodusApplication packageName from DB.")
+        return exodusApplicationDao.getPackageNames()
+    }
 }
