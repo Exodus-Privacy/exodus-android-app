@@ -23,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottom_navigation"
+        app:itemTextAppearanceActive="@style/Theme.Exodus.BottomNavTextActive"
+        app:itemTextAppearanceInactive="@style/Theme.Exodus.BottomNavTextInactive"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,7 +9,7 @@
     tools:context=".fragments.trackerdetail.TrackerDetailFragment"
     tools:theme="@style/Theme.Exodus">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,15 +17,19 @@
             android:id="@+id/toolbarTD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:minHeight="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_back" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbarTD"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarTD"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -39,17 +43,19 @@
             android:id="@+id/chipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/trackerTitleTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerTitleTV"
             android:layout_marginTop="20dp"
             android:orientation="horizontal" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerPresenceTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/chipGroup"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -60,23 +66,25 @@
             android:visibility="gone"
             tools:text="Present in 56% (50 apps) of your applications" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerDescTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/trackerPresenceTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerPresenceTV"
             android:layout_marginTop="30dp"
             android:paddingHorizontal="40dp"
             android:textColor="?android:textColorPrimary"
             android:textSize="15sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerWebURLTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/trackerDescTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerDescTV"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -85,12 +93,13 @@
             android:textSize="15sp"
             tools:text="https://www.huaweicentral.com/hms-core/" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerDetectTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/trackerWebURLTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerWebURLTV"
             android:layout_marginTop="30dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -99,12 +108,13 @@
             android:textColor="?android:textColorPrimary"
             android:textSize="20sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/codeDetectTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/trackerDetectTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerDetectTV"
             android:layout_marginTop="20dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -113,23 +123,25 @@
             android:textColor="?android:textColorPrimary"
             android:textSize="16sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/codeSignTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/codeDetectTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/codeDetectTV"
             android:layout_marginTop="5dp"
             android:paddingHorizontal="45dp"
             android:textColor="?android:textColorPrimary"
             android:textSize="15sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/networkDetectTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/codeSignTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/codeSignTV"
             android:layout_marginTop="20dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -138,23 +150,25 @@
             android:textColor="?android:textColorPrimary"
             android:textSize="16sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/networkSignTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/networkDetectTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/networkDetectTV"
             android:layout_marginTop="5dp"
             android:paddingHorizontal="45dp"
             android:textColor="?android:textColorPrimary"
             android:textSize="15sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/appsListTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/networkSignTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/networkSignTV"
             android:layout_marginTop="30dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -168,11 +182,12 @@
             android:id="@+id/appsListRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/appsListTV"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appsListTV"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:visibility="gone" />
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

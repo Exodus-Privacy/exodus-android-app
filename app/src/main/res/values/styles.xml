@@ -40,4 +40,13 @@
 
     <style name="Theme.Exodus" parent="Theme.Exodus.Light" />
 
+    <style name="Theme.Exodus.BottomNavTextActive" parent="TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Theme.Exodus.BottomNavTextInactive" parent="TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
 </resources>
