@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.apps.AppsFragment"
+    android:layout_marginBottom="80dp"
     tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.appbar.MaterialToolbar
