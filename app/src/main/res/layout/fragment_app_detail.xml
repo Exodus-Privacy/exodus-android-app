@@ -30,7 +30,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbarAD"
             android:contentDescription="@string/app_logo"
-            android:scaleType="fitXY"
             tools:src="@drawable/ic_logo"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"/>
 
@@ -129,7 +128,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appIVTV"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingHorizontal="5dp"
@@ -164,7 +162,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appAVTV"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingHorizontal="5dp"
@@ -197,7 +194,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appVTV"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingHorizontal="5dp"
