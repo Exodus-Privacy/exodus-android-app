@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.appdetail.subfrags.ADPermissionsFragment"
     tools:theme="@style/Theme.Exodus">
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/permissionsChip"
-        style="@style/Theme.Exodus.Chip"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/permissionsTitleTV"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/colorPrimary"
-        app:chipIcon="@drawable/ic_permission"
-        app:chipIconTint="@color/colorPrimary"
-        tools:chipBackgroundColor="@color/colorGreen"
-        tools:text="0" />
+        android:orientation="horizontal">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/permissionsChip"
-        app:layout_constraintTop_toTopOf="@id/permissionsChip"
-        app:layout_constraintBottom_toBottomOf="@id/permissionsChip"
-        android:layout_marginStart="8dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/permissions"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="18sp" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/permissionsChip"
+            style="@style/Theme.Exodus.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            app:chipIcon="@drawable/ic_permission"
+            app:chipIconTint="@color/colorPrimary"
+            tools:chipBackgroundColor="@color/colorGreen"
+            tools:text="0" />
 
-    <com.google.android.material.textview.MaterialTextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/permissions"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
         android:id="@+id/permissionsStatusTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionsChip"
+        android:layout_below="@+id/permissionsTitleTV"
         android:layout_marginTop="5dp"
         android:text="@string/code_permission_not_found"
         android:textSize="15sp" />
@@ -49,52 +48,41 @@
         android:id="@+id/permissionsRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionsStatusTV"
+        android:layout_below="@+id/permissionsStatusTV"
         android:layout_marginTop="10dp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/permissionsInfoGoogleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionsRV"
         android:layout_below="@+id/permissionsRV"
         android:layout_marginTop="15dp"
         android:text="@string/permission_info_dangerous"
         android:textSize="15sp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/permissionsLearnGoogleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionsInfoGoogleTV"
+        android:layout_below="@+id/permissionsInfoGoogleTV"
         android:text="@string/learn_more"
         android:textSize="15sp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/permissionsInfoExodusTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionsLearnGoogleTV"
+        android:layout_below="@+id/permissionsLearnGoogleTV"
         android:layout_marginTop="15dp"
         android:text="@string/permission_info"
         android:textSize="15sp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/permissionsLearnExodusTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionsInfoExodusTV"
+        android:layout_below="@+id/permissionsInfoExodusTV"
         android:text="@string/learn_more"
         android:textSize="15sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

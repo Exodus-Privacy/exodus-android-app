@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
-    android:padding="8dp"
+    android:layout_marginVertical="5dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     tools:theme="@style/Theme.Exodus">
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/trackerTitleTV"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:textColor="?android:textColorPrimary"
         android:textSize="17sp"
         app:drawableEndCompat="@drawable/ic_forward"
@@ -26,37 +21,36 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trackerTitleTV"
+        android:layout_below="@+id/trackerTitleTV"
         android:visibility="gone" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/trackersPB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trackerTitleTV"
+        android:layout_below="@+id/trackerTitleTV"
         android:max="100"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="20dp"
         android:progress="100"
         app:indicatorColor="@color/chipColor"
         app:trackCornerRadius="50dp"
-        app:trackThickness="30dp" />
+        app:trackThickness="25dp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/trackersStatusTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/trackersPB"
-        app:layout_constraintTop_toTopOf="@+id/trackersPB"
-        app:layout_constraintBottom_toBottomOf="@id/trackersPB"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:textSize="15sp"
+        android:layout_alignTop="@+id/trackersPB"
+        android:layout_alignBottom="@+id/trackersPB"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="20dp"
         android:textColor="?android:textColorPrimary" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
