@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NetworkManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @ApplicationContext private val context: Context
 ) {
     private val TAG = NetworkManager::class.java.simpleName
 

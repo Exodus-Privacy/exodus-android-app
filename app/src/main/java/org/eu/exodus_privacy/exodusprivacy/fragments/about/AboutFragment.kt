@@ -38,10 +38,11 @@ class AboutFragment : PreferenceFragmentCompat() {
     }
 
     private fun getLocaleWebsiteURL(): String {
-        return if (getLanguage() != "fr")
+        return if (getLanguage() != "fr") {
             websiteURL + "en"
-        else
+        } else {
             websiteURL + "fr"
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

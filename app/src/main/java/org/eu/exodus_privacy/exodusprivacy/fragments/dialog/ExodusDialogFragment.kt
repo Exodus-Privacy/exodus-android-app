@@ -40,7 +40,8 @@ class ExodusDialogFragment : DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext()).setTitle(getString(R.string.warning_title))
             .setMessage(
                 HtmlCompat.fromHtml(
-                    getString(R.string.warning_desc), HtmlCompat.FROM_HTML_MODE_COMPACT
+                    getString(R.string.warning_desc),
+                    HtmlCompat.FROM_HTML_MODE_COMPACT
                 )
             ).setPositiveButton(getString(R.string.accept)) { _, _ ->
                 Log.d(TAG, "Permission to transmit data granted!")

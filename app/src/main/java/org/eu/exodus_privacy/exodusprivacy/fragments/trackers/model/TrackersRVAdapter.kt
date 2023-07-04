@@ -23,7 +23,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 
 class TrackersRVAdapter(
     private val showSuggestions: Boolean,
-    private val currentDestinationId: Int,
+    private val currentDestinationId: Int
 ) :
     ListAdapter<TrackerData, TrackersRVAdapter.ViewHolder>(TrackersDiffUtil()) {
 

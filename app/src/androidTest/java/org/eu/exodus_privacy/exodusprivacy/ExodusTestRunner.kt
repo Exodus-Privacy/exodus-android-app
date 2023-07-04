@@ -12,7 +12,9 @@ class ExodusTestRunner : AndroidJUnitRunner() {
         context: Context
     ): Application {
         return super.newApplication(
-            cl, HiltTestApplication::class.java.getName(), context
+            cl,
+            HiltTestApplication::class.java.getName(),
+            context
         )
     }
 }
