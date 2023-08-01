@@ -7,7 +7,6 @@
         <item name="android:textColor">@color/textColorLikeWhite</item>
         <item name="android:textColorLink">@color/textColorLikeWhite</item>
         <item name="elevationOverlayEnabled">false</item>
-        <item name="android:navigationBarColor">@color/colorAccentTheme</item>
         <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Dark</item>
     </style>
 

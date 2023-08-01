@@ -9,6 +9,7 @@
     <color name="chipColor">#E8DEF8</color>
     <color name="chipIconTintColor">#343A40</color>
     <color name="percent">#77684971</color>
+    <color name="backgroundColor">#f2f2f2</color>
 
     <color name="colorGreen">#6fc384</color>
     <color name="colorLightRed">#e46772</color>

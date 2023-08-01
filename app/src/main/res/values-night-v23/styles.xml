@@ -3,6 +3,8 @@
 
     <style name="Theme.Exodus" parent="Theme.Exodus.Dark">
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">?android:colorBackground</item>
+        <item name="android:navigationBarColor">@color/colorAccentTheme</item>
     </style>
 
 </resources>
