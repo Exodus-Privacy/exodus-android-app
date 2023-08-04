@@ -25,7 +25,6 @@ android {
                 )
             }
         }
-        resourceConfigurations += ['en', 'ar', 'ca', 'de', 'el', 'fr', 'it', 'pt_BR', 'ru', 'tr', 'uk']
     }
     signingConfigs {
         releaseConfig {
@@ -79,6 +78,10 @@ android {
     }
     lint {
         lintConfig file("lint.xml")
+    }
+
+    androidResources {
+        generateLocaleConfig true
     }
     namespace 'org.eu.exodus_privacy.exodusprivacy'
 }
