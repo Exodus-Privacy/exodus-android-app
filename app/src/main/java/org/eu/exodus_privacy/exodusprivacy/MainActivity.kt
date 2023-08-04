@@ -40,19 +40,20 @@ class MainActivity : AppCompatActivity() {
         viewModel.networkConnection.observe(this) { connected ->
             Log.d(TAG, "Observing Network Connection.")
             if (!connected) {
-                Snackbar.make(
-                    binding.fragmentCoordinator, R.string.not_connected, Snackbar.LENGTH_LONG
-                ).setAction(R.string.settings) {
-                    try {
-                        startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
-                    } catch (ex: android.content.ActivityNotFoundException) {
+                Snackbar
+                    .make(binding.fragmentCoordinator, R.string.not_connected, Snackbar.LENGTH_LONG)
+                    .setAnchorView(binding.bottomNavView) // Snackbar will appear above bottom nav view
+                    .setAction(R.string.settings) {
                         try {
-                            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                            startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                         } catch (ex: android.content.ActivityNotFoundException) {
-                            startActivity(Intent(Settings.ACTION_SETTINGS))
+                            try {
+                                startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                            } catch (ex: android.content.ActivityNotFoundException) {
+                                startActivity(Intent(Settings.ACTION_SETTINGS))
+                            }
                         }
-                    }
-                }.show()
+                    }.show()
             }
         }
 
