@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/action_filter"
-        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:icon="@drawable/ic_filter"
         android:title="@string/menu_action_filter"
         android:visible="false"
         app:showAsAction="ifRoom" />
