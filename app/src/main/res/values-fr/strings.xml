@@ -45,7 +45,7 @@
     <string name="privPolicy_desc">Comment nous traitons vos données</string>
     <string name="email">Mail</string>
     <string name="email_desc">Contactez-nous par mail</string>
-    <string name="twitter_desc">S\'informer de notre actualité</string>
+    <string name="X_desc">S\'informer de notre actualité</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Ouvrir sur Exodus Privacy</string>
