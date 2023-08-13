@@ -102,7 +102,7 @@ class AboutFragment : PreferenceFragmentCompat() {
             true
         }
 
-        findPreference<Preference>("twitter")?.setOnPreferenceClickListener {
+        findPreference<Preference>("X")?.setOnPreferenceClickListener {
             customTabsIntent.launchUrl(it.context, Uri.parse(twitterURL))
             true
         }

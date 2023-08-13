@@ -37,7 +37,7 @@
         android:title="@string/mastodon" />
     <Preference
         android:icon="@drawable/ic_x"
-        android:key="twitter"
+        android:key="X"
         android:summary="@string/X_desc"
         android:title="@string/X" />
 </PreferenceScreen>
