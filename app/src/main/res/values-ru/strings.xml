@@ -1,38 +1,107 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Логотип приложения</string>
-    <string name="trackers">трекеров</string>
-    <string name="permissions">разрешений</string>
+    <string name="trackers">Трекеров</string>
+    <string name="permissions">Разрешений</string>
     <string name="not_connected">Нет подключения к интернету</string>
+    <string name="settings">Настройки</string>
+    <string name="version_equals">Установленная версия = Проанализированной версией</string>
+    <string name="version_mismatch">Установленная версия &lt;&gt; Проанализированной версией</string>
+    <string name="version_unavailable">Приложение никогда не анализировалось</string>
     <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
     <string name="logo">Логотип приложения %1</string>
-    <string name="title_trackers">трекеров</string>
+    <string name="refresh">Обновить</string>
+    <string name="cancel">Отмена</string>
+    <string name="refresh_needed">Требуется обновление</string>
+    <string name="refresh_needed_message">Данные не были обновлены с %1$s.\n\Не желаете обновить их?</string>
+    <string name="submit">Отправить</string>
+    <string name="app_not_analyzed">Не желаете проанализировать это приложение?\n\nID этого приложения автоматически будет вставлен в форму. Вам нужно будето всего лишь её отправить.</string>
+    <string name="app_not_analyzed_title">Это приложение ещё не проанализированно!</string>
+    <string name="title_apps">Приложения</string>
+    <string name="title_trackers">Трекеры</string>
+    <string name="title_about">О приложении</string>
+    <string name="nothing_here">Здесь пока нечего просматривать. Вы можете потянуть вниз, чтобы обновить!</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">Поиск</string>
     <string name="menu_action_filter">Фильтр</string>
 
     <!-- Filters -->
+    <string name="sort_by_name">Имени</string>
+    <string name="sort_by_creation_date">Дате создания</string>
+
     <!-- Apps Fragment -->
+    <string name="fetching_apps">Обновление базы данных отчётов!</string>
+
     <!-- About Fragment -->
+    <string name="chooseTheme">Тема</string>
+    <string name="analyze_desc">Провести новый анализ</string>
+    <string name="alternatives">Что дальше?</string>
+    <string name="alternatives_desc">Альтернативы существуют!</string>
+    <string name="website">Сайт Exodus</string>
+    <string name="website_desc">Найдите больше информации о проекте Exodus Privacy</string>
+    <string name="srcCode_desc">Отправка багов и просмотр исходного кода</string>
+    <string name="privPolicy">Политика конфиденциальности</string>
+    <string name="privPolicy_desc">Узнайте, как мы обрабатываем выши данные</string>
+    <string name="email">Почта</string>
+     <string name="email_desc">Свяжитесь с нами по email</string>
+    <string name="twitter_desc">Оставайтесь в курсе событий проекта Exodus Privacy</string>
+
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Открыть в Exodus Privacy</string>
+    <string name="submit_app">Отправить приложение</string>
+    <string name="open_store">Открыть магазин приложений</string>
+    <string name="open_app_info">Информация о приложении</string>
+    <string name="version">Версия</string>
     <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">и обновлено <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">и обновлён <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Установленная вервия</string>
+    <string name="analyzed_version">Проанализированная версия</string>
+    <string name="same_version">Одна и та же версия приложения может отличатся, из-за разных версий Android и устройств, на которых приложение тестировалось</string>
+    <string name="learn_more"><u>Подробнее…</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">В приложении обнаружены сигнатуры следующих трекеров:</string>
     <string name="code_signature_not_found">В приложении не обнаружено сигнатур ни одного известного трекера.</string>
+    <string name="tracker_info">Трекер - это кусочки кода, которые используются для сбора данных о вашей деятельности.</string>
     <string name="analyzed">Это приложение ещё не было изучено Exodus Privacy.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
+    <string name="permission_info">Разрешения - это разрешённые действия, которые может осуществлять приложение.</string>
+    <string name="permission_info_dangerous">Значок <font color="red"><b>!</b></font> означает \'Опасный\' или \'Специальный\' уровень согласно уровням защиты Google.</string>
 
     <!-- Notification -->
+    <string name="updates">Обновление</string>
+    <string name="updating_database">Обновление базы данных отчётов… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> приложение</item>
+        <item quantity="few"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> приложения</item>
+        <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> приложений</item>
+    </plurals>
+
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Открыть страницу трекеров</string>
     <string name="detection_rules">Определяющие правила</string>
     <string name="code_signature">Правило обнаружения кода:</string>
     <string name="network_signature">Правило определения сети:</string>
+    <string name="apps_list">Список приложений</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Присутствует в <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> приложение) из всех Ваших приложений</item>
+        <item quantity="few">Присутствует в <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> приложения) из всех Ваших приложений</item>
+        <item quantity="many">Присутствует в <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> приложений) из всех Ваших приложений</item>
+    </plurals>
 
     <!-- Dialog Fragment -->
+    <string name="accept">Принять</string>
+    <string name="reject">Отклонить</string>
+    <string name="warning_title">Разрешить Exodus отправить необходимую информацию?</string>
+    <string name="warning_desc">Для работы Exodus мы должны собрать и отправить данные в Exodus Project. Эти данные содержат только список установленных приложений на телефоне для выявления трекеров. Они не содержат никакой личной информации.</string>
+    <string name="title_theme">Выбрать тему</string>
+    <string name="dark_theme">Тёмная</string>
+    <string name="light_theme">Светлая</string>
+    <string name="system_theme">Системная</string>
 </resources>

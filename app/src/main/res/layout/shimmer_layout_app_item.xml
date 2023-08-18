@@ -1,110 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
     android:clickable="true"
     android:focusable="true"
     android:padding="10dp"
     tools:theme="@style/Theme.Exodus">
 
-    <RelativeLayout
-        android:id="@+id/appInfoLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/appIconIV"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorGrey"
+        android:contentDescription="@string/app_logo"
+        android:scaleType="fitXY"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/appIconCV"
-            style="@style/Widget.Material3.CardView.Outlined"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            app:cardCornerRadius="10dp">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/appNameTV"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="12dp"
+        android:background="@color/colorGrey"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="?android:textColorPrimary"/>
 
-            <ImageView
-                android:id="@+id/appIconIV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@color/colorGrey"
-                android:contentDescription="@string/app_logo"
-                android:scaleType="fitXY" />
-        </androidx.cardview.widget.CardView>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/appVersionTV"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toBottomOf="@id/appNameTV"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorGrey"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="?android:textColorSecondary"/>
 
-        <LinearLayout
-            android:id="@+id/nameInfoLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/appIconCV"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/appNameTV"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorGrey"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="?android:textColorPrimary"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/appVersionTV"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorGrey"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="?android:textColorSecondary"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/chipLayout"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/trackersChip"
+        style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appInfoLayout"
-        android:layout_marginStart="60dp"
-        tools:ignore="RtlSymmetry">
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        app:chipBackgroundColor="@color/colorGrey"
+        app:chipIcon="@drawable/ic_tracker"
+        app:chipIconTint="@color/colorGrey"/>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/trackersChip"
-            style="@style/Theme.Exodus.Chip"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            app:chipBackgroundColor="@color/colorGrey"
-            app:chipIcon="@drawable/ic_tracker"
-            app:chipIconTint="@color/colorGrey" />
+    <com.google.android.material.chip.Chip
+        android:id="@+id/permsChip"
+        style="@style/Theme.Exodus.Chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/trackersChip"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        app:chipBackgroundColor="@color/colorGrey"
+        app:chipIcon="@drawable/ic_permission"
+        app:chipIconTint="@color/colorGrey" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/permsChip"
-            style="@style/Theme.Exodus.Chip"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:textColor="@color/colorPrimary"
-            app:chipBackgroundColor="@color/colorGrey"
-            app:chipIcon="@drawable/ic_permission"
-            app:chipIconTint="@color/colorGrey" />
+    <com.google.android.material.chip.Chip
+        android:id="@+id/versionChip"
+        style="@style/Theme.Exodus.Chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/permsChip"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="5dp"
+        app:chipBackgroundColor="@color/colorGrey"
+        app:chipIcon="@drawable/ic_match"
+        app:chipIconTint="@color/colorGrey" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/versionChip"
-            style="@style/Theme.Exodus.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:chipBackgroundColor="@color/colorGrey"
-            app:chipIcon="@drawable/ic_match"
-            app:chipIconTint="@color/colorGrey"
-            app:textEndPadding="0dp"
-            app:textStartPadding="0dp" />
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

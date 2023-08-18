@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="80dp"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".fragments.about.AboutFragment"
@@ -22,7 +23,7 @@
         android:contentDescription="@string/app_logo"
         android:src="@drawable/ic_logo" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appNameTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,10 +32,11 @@
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appVersionTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="15dp"
         android:textAlignment="center"
         android:textColor="?android:textColorPrimary"

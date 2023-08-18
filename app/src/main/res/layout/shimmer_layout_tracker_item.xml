@@ -1,50 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="10dp"
+    android:layout_marginTop="5dp"
+    android:orientation="vertical"
     android:clickable="true"
     android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     tools:theme="@style/Theme.Exodus">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/trackerTitleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorGrey"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="18sp"
-        app:drawableEndCompat="@drawable/ic_forward"
-        app:drawableTint="@color/colorGrey" />
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/colorGrey"/>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/trackersPB"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/trackerTitleTV"
         android:max="100"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
         android:progress="100"
         app:indicatorColor="@color/colorGrey"
         app:trackCornerRadius="50dp"
-        app:trackThickness="25dp" />
+        app:trackThickness="30dp" />
 
-    <TextView
-        android:id="@+id/trackersStatusTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/trackersPB"
-        android:layout_alignTop="@+id/trackersPB"
-        android:layout_alignEnd="@+id/trackersPB"
-        android:layout_alignBottom="@+id/trackersPB"
-        android:paddingStart="20dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="20dp"
-        android:textColor="?android:textColorPrimary" />
-
-</RelativeLayout>
+</LinearLayout>

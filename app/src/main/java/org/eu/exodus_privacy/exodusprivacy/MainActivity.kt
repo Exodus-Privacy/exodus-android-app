@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -30,13 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // TODO:
-        //  get blackTheme value from preferences and set it below instead of false
-        if (false) {
-            val bgColor = ResourcesCompat.getColor(resources, android.R.color.black, theme)
-            binding.fragmentCoordinator.setBackgroundColor(bgColor)
-            window.statusBarColor = bgColor
-        }
+
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -47,9 +40,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.networkConnection.observe(this) { connected ->
             Log.d(TAG, "Observing Network Connection.")
             if (!connected) {
-                Snackbar
-                    .make(binding.fragmentCoordinator, R.string.not_connected, Snackbar.LENGTH_LONG)
-                    .setAnchorView(binding.bottomNavView) // Snackbar will appear above bottom nav view
+                Snackbar.make(
+                    binding.fragmentCoordinator,
+                    R.string.not_connected,
+                    Snackbar.LENGTH_LONG
+                ).setAnchorView(binding.bottomNavView) // Snackbar will appear above bottom nav view
                     .setAction(R.string.settings) {
                         try {
                             startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
@@ -106,7 +101,8 @@ class MainActivity : AppCompatActivity() {
                 !ExodusUpdateService.IS_SERVICE_RUNNING
             ) {
                 Log.d(
-                    TAG, "Populating database for the first time."
+                    TAG,
+                    "Populating database for the first time."
                 )
                 val intent = Intent(this, ExodusUpdateService::class.java)
                 intent.apply {
