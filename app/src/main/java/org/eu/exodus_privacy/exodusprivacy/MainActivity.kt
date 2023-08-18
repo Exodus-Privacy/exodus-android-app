@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -29,7 +30,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // TODO:
+        //  get blackTheme value from preferences and set it below instead of false
+        if (false) {
+            val bgColor = ResourcesCompat.getColor(resources, android.R.color.black, theme)
+            binding.fragmentCoordinator.setBackgroundColor(bgColor)
+            window.statusBarColor = bgColor
+        }
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment

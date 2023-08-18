@@ -5,7 +5,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:statusBarColor">?android:colorBackground</item>
         <item name="preferenceTheme">@style/Theme.Exodus.Preference</item>
     </style>
 
@@ -30,7 +29,6 @@
 
     <!-- Inherit base theme to allow overriding Light Theme as per API levels -->
     <style name="Theme.Exodus.Light" parent="BaseTheme">
-        <item name="android:navigationBarColor">@color/colorAccentTheme</item>
         <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Light</item>
     </style>
 

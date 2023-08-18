@@ -105,6 +105,7 @@
     <!-- Dialog Fragment -->
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>
+    <string name="ok">OK</string>
     <string name="warning_title">Allow Exodus to transmit required data?</string>
     <string name="warning_desc">In order to run, this Application must collect and send data to Exodus Privacy servers which includes the list of applications installed on this device for tracker analysis. It doesn\'t contain any personal information.</string>
     <string name="title_theme">Choose a theme</string>
