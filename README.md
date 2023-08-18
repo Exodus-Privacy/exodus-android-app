@@ -1,6 +1,6 @@
 <h1 align="center">Exodus - Android Application</h1>
 
-Exodus is an Android application that lets you know what trackers are embedded in apps installed on your smartphone using [the εxodus plateform](https://github.com/Exodus-Privacy/exodus). It also lets you know the permissions required by any apps on your smartphone.
+Exodus is an Android application that lets you know what trackers are embedded in apps installed on your smartphone using [the εxodus platform](https://github.com/Exodus-Privacy/exodus). It also lets you know the permissions required by any apps on your smartphone.
 
 It helps you to take your privacy back!
 
