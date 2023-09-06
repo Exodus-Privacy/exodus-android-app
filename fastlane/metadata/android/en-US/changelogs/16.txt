@@ -1,0 +1,4 @@
+- Reports on uninstalled apps are removed
+- Improved layout
+- Updated translation
+- Updated dependencies
