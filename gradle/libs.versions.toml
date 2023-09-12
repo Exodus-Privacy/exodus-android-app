@@ -1,6 +1,6 @@
 [versions]
 androidGradlePlugin = "8.1.0"
-kotlinPlugin = "1.8.22"
+kotlinPlugin = "1.9.10"
 gradleKtlint = "11.1.0"
 activity-ktx = "1.7.2"
 androidx-core = "1.5.0"
