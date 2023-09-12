@@ -1,0 +1,4 @@
+- Les rapports sur les applications désinstallées sont supprimés
+- Mise en page améliorée
+- Traductions mise à jour
+- Dépendances mise à jour
