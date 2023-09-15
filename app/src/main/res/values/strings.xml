@@ -52,9 +52,9 @@
     <string name="privPolicy_desc">Learn how we handle your data</string>
     <string name="email">Mail</string>
     <string name="email_desc">Reach out to us via email</string>
-    <string name="twitter" translatable="false">Twitter</string>
+    <string name="X" translatable="false">Twitter</string>
     <string name="mastodon" translatable="false">Mastodon</string>
-    <string name="twitter_desc">Stay updated on Exodus Privacy project</string>
+    <string name="X_desc">Stay updated on Exodus Privacy project</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Open on Exodus Privacy</string>

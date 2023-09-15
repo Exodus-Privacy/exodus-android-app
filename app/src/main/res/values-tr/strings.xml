@@ -33,7 +33,7 @@
     <string name="privPolicy_desc">Verilerinizi nasıl işlediğimizi öğrenin</string>
     <string name="email">Posta</string>
     <string name="email_desc">Bize e-posta ile ulaşın</string>
-    <string name="twitter_desc">Exodus Privacy projesindeki son gelişmelerden haberdar olun</string>
+    <string name="X_desc">Exodus Privacy projesindeki son gelişmelerden haberdar olun</string>
     <string name="open_exodus_page">Exodus Privacy\'de aç</string>
     <string name="submit_app">Uygulamayı gönder</string>
     <string name="open_store">Mağazayı aç</string>
