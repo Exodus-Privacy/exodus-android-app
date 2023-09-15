@@ -33,11 +33,11 @@
     <Preference
         android:icon="@drawable/ic_mastodon"
         android:key="mastodon"
-        android:summary="@string/twitter_desc"
+        android:summary="@string/X_desc"
         android:title="@string/mastodon" />
     <Preference
-        android:icon="@drawable/ic_twitter"
-        android:key="twitter"
-        android:summary="@string/twitter_desc"
-        android:title="@string/twitter" />
+        android:icon="@drawable/ic_x"
+        android:key="X"
+        android:summary="@string/X_desc"
+        android:title="@string/X" />
 </PreferenceScreen>

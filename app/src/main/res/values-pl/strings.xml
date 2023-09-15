@@ -45,7 +45,7 @@
     <string name="privPolicy_desc">Dowiedz się, jak postępujemy z Twoimi danymi</string>
     <string name="email">Email</string>
     <string name="email_desc">Skontaktuj się z nami przez e-mail</string>
-    <string name="twitter_desc">Bądź na bieżąco z projektem Exodus Privacy</string>
+    <string name="X_desc">Bądź na bieżąco z projektem Exodus Privacy</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Otwórz w Exodus Privacy</string>
