@@ -10,7 +10,7 @@
     android:foreground="?android:attr/selectableItemBackground"
     tools:theme="@style/Theme.Exodus">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/trackerTitleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         app:trackCornerRadius="50dp"
         app:trackThickness="25dp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/trackersStatusTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

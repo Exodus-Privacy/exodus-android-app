@@ -35,7 +35,7 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/permissionsStatusTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:layout_below="@+id/permissionsStatusTV"
         android:layout_marginTop="10dp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/permissionsInfoGoogleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         android:text="@string/permission_info_dangerous"
         android:textSize="15sp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/permissionsLearnGoogleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:text="@string/learn_more"
         android:textSize="15sp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/permissionsInfoExodusTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         android:text="@string/permission_info"
         android:textSize="15sp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/permissionsLearnExodusTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
