@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "org.eu.exodus_privacy.exodusprivacy"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "org.eu.exodus_privacy.exodusprivacy"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 16
         versionName = "3.1.1"
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
