@@ -44,7 +44,7 @@
     <string name="installed_version">Yüklü Sürüm</string>
     <string name="analyzed_version">Analiz Edilmiş Sürüm</string>
     <string name="same_version">Aynı uygulama sürümü, Android versiyonunu ve kullanılan cihazı takip ederek farklı olabilir.</string>
-    <string name="learn_more">Daha fazla bilgi edinin...</string>
+    <string name="learn_more">Daha fazla bilgi edinin…</string>
     <string name="code_signature_found">Uygulamada aşağıdaki izleyicilerin kod imzasını bulduk:</string>
     <string name="code_signature_not_found">Uygulamada bildiğimiz hiçbir izleyicinin kod imzasını bulamadık.</string>
     <string name="tracker_info">Bir izleyici, sizin veya kullanımınız hakkında veri toplamayı amaçlayan bir yazılım parçasıdır.</string>
@@ -54,7 +54,7 @@
     <string name="permission_info">İzinler, uygulamanın telefonunuzda gerçekleştirebileceği eylemlerdir.</string>
     <string name="permission_info_dangerous"><font color="red"><b>!</b></font> simgesi Google\'ın koruma seviyelerine göre \'Tehlikeli\' veya \'Özel\' seviyesini gösterir.</string>
     <string name="updates">Güncellemeler</string>
-    <string name="updating_database">Rapor veritabanı güncelleniyor... (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <string name="updating_database">Rapor veritabanı güncelleniyor… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulama</item>
         <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulamalar</item>
