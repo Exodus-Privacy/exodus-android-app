@@ -69,7 +69,6 @@ fun getLanguage(): String {
 
 fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-        @Suppress("DEPRECATION")
         this.getInstalledPackages(flags)
     } else {
         val newFlags = PackageManager.PackageInfoFlags.of(flags.toLong())

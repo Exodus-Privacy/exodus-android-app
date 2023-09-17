@@ -119,7 +119,6 @@ class ExodusPackageRepositoryTest {
             pkg.applicationInfo.name
             val appInfo = pkg.applicationInfo
             comparePkgInfo = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                @Suppress("DEPRECATION")
                 packageManager.getApplicationInfo(
                     pkg.packageName,
                     0
