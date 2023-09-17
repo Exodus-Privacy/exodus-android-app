@@ -116,8 +116,11 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 codeSignTV.text = tracker.code_signature
                 if (tracker.network_signature.isNotEmpty()) {
                     networkSignTV.text = tracker.network_signature
+                    networkDetectTV.visibility = View.VISIBLE
+                    networkSignTV.visibility = View.VISIBLE
                 } else {
-                    networkSignTV.text = "NC"
+                    networkDetectTV.visibility = View.GONE
+                    networkSignTV.visibility = View.GONE
                 }
             }
         }
