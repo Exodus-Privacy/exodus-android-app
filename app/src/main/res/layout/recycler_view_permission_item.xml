@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:paddingVertical="4dp"
+    android:minHeight="48dp"
     android:clickable="true"
     android:focusable="true"
     tools:theme="@style/Theme.Exodus">
@@ -16,7 +16,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/expandBT"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="5dp"
         android:textColor="?android:textColorPrimary"
@@ -28,35 +27,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/expandBT"
         app:layout_constraintTop_toBottomOf="@id/permissionTitleTV"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="30dp"
         android:textColor="?android:textColorSecondary"
         android:textSize="15sp"
-        tools:text="Take pictures and videos" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/expandBT"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/permissionTitleTV"
-        app:layout_constraintBottom_toBottomOf="@id/permissionSubTitleTV"
-        app:icon="@drawable/ic_down"
-        app:iconTint="?android:textColorPrimary" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/permissionDescTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/permissionSubTitleTV"
-        android:layout_marginVertical="5dp"
-        android:paddingHorizontal="10dp"
-        android:textColor="?android:textColorSecondary"
-        android:textSize="15sp"
-        android:visibility="gone"
+        android:maxLines="3"
         tools:text="Take pictures and videos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
