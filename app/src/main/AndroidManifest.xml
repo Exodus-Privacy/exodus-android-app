@@ -12,7 +12,7 @@
 
     <!-- Testing:
         To test timeouts of the ExodusAPIRepository in instrumentation, add the following line
-        to the application tag tag:
+        to the application tag:
         android:networkSecurityConfig="@xml/network_security_config"
     -->
 
