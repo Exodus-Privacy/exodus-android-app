@@ -49,7 +49,7 @@
         android:id="@+id/ADTrackersFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment"
         android:label="fragment_a_d_trackers"
-        tools:layout="@layout/fragment_a_d_trackers"></fragment>
+        tools:layout="@layout/fragment_a_d_trackers" />
     <fragment
         android:id="@+id/trackerDetailFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragment"

@@ -63,7 +63,7 @@ class ExodusUpdateService : LifecycleService() {
     private var notificationPermGranted = false
 
     // Inject required modules
-    var applicationList = mutableListOf<Application>()
+    private var applicationList = mutableListOf<Application>()
     private var applicationListAfterUninstall = mutableListOf<Application>()
 
     @Inject
