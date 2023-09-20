@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,38 +16,38 @@
         android:id="@+id/appIconIV"
         android:layout_width="54dp"
         android:layout_height="54dp"
+        android:contentDescription="@string/app_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/app_logo"
         tools:src="@drawable/ic_logo" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appNameTV"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toEndOf="@id/appIconIV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="12dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="?android:textColorPrimary"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/app_name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appVersionTV"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toEndOf="@id/appIconIV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appNameTV"
-        android:layout_marginTop="4dp"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="?android:textColorSecondary"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toBottomOf="@id/appNameTV"
         tools:text="3.0.0" />
 
     <com.google.android.material.chip.Chip
@@ -56,11 +55,11 @@
         style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        app:chipIcon="@drawable/ic_tracker"
         app:layout_constraintStart_toEndOf="@id/appIconIV"
         app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"
-        app:chipIcon="@drawable/ic_tracker"
         tools:text="0" />
 
     <com.google.android.material.chip.Chip
@@ -68,13 +67,13 @@
         style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/trackersChip"
-        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/textColorDark"
         app:chipIcon="@drawable/ic_permission"
         app:chipIconTint="@color/textColorDark"
+        app:layout_constraintStart_toEndOf="@id/trackersChip"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
         tools:chipBackgroundColor="@color/colorYellow"
         tools:text="3" />
 
@@ -83,11 +82,11 @@
         style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        app:chipIcon="@drawable/ic_match"
         app:layout_constraintStart_toEndOf="@id/permsChip"
         app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="5dp"
-        app:chipIcon="@drawable/ic_match"
         app:textEndPadding="0dp"
         app:textStartPadding="0dp" />
 

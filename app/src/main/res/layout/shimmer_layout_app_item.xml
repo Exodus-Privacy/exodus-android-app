@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,76 +15,76 @@
         android:id="@+id/appIconIV"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/colorGrey"
         android:contentDescription="@string/app_logo"
         android:scaleType="fitXY"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appNameTV"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toEndOf="@id/appIconIV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="12dp"
         android:background="@color/colorGrey"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textColor="?android:textColorPrimary"/>
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appVersionTV"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toEndOf="@id/appIconIV"
-        app:layout_constraintTop_toBottomOf="@id/appNameTV"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="4dp"
         android:background="@color/colorGrey"
-        android:layout_marginStart="12dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textColor="?android:textColorSecondary"/>
+        android:textColor="?android:textColorSecondary"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toBottomOf="@id/appNameTV" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/trackersChip"
         style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/appIconIV"
-        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         app:chipBackgroundColor="@color/colorGrey"
         app:chipIcon="@drawable/ic_tracker"
-        app:chipIconTint="@color/colorGrey"/>
+        app:chipIconTint="@color/colorGrey"
+        app:layout_constraintStart_toEndOf="@id/appIconIV"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/permsChip"
         style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/trackersChip"
-        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         app:chipBackgroundColor="@color/colorGrey"
         app:chipIcon="@drawable/ic_permission"
-        app:chipIconTint="@color/colorGrey" />
+        app:chipIconTint="@color/colorGrey"
+        app:layout_constraintStart_toEndOf="@id/trackersChip"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/versionChip"
         style="@style/Theme.Exodus.Chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/permsChip"
-        app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
         app:chipBackgroundColor="@color/colorGrey"
         app:chipIcon="@drawable/ic_match"
-        app:chipIconTint="@color/colorGrey" />
+        app:chipIconTint="@color/colorGrey"
+        app:layout_constraintStart_toEndOf="@id/permsChip"
+        app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

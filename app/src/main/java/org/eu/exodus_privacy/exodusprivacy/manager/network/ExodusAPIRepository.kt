@@ -24,7 +24,10 @@ class ExodusAPIRepository @Inject constructor(
                     Log.d(TAG, "Success!")
                     result.body()!!
                 } else {
-                    Log.w(TAG, "Failed to get trackers, response code: ${result.code()}. Returning empty Trackers object.")
+                    Log.w(
+                        TAG,
+                        "Failed to get trackers, response code: ${result.code()}. Returning empty Trackers object."
+                    )
                     Trackers()
                 }
             } else {
@@ -43,7 +46,10 @@ class ExodusAPIRepository @Inject constructor(
                     Log.d(TAG, "Success!")
                     result.body()!!
                 } else {
-                    Log.w(TAG, "Failed to get app details, response code: ${result.code()}. Returning emptyList.")
+                    Log.w(
+                        TAG,
+                        "Failed to get app details, response code: ${result.code()}. Returning emptyList."
+                    )
                     emptyList()
                 }
             } else {

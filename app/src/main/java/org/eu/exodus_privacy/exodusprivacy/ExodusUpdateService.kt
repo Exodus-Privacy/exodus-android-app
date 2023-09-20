@@ -264,7 +264,12 @@ class ExodusUpdateService : LifecycleService() {
                                 exodusDatabaseRepository.saveApp(it)
                             }
                             Log.d(TAG, "Done saving app details.")
-                            exodusDataStoreRepository.insertAppSetup(ExodusConfig("is_setup_complete", true))
+                            exodusDataStoreRepository.insertAppSetup(
+                                ExodusConfig(
+                                    "is_setup_complete",
+                                    true
+                                )
+                            )
                             // We are done, gracefully exit!
                             stopService()
                         }

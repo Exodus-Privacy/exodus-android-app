@@ -40,7 +40,8 @@ class AppDetailViewModel @Inject constructor(
 
     fun getFormattedReportDate(date: String, context: Context): String {
         // Generate date object in currentSDF to format and parse
-        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.split("T")[0])
+        val currentDate =
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.split("T")[0])
         // Format it
         val sdf = DateFormat.getLongDateFormat(context)
         return sdf.format(currentDate!!)

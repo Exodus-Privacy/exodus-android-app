@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:orientation="vertical"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
     tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.textview.MaterialTextView
@@ -17,15 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:background="@color/colorGrey"/>
+        android:background="@color/colorGrey" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/trackersPB"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:max="100"
-        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:max="100"
         android:progress="100"
         app:indicatorColor="@color/colorGrey"
         app:trackCornerRadius="50dp"
