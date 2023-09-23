@@ -18,11 +18,11 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplicatio
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import org.eu.exodus_privacy.exodusprivacy.objects.Source
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import java.io.InputStream
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
 @HiltAndroidTest
 class ExodusDatabaseRepositoryTest {
@@ -60,7 +60,7 @@ class ExodusDatabaseRepositoryTest {
 
     private val resolution = 144
 
-    @Before
+    @BeforeTest
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().context
         assets = context.assets
@@ -134,7 +134,7 @@ class ExodusDatabaseRepositoryTest {
         )
     }
 
-    @After
+    @AfterTest
     fun teardown() {
         testDB.clearAllTables()
         testDB.close()

@@ -10,8 +10,8 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabase
 import org.junit.Rule
-import org.junit.Test
 import java.io.IOException
+import kotlin.test.Test
 
 class FakeAutoMigrationSpec : AutoMigrationSpec {
     @Override

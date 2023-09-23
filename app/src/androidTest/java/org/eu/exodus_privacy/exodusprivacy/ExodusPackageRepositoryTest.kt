@@ -12,8 +12,8 @@ import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
 import org.eu.exodus_privacy.exodusprivacy.utils.getInstalledPackagesList
 import org.junit.Rule
-import org.junit.Test
 import javax.inject.Inject
+import kotlin.test.Test
 
 @HiltAndroidTest
 class ExodusPackageRepositoryTest {

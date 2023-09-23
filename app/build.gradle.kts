@@ -162,6 +162,7 @@ dependencies {
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.okhttp.mockwebserver)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(kotlin("test"))
 }
 
 class RoomSchemaArgProvider(
