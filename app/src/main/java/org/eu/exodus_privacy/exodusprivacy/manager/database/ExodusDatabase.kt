@@ -17,9 +17,9 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Constants
     autoMigrations = [
         AutoMigration(
             from = Constants.previousDatabaseVersion,
-            to = Constants.currentDatabaseVersion
-        )
-    ]
+            to = Constants.currentDatabaseVersion,
+        ),
+    ],
 )
 @TypeConverters(ExodusDatabaseConverters::class)
 abstract class ExodusDatabase : RoomDatabase() {

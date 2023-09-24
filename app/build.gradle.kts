@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jlleitschuh.gradle.ktlint")
@@ -21,12 +21,11 @@ android {
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
         val API_KEY = System.getenv("EXODUS_API_KEY")
         buildConfigField("String", "EXODUS_API_KEY", "\"$API_KEY\"")
-        javaCompileOptions {
-            annotationProcessorOptions {
-                compilerArgumentProviders(
-                    RoomSchemaArgProvider(File(projectDir, "schemas"))
-                )
-            }
+
+        ksp {
+            arg(
+                RoomSchemaArgProvider(File(projectDir, "schemas")),
+            )
         }
 
         signingConfigs {
@@ -87,9 +86,6 @@ android {
         generateLocaleConfig = true
     }
 }
-kapt {
-    correctErrorTypes = true
-}
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
@@ -127,7 +123,7 @@ dependencies {
     implementation(libs.okhttp)
 
     // Hilt
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.dagger.hilt.android)
 
     // Lifecycle
@@ -136,7 +132,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.service)
 
     // Room
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
 
@@ -153,10 +149,10 @@ dependencies {
     testImplementation(libs.androidx.test.rules)
     testImplementation(libs.dagger.hilt.android.testing)
     testImplementation(libs.okhttp.mockwebserver)
-    kaptTest(libs.dagger.hilt.compiler)
+    kspTest(libs.dagger.hilt.compiler)
 
     // instrumentation tests
-    kaptAndroidTest(libs.dagger.hilt.compiler)
+    kspAndroidTest(libs.dagger.hilt.compiler)
     androidTestImplementation(libs.dagger.hilt.android.testing)
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.core.ktx)
@@ -171,7 +167,7 @@ dependencies {
 class RoomSchemaArgProvider(
     @get:InputDirectory
     @get:PathSensitive(PathSensitivity.RELATIVE)
-    val schemaDir: File
+    val schemaDir: File,
 ) : CommandLineArgumentProvider {
     override fun asArguments() = listOf("room.schemaLocation=${schemaDir.path}")
 }

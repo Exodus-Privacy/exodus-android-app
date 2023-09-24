@@ -2,12 +2,14 @@ package org.eu.exodus_privacy.exodusprivacy.manager.database
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
 import java.io.ByteArrayOutputStream
 
+@ProvidedTypeConverter
 class ExodusDatabaseConverters {
 
     @TypeConverter
@@ -18,6 +20,17 @@ class ExodusDatabaseConverters {
 
     @TypeConverter
     fun fromStringList(list: List<String>): String {
+        return Gson().toJson(list)
+    }
+
+    @TypeConverter
+    fun toMutableStringList(string: String): MutableList<String> {
+        val listType = object : TypeToken<MutableList<String>>() {}.type
+        return Gson().fromJson(string, listType)
+    }
+
+    @TypeConverter
+    fun fromMutableStringList(list: MutableList<String>): String {
         return Gson().toJson(list)
     }
 
