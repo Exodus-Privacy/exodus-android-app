@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.core.graphics.scale
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
@@ -12,6 +13,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabase
+import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseConverters
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
@@ -40,6 +42,7 @@ class ExodusDatabaseRepositoryTest {
     private lateinit var image: Bitmap
     private lateinit var testDB: ExodusDatabase
     private lateinit var exodusDatabaseRepository: ExodusDatabaseRepository
+    private lateinit var exodusTypeConverter: ExodusDatabaseConverters
 
     private val packageName = "com.test.testapp"
     private val packageName2 = "com.test.testapp2"
@@ -64,11 +67,12 @@ class ExodusDatabaseRepositoryTest {
         assets = context.assets
         bitmapStream = assets.open("mipmap/big_square_bigfs.png")
         image = BitmapFactory.decodeStream(bitmapStream)
+        exodusTypeConverter = ExodusDatabaseConverters()
 
         testDB = Room.inMemoryDatabaseBuilder(
             context,
             ExodusDatabase::class.java
-        ).build()
+        ).addTypeConverter(exodusTypeConverter).build()
 
         exodusDatabaseRepository = ExodusDatabaseRepository(
             testDB,
