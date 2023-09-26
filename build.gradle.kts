@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidx.navigation.safeargs.kotlin) apply false
     alias(libs.plugins.dagger.hilt.android) apply false
     alias(libs.plugins.gradle.ktlint) apply false
+    alias(libs.plugins.kotlin.ksp) apply false
 }
 
 tasks.register("clean", Delete::class) {

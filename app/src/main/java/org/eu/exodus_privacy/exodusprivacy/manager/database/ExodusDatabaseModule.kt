@@ -14,10 +14,12 @@ import javax.inject.Singleton
 object ExodusDatabaseModule {
 
     private const val DATABASE_NAME = "exodus_database"
+    private val exodusTypeConverter = ExodusDatabaseConverters()
 
     @Singleton
     @Provides
     fun provideExodusDatabaseInstance(@ApplicationContext context: Context): ExodusDatabase {
-        return Room.databaseBuilder(context, ExodusDatabase::class.java, DATABASE_NAME).build()
+        return Room.databaseBuilder(context, ExodusDatabase::class.java, DATABASE_NAME)
+            .addTypeConverter(exodusTypeConverter).build()
     }
 }
