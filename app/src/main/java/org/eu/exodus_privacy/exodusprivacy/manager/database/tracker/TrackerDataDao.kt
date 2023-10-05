@@ -22,6 +22,9 @@ interface TrackerDataDao {
     @Query("SELECT * FROM trackerdata WHERE id IN (:listOfID) ORDER BY name COLLATE NOCASE")
     suspend fun queryTrackersByIdList(listOfID: List<Int>): List<TrackerData>
 
+    @Query("SELECT COUNT(id) FROM trackerdata")
+    fun queryNumberOfTrackers(): LiveData<Int>
+
     @Delete
     suspend fun deleteTrackerData(trackerData: TrackerData)
 }

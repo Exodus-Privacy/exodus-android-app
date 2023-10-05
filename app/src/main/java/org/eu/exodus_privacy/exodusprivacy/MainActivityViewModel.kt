@@ -7,6 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusDataStoreRepository
@@ -15,11 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val configStorage: ExodusDataStoreRepository<ExodusConfig>,
-    private val networkManager: NetworkManager
+    private val networkManager: NetworkManager,
+    private val exodusDatabaseRepository: ExodusDatabaseRepository
 ) : ViewModel() {
     init {
         networkManager.checkConnection()
     }
+
+    val numOfTrackers = exodusDatabaseRepository.getNumberOfTrackers()
 
     val config = configStorage.getAll().asLiveData()
     private val TAG = MainActivityViewModel::class.java.simpleName

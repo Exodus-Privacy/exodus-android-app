@@ -51,6 +51,10 @@ class ExodusDatabaseRepository @Inject constructor(
         }
     }
 
+    fun getNumberOfTrackers(): LiveData<Int> {
+        return trackerDataDao.queryNumberOfTrackers()
+    }
+
     suspend fun deleteTrackerData(trackerData: TrackerData) {
         withContext(ioDispatcher) {
             trackerDataDao.deleteTrackerData(trackerData)

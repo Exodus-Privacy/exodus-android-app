@@ -36,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
 
+        val trackersBadge = bottomNavigationView.getOrCreateBadge(R.id.trackersFragment)
+
+        viewModel.numOfTrackers.observe(this) { numOfTrackers ->
+            trackersBadge.number = numOfTrackers
+        }
+
         // Show or hide the connection message depending on the network
         viewModel.networkConnection.observe(this) { connected ->
             Log.d(TAG, "Observing Network Connection.")
