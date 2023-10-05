@@ -70,9 +70,8 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     inflateMenu(R.menu.app_detail_menu)
                     if (app.exodusVersionCode == 0L) {
                         menu.findItem(R.id.openExodusPage)?.isVisible = false
-                    } else {
-                        menu.findItem(R.id.submitApp)?.isVisible = false
-                    }
+                    } else menu.findItem(R.id.submitApp)?.isVisible =
+                        app.exodusVersionCode != app.versionCode
                     setOnMenuItemClickListener {
                         when (it.itemId) {
                             R.id.openExodusPage -> {
@@ -120,25 +119,30 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     app.versionCode, 0L -> {
                         appVersionTV.text = app.versionName
                     }
+
                     else -> {
-                        appVTV.visibility = View.GONE
-                        appVersionTV.visibility = View.GONE
-
-                        appIVTV.visibility = View.VISIBLE
-                        appInstalledVersionTV.apply {
-                            visibility = View.VISIBLE
-                            text = app.versionName
-                        }
-
-                        appAVTV.visibility = View.VISIBLE
-                        appAnalyzedVersionTV.apply {
-                            visibility = View.VISIBLE
-                            text = app.exodusVersionName
-                        }
-                        if (app.versionName != app.exodusVersionName) {
-                            appSameVersionTV.visibility = View.GONE
+                        if (app.versionCode == app.exodusVersionCode) {
+                            appVTV.visibility = View.VISIBLE
+                            appVersionTV.text = app.versionName
                         } else {
-                            appSameVersionTV.visibility = View.VISIBLE
+                            if (app.versionName != app.exodusVersionName) {
+                                appIVTV.visibility = View.VISIBLE
+                                appInstalledVersionTV.apply {
+                                    text = app.versionName
+                                    visibility = View.VISIBLE
+                                }
+                                appAVTV.visibility = View.VISIBLE
+                                appAnalyzedVersionTV.apply {
+                                    text = app.exodusVersionName
+                                    visibility = View.VISIBLE
+                                }
+                                appVTV.visibility = View.GONE
+                                appVersionTV.visibility = View.GONE
+                            } else {
+                                appVTV.visibility = View.VISIBLE
+                                appVersionTV.text = app.versionName
+                                appSameVersionTV.visibility = View.VISIBLE
+                            }
                         }
                     }
                 }
