@@ -25,7 +25,7 @@
             tools:chipBackgroundColor="@color/colorGreen"
             tools:text="0" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
