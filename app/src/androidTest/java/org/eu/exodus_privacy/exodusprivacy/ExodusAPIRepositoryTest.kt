@@ -19,14 +19,14 @@ import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIInterface
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
 import org.junit.Assert.assertEquals
-import kotlin.test.BeforeTest
 import org.junit.Rule
-import kotlin.test.Test
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
 const val FAKE_PATH = "/api/requests/"
