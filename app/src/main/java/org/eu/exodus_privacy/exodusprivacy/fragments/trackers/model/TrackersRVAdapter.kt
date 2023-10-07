@@ -50,8 +50,7 @@ class TrackersRVAdapter(
 
         Log.d(
             TAG,
-            "ApplicationsList in TrackerData: ${app.exodusApplications}. " +
-                    "Size: ${app.exodusApplications.size}."
+            "ApplicationsList in TrackerData: ${app.exodusApplications}. " + "Size: ${app.exodusApplications.size}."
         )
 
         val trackerPercentage =
