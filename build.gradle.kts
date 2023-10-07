@@ -9,9 +9,6 @@ plugins {
     alias(libs.plugins.kotlin.ksp) apply false
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.layout.buildDirectory)
-}
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
