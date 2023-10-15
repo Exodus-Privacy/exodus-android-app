@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -82,14 +83,15 @@ class AboutFragment : PreferenceFragmentCompat() {
             true
         }
 
-        val type = BuildConfig.BUILD_TYPE.replaceFirstChar { it.uppercase() }
         binding.appVersionTV.text =
             getString(
                 R.string.version_info,
-                type,
                 BuildConfig.VERSION_NAME,
                 BuildConfig.VERSION_CODE
             )
+        binding.appVersionTV.setOnClickListener {
+            Toast.makeText(context, "Thanks for support ❤", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
