@@ -26,6 +26,7 @@
     <!-- About Fragment -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
+    <string name="appLanguage">Мова</string>
     <!-- AppDetail Fragment -->
     <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">і оновлено <xliff:g id="date">%1$s</xliff:g></string>

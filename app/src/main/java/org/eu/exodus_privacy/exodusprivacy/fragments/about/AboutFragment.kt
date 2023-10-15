@@ -3,7 +3,9 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.about
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.preference.Preference
@@ -56,8 +58,23 @@ class AboutFragment : PreferenceFragmentCompat() {
         val toolbar = binding.toolbar
         toolbar.menu.clear()
         toolbar.inflateMenu(R.menu.about_menu)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            (toolbar.menu.findItem(R.id.chooseLanguage)).isVisible = true
+        }
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
+                R.id.chooseLanguage -> {
+                    val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
+                        data = Uri.parse("package:" + BuildConfig.APPLICATION_ID)
+                    }
+                    try {
+                        startActivity(intent)
+                        true
+                    } catch (e: ActivityNotFoundException) {
+                        false
+                    }
+                }
+
                 R.id.chooseTheme -> {
                     ThemeDialogFragment().show(childFragmentManager, tag)
                 }

@@ -34,6 +34,7 @@
     <string name="fetching_apps">Mise à jour des rapports</string>
 
     <!-- About Fragment -->
+    <string name="appLanguage">Langue</string>
     <string name="chooseTheme">Thème</string>
     <string name="analyze_desc">Effectuer une nouvelle analyse</string>
     <string name="alternatives">Et après ?</string>

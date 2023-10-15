@@ -72,5 +72,6 @@
     <string name="reject">Reddet</string>
     <string name="warning_title">Exodus\'un gerekli verileri iletmesine izin verilsin mi?</string>
     <string name="warning_desc">Bu uygulamanın çalışması için veri toplaması ve Exodus Privacy sunucularına izleyici analizi için bu cihazda yüklü uygulamaların listesini içeren verileri göndermesi GEREKİR. Herhangi bir kişisel bilgi içermez.</string>
+    <string name="appLanguage">Dil</string>
 
 </resources>

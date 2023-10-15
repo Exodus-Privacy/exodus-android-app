@@ -34,6 +34,7 @@
     <string name="fetching_apps">Обновление базы данных отчётов!</string>
 
     <!-- About Fragment -->
+    <string name="appLanguage">язык</string>
     <string name="chooseTheme">Тема</string>
     <string name="analyze_desc">Провести новый анализ</string>
     <string name="alternatives">Что дальше?</string>
