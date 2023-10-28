@@ -47,12 +47,12 @@ android {
     }
 
     buildTypes {
-        getByName("debug") {
+        debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
             isDebuggable = true
         }
-        getByName("release") {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
@@ -70,6 +70,9 @@ android {
         unitTests {
             isIncludeAndroidResources = true
         }
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
     sourceSets {
         // Adds exported schema location as test app assets.
