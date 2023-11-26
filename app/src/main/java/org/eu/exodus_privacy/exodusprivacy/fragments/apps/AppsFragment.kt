@@ -41,6 +41,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         reenterTransition = MaterialFadeThrough()
         returnTransition = MaterialFadeThrough()
 
+        val progressBar = binding.progress
         val updateReportsFab = binding.updateReportsFAB
 
         // Setup menu actions
@@ -94,7 +95,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
             if (!it.isNullOrEmpty()) {
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
-                binding.progress.visibility = View.GONE
+                progressBar.visibility = View.GONE
                 appsRVAdapter.submitList(it)
             } else {
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
@@ -105,10 +106,12 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.swipeRefreshLayout.isRefreshing = false
             updateReports(view.context)
+            progressBar.visibility = View.VISIBLE
         }
 
         updateReportsFab.setOnClickListener {
             updateReports(view.context)
+            progressBar.visibility = View.VISIBLE
         }
     }
 
@@ -135,7 +138,6 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                 action = ExodusUpdateService.START_SERVICE
                 activity?.startService(this)
             }
-            binding.progress.visibility = View.VISIBLE
         }
     }
 }
