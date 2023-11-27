@@ -71,7 +71,10 @@ class ExodusDatabaseRepository @Inject constructor(
             return@withContext if (list.isNotEmpty() && list.size == 1) {
                 list[0]
             } else {
-                Log.d(TAG, "Failed to get ExodusApplication from DB returning empty ExodusApplication().")
+                Log.d(
+                    TAG,
+                    "Failed to get ExodusApplication from DB returning empty ExodusApplication()."
+                )
                 ExodusApplication()
             }
         }

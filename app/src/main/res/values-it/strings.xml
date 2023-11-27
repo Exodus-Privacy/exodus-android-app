@@ -14,6 +14,7 @@
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
+    <string name="appLanguage">Lingua</string>
     <string name="analyze_desc">Esegui una nuova analisi</string>
     <!-- AppDetail Fragment -->
     <string name="report_date">Report creato il <xliff:g id="date">%1$s</xliff:g></string>

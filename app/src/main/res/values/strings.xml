@@ -39,8 +39,9 @@
     <string name="fetching_apps">Updating reports database!</string>
 
     <!-- About Fragment -->
+    <string name="appLanguage">Language</string>
     <string name="chooseTheme">Theme</string>
-    <string name="version_info" translatable="false"><xliff:g id="type">%1$s</xliff:g> <xliff:g id="name">%2$s</xliff:g>-<xliff:g id="code">%3$d</xliff:g></string>
+    <string name="version_info" translatable="false"><xliff:g id="name">%1$s</xliff:g>-<xliff:g id="code">%2$d</xliff:g></string>
     <string name="analyze_desc">Perform a new analysis</string>
     <string name="alternatives">What\'s next?</string>
     <string name="alternatives_desc">Some alternatives exist!</string>

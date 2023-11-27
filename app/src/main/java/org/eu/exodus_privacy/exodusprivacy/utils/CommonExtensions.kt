@@ -37,7 +37,12 @@ fun Chip.setExodusColor(size: Int) {
         this.chipBackgroundColor = backgroundColorStateList
     } else {
         val colorForeground =
-            ColorStateList.valueOf(ContextCompat.getColor(context, com.google.android.material.R.color.m3_chip_text_color))
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    context,
+                    com.google.android.material.R.color.m3_chip_text_color
+                )
+            )
         this.chipIconTint = colorForeground
         this.setTextColor(colorForeground)
         val colorBackground = ContextCompat.getColor(context, R.color.chipColor)
@@ -69,7 +74,6 @@ fun getLanguage(): String {
 
 fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-        @Suppress("DEPRECATION")
         this.getInstalledPackages(flags)
     } else {
         val newFlags = PackageManager.PackageInfoFlags.of(flags.toLong())

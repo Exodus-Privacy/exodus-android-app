@@ -10,9 +10,9 @@ import androidx.test.rule.ServiceTestRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
 @HiltAndroidTest
 class ExodusUpdateServiceTest {
@@ -24,7 +24,7 @@ class ExodusUpdateServiceTest {
 
     private lateinit var context: Context
 
-    @Before
+    @BeforeTest
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
     }

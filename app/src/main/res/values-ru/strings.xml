@@ -34,6 +34,7 @@
     <string name="fetching_apps">Обновление базы данных отчётов!</string>
 
     <!-- About Fragment -->
+    <string name="appLanguage">язык</string>
     <string name="chooseTheme">Тема</string>
     <string name="analyze_desc">Провести новый анализ</string>
     <string name="alternatives">Что дальше?</string>
@@ -44,8 +45,7 @@
     <string name="privPolicy">Политика конфиденциальности</string>
     <string name="privPolicy_desc">Узнайте, как мы обрабатываем выши данные</string>
     <string name="email">Почта</string>
-     <string name="email_desc">Свяжитесь с нами по email</string>
-    <string name="twitter_desc">Оставайтесь в курсе событий проекта Exodus Privacy</string>
+    <string name="email_desc">Свяжитесь с нами по email</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Открыть в Exodus Privacy</string>

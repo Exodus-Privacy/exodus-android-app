@@ -14,6 +14,7 @@
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
+    <string name="appLanguage">Língua</string>
     <!-- AppDetail Fragment -->
     <string name="report_date">Relatório criado em <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">e atualizado em <xliff:g id="date">%1$s</xliff:g></string>

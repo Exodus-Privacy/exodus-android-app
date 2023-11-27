@@ -12,9 +12,9 @@ import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.DataStoreName
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusDataStoreRepository
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
 @HiltAndroidTest
 class ExodusDataStoreRepositoryTest {
@@ -24,7 +24,7 @@ class ExodusDataStoreRepositoryTest {
     private lateinit var context: Context
     private lateinit var dataStoreRepository: ExodusDataStoreRepository<ExodusConfig>
 
-    @Before
+    @BeforeTest
     fun setup() {
         context = getInstrumentation().targetContext
     }

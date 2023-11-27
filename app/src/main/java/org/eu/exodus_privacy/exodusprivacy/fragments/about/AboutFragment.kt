@@ -3,8 +3,11 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.about
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -33,7 +36,7 @@ class AboutFragment : PreferenceFragmentCompat() {
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org/"
         private const val twitterURL = "https://twitter.com/ExodusPrivacy"
-        private const val mastodonURL = "https://framapiaf.org/@exodus"
+        private const val mastodonURL = "https://mastodon.social/@exodus@framapiaf.org"
         private const val emailID = "contact@exodus-privacy.eu.org"
     }
 
@@ -56,8 +59,23 @@ class AboutFragment : PreferenceFragmentCompat() {
         val toolbar = binding.toolbar
         toolbar.menu.clear()
         toolbar.inflateMenu(R.menu.about_menu)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            (toolbar.menu.findItem(R.id.chooseLanguage)).isVisible = true
+        }
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
+                R.id.chooseLanguage -> {
+                    val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
+                        data = Uri.parse("package:" + BuildConfig.APPLICATION_ID)
+                    }
+                    try {
+                        startActivity(intent)
+                        true
+                    } catch (e: ActivityNotFoundException) {
+                        false
+                    }
+                }
+
                 R.id.chooseTheme -> {
                     ThemeDialogFragment().show(childFragmentManager, tag)
                 }
@@ -65,14 +83,15 @@ class AboutFragment : PreferenceFragmentCompat() {
             true
         }
 
-        val type = BuildConfig.BUILD_TYPE.replaceFirstChar { it.uppercase() }
         binding.appVersionTV.text =
             getString(
                 R.string.version_info,
-                type,
                 BuildConfig.VERSION_NAME,
                 BuildConfig.VERSION_CODE
             )
+        binding.appVersionTV.setOnClickListener {
+            Toast.makeText(context, "Thanks for support ❤", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

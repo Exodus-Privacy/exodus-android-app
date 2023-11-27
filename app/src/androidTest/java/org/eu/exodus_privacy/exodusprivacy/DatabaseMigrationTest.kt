@@ -10,8 +10,8 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabase
 import org.junit.Rule
-import org.junit.Test
 import java.io.IOException
+import kotlin.test.Test
 
 class FakeAutoMigrationSpec : AutoMigrationSpec {
     @Override
@@ -34,7 +34,7 @@ class DatabaseMigrationTest {
         FrameworkSQLiteOpenHelperFactory()
     )
 
-    val MIGRATION_1_2 = object : Migration(1, 2) {
+    private val MIGRATION_1_2 = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
                 "ALTER TABLE TrackerData ADD COLUMN totalNumberOfAppsHavingTrackers INTEGER NOT NULL DEFAULT 0"

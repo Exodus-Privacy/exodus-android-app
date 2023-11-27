@@ -12,8 +12,8 @@ import kotlinx.coroutines.test.runTest
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
 import org.eu.exodus_privacy.exodusprivacy.utils.getInstalledPackagesList
 import org.junit.Rule
-import org.junit.Test
 import javax.inject.Inject
+import kotlin.test.Test
 
 @HiltAndroidTest
 class ExodusPackageRepositoryTest {
@@ -119,7 +119,6 @@ class ExodusPackageRepositoryTest {
             pkg.applicationInfo.name
             val appInfo = pkg.applicationInfo
             comparePkgInfo = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                @Suppress("DEPRECATION")
                 packageManager.getApplicationInfo(
                     pkg.packageName,
                     0

@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "org.eu.exodus_privacy.exodusprivacy"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "org.eu.exodus_privacy.exodusprivacy"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 16
         versionName = "3.1.1"
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
@@ -47,12 +47,12 @@ android {
     }
 
     buildTypes {
-        getByName("debug") {
+        debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
             isDebuggable = true
         }
-        getByName("release") {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
@@ -70,6 +70,9 @@ android {
         unitTests {
             isIncludeAndroidResources = true
         }
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
     sourceSets {
         // Adds exported schema location as test app assets.
@@ -162,6 +165,7 @@ dependencies {
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.okhttp.mockwebserver)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(kotlin("test"))
 }
 
 class RoomSchemaArgProvider(

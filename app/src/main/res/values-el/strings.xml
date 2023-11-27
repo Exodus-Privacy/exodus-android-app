@@ -14,6 +14,7 @@
     <!-- Filters -->
     <!-- Apps Fragment -->
     <!-- About Fragment -->
+    <string name="appLanguage">Γλώσσα</string>
     <string name="analyze_desc">Εκτελέστε μια νέα ανάλυση</string>
     <!-- AppDetail Fragment -->
     <string name="report_date">Η αναφορά δημιουργήθηκε στις <xliff:g id="date">%1$s</xliff:g></string>

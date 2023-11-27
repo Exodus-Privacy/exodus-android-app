@@ -18,15 +18,15 @@ import okhttp3.mockwebserver.SocketPolicy
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIInterface
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusModule
-import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
 const val FAKE_PATH = "/api/requests/"
@@ -100,14 +100,14 @@ class ExodusAPIRepositoryTest {
     lateinit var exodusAPIRepository: ExodusAPIRepository
     private lateinit var context: Context
 
-    @Before
+    @BeforeTest
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().context
         mockWebServer.start(FAKE_PORT)
         mockWebServer.url(FAKE_PATH)
     }
 
-    @After
+    @AfterTest
     fun teardown() {
         mockWebServer.shutdown()
     }
