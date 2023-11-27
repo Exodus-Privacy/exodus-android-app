@@ -16,6 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/title_apps" />
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+      android:id="@+id/progress"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:indeterminate="true"
+      android:visibility="gone"
+      app:trackCornerRadius="4dp"
+      app:layout_constraintBottom_toBottomOf="@+id/toolbarApps" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
