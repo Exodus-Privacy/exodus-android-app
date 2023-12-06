@@ -1,6 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.apps.model
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.navigation.findNavController
@@ -12,7 +13,6 @@ import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
-import org.eu.exodus_privacy.exodusprivacy.utils.setVersionReport
 
 class AppsRVAdapter(
     private val currentDestinationId: Int
@@ -48,7 +48,18 @@ class AppsRVAdapter(
             }
             appIconIV.background = app.icon.toDrawable(context.resources)
             appNameTV.text = app.name
-            appVersionTV.text = context.getString(R.string.app_version, app.versionName)
+            when (app.exodusVersionCode) {
+                0L -> appVersionTV.apply {
+                    text = context.resources.getString(R.string.version_unavailable)
+                    visibility = View.VISIBLE
+                }
+
+                app.versionCode -> appVersionTV.visibility = View.GONE
+                else -> appVersionTV.apply {
+                    text = context.resources.getString(R.string.version_mismatch)
+                    visibility = View.VISIBLE
+                }
+            }
             trackersChip.apply {
                 val trackerNum = app.exodusTrackers.size
                 text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
@@ -59,7 +70,6 @@ class AppsRVAdapter(
                 text = permsNum.toString()
                 setExodusColor(permsNum)
             }
-            versionChip.setVersionReport(app)
         }
     }
 }

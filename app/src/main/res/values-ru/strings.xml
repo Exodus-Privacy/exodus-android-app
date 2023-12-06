@@ -4,8 +4,7 @@
     <string name="permissions">Разрешений</string>
     <string name="not_connected">Нет подключения к интернету</string>
     <string name="settings">Настройки</string>
-    <string name="version_equals">Установленная версия = Проанализированной версией</string>
-    <string name="version_mismatch">Установленная версия &lt;&gt; Проанализированной версией</string>
+  <string name="version_mismatch">Установленная версия &lt;&gt; Проанализированной версией</string>
     <string name="version_unavailable">Приложение никогда не анализировалось</string>
     <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
     <string name="no_settings">Это приложение не имеет настроек</string>
