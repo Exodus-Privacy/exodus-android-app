@@ -1,0 +1,95 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Applikationslogga</string>
+    <string name="trackers">Spårare</string>
+    <string name="permissions">Behörigheter</string>
+    <string name="not_connected">Ingen Internetanslutning</string>
+    <string name="settings">Inställningar</string>
+    <string name="version_mismatch">Installerad Version &lt;&gt; Analyserad Version</string>
+    <string name="version_unavailable">Appen har aldrig analyserats</string>
+    <string name="no_app_found">Det verkar som du inte har några installerade appar från källorna vi testar (Google Play store eller F-Droid).</string>
+    <string name="no_settings">Denna app har inga inställningar</string>
+    <string name="logo">%1 Applikationslogga</string>
+    <string name="refresh">Uppdatera</string>
+    <string name="cancel">Avbryt</string>
+    <string name="refresh_needed">Uppdatering behövs</string>
+    <string name="refresh_needed_message">Datan har inte uppdaterats sedan %1$s. \n\nVill du uppdatera dem?</string>
+    <string name="submit">Skicka</string>
+    <string name="app_not_analyzed">Vill du analysera appen?\n\nApp-id kommer automatiskt att klistras in i webbplatsformuläret. Du behöver bara skicka in formuläret.</string>
+    <string name="app_not_analyzed_title">Denna app har inte blivit analyserad!</string>
+    <string name="title_apps">Appar</string>
+    <string name="title_trackers">Spårare</string>
+    <string name="title_about">Om</string>
+    <string name="nothing_here">Inget att visa för närvarande. Du kan dra för att uppdatera!</string>
+
+    <!-- Menu -->
+    <string name="menu_action_search">Sök</string>
+    <string name="menu_action_filter">Sortera genom</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Namn</string>
+    <string name="sort_by_creation_date">Skapad datum</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Uppdaterar rapportdatabasen!</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">Language</string>
+    <string name="chooseTheme">Tema</string>
+    <string name="analyze_desc">Utför en ny analys</string>
+    <string name="alternatives">Vad kommer härnäst?</string>
+    <string name="alternatives_desc">Det finns alternativ!</string>
+    <string name="website">Hemsida</string>
+    <string name="website_desc">Hitta mer information om Exodus Privacy-projektet</string>
+    <string name="srcCode_desc">Rapportera buggar, visa källkoden</string>
+    <string name="privPolicy">Integritetspolicy</string>
+    <string name="privPolicy_desc">Lär dig hur vi hanterar dina uppgifter</string>
+    <string name="email">E-post</string>
+    <string name="email_desc">Nå oss via e-post</string>
+
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Öppna på Exodus Privacy</string>
+    <string name="submit_app">Skicka in app</string>
+    <string name="open_store">Öppna butik</string>
+    <string name="open_app_info">Appinställningar</string>
+    <string name="version">Version</string>
+    <string name="report_date">Rapport skapad den <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">och uppdaterad den <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Installerad Version</string>
+    <string name="analyzed_version">Analyserad Version</string>
+    <string name="same_version">Samma appversion kan vara annorlunda beroende på Androidversion och enheten som används.</string>
+    <string name="learn_more"><u>Lär dig mer…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Vi har hittat kodsignatur av följande spårare i programmet:</string>
+    <string name="code_signature_not_found">Vi har inte hittat kodsignatur av någon spårare vi känner till i appen.</string>
+    <string name="tracker_info">En spårare är en programvara som är tänkt att samla in uppgifter om dig eller din användning.</string>
+    <string name="analyzed">Denna app har ännu inte analyserats av Exodus Privacy.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Vi har hittat följande behörigheter i applikationen:</string>
+    <string name="code_permission_not_found">Denna applikation kräver inga behörigheter.</string>
+    <string name="permission_info">Behörigheter är åtgärder som programmet kan göra på din telefon.</string>
+    <string name="permission_info_dangerous">Ikonen <font color="red"><b>!</b></font> indikerar en \"Farlig\" eller \"Special\" nivå enligt Googles skyddsnivåer.</string>
+    <!-- Notification -->
+    <string name="updates">Uppdateringar</string>
+    <string name="updating_database">Uppdaterar rapportdatabasen… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> appar</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Öppna spårningssidan</string>
+    <string name="detection_rules">Identifieringsregler</string>
+    <string name="code_signature">Kodidentifieringsregel:</string>
+    <string name="network_signature">Nätverksdetekteringsregel:</string>
+    <string name="apps_list">Applista</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Förekommande i <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) av dina appar</item>
+        <item quantity="other">Förekommande i <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> appar) av dina appar</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">Godkänn</string>
+    <string name="reject">Neka</string>
+    <string name="warning_title">Tillåt Exodus att överföra nödvändig data?</string>
+    <string name="warning_desc">För att kunnas köras så måste denna applikation måste samla in och skicka data till Exodus Privacyservrar som innehåller listan över program installerade på denna enhet för spårningsanalys. Den innehåller ingen personlig information.</string>
+    <string name="title_theme">Välj tema</string>
+    <string name="dark_theme">Mörkt</string>
+    <string name="light_theme">Ljust</string>
+    <string name="system_theme">Systemtema</string>
+</resources>

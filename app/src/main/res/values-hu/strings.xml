@@ -1,0 +1,95 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Alkalmazáslogó</string>
+    <string name="trackers">Nyomkövetők</string>
+    <string name="permissions">Engedélyek</string>
+    <string name="not_connected">Nincs internetkapcsolat</string>
+    <string name="settings">Beállítások</string>
+    <string name="version_mismatch">Telepített változat &lt;&gt; Vizsgált változat</string>
+    <string name="version_unavailable">Az alkalmazás még sosem volt vizsgálva</string>
+    <string name="no_app_found">Úgy tűnik, hogy nincs telepítve egyetlen alkalmazás sem az általunk tesztelt forrásból (Google Play Áruház vagy F-Droid).</string>
+    <string name="no_settings">Ennek az alkalmazásnak nincsenek beállításai</string>
+    <string name="logo">%1 Alkalmazáslogó</string>
+    <string name="refresh">Frissítés</string>
+    <string name="cancel">Mégsem</string>
+    <string name="refresh_needed">Frissíteni kell</string>
+    <string name="refresh_needed_message">Az adatok nem frissültek %1$s óta.\n\nSzeretné frissíteni őket?</string>
+    <string name="submit">Beküldés</string>
+    <string name="app_not_analyzed">Szeretné elemezni az alkalmazást?\n\nAz alkalmazásazonosító automatikusan beillesztésre kerül a webhely űrlapjába. Csak az űrlapot kell beküldenie.</string>
+    <string name="app_not_analyzed_title">Az alkamazás nem lett elemezve!</string>
+    <string name="title_apps">Alkalmazások</string>
+    <string name="title_trackers">Nyomkövetők</string>
+    <string name="title_about">Névjegy</string>
+    <string name="nothing_here">Jelenleg nincs semmi megjeleníthető. Lefelé húzással frissítheti!</string>
+    <string name="back_button">Back</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Keresés</string>
+    <string name="menu_action_filter">Rendezési elv</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Név</string>
+    <string name="sort_by_creation_date">Létrehozás dátuma</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Jelentésadatbázis frissítése!</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">Nyelv</string>
+    <string name="chooseTheme">Téma</string>
+    <string name="analyze_desc">Végezzen egy új elemzést</string>
+    <string name="alternatives">Mi várható?</string>
+    <string name="alternatives_desc">Néhány lehetőség van már!</string>
+    <string name="website">Weboldal</string>
+    <string name="website_desc">További információ az Exodus Privacy projektről</string>
+    <string name="srcCode_desc">Hibák bejelentése, forráskód megtekintése</string>
+    <string name="privPolicy">Adatvédelmi irányelvek</string>
+    <string name="privPolicy_desc">Ismerje meg, hogyan kezeljük az adatait</string>
+    <string name="email">E-mail</string>
+    <string name="email_desc">Lépjen kapcsolatba velünk e-mailben</string>
+    <string name="X_desc">Legyen naprakész az Exodus Privacy projekttel kapcsolatban</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Nyissa meg az Exodus Privacyt</string>
+    <string name="submit_app">Alkalmazás beküldése</string>
+    <string name="open_store">Tároló megnyitása</string>
+    <string name="open_app_info">Alkalmazásbeállítások</string>
+    <string name="version">Változat</string>
+    <string name="report_date">A jelentés elkészítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">és frissítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Telepített változat</string>
+    <string name="analyzed_version">Vizsgált változat</string>
+    <string name="same_version">Egyező alkalmazásverzió esetén is lehetnek különbségek a használt Android verzió és eszköz függvényében.</string>
+    <string name="learn_more"><u>További információk...</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Az alkalmazásban a következő nyomkövetők kódjait találtuk:</string>
+    <string name="code_signature_not_found">Az alkalmazásban nem találtunk az általunk ismert nyomkövetők kódjai közül egyet sem.</string>
+    <string name="tracker_info">A nyomkövető egy olyan szoftver, amelynek célja az Ön adatainak és tevékenységének összegyüjtése és továbbítása észrevétlenül.</string>
+    <string name="analyzed">Ezt az alkalmazást még nem elemezte az Exodus Privacy.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Az alkalmazásban a következő engedélyeket találtuk:</string>
+    <string name="code_permission_not_found">Ez az alkalmazás nem igényel engedélyeket.</string>
+    <string name="permission_info">Engedélyek olyan tevékenységek, amelyeket az alkalmazás az Ön telefonján tehet.</string>
+    <string name="permission_info_dangerous">A <font color="red"><b>!</b></font> ikon jelzi a \"Veszélyes\" vagy \"Speciális\" szintet a Google védelmi szintje szerint.</string>
+    <!-- Notification -->
+    <string name="updates">Frissítések</string>
+    <string name="updating_database">Jelentés-adatbázis frissítése... (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> alkalmazás</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> alkalmazás</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Nyomkövetőlap megnyitása</string>
+    <string name="detection_rules">Észlelési szabályok</string>
+    <string name="code_signature">Kódészlelés szabálya:</string>
+    <string name="network_signature">Hálózatészlelés szabálya:</string>
+    <string name="apps_list">Alkalmazások listája</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Az alkalmazásai <xliff:g id="percentage">%1$d</xliff:g>%%-ában (<xliff:g id="apps">%2$d</xliff:g> alkalmazásban) van jelen</item>
+        <item quantity="other">Az alkalmazásai <xliff:g id="percentage">%1$d</xliff:g>%%-ában (<xliff:g id="apps">%2$d</xliff:g> alkalmazásban) van jelen</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">Elfogad</string>
+    <string name="reject">Elutasít</string>
+    <string name="warning_title">Megengedi, hogy az Exodus továbbítsa a kért adatokat?</string>
+    <string name="warning_desc">A működéséhez, a nyomkövető-elemzéshez az alkalmazásnak adatokat kell gyűjtenie és elküldenie az Exodus Privacy szervereknek, ez magában foglalja az eszközre telepített alkalmazások listáját. Ez nem tartalmaz személyes adatokat.</string>
+    <string name="title_theme">Témaválasztás</string>
+    <string name="dark_theme">Sötét</string>
+    <string name="light_theme">Világos</string>
+    <string name="system_theme">Rendszer alapértelmezett</string>
+</resources>

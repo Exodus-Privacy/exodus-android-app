@@ -4,7 +4,7 @@
     <string name="permissions">İzinler</string>
     <string name="not_connected">Ağ bağlantısı yok</string>
     <string name="settings">Ayarlar</string>
-  <string name="version_mismatch">Yüklü Sürüm &lt;&gt; Analiz Edilen Sürüm</string>
+    <string name="version_mismatch">Yüklü Sürüm &lt;&gt; Analiz Edilen Sürüm</string>
     <string name="version_unavailable">Uygulama hiç analiz edilmemiş</string>
     <string name="no_app_found">Test ettiğimiz kaynaktan (Google Play Mağazası veya F-Droid) yüklü herhangi bir uygulamanız yok gibi görünüyor.</string>
     <string name="no_settings">Bu uygulamanın ayarları yok</string>
@@ -20,6 +20,7 @@
     <string name="title_trackers">İzleyiciler</string>
     <string name="title_about">Hakkında</string>
     <string name="nothing_here">Şu anda görüntülenecek bir şey yok. Yenilemek için aşağı kaydırabilirsiniz!</string>
+    <string name="back_button">Geri</string>
 
     <!-- Menu -->
     <string name="menu_action_search">Arama</string>
@@ -34,6 +35,10 @@
 
     <!-- About Fragment -->
     <string name="appLanguage">Dil</string>
+    <string name="chooseTheme">Tema</string>
+    <string name="analyze_desc">Yeni bir analiz gerçekleştir</string>
+    <string name="alternatives">Sırada ne var?</string>
+    <string name="alternatives_desc">Bazı alternatifler mevcut!</string>
     <string name="website">Web sitesi</string>
     <string name="website_desc">Exodus Privacy projesi hakkında daha fazla bilgi edinin</string>
     <string name="srcCode_desc">Sorunları bildirin, yıldız verin, PR\'lara katkıda bulunun veya kodu kontrol edin</string>
@@ -75,7 +80,7 @@
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulama</item>
-        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulamalar</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> uygulama</item>
     </plurals>
 
     <!-- TrackersDetail Fragment -->
@@ -85,8 +90,8 @@
     <string name="network_signature">Ağ saptama kuralı:</string>
     <string name="apps_list">Uygulama listesi</string>
     <plurals name="trackers_presence">
-        <item quantity="one">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulama) oranında mevcut</item>
-        <item quantity="other">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulamalar) oranında mevcut</item>
+        <item quantity="one">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulama) içinde mevcut</item>
+        <item quantity="other">Uygulamalarınızın <xliff:g id="percentage">%1$d</xliff:g>% (<xliff:g id="apps">%2$d</xliff:g> uygulama) içinde mevcut</item>
     </plurals>
 
     <!-- Dialog Fragment -->
@@ -94,5 +99,8 @@
     <string name="reject">Reddet</string>
     <string name="warning_title">Exodus\'un gerekli verileri iletmesine izin verilsin mi?</string>
     <string name="warning_desc">Bu uygulamanın çalışması için veri toplaması ve Exodus Privacy sunucularına izleyici analizi için bu cihazda yüklü uygulamaların listesini içeren verileri göndermesi GEREKİR. Herhangi bir kişisel bilgi içermez.</string>
-
+    <string name="title_theme">Bir tema seçin</string>
+    <string name="dark_theme">Koyu</string>
+    <string name="light_theme">Açık</string>
+    <string name="system_theme">Sistem Varsayılanı</string>
 </resources>

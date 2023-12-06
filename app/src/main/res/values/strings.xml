@@ -22,6 +22,7 @@
     <string name="title_trackers">Trackers</string>
     <string name="title_about">About</string>
     <string name="nothing_here">Nothing to display currently. You can pull to refresh!</string>
+    <string name="back_button">Back</string>
 
     <!-- Menu -->
     <string name="menu_action_search">Search</string>

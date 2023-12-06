@@ -20,6 +20,7 @@
     <string name="title_trackers">Pisteurs</string>
     <string name="title_about">À propos</string>
     <string name="nothing_here">Rien à afficher pour le moment.\nGlisser vers le bas pour actualiser!</string>
+    <string name="back_button">Retour</string>
 
     <!-- Menu -->
     <string name="menu_action_search">Rechercher</string>

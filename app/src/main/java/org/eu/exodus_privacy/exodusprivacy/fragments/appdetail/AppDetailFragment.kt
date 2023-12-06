@@ -188,6 +188,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         0 -> {
                             tab.apply {
                                 text = getString(R.string.trackers)
+                                contentDescription = getString(R.string.trackers)
                                 icon =
                                     ContextCompat.getDrawable(view.context, R.drawable.ic_tracker)
                             }
@@ -195,6 +196,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         1 -> {
                             tab.apply {
                                 text = getString(R.string.permissions)
+                                contentDescription = getString(R.string.permissions)
                                 icon = ContextCompat.getDrawable(
                                     view.context,
                                     R.drawable.ic_permission
