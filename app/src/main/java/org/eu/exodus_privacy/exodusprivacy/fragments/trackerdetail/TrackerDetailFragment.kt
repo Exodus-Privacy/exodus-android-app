@@ -29,8 +29,6 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
     private var _binding: FragmentTrackerDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val TAG = TrackerDetailFragment::class.java.simpleName
-
     private val args: TrackerDetailFragmentArgs by navArgs()
     private val viewModel: TrackerDetailViewModel by viewModels()
 
