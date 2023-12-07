@@ -74,17 +74,4 @@
         app:layout_constraintStart_toEndOf="@id/trackersChip"
         app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/versionChip"
-        style="@style/Theme.Exodus.Chip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
-        app:chipBackgroundColor="@color/colorGrey"
-        app:chipIcon="@drawable/ic_match"
-        app:chipIconTint="@color/colorGrey"
-        app:layout_constraintStart_toEndOf="@id/permsChip"
-        app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

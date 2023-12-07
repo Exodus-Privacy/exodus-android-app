@@ -4,9 +4,8 @@
     <string name="permissions">Autorisations</string>
     <string name="not_connected">Aucune connexion Internet</string>
     <string name="settings">Paramètres</string>
-    <string name="version_equals">Version installée = Version analysée</string>
-    <string name="version_mismatch">Version installée &lt;&gt; Version analysée</string>
-    <string name="version_unavailable">Application jamais analysée</string>
+    <string name="version_mismatch">La version analysée est différente de la version installée.</string>
+    <string name="version_unavailable">Cette application n\’a pas encore été analysée par Exodus Privacy.</string>
     <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
     <string name="no_settings">Cette app n\'a pas de paramètres</string>
     <string name="logo">Logo de l\'application %1</string>
