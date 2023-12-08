@@ -4,8 +4,7 @@
     <string name="permissions">Uprawnienia</string>
     <string name="not_connected">Brak połączenia z internetem</string>
     <string name="settings">Ustawienia</string>
-    <string name="version_equals">Wersja zainstalowana = wersja analizowana</string>
-    <string name="version_mismatch">Zainstalowana wersja &lt;&gt; Wersja analizowana</string>
+  <string name="version_mismatch">Zainstalowana wersja &lt;&gt; Wersja analizowana</string>
     <string name="version_unavailable">Aplikacja nigdy nie analizowana</string>
     <string name="no_app_found">Wygląda na to, że nie masz zainstalowanych żadnych aplikacji z testowanego przez nas źródła (sklep Google Play lub F-Droid).</string>
     <string name="no_settings">Ta aplikacja nie ma ustawień</string>

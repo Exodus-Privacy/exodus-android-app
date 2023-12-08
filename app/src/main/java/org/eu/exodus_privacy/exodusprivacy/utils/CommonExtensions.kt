@@ -4,12 +4,9 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Build
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
-import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
-import org.eu.exodus_privacy.exodusprivacy.objects.VersionReport
 import java.util.Locale
 
 fun Chip.setExodusColor(size: Int) {
@@ -47,24 +44,6 @@ fun Chip.setExodusColor(size: Int) {
         this.setTextColor(colorForeground)
         val colorBackground = ContextCompat.getColor(context, R.color.chipColor)
         this.chipBackgroundColor = ColorStateList.valueOf(colorBackground)
-    }
-}
-
-fun Chip.setVersionReport(app: ExodusApplication) {
-    val versionReport = when (app.exodusVersionCode) {
-        0L -> VersionReport.UNAVAILABLE
-        app.versionCode -> VersionReport.MATCH
-        else -> VersionReport.MISMATCH
-    }
-    chipIcon = ContextCompat.getDrawable(context, versionReport.iconIdRes)
-    setOnClickListener {
-        Toast.makeText(
-            context,
-            context.getString(
-                versionReport.stringIdRes
-            ),
-            Toast.LENGTH_LONG
-        ).show()
     }
 }
 

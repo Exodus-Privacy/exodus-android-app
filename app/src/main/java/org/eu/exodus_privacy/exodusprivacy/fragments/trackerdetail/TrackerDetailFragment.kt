@@ -1,5 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail
 
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -11,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.transition.MaterialFadeThrough
@@ -116,8 +117,11 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 codeSignTV.text = tracker.code_signature
                 if (tracker.network_signature.isNotEmpty()) {
                     networkSignTV.text = tracker.network_signature
+                    networkDetectTV.visibility = View.VISIBLE
+                    networkSignTV.visibility = View.VISIBLE
                 } else {
-                    networkSignTV.text = "NC"
+                    networkDetectTV.visibility = View.GONE
+                    networkSignTV.visibility = View.GONE
                 }
             }
         }
@@ -129,7 +133,13 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 binding.appsListRV.apply {
                     visibility = View.VISIBLE
                     adapter = appsRVAdapter
-                    layoutManager = object : LinearLayoutManager(view.context) {
+                    val column: Int =
+                        if (resources.configuration.smallestScreenWidthDp >= 600 && resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                            2
+                        } else {
+                            1
+                        }
+                    layoutManager = object : StaggeredGridLayoutManager(column, 1) {
                         override fun canScrollVertically(): Boolean {
                             return false
                         }

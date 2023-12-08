@@ -4,8 +4,7 @@
     <string name="permissions">İzinler</string>
     <string name="not_connected">Ağ bağlantısı yok</string>
     <string name="settings">Ayarlar</string>
-    <string name="version_equals">Yüklü Sürüm = Analiz Edilen Sürüm</string>
-    <string name="version_mismatch">Yüklü Sürüm &lt;&gt; Analiz Edilen Sürüm</string>
+  <string name="version_mismatch">Yüklü Sürüm &lt;&gt; Analiz Edilen Sürüm</string>
     <string name="version_unavailable">Uygulama hiç analiz edilmemiş</string>
     <string name="no_app_found">Test ettiğimiz kaynaktan (Google Play Mağazası veya F-Droid) yüklü herhangi bir uygulamanız yok gibi görünüyor.</string>
     <string name="no_settings">Bu uygulamanın ayarları yok</string>

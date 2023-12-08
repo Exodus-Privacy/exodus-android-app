@@ -22,7 +22,6 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
-import org.eu.exodus_privacy.exodusprivacy.utils.setVersionReport
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -176,7 +175,6 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     text = permsNum.toString()
                     setExodusColor(permsNum)
                 }
-                versionChip.setVersionReport(app)
 
                 sourceChip.text = app.source.name.lowercase().replaceFirstChar { it.uppercase() }
 
