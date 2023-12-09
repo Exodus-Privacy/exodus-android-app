@@ -20,6 +20,7 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewTrackerItemBi
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
+import org.eu.exodus_privacy.exodusprivacy.utils.safeNavigate
 
 class TrackersRVAdapter(
     private val showSuggestions: Boolean,
@@ -107,18 +108,21 @@ class TrackersRVAdapter(
                 }
             }
             root.setOnClickListener {
-                val action = if (currentDestinationId == R.id.appDetailFragment) {
-                    AppDetailFragmentDirections.actionAppDetailFragmentToTrackerDetailFragment(
-                        app.id,
-                        trackerPercentage.toInt()
-                    )
-                } else {
-                    TrackersFragmentDirections.actionTrackersFragmentToTrackerDetailFragment(
-                        app.id,
-                        trackerPercentage.toInt()
-                    )
+                if (currentDestinationId != 0) {
+                    val action =
+                        if (currentDestinationId == R.id.appDetailFragment) {
+                            AppDetailFragmentDirections.actionAppDetailFragmentToTrackerDetailFragment(
+                                app.id,
+                                trackerPercentage.toInt()
+                            )
+                        } else {
+                            TrackersFragmentDirections.actionTrackersFragmentToTrackerDetailFragment(
+                                app.id,
+                                trackerPercentage.toInt()
+                            )
+                        }
+                    holder.itemView.findNavController().safeNavigate(action)
                 }
-                holder.itemView.findNavController().navigate(action)
             }
         }
     }
