@@ -118,8 +118,7 @@ class ExodusPackageRepository @Inject constructor(
             return Permission(
                 shortName,
                 longName,
-                label.toString(),
-                permInfo.loadDescription(packageManager)?.toString() ?: ""
+                label.toString()
             )
         } ?: run {
             return Permission(

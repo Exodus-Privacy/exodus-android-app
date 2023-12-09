@@ -12,7 +12,6 @@ class ADPermissionsDiffUtil : DiffUtil.ItemCallback<Permission>() {
         return when {
             oldItem.shortName != newItem.shortName -> false
             oldItem.label != newItem.label -> false
-            oldItem.description != newItem.description -> false
             else -> true
         }
     }
