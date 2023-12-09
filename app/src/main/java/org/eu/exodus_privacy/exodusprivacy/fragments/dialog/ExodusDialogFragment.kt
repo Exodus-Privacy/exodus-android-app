@@ -78,7 +78,7 @@ class ExodusDialogFragment : DialogFragment() {
 
     private fun startInitial() {
         exodusDialogViewModel.config.observe(this) { config ->
-            if (!config["app_setup"]?.enable!! && config["privacy_policy"]?.enable!! && !ExodusUpdateService.IS_SERVICE_RUNNING) {
+            if (config["privacy_policy"]?.enable!! && !ExodusUpdateService.IS_SERVICE_RUNNING) {
                 Log.d(TAG, "Populating database for the first time.")
                 val intent = Intent(requireContext(), ExodusUpdateService::class.java)
                 intent.apply {

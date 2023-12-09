@@ -96,8 +96,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startInitial() {
         viewModel.config.observe(this) { config ->
-            if (!config["app_setup"]?.enable!! &&
-                config["privacy_policy"]?.enable!! &&
+            if (config["privacy_policy"]?.enable!! &&
                 !ExodusUpdateService.IS_SERVICE_RUNNING
             ) {
                 Log.d(

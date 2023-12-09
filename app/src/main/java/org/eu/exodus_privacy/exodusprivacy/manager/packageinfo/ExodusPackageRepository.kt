@@ -45,7 +45,7 @@ class ExodusPackageRepository @Inject constructor(
                 permissionsMap[packageInfo.packageName] ?: emptyList(),
                 getAppStore(packageInfo.packageName, packageManager)
             )
-            Log.d(TAG, "Add app: $app")
+            Log.d(TAG, "Add app: ${app.name}, ${app.versionName}")
             applicationList.add(app)
         }
         applicationList.sortBy { it.name }
