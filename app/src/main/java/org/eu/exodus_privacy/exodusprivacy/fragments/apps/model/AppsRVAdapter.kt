@@ -12,6 +12,7 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAppItemBindin
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import org.eu.exodus_privacy.exodusprivacy.utils.safeNavigate
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 
 class AppsRVAdapter(
@@ -37,14 +38,16 @@ class AppsRVAdapter(
 
         holder.binding.apply {
             root.setOnClickListener {
-                val action = if (currentDestinationId == R.id.appsFragment) {
-                    AppsFragmentDirections.actionAppsFragmentToAppDetailFragment(app.packageName)
-                } else {
-                    TrackerDetailFragmentDirections.actionTrackerDetailFragmentToAppDetailFragment(
-                        app.packageName
-                    )
+                if (currentDestinationId != 0) {
+                    val action = if (currentDestinationId == R.id.appsFragment) {
+                        AppsFragmentDirections.actionAppsFragmentToAppDetailFragment(app.packageName)
+                    } else {
+                        TrackerDetailFragmentDirections.actionTrackerDetailFragmentToAppDetailFragment(
+                            app.packageName
+                        )
+                    }
+                    it.findNavController().safeNavigate(action)
                 }
-                it.findNavController().navigate(action)
             }
             appIconIV.background = app.icon.toDrawable(context.resources)
             appNameTV.text = app.name
