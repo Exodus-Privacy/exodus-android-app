@@ -1,39 +1,113 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">شعار التطبيق</string>
+    <string name="app_logo">Application Logo</string>
     <string name="trackers">المتعقِّبون</string>
     <string name="permissions">التصريحات</string>
     <string name="not_connected">لا يوجد اتصال بشبكة الانترنت</string>
+    <string name="settings">الإعدادات</string>
+    <string name="version_mismatch">النسخة المثبتة &lt;&gt; النسخة المحللة</string>
+    <string name="version_unavailable">لم يتم تحليل التطبيق أبداً</string>
     <string name="no_app_found">يبدو أنه ليس لديك أي تطبيقات مثبتة من المصدر الذي نقوم باختباره (متجر Google Play أو F-Droid).</string>
     <string name="no_settings">ليس لدى هذا التطبيق إعدادات</string>
     <string name="logo">شعار تطبيق %1</string>
+    <string name="refresh">تحديث</string>
+    <string name="cancel">إلغاء</string>
+    <string name="refresh_needed">تحتاج للتحديث</string>
+    <string name="refresh_needed_message">لم يتم تحديث البيانات منذ %1$s.\n\nهل ترغب في تحديثها؟</string>
+    <string name="submit">إرسال</string>
+    <string name="app_not_analyzed">هل ترغب في تحليل التطبيق؟\n\nسيتم لصق معرف التطبيق تلقائياً على نموذج الموقع. سوف تحتاج فقط إلى الضغط على زر إرسال الاستمارة.</string>
+    <string name="app_not_analyzed_title">لم يتم تحليل هذا التطبيق!</string>
+    <string name="title_apps">التطبيقات</string>
     <string name="title_trackers">المتعقِّبون</string>
+    <string name="title_about">حول التطبيق</string>
+    <string name="nothing_here">لا يوجد شيء لعرضه حاليا. يمكنك السحب للتحديث!</string>
+    <string name="back_button">عاد</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">بحث</string>
     <string name="menu_action_filter">عامل التصفية</string>
 
     <!-- Filters -->
+    <string name="sort_by_name">الاسم</string>
+    <string name="sort_by_creation_date">تاريخ الإنشاء</string>
+
     <!-- Apps Fragment -->
+    <string name="fetching_apps">تحديث قاعدة بيانات التقارير!</string>
+
     <!-- About Fragment -->
-    <string name="appLanguage">لغة</string>
+    <string name="appLanguage">Language</string>
+    <string name="chooseTheme">التصميم</string>
+    <string name="analyze_desc">Perform a new analysis</string>
+    <string name="alternatives">ما التالي؟</string>
+    <string name="alternatives_desc">بعض البدائل الموجودة!</string>
+    <string name="website">الموقع الالكتروني</string>
+    <string name="website_desc">أعثر على مزيد من المعلومات عن مشروع الخصوصية لأكسودس</string>
+    <string name="srcCode_desc">الإبلاغ عن الأخطاء، عرض الرمز المصدري</string>
+    <string name="privPolicy">سياسة الخصوصية</string>
+    <string name="privPolicy_desc">تعلم كيفية التعامل مع بياناتك</string>
+    <string name="email">بريد</string>
+    <string name="email_desc">الاتصال بنا عبر البريد الإلكتروني</string>
+
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">فتح على خصوصية أكسودس</string>
+    <string name="submit_app">إرسال تطبيق</string>
+    <string name="open_store">فتح المتجر</string>
+    <string name="open_app_info">إعدادات التطبيق</string>
+    <string name="version">الإصدار</string>
     <string name="report_date">تم إنشاء التقرير في <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">وتحديثه في <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">الإصدار المثبت</string>
+    <string name="analyzed_version">الإصدار المحلل</string>
+    <string name="same_version">إصدار التطبيق نفسه ربما يكون مختلفاً بعد إصدار الأندرويد والجهاز المستخدم.</string>
+    <string name="learn_more"><u>اعرف المزيد…</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">لقد وجدنا توقيع الرمز البرمجي للمتعقبين التاليين في التطبيق:</string>
     <string name="code_signature_not_found">لم نجد توقيع الرمز البرمجي لأي متتبع نعرفه في التطبيق.</string>
+    <string name="tracker_info">المُتعقّب هو جزء من برنامج مخصص لجمع البيانات عنك أو عن استخداماتك.</string>
     <string name="analyzed">لم يتم بعد فحص هذا التطبيق بواسطة Exodus Privacy.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">لقد وجدنا التصريحات التالية في التطبيق:</string>
     <string name="code_permission_not_found">هذا التطبيق لا يطلب صلاحيات.</string>
+    <string name="permission_info">التصريحات هي إجراءات يقوم بها التطبيق على هاتفك.</string>
+    <string name="permission_info_dangerous">الرمز <font color="red"><b>!</b></font> يشير إلى مستوى \'خطر\' أو \'خاص\' وفقا لمستويات حماية قوقل.</string>
 
     <!-- Notification -->
+    <string name="updates">تحديث</string>
+    <string name="updating_database">تحديث قاعدة التقارير… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="zero"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
+        <item quantity="two"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+        <item quantity="few"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+        <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+    </plurals>
+
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">فتح صفحة التتبع</string>
     <string name="detection_rules">قواعد الكشف</string>
     <string name="code_signature">قاعدة كشف الرمز:</string>
     <string name="network_signature">القاعدة الشبكية للإكتشاف:</string>
+    <string name="apps_list">قائمة التطبيقات</string>
+    <plurals name="trackers_presence">
+        <item quantity="zero">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+        <item quantity="one">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) of your applications</item>
+        <item quantity="two">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+        <item quantity="few">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+        <item quantity="many">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+        <item quantity="other">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+    </plurals>
 
     <!-- Dialog Fragment -->
+    <string name="accept">موافق</string>
+    <string name="reject">رفض</string>
+    <string name="warning_title">السماح لأكسودس بنقل البيانات المطلوبة؟</string>
+    <string name="warning_desc">من أجل التشغيل، يجب على هذا التطبيق جمع وإرسال البيانات إلى خوادم الخصوصية لأكسودس التي تتضمن قائمة التطبيقات المثبتة على هذا الجهاز لتحليل التتبع. لا يحتوي على أي معلومات شخصية.</string>
+    <string name="title_theme">اختر سمة</string>
+    <string name="dark_theme">مظلم</string>
+    <string name="light_theme">فاتح</string>
+    <string name="system_theme">النظام الافتراضي</string>
 </resources>

@@ -1,0 +1,99 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Logo aplikace</string>
+    <string name="trackers">Slídiče</string>
+    <string name="permissions">Oprávnění</string>
+    <string name="not_connected">Nejste připojeni k internetu</string>
+    <string name="settings">Nastavení</string>
+    <string name="version_mismatch">Nainstalovaná verze &lt;&gt; analyzovaná verze</string>
+    <string name="version_unavailable">Aplikace nebyla nikdy analyzována</string>
+    <string name="no_app_found">Zdá se, že nemáte nainstalované žádné aplikace ze zdroje, který testujeme (obchod Google Play nebo F-Droid).</string>
+    <string name="no_settings">Tato aplikace nemá nastavení</string>
+    <string name="logo">Logo aplikace %1</string>
+    <string name="refresh">Obnovit</string>
+    <string name="cancel">Zrušit</string>
+    <string name="refresh_needed">Je třeba obnovit</string>
+    <string name="refresh_needed_message">Data nebyla aktualizována od %1$s.\n\nChcete je obnovit?</string>
+    <string name="submit">Odeslat</string>
+    <string name="app_not_analyzed">Chcete analyzovat aplikaci?\n\nAplikace se automaticky vloží do formuláře na webu. Formulář stačí pouze odeslat.</string>
+    <string name="app_not_analyzed_title">Tato aplikace nebyla analyzována!</string>
+    <string name="title_apps">Aplikace</string>
+    <string name="title_trackers">Slídiče</string>
+    <string name="title_about">O Aplikaci</string>
+    <string name="nothing_here">V současné době není co zobrazit. Pro obnovení můžete potáhnout!</string>
+    <string name="back_button">Back</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Hledat</string>
+    <string name="menu_action_filter">Filtr</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Název</string>
+    <string name="sort_by_creation_date">Datum vytvoření</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Aktualizace databáze hlášení!</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">Jazyk</string>
+    <string name="chooseTheme">Motiv</string>
+    <string name="analyze_desc">Provést novou analýzu</string>
+    <string name="alternatives">Co dál?</string>
+    <string name="alternatives_desc">Existují některé alternativy!</string>
+    <string name="website">Webová stránka</string>
+    <string name="website_desc">Další informace o projektu Exodus Privacy</string>
+    <string name="srcCode_desc">Nahlášení chyb, zobrazení zdrojového kódu</string>
+    <string name="privPolicy">Zásady ochrany osobních údajů</string>
+    <string name="privPolicy_desc">Zjistěte, jak nakládáme s vašimi údaji</string>
+    <string name="email">E-Mail</string>
+    <string name="email_desc">Kontaktujte nás e-mailem</string>
+    <string name="X_desc">Zůstaňte informováni o projektu Exodus Privacy</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Otevřeno v Exodus Privacy</string>
+    <string name="submit_app">Odeslat aplikaci</string>
+    <string name="open_store">Otevřít obchod</string>
+    <string name="open_app_info">Nastavení aplikace</string>
+    <string name="version">Verze</string>
+    <string name="report_date">Hlášení vytvořeno <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">a aktualizováno <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Nainstalovaná verze</string>
+    <string name="analyzed_version">Analyzovaná verze</string>
+    <string name="same_version">Stejná verze aplikace se může lišit podle verze systému Android a použitého zařízení.</string>
+    <string name="learn_more"><u>Další informace…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">V aplikaci jsme nalezli podpis kódu následujících slídičů:</string>
+    <string name="code_signature_not_found">V aplikaci jsme nenalezli žádný podpis kódu slídičů, který v aplikaci známe.</string>
+    <string name="tracker_info">Slídič je část softwaru, který má shromažďovat data o vás nebo o vašem používání.</string>
+    <string name="analyzed">Tato aplikace zatím nebyla analyzována službou Exodus Privacy.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">V aplikaci jsme nalezli následující oprávnění:</string>
+    <string name="code_permission_not_found">Tato aplikace nevyžaduje žádná oprávnění.</string>
+    <string name="permission_info">Oprávnění jsou akce, které může aplikace v telefonu provádět.</string>
+    <string name="permission_info_dangerous">Ikona <font color="red"><b>!</b></font> označuje \'Nebezpečnou\' nebo \'Speciální\' úroveň podle úrovně ochrany Google.</string>
+    <!-- Notification -->
+    <string name="updates">Aktualizace</string>
+    <string name="updating_database">Aktualizace databáze hlášení… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikace</item>
+        <item quantity="few"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikace</item>
+        <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikací</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikací</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Otevřít stránku slídiče</string>
+    <string name="detection_rules">Pravidla detekce</string>
+    <string name="code_signature">Pravidla detekce kódu:</string>
+    <string name="network_signature">Pravidla detekce sítě:</string>
+    <string name="apps_list">Seznam aplikací</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Přítomnost v <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g>) z vašich aplikací</item>
+        <item quantity="few">Přítomnost v <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g>) z vašich aplikací</item>
+        <item quantity="many">Přítomnost v <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g>) z vašich aplikací</item>
+        <item quantity="other">Přítomnost v <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g>) z vašich aplikací</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">Potvrdit</string>
+    <string name="reject">Odmítnout</string>
+    <string name="warning_title">Povolit aplikaci Exodus přenos požadovaných dat?</string>
+    <string name="warning_desc">Aby mohla být tato aplikace spuštěna, musí shromažďovat a odesílat data na servery Exodus Privacy, která zahrnují seznam aplikací nainstalovaných v tomto zařízení pro analýzu sledování. Neobsahuje žádné osobní údaje.</string>
+    <string name="title_theme">Vybrat motiv</string>
+    <string name="dark_theme">Tmavý</string>
+    <string name="light_theme">Světlý</string>
+    <string name="system_theme">Podle systému</string>
+</resources>

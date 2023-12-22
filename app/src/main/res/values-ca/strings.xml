@@ -3,37 +3,93 @@
     <string name="trackers">Rastrejadors</string>
     <string name="permissions">Permisos</string>
     <string name="not_connected">No hi ha connexió a Internet</string>
+    <string name="settings">Configuració</string>
+    <string name="version_mismatch">Versió instal·lada &lt;&gt; Versió analitzada</string>
+    <string name="version_unavailable">Aplicació no analitzada mai</string>
     <string name="no_app_found">Sembla que no teniu cap aplicació instal·lada des de la font que provem (Google Play Store o F-Droid).</string>
     <string name="no_settings">Aquesta aplicació no té configuració</string>
     <string name="logo">Logo de l\'aplicació %1</string>
+    <string name="refresh">Actualitza</string>
+    <string name="cancel">Cancel·la</string>
+    <string name="refresh_needed">Cal refrescar</string>
+    <string name="refresh_needed_message">Les dades no han estat actualitzades des de %1$s.\n\nVoleu refrescar-les?</string>
+    <string name="submit">Envia</string>
+    <string name="app_not_analyzed">Voleu analitzar l\'aplicació?\n\nL\'id de l\'aplicació serà enganxat automàticament al formulari del lloc web. Només cal que envieu el formulari.</string>
+    <string name="app_not_analyzed_title">Aquesta aplicació no ha estat analitzada!</string>
+    <string name="title_apps">Aplicacions</string>
     <string name="title_trackers">Rastrejadors</string>
+    <string name="title_about">Quant a</string>
+    <string name="nothing_here">No hi ha res a mostrar. Podeu fer scroll per a refrescar!</string>
+    <string name="back_button">Esquena</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">Cerca</string>
     <string name="menu_action_filter">Filtre</string>
 
     <!-- Filters -->
+    <string name="sort_by_name">Nom</string>
+    <string name="sort_by_creation_date">Data de creació</string>
+
     <!-- Apps Fragment -->
+    <string name="fetching_apps">S\'està actualitzant la base de dades d\'informes!</string>
+
     <!-- About Fragment -->
     <string name="appLanguage">Llenguatge</string>
+    <string name="chooseTheme">Tema</string>
+    <string name="alternatives">I ara què?</string>
+    <string name="alternatives_desc">Hi ha algunes alternatives!</string>
+    <string name="website">Lloc web</string>
+    <string name="website_desc">Més informació sobre el projecte Exodus Privacy</string>
+    <string name="srcCode_desc">Informeu d\'errades, veieu el codi font</string>
+    <string name="privPolicy">Política de privadesa</string>
+    <string name="privPolicy_desc">Sapieu com gestionem les vostre dades</string>
+    <string name="email">Correu electrònic</string>
+    <string name="email_desc">Contacteu amb nosaltres per correu electrònic</string>
+
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Obre amb Exodus Privacy</string>
+    <string name="submit_app">Enviar aplicació</string>
+    <string name="open_store">Obre botiga</string>
+    <string name="open_app_info">Configuració de l\'aplicació</string>
+    <string name="version">Versió</string>
     <string name="report_date">S\'ha creat aquest informe el <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">i actualitzat el <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Versió instal·lada</string>
+    <string name="analyzed_version">Versió analitzada</string>
+    <string name="learn_more"><u>Apreneu-ne més</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Hem trobat la signatura del codi dels següents rastrejadors a l\'aplicació:</string>
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
+    <string name="tracker_info">Un rastrejador és un programa que recull dades sobre vós i els vostres hàbits.</string>
     <string name="analyzed">Aquesta aplicació no ha estat analitzada encara per Exodus Privacy.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Hem trobat els permisos següents a l\'aplicació:</string>
     <string name="code_permission_not_found">Aquesta aplicació no requereix cap permís.</string>
+    <string name="permission_info">Els permisos indiquen què pot fer l\'aplicació en el vostre telèfon.</string>
 
     <!-- Notification -->
+    <string name="updates">Actualitzacions</string>
+
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+    </plurals>
+
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Open tracker page</string>
     <string name="detection_rules">Regles de detecció</string>
     <string name="code_signature">Regla de detecció de codi:</string>
     <string name="network_signature">Regla de detecció de xarxa:</string>
+    <string name="apps_list">Llista d\'aplicacions</string>
 
     <!-- Dialog Fragment -->
+    <string name="accept">Accepta</string>
+    <string name="reject">Rebutja</string>
+    <string name="title_theme">Trieu un tema</string>
+    <string name="dark_theme">Fosc</string>
+    <string name="light_theme">Clar</string>
+    <string name="system_theme">Predeterminat del sistema</string>
 </resources>

@@ -3,38 +3,104 @@
     <string name="trackers">Tracciatori</string>
     <string name="permissions">Autorizzazioni</string>
     <string name="not_connected">Nessuna connessione internet</string>
+    <string name="settings">Impostazioni</string>
+    <string name="version_mismatch">Versione installata &lt;&gt; Versione analizzata</string>
+    <string name="version_unavailable">App mai analizzata</string>
     <string name="no_app_found">Sembra che tu non abbia nessuna app installata dalla fonte che testiamo (Google Play store o F-Droid).</string>
     <string name="no_settings">Questa app non ha impostazioni</string>
     <string name="logo">%1 Logo dell\'applicazione</string>
+    <string name="refresh">Aggiorna</string>
+    <string name="cancel">Cancella</string>
+    <string name="refresh_needed">Aggiornamento necessario</string>
+    <string name="refresh_needed_message">I dati non sono stati aggiornati dal %1$s.\n\nVuoi aggiornarli?</string>
+    <string name="submit">Invia</string>
+    <string name="app_not_analyzed">Vuoi analizzare l\'app?\n\nL\'Id dell\'app verrà automaticamente incollato nel modulo del sito. Dovrai solo inviare il modulo.</string>
+    <string name="app_not_analyzed_title">Questa app non è stata analizzata!</string>
+    <string name="title_apps">Applicazioni</string>
     <string name="title_trackers">Tracciatori</string>
+    <string name="title_about">Informazioni</string>
+    <string name="nothing_here">Niente da visualizzare attualmente. È possibile eseguire l\'aggiornamento!</string>
+    <string name="back_button">Indietro</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">Cerca</string>
     <string name="menu_action_filter">Filtra</string>
 
     <!-- Filters -->
+    <string name="sort_by_name">Nome</string>
+    <string name="sort_by_creation_date">Data di creazione</string>
+
     <!-- Apps Fragment -->
+    <string name="fetching_apps">Aggiornamento database reports!</string>
+
     <!-- About Fragment -->
     <string name="appLanguage">Lingua</string>
+    <string name="chooseTheme">Tema</string>
     <string name="analyze_desc">Esegui una nuova analisi</string>
+    <string name="alternatives">Cosa succede ora?</string>
+    <string name="alternatives_desc">Esistono alcune alternative!</string>
+    <string name="website">Sito web</string>
+    <string name="website_desc">Trova maggiori informazioni sul progetto Exodus Privacy</string>
+    <string name="srcCode_desc">Segnala bug, visualizza il codice sorgente</string>
+    <string name="privPolicy">Informativa sulla privacy</string>
+    <string name="privPolicy_desc">Scopri come gestiamo i tuoi dati</string>
+    <string name="email">E-mail</string>
+    <string name="email_desc">Contattaci tramite E-Mail</string>
+    <string name="X_desc">Rimani aggiornato sul progetto Exodus Privacy</string>
+
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Apri su Exodus Privacy</string>
+    <string name="submit_app">Invia app</string>
+    <string name="open_store">Apri store</string>
+    <string name="open_app_info">Impostazioni App</string>
+    <string name="version">Versione</string>
     <string name="report_date">Report creato il <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">ae aggiornato il <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Versione installata</string>
+    <string name="analyzed_version">Versione Analizzata</string>
+    <string name="same_version">La stessa versione dell\'app può essere diversa a seconda della versione di Android e al dispositivo utilizzato.</string>
+    <string name="learn_more"><u>Per saperne di più...</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Abbiamo trovato i codici di firma dei seguenti tracker nell\'applicazione:</string>
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
+    <string name="tracker_info">Un tracker è un software pensato per raccogliere dati su di te o sui tuoi utilizzi.</string>
     <string name="analyzed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Abbiamo trovato i permessi seguenti nell\'applicazione:</string>
     <string name="code_permission_not_found">Questa applicazione non richiede alcun permesso.</string>
+    <string name="permission_info">I permessi sono azioni che l\'applicazione può fare sul telefono.</string>
+    <string name="permission_info_dangerous">L\'icona <font color="red"><b>!</b></font> indica un livello \'Pericoloso\' o \'Speciale\' in base ai livelli di protezione di Google.</string>
 
     <!-- Notification -->
+    <string name="updates">Aggiornamenti</string>
+    <string name="updating_database">Aggiornamento report database… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> Applicazione</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> Applicazioni</item>
+    </plurals>
+
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Apri pagina tracker</string>
     <string name="detection_rules">Regole di rilevamento</string>
     <string name="code_signature">Regola di rilevamento (codice):</string>
     <string name="network_signature">Regola di rilevamento (rete):</string>
+    <string name="apps_list">Elenco applicazioni</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Presente in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) delle tue applicazioni</item>
+        <item quantity="other">Presenti in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) delle tue applicazioni</item>
+    </plurals>
 
     <!-- Dialog Fragment -->
+    <string name="accept">Accetta</string>
+    <string name="reject">Rifiuta</string>
+    <string name="warning_title">Consenti a Exodus di trasmettere i dati richiesti?</string>
+    <string name="warning_desc">Per poter funzionare, questa Applicazione deve raccogliere e inviare dati ai server Exodus Privacy, che include l\'elenco delle applicazioni installate su questo dispositivo per l\'analisi dei tracker. Non conterrà alcuna informazione personale.</string>
+    <string name="title_theme">Scegli un tema</string>
+    <string name="dark_theme">Scuro</string>
+    <string name="light_theme">Chiaro</string>
+    <string name="system_theme">Predefinito di Sistema</string>
 </resources>

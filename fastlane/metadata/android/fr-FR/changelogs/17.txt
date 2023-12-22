@@ -1,0 +1,5 @@
+- Ajout du support d'Android 14
+- Amélioration de la mise en page et ajout d'une nouvelle mise en page sur tablette
+- Correction des crashs
+- Améliorations des performances
+- Mises à jour des traductions

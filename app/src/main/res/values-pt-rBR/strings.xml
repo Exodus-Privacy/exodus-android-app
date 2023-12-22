@@ -3,37 +3,103 @@
     <string name="trackers">Rastreadores</string>
     <string name="permissions">Permissões</string>
     <string name="not_connected">Sem conexão com à internet</string>
+    <string name="settings">Configurações</string>
+    <string name="version_mismatch">Versão instalada &lt;&gt; Versão Analisada</string>
+    <string name="version_unavailable">Aplicativo nunca analisado</string>
     <string name="no_app_found">Parece que seu sistema não tem nenhum app instalado das fontes que nós testamos (Google Play Store ou F-Droid).</string>
     <string name="no_settings">Este app não tem configurações</string>
     <string name="logo">Logo do aplicativo %1</string>
+    <string name="refresh">Recarregar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="refresh_needed">Atualização necessária</string>
+    <string name="refresh_needed_message">Dados não foram atualizados desde %1$s.\n\nGostaria de atualizá-los?</string>
+    <string name="submit">Enviar</string>
+    <string name="app_not_analyzed">Você gostaria de analisar o aplicativo?\n\nO Id do aplicativo será automaticamente colado no formulário do site. Você só precisará enviar o formulário.</string>
+    <string name="app_not_analyzed_title">Este app não foi analisado!</string>
+    <string name="title_apps">Aplicativos</string>
     <string name="title_trackers">Rastreadores</string>
+    <string name="title_about">Sobre</string>
+    <string name="nothing_here">Nada para exibir atualmente. Você pode puxar para atualizar!</string>
+    <string name="back_button">Voltar</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">Buscar</string>
     <string name="menu_action_filter">Filtro</string>
 
     <!-- Filters -->
+    <string name="sort_by_name">Nome</string>
+    <string name="sort_by_creation_date">Data de criação</string>
+
     <!-- Apps Fragment -->
+    <string name="fetching_apps">Atualizando banco de dados de relatórios!</string>
+
     <!-- About Fragment -->
-    <string name="appLanguage">Língua</string>
+    <string name="appLanguage">Language</string>
+    <string name="chooseTheme">Tema</string>
+    <string name="analyze_desc">Realizar nova análise</string>
+    <string name="alternatives">O que vem a seguir?</string>
+    <string name="alternatives_desc">Algumas alternativas existem!</string>
+    <string name="website">Site</string>
+    <string name="website_desc">Encontre mais informações no projeto de Privacidade do Exodus</string>
+    <string name="srcCode_desc">Reportar bugs, ver código-fonte</string>
+    <string name="privPolicy">Política de privacidade</string>
+    <string name="privPolicy_desc">Aprenda como lidamos com seus dados</string>
+    <string name="email">E-mail</string>
+    <string name="email_desc">Entre em contato via e-mail</string>
+
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Abrir na Privacidade do Exodus</string>
+    <string name="submit_app">Enviar aplicativo</string>
+    <string name="open_store">Abrir a loja</string>
+    <string name="open_app_info">Configurações do Aplicativo</string>
+    <string name="version">Versão</string>
     <string name="report_date">Relatório criado em <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">e atualizado em <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Versão Instalada</string>
+    <string name="analyzed_version">Versão analisada</string>
+    <string name="same_version">A mesma versão do aplicativo pode diferir conforme a versão do Android e o dispositivo utilizado.</string>
+    <string name="learn_more"><u>Saiba mais</u></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Nós encontramos a assinatura de código desse respectivo rastreador no aplicativo:</string>
     <string name="code_signature_not_found">Nós não encontramos a assinatura de código de nenhum rastreador conhecido neste aplicativo.</string>
-    <string name="analyzed">Este app ainda não foi analisado pelo Exodus privacy.</string>
+    <string name="tracker_info">Um rastreador é um software destinado a coletar dados sobre você ou seus dados de uso.</string>
+    <string name="analyzed">Este app ainda não foi analisado pela Privacidade do Exodus.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Nós encontramos as seguintes permissões neste aplicativo:</string>
     <string name="code_permission_not_found">Este aplicativo não requer nenhuma permissão.</string>
+    <string name="permission_info">As permissões são ações que o aplicativo pode realizar no seu dispositivo.</string>
+    <string name="permission_info_dangerous">O ícone <font color="red"><b>!</b></font> indica um nível \'Perigoso\' ou \'Especial\' conforme os níveis de proteção do Google.</string>
 
     <!-- Notification -->
+    <string name="updates">Atualizações</string>
+    <string name="updating_database">Atualizando banco de dados de relatórios… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplicativos</item>
+    </plurals>
+
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Abrir página de análise</string>
     <string name="detection_rules">Regras de detecção</string>
     <string name="code_signature">Regra de detecção do código:</string>
     <string name="network_signature">Regra de detecção da rede:</string>
+    <string name="apps_list">Lista de aplicativos</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Presente em <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> aplicativo) dos seus aplicativos</item>
+        <item quantity="other">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+    </plurals>
 
     <!-- Dialog Fragment -->
+    <string name="accept">Aceitar</string>
+    <string name="reject">Recusar</string>
+    <string name="warning_title">Permitir que o Exodus transmita os dados necessários?</string>
+    <string name="warning_desc">Para poder executar, esta aplicação precisa coletar e enviar dados para os servidores de Privacidade do Exodus, dados esses que incluem a lista de aplicativos instalados neste dispositivo para a análise de rastreadores. O enviado não contém nenhuma informação pessoal.</string>
+    <string name="title_theme">Escolha um tema</string>
+    <string name="dark_theme">Escuro</string>
+    <string name="light_theme">Claro</string>
+    <string name="system_theme">Padrão do sistema</string>
 </resources>

@@ -1,40 +1,104 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">App Logo</string>
+    <string name="app_logo">Anwendungslogo</string>
     <string name="trackers">Tracker</string>
     <string name="permissions">Berechtigungen</string>
     <string name="not_connected">Keine Verbindung</string>
-    <string name="no_app_found">Es scheint, dass keine App aus den Quellen, die wir prüfen (Google Play Store und F-Droid), installiert ist.</string>
+    <string name="settings">Einstellungen</string>
+    <string name="version_mismatch">Installierte Version &lt;&gt; Analysierte Version</string>
+    <string name="version_unavailable">App noch nie analysiert</string>
+    <string name="no_app_found">Es sieht so aus, dass keine App aus den Quellen, die wir prüfen (Google Play Store und F-Droid), installiert ist.</string>
     <string name="no_settings">Diese App hat keine Einstellungen</string>
     <string name="logo">%1 Anwendungslogo</string>
-    <string name="title_trackers">Tracker</string>
+    <string name="refresh">Aktualisieren</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="refresh_needed">Aktualisierung notwendig</string>
+    <string name="refresh_needed_message">Daten wurden seit %1$s nicht aktualisiert.\n\nMöchten Sie sie aktualisieren?</string>
+    <string name="submit">Absenden</string>
+    <string name="app_not_analyzed">Möchten Sie die App analysieren?\n\nDie App-ID wird automatisch in das Formular auf der Website eingefügt, sodass Sie es nur abschicken müssen.</string>
+    <string name="app_not_analyzed_title">Diese App wurde nicht analysiert!</string>
+    <string name="title_about">Über</string>
+    <string name="nothing_here">Zurzeit nichts anzuzeigen. Zum Aktualisieren ziehen!</string>
+    <string name="back_button">Zurück</string>
 
     <!-- Menu -->
+    <string name="menu_action_search">Suchen</string>
     <string name="menu_action_filter">Filter</string>
 
     <!-- Filters -->
+    <string name="sort_by_name">Namen</string>
+    <string name="sort_by_creation_date">Erstellungsdatum</string>
+
     <!-- Apps Fragment -->
+    <string name="fetching_apps">Berichtsdatenbank wird aktualisiert!</string>
+
     <!-- About Fragment -->
     <string name="appLanguage">Sprache</string>
+    <string name="chooseTheme">Design</string>
     <string name="analyze_desc">Eine neue Analyse durchführen</string>
+    <string name="alternatives">Wie geht es weiter?</string>
+    <string name="alternatives_desc">Es gibt Alternativen!</string>
+    <string name="website">Website</string>
+    <string name="website_desc">Weitere Informationen zum Exodus-Datenschutzprojekt</string>
+    <string name="srcCode_desc">Fehler melden, Quelltext anzeigen</string>
+    <string name="privPolicy">Datenschutzerklärung</string>
+    <string name="privPolicy_desc">Erfahren Sie, wie wir mit Ihren Daten umgehen</string>
+    <string name="email">Mail</string>
+    <string name="email_desc">Erreiche uns per E-Mail</string>
+    <string name="X_desc">Bleiben Sie mit dem Exodus Privatsphäre-Projekt auf dem Laufenden</string>
+
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Exodus Privatsphäre Regelungen öffnen</string>
+    <string name="submit_app">App einreichen</string>
+    <string name="open_store">Store öffnen</string>
+    <string name="open_app_info">Einstellungen der Anwendung</string>
+    <string name="version">Version</string>
     <string name="report_date">Bericht erstellt am <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">und zuletzt aktualisiert am <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Installierte Version</string>
+    <string name="analyzed_version">Analysierte Version</string>
+    <string name="same_version">Dieselbe App-Version kann sich nach Android-Version und Gerät unterscheiden.</string>
+    <string name="learn_more"><u>Erfahren Sie mehr...</u></string>
 
     <!-- ADTrackers Fragment -->
-    <string name="analyzed">Diese App wurde von Exodus Privacy noch nicht analysiert.</string>
     <string name="code_signature_found">Wir haben die Code-Signatur der folgenden Tracker in der Anwendung gefunden:</string>
     <string name="code_signature_not_found">Wir haben keine Code-Signatur irgendeines Trackers in der App gefunden.</string>
+    <string name="tracker_info">Ein Tracker ist ein Softwareanteil, der Daten über Sie oder Ihre Gewohnheiten sammeln soll.</string>
+    <string name="analyzed">Diese App wurde von Exodus Privacy noch nicht analysiert.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>
     <string name="code_permission_not_found">Diese App erfordert keine Berechtigungen.</string>
+    <string name="permission_info">Berechtigungen sind Aktionen, die die Anwendung auf Ihrem Telefon ausführen kann.</string>
+    <string name="permission_info_dangerous">Das Symbol <font color="red"><b>!</b></font> zeigt eine ‚Gefährliche‘ oder ‚Spezial‘-Stufe nach Googles Schutzstufen an.</string>
 
     <!-- Notification -->
+    <string name="updates">Aktualisierungen</string>
+    <string name="updating_database">Aktualisierung der Berichtsdatenbank… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> App</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> Apps</item>
+    </plurals>
+
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Tracker-Seite öffnen</string>
     <string name="detection_rules">Erkennungsregeln</string>
     <string name="code_signature">Code-Erkennungsregel:</string>
     <string name="network_signature">Netzwerkerkennungsregel:</string>
+    <string name="apps_list">Anwendungsliste</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) of your applications</item>
+        <item quantity="other">Vorhanden in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> Apps) deiner Anwendungen</item>
+    </plurals>
 
     <!-- Dialog Fragment -->
+    <string name="accept">Akzeptieren</string>
+    <string name="reject">Ablehnen</string>
+    <string name="warning_title">Exodus erlauben, benötigte Daten zu übertragen?</string>
+    <string name="warning_desc">Für die Tracker-Analyse muss diese Anwendung Daten sammeln und an die Exodus Privacy Server senden. Es handelt sich um eine Liste, der auf diesem Gerät installierten Anwendungen ohne irgendeine persönliche Information.</string>
+    <string name="title_theme">Ein Design wählen</string>
+    <string name="dark_theme">Dunkles Design</string>
+    <string name="light_theme">Helles Design</string>
+    <string name="system_theme">Systemstandard</string>
 </resources>

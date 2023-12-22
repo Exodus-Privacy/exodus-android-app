@@ -1,0 +1,5 @@
+- Added Android 14 support
+- Improved layout and added new layouts on tablet
+- Fixed crash
+- Improved performance
+- Updated translations

@@ -1,106 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">Logo Aplikacji</string>
-    <string name="trackers">Skrypty</string>
+    <string name="app_logo">Logo aplikacji</string>
+    <string name="trackers">Skrypty śledzące</string>
     <string name="permissions">Uprawnienia</string>
-    <string name="not_connected">Brak połączenia z internetem</string>
+    <string name="not_connected">Brak połączenia z Internetem</string>
     <string name="settings">Ustawienia</string>
-  <string name="version_mismatch">Zainstalowana wersja &lt;&gt; Wersja analizowana</string>
+    <string name="version_mismatch">Zainstalowana wersja &lt;&gt; Analizowana wersja</string>
     <string name="version_unavailable">Aplikacja nigdy nie analizowana</string>
-    <string name="no_app_found">Wygląda na to, że nie masz zainstalowanych żadnych aplikacji z testowanego przez nas źródła (sklep Google Play lub F-Droid).</string>
+    <string name="no_app_found">Wygląda na to, że nie masz zainstalowanych aplikacji ze źródła, które obsługujemy (Sklep Google Play lub F-Droid).</string>
     <string name="no_settings">Ta aplikacja nie ma ustawień</string>
-    <string name="logo">%1 Logo aplikacji</string>
+    <string name="logo">Logo aplikacji %1</string>
     <string name="refresh">Odśwież</string>
     <string name="cancel">Anuluj</string>
-    <string name="refresh_needed">Potrzebne odświeżenie</string>
-    <string name="refresh_needed_message">Dane nie były aktualizowane od %1$s.\n\nCzy chcesz je odświeżyć?</string>
-    <string name="submit">Prześlij</string>
-    <string name="app_not_analyzed">Czy chcesz przeanalizować aplikację?\n\nIdentyfikator aplikacji zostanie automatycznie wklejony do formularza witryny. Wystarczy, że prześlesz formularz.</string>
+    <string name="refresh_needed">Wymaganie odświeżenie</string>
+    <string name="refresh_needed_message">Dane nie zostały zaktualizowane od %1$s.\n\nCzy chcesz je odświeżyć?</string>
+    <string name="submit">Zatwierdź</string>
+    <string name="app_not_analyzed">Czy chcesz przeanalizować aplikację?\n\nId aplikacji zostanie automatycznie wklejony do formularza strony internetowej. Wystarczy przesłać formularz.</string>
     <string name="app_not_analyzed_title">Ta aplikacja nie została przeanalizowana!</string>
-    <string name="title_apps">Apki</string>
-    <string name="title_trackers">Skrypty</string>
-    <string name="title_about">Informacje</string>
-    <string name="nothing_here">Obecnie nie ma nic do wyświetlenia. Możesz pociągnąć, aby odświeżyć!</string>
+    <string name="title_apps">Aplikacje</string>
+    <string name="title_trackers">Śledzenie</string>
+    <string name="title_about">O Aplikacji</string>
+    <string name="nothing_here">Obecnie nic do wyświetlenia. Możesz ciągnąć aby odświeżyć!</string>
+    <string name="back_button">Powrót</string>
 
     <!-- Menu -->
     <string name="menu_action_search">Szukaj</string>
-    <string name="menu_action_filter">Sortuj</string>
+    <string name="menu_action_filter">Filtr</string>
 
     <!-- Filters -->
     <string name="sort_by_name">Nazwa</string>
-    <string name="sort_by_creation_date">Data utowrzenia</string>
+    <string name="sort_by_creation_date">Data stworzenia</string>
 
     <!-- Apps Fragment -->
-    <string name="fetching_apps">Aktualizacja bazy raportów!</string>
+    <string name="fetching_apps">Aktualizowanie bazy raportów!</string>
 
     <!-- About Fragment -->
-    <string name="appLanguage">język</string>
+    <string name="appLanguage">Język</string>
     <string name="chooseTheme">Motyw</string>
-    <string name="analyze_desc">Przeprowadzanie nowej analizy</string>
+    <string name="analyze_desc">Wykonaj nową analizę</string>
     <string name="alternatives">Co dalej?</string>
-    <string name="alternatives_desc">Istnieją pewne alternatywy!</string>
-    <string name="website">Strona</string>
-    <string name="website_desc">Znajdź więcej informacji na temat projektu Exodus Privacy</string>
-    <string name="srcCode_desc">Zgłaszaj błędy, przeglądaj kod źródłowy</string>
+    <string name="alternatives_desc">Istnieje kilka alternatyw!</string>
+    <string name="website">Strona internetowa</string>
+    <string name="website_desc">Więcej informacji na temat projektu Exodus Privacy</string>
+    <string name="srcCode_desc">Zgłoś błędy, zobacz kod źródłowy</string>
     <string name="privPolicy">Polityka prywatności</string>
-    <string name="privPolicy_desc">Dowiedz się, jak postępujemy z Twoimi danymi</string>
-    <string name="email">Email</string>
+    <string name="privPolicy_desc">Dowiedz się, jak obsługujemy Twoje dane</string>
+    <string name="email">E-mail</string>
     <string name="email_desc">Skontaktuj się z nami przez e-mail</string>
     <string name="X_desc">Bądź na bieżąco z projektem Exodus Privacy</string>
 
     <!-- AppDetail Fragment -->
-    <string name="open_exodus_page">Otwórz w Exodus Privacy</string>
+    <string name="open_exodus_page">Otwórz na prywatności Exodus</string>
     <string name="submit_app">Prześlij aplikację</string>
-    <string name="open_store">Otwórz sklep</string>
+    <string name="open_store">Otwórz Sklep</string>
     <string name="open_app_info">Ustawienia aplikacji</string>
     <string name="version">Wersja</string>
-    <string name="report_date">Raport utworzony w <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">i aktualizowany w <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="installed_version">Wersja zainstalowana</string>
-    <string name="analyzed_version">Wersja analizowana</string>
-    <string name="same_version">Ta sama wersja aplikacji może się różnić w zależności od wersji Androida i używanego urządzenia.</string>
+    <string name="report_date">Raport został utworzony w <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">Zaktualizowano w <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Zainstalowana wersja</string>
+    <string name="analyzed_version">Analizowana wersja</string>
+    <string name="same_version">Ta sama wersja aplikacji może być inna niż używana po wersji Androida i urządzeniu.</string>
     <string name="learn_more"><u>Dowiedz się więcej…</u></string>
 
     <!-- ADTrackers Fragment -->
-    <string name="code_signature_found">Znaleźliśmy sygnaturę kodu następujących trackerów w aplikacji:</string>
-    <string name="code_signature_not_found">W aplikacji nie znaleźliśmy sygnatury kodu żadnego znanego nam trackera.</string>
-    <string name="tracker_info">Moduł śledzący to oprogramowanie przeznaczone do zbierania danych o tobie lub twoich zachowaniach.</string>
+    <string name="code_signature_found">Znaleźliśmy w tej aplikacji ślady następujących skryptów śledzących:</string>
+    <string name="code_signature_not_found">Nie znaleźliśmy w tej aplikacji śladów żadnego znanego nam skryptu śledzącego.</string>
+    <string name="tracker_info">Śledzenie to oprogramowanie przeznaczone do zbierania danych o Tobie lub o twoim użyciu.</string>
     <string name="analyzed">Ta aplikacja nie została jeszcze przeanalizowana przez Exodus Privacy.</string>
 
     <!-- ADPermissions Fragment -->
-    <string name="code_permission_found">W aplikacji znaleźliśmy następujące uprawnienia:</string>
+    <string name="code_permission_found">Znaleźliśmy następujące uprawnienia udzielone aplikacji:</string>
     <string name="code_permission_not_found">Ta aplikacja nie wymaga żadnych uprawnień.</string>
-    <string name="permission_info">Uprawnienia to czynności, które aplikacja może wykonywać na Twoim telefonie.</string>
-    <string name="permission_info_dangerous">Ikona <font color="red"><b>!</b></font> wskazuje poziom \'Dangerous\' lub \'Special\' zgodnie z poziomami ochrony Google\.</string>
+    <string name="permission_info">Uprawnienia to akcje, które aplikacja może wykonać na telefonie.</string>
+    <string name="permission_info_dangerous">Ikona <font color="red"><b>!</b></font> oznacza poziom \'Niebezpieczeństwo\' lub \'Specjalny\' zgodnie z poziomami ochrony Google.</string>
 
     <!-- Notification -->
     <string name="updates">Aktualizacje</string>
-    <string name="updating_database">Aktualizacja bazy raportów… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <string name="updating_database">Aktualizowanie bazy raportów… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
 
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
-        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
-        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacja</item>
+        <item quantity="few"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacje</item>
+        <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacji</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacji</item>
     </plurals>
 
     <!-- TrackersDetail Fragment -->
-    <string name="open_tracker_page">Otwórz stronę śledzenia</string>
-    <string name="detection_rules">Zasady wykrywania</string>
-    <string name="code_signature">Reguła wykrywania kodu:</string>
+    <string name="open_tracker_page">Otwórz stronę trackera</string>
+    <string name="detection_rules">Reguły wykrywania</string>
+    <string name="code_signature">Zasada wykrywania kodu:</string>
     <string name="network_signature">Reguła wykrywania sieci:</string>
     <string name="apps_list">Lista aplikacji</string>
     <plurals name="trackers_presence">
-        <item quantity="one">Obecny w <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> aplikacjach) z Twoich aplikacji</item>
-        <item quantity="other">Obecny w <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> aplikacjach) z Twoich aplikacji</item>
+        <item quantity="one">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) of your applications</item>
+        <item quantity="few">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+        <item quantity="many">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
+        <item quantity="other">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
     </plurals>
-    
+
     <!-- Dialog Fragment -->
     <string name="accept">Akceptuj</string>
     <string name="reject">Odrzuć</string>
-    <string name="warning_title">Zezwolić Exodusowi na przesyłanie wymaganych danych?</string>
-    <string name="warning_desc">IAby działać, ta aplikacja musi zbierać i wysyłać dane do serwerów Exodus Privacy, które obejmują listę aplikacji zainstalowanych na tym urządzeniu w celu analizy śledzenia. Nie zbiera żadnych danych osobowych.</string>
-    <string name="title_theme">Wybierz motyw</string>
+    <string name="warning_title">Zezwolić Exodus na przesyłanie wymaganych danych?</string>
+    <string name="warning_desc">W celu uruchomienia, ta aplikacja musi gromadzić i wysyłać dane do serwerów Exodus Prywatność, które zawierają listę aplikacji zainstalowanych na tym urządzeniu do analizy trackera. Nie zawiera żadnych danych osobowych.</string>
+    <string name="title_theme">Wybierz szablon</string>
     <string name="dark_theme">Ciemny</string>
     <string name="light_theme">Jasny</string>
-    <string name="system_theme">Systemowy</string>
-
+    <string name="system_theme">Domyślne systemowe</string>
 </resources>

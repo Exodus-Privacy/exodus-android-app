@@ -1,0 +1,78 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">অ্যাপ্লিকেশন লোগো</string>
+    <string name="trackers">ট্র্যাকার</string>
+    <string name="permissions">অনুমতিসমূহ</string>
+    <string name="not_connected">কোনো ইন্টারনেট সংযোগ নেই</string>
+    <string name="settings">পছন্দসমূহ</string>
+    <string name="version_mismatch">ইনস্টকৃত সংস্করণ &lt;&gt; যাচাইকৃত সংস্করণ</string>
+    <string name="version_unavailable">অ্যাপ কখনো যাচাই করা হয়নি</string>
+    <string name="no_app_found">মনে হয় আমরা যে উৎস (গুগল প্লে স্টোর বা এফ-ড্রয়েড) থেকে অ্যাপ পরীক্ষা করি তার থেকে কোনো অ্যাপ ইনস্টল করা নেই।</string>
+    <string name="no_settings">এই অ্যাপে কোনো সেটিংস নেই</string>
+    <string name="logo">%1 অ্যাপ্লিকেশন লোগো</string>
+    <string name="refresh">পুনঃসতেজ</string>
+    <string name="cancel">বাতিল</string>
+    <string name="refresh_needed">পুনঃসতেজ প্রয়োজন</string>
+    <string name="submit">জমাদান</string>
+    <string name="title_apps">অ্যাপ</string>
+    <string name="title_trackers">ট্র্যাকার</string>
+    <string name="title_about">সম্পর্কে</string>
+    <!-- Menu -->
+    <string name="menu_action_search">অনুসন্ধান</string>
+    <string name="menu_action_filter">ফিল্টার</string>
+    <!-- Filters -->
+    <string name="sort_by_name">নাম</string>
+    <string name="sort_by_creation_date">তৈরির তারিখ</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">প্রতিবেদনের তথ্যভিত্তি হালনাগাদ করা হচ্ছে!</string>
+    <!-- About Fragment -->
+    <string name="chooseTheme">রঙ</string>
+    <string name="analyze_desc">নতুন বিশ্লেষণ শুরু করো</string>
+    <string name="alternatives">এরপর কী?</string>
+    <string name="alternatives_desc">কিছু বিকল্প বিদ্যমান!</string>
+    <string name="website">ওয়েবসাইট</string>
+    <string name="website_desc">এক্সোডাস প্রাইভেসি প্রকল্পে আরো তথ্য খুঁজো</string>
+    <string name="srcCode_desc">ত্রুটি হলে প্রতিবেদন পাঠাও, উৎস কোড দেখো</string>
+    <string name="privPolicy">গোপনীয়তার নীতিমালা</string>
+    <string name="privPolicy_desc">আমরা কিভাবে তোমার তথ্য ব্যবস্থাপনা করি সে সম্পর্কে জানো</string>
+    <string name="email">ঠিকানা</string>
+    <string name="email_desc">ইমেইল এর মাধ্যমে আমাদের সাথে যোগাযোগ করো</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">এক্সোডাস প্রাইভেসি-তে খুলো</string>
+    <string name="submit_app">অ্যাপ জমা</string>
+    <string name="open_store">অ্যাপস্টোর খুলো</string>
+    <string name="open_app_info">অ্যাপ পছন্দসমূহ</string>
+    <string name="version">সংস্করণ</string>
+    <string name="report_date"><xliff:g id="date">%1$s</xliff:g> এ প্রতিবেদন তৈরি করা হয়েছে</string>
+    <string name="updated"><xliff:g id="date">%1$s</xliff:g> এ হালনাগাদ করা হয়েছে</string>
+    <string name="installed_version">ইনস্টলকৃত সংস্করণ</string>
+    <string name="analyzed_version">বিশ্লেষণকৃত সংস্করণ</string>
+    <string name="same_version">একই অ্যাপ অ্যান্ড্রয়েড সংস্করণ ও ব্যবহৃত যন্ত্রের কারণে ভিন্ন হতে পারে।</string>
+    <string name="learn_more"><u>আরো জানো…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">আমরা অ্যাপ্লিকেশনটিতে নিম্নলিখিত ট্র্যাকারের কোডের স্বাক্ষর পেয়েছি:</string>
+    <string name="code_signature_not_found">আমরা অ্যাপ্লিকেশনটিতে জানা কোনো ট্র্যাকারের কোড স্বাক্ষর খুঁজে পাইনি।</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">আমরা অ্যাপ্লিকেশনটিতে নিম্নলিখিত অনুমতিগুলি পেয়েছি:</string>
+    <string name="code_permission_not_found">এই অ্যাপ্লিকেশনটির জন্য কোনও অনুমতির প্রয়োজন নেই।</string>
+    <!-- Notification -->
+    <string name="updates">হালনাগাদ</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> অ্যাপ</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> অ্যাপ</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">ট্র্যাকার পাতা খুলো</string>
+    <string name="detection_rules">শনাক্তকরণ নিয়ম</string>
+    <string name="code_signature">কোড সনাক্তকরণের নিয়ম:</string>
+    <string name="network_signature">নেটওয়ার্ক সনাক্তকরণের নিয়ম:</string>
+    <string name="apps_list">অ্যাপ তালিকা</string>
+    <!-- Dialog Fragment -->
+    <string name="accept">গ্রহণ</string>
+    <string name="reject">প্রত্যাখ্যান</string>
+    <string name="warning_title">এক্সোডাসকে প্রয়োজনীয় তথ্য প্রেরণের অনুমতি দিবে?</string>
+    <string name="title_theme">রঙ নির্বাচন করো</string>
+    <string name="dark_theme">অন্ধকার</string>
+    <string name="light_theme">আলো</string>
+    <string name="system_theme">সহজাত রঙ</string>
+</resources>

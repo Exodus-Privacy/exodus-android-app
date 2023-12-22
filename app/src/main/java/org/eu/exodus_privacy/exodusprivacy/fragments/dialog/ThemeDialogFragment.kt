@@ -7,7 +7,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.eu.exodus_privacy.exodusprivacy.R
 
 class ThemeDialogFragment : DialogFragment() {
-    private val TAG = ExodusDialogFragment::class.java.simpleName
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())
