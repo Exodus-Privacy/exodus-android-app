@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
+import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 import javax.inject.Inject
 
@@ -76,29 +76,25 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     setOnMenuItemClickListener {
                         when (it.itemId) {
                             R.id.openExodusPage -> {
-                                customTabsIntent.launchUrl(
+                                openURL(
+                                    customTabsIntent,
                                     view.context,
-                                    Uri.parse(exodusReportPage + app.report),
+                                    exodusReportPage + app.report,
                                 )
                             }
                             R.id.submitApp -> {
-                                customTabsIntent.launchUrl(
+                                openURL(
+                                    customTabsIntent,
                                     view.context,
-                                    Uri.parse(exodusSubmitPage + app.packageName),
+                                    exodusSubmitPage + app.packageName,
                                 )
                             }
                             R.id.openStore -> {
-                                try {
-                                    customTabsIntent.launchUrl(
-                                        view.context,
-                                        Uri.parse(storePage + app.packageName),
-                                    )
-                                } catch (e: ActivityNotFoundException) {
-                                    customTabsIntent.launchUrl(
-                                        view.context,
-                                        Uri.parse(GPPage + app.packageName),
-                                    )
-                                }
+                                openURL(
+                                    customTabsIntent,
+                                    view.context,
+                                    storePage + app.packageName,
+                                )
                             }
                             R.id.openAppInfo -> {
                                 val intent =
