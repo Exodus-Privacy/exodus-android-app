@@ -23,7 +23,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4
       - name: Setup Java JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: 17
@@ -34,7 +34,7 @@ jobs:
       - name: Generate release build
         run: ./gradlew assembleRelease
       - name: Execute exodus-standalone
-        uses: docker://exodusprivacy/exodus-standalone:v1.3.2
+        uses: docker://exodusprivacy/exodus-standalone:v1.4.0
         with:
           args: /github/workspace/app/build/outputs/apk/release/app-release.apk
       - name: Upload APK
