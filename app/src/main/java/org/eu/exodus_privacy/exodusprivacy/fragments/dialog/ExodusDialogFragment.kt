@@ -41,8 +41,8 @@ class ExodusDialogFragment : DialogFragment() {
             .setMessage(
                 HtmlCompat.fromHtml(
                     getString(R.string.warning_desc),
-                    HtmlCompat.FROM_HTML_MODE_COMPACT
-                )
+                    HtmlCompat.FROM_HTML_MODE_COMPACT,
+                ),
             ).setPositiveButton(getString(R.string.accept)) { _, _ ->
                 Log.d(TAG, "Permission to transmit data granted!")
                 exodusDialogViewModel.savePolicyAgreement(true)
@@ -60,7 +60,7 @@ class ExodusDialogFragment : DialogFragment() {
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
+        ActivityResultContracts.RequestPermission(),
     ) { _: Boolean ->
         exodusDialogViewModel.saveNotificationPermissionRequested(true)
     }
@@ -68,7 +68,7 @@ class ExodusDialogFragment : DialogFragment() {
     private fun isNotificationPermissionGranted(): Boolean {
         return ContextCompat.checkSelfPermission(
             requireContext(),
-            permission
+            permission,
         ) == PackageManager.PERMISSION_GRANTED
     }
 

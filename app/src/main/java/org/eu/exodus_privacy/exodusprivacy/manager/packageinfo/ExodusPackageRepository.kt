@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class ExodusPackageRepository @Inject constructor(
     private val packageManager: PackageManager,
-    @IoDispatcher val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher val ioDispatcher: CoroutineDispatcher,
 ) {
     private val TAG = ExodusPackageRepository::class.java.simpleName
     private val GOOGLE_PLAY_STORE = "com.android.vending"
@@ -29,7 +29,7 @@ class ExodusPackageRepository @Inject constructor(
     private val resolution = 96
 
     suspend fun getApplicationList(
-        validPackages: List<PackageInfo>
+        validPackages: List<PackageInfo>,
     ): MutableList<Application> {
         val permissionsMap = generatePermissionsMap(validPackages, packageManager)
         val applicationList = mutableListOf<Application>()
@@ -43,7 +43,7 @@ class ExodusPackageRepository @Inject constructor(
                 packageInfo.versionName ?: "",
                 PackageInfoCompat.getLongVersionCode(packageInfo),
                 permissionsMap[packageInfo.packageName] ?: emptyList(),
-                getAppStore(packageInfo.packageName, packageManager)
+                getAppStore(packageInfo.packageName, packageManager),
             )
             Log.d(TAG, "Add app: ${app.name}, ${app.versionName}")
             applicationList.add(app)
@@ -65,13 +65,13 @@ class ExodusPackageRepository @Inject constructor(
 
     suspend fun generatePermissionsMap(
         packages: List<PackageInfo>,
-        packageManager: PackageManager
+        packageManager: PackageManager,
     ): MutableMap<String, List<Permission>> {
         return withContext(ioDispatcher) {
             val packagesWithPermissions = packages.filterNot { it.requestedPermissions == null }
             Log.d(TAG, "Packages with perms: $packagesWithPermissions")
             val permissionInfoSet = packagesWithPermissions.fold(
-                hashSetOf<String>()
+                hashSetOf<String>(),
             ) { acc, next ->
                 if (next.requestedPermissions != null) {
                     acc.addAll(next.requestedPermissions)
@@ -86,7 +86,7 @@ class ExodusPackageRepository @Inject constructor(
             permissionList = permissionList.sortedWith(
                 compareBy(String.CASE_INSENSITIVE_ORDER) {
                     it.shortName
-                }
+                },
             )
             Log.d(TAG, "Permission List: $permissionList")
             packagesWithPermissions.forEach { packageInfo ->
@@ -105,7 +105,7 @@ class ExodusPackageRepository @Inject constructor(
         try {
             permInfo = packageManager.getPermissionInfo(
                 longName,
-                PackageManager.GET_META_DATA
+                PackageManager.GET_META_DATA,
             )
         } catch (exception: PackageManager.NameNotFoundException) {
             Log.d(TAG, "Unable to find info about $longName.")
@@ -118,13 +118,13 @@ class ExodusPackageRepository @Inject constructor(
             return Permission(
                 shortName,
                 longName,
-                label.toString()
+                label.toString(),
             )
         } ?: run {
             return Permission(
                 shortName,
                 longName,
-                longName
+                longName,
             )
         }
     }

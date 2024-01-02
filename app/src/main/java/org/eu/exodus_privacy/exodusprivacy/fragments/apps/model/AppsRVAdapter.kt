@@ -16,7 +16,7 @@ import org.eu.exodus_privacy.exodusprivacy.utils.safeNavigate
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 
 class AppsRVAdapter(
-    private val currentDestinationId: Int
+    private val currentDestinationId: Int,
 ) : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(AppsDiffUtil()) {
 
     inner class ViewHolder(val binding: RecyclerViewAppItemBinding) :
@@ -27,8 +27,8 @@ class AppsRVAdapter(
             RecyclerViewAppItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false
-            )
+                false,
+            ),
         )
     }
 
@@ -43,7 +43,7 @@ class AppsRVAdapter(
                         AppsFragmentDirections.actionAppsFragmentToAppDetailFragment(app.packageName)
                     } else {
                         TrackerDetailFragmentDirections.actionTrackerDetailFragmentToAppDetailFragment(
-                            app.packageName
+                            app.packageName,
                         )
                     }
                     it.findNavController().safeNavigate(action)

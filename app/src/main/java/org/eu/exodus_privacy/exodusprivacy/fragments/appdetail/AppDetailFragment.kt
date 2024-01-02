@@ -69,31 +69,34 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     inflateMenu(R.menu.app_detail_menu)
                     if (app.exodusVersionCode == 0L) {
                         menu.findItem(R.id.openExodusPage)?.isVisible = false
-                    } else menu.findItem(R.id.submitApp)?.isVisible = app.exodusVersionCode != app.versionCode
+                    } else {
+                        menu.findItem(R.id.submitApp)?.isVisible =
+                            app.exodusVersionCode != app.versionCode
+                    }
                     setOnMenuItemClickListener {
                         when (it.itemId) {
                             R.id.openExodusPage -> {
                                 customTabsIntent.launchUrl(
                                     view.context,
-                                    Uri.parse(exodusReportPage + app.report)
+                                    Uri.parse(exodusReportPage + app.report),
                                 )
                             }
                             R.id.submitApp -> {
                                 customTabsIntent.launchUrl(
                                     view.context,
-                                    Uri.parse(exodusSubmitPage + app.packageName)
+                                    Uri.parse(exodusSubmitPage + app.packageName),
                                 )
                             }
                             R.id.openStore -> {
                                 try {
                                     customTabsIntent.launchUrl(
                                         view.context,
-                                        Uri.parse(storePage + app.packageName)
+                                        Uri.parse(storePage + app.packageName),
                                     )
                                 } catch (e: ActivityNotFoundException) {
                                     customTabsIntent.launchUrl(
                                         view.context,
-                                        Uri.parse(GPPage + app.packageName)
+                                        Uri.parse(GPPage + app.packageName),
                                     )
                                 }
                             }
@@ -151,15 +154,15 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     if (dateCreated != dateUpdated) {
                         appReportTV.text = getString(
                             R.string.report_date,
-                            dateCreated
+                            dateCreated,
                         ) + " " + getString(
                             R.string.updated,
-                            dateUpdated
+                            dateUpdated,
                         )
                     } else {
                         appReportTV.text = getString(
                             R.string.report_date,
-                            dateCreated
+                            dateCreated,
                         )
                     }
                 } else {
@@ -199,7 +202,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                                 contentDescription = getString(R.string.permissions)
                                 icon = ContextCompat.getDrawable(
                                     view.context,
-                                    R.drawable.ic_permission
+                                    R.drawable.ic_permission,
                                 )
                             }
                         }

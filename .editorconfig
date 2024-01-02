@@ -1,0 +1,6 @@
+# editorconfig.org
+
+root = true
+
+[*.{kt,kts}]
+ktlint_standard_package-name = disabled

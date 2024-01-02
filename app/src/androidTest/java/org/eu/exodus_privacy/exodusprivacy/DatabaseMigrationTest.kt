@@ -31,13 +31,13 @@ class DatabaseMigrationTest {
         InstrumentationRegistry.getInstrumentation(),
         ExodusDatabase::class.java,
         listOf(FakeAutoMigrationSpec()),
-        FrameworkSQLiteOpenHelperFactory()
+        FrameworkSQLiteOpenHelperFactory(),
     )
 
     private val MIGRATION_1_2 = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
-                "ALTER TABLE TrackerData ADD COLUMN totalNumberOfAppsHavingTrackers INTEGER NOT NULL DEFAULT 0"
+                "ALTER TABLE TrackerData ADD COLUMN totalNumberOfAppsHavingTrackers INTEGER NOT NULL DEFAULT 0",
             )
         }
     }
@@ -55,7 +55,7 @@ class DatabaseMigrationTest {
                     "source, report, created, updated) " +
                     "VALUES( " +
                     "'TestApp', 'TestApp', 'bitmap', 'TestApp', 'long', 'perms', " +
-                    "'TestApp', 'long', 'tracks', 'source', 0, 'somewhen', 'somewhen' );"
+                    "'TestApp', 'long', 'tracks', 'source', 0, 'somewhen', 'somewhen' );",
             )
             execSQL(
                 "INSERT INTO TrackerData (" +
@@ -63,7 +63,7 @@ class DatabaseMigrationTest {
                     "name, network_signature, website, presentOnDevice," +
                     "exodusApplications) " +
                     "VALUES(0, 'sdf', 'signature', 'date', 'description', 'TestTracker', 'signature'" +
-                    ", 'webaddress.com', 'notTrue', 'mutableStringList');"
+                    ", 'webaddress.com', 'notTrue', 'mutableStringList');",
             )
             // Prepare for the next version.
             close()

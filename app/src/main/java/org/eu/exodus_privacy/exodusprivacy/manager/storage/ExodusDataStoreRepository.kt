@@ -23,7 +23,7 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
     private val preferenceKey: Preferences.Key<String>,
     private val typeToken: TypeToken<Map<String, ExodusConfig>>,
     name: DataStoreName,
-    @ApplicationContext val context: Context
+    @ApplicationContext val context: Context,
 ) : ExodusStorage<ExodusConfig> {
 
     private val Context.dataStore by preferencesDataStore(name.name)
@@ -33,8 +33,8 @@ class ExodusDataStoreRepository<ExodusConfig> @Inject constructor(
         return gson.toJson(
             mapOf(
                 "privacy_policy" to ExodusConfig("privacy_policy_consent", false),
-                "notification_perm" to ExodusConfig("notification_requested", false)
-            )
+                "notification_perm" to ExodusConfig("notification_requested", false),
+            ),
         )
     }
 

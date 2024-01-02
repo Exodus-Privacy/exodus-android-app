@@ -18,8 +18,8 @@ class ADPermissionsRVAdapter :
             RecyclerViewPermissionItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false
-            )
+                false,
+            ),
         )
     }
 

@@ -16,5 +16,5 @@ data class TrackerData(
     val website: String = String(),
     var presentOnDevice: Boolean = false,
     val exodusApplications: MutableList<String> = mutableListOf(),
-    @ColumnInfo(defaultValue = 0.toString()) var totalNumberOfAppsHavingTrackers: Int = 0
+    @ColumnInfo(defaultValue = 0.toString()) var totalNumberOfAppsHavingTrackers: Int = 0,
 )

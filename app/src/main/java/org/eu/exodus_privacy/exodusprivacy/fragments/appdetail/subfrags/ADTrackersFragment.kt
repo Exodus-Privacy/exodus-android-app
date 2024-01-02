@@ -57,7 +57,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                     setOnClickListener {
                         customTabsIntent.launchUrl(
                             view.context,
-                            Uri.parse(trackersInfoPage)
+                            Uri.parse(trackersInfoPage),
                         )
                     }
                 }
