@@ -7,5 +7,5 @@ data class Tracker(
     val description: String = String(),
     val name: String = String(),
     val network_signature: String = String(),
-    val website: String = String()
+    val website: String = String(),
 )

@@ -70,12 +70,12 @@ class ExodusDatabaseRepositoryTest {
 
         testDB = Room.inMemoryDatabaseBuilder(
             context,
-            ExodusDatabase::class.java
+            ExodusDatabase::class.java,
         ).addTypeConverter(exodusTypeConverter).build()
 
         exodusDatabaseRepository = ExodusDatabaseRepository(
             testDB,
-            testDispatcher
+            testDispatcher,
         )
 
         // when
@@ -92,7 +92,7 @@ class ExodusDatabaseRepositoryTest {
             source,
             report,
             created,
-            updated
+            updated,
         )
 
         exodusAppEntry2 = ExodusApplication(
@@ -108,7 +108,7 @@ class ExodusDatabaseRepositoryTest {
             source,
             report,
             created,
-            updated
+            updated,
         )
 
         exodusTrackerDataEntry = TrackerData(
@@ -119,7 +119,7 @@ class ExodusDatabaseRepositoryTest {
             description = "Lorem Ipsum",
             name = "TestTracker",
             network_signature = "Unknown",
-            website = "example.com"
+            website = "example.com",
         )
 
         exodusTrackerDataEntry2 = TrackerData(
@@ -130,7 +130,7 @@ class ExodusDatabaseRepositoryTest {
             description = "Lorem Ipsum",
             name = "TestTracker2",
             network_signature = "Unknown",
-            website = "example.com"
+            website = "example.com",
         )
     }
 
@@ -156,12 +156,12 @@ class ExodusDatabaseRepositoryTest {
         try {
             exodusDatabaseRepository.getApp(packageName)
         } catch (
-            exception: java.lang.Exception
+            exception: java.lang.Exception,
         ) {
             exceptions.add(exception.toString())
         }
         assert(
-            dataBaseExceptionMessage in exceptions[0] || javaIllegalStateExceptionMessage in exceptions[0]
+            dataBaseExceptionMessage in exceptions[0] || javaIllegalStateExceptionMessage in exceptions[0],
         )
     }
 
@@ -183,7 +183,7 @@ class ExodusDatabaseRepositoryTest {
             source,
             report,
             created,
-            updated
+            updated,
         )
 
         // when
@@ -212,14 +212,14 @@ class ExodusDatabaseRepositoryTest {
             source,
             report,
             created,
-            updated
+            updated,
         )
 
         // when
         exodusDatabaseRepository.saveApp(exodusAppEntry)
         exodusDatabaseRepository.saveApp(exodusAppEntry2)
         val retrievedApp = exodusDatabaseRepository.getApps(
-            listOf(packageName, packageName2)
+            listOf(packageName, packageName2),
         )
 
         // then

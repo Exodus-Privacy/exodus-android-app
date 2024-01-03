@@ -17,6 +17,6 @@ interface ExodusAPIInterface {
 
     @GET("search/{packageName}/details")
     suspend fun getAppDetails(
-        @Path("packageName") packageName: String
+        @Path("packageName") packageName: String,
     ): Response<List<AppDetails>>
 }

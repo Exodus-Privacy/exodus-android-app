@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrackersViewModel @Inject constructor(
-    exodusDatabaseRepository: ExodusDatabaseRepository
+    exodusDatabaseRepository: ExodusDatabaseRepository,
 ) : ViewModel() {
 
     val trackersList: LiveData<List<TrackerData>> = exodusDatabaseRepository.getAllTrackers()

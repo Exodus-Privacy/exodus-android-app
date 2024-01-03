@@ -15,5 +15,5 @@ data class AppDetails(
     val uaid: String = String(),
     val updated: String = String(),
     val version_code: String = String(),
-    val version_name: String = String()
+    val version_name: String = String(),
 )

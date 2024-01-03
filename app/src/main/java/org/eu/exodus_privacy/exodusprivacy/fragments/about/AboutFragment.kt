@@ -87,7 +87,7 @@ class AboutFragment : PreferenceFragmentCompat() {
             getString(
                 R.string.version_info,
                 BuildConfig.VERSION_NAME,
-                BuildConfig.VERSION_CODE
+                BuildConfig.VERSION_CODE,
             )
         binding.appVersionTV.setOnClickListener {
             Toast.makeText(context, "Thanks for support ❤", Toast.LENGTH_SHORT).show()

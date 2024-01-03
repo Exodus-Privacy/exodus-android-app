@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrackerDetailViewModel @Inject constructor(
-    private val exodusDatabaseRepository: ExodusDatabaseRepository
+    private val exodusDatabaseRepository: ExodusDatabaseRepository,
 ) : ViewModel() {
 
     val tracker: MutableLiveData<TrackerData> = MutableLiveData()

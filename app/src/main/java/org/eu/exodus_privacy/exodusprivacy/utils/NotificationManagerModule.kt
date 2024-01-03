@@ -23,7 +23,7 @@ object NotificationManagerModule {
     @Singleton
     @Provides
     fun provideNotificationManagerInstance(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): NotificationManagerCompat {
         return NotificationManagerCompat.from(context)
     }
@@ -32,7 +32,7 @@ object NotificationManagerModule {
     @Provides
     @RequiresApi(Build.VERSION_CODES.O)
     fun provideUpdateNotificationChannel(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): NotificationChannelCompat {
         return NotificationChannelCompat
             .Builder(UPDATES, NotificationManagerCompat.IMPORTANCE_LOW)
@@ -42,7 +42,7 @@ object NotificationManagerModule {
 
     @Provides
     fun provideUpdateNotification(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): NotificationCompat.Builder {
         return NotificationCompat.Builder(context, UPDATES)
             .setSmallIcon(R.drawable.ic_update)

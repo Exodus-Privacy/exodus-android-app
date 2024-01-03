@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val configStorage: ExodusDataStoreRepository<ExodusConfig>,
-    private val networkManager: NetworkManager
+    private val networkManager: NetworkManager,
 ) : ViewModel() {
     init {
         networkManager.checkConnection()

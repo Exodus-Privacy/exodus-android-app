@@ -143,7 +143,7 @@ class ExodusUpdateService : LifecycleService() {
 
             if (ActivityCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.POST_NOTIFICATIONS
+                    Manifest.permission.POST_NOTIFICATIONS,
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 Log.d(TAG, "Permission to post notification was granted.")
@@ -160,8 +160,8 @@ class ExodusUpdateService : LifecycleService() {
                         currentSize.value!!,
                         numberOfInstalledPackages,
                         !firstTime,
-                        this
-                    )
+                        this,
+                    ),
                 )
             }
 
@@ -172,7 +172,7 @@ class ExodusUpdateService : LifecycleService() {
                 currentSize.observe(this) { current ->
                     notificationManager.notify(
                         SERVICE_ID,
-                        createNotification(current, numberOfInstalledPackages, false, this)
+                        createNotification(current, numberOfInstalledPackages, false, this),
                     )
                 }
             }
@@ -189,13 +189,13 @@ class ExodusUpdateService : LifecycleService() {
         currentSize: Int,
         totalSize: Int,
         cancellable: Boolean,
-        context: Context
+        context: Context,
     ): Notification {
         val builder = setUpNotification(
             currentSize,
             totalSize,
             cancellable,
-            context
+            context,
         )
         return builder.build()
     }
@@ -204,7 +204,7 @@ class ExodusUpdateService : LifecycleService() {
         currentSize: Int,
         totalSize: Int,
         cancellable: Boolean,
-        context: Context
+        context: Context,
     ): NotificationCompat.Builder {
         val notificationIntent = Intent(context, MainActivity::class.java)
         val notificationPendingIntent: PendingIntent? = TaskStackBuilder.create(context).run {
@@ -216,8 +216,8 @@ class ExodusUpdateService : LifecycleService() {
                 getString(
                     R.string.updating_database,
                     currentSize,
-                    totalSize + 1
-                )
+                    totalSize + 1,
+                ),
             )
             .setProgress(totalSize + 1, currentSize, false)
             .setTimeoutAfter(5000L)
@@ -236,7 +236,7 @@ class ExodusUpdateService : LifecycleService() {
         Toast.makeText(
             this,
             getString(R.string.fetching_apps),
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_SHORT,
         ).show()
         serviceScope.launch {
             if (!firstTime) removeUninstalledApps()
@@ -284,7 +284,7 @@ class ExodusUpdateService : LifecycleService() {
                     value.description,
                     value.name,
                     value.network_signature,
-                    value.website
+                    value.website,
                 )
                 trackersList.add(trackerData)
             }
@@ -332,7 +332,7 @@ class ExodusUpdateService : LifecycleService() {
                     app.source,
                     latestExodusApp.report,
                     latestExodusApp.created,
-                    latestExodusApp.updated
+                    latestExodusApp.updated,
                 )
 
                 appList.add(exodusApp)
@@ -377,7 +377,7 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     fun countAppsHavingTrackers(
-        appList: MutableList<ExodusApplication>
+        appList: MutableList<ExodusApplication>,
     ): Int {
         return appList.count {
             it.exodusTrackers.isNotEmpty()

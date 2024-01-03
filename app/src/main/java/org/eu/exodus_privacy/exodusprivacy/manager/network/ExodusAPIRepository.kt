@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ExodusAPIRepository @Inject constructor(
     private val exodusAPIInterface: ExodusAPIInterface,
     private val networkManager: NetworkManager,
-    @IoDispatcher val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher val ioDispatcher: CoroutineDispatcher,
 ) {
     private val TAG = ExodusAPIRepository::class.java.simpleName
 
@@ -26,7 +26,7 @@ class ExodusAPIRepository @Inject constructor(
                 } else {
                     Log.w(
                         TAG,
-                        "Failed to get trackers, response code: ${result.code()}. Returning empty Trackers object."
+                        "Failed to get trackers, response code: ${result.code()}. Returning empty Trackers object.",
                     )
                     Trackers()
                 }
@@ -48,7 +48,7 @@ class ExodusAPIRepository @Inject constructor(
                 } else {
                     Log.w(
                         TAG,
-                        "Failed to get app details, response code: ${result.code()}. Returning emptyList."
+                        "Failed to get app details, response code: ${result.code()}. Returning emptyList.",
                     )
                     emptyList()
                 }

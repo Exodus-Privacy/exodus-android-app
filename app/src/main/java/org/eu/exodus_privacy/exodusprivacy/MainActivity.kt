@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(
                     binding.fragmentCoordinator,
                     R.string.not_connected,
-                    Snackbar.LENGTH_LONG
+                    Snackbar.LENGTH_LONG,
                 ).setAnchorView(binding.bottomNavView) // Snackbar will appear above bottom nav view
                     .setAction(R.string.settings) {
                         try {
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         viewModel.saveNotificationPermissionRequested(true)
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             ) {
                 Log.d(
                     TAG,
-                    "Populating database for the first time."
+                    "Populating database for the first time.",
                 )
                 val intent = Intent(this, ExodusUpdateService::class.java)
                 intent.apply {

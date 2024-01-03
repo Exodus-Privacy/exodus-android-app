@@ -37,8 +37,8 @@ fun Chip.setExodusColor(size: Int) {
             ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
-                    com.google.android.material.R.color.m3_chip_text_color
-                )
+                    com.google.android.material.R.color.m3_chip_text_color,
+                ),
             )
         this.chipIconTint = colorForeground
         this.setTextColor(colorForeground)

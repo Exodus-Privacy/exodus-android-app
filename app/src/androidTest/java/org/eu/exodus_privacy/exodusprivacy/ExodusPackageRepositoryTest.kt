@@ -68,7 +68,7 @@ class ExodusPackageRepositoryTest {
             assert(
                 youtubePackage.requestedPermissions.any {
                     it.contains(perm.longName)
-                }
+                },
             )
         }
     }
@@ -109,7 +109,7 @@ class ExodusPackageRepositoryTest {
         val packageManager = context.packageManager
         val installedApps =
             context.packageManager.getInstalledPackagesList(
-                PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES
+                PackageManager.GET_PERMISSIONS + PackageManager.GET_ACTIVITIES,
             )
         var count = 0
 
@@ -121,12 +121,12 @@ class ExodusPackageRepositoryTest {
             comparePkgInfo = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                 packageManager.getApplicationInfo(
                     pkg.packageName,
-                    0
+                    0,
                 )
             } else {
                 packageManager.getApplicationInfo(
                     pkg.packageName,
-                    PackageManager.ApplicationInfoFlags.of(0.toLong())
+                    PackageManager.ApplicationInfoFlags.of(0.toLong()),
                 )
             }
             val applicationInfoObjectsAreTheSame =

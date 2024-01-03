@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppDetailViewModel @Inject constructor(
-    private val exodusDatabaseRepository: ExodusDatabaseRepository
+    private val exodusDatabaseRepository: ExodusDatabaseRepository,
 ) : ViewModel() {
 
     val app: MutableLiveData<ExodusApplication> = MutableLiveData()

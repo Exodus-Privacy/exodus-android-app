@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NetworkManager @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
 ) {
     private val TAG = NetworkManager::class.java.simpleName
 
@@ -31,7 +31,7 @@ class NetworkManager @Inject constructor(
     init {
         ContextCompat.getSystemService(
             context,
-            ConnectivityManager::class.java
+            ConnectivityManager::class.java,
         )?.registerNetworkCallback(
             NetworkRequest.Builder()
                 .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
@@ -50,7 +50,7 @@ class NetworkManager @Inject constructor(
                     _networkState.value = false
                     postNetworkStateValue()
                 }
-            }
+            },
         )
     }
 

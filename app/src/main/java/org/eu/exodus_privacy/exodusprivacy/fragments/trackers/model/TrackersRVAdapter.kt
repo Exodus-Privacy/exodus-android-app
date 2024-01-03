@@ -24,7 +24,7 @@ import org.eu.exodus_privacy.exodusprivacy.utils.safeNavigate
 
 class TrackersRVAdapter(
     private val showSuggestions: Boolean,
-    private val currentDestinationId: Int
+    private val currentDestinationId: Int,
 ) :
     ListAdapter<TrackerData, TrackersRVAdapter.ViewHolder>(TrackersDiffUtil()) {
 
@@ -38,8 +38,8 @@ class TrackersRVAdapter(
             RecyclerViewTrackerItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false
-            )
+                false,
+            ),
         )
     }
 
@@ -51,7 +51,7 @@ class TrackersRVAdapter(
 
         Log.d(
             TAG,
-            "ApplicationsList in TrackerData: ${app.exodusApplications}. " + "Size: ${app.exodusApplications.size}."
+            "ApplicationsList in TrackerData: ${app.exodusApplications}. " + "Size: ${app.exodusApplications.size}.",
         )
 
         val trackerPercentage =
@@ -65,7 +65,7 @@ class TrackersRVAdapter(
         if (!showSuggestions) {
             val params = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
             )
             val horMargin = convertPXToDP(20, context).toInt()
             val verMargin = convertPXToDP(10, context).toInt()
@@ -85,7 +85,7 @@ class TrackersRVAdapter(
                         context,
                         null,
                         0,
-                        R.style.Theme_Exodus_Chip
+                        R.style.Theme_Exodus_Chip,
                     )
                     chip.text = it
                     chip.setChipDrawable(chipStyle)
@@ -97,7 +97,7 @@ class TrackersRVAdapter(
                         R.plurals.trackers_status,
                         app.exodusApplications.size,
                         trackerPercentage.toInt(),
-                        app.exodusApplications.size
+                        app.exodusApplications.size,
                     )
                 trackersPB.apply {
                     val newWidth = (getDisplayWidth(context) * trackerPercentage) / 100
@@ -113,12 +113,12 @@ class TrackersRVAdapter(
                         if (currentDestinationId == R.id.appDetailFragment) {
                             AppDetailFragmentDirections.actionAppDetailFragmentToTrackerDetailFragment(
                                 app.id,
-                                trackerPercentage.toInt()
+                                trackerPercentage.toInt(),
                             )
                         } else {
                             TrackersFragmentDirections.actionTrackersFragmentToTrackerDetailFragment(
                                 app.id,
-                                trackerPercentage.toInt()
+                                trackerPercentage.toInt(),
                             )
                         }
                     holder.itemView.findNavController().safeNavigate(action)
@@ -131,7 +131,7 @@ class TrackersRVAdapter(
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             pixels.toFloat(),
-            context.resources.displayMetrics
+            context.resources.displayMetrics,
         )
     }
 

@@ -54,7 +54,7 @@ const val FAKE_RESPONSE =
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
-    replaces = [ExodusModule::class]
+    replaces = [ExodusModule::class],
 )
 object FakeExodusModule {
     @Singleton
@@ -129,13 +129,13 @@ class ExodusAPIRepositoryTest {
             try {
                 exodusAPIRepository.getAllTrackers()
             } catch (
-                exception: java.net.SocketTimeoutException
+                exception: java.net.SocketTimeoutException,
             ) {
                 exception
             }
         assertEquals(
             "java.net.SocketTimeoutException: timeout",
-            exception.toString()
+            exception.toString(),
         )
     }
 }

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppsViewModel @Inject constructor(
-    exodusDatabaseRepository: ExodusDatabaseRepository
+    exodusDatabaseRepository: ExodusDatabaseRepository,
 ) : ViewModel() {
 
     val appList: LiveData<List<ExodusApplication>> = exodusDatabaseRepository.getAllApps()

@@ -64,7 +64,7 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                         if (it.itemId == R.id.openTrackerPage) {
                             customTabsIntent.launchUrl(
                                 view.context,
-                                Uri.parse(tracker.website)
+                                Uri.parse(tracker.website),
                             )
                         }
                         true
@@ -80,7 +80,7 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                         view.context,
                         null,
                         0,
-                        R.style.Theme_Exodus_Chip
+                        R.style.Theme_Exodus_Chip,
                     )
                     chip.text = it
                     chip.setChipDrawable(chipStyle)
@@ -94,7 +94,7 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                         R.plurals.trackers_presence,
                         tracker.exodusApplications.size,
                         args.percentage,
-                        tracker.exodusApplications.size
+                        tracker.exodusApplications.size,
                     )
                 }
 

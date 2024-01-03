@@ -36,7 +36,7 @@ class ExodusUpdateServiceTest {
 
         val serviceIntent = Intent(
             context,
-            ExodusUpdateService::class.java
+            ExodusUpdateService::class.java,
         )
         serviceRule.startService(serviceIntent)
 
@@ -64,7 +64,7 @@ class ExodusUpdateServiceTest {
 
         val serviceIntent = Intent(
             context,
-            ExodusUpdateService::class.java
+            ExodusUpdateService::class.java,
         )
         serviceRule.startService(serviceIntent)
 
@@ -76,7 +76,7 @@ class ExodusUpdateServiceTest {
                 val appsList = mutableListOf(
                     ExodusApplication(exodusTrackers = listOf(0)),
                     ExodusApplication(exodusTrackers = listOf(1)),
-                    ExodusApplication(exodusTrackers = listOf())
+                    ExodusApplication(exodusTrackers = listOf()),
                 )
 
                 // then

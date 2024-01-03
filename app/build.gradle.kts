@@ -8,6 +8,11 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    version.set("0.50.0")
+    android.set(true)
+}
+
 android {
     namespace = "org.eu.exodus_privacy.exodusprivacy"
     compileSdk = 34

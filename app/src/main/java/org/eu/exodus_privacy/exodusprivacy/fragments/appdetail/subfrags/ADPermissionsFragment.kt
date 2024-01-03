@@ -64,7 +64,7 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                     setOnClickListener {
                         customTabsIntent.launchUrl(
                             view.context,
-                            Uri.parse(googleInfoPage)
+                            Uri.parse(googleInfoPage),
                         )
                     }
                 }
@@ -73,7 +73,7 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                     setOnClickListener {
                         customTabsIntent.launchUrl(
                             view.context,
-                            Uri.parse(permissionsInfoPage)
+                            Uri.parse(permissionsInfoPage),
                         )
                     }
                 }

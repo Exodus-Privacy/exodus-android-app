@@ -15,9 +15,9 @@ class ThemeDialogFragment : DialogFragment() {
                 arrayOf(
                     getString(R.string.dark_theme),
                     getString(R.string.light_theme),
-                    getString(R.string.system_theme)
+                    getString(R.string.system_theme),
                 ),
-                2
+                2,
             ) { _, _ ->
                 this.dismiss()
             }

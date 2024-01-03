@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class ExodusDatabaseRepository @Inject constructor(
     exodusDatabase: ExodusDatabase,
-    @IoDispatcher val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher val ioDispatcher: CoroutineDispatcher,
 ) {
 
     private val trackerDataDao = exodusDatabase.trackerDataDao()
@@ -73,7 +73,7 @@ class ExodusDatabaseRepository @Inject constructor(
             } else {
                 Log.d(
                     TAG,
-                    "Failed to get ExodusApplication from DB returning empty ExodusApplication()."
+                    "Failed to get ExodusApplication from DB returning empty ExodusApplication().",
                 )
                 ExodusApplication()
             }

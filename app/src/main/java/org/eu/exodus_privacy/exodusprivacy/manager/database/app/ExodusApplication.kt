@@ -20,5 +20,5 @@ data class ExodusApplication(
     val source: Source = Source.GOOGLE,
     val report: Int = 0,
     val created: String = String(),
-    val updated: String = String()
+    val updated: String = String(),
 )

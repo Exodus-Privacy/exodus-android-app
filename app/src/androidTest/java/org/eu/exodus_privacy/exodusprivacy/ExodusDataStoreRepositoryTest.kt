@@ -37,7 +37,7 @@ class ExodusDataStoreRepositoryTest {
             stringPreferencesKey("testKey"),
             object : TypeToken<Map<String, ExodusConfig>>() {},
             DataStoreName("testDataStore1"),
-            context
+            context,
         )
 
         // when
@@ -56,12 +56,12 @@ class ExodusDataStoreRepositoryTest {
             stringPreferencesKey("testKey"),
             object : TypeToken<Map<String, ExodusConfig>>() {},
             DataStoreName("testDataStore2"),
-            context
+            context,
         )
 
         val newValues = mapOf(
             "privacy_policy" to ExodusConfig("privacy_policy_consent", true),
-            "notification_perm" to ExodusConfig("notification_requested", true)
+            "notification_perm" to ExodusConfig("notification_requested", true),
         )
 
         // when

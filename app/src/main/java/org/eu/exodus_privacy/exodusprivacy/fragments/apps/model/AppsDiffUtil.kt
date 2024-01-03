@@ -11,7 +11,7 @@ class AppsDiffUtil : DiffUtil.ItemCallback<ExodusApplication>() {
 
     override fun areContentsTheSame(
         oldItem: ExodusApplication,
-        newItem: ExodusApplication
+        newItem: ExodusApplication,
     ): Boolean {
         return when {
             oldItem.icon != newItem.icon -> false
