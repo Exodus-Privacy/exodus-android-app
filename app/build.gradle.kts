@@ -76,7 +76,7 @@ android {
             isIncludeAndroidResources = true
         }
     }
-    packagingOptions {
+    packaging {
         resources.excludes.add("META-INF/*")
     }
     sourceSets {
