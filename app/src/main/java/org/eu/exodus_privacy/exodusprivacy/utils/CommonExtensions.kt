@@ -1,9 +1,13 @@
 package org.eu.exodus_privacy.exodusprivacy.utils
 
+import android.content.ClipData.newPlainText
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Build
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -67,4 +71,13 @@ fun PackageManager.getSource(packageName: String): String? {
         @Suppress("DEPRECATION")
         this.getInstallerPackageName(packageName)
     }
+}
+
+fun copyToClipboard(context: Context, string: String): Boolean {
+    val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    clipboardManager.setPrimaryClip(newPlainText("", string))
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+        Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
+    }
+    return true
 }
