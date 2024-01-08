@@ -85,6 +85,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     lint {
         lintConfig = file("lint.xml")
