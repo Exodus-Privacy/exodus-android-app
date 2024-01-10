@@ -23,6 +23,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back" />
 
+        <ImageButton
+            android:id="@+id/openTrackerPage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/open_tracker_page"
+            android:src="@drawable/ic_website"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbarTD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbarTD" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerTitleTV"
             android:layout_width="match_parent"
@@ -79,21 +90,6 @@
             app:layout_constraintTop_toBottomOf="@+id/trackerPresenceTV" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/trackerWebURLTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingHorizontal="40dp"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trackerDescTV"
-            tools:text="https://www.huaweicentral.com/hms-core/" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/trackerDetectTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,7 +102,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trackerWebURLTV" />
+            app:layout_constraintTop_toBottomOf="@+id/trackerDescTV" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/codeDetectTV"

@@ -58,18 +58,19 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
             }
 
             binding.apply {
-                toolbarTD.apply {
-                    menu.clear()
-                    inflateMenu(R.menu.tracker_detail_menu)
-                    setOnMenuItemClickListener {
-                        if (it.itemId == R.id.openTrackerPage) {
-                            openURL(
-                                customTabsIntent,
-                                view.context,
-                                tracker.website,
-                            )
-                        }
-                        true
+                openTrackerPage.apply {
+                    setOnClickListener {
+                        openURL(
+                            customTabsIntent,
+                            view.context,
+                            tracker.website,
+                        )
+                    }
+                    setOnLongClickListener {
+                        copyToClipboard(
+                            requireContext(),
+                            tracker.website,
+                        )
                     }
                 }
                 trackerTitleTV.text = tracker.name
@@ -111,7 +112,6 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 } else {
                     trackerDescTV.visibility = View.GONE
                 }
-                trackerWebURLTV.text = tracker.website
 
                 // Tracker code and network signatures
                 codeSignTV.text = tracker.code_signature
