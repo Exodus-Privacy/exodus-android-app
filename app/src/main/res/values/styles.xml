@@ -14,7 +14,7 @@
         <item name="android:textColor">@color/chipIconTintColor</item>
         <item name="chipBackgroundColor">@color/chipColor</item>
         <item name="chipIconTint">@color/chipIconTintColor</item>
-        <item name="chipCornerRadius">50dp</item>
+        <item name="chipCornerRadius">20dp</item>
         <item name="chipIconVisible">true</item>
         <item name="android:checkable">false</item>
     </style>
