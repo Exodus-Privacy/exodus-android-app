@@ -20,6 +20,7 @@ import io.noties.markwon.Markwon
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentTrackerDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.utils.copyToClipboard
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import javax.inject.Inject
 
@@ -116,6 +117,12 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 codeSignTV.text = tracker.code_signature
                 if (tracker.network_signature.isNotEmpty()) {
                     networkSignTV.text = tracker.network_signature
+                    networkSignTV.setOnLongClickListener {
+                        copyToClipboard(
+                            requireContext(),
+                            networkSignTV.text.toString(),
+                        )
+                    }
                     networkDetectTV.visibility = View.VISIBLE
                     networkSignTV.visibility = View.VISIBLE
                 } else {
