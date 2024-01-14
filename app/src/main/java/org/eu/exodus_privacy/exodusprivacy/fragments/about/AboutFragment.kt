@@ -18,6 +18,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAboutBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ThemeDialogFragment
 import org.eu.exodus_privacy.exodusprivacy.utils.getLanguage
+import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -98,43 +99,42 @@ class AboutFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.about_preference, rootKey)
 
         findPreference<Preference>("analyze")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(analyzeURL))
+            openURL(customTabsIntent, it.context, analyzeURL)
             true
         }
 
         findPreference<Preference>("alternatives")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(alternativesURL))
+            openURL(customTabsIntent, it.context, alternativesURL)
             true
         }
 
         findPreference<Preference>("website")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(getLocaleWebsiteURL()))
+            openURL(customTabsIntent, it.context, getLocaleWebsiteURL())
             true
         }
         findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(privacyPolicyURL))
+            openURL(customTabsIntent, it.context, privacyPolicyURL)
             true
         }
 
         findPreference<Preference>("srcCode")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(sourceCodeURL))
+            openURL(customTabsIntent, it.context, sourceCodeURL)
             true
         }
 
         findPreference<Preference>("X")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(twitterURL))
+            openURL(customTabsIntent, it.context, twitterURL)
             true
         }
 
         findPreference<Preference>("mastodon")?.setOnPreferenceClickListener {
-            customTabsIntent.launchUrl(it.context, Uri.parse(mastodonURL))
+            openURL(customTabsIntent, it.context, mastodonURL)
             true
         }
 
         // Open default email app for support
         findPreference<Preference>("email")?.setOnPreferenceClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("mailto:$emailID")
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:$emailID"))
             try {
                 startActivity(intent)
                 true

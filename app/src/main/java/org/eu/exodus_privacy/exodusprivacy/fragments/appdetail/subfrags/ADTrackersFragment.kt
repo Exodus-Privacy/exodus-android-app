@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,6 +13,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADTrackersBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model.TrackersRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 import javax.inject.Inject
 
@@ -55,9 +55,10 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                 trackersLearnTV.apply {
                     isClickable = true
                     setOnClickListener {
-                        customTabsIntent.launchUrl(
+                        openURL(
+                            customTabsIntent,
                             view.context,
-                            Uri.parse(trackersInfoPage),
+                            trackersInfoPage,
                         )
                     }
                 }

@@ -1,7 +1,6 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail
 
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
@@ -21,6 +20,7 @@ import io.noties.markwon.Markwon
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentTrackerDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -62,9 +62,10 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                     inflateMenu(R.menu.tracker_detail_menu)
                     setOnMenuItemClickListener {
                         if (it.itemId == R.id.openTrackerPage) {
-                            customTabsIntent.launchUrl(
+                            openURL(
+                                customTabsIntent,
                                 view.context,
-                                Uri.parse(tracker.website),
+                                tracker.website,
                             )
                         }
                         true
