@@ -62,9 +62,11 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
                 trackersRVAdapter.submitList(sortedList)
+                binding.toolbarTrackers.title = trackersRVAdapter.itemCount.toString() + " " + getString(R.string.trackers)
             } else {
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.VISIBLE
+                binding.toolbarTrackers.title = getString(R.string.trackers)
             }
         }
 
