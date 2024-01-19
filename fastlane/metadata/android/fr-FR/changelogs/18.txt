@@ -1,0 +1,4 @@
+- Correction d'un bouton retour non fonctionnel
+- Ajout la possibilité de copier la signature réseau d'un pisteur
+- Ajout le nombre de pisteurs présent sur l'appareil
+- Améliorations de l'interface
