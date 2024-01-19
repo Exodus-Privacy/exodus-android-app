@@ -53,7 +53,7 @@
     <string name="open_app_info">Налаштування додатку</string>
     <string name="version">Версія</string>
     <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">і оновлено <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;і оновлено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Встановлена версія</string>
     <string name="analyzed_version">Проаналізована версія</string>
     <string name="same_version">Одна й та сама версія додатку може відрізнятися в залежності від версії Android чи пристрою.</string>

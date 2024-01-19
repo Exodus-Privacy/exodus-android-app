@@ -55,7 +55,7 @@
     <string name="open_app_info">Uygulama Ayarları</string>
     <string name="version">Sürüm</string>
     <string name="report_date">Rapor <xliff:g id="date">%1$s</xliff:g> tarihinde oluşturuldu</string>
-    <string name="updated">ve <xliff:g id="date">%1$s</xliff:g> tarihinde güncellenmiştir.</string>
+    <string name="updated">&#160;ve <xliff:g id="date">%1$s</xliff:g> tarihinde güncellenmiştir.</string>
     <string name="installed_version">Yüklü Sürüm</string>
     <string name="analyzed_version">Analiz Edilmiş Sürüm</string>
     <string name="same_version">Aynı uygulama sürümü, Android versiyonunu ve kullanılan cihazı takip ederek farklı olabilir.</string>
