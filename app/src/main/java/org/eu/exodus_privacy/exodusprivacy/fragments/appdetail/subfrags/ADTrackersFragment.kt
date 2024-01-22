@@ -76,6 +76,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_trackers) {
                             return false
                         }
                     }
+                    setItemViewCacheSize(10)
                 }
                 val trackersList = arrayListOf<String>()
                 it.forEach { item -> trackersList.add(item.name) }
