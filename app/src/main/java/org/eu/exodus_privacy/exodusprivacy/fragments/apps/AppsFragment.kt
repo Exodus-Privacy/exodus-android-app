@@ -88,6 +88,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
                     }
                 },
             )
+            setItemViewCacheSize(10)
         }
 
         // Setup Shimmer Layout

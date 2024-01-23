@@ -36,11 +36,6 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbarApps"
         app:shimmer_direction="left_to_right">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
-
             <LinearLayout
                 android:id="@+id/shimmerPlaceHolderLayout"
                 android:layout_width="match_parent"
@@ -48,7 +43,6 @@
                 android:orientation="vertical">
 
             </LinearLayout>
-        </ScrollView>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 

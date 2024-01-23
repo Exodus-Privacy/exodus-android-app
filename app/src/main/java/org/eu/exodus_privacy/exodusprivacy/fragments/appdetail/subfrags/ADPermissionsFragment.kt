@@ -50,6 +50,7 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                                 return false
                             }
                         }
+                        setItemViewCacheSize(10)
                     }
                     adPermissionsRVAdapter.submitList(app.permissions)
                     permissionsStatusTV.text = getString(R.string.code_permission_found)
