@@ -64,13 +64,14 @@ class AppsRVAdapter(
                 }
             }
             trackersChip.apply {
-                val trackerNum = app.exodusTrackers.size
-                text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
+                val trackerNum =
+                    if (app.exodusVersionCode == 0L) "?" else app.exodusTrackers.size.toString()
+                text = trackerNum
                 setExodusColor(trackerNum)
             }
             permsChip.apply {
-                val permsNum = app.permissions.size
-                text = permsNum.toString()
+                val permsNum = app.permissions.size.toString()
+                text = permsNum
                 setExodusColor(permsNum)
             }
         }
