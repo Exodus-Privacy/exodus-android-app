@@ -56,8 +56,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         app:chipBackgroundColor="@color/colorGrey"
-        app:chipIcon="@drawable/ic_tracker"
-        app:chipIconTint="@color/colorGrey"
         app:layout_constraintStart_toEndOf="@id/appIconIV"
         app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
 
@@ -69,8 +67,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         app:chipBackgroundColor="@color/colorGrey"
-        app:chipIcon="@drawable/ic_permission"
-        app:chipIconTint="@color/colorGrey"
         app:layout_constraintStart_toEndOf="@id/trackersChip"
         app:layout_constraintTop_toBottomOf="@id/appVersionTV" />
 

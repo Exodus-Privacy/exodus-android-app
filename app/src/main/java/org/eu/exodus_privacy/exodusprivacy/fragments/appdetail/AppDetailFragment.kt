@@ -21,7 +21,6 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
-import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -163,16 +162,6 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                     }
                 } else {
                     appReportTV.visibility = View.GONE
-                }
-                trackersChip.apply {
-                    val trackerNum = app.exodusTrackers.size
-                    text = if (app.exodusVersionCode == 0L) "?" else trackerNum.toString()
-                    setExodusColor(trackerNum)
-                }
-                permsChip.apply {
-                    val permsNum = app.permissions.size
-                    text = permsNum.toString()
-                    setExodusColor(permsNum)
                 }
 
                 sourceChip.text = app.source.name.lowercase().replaceFirstChar { it.uppercase() }
