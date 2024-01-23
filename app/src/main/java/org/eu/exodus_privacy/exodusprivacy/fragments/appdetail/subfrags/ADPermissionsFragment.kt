@@ -56,8 +56,8 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
                     permissionsStatusTV.text = getString(R.string.code_permission_found)
                 }
                 permissionsChip.apply {
-                    val permsNum = app.permissions.size
-                    text = permsNum.toString()
+                    val permsNum = app.permissions.size.toString()
+                    text = permsNum
                     setExodusColor(permsNum)
                 }
                 permissionsLearnGoogleTV.apply {

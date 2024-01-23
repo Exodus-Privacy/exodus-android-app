@@ -3,6 +3,7 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail
 import android.content.res.Configuration
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.doOnPreDraw
@@ -22,6 +23,7 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentTrackerDetailBind
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
 import org.eu.exodus_privacy.exodusprivacy.utils.copyToClipboard
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,6 +34,8 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
 
     private val args: TrackerDetailFragmentArgs by navArgs()
     private val viewModel: TrackerDetailViewModel by viewModels()
+
+    private val httpPattern: Pattern = Pattern.compile("[a-z]+:\\/\\/[^ \\n]*")
 
     @Inject
     lateinit var customTabsIntent: CustomTabsIntent
@@ -58,18 +62,19 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
             }
 
             binding.apply {
-                toolbarTD.apply {
-                    menu.clear()
-                    inflateMenu(R.menu.tracker_detail_menu)
-                    setOnMenuItemClickListener {
-                        if (it.itemId == R.id.openTrackerPage) {
-                            openURL(
-                                customTabsIntent,
-                                view.context,
-                                tracker.website,
-                            )
-                        }
-                        true
+                openTrackerPage.apply {
+                    setOnClickListener {
+                        openURL(
+                            customTabsIntent,
+                            view.context,
+                            tracker.website,
+                        )
+                    }
+                    setOnLongClickListener {
+                        copyToClipboard(
+                            requireContext(),
+                            tracker.website,
+                        )
                     }
                 }
                 trackerTitleTV.text = tracker.name
@@ -108,10 +113,10 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                         movementMethod = LinkMovementMethod.getInstance()
                         isClickable = true
                     }
+                    Linkify.addLinks(trackerDescTV, httpPattern, "")
                 } else {
                     trackerDescTV.visibility = View.GONE
                 }
-                trackerWebURLTV.text = tracker.website
 
                 // Tracker code and network signatures
                 codeSignTV.text = tracker.code_signature
