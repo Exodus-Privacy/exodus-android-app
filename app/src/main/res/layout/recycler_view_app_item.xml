@@ -51,7 +51,6 @@
     app:layout_constraintHorizontal_bias="1"
     app:layout_constraintStart_toEndOf="@id/appIconIV"
     app:layout_constraintTop_toBottomOf="@id/appNameTV"
-    app:layout_constraintVertical_bias="1"
     tools:text="Analyzed version is different that installed version" />
   <com.google.android.material.chip.Chip
     android:id="@+id/trackersChip"
@@ -60,26 +59,46 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
     android:layout_marginTop="4dp"
-    app:chipIcon="@drawable/ic_tracker"
+    android:layout_marginEnd="5dp"
     app:layout_constraintHorizontal_bias="1"
     app:layout_constraintStart_toEndOf="@id/appIconIV"
     app:layout_constraintTop_toBottomOf="@id/appVersionTV"
     app:layout_constraintVertical_bias="1"
     tools:text="0" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/trackersText"
+    android:layout_width="88dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:gravity="center_vertical"
+    android:maxLines="2"
+    android:text="@string/trackers"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/trackersChip"
+    app:layout_constraintTop_toBottomOf="@+id/appVersionTV" />
   <com.google.android.material.chip.Chip
     android:id="@+id/permsChip"
     style="@style/Theme.Exodus.Chip"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
     android:layout_marginTop="4dp"
+    android:layout_marginStart="5dp"
     android:textColor="@color/textColorDark"
-    app:chipIcon="@drawable/ic_permission"
-    app:chipIconTint="@color/textColorDark"
-    app:layout_constraintHorizontal_bias="1"
-    app:layout_constraintStart_toEndOf="@id/trackersChip"
-    app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-    app:layout_constraintVertical_bias="1"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/trackersText"
+    app:layout_constraintTop_toBottomOf="@+id/appVersionTV"
+    app:layout_constraintVertical_bias="0.5"
     tools:chipBackgroundColor="@color/colorYellow"
     tools:text="3" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/permissionsText"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:maxLines="2"
+    android:text="@string/permissions"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/permsChip"
+    app:layout_constraintTop_toBottomOf="@+id/appVersionTV"
+    app:layout_constraintVertical_bias="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

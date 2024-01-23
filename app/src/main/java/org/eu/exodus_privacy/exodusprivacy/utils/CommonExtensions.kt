@@ -9,46 +9,44 @@ import android.content.res.ColorStateList
 import android.os.Build
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.text.isDigitsOnly
 import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
 import java.util.Locale
 
-fun Chip.setExodusColor(size: Int) {
-    if (this.text != "?") {
+fun Chip.setExodusColor(size: String) {
+    val textColorStateList: ColorStateList
+    val backgroundColorStateList: ColorStateList
+    if (size.isDigitsOnly()) {
         val colorRed = ContextCompat.getColor(context, R.color.colorRedLight)
         val colorYellow = ContextCompat.getColor(context, R.color.colorYellow)
         val colorGreen = ContextCompat.getColor(context, R.color.colorGreen)
         val colorDark = ContextCompat.getColor(context, R.color.textColorDark)
         val colorWhite = ContextCompat.getColor(context, R.color.textColorLikeWhite)
 
-        val textColorStateList = when (size) {
+        textColorStateList = when (size.toInt()) {
             0 -> ColorStateList.valueOf(colorDark)
             in 1..4 -> ColorStateList.valueOf(colorDark)
             else -> ColorStateList.valueOf(colorWhite)
         }
 
-        val backgroundColorStateList = when (size) {
+        backgroundColorStateList = when (size.toInt()) {
             0 -> ColorStateList.valueOf(colorGreen)
             in 1..4 -> ColorStateList.valueOf(colorYellow)
             else -> ColorStateList.valueOf(colorRed)
         }
-
-        this.chipIconTint = textColorStateList
-        this.setTextColor(textColorStateList)
-        this.chipBackgroundColor = backgroundColorStateList
     } else {
-        val colorForeground =
+        textColorStateList =
             ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
                     com.google.android.material.R.color.m3_chip_text_color,
                 ),
             )
-        this.chipIconTint = colorForeground
-        this.setTextColor(colorForeground)
-        val colorBackground = ContextCompat.getColor(context, R.color.chipColor)
-        this.chipBackgroundColor = ColorStateList.valueOf(colorBackground)
+        backgroundColorStateList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.chipColor))
     }
+        this.setTextColor(textColorStateList)
+        this.chipBackgroundColor = backgroundColorStateList
 }
 
 fun getLanguage(): String {
