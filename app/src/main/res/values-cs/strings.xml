@@ -42,7 +42,7 @@
     <string name="privPolicy_desc">Zjistěte, jak nakládáme s vašimi údaji</string>
     <string name="email">E-Mail</string>
     <string name="email_desc">Kontaktujte nás e-mailem</string>
-    <string name="X_desc">Zůstaňte informováni o projektu Exodus Privacy</string>
+    <string name="mastodon_desc">Zůstaňte informováni o projektu Exodus Privacy</string>
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Otevřeno v Exodus Privacy</string>
     <string name="submit_app">Odeslat aplikaci</string>

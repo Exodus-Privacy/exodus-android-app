@@ -46,7 +46,7 @@
     <string name="privPolicy_desc">Verilerinizi nasıl işlediğimizi öğrenin</string>
     <string name="email">Posta</string>
     <string name="email_desc">Bize e-posta ile ulaşın</string>
-    <string name="X_desc">Exodus Privacy projesindeki son gelişmelerden haberdar olun</string>
+    <string name="mastodon_desc">Exodus Privacy projesindeki son gelişmelerden haberdar olun</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Exodus Privacy\'de aç</string>

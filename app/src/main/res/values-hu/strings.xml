@@ -42,7 +42,7 @@
     <string name="privPolicy_desc">Ismerje meg, hogyan kezeljük az adatait</string>
     <string name="email">E-mail</string>
     <string name="email_desc">Lépjen kapcsolatba velünk e-mailben</string>
-    <string name="X_desc">Legyen naprakész az Exodus Privacy projekttel kapcsolatban</string>
+    <string name="mastodon_desc">Legyen naprakész az Exodus Privacy projekttel kapcsolatban</string>
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Nyissa meg az Exodus Privacyt</string>
     <string name="submit_app">Alkalmazás beküldése</string>

@@ -36,7 +36,6 @@ class AboutFragment : PreferenceFragmentCompat() {
         private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org/"
-        private const val twitterURL = "https://twitter.com/ExodusPrivacy"
         private const val mastodonURL = "https://mastodon.social/@exodus@framapiaf.org"
         private const val emailID = "contact@exodus-privacy.eu.org"
     }
@@ -98,11 +97,6 @@ class AboutFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.about_preference, rootKey)
 
-        findPreference<Preference>("analyze")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, analyzeURL)
-            true
-        }
-
         findPreference<Preference>("alternatives")?.setOnPreferenceClickListener {
             openURL(customTabsIntent, it.context, alternativesURL)
             true
@@ -110,20 +104,6 @@ class AboutFragment : PreferenceFragmentCompat() {
 
         findPreference<Preference>("website")?.setOnPreferenceClickListener {
             openURL(customTabsIntent, it.context, getLocaleWebsiteURL())
-            true
-        }
-        findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, privacyPolicyURL)
-            true
-        }
-
-        findPreference<Preference>("srcCode")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, sourceCodeURL)
-            true
-        }
-
-        findPreference<Preference>("X")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, twitterURL)
             true
         }
 
@@ -141,6 +121,21 @@ class AboutFragment : PreferenceFragmentCompat() {
             } catch (e: ActivityNotFoundException) {
                 false
             }
+        }
+
+        findPreference<Preference>("analyze")?.setOnPreferenceClickListener {
+            openURL(customTabsIntent, it.context, analyzeURL)
+            true
+        }
+
+        findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
+            openURL(customTabsIntent, it.context, privacyPolicyURL)
+            true
+        }
+
+        findPreference<Preference>("srcCode")?.setOnPreferenceClickListener {
+            openURL(customTabsIntent, it.context, sourceCodeURL)
+            true
         }
     }
 

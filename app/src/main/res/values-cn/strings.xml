@@ -42,7 +42,7 @@
     <string name="privPolicy_desc">了解我们如何处理您的数据</string>
     <string name="email">电邮</string>
     <string name="email_desc">通过电子邮件联系我们</string>
-    <string name="X_desc">了解 Exodus Privacy 项目动态</string>
+    <string name="mastodon_desc">了解 Exodus Privacy 项目动态</string>
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">在 Exodus Privacy 上打开</string>
     <string name="submit_app">提交应用</string>
