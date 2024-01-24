@@ -46,7 +46,7 @@
     <string name="privPolicy_desc">Узнайте, как мы обрабатываем ваши данные</string>
     <string name="email">Почта</string>
     <string name="email_desc">Свяжитесь с нами по электронной почте</string>
-    <string name="X_desc">Будьте в курсе событий проекта Exodus Privacy</string>
+    <string name="mastodon_desc">Будьте в курсе событий проекта Exodus Privacy</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Открыть на Exodus Privacy</string>

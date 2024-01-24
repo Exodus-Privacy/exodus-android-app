@@ -44,7 +44,7 @@
     <string name="privPolicy_desc">Erfahren Sie, wie wir mit Ihren Daten umgehen</string>
     <string name="email">Mail</string>
     <string name="email_desc">Erreiche uns per E-Mail</string>
-    <string name="X_desc">Bleiben Sie mit dem Exodus Privatsphäre-Projekt auf dem Laufenden</string>
+    <string name="mastodon_desc">Bleiben Sie mit dem Exodus Privatsphäre-Projekt auf dem Laufenden</string>
 
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Exodus Privatsphäre Regelungen öffnen</string>
