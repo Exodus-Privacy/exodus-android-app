@@ -47,7 +47,7 @@ It helps you to take your privacy back!
 If you want to help us improve this application, you can:
 - [Translate app](https://github.com/Exodus-Privacy/exodus-android-app#translation)
 - Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs and propose ideas or feature requests
-- Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app) (also bridged on [Matrix channel #exodus-android-app:matrix.org](https://matrix.to/#/#exodus-android-app:matrix.org))
+-- Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app)
 
 
 ### Translation
@@ -57,13 +57,15 @@ Do you want to help translate the application? Contribute here:
 https://crowdin.com/project/exodus-android-app
 
 - Exodus is fully translated into 2 languages and 36 languages can be translated in Crowdin.
-- You can translate app on Github but remember to insert a backslash `\` before any apostrophe `'`.
+- You can translate the app on Github but don't forget to insert a backslash `\` before any apostrophe `'`.
 
 ### Development
 
-**If you would like to improve app code and have skills about development, you are most welcome.**
-- You can find work in [issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) or in [Exodus project](https://github.com/Exodus-Privacy/exodus-android-app/projects/1).
-- Before submitting pull requests please, execute Kotlin Liner.
+**If you would like to improve app code and have development skills, you are most welcome.**
+- You can find work in [issues](https://github.com/Exodus-Privacy/exodus-android-app/issues).
+- Before submitting pull requests please, execute Kotlin Liner and instrumented tests.
+- Change needs to work on all devices between Android 5 and Android 14.
+- UI changes need to work in light mode, dark mode, and RTL.
 - Do not create pull requests to update dependencies, we have [dependabot](https://github.com/Exodus-Privacy/exodus-android-app/blob/master/.github/dependabot.yml).
 
 **Build APK Debug**
@@ -78,22 +80,18 @@ https://crowdin.com/project/exodus-android-app
 ./gradlew app:ktlintCheck --info
 ```
 
-**Execute local unit tests**
-
-```
-./gradlew test
-```
-
 **Execute instrumented tests**
 
 ```
 ./gradlew connectedAndroidTest
 ```
 
-- To execute test move [network_security_config.xml](/doc/network_security_config.xml) in [/app/src/main/res/xml](/app/src/main/res/xml)
+- To execute tests move [network_security_config.xml](/doc/network_security_config.xml) to [/app/src/main/res/xml](/app/src/main/res/xml)
 - Add ```android:networkSecurityConfig="@xml/network_security_config"``` in [AndroidManifest.xml](/app/src/main/AndroidManifest.xml)
 
 ### Links
 
+- [Exodus app reports](https://reports.exodus-privacy.eu.org/fr/reports/org.eu.exodus_privacy.exodusprivacy/latest/)
 - [Privacy-Policy](https://exodus-privacy.eu.org/en/page/privacy-policy/)
+- [Documentation](https://github.com/Exodus-Privacy/exodus-android-app/tree/master/doc)
 - [REST API Documentation](https://github.com/Exodus-Privacy/exodus/blob/v1/doc/api.md)
