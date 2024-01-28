@@ -150,7 +150,7 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                         appReportTV.text = getString(
                             R.string.report_date,
                             dateCreated,
-                        ) + " " + getString(
+                        ) + getString(
                             R.string.updated,
                             dateUpdated,
                         )

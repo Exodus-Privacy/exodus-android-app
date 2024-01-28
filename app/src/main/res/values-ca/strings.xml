@@ -53,7 +53,7 @@
     <string name="open_app_info">Configuració de l\'aplicació</string>
     <string name="version">Versió</string>
     <string name="report_date">S\'ha creat aquest informe el <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">i actualitzat el <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;i actualitzat el <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Versió instal·lada</string>
     <string name="analyzed_version">Versió analitzada</string>
     <string name="learn_more"><u>Apreneu-ne més</u></string>

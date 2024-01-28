@@ -48,7 +48,7 @@
     <string name="open_app_info">App instellingen</string>
     <string name="version">Versie</string>
     <string name="report_date">Rapport aangemaakt op <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">en bijgewerkt op <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;en bijgewerkt op <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Geïnstalleerde versie</string>
     <string name="analyzed_version">Geanalyseerde versie</string>
     <string name="same_version">Dezelfde app-versie kan verschillen naargelang de gebruikte Android-versie en het toestel.</string>

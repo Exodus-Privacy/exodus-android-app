@@ -29,7 +29,7 @@
             android:layout_height="48dp"
             android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/open_tracker_page"
-            android:src="@drawable/ic_website"
+            app:srcCompat="@drawable/ic_website"
             app:layout_constraintBottom_toBottomOf="@+id/toolbarTD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbarTD" />

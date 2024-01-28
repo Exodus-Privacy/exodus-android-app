@@ -55,7 +55,7 @@
     <string name="open_app_info">Настройки приложения</string>
     <string name="version">Версия</string>
     <string name="report_date">Отчёт создан <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">и обновлено <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;и обновлено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Установленная версия</string>
     <string name="analyzed_version">Изученная версия</string>
     <string name="same_version">Одна и та же версия приложения может отличаться в зависимости от версии Android и используемого устройства.</string>

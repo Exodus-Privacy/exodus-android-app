@@ -50,7 +50,7 @@
     <string name="open_app_info">Appinställningar</string>
     <string name="version">Version</string>
     <string name="report_date">Rapport skapad den <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">och uppdaterad den <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;och uppdaterad den <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Installerad Version</string>
     <string name="analyzed_version">Analyserad Version</string>
     <string name="same_version">Samma appversion kan vara annorlunda beroende på Androidversion och enheten som används.</string>

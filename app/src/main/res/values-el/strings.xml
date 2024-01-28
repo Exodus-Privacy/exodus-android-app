@@ -19,7 +19,7 @@
     <string name="analyze_desc">Εκτελέστε μια νέα ανάλυση</string>
     <!-- AppDetail Fragment -->
     <string name="report_date">Η αναφορά δημιουργήθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">και ενημερώθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;και ενημερώθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
 
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Εχουμε βρει υπογραφές κώδικα των παρακάτω trackers στην εφαρμογή:</string>

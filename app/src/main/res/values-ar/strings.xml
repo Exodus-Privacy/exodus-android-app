@@ -54,7 +54,7 @@
     <string name="open_app_info">إعدادات التطبيق</string>
     <string name="version">الإصدار</string>
     <string name="report_date">تم إنشاء التقرير في <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">وتحديثه في <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;وتحديثه في <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">الإصدار المثبت</string>
     <string name="analyzed_version">الإصدار المحلل</string>
     <string name="same_version">إصدار التطبيق نفسه ربما يكون مختلفاً بعد إصدار الأندرويد والجهاز المستخدم.</string>

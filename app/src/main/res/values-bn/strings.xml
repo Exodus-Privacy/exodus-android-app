@@ -43,7 +43,7 @@
     <string name="open_app_info">অ্যাপ পছন্দসমূহ</string>
     <string name="version">সংস্করণ</string>
     <string name="report_date"><xliff:g id="date">%1$s</xliff:g> এ প্রতিবেদন তৈরি করা হয়েছে</string>
-    <string name="updated"><xliff:g id="date">%1$s</xliff:g> এ হালনাগাদ করা হয়েছে</string>
+    <string name="updated"><xliff:g id="date">%1$s</xliff:g> এ হালনাগাদ করা হয়েছে&#160;</string>
     <string name="installed_version">ইনস্টলকৃত সংস্করণ</string>
     <string name="analyzed_version">বিশ্লেষণকৃত সংস্করণ</string>
     <string name="same_version">একই অ্যাপ অ্যান্ড্রয়েড সংস্করণ ও ব্যবহৃত যন্ত্রের কারণে ভিন্ন হতে পারে।</string>

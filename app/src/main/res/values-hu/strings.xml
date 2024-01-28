@@ -50,7 +50,7 @@
     <string name="open_app_info">Alkalmazásbeállítások</string>
     <string name="version">Változat</string>
     <string name="report_date">A jelentés elkészítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">és frissítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;és frissítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Telepített változat</string>
     <string name="analyzed_version">Vizsgált változat</string>
     <string name="same_version">Egyező alkalmazásverzió esetén is lehetnek különbségek a használt Android verzió és eszköz függvényében.</string>

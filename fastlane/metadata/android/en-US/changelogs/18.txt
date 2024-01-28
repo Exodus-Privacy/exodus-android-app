@@ -1,0 +1,4 @@
+- Fixed back button not working
+- Added the ability to copy the tracker network signature
+- Added the number of trackers present on device
+- Improved UI

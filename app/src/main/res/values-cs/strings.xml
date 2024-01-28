@@ -50,7 +50,7 @@
     <string name="open_app_info">Nastavení aplikace</string>
     <string name="version">Verze</string>
     <string name="report_date">Hlášení vytvořeno <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">a aktualizováno <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;a aktualizováno <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Nainstalovaná verze</string>
     <string name="analyzed_version">Analyzovaná verze</string>
     <string name="same_version">Stejná verze aplikace se může lišit podle verze systému Android a použitého zařízení.</string>

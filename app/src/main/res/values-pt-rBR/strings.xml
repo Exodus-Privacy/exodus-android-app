@@ -54,7 +54,7 @@
     <string name="open_app_info">Configurações do Aplicativo</string>
     <string name="version">Versão</string>
     <string name="report_date">Relatório criado em <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">e atualizado em <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;e atualizado em <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Versão Instalada</string>
     <string name="analyzed_version">Versão analisada</string>
     <string name="same_version">A mesma versão do aplicativo pode diferir conforme a versão do Android e o dispositivo utilizado.</string>

@@ -50,7 +50,7 @@
     <string name="open_app_info">应用设置</string>
     <string name="version">版本</string>
     <string name="report_date">报告创建于 <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">并更新于 <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;并更新于 <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">已安装版本</string>
     <string name="analyzed_version">已分析版本</string>
     <string name="same_version">所使用的 Android 版本和设备不同，同一应用的版本或许会不一样。</string>
