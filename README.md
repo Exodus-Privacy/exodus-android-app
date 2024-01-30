@@ -47,7 +47,7 @@ It helps you to take your privacy back!
 If you want to help us improve this application, you can:
 - [Translate app](https://github.com/Exodus-Privacy/exodus-android-app#translation)
 - Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs and propose ideas or feature requests
--- Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app)
+- Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app)
 
 
 ### Translation
