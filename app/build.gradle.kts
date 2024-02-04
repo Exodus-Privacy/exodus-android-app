@@ -24,7 +24,8 @@ android {
         versionCode = 18
         versionName = "3.2.1"
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
-        buildConfigField("String", "EXODUS_API_KEY", "\"${System.getenv("EXODUS_API_KEY")}\"")
+        val API_KEY = System.getenv("EXODUS_API_KEY")
+        buildConfigField("String", "EXODUS_API_KEY", "\"$API_KEY\"")
 
         ksp {
             arg(
