@@ -36,7 +36,7 @@ class AboutFragment : PreferenceFragmentCompat() {
         private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org/"
-        private const val mastodonURL = "https://mastodon.social/@exodus@framapiaf.org"
+        private const val mastodonURL = "https://framapiaf.org/@exodus"
         private const val emailID = "contact@exodus-privacy.eu.org"
     }
 
