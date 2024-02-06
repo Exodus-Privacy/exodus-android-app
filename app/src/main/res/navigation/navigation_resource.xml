@@ -44,7 +44,7 @@
         android:id="@+id/ADPermissionsFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADPermissionsFragment"
         android:label="fragment_a_d_permissions"
-        tools:layout="@layout/fragment_a_d_permissions" />
+        tools:layout="@layout/fragment_a_d_sub" />
     <fragment
         android:id="@+id/ADTrackersFragment"
         android:name="org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.subfrags.ADTrackersFragment"
