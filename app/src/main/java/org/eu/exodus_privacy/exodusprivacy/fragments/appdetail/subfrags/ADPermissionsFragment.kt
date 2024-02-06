@@ -5,14 +5,16 @@ import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentADPermissionsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailViewModel
+import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADPermissionsInfoRVAdapter
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADPermissionsRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.ADPermissionsStatusRVAdapter
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
-import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,50 +39,33 @@ class ADPermissionsFragment : Fragment(R.layout.fragment_a_d_permissions) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentADPermissionsBinding.bind(view)
 
+        val adPermissionsStatusRVAdapter = ADPermissionsStatusRVAdapter()
+        val adPermissionsRVAdapter = ADPermissionsRVAdapter()
+        val adPermissionsInfoRVAdapter = ADPermissionsInfoRVAdapter(
+            googleInfoClicked = {
+                openURL(
+                    customTabsIntent,
+                    view.context,
+                    googleInfoPage,
+                )
+            },
+            permissionInfoClicked = {
+                openURL(
+                    customTabsIntent,
+                    view.context,
+                    permissionsInfoPage,
+                )
+            },
+        )
+
+        binding.permissionsRV.apply {
+            adapter = ConcatAdapter(adPermissionsStatusRVAdapter, adPermissionsRVAdapter, adPermissionsInfoRVAdapter)
+            layoutManager = LinearLayoutManager(view.context)
+        }
+
         viewModel.app.observe(viewLifecycleOwner) { app ->
-            binding.apply {
-                if (app.permissions.isEmpty()) {
-                    permissionsRV.visibility = View.GONE
-                } else {
-                    val adPermissionsRVAdapter = ADPermissionsRVAdapter()
-                    permissionsRV.apply {
-                        adapter = adPermissionsRVAdapter
-                        layoutManager = object : LinearLayoutManager(view.context) {
-                            override fun canScrollVertically(): Boolean {
-                                return false
-                            }
-                        }
-                        setItemViewCacheSize(10)
-                    }
-                    adPermissionsRVAdapter.submitList(app.permissions)
-                    permissionsStatusTV.text = getString(R.string.code_permission_found)
-                }
-                permissionsChip.apply {
-                    val permsNum = app.permissions.size.toString()
-                    text = permsNum
-                    setExodusColor(permsNum)
-                }
-                permissionsLearnGoogleTV.apply {
-                    isClickable = true
-                    setOnClickListener {
-                        openURL(
-                            customTabsIntent,
-                            view.context,
-                            googleInfoPage,
-                        )
-                    }
-                }
-                permissionsLearnExodusTV.apply {
-                    isClickable = true
-                    setOnClickListener {
-                        openURL(
-                            customTabsIntent,
-                            view.context,
-                            permissionsInfoPage,
-                        )
-                    }
-                }
-            }
+            adPermissionsStatusRVAdapter.setPermissionCount(app.permissions.size)
+            adPermissionsRVAdapter.submitList(app.permissions)
         }
     }
 

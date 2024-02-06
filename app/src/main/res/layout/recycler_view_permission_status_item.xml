@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:minHeight="50dp"
+    tools:theme="@style/Theme.Exodus">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/permissionsChip"
+        style="@style/Theme.Exodus.Chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:chipBackgroundColor="@color/colorGreen"
+        tools:text="0" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/permissions"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/permissionsChip"
+        app:layout_constraintStart_toEndOf="@id/permissionsChip"
+        app:layout_constraintTop_toTopOf="@id/permissionsChip" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/permissionsStatusTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/permissionsChip"
+        tools:text="@string/code_permission_not_found" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

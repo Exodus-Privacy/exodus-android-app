@@ -213,8 +213,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabLayout"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="10dp" />
+            android:paddingHorizontal="30dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
