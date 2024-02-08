@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAdStatusItemBinding
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import org.eu.exodus_privacy.exodusprivacy.utils.BindingHolder
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 
 enum class ADStatusType {
@@ -15,13 +16,9 @@ enum class ADStatusType {
 
 class ADStatusRVAdapter(
     private val type: ADStatusType,
-) :
-    RecyclerView.Adapter<ADStatusRVAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<BindingHolder<RecyclerViewAdStatusItemBinding>>() {
 
     private var app: ExodusApplication = ExodusApplication()
-
-    inner class ViewHolder(val binding: RecyclerViewAdStatusItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
 
     fun setApp(app: ExodusApplication) {
         if (this.app != app) {
@@ -30,8 +27,8 @@ class ADStatusRVAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<RecyclerViewAdStatusItemBinding> {
+        return BindingHolder(
             RecyclerViewAdStatusItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -42,7 +39,7 @@ class ADStatusRVAdapter(
 
     override fun getItemCount(): Int = 1
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<RecyclerViewAdStatusItemBinding>, position: Int) {
         holder.binding.apply {
             if (type == ADStatusType.TRACKERS) {
                 countChip.apply {

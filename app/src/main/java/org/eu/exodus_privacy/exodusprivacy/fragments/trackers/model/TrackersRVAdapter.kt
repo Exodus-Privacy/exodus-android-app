@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.window.layout.WindowMetricsCalculator
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
@@ -20,21 +19,19 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewTrackerItemBi
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackers.TrackersFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
+import org.eu.exodus_privacy.exodusprivacy.utils.BindingHolder
 import org.eu.exodus_privacy.exodusprivacy.utils.safeNavigate
 
 class TrackersRVAdapter(
     private val showSuggestions: Boolean,
     private val currentDestinationId: Int,
 ) :
-    ListAdapter<TrackerData, TrackersRVAdapter.ViewHolder>(TrackersDiffUtil()) {
+    ListAdapter<TrackerData, BindingHolder<RecyclerViewTrackerItemBinding>>(TrackersDiffUtil()) {
 
     private val TAG = TrackersRVAdapter::class.java.simpleName
 
-    inner class ViewHolder(val binding: RecyclerViewTrackerItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<RecyclerViewTrackerItemBinding> {
+        return BindingHolder(
             RecyclerViewTrackerItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -43,7 +40,7 @@ class TrackersRVAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<RecyclerViewTrackerItemBinding>, position: Int) {
         val context = holder.itemView.context
 
         val app = getItem(position)

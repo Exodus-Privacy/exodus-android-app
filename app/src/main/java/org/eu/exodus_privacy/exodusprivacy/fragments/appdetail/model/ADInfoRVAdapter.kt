@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAdInfoItemBinding
+import org.eu.exodus_privacy.exodusprivacy.utils.BindingHolder
 
 data class ADInfoItem(
     @StringRes val text: Int,
@@ -14,13 +15,10 @@ data class ADInfoItem(
 class ADInfoRVAdapter(
     private val items: List<ADInfoItem>,
 ) :
-    RecyclerView.Adapter<ADInfoRVAdapter.ViewHolder>() {
+    RecyclerView.Adapter<BindingHolder<RecyclerViewAdInfoItemBinding>>() {
 
-    inner class ViewHolder(val binding: RecyclerViewAdInfoItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<RecyclerViewAdInfoItemBinding> {
+        return BindingHolder(
             RecyclerViewAdInfoItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -31,7 +29,7 @@ class ADInfoRVAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<RecyclerViewAdInfoItemBinding>, position: Int) {
         items.getOrNull(position)?.let { infoItem ->
             holder.binding.apply {
                 infoTV.setText(infoItem.text)

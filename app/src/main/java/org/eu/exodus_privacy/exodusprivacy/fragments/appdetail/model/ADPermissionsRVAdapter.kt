@@ -3,18 +3,15 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewPermissionItemBinding
 import org.eu.exodus_privacy.exodusprivacy.objects.Permission
+import org.eu.exodus_privacy.exodusprivacy.utils.BindingHolder
 
 class ADPermissionsRVAdapter :
-    ListAdapter<Permission, ADPermissionsRVAdapter.ViewHolder>(ADPermissionsDiffUtil()) {
+    ListAdapter<Permission, BindingHolder<RecyclerViewPermissionItemBinding>>(ADPermissionsDiffUtil()) {
 
-    inner class ViewHolder(val binding: RecyclerViewPermissionItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<RecyclerViewPermissionItemBinding> {
+        return BindingHolder(
             RecyclerViewPermissionItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -23,7 +20,7 @@ class ADPermissionsRVAdapter :
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<RecyclerViewPermissionItemBinding>, position: Int) {
         val app = getItem(position)
 
         holder.binding.apply {
