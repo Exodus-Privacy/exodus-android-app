@@ -1,220 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
+    android:fillViewport="true"
     tools:context=".fragments.appdetail.AppDetailFragment"
     tools:theme="@style/Theme.Exodus">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarAD"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_back"
-            app:navigationContentDescription="@string/back_button"/>
+            app:contentScrim="#0000"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/appIconIV"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarAD"
-            android:contentDescription="@string/app_logo"
-            tools:src="@drawable/ic_logo"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-          android:id="@+id/appNameTV"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="15dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginEnd="15dp"
-          android:ellipsize="end"
-          android:maxLines="2"
-          android:textAlignment="center"
-          android:textColor="?android:textColorPrimary"
-          android:textSize="22sp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/appIconIV"
-          tools:text="@string/app_name" />
-        <com.google.android.material.chip.Chip
-          android:id="@+id/sourceChip"
-          style="@style/Theme.Exodus.Chip"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:layout_marginTop="10dp"
-          app:chipIcon="@drawable/ic_android"
-          app:layout_constraintBottom_toTopOf="@+id/appIVTV"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/appNameTV"
-          app:layout_constraintVertical_bias="0.5"
-          tools:text="Google" />
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appIVTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sourceChip"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/installed_version"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15sp"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbarAD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navigationContentDescription="@string/back_button"
+                    app:navigationIcon="@drawable/ic_back" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appInstalledVersionTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appIVTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingHorizontal="5dp"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="17sp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            tools:text="3.0.0" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/appIconIV"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:contentDescription="@string/app_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbarAD"
+                    tools:src="@drawable/ic_logo" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appAVTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appInstalledVersionTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/analyzed_version"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15sp"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textAlignment="center"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appIconIV"
+                    tools:text="@string/app_name" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appAnalyzedVersionTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appAVTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingHorizontal="5dp"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="17sp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            tools:text="2.9.0" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sourceChip"
+                    style="@style/Theme.Exodus.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    app:chipIcon="@drawable/ic_android"
+                    app:layout_constraintBottom_toTopOf="@+id/appIVTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appNameTV"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:text="Google" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appVTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appAnalyzedVersionTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/version"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15sp" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appIVTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/installed_version"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sourceChip"
+                    tools:visibility="visible" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appVersionTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appVTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingHorizontal="5dp"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="17sp"
-            tools:text="3.0.0" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appInstalledVersionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingHorizontal="5dp"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="17sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appIVTV"
+                    tools:text="3.0.0"
+                    tools:visibility="visible" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appSameVersionTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appVersionTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/same_version"
-            android:textSize="15sp"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appAVTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/analyzed_version"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appInstalledVersionTV"
+                    tools:visibility="visible" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appReportTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appSameVersionTV"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="30dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@string/report_date"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15sp"
-            tools:text="Report created on April 26, 2022" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appAnalyzedVersionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingHorizontal="5dp"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="17sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appAVTV"
+                    tools:text="2.9.0"
+                    tools:visibility="visible" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appReportTV"
-            android:layout_marginTop="12dp"
-            app:tabIndicatorFullWidth="true"
-            app:tabInlineLabel="true" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appVTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/version"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appAnalyzedVersionTV" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="10dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appVersionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingHorizontal="5dp"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appVTV"
+                    tools:text="3.0.0" />
 
-</ScrollView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appSameVersionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/same_version"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appVersionTV"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appReportTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="30dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@string/report_date"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appSameVersionTV"
+                    tools:text="Report created on April 26, 2022" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appReportTV"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabInlineLabel="true" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="30dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
