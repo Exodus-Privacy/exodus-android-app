@@ -7,7 +7,7 @@
     android:layout_marginTop="10dp"
     android:clickable="true"
     android:focusable="true"
-    android:minHeight="50dp"
+    android:minHeight="90dp"
     tools:theme="@style/Theme.Exodus">
 
     <com.google.android.material.chip.Chip
