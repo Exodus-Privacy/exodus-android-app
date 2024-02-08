@@ -6,24 +6,21 @@ import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewAppItemBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.AppsFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail.TrackerDetailFragmentDirections
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
+import org.eu.exodus_privacy.exodusprivacy.utils.BindingHolder
 import org.eu.exodus_privacy.exodusprivacy.utils.safeNavigate
 import org.eu.exodus_privacy.exodusprivacy.utils.setExodusColor
 
 class AppsRVAdapter(
     private val currentDestinationId: Int,
-) : ListAdapter<ExodusApplication, AppsRVAdapter.ViewHolder>(AppsDiffUtil()) {
+) : ListAdapter<ExodusApplication, BindingHolder<RecyclerViewAppItemBinding>>(AppsDiffUtil()) {
 
-    inner class ViewHolder(val binding: RecyclerViewAppItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<RecyclerViewAppItemBinding> {
+        return BindingHolder(
             RecyclerViewAppItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -32,7 +29,7 @@ class AppsRVAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<RecyclerViewAppItemBinding>, position: Int) {
         val context = holder.itemView.context
         val app = getItem(position)
 
