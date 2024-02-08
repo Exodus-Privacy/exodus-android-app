@@ -28,9 +28,7 @@ android {
         buildConfigField("String", "EXODUS_API_KEY", "\"$API_KEY\"")
 
         ksp {
-            arg(
-                RoomSchemaArgProvider(File(projectDir, "schemas")),
-            )
+            arg("room.schemaLocation", "$projectDir/schemas")
         }
 
         signingConfigs {
