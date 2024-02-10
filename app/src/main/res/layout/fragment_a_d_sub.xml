@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="30dp"
     android:scrollbars="none"
     tools:context=".fragments.appdetail.subfrags.ADPermissionsFragment"
     tools:theme="@style/Theme.Exodus" />
