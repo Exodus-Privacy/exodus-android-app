@@ -210,15 +210,16 @@
                     tools:text="Report created on April 26, 2022" />
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/appReportTV"
-                    app:tabIndicatorFullWidth="true"
-                    app:tabInlineLabel="true" />
+                  android:id="@+id/tabLayout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="12dp"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/appReportTV"
+                  app:tabIndicatorFullWidth="true"
+                  app:tabInlineLabel="true"
+                  app:tabRippleColor="@android:color/transparent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
