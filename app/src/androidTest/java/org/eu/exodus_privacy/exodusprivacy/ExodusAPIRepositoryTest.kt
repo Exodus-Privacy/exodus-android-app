@@ -27,7 +27,6 @@ import javax.inject.Singleton
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.time.Duration.Companion.seconds
 
 const val FAKE_PATH = "/api/requests/"
 const val FAKE_PORT = 34567
@@ -113,7 +112,7 @@ class ExodusAPIRepositoryTest {
     }
 
     @Test
-    fun exodusAPIRepositoryShouldTimeOut() = runTest(testDispatcher, timeout = 12.seconds) {
+    fun exodusAPIRepositoryShouldTimeOut() = runTest(testDispatcher) {
         // given
         hiltRule.inject()
 
