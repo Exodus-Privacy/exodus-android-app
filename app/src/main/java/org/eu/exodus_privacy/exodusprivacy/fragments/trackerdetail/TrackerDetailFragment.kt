@@ -150,11 +150,7 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                         } else {
                             1
                         }
-                    layoutManager = object : StaggeredGridLayoutManager(column, 1) {
-                        override fun canScrollVertically(): Boolean {
-                            return false
-                        }
-                    }
+                    layoutManager = StaggeredGridLayoutManager(column, 1)
                 }
                 appsRVAdapter.submitList(it)
             }
