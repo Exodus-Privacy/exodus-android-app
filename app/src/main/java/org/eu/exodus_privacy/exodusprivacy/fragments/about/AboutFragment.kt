@@ -129,7 +129,7 @@ class AboutFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, privacyPolicyURL)
+            openURL(customTabsIntent, it.context, getLocaleWebsiteURL() + "/page/privacy-policy/")
             true
         }
 
