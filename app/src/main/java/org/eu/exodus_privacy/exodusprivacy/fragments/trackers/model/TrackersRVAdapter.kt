@@ -134,10 +134,4 @@ class TrackersRVAdapter(
         )
     }
 
-    private fun getDisplayWidth(context: Context): Int {
-        val activity = FragmentComponentManager.findActivity(context) as Activity
-        val windowMetrics =
-            WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(activity)
-        return windowMetrics.bounds.width()
-    }
 }
