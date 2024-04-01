@@ -1,0 +1,2 @@
+- Improve performance
+- Improve and fix UI

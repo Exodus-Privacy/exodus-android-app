@@ -1,0 +1,2 @@
+- Amélioration des performances
+- Amélioration et corrections de l'interface utilisateur
