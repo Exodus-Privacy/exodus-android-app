@@ -97,11 +97,13 @@ class TrackersRVAdapter(
                         app.exodusApplications.size,
                     )
                 trackersPB.apply {
-                    val newWidth = (getDisplayWidth(context) * trackerPercentage) / 100
-                    val params = layoutParams.apply {
-                        width = newWidth.toInt()
+                    post {
+                        val newWidth = (holder.itemView.width * trackerPercentage) / 100
+                        val params = layoutParams.apply {
+                            width = newWidth.toInt()
+                        }
+                        layoutParams = params
                     }
-                    layoutParams = params
                 }
             }
             root.setOnClickListener {
