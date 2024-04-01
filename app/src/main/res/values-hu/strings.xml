@@ -67,7 +67,7 @@
     <string name="permission_info_dangerous">A <font color="red"><b>!</b></font> ikon jelzi a \"Veszélyes\" vagy \"Speciális\" szintet a Google védelmi szintje szerint.</string>
     <!-- Notification -->
     <string name="updates">Frissítések</string>
-    <string name="updating_database">Jelentés-adatbázis frissítése... (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <string name="updating_database">Jelentés-adatbázis frissítése… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> alkalmazás</item>

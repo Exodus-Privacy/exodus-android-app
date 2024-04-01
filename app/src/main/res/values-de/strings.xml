@@ -68,7 +68,7 @@
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Wir haben die folgenden Berechtigungen in der Anwendung gefunden:</string>
     <string name="code_permission_not_found">Diese App erfordert keine Berechtigungen.</string>
-    <string name="permission_info">Berechtigungen sind Aktionen, die die Anwendung auf Ihrem Telefon ausführen kann.</string>
+    <string name="permission_info">Berechtigungen sind Aktionen, die Anwendung auf Ihrem Telefon ausführen kann.</string>
     <string name="permission_info_dangerous">Das Symbol <font color="red"><b>!</b></font> zeigt eine ‚Gefährliche‘ oder ‚Spezial‘-Stufe nach Googles Schutzstufen an.</string>
 
     <!-- Notification -->
