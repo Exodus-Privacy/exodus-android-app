@@ -51,7 +51,7 @@
     app:layout_constraintHorizontal_bias="1"
     app:layout_constraintStart_toEndOf="@id/appIconIV"
     app:layout_constraintTop_toBottomOf="@id/appNameTV"
-    tools:text="Analyzed version is different that installed version" />
+    tools:text="Analyzed version is different than installed version" />
   <com.google.android.material.chip.Chip
     android:id="@+id/trackersChip"
     style="@style/Theme.Exodus.Chip"
