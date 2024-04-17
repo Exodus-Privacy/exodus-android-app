@@ -1,6 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -51,7 +52,9 @@ class ADStatusRVAdapter(
                 labelTV.setText(R.string.trackers)
                 if (app.exodusVersionCode == 0L) {
                     statusTV.setText(R.string.analyzed)
+                    restrictionTV.visibility = View.VISIBLE
                 } else if (app.exodusTrackers.isEmpty()) {
+                    restrictionTV.visibility = View.GONE
                     statusTV.setText(R.string.code_signature_not_found)
                 } else {
                     statusTV.setText(R.string.code_signature_found)

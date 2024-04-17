@@ -74,6 +74,7 @@
     <string name="code_signature_not_found">We have not found code signature of any tracker we know in the application.</string>
     <string name="tracker_info">A tracker is a piece of software meant to collect data about you or your usages.</string>
     <string name="analyzed">This app hasn\'t been analysed by Exodus Privacy yet.</string>
+    <string name="app_restrictions">Exodus cannot analyze applications that are unavailable on Google Play or FDroid or are related to geographic or software restrictions.</string>
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">We have found the following permissions in the application:</string>

@@ -46,4 +46,14 @@
         app:layout_constraintTop_toBottomOf="@id/countChip"
         tools:text="@string/code_permission_not_found" />
 
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/restrictionTV"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:textSize="15sp"
+      app:layout_constraintTop_toBottomOf="@id/statusTV"
+      android:text="@string/app_restrictions"
+      android:visibility="gone"
+      tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
