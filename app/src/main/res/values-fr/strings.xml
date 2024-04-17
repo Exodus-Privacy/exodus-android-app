@@ -66,6 +66,8 @@
     <string name="code_signature_not_found">Nous n\'avons pas trouvé la signature de pisteurs que nous connaissons dans cette application.</string>
     <string name="tracker_info">Un pisteur est une partie du logiciel dédiée à la collecte de données sur vous et vos usages.</string>
     <string name="analyzed">Cette application n\'a pas encore été analysée par Exodus Privacy.</string>
+    <string name="app_restrictions">Exodus ne peut pas analyser des applications indisponibles sur Google Play ou FDroid ou liées à des restrictions géographiques ou logiciels.</string>
+
 
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Nous avons trouvé les autorisations suivantes dans cette application :</string>
