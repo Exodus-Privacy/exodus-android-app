@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.trackers.model
 
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.util.TypedValue
@@ -10,10 +9,8 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
-import androidx.window.layout.WindowMetricsCalculator
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
-import dagger.hilt.android.internal.managers.FragmentComponentManager
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.RecyclerViewTrackerItemBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.AppDetailFragmentDirections
@@ -132,12 +129,5 @@ class TrackersRVAdapter(
             pixels.toFloat(),
             context.resources.displayMetrics,
         )
-    }
-
-    private fun getDisplayWidth(context: Context): Int {
-        val activity = FragmentComponentManager.findActivity(context) as Activity
-        val windowMetrics =
-            WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(activity)
-        return windowMetrics.bounds.width()
     }
 }

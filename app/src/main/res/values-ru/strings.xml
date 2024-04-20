@@ -71,7 +71,7 @@
     <string name="code_permission_found">В приложении обнаружены следующее разрешения:</string>
     <string name="code_permission_not_found">Приложение не требует никаких разрешений.</string>
     <string name="permission_info">Разрешения — это действия, которые приложение может выполнять на вашем устройстве.</string>
-    <string name="permission_info_dangerous">Значок <font color="red"><b></b></font> указывает «Опасные» или «Специальные» в соответствии с уровнями защиты Google.</string>
+    <string name="permission_info_dangerous">Значок <font color="red"><b>!</b></font> указывает «Опасные» или «Специальные» в соответствии с уровнями защиты Google.</string>
 
     <!-- Notification -->
     <string name="updates">Обновления</string>
