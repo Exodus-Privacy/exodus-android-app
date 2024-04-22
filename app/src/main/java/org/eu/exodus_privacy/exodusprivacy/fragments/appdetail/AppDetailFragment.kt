@@ -1,7 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.appdetail
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -20,6 +18,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.appdetail.model.AppDetailVPAdapter
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
+import org.eu.exodus_privacy.exodusprivacy.utils.startIntent
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -91,11 +90,12 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
                                 )
                             }
                             R.id.openAppInfo -> {
-                                val intent =
-                                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                                        data = Uri.parse("package:" + app.packageName)
-                                    }
-                                startActivity(intent)
+                                startIntent(
+                                    requireContext(),
+                                    "system",
+                                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    app.packageName,
+                                )
                             }
                             else -> {
                                 Log.d(TAG, "Unexpected itemId: ${it.itemId}")
