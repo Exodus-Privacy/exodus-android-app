@@ -45,7 +45,7 @@ class DatabaseMigrationTest {
     @Test
     @Throws(IOException::class)
     fun migrate1To2() {
-        var db = helper.createDatabase(TEST_DB, 1).apply {
+        helper.createDatabase(TEST_DB, 1).apply {
             // db has schema version 1. insert some data using SQL queries.
             // You cannot use DAO classes because they expect the latest schema.
             execSQL(
@@ -68,6 +68,6 @@ class DatabaseMigrationTest {
             // Prepare for the next version.
             close()
         }
-        db = helper.runMigrationsAndValidate(TEST_DB, 2, true, MIGRATION_1_2)
+        helper.runMigrationsAndValidate(TEST_DB, 2, true, MIGRATION_1_2)
     }
 }
