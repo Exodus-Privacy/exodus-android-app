@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -14,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
+import org.eu.exodus_privacy.exodusprivacy.utils.animatedNavOptions
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -74,14 +76,53 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.appDetailFragment, R.id.trackerDetailFragment -> {
-                    bottomNavigationView.visibility = View.GONE
+                    hideBottomNavigation(bottomNavigationView)
                 }
 
                 else -> {
-                    bottomNavigationView.visibility = View.VISIBLE
+                    showBottomNavigation(bottomNavigationView)
                 }
             }
         }
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.appsFragment -> {
+                    navController.navigate(
+                        R.id.appsFragment,
+                        args = null,
+                        navOptions = animatedNavOptions
+                    )
+                    true
+                }
+
+                R.id.trackersFragment -> {
+                    navController.navigate(
+                        R.id.trackersFragment,
+                        args = null,
+                        navOptions = animatedNavOptions
+                    )
+                    true
+                }
+
+                R.id.aboutFragment -> {
+                    navController.navigate(
+                        R.id.aboutFragment,
+                        args = null,
+                        navOptions = animatedNavOptions
+                    )
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        // Prevent reselection of the same item
+        bottomNavigationView.setOnItemReselectedListener {
+            return@setOnItemReselectedListener
+        }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -110,5 +151,27 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    // Hide the bottom navigation bar with animation
+    private fun hideBottomNavigation(view: View) {
+        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        view.clearAnimation()
+        view.animate()
+            .translationY(view.height.toFloat())
+            .setDuration(300)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .withEndAction { view.setLayerType(View.LAYER_TYPE_NONE, null) }
+    }
+
+    // Show the bottom navigation bar with animation
+    private fun showBottomNavigation(view: View) {
+        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        view.clearAnimation()
+        view.animate()
+            .translationY(0f)
+            .setDuration(300)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .withEndAction { view.setLayerType(View.LAYER_TYPE_NONE, null) }
     }
 }

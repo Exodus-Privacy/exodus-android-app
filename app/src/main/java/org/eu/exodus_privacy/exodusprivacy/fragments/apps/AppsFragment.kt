@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -37,10 +36,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         _binding = FragmentAppsBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
-        enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
-        reenterTransition = MaterialFadeThrough()
-        returnTransition = MaterialFadeThrough()
+
 
         val progressBar = binding.progress
         val updateReportsFab = binding.updateReportsFAB

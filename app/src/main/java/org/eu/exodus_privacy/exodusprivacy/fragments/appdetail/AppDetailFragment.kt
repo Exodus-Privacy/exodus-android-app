@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppDetailBinding
@@ -50,10 +49,6 @@ class AppDetailFragment : Fragment(R.layout.fragment_app_detail) {
         _binding = FragmentAppDetailBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
-        enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
-        reenterTransition = MaterialFadeThrough()
-        returnTransition = MaterialFadeThrough()
 
         viewModel.getApp(args.packageName)
 
