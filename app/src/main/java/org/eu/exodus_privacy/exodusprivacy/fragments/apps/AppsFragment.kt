@@ -37,7 +37,6 @@ class AppsFragment : Fragment(R.layout.fragment_apps) {
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
 
-
         val progressBar = binding.progress
         val updateReportsFab = binding.updateReportsFAB
 

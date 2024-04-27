@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(
                         R.id.appsFragment,
                         args = null,
-                        navOptions = animatedNavOptions
+                        navOptions = animatedNavOptions,
                     )
                     true
                 }
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(
                         R.id.trackersFragment,
                         args = null,
-                        navOptions = animatedNavOptions
+                        navOptions = animatedNavOptions,
                     )
                     true
                 }
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(
                         R.id.aboutFragment,
                         args = null,
-                        navOptions = animatedNavOptions
+                        navOptions = animatedNavOptions,
                     )
                     true
                 }
@@ -122,7 +122,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemReselectedListener {
             return@setOnItemReselectedListener
         }
-
     }
 
     override fun onRequestPermissionsResult(

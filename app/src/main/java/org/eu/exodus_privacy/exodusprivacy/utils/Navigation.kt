@@ -14,7 +14,7 @@ val animatedNavOptions = NavOptions.Builder()
 
 fun NavController.safeNavigate(
     direction: NavDirections,
-    navOptions: NavOptions = animatedNavOptions
+    navOptions: NavOptions = animatedNavOptions,
 ) {
     currentDestination?.getAction(direction.actionId)?.run {
         navigate(direction, navOptions = navOptions)
