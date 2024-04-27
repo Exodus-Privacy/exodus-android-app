@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
-import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import io.noties.markwon.Markwon
 import org.eu.exodus_privacy.exodusprivacy.R
@@ -45,10 +44,6 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
         _binding = FragmentTrackerDetailBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
-        enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
-        reenterTransition = MaterialFadeThrough()
-        returnTransition = MaterialFadeThrough()
 
         viewModel.getTracker(args.trackerID)
 
