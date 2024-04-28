@@ -10,7 +10,11 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplicatio
 import javax.inject.Inject
 
 enum class SortType {
-    Name, Trackers, Permissions, CreatedAt, Default
+    Name,
+    Trackers,
+    Permissions,
+    CreatedAt,
+    Default,
 }
 
 @HiltViewModel

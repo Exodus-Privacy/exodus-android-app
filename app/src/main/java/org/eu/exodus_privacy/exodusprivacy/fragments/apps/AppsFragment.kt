@@ -170,7 +170,6 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
         }
     }
 
-
     private fun updateSortPopupMenu(sortType: SortType) {
         sortPopupMenu.menu.findItem(R.id.sort_by_name).isChecked = false
         sortPopupMenu.menu.findItem(R.id.sort_by_trackers).isChecked = false
