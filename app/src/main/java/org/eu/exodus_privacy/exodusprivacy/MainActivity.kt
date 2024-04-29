@@ -10,12 +10,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
-import org.eu.exodus_privacy.exodusprivacy.utils.animatedNavOptions
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
-        bottomNavigationView.setupWithNavController(navController)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
         // Show or hide the connection message depending on the network
         viewModel.networkConnection.observe(this) { connected ->
@@ -83,44 +82,6 @@ class MainActivity : AppCompatActivity() {
                     showBottomNavigation(bottomNavigationView)
                 }
             }
-        }
-
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.appsFragment -> {
-                    navController.navigate(
-                        R.id.appsFragment,
-                        args = null,
-                        navOptions = animatedNavOptions,
-                    )
-                    true
-                }
-
-                R.id.trackersFragment -> {
-                    navController.navigate(
-                        R.id.trackersFragment,
-                        args = null,
-                        navOptions = animatedNavOptions,
-                    )
-                    true
-                }
-
-                R.id.aboutFragment -> {
-                    navController.navigate(
-                        R.id.aboutFragment,
-                        args = null,
-                        navOptions = animatedNavOptions,
-                    )
-                    true
-                }
-
-                else -> false
-            }
-        }
-
-        // Prevent reselection of the same item
-        bottomNavigationView.setOnItemReselectedListener {
-            return@setOnItemReselectedListener
         }
     }
 

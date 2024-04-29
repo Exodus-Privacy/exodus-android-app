@@ -62,6 +62,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
     private fun setupSearchView() {
         val searchMenu =
             binding.toolbarApps.menu.findItem(R.id.action_search).actionView as SearchView
+        searchMenu.maxWidth = Integer.MAX_VALUE // Expand the search view to fill the toolbar
         searchMenu.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -143,23 +144,28 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
     private fun setupObservers() {
         viewModel.sortedAppList.observe(viewLifecycleOwner) { list ->
             if (!list.isNullOrEmpty()) {
+                // If the list is not empty, show the RecyclerView with data
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
+                binding.appListRV.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
                 binding.progress.visibility = View.GONE
+                binding.noAppsFound.visibility = View.GONE
                 (binding.appListRV.adapter as AppsRVAdapter).submitList(list)
             } else {
-                // Do not display the shimmer layout if the list is empty due
-                // to no search results. Only show the shimmer layout if both
-                // the search query is empty and the list is empty.
-                viewModel.currentSearchQuery.value?.let { query ->
-                    if (query.isEmpty()) {
-                        binding.shimmerLayout.visibility = View.VISIBLE
-                    } else {
-                        binding.shimmerLayout.visibility = View.GONE
-                    }
+                // If the list is empty, check if the search query is empty
+                if (viewModel.currentSearchQuery.value.isNullOrBlank()) {
+                    // If both list and search query are empty, show the shimmer layout
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                    binding.appListRV.visibility = View.VISIBLE
+                    binding.noAppsFound.visibility = View.GONE
+                } else {
+                    // If search query is not empty, show the no apps found layout
+                    binding.appListRV.visibility = View.GONE
+                    binding.shimmerLayout.visibility = View.GONE
+                    binding.noAppsFound.visibility = View.VISIBLE
                 }
-                binding.swipeRefreshLayout.visibility = View.VISIBLE
             }
+            binding.swipeRefreshLayout.visibility = View.VISIBLE
         }
 
         // Preserve the state of the sort menu on orientation change
