@@ -6,15 +6,14 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
         android:title="@string/menu_action_search"
-        android:visible="false"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_filter"
         android:title="@string/menu_action_filter"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="ifRoom" />
 
 </menu>

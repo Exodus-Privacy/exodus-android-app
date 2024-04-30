@@ -16,14 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/title_apps" />
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
-      android:id="@+id/progress"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:indeterminate="true"
-      android:visibility="gone"
-      app:trackCornerRadius="4dp"
-      app:layout_constraintBottom_toBottomOf="@+id/toolbarApps" />
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarApps"
+        app:trackCornerRadius="4dp" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
@@ -36,15 +37,47 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbarApps"
         app:shimmer_direction="left_to_right">
 
-            <LinearLayout
-                android:id="@+id/shimmerPlaceHolderLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/shimmerPlaceHolderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            </LinearLayout>
+        </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <LinearLayout
+        android:id="@+id/noAppsFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_no_apps_found"
+            app:tint="?attr/colorOnSurfaceVariant"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="65dp"
+            android:layout_marginEnd="65dp"
+            android:text="@string/no_search_results"
+            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -70,9 +103,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/refresh"
-        app:srcCompat="@drawable/ic_update"
         app:backgroundTint="@color/chipColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_update" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
