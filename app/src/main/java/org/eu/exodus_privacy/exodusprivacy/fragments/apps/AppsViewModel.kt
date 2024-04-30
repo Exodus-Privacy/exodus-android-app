@@ -10,11 +10,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplicatio
 import javax.inject.Inject
 
 enum class SortType {
-    Name,
-    Trackers,
-    Permissions,
-    CreatedAt,
-    Default,
+    Name, Trackers, Permissions, CreatedAt,
 }
 
 @HiltViewModel
@@ -27,7 +23,7 @@ class AppsViewModel @Inject constructor(
 
     val sortedAppList: LiveData<List<ExodusApplication>> = _sortedAppList
 
-    private val _currentSortType = MutableLiveData(SortType.Default)
+    private val _currentSortType = MutableLiveData(SortType.Name)
     val currentSortType: LiveData<SortType> = _currentSortType
 
     private var _currentSearchQuery = MutableLiveData<String>()
@@ -47,12 +43,18 @@ class AppsViewModel @Inject constructor(
         val sortedApps = when (sortType) {
             SortType.Name -> {
                 _currentSortType.postValue(SortType.Name)
-                apps.sortedBy { it.name }
+                apps // Already sorted by name
             }
 
+            // Sort by number of trackers in such a way that apps with more trackers
+            // come first hen apps with less or no trackers and finally apps which
+            // are not yet analyzed in the end.
             SortType.Trackers -> {
                 _currentSortType.postValue(SortType.Trackers)
-                apps.sortedByDescending { it.exodusTrackers.size }
+                apps.sortedWith(compareByDescending<ExodusApplication> { it.exodusTrackers.size }
+                    .then(compareBy { it.exodusTrackers.isEmpty() })
+                    .then(compareBy { it.exodusVersionCode == 0L })
+                )
             }
 
             SortType.Permissions -> {
@@ -64,11 +66,6 @@ class AppsViewModel @Inject constructor(
                 _currentSortType.postValue(SortType.CreatedAt)
                 apps.sortedByDescending { it.created }
             }
-
-            SortType.Default -> {
-                _currentSortType.postValue(SortType.Default)
-                apps
-            }
         }
         _sortedAppList.value = sortedApps
     }
@@ -78,7 +75,7 @@ class AppsViewModel @Inject constructor(
         val apps = _appList.value ?: return
 
         if (query.isEmpty()) {
-            sortApps(_currentSortType.value ?: SortType.Default)
+            sortApps(_currentSortType.value ?: SortType.Name)
             return
         }
 

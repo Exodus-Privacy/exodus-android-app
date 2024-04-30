@@ -197,8 +197,6 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
             SortType.CreatedAt -> {
                 sortPopupMenu.menu.findItem(R.id.sort_by_creation_date).isChecked = true
             }
-
-            SortType.Default -> {}
         }
     }
 
