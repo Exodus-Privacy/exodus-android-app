@@ -10,7 +10,10 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplicatio
 import javax.inject.Inject
 
 enum class SortType {
-    Name, Trackers, Permissions, CreatedAt,
+    Name,
+    Trackers,
+    Permissions,
+    CreatedAt,
 }
 
 @HiltViewModel
@@ -51,9 +54,10 @@ class AppsViewModel @Inject constructor(
             // are not yet analyzed in the end.
             SortType.Trackers -> {
                 _currentSortType.postValue(SortType.Trackers)
-                apps.sortedWith(compareByDescending<ExodusApplication> { it.exodusTrackers.size }
-                    .then(compareBy { it.exodusTrackers.isEmpty() })
-                    .then(compareBy { it.exodusVersionCode == 0L })
+                apps.sortedWith(
+                    compareByDescending<ExodusApplication> { it.exodusTrackers.size }
+                        .then(compareBy { it.exodusTrackers.isEmpty() })
+                        .then(compareBy { it.exodusVersionCode == 0L }),
                 )
             }
 
