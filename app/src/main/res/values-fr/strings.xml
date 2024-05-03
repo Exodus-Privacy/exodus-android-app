@@ -24,6 +24,7 @@
 
     <!-- Apps Fragment -->
     <string name="fetching_apps">Mise à jour des rapports</string>
+    <string name="no_search_results">Aucune application ne correspond à votre recherche.</string>
 
     <!-- About Fragment -->
     <string name="appLanguage">Langue</string>

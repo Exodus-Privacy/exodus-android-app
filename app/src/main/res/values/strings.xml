@@ -26,7 +26,7 @@
 
     <!-- Apps Fragment -->
     <string name="fetching_apps">Updating reports database!</string>
-    <string name="no_search_results">Sorry! there are no installed apps that match your search query.</string>
+    <string name="no_search_results">There are no apps that match your search query.</string>
 
     <!-- About Fragment -->
     <string name="appLanguage">Language</string>
