@@ -6,16 +6,8 @@
     <string name="settings">设置</string>
     <string name="version_mismatch">已安装版本 &lt;&gt; 已分析版本</string>
     <string name="version_unavailable">从未分析过应用</string>
-    <string name="no_app_found">您似乎没有从我们测试的源安装任何应用 (Google Play 商店或 F-Droid)。</string>
-    <string name="no_settings">此应用没有设置</string>
-    <string name="logo">%1 应用程序图标</string>
     <string name="refresh">刷新</string>
     <string name="cancel">取消</string>
-    <string name="refresh_needed">需要刷新</string>
-    <string name="refresh_needed_message">数据自 %1$s以来没有更新过。\n\n您想要刷新它们吗？</string>
-    <string name="submit">提交</string>
-    <string name="app_not_analyzed">您想要分析应用吗？\n\n应用 Id 将被自动粘贴到网站表单上。 您只需要提交表单。</string>
-    <string name="app_not_analyzed_title">此应用尚未被分析！</string>
     <string name="title_apps">应用</string>
     <string name="title_trackers">跟踪器</string>
     <string name="title_about">关于</string>

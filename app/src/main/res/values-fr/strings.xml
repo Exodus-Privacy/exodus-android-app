@@ -6,16 +6,8 @@
     <string name="settings">Paramètres</string>
     <string name="version_mismatch">La version analysée est différente de la version installée.</string>
     <string name="version_unavailable">Cette application n\’a pas encore été analysée par Exodus Privacy.</string>
-    <string name="no_app_found">Vous semblez n\'avoir aucune application installée par la source que nous recherchons (Google Play ou F-Droid).</string>
-    <string name="no_settings">Cette app n\'a pas de paramètres</string>
-    <string name="logo">Logo de l\'application %1</string>
     <string name="refresh">Actualiser</string>
     <string name="cancel">Annuler</string>
-    <string name="refresh_needed">Actualisation nécessaire</string>
-    <string name="refresh_needed_message">Les rapports n\'ont pas été mis à jour depuis le %1$s.\n\nVoulez-vous les actualiser ?</string>
-    <string name="submit">Soumettre</string>
-    <string name="app_not_analyzed">Voulez-vous analyser l\'application?\n\nL\'identifiant de l\'application est collé automatiquement sur le site Web. Vous n\'aurez qu\'à commencer l\'analyse.</string>
-    <string name="app_not_analyzed_title">Cette application n\'a jamais été analysée !</string>
     <string name="title_apps">Mes apps</string>
     <string name="title_trackers">Pisteurs</string>
     <string name="title_about">À propos</string>

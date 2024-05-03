@@ -6,16 +6,8 @@
     <string name="settings">Ayarlar</string>
     <string name="version_mismatch">Yüklü Sürüm &lt;&gt; Analiz Edilen Sürüm</string>
     <string name="version_unavailable">Uygulama hiç analiz edilmemiş</string>
-    <string name="no_app_found">Test ettiğimiz kaynaktan (Google Play Mağazası veya F-Droid) yüklü herhangi bir uygulamanız yok gibi görünüyor.</string>
-    <string name="no_settings">Bu uygulamanın ayarları yok</string>
-    <string name="logo">%1 Uygulama Logosu</string>
     <string name="refresh">Yenile</string>
     <string name="cancel">İptal et</string>
-    <string name="refresh_needed">Yenileme gerekli</string>
-    <string name="refresh_needed_message">Veriler %1$s zamanından beri güncellenmiyor.\n\nOnları güncellemek ister misiniz?</string>
-    <string name="submit">Gönder</string>
-    <string name="app_not_analyzed">Uygulamayı analiz etmek ister misiniz?\n\nUygulama kimliği otomatik olarak web sitesi formuna yapıştırılacaktır. Sadece formu göndermeniz yeterli olacaktır.</string>
-    <string name="app_not_analyzed_title">Bu uygulama analiz edilmedi!</string>
     <string name="title_apps">Uygulamalar</string>
     <string name="title_trackers">İzleyiciler</string>
     <string name="title_about">Hakkında</string>

@@ -6,16 +6,8 @@
     <string name="settings">Configurações</string>
     <string name="version_mismatch">Versão instalada &lt;&gt; Versão Analisada</string>
     <string name="version_unavailable">Aplicativo nunca analisado</string>
-    <string name="no_app_found">Parece que seu sistema não tem nenhum app instalado das fontes que nós testamos (Google Play Store ou F-Droid).</string>
-    <string name="no_settings">Este app não tem configurações</string>
-    <string name="logo">Logo do aplicativo %1</string>
     <string name="refresh">Recarregar</string>
     <string name="cancel">Cancelar</string>
-    <string name="refresh_needed">Atualização necessária</string>
-    <string name="refresh_needed_message">Dados não foram atualizados desde %1$s.\n\nGostaria de atualizá-los?</string>
-    <string name="submit">Enviar</string>
-    <string name="app_not_analyzed">Você gostaria de analisar o aplicativo?\n\nO Id do aplicativo será automaticamente colado no formulário do site. Você só precisará enviar o formulário.</string>
-    <string name="app_not_analyzed_title">Este app não foi analisado!</string>
     <string name="title_apps">Aplicativos</string>
     <string name="title_trackers">Rastreadores</string>
     <string name="title_about">Sobre</string>

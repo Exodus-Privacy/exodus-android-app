@@ -6,16 +6,8 @@
     <string name="settings">Inställningar</string>
     <string name="version_mismatch">Installerad Version &lt;&gt; Analyserad Version</string>
     <string name="version_unavailable">Appen har aldrig analyserats</string>
-    <string name="no_app_found">Det verkar som du inte har några installerade appar från källorna vi testar (Google Play store eller F-Droid).</string>
-    <string name="no_settings">Denna app har inga inställningar</string>
-    <string name="logo">%1 Applikationslogga</string>
     <string name="refresh">Uppdatera</string>
     <string name="cancel">Avbryt</string>
-    <string name="refresh_needed">Uppdatering behövs</string>
-    <string name="refresh_needed_message">Datan har inte uppdaterats sedan %1$s. \n\nVill du uppdatera dem?</string>
-    <string name="submit">Skicka</string>
-    <string name="app_not_analyzed">Vill du analysera appen?\n\nApp-id kommer automatiskt att klistras in i webbplatsformuläret. Du behöver bara skicka in formuläret.</string>
-    <string name="app_not_analyzed_title">Denna app har inte blivit analyserad!</string>
     <string name="title_apps">Appar</string>
     <string name="title_trackers">Spårare</string>
     <string name="title_about">Om</string>
