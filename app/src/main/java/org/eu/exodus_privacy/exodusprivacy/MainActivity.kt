@@ -121,11 +121,15 @@ class MainActivity : AppCompatActivity() {
             .translationY(view.height.toFloat())
             .setDuration(300)
             .setInterpolator(AccelerateDecelerateInterpolator())
-            .withEndAction { view.setLayerType(View.LAYER_TYPE_NONE, null) }
+            .withEndAction {
+                view.visibility = View.GONE
+                view.setLayerType(View.LAYER_TYPE_NONE, null)
+            }
     }
 
     // Show the bottom navigation bar with animation
     private fun showBottomNavigation(view: View) {
+        view.visibility = View.VISIBLE
         view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         view.clearAnimation()
         view.animate()
