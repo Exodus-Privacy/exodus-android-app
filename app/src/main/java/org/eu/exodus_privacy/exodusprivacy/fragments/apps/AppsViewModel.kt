@@ -50,7 +50,7 @@ class AppsViewModel @Inject constructor(
             }
 
             // Sort by number of trackers in such a way that apps with more trackers
-            // come first hen apps with less or no trackers and finally apps which
+            // come first then apps with less or no trackers and finally apps which
             // are not yet analyzed in the end.
             SortType.Trackers -> {
                 _currentSortType.postValue(SortType.Trackers)
