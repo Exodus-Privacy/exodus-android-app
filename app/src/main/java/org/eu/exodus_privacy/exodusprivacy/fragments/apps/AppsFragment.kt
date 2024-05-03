@@ -153,7 +153,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
                 (binding.appListRV.adapter as AppsRVAdapter).submitList(list)
             } else {
                 // If the list is empty, check if the search query is empty
-                if (viewModel.currentSearchQuery.value.isNullOrBlank()) {
+                if (viewModel.currentSearchQuery.value.isNullOrEmpty()) {
                     // If both list and search query are empty, show the shimmer layout
                     binding.shimmerLayout.visibility = View.VISIBLE
                     binding.appListRV.visibility = View.VISIBLE
