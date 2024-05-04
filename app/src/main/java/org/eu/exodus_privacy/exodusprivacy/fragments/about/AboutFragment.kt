@@ -1,8 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.about
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -18,6 +15,7 @@ import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAboutBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ThemeDialogFragment
 import org.eu.exodus_privacy.exodusprivacy.utils.getLanguage
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
+import org.eu.exodus_privacy.exodusprivacy.utils.startIntent
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -60,15 +58,12 @@ class AboutFragment : PreferenceFragmentCompat() {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.chooseLanguage -> {
-                    val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
-                        data = Uri.parse("package:" + BuildConfig.APPLICATION_ID)
-                    }
-                    try {
-                        startActivity(intent)
-                        true
-                    } catch (e: ActivityNotFoundException) {
-                        false
-                    }
+                    startIntent(
+                        requireContext(),
+                        "system",
+                        Settings.ACTION_APP_LOCALE_SETTINGS,
+                        BuildConfig.APPLICATION_ID,
+                    )
                 }
 
                 R.id.chooseTheme -> {
@@ -109,13 +104,7 @@ class AboutFragment : PreferenceFragmentCompat() {
 
         // Open default email app for support
         findPreference<Preference>("email")?.setOnPreferenceClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:$emailID"))
-            try {
-                startActivity(intent)
-                true
-            } catch (e: ActivityNotFoundException) {
-                false
-            }
+            startIntent(requireContext(), "mail", emailID, null)
         }
 
         findPreference<Preference>("analyze")?.setOnPreferenceClickListener {

@@ -8,10 +8,18 @@ import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsIntent
 import java.util.Collections
 
-fun startActivity(context: Context, url: String) {
-    try {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+fun startIntent(context: Context, type: String, value: String, app: String?): Boolean {
+    var intent = Intent()
+    when (type) {
+        "web" -> intent = Intent(Intent.ACTION_VIEW, Uri.parse(value))
+        "system" -> intent = Intent(value).apply {
+            data = Uri.parse("package:$app")
+        }
+        "mail" -> intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:$value"))
+    }
+    return try {
         context.startActivity(intent)
+        true
     } catch (e: ActivityNotFoundException) {
         false
     }
@@ -25,6 +33,6 @@ fun openURL(customTabsIntent: CustomTabsIntent, context: Context, url: String) {
     if (packageName != null) {
         customTabsIntent.launchUrl(context, Uri.parse(url))
     } else {
-        startActivity(context, url)
+        startIntent(context, "web", url, null)
     }
 }
