@@ -32,7 +32,6 @@ room = "2.6.1"
 runner = "1.5.2"
 shimmer = "0.5.0"
 swiperefreshlayout = "1.1.0"
-window = "1.2.0"
 ksp = "1.9.23-1.0.20"
 
 [libraries]
@@ -52,7 +51,6 @@ androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fr
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-fragment-ktx" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preference-ktx" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
-androidx-window = { module = "androidx.window:window", version.ref = "window" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }

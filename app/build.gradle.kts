@@ -103,7 +103,6 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.markwon.core)
-    implementation(libs.androidx.window)
     implementation(libs.androidx.appcompat)
 
     implementation(libs.androidx.constraintlayout)
