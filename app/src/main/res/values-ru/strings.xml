@@ -6,16 +6,8 @@
     <string name="settings">Настройки</string>
     <string name="version_mismatch">Установленная версия &lt;&gt; изученная версия</string>
     <string name="version_unavailable">Приложение ранее не изучалось</string>
-    <string name="no_app_found">Похоже, у вас нет приложений, установленных из источника, который мы тестируем (магазин Google Play или F-Droid).</string>
-    <string name="no_settings">Это приложение не имеет настроек</string>
-    <string name="logo">Логотип приложения %1</string>
     <string name="refresh">Обновить</string>
     <string name="cancel">Отмена</string>
-    <string name="refresh_needed">Требуется обновление</string>
-    <string name="refresh_needed_message">Данные не обновлялись с %1$s.\n\nОбновить их?</string>
-    <string name="submit">Отправить</string>
-    <string name="app_not_analyzed">Изучить приложение?\n\nИдентификатор приложения будет автоматически вставлен в форму на сайте. Вам нужно будет только отправить форму.</string>
-    <string name="app_not_analyzed_title">Приложение не изучено!</string>
     <string name="title_apps">Приложения</string>
     <string name="title_trackers">трекеров</string>
     <string name="title_about">О программе</string>

@@ -6,13 +6,8 @@
     <string name="settings">পছন্দসমূহ</string>
     <string name="version_mismatch">ইনস্টকৃত সংস্করণ &lt;&gt; যাচাইকৃত সংস্করণ</string>
     <string name="version_unavailable">অ্যাপ কখনো যাচাই করা হয়নি</string>
-    <string name="no_app_found">মনে হয় আমরা যে উৎস (গুগল প্লে স্টোর বা এফ-ড্রয়েড) থেকে অ্যাপ পরীক্ষা করি তার থেকে কোনো অ্যাপ ইনস্টল করা নেই।</string>
-    <string name="no_settings">এই অ্যাপে কোনো সেটিংস নেই</string>
-    <string name="logo">%1 অ্যাপ্লিকেশন লোগো</string>
     <string name="refresh">পুনঃসতেজ</string>
     <string name="cancel">বাতিল</string>
-    <string name="refresh_needed">পুনঃসতেজ প্রয়োজন</string>
-    <string name="submit">জমাদান</string>
     <string name="title_apps">অ্যাপ</string>
     <string name="title_trackers">ট্র্যাকার</string>
     <string name="title_about">সম্পর্কে</string>

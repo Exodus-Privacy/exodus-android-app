@@ -6,16 +6,8 @@
     <string name="settings">Налаштування</string>
     <string name="version_mismatch">Встановлена версія &lt;&gt; Проаналізована версія</string>
     <string name="version_unavailable">Додаток ніколи не аналізувався</string>
-    <string name="no_app_found">Схоже, у Вас немає встановлених застосунків із джерел, які ми тестували (Google Play або F-Droid).</string>
-    <string name="no_settings">Цей застосунок немає налаштувань</string>
-    <string name="logo">%1 логотип застосунку</string>
     <string name="refresh">Оновити</string>
     <string name="cancel">Скасувати</string>
-    <string name="refresh_needed">Потрібне оновлення</string>
-    <string name="refresh_needed_message">Дані не оновлюються з %1$s.\n\nБажаєте оновити їх?</string>
-    <string name="submit">Надіслати</string>
-    <string name="app_not_analyzed">Хочете проаналізувати застосунок?\n\nІдентифікатор застосунку автоматично буде задано у формі на вебсайті. Вам потрібно лише надіслати форму.</string>
-    <string name="app_not_analyzed_title">Цей застосунок не аналізувався!</string>
     <string name="title_apps">Мої програми</string>
     <string name="title_trackers">Відстежувачі</string>
     <string name="title_about">Про</string>

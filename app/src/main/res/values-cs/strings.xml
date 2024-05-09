@@ -6,16 +6,8 @@
     <string name="settings">Nastavení</string>
     <string name="version_mismatch">Nainstalovaná verze &lt;&gt; analyzovaná verze</string>
     <string name="version_unavailable">Aplikace nebyla nikdy analyzována</string>
-    <string name="no_app_found">Zdá se, že nemáte nainstalované žádné aplikace ze zdroje, který testujeme (obchod Google Play nebo F-Droid).</string>
-    <string name="no_settings">Tato aplikace nemá nastavení</string>
-    <string name="logo">Logo aplikace %1</string>
     <string name="refresh">Obnovit</string>
     <string name="cancel">Zrušit</string>
-    <string name="refresh_needed">Je třeba obnovit</string>
-    <string name="refresh_needed_message">Data nebyla aktualizována od %1$s.\n\nChcete je obnovit?</string>
-    <string name="submit">Odeslat</string>
-    <string name="app_not_analyzed">Chcete analyzovat aplikaci?\n\nAplikace se automaticky vloží do formuláře na webu. Formulář stačí pouze odeslat.</string>
-    <string name="app_not_analyzed_title">Tato aplikace nebyla analyzována!</string>
     <string name="title_apps">Aplikace</string>
     <string name="title_trackers">Slídiče</string>
     <string name="title_about">O Aplikaci</string>

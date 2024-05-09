@@ -6,16 +6,8 @@
     <string name="settings">الإعدادات</string>
     <string name="version_mismatch">النسخة المثبتة &lt;&gt; النسخة المحللة</string>
     <string name="version_unavailable">لم يتم تحليل التطبيق أبداً</string>
-    <string name="no_app_found">يبدو أنه ليس لديك أي تطبيقات مثبتة من المصدر الذي نقوم باختباره (متجر Google Play أو F-Droid).</string>
-    <string name="no_settings">ليس لدى هذا التطبيق إعدادات</string>
-    <string name="logo">شعار تطبيق %1</string>
     <string name="refresh">تحديث</string>
     <string name="cancel">إلغاء</string>
-    <string name="refresh_needed">تحتاج للتحديث</string>
-    <string name="refresh_needed_message">لم يتم تحديث البيانات منذ %1$s.\n\nهل ترغب في تحديثها؟</string>
-    <string name="submit">إرسال</string>
-    <string name="app_not_analyzed">هل ترغب في تحليل التطبيق؟\n\nسيتم لصق معرف التطبيق تلقائياً على نموذج الموقع. سوف تحتاج فقط إلى الضغط على زر إرسال الاستمارة.</string>
-    <string name="app_not_analyzed_title">لم يتم تحليل هذا التطبيق!</string>
     <string name="title_apps">التطبيقات</string>
     <string name="title_trackers">المتعقِّبون</string>
     <string name="title_about">حول التطبيق</string>

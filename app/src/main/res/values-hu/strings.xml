@@ -6,16 +6,8 @@
     <string name="settings">Beállítások</string>
     <string name="version_mismatch">Telepített változat &lt;&gt; Vizsgált változat</string>
     <string name="version_unavailable">Az alkalmazás még sosem volt vizsgálva</string>
-    <string name="no_app_found">Úgy tűnik, hogy nincs telepítve egyetlen alkalmazás sem az általunk tesztelt forrásból (Google Play Áruház vagy F-Droid).</string>
-    <string name="no_settings">Ennek az alkalmazásnak nincsenek beállításai</string>
-    <string name="logo">%1 Alkalmazáslogó</string>
     <string name="refresh">Frissítés</string>
     <string name="cancel">Mégsem</string>
-    <string name="refresh_needed">Frissíteni kell</string>
-    <string name="refresh_needed_message">Az adatok nem frissültek %1$s óta.\n\nSzeretné frissíteni őket?</string>
-    <string name="submit">Beküldés</string>
-    <string name="app_not_analyzed">Szeretné elemezni az alkalmazást?\n\nAz alkalmazásazonosító automatikusan beillesztésre kerül a webhely űrlapjába. Csak az űrlapot kell beküldenie.</string>
-    <string name="app_not_analyzed_title">Az alkamazás nem lett elemezve!</string>
     <string name="title_apps">Alkalmazások</string>
     <string name="title_trackers">Nyomkövetők</string>
     <string name="title_about">Névjegy</string>

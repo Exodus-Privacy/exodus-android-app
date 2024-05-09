@@ -6,16 +6,8 @@
     <string name="settings">Instellingen</string>
     <string name="version_mismatch">Geïnstalleerde versie &lt;&gt; Geanalyseerde versie</string>
     <string name="version_unavailable">App nooit geanalyseerd</string>
-    <string name="no_app_found">Het lijkt erop dat je geen apps hebt geïnstalleerd van de bron die we testen (Google Play store of F-Droid).</string>
-    <string name="no_settings">Deze app heeft geen instellingen</string>
-    <string name="logo">Applicatie logo %1</string>
     <string name="refresh">Vernieuwen</string>
     <string name="cancel">Annuleren</string>
-    <string name="refresh_needed">Vernieuwen nodig</string>
-    <string name="refresh_needed_message">Gegevens zijn niet bijgewerkt sinds %1$s.\n\nWilt u ze verniewen?</string>
-    <string name="submit">Indienen</string>
-    <string name="app_not_analyzed">Wilt u de app analyseren?\n\nDe app-id wordt automatisch in het formulier op de website geplakt. U hoeft alleen het formulier in te dienen.</string>
-    <string name="app_not_analyzed_title">Deze app is niet geanalyseerd!</string>
     <string name="title_apps">Apps</string>
     <string name="title_trackers">Trackers</string>
     <string name="title_about">Over ons</string>

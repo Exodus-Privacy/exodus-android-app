@@ -3,9 +3,6 @@
     <string name="trackers">Trackers</string>
     <string name="permissions">Άδειες</string>
     <string name="not_connected">Χωρίς σύνδεση στο Διαδίκτυο</string>
-    <string name="no_app_found">Φαίνεται ότι δεν έχετε εγκαταστήσει εφαρμογές, από την πηγές που δοκιμάζουμε (Google Play store ή F-Droid).</string>
-    <string name="no_settings">Αυτή η εφαρμογή δεν έχει ρυθμίσεις</string>
-    <string name="logo">%1 Λογότυπο Εφαρμογής</string>
     <string name="title_trackers">Trackers</string>
     <string name="back_button">Πίσω</string>
 

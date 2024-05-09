@@ -8,16 +8,8 @@
     <string name="settings">Settings</string>
     <string name="version_mismatch">Analyzed version is different than installed version.</string>
     <string name="version_unavailable">This app hasn\'t been analysed by Exodus Privacy yet.</string>
-    <string name="no_app_found">It appears that you don\'t have any apps installed from the source we test (Google Play store or F-Droid).</string>
-    <string name="no_settings">This app doesn\'t have settings</string>
-    <string name="logo">%1 Application Logo</string>
     <string name="refresh">Refresh</string>
     <string name="cancel">Cancel</string>
-    <string name="refresh_needed">Refresh needed</string>
-    <string name="refresh_needed_message">Data have not been update since %1$s.\n\nWould you like to refresh them?</string>
-    <string name="submit">Submit</string>
-    <string name="app_not_analyzed">Would you like to analyze the app?\n\nThe app id will be automatically pasted to the website form. You will only need to submit the form.</string>
-    <string name="app_not_analyzed_title">This app has not been analyzed!</string>
     <string name="title_apps">Apps</string>
     <string name="title_trackers">Trackers</string>
     <string name="title_about">About</string>
@@ -33,11 +25,8 @@
     <string name="sort_by_creation_date">Creation date</string>
 
     <!-- Apps Fragment -->
-    <string name="app_version" translatable="false"><xliff:g id="rating">%1$s</xliff:g></string>
-    <string name="app_trackers" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
-    <string name="app_perms" translatable="false"><xliff:g id="rating">%1$d</xliff:g></string>
     <string name="fetching_apps">Updating reports database!</string>
-    <string name="no_search_results">Sorry! there are no installed apps that match your search query.</string>
+    <string name="no_search_results">There are no apps that match your search query.</string>
 
     <!-- About Fragment -->
     <string name="appLanguage">Language</string>

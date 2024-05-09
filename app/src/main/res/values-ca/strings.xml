@@ -6,16 +6,8 @@
     <string name="settings">Configuració</string>
     <string name="version_mismatch">Versió instal·lada &lt;&gt; Versió analitzada</string>
     <string name="version_unavailable">Aplicació no analitzada mai</string>
-    <string name="no_app_found">Sembla que no teniu cap aplicació instal·lada des de la font que provem (Google Play Store o F-Droid).</string>
-    <string name="no_settings">Aquesta aplicació no té configuració</string>
-    <string name="logo">Logo de l\'aplicació %1</string>
     <string name="refresh">Actualitza</string>
     <string name="cancel">Cancel·la</string>
-    <string name="refresh_needed">Cal refrescar</string>
-    <string name="refresh_needed_message">Les dades no han estat actualitzades des de %1$s.\n\nVoleu refrescar-les?</string>
-    <string name="submit">Envia</string>
-    <string name="app_not_analyzed">Voleu analitzar l\'aplicació?\n\nL\'id de l\'aplicació serà enganxat automàticament al formulari del lloc web. Només cal que envieu el formulari.</string>
-    <string name="app_not_analyzed_title">Aquesta aplicació no ha estat analitzada!</string>
     <string name="title_apps">Aplicacions</string>
     <string name="title_trackers">Rastrejadors</string>
     <string name="title_about">Quant a</string>
