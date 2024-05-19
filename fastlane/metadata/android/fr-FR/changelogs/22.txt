@@ -1,0 +1,1 @@
+- Suppression du support d'Android 5
