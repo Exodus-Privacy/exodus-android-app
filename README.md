@@ -64,7 +64,7 @@ https://crowdin.com/project/exodus-android-app
 **If you would like to improve app code and have development skills, you are most welcome.**
 - You can find work in [issues](https://github.com/Exodus-Privacy/exodus-android-app/issues).
 - Before submitting pull requests please, execute Kotlin Liner and instrumented tests.
-- Change needs to work on all devices between Android 5 and Android 14.
+- Change needs to work on all devices between Android 6 and Android 14.
 - UI changes need to work in light mode, dark mode, and RTL.
 - Do not create pull requests to update dependencies, we have [dependabot](https://github.com/Exodus-Privacy/exodus-android-app/blob/master/.github/dependabot.yml).
 
@@ -88,6 +88,10 @@ https://crowdin.com/project/exodus-android-app
 
 - To execute tests move [network_security_config.xml](/doc/network_security_config.xml) to [/app/src/main/res/xml](/app/src/main/res/xml)
 - Add ```android:networkSecurityConfig="@xml/network_security_config"``` in [AndroidManifest.xml](/app/src/main/AndroidManifest.xml)
+
+### How to use app on Android 5
+
+- We have recently drop the support of Android 5, but 3.3.0 version continue to be available [here](https://github.com/Exodus-Privacy/exodus-android-app/releases/tag/release-v3.3.0)
 
 ### Links
 
