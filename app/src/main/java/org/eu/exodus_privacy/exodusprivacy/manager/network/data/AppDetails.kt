@@ -1,5 +1,8 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.network.data
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class AppDetails(
     val apk_hash: String = String(),
     val app_name: String = String(),

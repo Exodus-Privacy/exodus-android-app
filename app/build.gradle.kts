@@ -124,6 +124,8 @@ dependencies {
     // Retrofit and Moshi
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
 
     // okhttp
     implementation(libs.okhttp)
