@@ -1,5 +1,7 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.network
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,10 +20,14 @@ object ExodusModule {
     @Singleton
     @Provides
     fun provideExodusAPIInstance(okHttpClient: OkHttpClient): ExodusAPIInterface {
+        val moshi =
+            Moshi.Builder()
+                .addLast(KotlinJsonAdapterFactory())
+                .build()
         return Retrofit.Builder()
             .baseUrl(ExodusAPIInterface.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(ExodusAPIInterface::class.java)
     }

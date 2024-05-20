@@ -1,5 +1,8 @@
 package org.eu.exodus_privacy.exodusprivacy.manager.network.data
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Tracker(
     val categories: List<String> = emptyList(),
     val code_signature: String = String(),
