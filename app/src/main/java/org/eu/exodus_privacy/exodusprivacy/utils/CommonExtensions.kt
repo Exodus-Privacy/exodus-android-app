@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
 import com.google.android.material.chip.Chip
 import org.eu.exodus_privacy.exodusprivacy.R
-import java.util.Locale
 
 fun Chip.setExodusColor(size: String) {
     val textColorStateList: ColorStateList
@@ -47,10 +46,6 @@ fun Chip.setExodusColor(size: String) {
     }
         this.setTextColor(textColorStateList)
         this.chipBackgroundColor = backgroundColorStateList
-}
-
-fun getLanguage(): String {
-    return Locale.getDefault().language
 }
 
 fun PackageManager.getInstalledPackagesList(flags: Int): List<PackageInfo> {
