@@ -10,6 +10,7 @@ on:
     branches:
       - master
     paths-ignore:
+      -'doc/'
       -'fastlane/**'
       -'README.md'
   workflow_dispatch:

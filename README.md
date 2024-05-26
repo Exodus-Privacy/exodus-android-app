@@ -45,18 +45,18 @@ It helps you to take your privacy back!
 ## Contributing
 
 If you want to help us improve this application, you can:
-- [Translate app](https://github.com/Exodus-Privacy/exodus-android-app#translation)
-- Use [the issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs and propose ideas or feature requests
+- [Translate the app](https://github.com/Exodus-Privacy/exodus-android-app#translation)
+- Use [issues](https://github.com/Exodus-Privacy/exodus-android-app/issues) to report bugs and propose ideas or feature requests
 - Join us on our [IRC channel #exodus-android-app on Libera.chat](https://web.libera.chat/?nick=webguest?#exodus-android-app)
 
 
 ### Translation
 
-Do you want to help translate the application? Contribute here:
+Do you want to help to translate the application? Contribute here:
 
 https://crowdin.com/project/exodus-android-app
 
-- Exodus is fully translated into 2 languages and 36 languages can be translated in Crowdin.
+- Exodus is fully translated into 5 languages and 27 languages can be translated in Crowdin.
 - You can translate the app on Github but don't forget to insert a backslash `\` before any apostrophe `'`.
 
 ### Development
@@ -99,3 +99,4 @@ https://crowdin.com/project/exodus-android-app
 - [Privacy-Policy](https://exodus-privacy.eu.org/en/page/privacy-policy/)
 - [Documentation](https://github.com/Exodus-Privacy/exodus-android-app/tree/master/doc)
 - [REST API Documentation](https://github.com/Exodus-Privacy/exodus/blob/v1/doc/api.md)
+- [FDroid Build Metadata file](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/org.eu.exodus_privacy.exodusprivacy.yml)
