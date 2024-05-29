@@ -16,7 +16,7 @@ It helps you to take your privacy back!
   </a>
 </p>
 
-<div>
+<div align="center">
   <a href="https://f-droid.org/packages/org.eu.exodus_privacy.exodusprivacy/">
     <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80" align="center" />
   </a>
