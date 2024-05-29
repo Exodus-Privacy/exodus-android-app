@@ -27,7 +27,7 @@ It helps you to take your privacy back!
     <img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Download APK from GitHub" height="80">
   </a>
   <a href="https://github.com/ImranR98/Obtainium">
-	<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height="80" />
+	<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height="55" />
 </a>
 </p>
 
