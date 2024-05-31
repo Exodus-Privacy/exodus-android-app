@@ -16,17 +16,20 @@ It helps you to take your privacy back!
   </a>
 </p>
 
-<p align="center">
+<div align="center">
   <a href="https://f-droid.org/packages/org.eu.exodus_privacy.exodusprivacy/">
-    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80"/>
+    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80" align="center" />
   </a>
   <a href="https://play.google.com/store/apps/details?id=org.eu.exodus_privacy.exodusprivacy">
-    <img src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' alt='Get it on Google Play' height="80"/>
+    <img src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' alt='Get it on Google Play' height="80" align="center" />
   </a>
   <a href="https://github.com/Exodus-Privacy/exodus-android-app/releases/latest/">
-    <img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Download APK from GitHub" height="80">
+    <img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Download APK from GitHub" height="80" align="center" />
   </a>
-</p>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Exodus-Privacy/exodus-android-app">
+	<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height="55" align="center" />
+</a>
+</div>
 
 ## Screenshots
 
