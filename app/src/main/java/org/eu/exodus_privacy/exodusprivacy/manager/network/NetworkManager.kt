@@ -7,11 +7,11 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.util.Log
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.conflate
 import java.net.URL
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,43 +22,37 @@ class NetworkManager @Inject constructor(
 ) {
     private val TAG = NetworkManager::class.java.simpleName
 
-    private val _networkState = MutableStateFlow(false)
-    val networkState: StateFlow<Boolean> = _networkState
+    val isOnline: Flow<Boolean> = callbackFlow {
+        val callback = object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                Log.d(TAG, "Network available.")
+                channel.trySend(true)
+            }
 
-    private val _connectionObserver = MutableLiveData<Boolean>()
-    val connectionObserver: LiveData<Boolean> = _connectionObserver
+            override fun onLost(network: Network) {
+                Log.w(TAG, "Network not available.")
+                channel.trySend(false)
+            }
+        }
 
-    init {
-        ContextCompat.getSystemService(
-            context,
-            ConnectivityManager::class.java,
-        )?.registerNetworkCallback(
+        val connectivityManager = ContextCompat
+            .getSystemService(context, ConnectivityManager::class.java)
+
+        connectivityManager?.registerNetworkCallback(
             NetworkRequest.Builder()
                 .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                 .build(),
-            object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    Log.d(TAG, "Network available.")
-                    super.onAvailable(network)
-                    _networkState.value = true
-                    postNetworkStateValue()
-                }
-
-                override fun onLost(network: Network) {
-                    Log.w(TAG, "Network not available.")
-                    super.onLost(network)
-                    _networkState.value = false
-                    postNetworkStateValue()
-                }
-            },
+            callback
         )
-    }
 
-    private fun postNetworkStateValue() {
-        _connectionObserver.postValue(_networkState.value)
-    }
+        channel.trySend(connectivityManager.isCurrentlyConnected())
 
-    private fun checkExodusURL(): Boolean {
+        awaitClose {
+            connectivityManager?.unregisterNetworkCallback(callback)
+        }
+    }.conflate()
+
+    fun isExodusReachable(): Boolean {
         return try {
             URL(ExodusAPIInterface.BASE_URL)
                 .openConnection()
@@ -70,11 +64,12 @@ class NetworkManager @Inject constructor(
         }
     }
 
-    fun checkConnection() {
-        postNetworkStateValue()
-    }
-
-    fun isExodusReachable(): Boolean {
-        return checkExodusURL()
+    private fun ConnectivityManager?.isCurrentlyConnected() = when (this) {
+        null -> false
+        else ->
+            activeNetwork
+                ?.let(::getNetworkCapabilities)
+                ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                ?: false
     }
 }

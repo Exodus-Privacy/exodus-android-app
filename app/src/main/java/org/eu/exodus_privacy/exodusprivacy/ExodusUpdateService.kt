@@ -81,7 +81,7 @@ class ExodusUpdateService : LifecycleService() {
         super.onCreate()
 
         lifecycleScope.launch {
-            networkManager.networkState.collect { connected ->
+            networkManager.isOnline.collect { connected ->
                 networkConnected = connected
                 if (!connected) {
                     // No connection, close the service
