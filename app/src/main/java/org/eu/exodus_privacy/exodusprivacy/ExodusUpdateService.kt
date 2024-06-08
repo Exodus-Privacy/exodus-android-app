@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Binder
 import android.os.Build
@@ -18,20 +17,18 @@ import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LifecycleService
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
-import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
-import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
-import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
-import org.eu.exodus_privacy.exodusprivacy.objects.Application
+import org.eu.exodus_privacy.exodusprivacy.manager.sync.SyncManager
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,21 +48,16 @@ class ExodusUpdateService : LifecycleService() {
     private val serviceScope = CoroutineScope(job)
 
     // Tracker and Apps
-    private val trackersList = mutableListOf<TrackerData>()
-    private val appList = mutableListOf<ExodusApplication>()
-    private val currentSize: MutableLiveData<Int> = MutableLiveData(1)
+    private val currentSize: MutableStateFlow<Int> = MutableStateFlow(1)
 
     private var networkConnected: Boolean = false
-    private var totalNumberOfAppsHavingTrackers = 0
-    private var validPackages = listOf<PackageInfo>()
-    private var notificationPermGranted = false
 
-    // Inject required modules
-    private var applicationList = mutableListOf<Application>()
-    private var applicationListAfterUninstall = mutableListOf<Application>()
 
     @Inject
     lateinit var networkManager: NetworkManager
+
+    @Inject
+    lateinit var syncManager: SyncManager
 
     @Inject
     lateinit var exodusPackageRepository: ExodusPackageRepository
@@ -135,47 +127,40 @@ class ExodusUpdateService : LifecycleService() {
     private fun launchFetch(firstTime: Boolean) {
         // create list of installed packages, that are system apps or launchable
 
-        validPackages = exodusPackageRepository.getValidPackageList()
-        val numberOfInstalledPackages = validPackages.size
+        val numberOfInstalledPackages = exodusPackageRepository.getValidPackageList().size
 
         if (networkConnected) {
             IS_SERVICE_RUNNING = true
+            val notificationPermGranted = ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS,
+            ) == PackageManager.PERMISSION_GRANTED
 
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS,
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+            if (notificationPermGranted) {
                 Log.d(TAG, "Permission to post notification was granted.")
-                notificationPermGranted = true
 
                 // Create notification channels on post-nougat devices
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
 
-                notificationManager.notify(
-                    SERVICE_ID,
-                    createNotification(
-                        currentSize.value!!,
-                        numberOfInstalledPackages,
-                        !firstTime,
-                        this,
-                    ),
-                )
+                serviceScope.launch {
+                    currentSize.collect { current ->
+                        notificationManager.notify(
+                            SERVICE_ID,
+                            createNotification(
+                                currentSize = current,
+                                totalSize = numberOfInstalledPackages,
+                                cancellable = !firstTime,
+                                context = this@ExodusUpdateService,
+                            ),
+                        )
+                    }
+                }
             }
 
             // Update all database
-            updateAllDatabase(firstTime)
-
-            if (notificationPermGranted) {
-                currentSize.observe(this) { current ->
-                    notificationManager.notify(
-                        SERVICE_ID,
-                        createNotification(current, numberOfInstalledPackages, false, this),
-                    )
-                }
-            }
+            updateAllDatabase()
         }
     }
 
@@ -232,155 +217,21 @@ class ExodusUpdateService : LifecycleService() {
         return builder
     }
 
-    private fun updateAllDatabase(firstTime: Boolean) {
+    private fun updateAllDatabase() {
         Toast.makeText(
             this,
             getString(R.string.fetching_apps),
             Toast.LENGTH_SHORT,
         ).show()
         serviceScope.launch {
-            if (!firstTime) removeUninstalledApps()
-            Log.d(TAG, "Refreshing trackers database.")
-            fetchTrackers()
-        }.invokeOnCompletion { trackerThrow ->
-            if (trackerThrow == null) {
-                serviceScope.launch {
-                    Log.d(TAG, "Refreshing applications database.")
-                    fetchApps()
-                }.invokeOnCompletion { appsThrow ->
-                    if (appsThrow == null) {
-                        serviceScope.launch {
-                            // All data is fetched, save it
-                            trackersList.forEach {
-                                exodusDatabaseRepository.saveTrackerData(it)
-                            }
-                            Log.d(TAG, "Done saving tracker data.")
-                            appList.forEach {
-                                exodusDatabaseRepository.saveApp(it)
-                            }
-                            Log.d(TAG, "Done saving app details.")
-                            // We are done, gracefully exit!
-                            stopService()
-                        }
-                    } else {
-                        Log.e(TAG, appsThrow.stackTrace.toString())
-                    }
+            syncManager.sync (
+                onTrackerSyncDone = {
+                    // Show a different notification if possible
+                },
+                onAppSync = {
+                    currentSize.update { it + 1 }
                 }
-            } else {
-                Log.e(TAG, trackerThrow.stackTrace.toString())
-            }
-        }
-    }
-
-    private suspend fun fetchTrackers() {
-        try {
-            val list = exodusAPIRepository.getAllTrackers()
-            list.trackers.forEach { (key, value) ->
-                val trackerData = TrackerData(
-                    key.toInt(),
-                    value.categories,
-                    value.code_signature,
-                    value.creation_date,
-                    value.description,
-                    value.name,
-                    value.network_signature,
-                    value.website,
-                )
-                trackersList.add(trackerData)
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Unable to fetch trackers.", e)
-        }
-    }
-
-    private suspend fun fetchApps() {
-        try {
-            applicationList = exodusPackageRepository.getApplicationList(validPackages)
-            applicationList.forEach { app ->
-                val appDetailList =
-                    exodusAPIRepository.getAppDetails(app.packageName).toMutableList()
-
-                val remoteVersionCodes: ArrayList<String> = arrayListOf()
-                val localVersionCode = app.versionCode
-
-                appDetailList.forEach { remoteVersionCodes.add(it.version_code) }
-                Log.d(TAG, "List of remote version codes for ${app.name}\n$remoteVersionCodes")
-                Log.d(TAG, "Local version code for ${app.name}\n$localVersionCode")
-
-                // Look for current installed version in the list, otherwise pick the latest one
-                val currentApp =
-                    appDetailList.filter { it.version_code.toLongOrZero() == app.versionCode }
-
-                // if a matching version code was found, use this as our exodus app
-                val latestExodusApp = if (currentApp.isNotEmpty()) {
-                    currentApp[0]
-                } else { // otherwise use highest number of version codes found
-                    appDetailList.maxByOrNull { it.version_code.toLongOrZero() } ?: AppDetails()
-                }
-
-                // Create and save app data with proper tracker info
-                val exodusApp = ExodusApplication(
-                    app.packageName,
-                    app.name,
-                    app.icon,
-                    app.versionName,
-                    app.versionCode,
-                    app.permissions,
-                    latestExodusApp.version_name,
-                    latestExodusApp.version_code.toLongOrZero(),
-                    latestExodusApp.trackers,
-                    app.source,
-                    latestExodusApp.report,
-                    latestExodusApp.created,
-                    latestExodusApp.updated,
-                )
-
-                appList.add(exodusApp)
-                // Update tracker data regarding this app
-                latestExodusApp.trackers.forEach { id ->
-                    trackersList.find { it.id == id }?.let {
-                        it.presentOnDevice = true
-                        it.exodusApplications.add(exodusApp.packageName)
-                    }
-                }
-                currentSize.postValue(currentSize.value!! + 1)
-            }
-
-            totalNumberOfAppsHavingTrackers = countAppsHavingTrackers(appList)
-            trackersList.forEach {
-                it.totalNumberOfAppsHavingTrackers = totalNumberOfAppsHavingTrackers
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Unable to fetch apps.", e)
-        }
-    }
-
-    private suspend fun removeUninstalledApps() {
-        try {
-            applicationListAfterUninstall =
-                exodusPackageRepository.getApplicationList(validPackages)
-            val packageNameListAfterUninstall = mutableListOf<String>()
-            applicationListAfterUninstall.forEach { packageNameListAfterUninstall.add(it.packageName) }
-            val packageNameList = exodusDatabaseRepository.getAllPackageNames().toMutableList()
-            val listOfPackageNameToBeRemove = mutableListOf<String>()
-            if (packageNameList.size > packageNameListAfterUninstall.size) {
-                packageNameList.forEach {
-                    if (!packageNameListAfterUninstall.contains(it)) {
-                        listOfPackageNameToBeRemove.add(it)
-                    }
-                }
-                exodusDatabaseRepository.deleteApps(listOfPackageNameToBeRemove)
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Unable to remove apps.", e)
-        }
-    }
-
-    fun countAppsHavingTrackers(
-        appList: MutableList<ExodusApplication>,
-    ): Int {
-        return appList.count {
-            it.exodusTrackers.isNotEmpty()
+            )
         }
     }
 
@@ -393,13 +244,5 @@ class ExodusUpdateService : LifecycleService() {
         notificationManager.cancel(SERVICE_ID)
         job.cancel()
         stopSelf()
-    }
-
-    private fun String.toLongOrZero(): Long {
-        return if (this.isNotBlank()) {
-            this.toLong()
-        } else {
-            0L
-        }
     }
 }
