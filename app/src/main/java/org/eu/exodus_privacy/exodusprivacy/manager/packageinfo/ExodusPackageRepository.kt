@@ -52,7 +52,7 @@ class ExodusPackageRepository @Inject constructor(
         return applicationList
     }
 
-    fun getValidPackageList(): MutableList<PackageInfo> {
+    fun getValidPackageList(): List<PackageInfo> {
         val packageList = packageManager.getInstalledPackagesList(PackageManager.GET_PERMISSIONS)
         val validPackages = mutableListOf<PackageInfo>()
         packageList.forEach { pkgInfo ->
