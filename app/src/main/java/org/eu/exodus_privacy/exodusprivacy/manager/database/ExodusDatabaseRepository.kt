@@ -38,6 +38,11 @@ class ExodusDatabaseRepository @Inject constructor(
         return trackerDataDao.queryAllTrackers()
     }
 
+    fun getActiveTrackers(): LiveData<List<TrackerData>> {
+        Log.d(TAG, "Querying all active trackers as live data.")
+        return trackerDataDao.queryActiveTrackers()
+    }
+
     suspend fun getTrackers(listOfID: List<Int>): List<TrackerData> {
         Log.d(TAG, "Querying trackers by list of ids: $listOfID.")
         return trackerDataDao.queryTrackersByIdList(listOfID)
