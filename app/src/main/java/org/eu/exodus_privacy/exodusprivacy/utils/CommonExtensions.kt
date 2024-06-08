@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.CancellationException
 import org.eu.exodus_privacy.exodusprivacy.R
 import java.util.Locale
 
@@ -78,4 +79,8 @@ fun copyToClipboard(context: Context, string: String): Boolean {
         Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
     }
     return true
+}
+
+inline fun Throwable.propagateCancellation() {
+    if (this is CancellationException) throw this
 }
