@@ -15,6 +15,6 @@ data class TrackerData(
     val network_signature: String = String(),
     val website: String = String(),
     var presentOnDevice: Boolean = false,
-    val exodusApplications: MutableList<String> = mutableListOf(),
+    val exodusApplications: List<String> = mutableListOf(),
     @ColumnInfo(defaultValue = 0.toString()) var totalNumberOfAppsHavingTrackers: Int = 0,
 )
