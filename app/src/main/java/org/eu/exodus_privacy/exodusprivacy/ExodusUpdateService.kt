@@ -232,6 +232,7 @@ class ExodusUpdateService : LifecycleService() {
                     currentSize.update { it + 1 }
                 },
             )
+            stopService()
         }
     }
 

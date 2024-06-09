@@ -2,7 +2,6 @@ package org.eu.exodus_privacy.exodusprivacy.manager.sync
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.joinAll
@@ -23,6 +22,7 @@ import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import org.eu.exodus_privacy.exodusprivacy.utils.IoDispatcher
 import org.eu.exodus_privacy.exodusprivacy.utils.propagateCancellation
 import org.eu.exodus_privacy.exodusprivacy.utils.updateAndGet
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -73,7 +73,12 @@ class SyncManager @Inject constructor(
             currentAppList.forEach { app ->
                 ensureActive()
 
-                val appDetails = apiRepository.getAppDetails(app.packageName)
+                val appDetails = try {
+                    apiRepository.getAppDetails(app.packageName)
+                } catch (e: SocketTimeoutException) {
+                    Log.w(TAG, "Socket Timeout", e)
+                    emptyList()
+                }
 
                 val latestApp = appDetails
                     .find { it.version_code.toLongOrZero() == app.versionCode }
