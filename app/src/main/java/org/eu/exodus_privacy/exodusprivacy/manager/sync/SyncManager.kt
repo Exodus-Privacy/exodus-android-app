@@ -183,7 +183,7 @@ class SyncManager @Inject constructor(
                 copy(
                     presentOnDevice = true,
                     exodusApplications = exodusApplications
-                        .updateAndGet { add(packageName) }
+                        .updateAndGet { add(packageName) },
                 )
             }
         databaseRepository.saveTrackerData(tracker)

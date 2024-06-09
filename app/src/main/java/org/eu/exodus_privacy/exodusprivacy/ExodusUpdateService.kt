@@ -52,7 +52,6 @@ class ExodusUpdateService : LifecycleService() {
 
     private var networkConnected: Boolean = false
 
-
     @Inject
     lateinit var networkManager: NetworkManager
 
@@ -224,13 +223,13 @@ class ExodusUpdateService : LifecycleService() {
             Toast.LENGTH_SHORT,
         ).show()
         serviceScope.launch {
-            syncManager.sync (
+            syncManager.sync(
                 onTrackerSyncDone = {
                     // Show a different notification if possible
                 },
                 onAppSync = {
                     currentSize.update { it + 1 }
-                }
+                },
             )
         }
     }
