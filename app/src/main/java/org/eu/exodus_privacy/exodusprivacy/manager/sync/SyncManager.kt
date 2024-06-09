@@ -64,6 +64,7 @@ class SyncManager @Inject constructor(
         withContext(ioDispatcher) {
             val validPackages = packageRepository.getValidPackageList()
             val currentAppList = packageRepository.getApplicationList(validPackages)
+            val syncedApps = mutableListOf<ExodusApplication>()
 
             launch {
                 removeDeletedApps(currentAppList)
@@ -92,9 +93,12 @@ class SyncManager @Inject constructor(
                     updated = latestApp.updated,
                 )
 
-                databaseRepository.saveApp(exodusApp)
+                syncedApps.add(exodusApp)
 
                 onAppSync(latestApp)
+            }
+            syncedApps.forEach { exodusApp ->
+                databaseRepository.saveApp(exodusApp)
             }
         }
     }
