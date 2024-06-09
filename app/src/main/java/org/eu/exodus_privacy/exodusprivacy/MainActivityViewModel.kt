@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val configStorage: ExodusDataStoreRepository<ExodusConfig>,
-    private val networkManager: NetworkManager,
+    networkManager: NetworkManager,
 ) : ViewModel() {
 
     val config = configStorage.getAll().asLiveData()
