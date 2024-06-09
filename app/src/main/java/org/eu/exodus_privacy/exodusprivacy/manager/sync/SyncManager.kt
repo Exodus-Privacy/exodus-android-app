@@ -4,6 +4,7 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -70,6 +71,8 @@ class SyncManager @Inject constructor(
                 removeDeletedApps(currentAppList)
             }
             currentAppList.forEach { app ->
+                ensureActive()
+
                 val appDetails = apiRepository.getAppDetails(app.packageName)
 
                 val latestApp = appDetails
@@ -103,7 +106,7 @@ class SyncManager @Inject constructor(
         }
     }
 
-    private suspend fun syncAllTrackers() = withContext(Dispatchers.IO) {
+    private suspend fun syncAllTrackers() = supervisorScope {
         val list = try {
             apiRepository.getAllTrackers()
         } catch (e: Exception) {
@@ -112,8 +115,8 @@ class SyncManager @Inject constructor(
             null
         }
         list?.trackers?.forEach { (key, tracker) ->
-            yield()
             launch {
+                ensureActive()
                 val trackerData = TrackerData(
                     id = key.toInt(),
                     categories = tracker.categories,
