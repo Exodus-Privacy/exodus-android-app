@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
@@ -144,13 +145,13 @@ class ExodusUpdateService : LifecycleService() {
                 }
 
                 serviceScope.launch {
-                    currentSize.collect { current ->
+                    currentSize.collectIndexed { index, current ->
                         notificationManager.notify(
                             SERVICE_ID,
                             createNotification(
                                 currentSize = current,
                                 totalSize = numberOfInstalledPackages,
-                                cancellable = !firstTime,
+                                cancellable = !firstTime && index == 0,
                                 context = this@ExodusUpdateService,
                             ),
                         )
