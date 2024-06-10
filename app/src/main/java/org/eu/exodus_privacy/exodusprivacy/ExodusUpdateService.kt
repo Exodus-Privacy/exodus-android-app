@@ -19,8 +19,6 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.update
@@ -44,9 +42,6 @@ class ExodusUpdateService : LifecycleService() {
     }
 
     private val TAG = ExodusUpdateService::class.java.simpleName
-
-    private val job = SupervisorJob()
-    private val serviceScope = CoroutineScope(job)
 
     // Tracker and Apps
     private val currentSize: MutableStateFlow<Int> = MutableStateFlow(1)
@@ -144,7 +139,7 @@ class ExodusUpdateService : LifecycleService() {
                     notificationManager.createNotificationChannel(notificationChannel)
                 }
 
-                serviceScope.launch {
+                lifecycleScope.launch {
                     currentSize.collectIndexed { index, current ->
                         notificationManager.notify(
                             SERVICE_ID,
@@ -223,7 +218,7 @@ class ExodusUpdateService : LifecycleService() {
             getString(R.string.fetching_apps),
             Toast.LENGTH_SHORT,
         ).show()
-        serviceScope.launch {
+        lifecycleScope.launch {
             syncManager.sync(
                 onTrackerSyncDone = {
                     // Show a different notification if possible
@@ -243,7 +238,6 @@ class ExodusUpdateService : LifecycleService() {
     private fun stopService() {
         IS_SERVICE_RUNNING = false
         notificationManager.cancel(SERVICE_ID)
-        job.cancel()
         stopSelf()
     }
 }
