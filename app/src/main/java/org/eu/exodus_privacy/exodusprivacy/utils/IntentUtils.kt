@@ -9,7 +9,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import java.util.Collections
 
 fun startIntent(context: Context, type: String, value: String, app: String?): Boolean {
-    var intent = Intent()
+    lateinit var intent: Intent
     when (type) {
         "web" -> intent = Intent(Intent.ACTION_VIEW, Uri.parse(value))
         "system" -> intent = Intent(value).apply {
