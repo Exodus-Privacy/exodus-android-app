@@ -2,7 +2,6 @@ package org.eu.exodus_privacy.exodusprivacy.fragments.apps
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +22,7 @@ import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAppsBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
+import org.eu.exodus_privacy.exodusprivacy.utils.getColumnScreen
 
 @AndroidEntryPoint
 class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickListener {
@@ -109,13 +109,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
         val appsRVAdapter = AppsRVAdapter(findNavController().currentDestination!!.id)
         binding.appListRV.apply {
             adapter = appsRVAdapter
-            val column: Int =
-                if (resources.configuration.smallestScreenWidthDp >= 600 && resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    2
-                } else {
-                    1
-                }
-            layoutManager = StaggeredGridLayoutManager(column, 1)
+            layoutManager = StaggeredGridLayoutManager(getColumnScreen(context), 1)
             addOnScrollListener(
                 object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
