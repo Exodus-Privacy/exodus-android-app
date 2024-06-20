@@ -9,12 +9,10 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
 
@@ -33,25 +31,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val snackbar = Snackbar
-            .make(
-                binding.fragmentCoordinator,
-                R.string.not_connected,
-                Snackbar.LENGTH_LONG,
-            )
-            .setAnchorView(binding.bottomNavView) // Snackbar will appear above bottom nav view
-            .setAction(R.string.settings) {
-                try {
-                    startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
-                } catch (ex: android.content.ActivityNotFoundException) {
-                    try {
-                        startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-                    } catch (ex: android.content.ActivityNotFoundException) {
-                        startActivity(Intent(Settings.ACTION_SETTINGS))
-                    }
-                }
-            }
-
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -59,10 +38,25 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
         // Show or hide the connection message depending on the network
-        lifecycleScope.launch {
-            viewModel.networkConnection.collect { connected ->
-                Log.d(TAG, "Observing Network Connection.")
-                if (!connected) snackbar.show()
+        viewModel.networkConnection.observe(this) { connected ->
+            Log.d(TAG, "Observing Network Connection.")
+            if (!connected) {
+                Snackbar.make(
+                    binding.fragmentCoordinator,
+                    R.string.not_connected,
+                    Snackbar.LENGTH_LONG,
+                ).setAnchorView(binding.bottomNavView) // Snackbar will appear above bottom nav view
+                    .setAction(R.string.settings) {
+                        try {
+                            startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
+                        } catch (ex: android.content.ActivityNotFoundException) {
+                            try {
+                                startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+                            } catch (ex: android.content.ActivityNotFoundException) {
+                                startActivity(Intent(Settings.ACTION_SETTINGS))
+                            }
+                        }
+                    }.show()
             }
         }
 
