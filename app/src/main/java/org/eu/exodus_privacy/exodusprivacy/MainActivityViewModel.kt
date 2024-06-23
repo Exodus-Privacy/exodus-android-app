@@ -1,11 +1,13 @@
 package org.eu.exodus_privacy.exodusprivacy
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
 import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
@@ -15,11 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val configStorage: ExodusDataStoreRepository<ExodusConfig>,
-    private val networkManager: NetworkManager,
+    networkManager: NetworkManager,
 ) : ViewModel() {
-    init {
-        networkManager.checkConnection()
-    }
 
     val config = configStorage.getAll().asLiveData()
     private val TAG = MainActivityViewModel::class.java.simpleName
@@ -44,8 +43,9 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    val networkConnection: LiveData<Boolean>
-        get() {
-            return networkManager.connectionObserver
-        }
+    val networkConnection: StateFlow<Boolean> = networkManager.isOnline.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = true,
+    )
 }
