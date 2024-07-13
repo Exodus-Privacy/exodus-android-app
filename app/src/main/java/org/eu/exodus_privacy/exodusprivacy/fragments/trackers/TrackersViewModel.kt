@@ -12,5 +12,5 @@ class TrackersViewModel @Inject constructor(
     exodusDatabaseRepository: ExodusDatabaseRepository,
 ) : ViewModel() {
 
-    val trackersList: LiveData<List<TrackerData>> = exodusDatabaseRepository.getActiveTrackers()
+    val trackersList: LiveData<List<TrackerData>> = exodusDatabaseRepository.getAllTrackers()
 }
