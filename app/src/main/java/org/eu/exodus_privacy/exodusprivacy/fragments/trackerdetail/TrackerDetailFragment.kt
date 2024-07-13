@@ -1,6 +1,5 @@
 package org.eu.exodus_privacy.exodusprivacy.fragments.trackerdetail
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
@@ -21,6 +20,7 @@ import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentTrackerDetailBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.apps.model.AppsRVAdapter
 import org.eu.exodus_privacy.exodusprivacy.utils.copyToClipboard
+import org.eu.exodus_privacy.exodusprivacy.utils.getColumnScreen
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -139,13 +139,7 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
                 binding.appsListRV.apply {
                     visibility = View.VISIBLE
                     adapter = appsRVAdapter
-                    val column: Int =
-                        if (resources.configuration.smallestScreenWidthDp >= 600 && resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                            2
-                        } else {
-                            1
-                        }
-                    layoutManager = StaggeredGridLayoutManager(column, 1)
+                    layoutManager = StaggeredGridLayoutManager(getColumnScreen(context), 1)
                 }
                 appsRVAdapter.submitList(it)
             }
