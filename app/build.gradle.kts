@@ -21,8 +21,8 @@ android {
         applicationId = "org.eu.exodus_privacy.exodusprivacy"
         minSdk = 23
         targetSdk = 34
-        versionCode = 22
-        versionName = "3.3.1"
+        versionCode = 23
+        versionName = "3.3.2"
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
         val API_KEY = System.getenv("EXODUS_API_KEY")
         buildConfigField("String", "EXODUS_API_KEY", "\"$API_KEY\"")
@@ -150,7 +150,6 @@ dependencies {
 
     // unit tests
     testImplementation(libs.junit)
-    testImplementation(libs.robolectric)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.androidx.test.runner)
