@@ -13,7 +13,6 @@ import org.eu.exodus_privacy.exodusprivacy.BuildConfig
 import org.eu.exodus_privacy.exodusprivacy.R
 import org.eu.exodus_privacy.exodusprivacy.databinding.FragmentAboutBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ThemeDialogFragment
-import org.eu.exodus_privacy.exodusprivacy.utils.getLanguage
 import org.eu.exodus_privacy.exodusprivacy.utils.openURL
 import org.eu.exodus_privacy.exodusprivacy.utils.startIntent
 import javax.inject.Inject
@@ -30,19 +29,11 @@ class AboutFragment : PreferenceFragmentCompat() {
     companion object {
         private const val analyzeURL = "https://reports.exodus-privacy.eu.org/analysis/submit/"
         private const val alternativesURL = "https://reports.exodus-privacy.eu.org/info/next/"
-        private const val privacyPolicyURL = "https://exodus-privacy.eu.org/en/page/privacy-policy/"
+        private const val privacyPolicyURL = "https://exodus-privacy.eu.org/page/privacy-policy/"
         private const val sourceCodeURL = "https://github.com/Exodus-Privacy/exodus-android-app"
         private const val websiteURL = "https://exodus-privacy.eu.org/"
         private const val mastodonURL = "https://framapiaf.org/@exodus"
         private const val emailID = "contact@exodus-privacy.eu.org"
-    }
-
-    private fun getLocaleWebsiteURL(): String {
-        return if (getLanguage() != "fr") {
-            websiteURL + "en"
-        } else {
-            websiteURL + "fr"
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,7 +84,7 @@ class AboutFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<Preference>("website")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, getLocaleWebsiteURL())
+            openURL(customTabsIntent, it.context, websiteURL)
             true
         }
 
@@ -113,7 +104,7 @@ class AboutFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<Preference>("privPolicy")?.setOnPreferenceClickListener {
-            openURL(customTabsIntent, it.context, getLocaleWebsiteURL() + "/page/privacy-policy/")
+            openURL(customTabsIntent, it.context, privacyPolicyURL)
             true
         }
 
