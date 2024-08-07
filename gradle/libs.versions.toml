@@ -31,7 +31,7 @@ room = "2.6.1"
 runner = "1.6.1"
 shimmer = "0.5.0"
 swiperefreshlayout = "1.1.0"
-ksp = "2.0.0-1.0.23"
+ksp = "2.0.10-1.0.24"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
