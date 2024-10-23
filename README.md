@@ -31,6 +31,12 @@ It helps you to take your privacy back!
 </a>
 </div>
 
+Signing certificate fingerprint to [verify](https://developer.android.com/studio/command-line/apksigner#usage-verify) the APK:
+```
+SHA-256: c9a406bd8e614c72bbdd242d56795f7a5ce13c0cf14bac22aec98030a71be486
+SHA-1: 70e35efaed2372a054b46fda2065dfa56e0a3319
+```
+
 ## Screenshots
 
 <p align="center">
