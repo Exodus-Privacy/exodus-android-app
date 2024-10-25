@@ -9,7 +9,7 @@ plugins {
 }
 
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-    version.set("1.3.0")
+    version.set("1.4.0")
     android.set(true)
 }
 
