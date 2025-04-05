@@ -15,7 +15,7 @@ configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
 android {
     namespace = "org.eu.exodus_privacy.exodusprivacy"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.eu.exodus_privacy.exodusprivacy"
