@@ -9,6 +9,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val TAG = MainActivity::class.java.simpleName
     private val viewModel: MainActivityViewModel by viewModels()
+    private var isBottomNavViewVisible = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition
@@ -53,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         val bottomNavigationView = binding.bottomNavView
+        bottomNavigationView.isVisible =
+            savedInstanceState?.getBoolean("bottomNavViewVisibility") ?: isBottomNavViewVisible
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
@@ -121,27 +125,38 @@ class MainActivity : AppCompatActivity() {
 
     // Hide the bottom navigation bar with animation
     private fun hideBottomNavigation(view: View) {
-        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        view.clearAnimation()
-        view.animate()
-            .translationY(view.height.toFloat())
-            .setDuration(300)
-            .setInterpolator(AccelerateDecelerateInterpolator())
-            .withEndAction {
-                view.visibility = View.GONE
-                view.setLayerType(View.LAYER_TYPE_NONE, null)
-            }
+        view.apply {
+            setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            clearAnimation()
+            animate()
+                .translationY(view.height.toFloat())
+                .setDuration(300)
+                .setInterpolator(AccelerateDecelerateInterpolator())
+                .withEndAction {
+                    isVisible = false
+                    isBottomNavViewVisible = false
+                    setLayerType(View.LAYER_TYPE_NONE, null)
+                }
+        }
     }
 
     // Show the bottom navigation bar with animation
     private fun showBottomNavigation(view: View) {
-        view.visibility = View.VISIBLE
-        view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        view.clearAnimation()
-        view.animate()
-            .translationY(0f)
-            .setDuration(300)
-            .setInterpolator(AccelerateDecelerateInterpolator())
-            .withEndAction { view.setLayerType(View.LAYER_TYPE_NONE, null) }
+        view.apply {
+            isVisible = true
+            isBottomNavViewVisible = true
+            setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            clearAnimation()
+            animate()
+                .translationY(0f)
+                .setDuration(300)
+                .setInterpolator(AccelerateDecelerateInterpolator())
+                .withEndAction { setLayerType(View.LAYER_TYPE_NONE, null) }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("bottomNavViewVisibility", isBottomNavViewVisible)
     }
 }
