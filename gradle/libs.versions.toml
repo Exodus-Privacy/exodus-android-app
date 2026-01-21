@@ -2,7 +2,7 @@
 androidGradlePlugin = "8.4.2"
 kotlinPlugin = "2.0.0"
 gradleKtlint = "12.1.1"
-activity-ktx = "1.9.0"
+activity-ktx = "1.9.3"
 androidx-core = "1.6.1"
 appcompat = "1.7.0"
 browser = "1.8.0"
