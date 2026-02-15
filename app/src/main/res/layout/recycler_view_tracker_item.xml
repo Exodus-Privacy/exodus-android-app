@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:textColor="?android:textColorPrimary"
         android:textSize="17sp"
+        android:textAlignment="viewStart"
         app:drawableEndCompat="@drawable/ic_forward"
         tools:text="Google Analytics"
         app:layout_constraintTop_toTopOf="parent"
