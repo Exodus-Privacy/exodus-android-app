@@ -36,9 +36,9 @@ class ExodusPackageRepository @Inject constructor(
         validPackages.forEach { packageInfo ->
             Log.d(TAG, "Found package: ${packageInfo.packageName}.")
             val app = Application(
-                packageInfo.applicationInfo.loadLabel(packageManager).toString(),
+                packageInfo.applicationInfo!!.loadLabel(packageManager).toString(),
                 packageInfo.packageName,
-                packageInfo.applicationInfo.loadIcon(packageManager)
+                packageInfo.applicationInfo!!.loadIcon(packageManager)
                     .toBitmap(resolution, resolution),
                 packageInfo.versionName ?: "",
                 PackageInfoCompat.getLongVersionCode(packageInfo),
@@ -73,9 +73,7 @@ class ExodusPackageRepository @Inject constructor(
             val permissionInfoSet = packagesWithPermissions.fold(
                 hashSetOf<String>(),
             ) { acc, next ->
-                if (next.requestedPermissions != null) {
-                    acc.addAll(next.requestedPermissions)
-                }
+                next.requestedPermissions?.let { acc.addAll(it) }
                 acc
             }
             Log.d(TAG, "Permission Info Set: $permissionInfoSet")
@@ -91,9 +89,9 @@ class ExodusPackageRepository @Inject constructor(
             Log.d(TAG, "Permission List: $permissionList")
             packagesWithPermissions.forEach { packageInfo ->
                 permissionMap[packageInfo.packageName] = permissionList.filter { perm ->
-                    packageInfo.requestedPermissions.any { reqPerm ->
+                    packageInfo.requestedPermissions?.any { reqPerm ->
                         reqPerm == perm.longName
-                    }
+                    } ?: false
                 }
             }
             return@withContext permissionMap
@@ -107,7 +105,7 @@ class ExodusPackageRepository @Inject constructor(
                 longName,
                 PackageManager.GET_META_DATA,
             )
-        } catch (exception: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             Log.d(TAG, "Unable to find info about $longName.")
         }
         var shortName = longName.substringAfterLast('.')
@@ -145,7 +143,7 @@ class ExodusPackageRepository @Inject constructor(
         val appInfo = packageInfo.applicationInfo
         val packageName = packageInfo.packageName
         return (
-            appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
+            appInfo!!.flags and ApplicationInfo.FLAG_SYSTEM == 0 ||
                 appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0 ||
                 packageManager.getLaunchIntentForPackage(packageName) != null
             ) &&

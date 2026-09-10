@@ -6,10 +6,14 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -31,9 +35,18 @@ class MainActivity : AppCompatActivity() {
         // Handle the splash screen transition
         installSplashScreen()
 
+        enableEdgeToEdge()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Prevent bottom nav view above the keyboard, when keyboard is visible
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavView) { v, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+            v.updatePadding(left = insets.left, right = insets.right, bottom = insets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
 
         val snackbar = Snackbar
             .make(
@@ -45,10 +58,10 @@ class MainActivity : AppCompatActivity() {
             .setAction(R.string.settings) {
                 try {
                     startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
-                } catch (ex: android.content.ActivityNotFoundException) {
+                } catch (_: android.content.ActivityNotFoundException) {
                     try {
                         startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-                    } catch (ex: android.content.ActivityNotFoundException) {
+                    } catch (_: android.content.ActivityNotFoundException) {
                         startActivity(Intent(Settings.ACTION_SETTINGS))
                     }
                 }

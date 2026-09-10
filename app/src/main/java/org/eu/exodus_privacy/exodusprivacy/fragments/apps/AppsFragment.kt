@@ -10,8 +10,11 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -41,6 +44,13 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
         _binding = FragmentAppsBinding.bind(view)
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
+
+        // Adjust UI components for edge to edge
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+            v.updatePadding(left = insets.left, right = insets.right, top = insets.top, bottom = insets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
 
         setupToolbar()
         setupSearchView()
@@ -127,7 +137,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
     }
 
     private fun setupShimmerLayout(view: View) {
-        for (num in 1..10) {
+        (1..10).forEach { _ ->
             val parent = binding.shimmerPlaceHolderLayout
             val shimmerLayout = LayoutInflater.from(view.context)
                 .inflate(R.layout.shimmer_layout_app_item, parent, false)

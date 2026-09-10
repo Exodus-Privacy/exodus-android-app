@@ -1,16 +1,60 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="BaseTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:statusBarColor">?android:colorBackground</item>
+    <style name="BaseTheme" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/color_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/color_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/color_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorOnSecondary">@color/color_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/color_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/color_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/color_tertiary</item>
+        <item name="colorOnTertiary">@color/color_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/color_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/color_onTertiaryContainer</item>
+        <item name="colorError">@color/color_error</item>
+        <item name="colorOnError">@color/color_onError</item>
+        <item name="colorErrorContainer">@color/color_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/color_onErrorContainer</item>
+        <item name="android:colorBackground">@color/color_background</item>
+        <item name="colorOnBackground">@color/color_onBackground</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_onSurface</item>
+        <item name="colorSurfaceVariant">@color/color_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/color_onSurfaceVariant</item>
+        <item name="colorOutline">@color/color_outline</item>
+        <item name="colorOutlineVariant">@color/color_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/color_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/color_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/color_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/color_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/color_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/color_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/color_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/color_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/color_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/color_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/color_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/color_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/color_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/color_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/color_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/color_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/color_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/color_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/color_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/color_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/color_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/color_surfaceContainerHighest</item>
+
         <item name="preferenceTheme">@style/Theme.Exodus.Preference</item>
     </style>
 
-    <style name="Theme.Exodus.Chip" parent="Widget.Material3.Chip.Suggestion.Elevated">
+    <style name="Theme.Exodus.Chip" parent="Widget.Material3.Chip.Suggestion">
         <item name="android:layout_marginEnd">5dp</item>
+        <item name="chipStrokeColor">@android:color/transparent</item>
         <item name="android:textColor">@color/chipIconTintColor</item>
         <item name="chipBackgroundColor">@color/chipColor</item>
         <item name="chipIconTint">@color/chipIconTintColor</item>
@@ -30,21 +74,11 @@
 
     <!-- Inherit base theme to allow overriding Light Theme as per API levels -->
     <style name="Theme.Exodus.Light" parent="BaseTheme">
-        <item name="android:navigationBarColor">@color/colorAccentTheme</item>
-        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation.Light</item>
-    </style>
-
-    <style name="Theme.BottomNavigation.Light" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">@color/colorAccentTheme</item>
     </style>
 
     <style name="Theme.Exodus" parent="Theme.Exodus.Light" />
 
-    <style name="Theme.Exodus.BottomNavTextActive" parent="TextAppearance.Material3.ActionBar.Title">
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Theme.Exodus.BottomNavTextInactive" parent="TextAppearance.Material3.ActionBar.Title">
+    <style name="Theme.Exodus.BottomNavText" parent="TextAppearance.Material3.LabelSmall">
         <item name="android:textSize">14sp</item>
     </style>
 
