@@ -30,7 +30,7 @@ jobs:
       - name: Generate debug build
         run: ./gradlew assembleDebug
       - name: Execute exodus-standalone
-        uses: docker://exodusprivacy/exodus-standalone:v1.4.0
+        uses: docker://exodusprivacy/exodus-standalone:v1.5.0
         with:
           args: /github/workspace/app/build/outputs/apk/debug/app-debug.apk
       - name: Upload APK
