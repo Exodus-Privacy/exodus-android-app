@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +33,13 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
 
+        // Adjust UI components for edge to edge
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+            v.updatePadding(left = insets.left, right = insets.right, top = insets.top, bottom = insets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
+
         val trackersRVAdapter =
             TrackersRVAdapter(false, findNavController().currentDestination!!.id)
         binding.trackersListRV.apply {
@@ -38,7 +48,7 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
         }
 
         // Setup Shimmer Layout
-        for (num in 1..10) {
+        (1..10).forEach { _ ->
             val parent = binding.shimmerPlaceHolderLayout
             val shimmerLayout = LayoutInflater.from(view.context)
                 .inflate(R.layout.shimmer_layout_tracker_item, parent, false)

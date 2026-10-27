@@ -1,11 +1,17 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jlleitschuh.gradle.ktlint")
-    id("org.jetbrains.kotlin.android")
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
@@ -15,40 +21,35 @@ configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
 android {
     namespace = "org.eu.exodus_privacy.exodusprivacy"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "org.eu.exodus_privacy.exodusprivacy"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 37
         versionCode = 23
         versionName = "3.3.2"
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
         val API_KEY = System.getenv("EXODUS_API_KEY")
         buildConfigField("String", "EXODUS_API_KEY", "\"$API_KEY\"")
+    }
 
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
-
-        signingConfigs {
-            create("releaseConfig") {
-                // check whether we are in release workflow or on dev system
-                if (System.getenv("KEYSTORE_FILE") != null) {
-                    storeFile = file(System.getenv("KEYSTORE_FILE"))
-                    storePassword = System.getenv("KEYSTORE_PASSWORD")
-                    keyAlias = System.getenv("KEYSTORE_ALIAS")
-                    keyPassword = System.getenv("KEYSTORE_PASSPHRASE")
-                } else {
-                    storeFile = file("release.keystore")
-                    storePassword = System.getenv("KEYSTORE_PASSWORD")
-                    keyAlias = System.getenv("KEYSTORE_ALIAS")
-                    keyPassword = System.getenv("KEYSTORE_PASSPHRASE")
-                }
+    signingConfigs {
+        create("releaseConfig") {
+            // check whether we are in release workflow or on dev system
+            if (System.getenv("KEYSTORE_FILE") != null) {
+                storeFile = file(System.getenv("KEYSTORE_FILE"))
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEYSTORE_ALIAS")
+                keyPassword = System.getenv("KEYSTORE_PASSPHRASE")
+            } else {
+                storeFile = file("release.keystore")
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEYSTORE_ALIAS")
+                keyPassword = System.getenv("KEYSTORE_PASSPHRASE")
             }
         }
     }
-
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
@@ -58,16 +59,9 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("releaseConfig")
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
     testOptions {
         unitTests {
@@ -79,7 +73,7 @@ android {
     }
     sourceSets {
         // Adds exported schema location as test app assets.
-        getByName("androidTest").assets.srcDirs("$projectDir/schemas")
+        getByName("androidTest").assets.directories.add("$projectDir/schemas")
     }
     buildFeatures {
         viewBinding = true

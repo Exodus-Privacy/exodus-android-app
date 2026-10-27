@@ -5,8 +5,7 @@
     android:id="@+id/fragmentCoordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:theme="@style/Theme.Exodus">
+    tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -21,9 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemTextAppearanceActive="@style/Theme.Exodus.BottomNavTextActive"
-        app:itemTextAppearanceInactive="@style/Theme.Exodus.BottomNavTextInactive"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation" />
+        app:itemTextAppearanceActive="@style/Theme.Exodus.BottomNavText"
+        app:itemTextAppearanceInactive="@style/Theme.Exodus.BottomNavText"
+        app:menu="@menu/bottom_navigation"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
