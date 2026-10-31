@@ -22,6 +22,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
@@ -47,8 +48,8 @@ class ExodusUpdateService : LifecycleService() {
 
     private val TAG = ExodusUpdateService::class.java.simpleName
 
-    private val job = SupervisorJob()
-    private val serviceScope = CoroutineScope(job)
+    private var job = SupervisorJob()
+    private var serviceScope = CoroutineScope(job + Dispatchers.IO)
 
     // Tracker and Apps
     private val trackersList = mutableListOf<TrackerData>()

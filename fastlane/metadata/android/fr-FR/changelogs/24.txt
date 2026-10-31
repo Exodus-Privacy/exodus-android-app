@@ -1,0 +1,2 @@
+- Correction de bugs visuels
+- Ajout du suppport d'Android 15, 16 et 17

@@ -27,8 +27,8 @@ android {
         applicationId = "org.eu.exodus_privacy.exodusprivacy"
         minSdk = 23
         targetSdk = 37
-        versionCode = 23
-        versionName = "3.3.2"
+        versionCode = 24
+        versionName = "3.4.0"
         testInstrumentationRunner = "org.eu.exodus_privacy.exodusprivacy.ExodusTestRunner"
         val API_KEY = System.getenv("EXODUS_API_KEY")
         buildConfigField("String", "EXODUS_API_KEY", "\"$API_KEY\"")
