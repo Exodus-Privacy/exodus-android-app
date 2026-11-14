@@ -59,7 +59,7 @@ Do you want to help to translate the application? Contribute here:
 
 https://crowdin.com/project/exodus-android-app
 
-- Exodus is fully translated into 5 languages and 27 languages can be translated in Crowdin.
+- Exodus is fully translated into 15 languages and 32 languages can be translated in Crowdin.
 - You can translate the app on Github but don't forget to insert a backslash `\` before any apostrophe `'`.
 
 ### Development
