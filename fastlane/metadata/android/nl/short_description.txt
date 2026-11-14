@@ -1,1 +1,1 @@
-Toon trackers en machtigingen van andere geïnstalleerde apps
+Exodus toont je de trackers en machtigingen van de apps die op je apparaat zijn geïnstalleerd.

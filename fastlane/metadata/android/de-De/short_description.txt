@@ -1,1 +1,0 @@
-Tracker und Berechtigungen anderer installierter Apps anzeigen

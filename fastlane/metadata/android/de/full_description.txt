@@ -1,0 +1,7 @@
+Exodus hilft dir herauszufinden, welche Tracker und Berechtigungen in installierten Apps auf deinem Gerät eingebettet sind.
+
+Die App downloadet Berichte aus der εxodus Plattform (https://reports.exodus-privacy.eu.org/) und zeigt dir diese App für App an.
+
+Diese App wird von der französischen Non-Profit-Organisation Exodus Privacy entwickelt. Besuch uns unter https://exodus-privacy.eu.org/en/.
+
+Quellcode: https://github.com/Exodus-Privacy/exodus-android-app

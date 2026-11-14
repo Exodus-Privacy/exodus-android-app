@@ -1,7 +1,7 @@
-Exodus Privacy は、デバイスにインストールされているアプリにどのトラッカーと権限が埋め込まれているかを知るためのツールです。
+Exodusは、デバイスにインストールされているアプリにどのトラッカーと権限が埋め込まれているかを知るためのツールです。
 
-アプリは Exodus Privacy（https://exodus-privacy.eu.org/）からレポートをダウンロードし、アプリごとにレポートを表示します。
+アプリは Exodusプラットフォーム（https://reports.exodus-privacy.eu.org/）からレポートをダウンロードし、アプリごとにレポートを表示します。
 
-アプリは、Google Play ストアからインストールされているアプリのみを検出できます。
+このアプリケーションは、フランスの非営利組織Exodus Privacyによって開発されています。https://exodus-privacy.org/en/をご覧ください。
 
-ソースコード：https://github.com/Exodus-Privacy/exodus-android-app/
+ソースコード：https://github.com/Exodus-Privacy/exodus-android-app

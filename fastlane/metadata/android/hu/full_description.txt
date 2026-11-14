@@ -1,7 +1,7 @@
-Az Exodus Privacy segít megtudni, hogy mely nyomkövetők és engedélyek vannak beágyazva az eszközére telepített alkalmazásokba.
+Az Exodus segít Önnek, hogy megtudja milyen nyomkövetőket tartalmaznak az eszközére telepített alkalmazások és milyen engedélyeket kérnek.
 
-Az alkalmazás jelentéseket tölt le az Exodus Privacy oldalról (https://exodus-privacy.eu.org/) és alkalmazásonként megjeleníti azokat Önnek
+Jelentéseket tölt le az εxodus platformról (https://reports.exodus-privacy.eu.org/) és alkalmazásonként megmutatja őket.
 
-Az alkalmazás csak a Google Play Áruházból telepített alkalmazásokat képes észlelni.
+Ezt az alkalmazást a francia Exodus Privacy non-profit szervezet fejlesztette, látogasson meg minket a https://exodus-privacy.eu.org/en/ címen.
 
-Forráskód: https://github.com/Exodus-Privacy/exodus-android-app/
+Forráskód: https://github.com/Exodus-Privacy/exodus-android-app

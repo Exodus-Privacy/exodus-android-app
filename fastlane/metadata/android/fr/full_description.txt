@@ -1,0 +1,7 @@
+Exodus vous permet de connaître les pisteurs et les permissions contenues dans les applications installées sur votre appareil.
+
+L'application télécharge les rapports de la plateforme εxodus (https://reports.exodus-privacy.eu.org/) et vous les affiche application par application.
+
+Cette application est développée par l'association française à but non lucratif Exodus Privacy, rendez-vous sur https://exodus-privacy.eu.org/fr/.
+
+Code source : https://github.com/Exodus-Privacy/exodus-android-app
