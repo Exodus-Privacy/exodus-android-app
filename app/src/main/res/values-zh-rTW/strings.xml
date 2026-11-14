@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">應用程式標誌</string>
+    <string name="trackers">追蹤器</string>
+    <string name="permissions">權限</string>
+    <string name="not_connected">無網路連線</string>
+    <string name="settings">設定</string>
+    <string name="refresh">重新整理</string>
+    <string name="cancel">取消</string>
+    <string name="title_apps">應用程式</string>
+    <string name="title_trackers">追蹤器</string>
+    <string name="title_about">關於</string>
+    <string name="back_button">返回</string>
+    <!-- Menu -->
+    <string name="menu_action_search">搜尋</string>
+    <string name="menu_action_filter">排序依據</string>
+    <!-- Filters -->
+    <string name="sort_by_name">名稱</string>
+    <string name="sort_by_creation_date">建立日期</string>
+    <!-- Apps Fragment -->
+    <!-- About Fragment -->
+    <string name="appLanguage">語言</string>
+    <string name="chooseTheme">主題</string>
+    <string name="analyze_desc">執行新分析</string>
+    <string name="alternatives">下一步？</string>
+    <string name="website">網站</string>
+    <string name="privPolicy">隱私政策</string>
+    <string name="privPolicy_desc">瞭解我們如何處理您的資料</string>
+    <string name="email">郵件</string>
+    <string name="email_desc">透過電子郵件聯絡我們</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">在 Exodus Privacy 上開啟</string>
+    <string name="submit_app">提交應用程式</string>
+    <string name="open_app_info">應用程式設定</string>
+    <string name="version">版本</string>
+    <string name="learn_more"><u>瞭解更多…</u></string>
+    <!-- ADTrackers Fragment -->
+    <!-- ADPermissions Fragment -->
+    <!-- Notification -->
+    <string name="updates">更新</string>
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">開啟追蹤器頁面</string>
+    <string name="detection_rules">偵測規則</string>
+    <string name="code_signature">程式碼偵測規則:</string>
+    <string name="network_signature">網路偵測規則:</string>
+    <string name="apps_list">應用程式清單</string>
+    <!-- Dialog Fragment -->
+    <string name="accept">接受</string>
+    <string name="reject">拒絕</string>
+    <string name="warning_title">允許 Exodus 傳輸所需資料？</string>
+    <string name="title_theme">選擇主題</string>
+    <string name="dark_theme">深色</string>
+    <string name="light_theme">淺色</string>
+    <string name="system_theme">系統預設</string>
+</resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo applicazione</string>
     <string name="trackers">Tracciatori</string>
@@ -13,18 +14,14 @@
     <string name="title_about">Informazioni</string>
     <string name="nothing_here">Niente da visualizzare attualmente. È possibile eseguire l\'aggiornamento!</string>
     <string name="back_button">Indietro</string>
-
     <!-- Menu -->
     <string name="menu_action_search">Cerca</string>
     <string name="menu_action_filter">Filtra</string>
-
     <!-- Filters -->
     <string name="sort_by_name">Nome</string>
     <string name="sort_by_creation_date">Data di creazione</string>
-
     <!-- Apps Fragment -->
     <string name="fetching_apps">Aggiornamento database reports!</string>
-
     <!-- About Fragment -->
     <string name="appLanguage">Lingua</string>
     <string name="chooseTheme">Tema</string>
@@ -39,7 +36,6 @@
     <string name="email">E-mail</string>
     <string name="email_desc">Contattaci tramite E-Mail</string>
     <string name="mastodon_desc">Rimani aggiornato sul progetto Exodus Privacy</string>
-
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Apri su Exodus Privacy</string>
     <string name="submit_app">Invia app</string>
@@ -52,29 +48,24 @@
     <string name="analyzed_version">Versione Analizzata</string>
     <string name="same_version">La stessa versione dell\'app può essere diversa a seconda della versione di Android e al dispositivo utilizzato.</string>
     <string name="learn_more"><u>Per saperne di più...</u></string>
-
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Abbiamo trovato i codici di firma dei seguenti tracker nell\'applicazione:</string>
     <string name="code_signature_not_found">Non abbiamo trovato il codice di firma di alcun tracker che conosciamo nell\'applicazione.</string>
     <string name="tracker_info">Un tracker è un software pensato per raccogliere dati su di te o sui tuoi utilizzi.</string>
     <string name="analyzed">Questa app non è ancora stata analizzata da Exodus Privacy.</string>
-
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Abbiamo trovato i permessi seguenti nell\'applicazione:</string>
     <string name="code_permission_not_found">Questa applicazione non richiede alcun permesso.</string>
     <string name="permission_info">I permessi sono azioni che l\'applicazione può fare sul telefono.</string>
     <string name="permission_info_dangerous">L\'icona <font color="red"><b>!</b></font> indica un livello \'Pericoloso\' o \'Speciale\' in base ai livelli di protezione di Google.</string>
-
     <!-- Notification -->
     <string name="updates">Aggiornamenti</string>
     <string name="updating_database">Aggiornamento report database… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
-
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> Applicazione</item>
         <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> Applicazioni</item>
     </plurals>
-
     <!-- TrackersDetail Fragment -->
     <string name="open_tracker_page">Apri pagina tracker</string>
     <string name="detection_rules">Regole di rilevamento</string>
@@ -85,7 +76,6 @@
         <item quantity="one">Presente in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) delle tue applicazioni</item>
         <item quantity="other">Presenti in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) delle tue applicazioni</item>
     </plurals>
-
     <!-- Dialog Fragment -->
     <string name="accept">Accetta</string>
     <string name="reject">Rifiuta</string>

@@ -1,72 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">Логотип застосунка</string>
+    <string name="app_logo">Логотип застосунку</string>
     <string name="trackers">Відстежувачі</string>
     <string name="permissions">Дозволи</string>
     <string name="not_connected">Нема зʼєднання з Інтернетом</string>
     <string name="settings">Налаштування</string>
-    <string name="version_mismatch">Встановлена версія &lt;&gt; Проаналізована версія</string>
-    <string name="version_unavailable">Додаток ніколи не аналізувався</string>
+    <string name="version_mismatch">Проаналізована версія відрізняється від встановленої. </string>
+    <string name="version_unavailable">Exodus Privacy поки не проаналізував цей застосунок.</string>
     <string name="refresh">Оновити</string>
     <string name="cancel">Скасувати</string>
     <string name="title_apps">Мої програми</string>
     <string name="title_trackers">Відстежувачі</string>
     <string name="title_about">Про</string>
-    <string name="nothing_here">Нема що відображати. Можете потягнути вниз, щоб оновити!</string>
-
+    <string name="nothing_here">Нема що показувати. Можете потягнути вниз, щоб оновити!</string>
+    <string name="back_button">Назад</string>
     <!-- Menu -->
     <string name="menu_action_search">Пошук</string>
     <string name="menu_action_filter">Фільтр</string>
-
     <!-- Filters -->
     <string name="sort_by_name">Назва</string>
     <string name="sort_by_creation_date">Дата створення</string>
-
     <!-- Apps Fragment -->
     <string name="fetching_apps">Оновлення бази звітів!</string>
-
+    <string name="no_search_results">Не знайдено застосунків за вашим пошуковим запитом.</string>
     <!-- About Fragment -->
     <string name="appLanguage">Мова</string>
     <string name="chooseTheme">Тема</string>
     <string name="analyze_desc">Виконати новий аналіз</string>
     <string name="alternatives">Що далі?</string>
     <string name="alternatives_desc">Деякі альтернативи існують!</string>
-    <string name="website">Веб-сайт</string>
-    <string name="website_desc">Дізнайтеся більше про проект Exodus Privacy</string>
-    <string name="srcCode_desc">Повідомлення про помилки та вихідний код</string>
+    <string name="website">Вебсайт</string>
+    <string name="website_desc">Дізнайтеся більше про проєкт Exodus Privacy</string>
+    <string name="srcCode_desc">Повідомляйте про помилки, перегляньте вихідний код</string>
     <string name="privPolicy">Політика конфіденційності</string>
     <string name="privPolicy_desc">Дізнайтеся, як ми обходимося з вашими даними</string>
     <string name="email">Пошта</string>
     <string name="email_desc">Зв\'язатися з нами поштою</string>
-
+    <string name="mastodon_desc">Будьте в курсі новин від проєкту Exodus Privacy</string>
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Відкрити на Exodus Privacy</string>
-    <string name="submit_app">Надіслати додаток</string>
+    <string name="submit_app">Надіслати застосунок</string>
     <string name="open_store">Відкрити магазин</string>
-    <string name="open_app_info">Налаштування додатку</string>
+    <string name="open_app_info">Налаштування застосунку</string>
     <string name="version">Версія</string>
     <string name="report_date">Звіт створено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">&#160;і оновлено <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Встановлена версія</string>
     <string name="analyzed_version">Проаналізована версія</string>
-    <string name="same_version">Одна й та сама версія додатку може відрізнятися в залежності від версії Android чи пристрою.</string>
+    <string name="same_version">Одна й та сама версія застосунку може відрізнятися в залежності від версії Android чи пристрою.</string>
     <string name="learn_more"><u>Дізнайтеся більше…</u></string>
-
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Ми знайшли код сиґнатури таких відстежувачів у цьому застосунку:</string>
     <string name="code_signature_not_found">Ми не знайшли відомих нам відстежувачів у цьому застосунку.</string>
     <string name="tracker_info">Трекер - це частина додатку, призначена для збору інформації про вас та ваші дії.</string>
     <string name="analyzed">Цей застосунок ще не аналізувався на Exodus Privacy.</string>
-
+    <string name="app_restrictions">Exodus не може аналізувати застосунки, що недоступні в Google Play чи FDdroid, або мають географічні чи програмні обмеження.</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Ми знайшли наступні дозволи в цьому застосунку:</string>
     <string name="code_permission_not_found">Цей застосунок не вимагає дозволів.</string>
     <string name="permission_info">Доступи - це дозволені дії, які додаток може здійснювати на вашому пристрої.</string>
     <string name="permission_info_dangerous">Іконка <font color="red"><b>!</b></font> позначає \"Небезпечні\" чи \"Спеціалізовані\" рівні доступу відповідно до шкали захисту Google.</string>
-
     <!-- Notification -->
     <string name="updates">Оновлення</string>
     <string name="updating_database">Оновлення бази звітів…(<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
-
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> додатків</item>
@@ -74,7 +70,6 @@
         <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> додатків</item>
         <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> додатків</item>
     </plurals>
-
     <!-- TrackersDetail Fragment -->
     <string name="open_tracker_page">Відкрити сторінку трекера</string>
     <string name="detection_rules">Правила виявлення </string>
@@ -87,12 +82,11 @@
         <item quantity="many">Присутній у <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> додатків) ваших додатків</item>
         <item quantity="other">Присутній у <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> додатків) ваших додатків</item>
     </plurals>
-
     <!-- Dialog Fragment -->
     <string name="accept">Прийняти</string>
     <string name="reject">Відхилити</string>
     <string name="warning_title">Дозволити Exodus передавати потрібні дані?</string>
-    <string name="warning_desc">Для виконання свої функції цей додаток повинен збирати дані та надсилати їх на сервери проєкту Exodus Privacy. Список ваших додатків має бути переданий на сервер для аналізу на наявність трекерів. Ці дані не містять жодної персональної інформації.</string>
+    <string name="warning_desc">Для виконання своєї функції цей застосунок повинен збирати дані та надсилати їх на сервери проєкту Exodus Privacy, зокрема список застосунків для аналізу на наявність трекерів. Ці дані не містять жодної персональної інформації.</string>
     <string name="title_theme">Вибір теми</string>
     <string name="dark_theme">Темна</string>
     <string name="light_theme">Світла</string>

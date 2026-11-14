@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">لوگوی برنامه</string>
+    <string name="trackers">ردیاب ها</string>
+    <string name="permissions">دسترسی‌ها</string>
+    <string name="not_connected">اتصالی به اینترنت وجود ندارد</string>
+    <string name="settings">تنظیمات</string>
+    <string name="version_mismatch"></string>
+    <string name="version_unavailable">این برنامه هنوز توسط حریم خصوصی Exodus تجزیه و تحلیل نشده است.</string>
+    <string name="refresh">تازه‌سازی</string>
+    <string name="cancel">لغو</string>
+    <string name="title_apps">برنامه‌ها</string>
+    <string name="title_trackers">ردیاب ها</string>
+    <string name="title_about">درباره</string>
+    <string name="nothing_here">در حال حاضر چیزی برای نمایش وجود ندارد. برای تازه کردن می توانید به پایین بکشید!</string>
+    <string name="back_button">برگشت</string>
+    <!-- Menu -->
+    <string name="menu_action_search">جستجو</string>
+    <string name="menu_action_filter">چینش بر اساس</string>
+    <!-- Filters -->
+    <string name="sort_by_name">نام</string>
+    <string name="sort_by_creation_date">تاریخ ساخت</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">به روز رسانی پایگاه داده گزارش ها!</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">زبان</string>
+    <string name="chooseTheme">زمینه</string>
+    <string name="analyze_desc">به روز رسانی پایگاه داده گزارش ها</string>
+    <string name="alternatives">گام بعدی چیست؟</string>
+    <string name="alternatives_desc">چند جایگزین وجود دارد!</string>
+    <string name="website">وب سایت</string>
+    <string name="website_desc">در مورد پروژه حریم خصوصی Exodus اطلاعات بیشتری بیابید</string>
+    <string name="srcCode_desc">گزارش اشکالات، مشاهده کد منبع</string>
+    <string name="privPolicy">سیاست حریم خصوصی</string>
+    <string name="privPolicy_desc">یادگیری نحوه مدیریت ما بر داده‌های شما</string>
+    <string name="email">ايميل</string>
+    <string name="email_desc">از طریق ایمیل با ما در ارتباط باشید</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">باز نمودن در حریم خصوصی Exodus</string>
+    <string name="submit_app">ارسال برنامه</string>
+    <string name="open_store">ورود به فروشگاه</string>
+    <string name="open_app_info">تنظیمات برنامه</string>
+    <string name="version">نسخه</string>
+    <string name="report_date">گزارش ایجاد شده در <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">نسخه نصب شده</string>
+    <string name="analyzed_version">نسخه تحلیل شده</string>
+    <string name="same_version">ممکن است نسخه اندروید برنامه انتخابی با نسخه اندروید دستگاه مورد استفاده متفاوت باشد.</string>
+    <string name="learn_more"><u>بیشتر بدانید...</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">ما امضای کد ردیاب های زیر را در برنامه پیدا کرده ایم:</string>
+    <string name="code_signature_not_found">ما امضای کد هیچ ردیابی را که در برنامه می شناسیم پیدا نکرده ایم.</string>
+    <string name="tracker_info">ردیاب نرم‌افزاری است که برای جمع‌آوری داده‌های مربوط به شما یا استفاده‌های شما طراحی شده است.</string>
+    <string name="analyzed">این برنامه هنوز توسط حریم خصوصی Exodus تجزیه و تحلیل نشده است.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">ما مجوزهای زیر را در برنامه پیدا کرده ایم:</string>
+    <string name="code_permission_not_found">این برنامه به هیچ مجوزی نیاز ندارد.</string>
+    <string name="permission_info">مجوزها اقداماتی هستند که برنامه می تواند در تلفن شما انجام دهد.</string>
+    <string name="permission_info_dangerous">نماد <font color="red"><b>!</b></font> یک سطح \"خطرناک\" یا \"ویژه\" را با توجه به سطوح حفاظتی Google نشان می دهد.</string>
+    <!-- Notification -->
+    <string name="updates">به‌روزرسانی‌ها</string>
+    <string name="updating_database">در حال به‌روزرسانی پایگاه داده گزارش‌ها… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">ورود به صفحه ردیاب</string>
+    <string name="detection_rules">قوانین تشخیص</string>
+    <string name="code_signature">قانون تشخیص کد:</string>
+    <string name="network_signature">قانون تشخیص شبکه:</string>
+    <string name="apps_list">فهرست برنامه‌ها</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">نمایش <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> برنامه) در برنامه هایتان</item>
+        <item quantity="other">دیگر
+ موجود در <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> برنامه) از برنامه های شما</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">پذیرفتن</string>
+    <string name="reject">رد کردن</string>
+    <string name="warning_title">اجازه می‌دهید Exodus داده‌های مورد نیاز را منتقل کند؟</string>
+    <string name="warning_desc">برای اجرا، این برنامه باید داده هایی را به سرورهای حریم خصوصی Exodus که شامل لیست برنامه های نصب شده روی این دستگاه برای تجزیه و تحلیل ردیاب است، جمع آوری و ارسال کند. این شامل هیچ اطلاعات شخصی نیست.</string>
+    <string name="title_theme">یک تم انتخاب کنید</string>
+    <string name="dark_theme">تیره</string>
+    <string name="light_theme">روشن</string>
+    <string name="system_theme">پیش فرض سیستم</string>
+</resources>

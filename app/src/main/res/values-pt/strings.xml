@@ -1,18 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logótipo da aplicação</string>
     <string name="trackers">Rastreadores</string>
     <string name="permissions">Permissões</string>
     <string name="not_connected">Sem ligação à Internet</string>
     <string name="settings">Configurações</string>
-    <string name="version_mismatch">Versão instalada &lt;&gt; Versão analisada</string>
-    <string name="version_unavailable">Aplicação nunca analisada</string>
+    <string name="version_mismatch">A versão analisada é diferente da versão instalada.</string>
+    <string name="version_unavailable">Esta aplicação ainda não foi analisada pelo Exodus Privacy.</string>
     <string name="refresh">Atualizar</string>
     <string name="cancel">Cancelar</string>
     <string name="title_apps">Aplicações</string>
     <string name="title_trackers">Rastreadores</string>
     <string name="title_about">Sobre</string>
     <string name="nothing_here">Nada para mostrar atualmente. Pode atualizar!</string>
-    <string name="back_button">Back</string>
+    <string name="back_button">Voltar</string>
     <!-- Menu -->
     <string name="menu_action_search">Procurar</string>
     <string name="menu_action_filter">Filtro</string>
@@ -21,6 +22,7 @@
     <string name="sort_by_creation_date">Data de criação</string>
     <!-- Apps Fragment -->
     <string name="fetching_apps">A atualizar a base de dados de relatórios!</string>
+    <string name="no_search_results">Não existem aplicações que correspondam à sua consulta de pesquisa.</string>
     <!-- About Fragment -->
     <string name="appLanguage">Língua</string>
     <string name="chooseTheme">Tema</string>
@@ -34,6 +36,7 @@
     <string name="privPolicy_desc">Saiba como lidamos com os seus dados</string>
     <string name="email">Email</string>
     <string name="email_desc">Contacte-nos por email</string>
+    <string name="mastodon_desc">Mantenha-se atualizado sobre o projeto Exodus Privacy</string>
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Abrir no Exodus Privacy</string>
     <string name="submit_app">Submeter aplicação</string>
@@ -51,6 +54,7 @@
     <string name="code_signature_not_found">Não encontrámos a assinatura do código de nenhum rastreador na aplicação.</string>
     <string name="tracker_info">Um rastreador é um software destinado a recolher dados sobre si ou as suas utilizações.</string>
     <string name="analyzed">Esta aplicação ainda não foi analisada pelo Exodus Privacy.</string>
+    <string name="app_restrictions">O Exodus não pode analisar aplicações que não estão disponíveis no Google Play, FDroid ou que estão relacionados a restrições geográficas ou de software.</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Encontramos as seguintes permissões na aplicação:</string>
     <string name="code_permission_not_found">Esta aplicação não necessita de permissões.</string>

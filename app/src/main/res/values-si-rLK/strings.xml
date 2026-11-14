@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">යෙදුමේ ලාංඡනය</string>
+    <string name="trackers">ලුහුබැඳිම්</string>
+    <string name="permissions">අවසර</string>
+    <string name="not_connected">අන්තර්ජාල සම්බන්ධතාවයක් නැත</string>
+    <string name="settings">සැකසුම්</string>
+    <string name="version_mismatch">විශ්ලේෂණ කළ අනුවාදය ස්ථාපිත අනුවාදයට වඩා වෙනස් ය.</string>
+    <string name="version_unavailable">මෙම යෙදුම එක්සෝඩස් ප්‍රයිවසි මගින් විශ්ලේෂණය කර නැත.</string>
+    <string name="refresh">නැවුම්</string>
+    <string name="cancel">අවලංගු</string>
+    <string name="title_apps">යෙදුම්</string>
+    <string name="title_trackers">ලුහුබැඳිම්</string>
+    <string name="title_about">පිළිබඳව</string>
+    <string name="nothing_here">දැනට පෙන්වීමට කිසිවක් නැත. ඔබට නැවුම් කිරීමට අදින්න පුළුවන්!</string>
+    <string name="back_button">ආපසු</string>
+    <!-- Menu -->
+    <string name="menu_action_search">සොයන්න</string>
+    <string name="menu_action_filter">පෙරහන</string>
+    <!-- Filters -->
+    <string name="sort_by_name">නම</string>
+    <string name="sort_by_creation_date">සෑදූ දිනය</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">වාර්තා දත්තසමුදාය යාවත්කාලීන වෙමින්!</string>
+    <string name="no_search_results">ඔබගේ සෙවුම් විමසුමට ගැළපෙන යෙදුම් නැත.</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">භාෂාව</string>
+    <string name="chooseTheme">තේමාව</string>
+    <string name="analyze_desc">නව විශ්ලේෂණයක් කරන්න</string>
+    <string name="alternatives">ඊලඟට කුමක්ද?</string>
+    <string name="alternatives_desc">සමහර විකල්ප තිබේ!</string>
+    <string name="website">අඩවිය</string>
+    <string name="website_desc">එක්සෝඩස් ප්‍රයිවසි ව්‍යාපෘතිය ගැන තව තොරතුරු සොයාගන්න</string>
+    <string name="srcCode_desc">දෝෂ වාර්තා කරන්න, මූලාශ්‍ර කේත බලන්න</string>
+    <string name="privPolicy">රහස්‍යතා ප්‍රතිපත්තිය</string>
+    <string name="privPolicy_desc">ඔබගේ දත්ත හසුරුවන ආකාරය දැනගන්න</string>
+    <string name="email">තැපෑල</string>
+    <string name="email_desc">වි-තැපෑල හරහා අප අමතන්න</string>
+    <string name="mastodon_desc">එක්සෝඩස් ප්‍රයිවසි ව්‍යාපෘතිය සමඟ යාවත්කාලීනව සිටින්න</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">එක්සෝඩස් ප්‍රයිවසි තුළ අරින්න</string>
+    <string name="submit_app">යෙදුම යොමන්න</string>
+    <string name="open_store">ගබඩාව අරින්න</string>
+    <string name="open_app_info">යෙදුමේ සැකසුම්</string>
+    <string name="version">අනුවාදය</string>
+    <string name="report_date"><xliff:g id="date">%1$s</xliff:g> දී වාර්තාව සෑදිණි.</string>
+    <string name="updated">&#160; සහ <xliff:g id="date">%1$s</xliff:g> දී යාවත්කාලීන විය.</string>
+    <string name="installed_version">ස්ථාපිත අනුවාදය</string>
+    <string name="analyzed_version">විශ්ලේෂිත අනුවාදය</string>
+    <string name="same_version">භාවිතා කරන Android අනුවාදය සහ උපාංගය අනුව එකම යෙදුම් අනුවාදය වෙනස් විය හැකිය.</string>
+    <string name="learn_more"><u>තව දැනගන්න…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">අපට යෙදුම තුළ පහත ලුහුබැඳීම්වල කේත අත්සන් හමු විය:</string>
+    <string name="code_signature_not_found">යෙදුම තුළ අප දන්නා කිසිදු ලුහුබැඳීමක කේත අත්සනක් හමු නොවිණි.</string>
+    <string name="tracker_info">ට්‍රැකර් එකක් යනු ඔබ හෝ ඔබේ භාවිතයන් පිළිබඳ දත්ත රැස් කිරීමට අදහස් කරන මෘදුකාංගයකි.</string>
+    <string name="analyzed">මෙම යෙදුම එක්සෝඩස් ප්‍රයිවසි මගින් විශ්ලේෂණය කර නැත.</string>
+    <string name="app_restrictions">Exodus හට Google Play හෝ FDroid හි නොමැති හෝ භූගෝලීය හෝ මෘදුකාංග සීමාවන්ට අදාළ යෙදුම් විශ්ලේෂණය කළ නොහැක.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">අපට යෙදුම තුළ පහත අවසර හමු විය:</string>
+    <string name="code_permission_not_found">මෙම යෙදුමට කිසිම අවසරයක් අවශ්‍ය නොවේ.</string>
+    <string name="permission_info">අවසර යනු ඔබගේ දුරකථනයේ යෙදුමට ගත හැකි ක්‍රියාමාර්ග වේ.</string>
+    <string name="permission_info_dangerous"><font color="red"><b>!</b></font> නිරූපකය Google හි ආරක්ෂණ මට්ටම් අනුව \'භයානක\' හෝ \'විශේෂ\' මට්ටමක් දක්වයි.</string>
+    <!-- Notification -->
+    <string name="updates">යාවත්කාල</string>
+    <string name="updating_database">වාර්තා දත්ත සමුදාය යාවත්කාලීන කිරීම… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one">යෙදුම් <xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g></item>
+        <item quantity="other">යෙදුම් <xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g></item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">ලුහුබැඳීමේ පිටුව අරින්න</string>
+    <string name="detection_rules">අනාවරණ නීති</string>
+    <string name="code_signature">කේත අනාවරණ නීතිය:</string>
+    <string name="network_signature">ජාල අනාවරණ නීතිය:</string>
+    <string name="apps_list">යෙදුම් ලේඛනය</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">ඔබගේ යෙදුම්වල <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> යෙදුම) තුළ ඉදිරිපත් කරන්න.</item>
+        <item quantity="other">ඔබගේ යෙදුම්වල <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> යෙදුම්) තුළ ඉදිරිපත් කරන්න.</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">පිළිගන්න</string>
+    <string name="reject">ප්‍රතික්‍ෂේප</string>
+    <string name="warning_title">අවශ්‍ය දත්ත සම්ප්‍රේෂණය කිරීමට Exodus හට ඉඩ දෙන්නද?</string>
+    <string name="warning_desc">ක්‍රියාත්මක වීමට නම්, මෙම යෙදුම ට්‍රැකර් විශ්ලේෂණය සඳහා මෙම උපාංගයේ ස්ථාපනය කර ඇති යෙදුම් ලැයිස්තුව ඇතුළත් Exodus Privacy සේවාදායකයන්ට දත්ත රැස් කර යැවිය යුතුය. එහි කිසිදු පුද්ගලික තොරතුරක් අඩංගු නොවේ.</string>
+    <string name="title_theme">තේමාවක් තෝරන්න</string>
+    <string name="dark_theme">අඳුරු</string>
+    <string name="light_theme">දීප්ත</string>
+    <string name="system_theme">පද්ධතියේ පෙරනිමි</string>
+</resources>

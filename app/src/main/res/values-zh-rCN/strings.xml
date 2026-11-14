@@ -1,18 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">应用程序徽标</string>
+    <string name="app_logo">应用程序图标</string>
     <string name="trackers">跟踪器</string>
     <string name="permissions">权限</string>
-    <string name="not_connected">没有互联网连接</string>
+    <string name="not_connected">没有网络连接</string>
     <string name="settings">设置</string>
-    <string name="version_mismatch">已安装版本 &lt;&gt; 已分析版本</string>
-    <string name="version_unavailable">从未分析过应用</string>
+    <string name="version_mismatch">分析后的版本与安装版本不同</string>
+    <string name="version_unavailable">Exodus Privacy 尚未分析此应用。</string>
     <string name="refresh">刷新</string>
     <string name="cancel">取消</string>
     <string name="title_apps">应用</string>
     <string name="title_trackers">跟踪器</string>
     <string name="title_about">关于</string>
     <string name="nothing_here">当前没有要显示的内容。您可以下拉刷新！</string>
-    <string name="back_button">Back</string>
+    <string name="back_button">返回</string>
     <!-- Menu -->
     <string name="menu_action_search">搜索</string>
     <string name="menu_action_filter">筛选器</string>
@@ -21,6 +22,7 @@
     <string name="sort_by_creation_date">创建日期</string>
     <!-- Apps Fragment -->
     <string name="fetching_apps">正在更新报告数据库！</string>
+    <string name="no_search_results">没有匹配您搜索的应用。</string>
     <!-- About Fragment -->
     <string name="appLanguage">语言</string>
     <string name="chooseTheme">主题</string>
@@ -52,6 +54,7 @@
     <string name="code_signature_not_found">我们尚未在应用程序中发现任何我们知道的跟踪器的代码签名。</string>
     <string name="tracker_info">跟踪器是用于收集有关您或您的使用情况的软件。</string>
     <string name="analyzed">Exodus Privacy 尚未分析此应用。</string>
+    <string name="app_restrictions">Exodus 无法分析 Google Play 或 FDroid 上没有的应用或与地理或软件限制相关的应用。</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">我们在应用程序中发现了以下权限:</string>
     <string name="code_permission_not_found">此应用程序不需要任何权限。</string>

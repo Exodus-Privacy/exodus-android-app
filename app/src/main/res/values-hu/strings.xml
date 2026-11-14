@@ -1,18 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_logo">Alkalmazáslogó</string>
+    <string name="app_logo">Az alkalmazás logója</string>
     <string name="trackers">Nyomkövetők</string>
     <string name="permissions">Engedélyek</string>
     <string name="not_connected">Nincs internetkapcsolat</string>
     <string name="settings">Beállítások</string>
-    <string name="version_mismatch">Telepített változat &lt;&gt; Vizsgált változat</string>
-    <string name="version_unavailable">Az alkalmazás még sosem volt vizsgálva</string>
-    <string name="refresh">Frissítés</string>
+    <string name="version_mismatch">Az elemzett verzió eltér a telepített verziótól.</string>
+    <string name="version_unavailable">Ezt az alkalmazást még nem elemezte az Exodus Privacy.</string>
+    <string name="refresh">Frissít</string>
     <string name="cancel">Mégsem</string>
     <string name="title_apps">Alkalmazások</string>
     <string name="title_trackers">Nyomkövetők</string>
     <string name="title_about">Névjegy</string>
     <string name="nothing_here">Jelenleg nincs semmi megjeleníthető. Lefelé húzással frissítheti!</string>
-    <string name="back_button">Back</string>
+    <string name="back_button">Vissza</string>
     <!-- Menu -->
     <string name="menu_action_search">Keresés</string>
     <string name="menu_action_filter">Rendezési elv</string>
@@ -21,6 +22,7 @@
     <string name="sort_by_creation_date">Létrehozás dátuma</string>
     <!-- Apps Fragment -->
     <string name="fetching_apps">Jelentésadatbázis frissítése!</string>
+    <string name="no_search_results">Nincs olyan alkalmazás, amely megfelelne a keresési lekérdezésének.</string>
     <!-- About Fragment -->
     <string name="appLanguage">Nyelv</string>
     <string name="chooseTheme">Téma</string>
@@ -42,7 +44,7 @@
     <string name="open_app_info">Alkalmazásbeállítások</string>
     <string name="version">Változat</string>
     <string name="report_date">A jelentés elkészítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">&#160;és frissítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;frissítésének ideje <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Telepített változat</string>
     <string name="analyzed_version">Vizsgált változat</string>
     <string name="same_version">Egyező alkalmazásverzió esetén is lehetnek különbségek a használt Android verzió és eszköz függvényében.</string>
@@ -52,6 +54,7 @@
     <string name="code_signature_not_found">Az alkalmazásban nem találtunk az általunk ismert nyomkövetők kódjai közül egyet sem.</string>
     <string name="tracker_info">A nyomkövető egy olyan szoftver, amelynek célja az Ön adatainak és tevékenységének összegyüjtése és továbbítása észrevétlenül.</string>
     <string name="analyzed">Ezt az alkalmazást még nem elemezte az Exodus Privacy.</string>
+    <string name="app_restrictions">Az Exodus azokat az alkalmazásokat, amelyek nem érhetők el a Google Play-en vagy az FDroid-on, vagy amelyekhez földrajzi vagy szoftveres korlátozások kapcsolódnak, nem tudja elemezni.</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Az alkalmazásban a következő engedélyeket találtuk:</string>
     <string name="code_permission_not_found">Ez az alkalmazás nem igényel engedélyeket.</string>
