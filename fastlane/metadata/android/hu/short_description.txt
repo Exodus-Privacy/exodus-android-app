@@ -1,1 +1,1 @@
-Nyomkövetők és engedélyek megjelenítése más telepített alkalmazásokból
+Az Exodus megjeleníti a készülékére telepített alkalmazásokban lévő követőket és az igényelt engedélyeket.

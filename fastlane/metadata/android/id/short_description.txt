@@ -1,1 +1,1 @@
-Memperlihatkan pelacak dan izin dari aplikasi yang terpasang
+Exodus menampilkan pelacak dan izin dalam aplikasi yang diinstal pada perangkat Anda.

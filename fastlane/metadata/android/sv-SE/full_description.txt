@@ -1,0 +1,7 @@
+Exodus Privacy hjälper dig att veta vilka spårare och behörigheter som är inbäddade i appar som är installerade på din enhet.
+
+Appen laddar ner rapporter från Exodus Privacy (https://reports.exodus-privacy.eu.org/) och redovisar dem för dig app för app.
+
+Denna applikation är utvecklad av den franska ideella organisationen Exodus Privacy, besök oss på https://exodus-privacy.eu.org/sv/.
+
+Källkod: https://github.com/Exodus-Privacy/exodus-android-app

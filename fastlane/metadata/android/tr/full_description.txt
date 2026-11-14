@@ -1,7 +1,7 @@
-Exodus Privacy, cihazınızda yüklü uygulamalarda hangi izleyicilerin ve izinlerin gömülü olduğunu bilmenize yardımcı olur.
+Exodus, hangi izleyicilerin ve izinlerin cihazınıza yüklenen uygulamalara gömüldüğünü bilmenize yardımcı olur.
 
-Bu ygulama Exodus Privacy'den (https://exodus-privacy.eu.org/) raporları indirir ve bunları uygulama bazında size gösterir
+Uygulama, εxodus platformundan (https://reports.exodus-privacy.eu.org/) raporları indirir ve bunları uygulamaya göre bunları size gösterir.
 
-Uygulama, yalnızca Google Play Mağazası'ndan yüklenen uygulamaları algılayabilir.
+Bu uygulama Fransız kar amacı gütmeyen kuruluş Exodus Privacy tarafından geliştirilmiştir, bizi https://exodus-privacy.eu.org/en/ adresinden ziyaret edebilirsiniz.
 
-Kaynak Kodu: https://github.com/Exodus-Privacy/exodus-android-app/
+Kaynak kodu: https://github.com/Exodus-Privacy/exodus-android-app

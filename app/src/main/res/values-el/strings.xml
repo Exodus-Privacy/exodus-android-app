@@ -1,38 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Λογότυπο Εφαρμογής</string>
     <string name="trackers">Trackers</string>
     <string name="permissions">Άδειες</string>
     <string name="not_connected">Χωρίς σύνδεση στο Διαδίκτυο</string>
-    <string name="title_trackers">Trackers</string>
+    <string name="settings">Ρυθμίσεις</string>
+    <string name="version_mismatch">Η αναλυμένη έκδοση είναι διαφορετική από την εγκατεστημένη έκδοση.</string>
+    <string name="version_unavailable">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
+    <string name="refresh">Ανανέωση</string>
+    <string name="cancel">Ακύρωση</string>
+    <string name="title_apps">Εφαρμογές</string>
+    <string name="title_trackers">Ιχνηλάτες</string>
+    <string name="title_about">Σχετικά με</string>
+    <string name="nothing_here">Τίποτα προς εμφάνιση τώρα. Μπορείτε να τραβήξετε για ανανέωση!</string>
     <string name="back_button">Πίσω</string>
-
     <!-- Menu -->
-    <string name="menu_action_filter">Φίλτρο</string>
-
+    <string name="menu_action_search">Αναζήτηση</string>
+    <string name="menu_action_filter">Ταξινόμηση κατά</string>
     <!-- Filters -->
+    <string name="sort_by_name">Όνομα</string>
+    <string name="sort_by_creation_date">Ημερομηνία δημιουργίας</string>
     <!-- Apps Fragment -->
+    <string name="fetching_apps">Ενημέρωση βάσης δεδομένων αναφορών!</string>
+    <string name="no_search_results">Δεν υπάρχουν εφαρμογές που να ταιριάζουν με το ερώτημα αναζήτησης.</string>
     <!-- About Fragment -->
     <string name="appLanguage">Γλώσσα</string>
+    <string name="chooseTheme">Θέμα</string>
     <string name="analyze_desc">Εκτελέστε μια νέα ανάλυση</string>
+    <string name="alternatives">Τι υπάρχει στη συνέχεια;</string>
+    <string name="alternatives_desc">Υπάρχουν κάποιες εναλλακτικές!</string>
+    <string name="website">Ιστοσελίδα</string>
+    <string name="website_desc">Βρείτε περισσότερες πληροφορίες για το έργο Exodus Privacy</string>
+    <string name="srcCode_desc">Αναφορά σφαλμάτων, προβολή του πηγαίου κώδικα</string>
+    <string name="privPolicy">Πολιτική απορρήτου</string>
+    <string name="privPolicy_desc">Μάθετε πώς χειριζόμαστε τα δεδομένα σας</string>
+    <string name="email">Αλληλογραφία</string>
+    <string name="email_desc">Επικοινωνήστε μαζί μας μέσω ηλεκτρονικού ταχυδρομείου</string>
+    <string name="mastodon_desc">Μείνετε ενημερωμένοι στο έργο Exodus Privacy</string>
     <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Άνοιγμα στο Exodus Privacy</string>
+    <string name="submit_app">Υποβολή εφαρμογής</string>
+    <string name="open_store">Άνοιγμα καταστήματος</string>
+    <string name="open_app_info">Ρυθμίσεις Εφαρμογής</string>
+    <string name="version">Έκδοση</string>
     <string name="report_date">Η αναφορά δημιουργήθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
     <string name="updated">&#160;και ενημερώθηκε στις <xliff:g id="date">%1$s</xliff:g></string>
-
+    <string name="installed_version">Εγκατεστημένη Έκδοση</string>
+    <string name="analyzed_version">Αναλυμένη Έκδοση</string>
+    <string name="same_version">Η ίδια έκδοση εφαρμογής μπορεί να είναι διαφορετική μετά την έκδοση και τη χρήση της συσκευής Android.</string>
+    <string name="learn_more"><u>Μάθετε περισσότερα…</u></string>
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Εχουμε βρει υπογραφές κώδικα των παρακάτω trackers στην εφαρμογή:</string>
     <string name="code_signature_not_found">Δεν έχουμε βρει υπογραφή κώδικα σε κάποιο tracker που γνωρίζουμε στην εφαρμογή.</string>
+    <string name="tracker_info">Ένας ιχνηλάτης είναι ένα κομμάτι λογισμικού που προορίζεται για τη συλλογή δεδομένων σχετικά με εσάς ή τις χρήσεις σας.</string>
     <string name="analyzed">Αυτή η εφαρμογή δεν έχει αναλυθεί ακόμη από το Exodus Privacy.</string>
-
+    <string name="app_restrictions">Το Exodus δεν μπορεί να αναλύσει εφαρμογές που δεν είναι διαθέσιμες στο Google Play ή το FDroid ή σχετίζονται με γεωγραφικούς περιορισμούς ή περιορισμούς λογισμικού.</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Βρήκαμε τα ακόλουθα δικαιώματα στην εφαρμογή:</string>
     <string name="code_permission_not_found">Αυτή η εφαρμογή δεν απαιτεί δικαιώματα.</string>
-
+    <string name="permission_info">Τα δικαιώματα είναι ενέργειες που μπορεί να κάνει η εφαρμογή στο τηλέφωνό σας.</string>
+    <string name="permission_info_dangerous">Το εικονίδιο <font color="red"><b>!</b></font> υποδεικνύει ένα επίπεδο \"Επικίνδυνο\" ή \"Ειδικό\" σύμφωνα με τα επίπεδα προστασίας της Google.</string>
     <!-- Notification -->
+    <string name="updates">Ενημερώσεις</string>
+    <string name="updating_database">Ενημέρωση βάσης δεδομένων αναφορών… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
     <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> εφαρμογή</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> εφαρμογές</item>
+    </plurals>
     <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Άνοιγμα σελίδας ιχνηλάτη</string>
     <string name="detection_rules">Κανόνες Ανίχνευσης</string>
     <string name="code_signature">Κανόνας ανίχνευσης κώδικα:</string>
     <string name="network_signature">Κανόνας ανίχνευσης δικτύου:</string>
-
+    <string name="apps_list">Λίστα εφαρμογών</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Παρόντες σε <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> εφαρμογή) των εφαρμογών σας</item>
+        <item quantity="other">Παρόντες σε <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> εφαρμογές) των εφαρμογών σας</item>
+    </plurals>
     <!-- Dialog Fragment -->
+    <string name="accept">Αποδοχή</string>
+    <string name="reject">Απόρριψη</string>
+    <string name="warning_title">Επιτρέπετε στο Exodus να μεταδώσει τα απαιτούμενα δεδομένα;</string>
+    <string name="warning_desc">Για να εκτελεστεί, αυτή η Εφαρμογή πρέπει να συλλέγει και να στέλνει δεδομένα σε διακομιστές Exodus Privacy που περιλαμβάνουν τη λίστα των εφαρμογών που είναι εγκατεστημένες σε αυτήν τη συσκευή για ανάλυση παρακολούθησης. Δεν περιέχουν προσωπικά στοιχεία.</string>
+    <string name="title_theme">Επιλογή θέματος</string>
+    <string name="dark_theme">Σκοτεινό</string>
+    <string name="light_theme">Φωτεινό</string>
+    <string name="system_theme">Προεπιλογή συστήματος</string>
 </resources>

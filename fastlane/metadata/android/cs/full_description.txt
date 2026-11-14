@@ -1,7 +1,7 @@
-Aplikace Exodus Privacy vám pomůže zjistit, které slídiče a oprávnění jsou vloženy do aplikací nainstalovaných ve vašem zařízení.
+Exodus vám pomůže zjistit, které sledovací prvky a oprávnění jsou vloženy do aplikací nainstalovaných ve vašem zařízení.
 
-Aplikace stahuje zprávy ze služby Exodus Privacy (https://exodus-privacy.eu.org/) a zobrazuje je po jednotlivých aplikacích
+Aplikace stahuje zprávy z platformy εxodus (https://reports.exodus-privacy.eu.org/) a zobrazuje je po jednotlivých aplikacích.
 
-Aplikace může detekovat pouze aplikace nainstalované z obchodu Google Play.
+Tuto aplikaci vyvinula francouzská nezisková organizace Exodus Privacy, navštivte nás na https://exodus-privacy.eu.org/en/.
 
-Zdrojový kód: https://github.com/Exodus-Privacy/exodus-android-app/
+Zdrojový kód: https://github.com/Exodus-Privacy/exodus-android-app

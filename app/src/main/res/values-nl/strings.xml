@@ -1,18 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Applicatielogo</string>
     <string name="trackers">Trackers</string>
     <string name="permissions">Machtigingen</string>
     <string name="not_connected">Geen internetverbinding</string>
     <string name="settings">Instellingen</string>
-    <string name="version_mismatch">Geïnstalleerde versie &lt;&gt; Geanalyseerde versie</string>
-    <string name="version_unavailable">App nooit geanalyseerd</string>
+    <string name="version_mismatch">De geanalyseerde versie verschilt van de geïnstalleerde versie.</string>
+    <string name="version_unavailable">Deze app is nog niet geanalyseerd door Exodus Privacy.</string>
     <string name="refresh">Vernieuwen</string>
     <string name="cancel">Annuleren</string>
     <string name="title_apps">Apps</string>
     <string name="title_trackers">Trackers</string>
     <string name="title_about">Over ons</string>
     <string name="nothing_here">Nog niets te zien. Scrol naar beneden om te vernieuwen!</string>
-    <string name="back_button">Back</string>
+    <string name="back_button">Terug</string>
     <!-- Menu -->
     <string name="menu_action_search">Zoeken</string>
     <string name="menu_action_filter">Sorteren op</string>
@@ -21,7 +22,9 @@
     <string name="sort_by_creation_date">Aanmaakdatum</string>
     <!-- Apps Fragment -->
     <string name="fetching_apps">Bijwerken van rapporten!</string>
+    <string name="no_search_results">Er zijn geen apps die overeenkomen met je zoekopdracht.</string>
     <!-- About Fragment -->
+    <string name="appLanguage">Taal</string>
     <string name="chooseTheme">Thema</string>
     <string name="analyze_desc">Een nieuwe analyse uitvoeren</string>
     <string name="alternatives">Wat nu?</string>
@@ -33,6 +36,7 @@
     <string name="privPolicy_desc">Lees hoe wij met uw gegevens omgaan</string>
     <string name="email">Mail</string>
     <string name="email_desc">Contacteer ons via e-mail</string>
+    <string name="mastodon_desc">Blijf op de hoogte van het Exodus Privacy project</string>
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Open op Exodus Privacy</string>
     <string name="submit_app">App indienen</string>
@@ -40,7 +44,7 @@
     <string name="open_app_info">App instellingen</string>
     <string name="version">Versie</string>
     <string name="report_date">Rapport aangemaakt op <xliff:g id="date">%1$s</xliff:g></string>
-    <string name="updated">&#160;en bijgewerkt op <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;en bijgewerkt op<xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Geïnstalleerde versie</string>
     <string name="analyzed_version">Geanalyseerde versie</string>
     <string name="same_version">Dezelfde app-versie kan verschillen naargelang de gebruikte Android-versie en het toestel.</string>
@@ -50,6 +54,7 @@
     <string name="code_signature_not_found">We hebben geen handtekening gevonden van een tracker die we kennen in de applicatie.</string>
     <string name="tracker_info">Een tracker is een stukje software dat bedoeld is om gegevens over u of uw gebruik te verzamelen.</string>
     <string name="analyzed">Deze app is nog niet geanalyseerd door Exodus Privacy.</string>
+    <string name="app_restrictions">Exodus kan geen toepassingen analyseren die niet beschikbaar zijn op Google Play of FDroid of die gekoppeld zijn aan geografische of softwarebeperkingen.</string>
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">We hebben de volgende machtigingen in de toepassing gevonden:</string>
     <string name="code_permission_not_found">Deze toepassing vereist geen machtigingen.</string>

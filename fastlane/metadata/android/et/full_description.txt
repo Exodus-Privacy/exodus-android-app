@@ -1,0 +1,7 @@
+Exodus aitab sul teada saada missuguseid õigusi kasutavad sinu nutiseadmes leiduvad rakendused ning mis jälitajad neis leidub.
+
+See rakendus laadib andmed εxodus'e veebiliidesest (https://reports.exodus-privacy.eu.org/) ja kuvab sulle tulemusi rakenduste kaupa.
+
+Selle rakenduse arendajaks on Prantsusmaal registreeritud mittetulundusühing Exodus Privacy ning tema tegevuse kohta leiad teavet veebisaidist https://exodus-privacy.eu.org/en/.
+
+Lähtekood: https://github.com/Exodus-Privacy/exodus-android-app

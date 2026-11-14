@@ -1,1 +1,1 @@
-Tracker und Berechtigungen anderer installierter Apps anzeigen
+Exodus zobrazuje sledovací prvky a oprávnění v aplikacích nainstalovaných v zařízení.

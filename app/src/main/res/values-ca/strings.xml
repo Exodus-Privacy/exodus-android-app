@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_logo">Logo de l\'aplicació</string>
     <string name="trackers">Rastrejadors</string>
@@ -13,21 +14,18 @@
     <string name="title_about">Quant a</string>
     <string name="nothing_here">No hi ha res a mostrar. Podeu fer scroll per a refrescar!</string>
     <string name="back_button">Esquena</string>
-
     <!-- Menu -->
     <string name="menu_action_search">Cerca</string>
     <string name="menu_action_filter">Filtre</string>
-
     <!-- Filters -->
     <string name="sort_by_name">Nom</string>
     <string name="sort_by_creation_date">Data de creació</string>
-
     <!-- Apps Fragment -->
     <string name="fetching_apps">S\'està actualitzant la base de dades d\'informes!</string>
-
     <!-- About Fragment -->
     <string name="appLanguage">Llenguatge</string>
     <string name="chooseTheme">Tema</string>
+    <string name="analyze_desc">Torna a analitzar</string>
     <string name="alternatives">I ara què?</string>
     <string name="alternatives_desc">Hi ha algunes alternatives!</string>
     <string name="website">Lloc web</string>
@@ -37,7 +35,6 @@
     <string name="privPolicy_desc">Sapieu com gestionem les vostre dades</string>
     <string name="email">Correu electrònic</string>
     <string name="email_desc">Contacteu amb nosaltres per correu electrònic</string>
-
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Obre amb Exodus Privacy</string>
     <string name="submit_app">Enviar aplicació</string>
@@ -48,38 +45,37 @@
     <string name="updated">&#160;i actualitzat el <xliff:g id="date">%1$s</xliff:g></string>
     <string name="installed_version">Versió instal·lada</string>
     <string name="analyzed_version">Versió analitzada</string>
+    <string name="same_version">La mateixa versió de l\'aplicació pot ser diferent depenent de la versió d\'Android i del dispositiu emprat.</string>
     <string name="learn_more"><u>Apreneu-ne més</u></string>
-
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Hem trobat la signatura del codi dels següents rastrejadors a l\'aplicació:</string>
     <string name="code_signature_not_found">No hem trobat cap signatura de codi de cap rastrejador que coneguem a l\'aplicació.</string>
     <string name="tracker_info">Un rastrejador és un programa que recull dades sobre vós i els vostres hàbits.</string>
     <string name="analyzed">Aquesta aplicació no ha estat analitzada encara per Exodus Privacy.</string>
-
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Hem trobat els permisos següents a l\'aplicació:</string>
     <string name="code_permission_not_found">Aquesta aplicació no requereix cap permís.</string>
     <string name="permission_info">Els permisos indiquen què pot fer l\'aplicació en el vostre telèfon.</string>
-
+    <string name="permission_info_dangerous">La icona <font color="red"><b>!</b></font> indica un nivell «especial» o «perillós» d\'acord als nivells de protecció de Google.</string>
     <!-- Notification -->
     <string name="updates">Actualitzacions</string>
-
+    <string name="updating_database">Ara s\'actualitza la base de dades d\'informes… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> app</item>
         <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> apps</item>
     </plurals>
-
     <!-- TrackersDetail Fragment -->
-    <string name="open_tracker_page">Open tracker page</string>
+    <string name="open_tracker_page">Obre la pàgina de rastrejadors</string>
     <string name="detection_rules">Regles de detecció</string>
     <string name="code_signature">Regla de detecció de codi:</string>
     <string name="network_signature">Regla de detecció de xarxa:</string>
     <string name="apps_list">Llista d\'aplicacions</string>
-
     <!-- Dialog Fragment -->
     <string name="accept">Accepta</string>
     <string name="reject">Rebutja</string>
+    <string name="warning_title">Voleu permetre que Exodus transmeti les dades requerides?</string>
+    <string name="warning_desc">Per tal d\'executar-se, aquesta aplicació ha d\'arreplegar i trametre dades als servidors d\'Exodus Privacy incloent-hi la llista d\'aplicacions instal·lades en aquest dispositiu per a l\'anàlisi de rastrejadors. Aquestes dades no contenen informació personal.</string>
     <string name="title_theme">Trieu un tema</string>
     <string name="dark_theme">Fosc</string>
     <string name="light_theme">Clar</string>

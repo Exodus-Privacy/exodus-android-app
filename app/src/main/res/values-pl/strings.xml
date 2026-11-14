@@ -14,18 +14,14 @@
     <string name="title_about">O Aplikacji</string>
     <string name="nothing_here">Obecnie nic do wyświetlenia. Możesz ciągnąć aby odświeżyć!</string>
     <string name="back_button">Powrót</string>
-
     <!-- Menu -->
     <string name="menu_action_search">Szukaj</string>
     <string name="menu_action_filter">Filtr</string>
-
     <!-- Filters -->
     <string name="sort_by_name">Nazwa</string>
     <string name="sort_by_creation_date">Data stworzenia</string>
-
     <!-- Apps Fragment -->
     <string name="fetching_apps">Aktualizowanie bazy raportów!</string>
-
     <!-- About Fragment -->
     <string name="appLanguage">Język</string>
     <string name="chooseTheme">Motyw</string>
@@ -40,7 +36,6 @@
     <string name="email">E-mail</string>
     <string name="email_desc">Skontaktuj się z nami przez e-mail</string>
     <string name="mastodon_desc">Bądź na bieżąco z projektem Exodus Privacy</string>
-
     <!-- AppDetail Fragment -->
     <string name="open_exodus_page">Otwórz na prywatności Exodus</string>
     <string name="submit_app">Prześlij aplikację</string>
@@ -53,23 +48,19 @@
     <string name="analyzed_version">Analizowana wersja</string>
     <string name="same_version">Ta sama wersja aplikacji może być inna niż używana po wersji Androida i urządzeniu.</string>
     <string name="learn_more"><u>Dowiedz się więcej…</u></string>
-
     <!-- ADTrackers Fragment -->
     <string name="code_signature_found">Znaleźliśmy w tej aplikacji ślady następujących skryptów śledzących:</string>
     <string name="code_signature_not_found">Nie znaleźliśmy w tej aplikacji śladów żadnego znanego nam skryptu śledzącego.</string>
     <string name="tracker_info">Śledzenie to oprogramowanie przeznaczone do zbierania danych o Tobie lub o twoim użyciu.</string>
     <string name="analyzed">Ta aplikacja nie została jeszcze przeanalizowana przez Exodus Privacy.</string>
-
     <!-- ADPermissions Fragment -->
     <string name="code_permission_found">Znaleźliśmy następujące uprawnienia udzielone aplikacji:</string>
     <string name="code_permission_not_found">Ta aplikacja nie wymaga żadnych uprawnień.</string>
     <string name="permission_info">Uprawnienia to akcje, które aplikacja może wykonać na telefonie.</string>
     <string name="permission_info_dangerous">Ikona <font color="red"><b>!</b></font> oznacza poziom \'Niebezpieczeństwo\' lub \'Specjalny\' zgodnie z poziomami ochrony Google.</string>
-
     <!-- Notification -->
     <string name="updates">Aktualizacje</string>
     <string name="updating_database">Aktualizowanie bazy raportów… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
-
     <!-- Trackers Fragment -->
     <plurals name="trackers_status">
         <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacja</item>
@@ -77,7 +68,6 @@
         <item quantity="many"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacji</item>
         <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikacji</item>
     </plurals>
-
     <!-- TrackersDetail Fragment -->
     <string name="open_tracker_page">Otwórz stronę trackera</string>
     <string name="detection_rules">Reguły wykrywania</string>
@@ -90,7 +80,6 @@
         <item quantity="many">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
         <item quantity="other">Present in <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) of your applications</item>
     </plurals>
-
     <!-- Dialog Fragment -->
     <string name="accept">Akceptuj</string>
     <string name="reject">Odrzuć</string>

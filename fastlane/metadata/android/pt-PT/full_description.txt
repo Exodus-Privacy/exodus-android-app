@@ -1,7 +1,7 @@
-O Exodus Privacy ajuda a saber quais os rastreadores e permissões são incorporados em aplicações instaladas no seu dispositivo.
+O Exodus ajuda a saber os rastreadores e permissões que estão incorporadas nas aplicações instaladas no seu dispositivo.
 
-A aplicação descarrega relatórios do Exodus Privacy (https://exodus-privacy.eu.org/) e mostra-os por cada aplicação instalada
+A aplicação descarrega relatórios da plataforma Exodus (https://reports.exodus-privacy.eu.org/) e mostra-os em cada aplicação instalada.
 
-A aplicação só pode detetar aplicações instaladas a partir da loja do Google Play.
+Esta aplicação é desenvolvida pela organização francesa sem fins lucrativos Exodus Privacy. Visite-nos em https://exodus-privacy.eu.org/en/.
 
-Código-fonte: https://github.com/Exodus-Privacy/exodus-android-app/
+Código-fonte: https://github.com/Exodus-Privacy/exodus-android-app

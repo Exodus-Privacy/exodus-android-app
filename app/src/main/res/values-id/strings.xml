@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Logo Aplikasi</string>
+    <string name="trackers">Pelacak</string>
+    <string name="permissions">Izin</string>
+    <string name="not_connected">Tidak Ada Koneksi Internet</string>
+    <string name="settings">Pengaturan</string>
+    <string name="version_mismatch">Versi yang dianalisis berbeda dari versi yang diinstal.</string>
+    <string name="version_unavailable">Aplikasi ini belum dianalisis oleh Exodus Privacy.</string>
+    <string name="refresh">Segarkan</string>
+    <string name="cancel">Batal</string>
+    <string name="title_apps">Aplikasi</string>
+    <string name="title_trackers">Pelacakan</string>
+    <string name="title_about">Tentang</string>
+    <string name="nothing_here">Tidak ada yang ditampilkan saat ini. Anda dapat menarik untuk menyegarkan!</string>
+    <string name="back_button">Kembali</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Cari</string>
+    <string name="menu_action_filter">Filter</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Nama</string>
+    <string name="sort_by_creation_date">Tanggal Pembuatan</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Memperbarui database laporan!</string>
+    <string name="no_search_results">Aplikasi yang anda cari tidak cocok dalam kueri pencarian.</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">Bahasa</string>
+    <string name="chooseTheme">Tema</string>
+    <string name="analyze_desc">Melakukan analisis baru</string>
+    <string name="alternatives">Apa selanjutnya?</string>
+    <string name="alternatives_desc">Beberapa alternatif tersedia!</string>
+    <string name="website">Situs Web</string>
+    <string name="website_desc">Temukan informasi lebih lanjut tentang proyek Privasi Exodus</string>
+    <string name="srcCode_desc">Laporkan bug, lihat kode sumber</string>
+    <string name="privPolicy">Privacy Policy</string>
+    <string name="privPolicy_desc">Pelajari bagaimana kami menangani data Anda</string>
+    <string name="email">Surat</string>
+    <string name="email_desc">Hubungi kami melalui email</string>
+    <string name="mastodon_desc">Selalu ikuti perkembangan terbaru tentang proyek Privasi Exodus</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Pembukaan pada Privasi Exodus</string>
+    <string name="submit_app">Masukkan Aplikasi</string>
+    <string name="open_store">Buka Toko</string>
+    <string name="open_app_info">Pengaturan Aplikasi</string>
+    <string name="version">Versi</string>
+    <string name="report_date">Laporan dibuat pada <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160; dan diperbarui pada <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Versi yang terpasang</string>
+    <string name="analyzed_version">Versi yang Dianalisis</string>
+    <string name="same_version">Versi aplikasi yang sama mungkin berbeda sesuai dengan versi Android dan perangkat yang digunakan.</string>
+    <string name="learn_more"><u>Pelajari lebih lanjut...</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Kami telah menemukan tanda kode pelacak berikut pada aplikasi ini:</string>
+    <string name="code_signature_not_found">Kami belum menemukan tanda kode dari pelacak yang kami ketahui di aplikasi ini.</string>
+    <string name="tracker_info">Pelacak adalah perangkat lunak yang dimaksudkan untuk mengumpulkan data tentang Anda atau penggunaan Anda.</string>
+    <string name="analyzed">Aplikasi ini belum dianalisis oleh Exodus Privacy.</string>
+    <string name="app_restrictions">Exodus tidak dapat menganalisis aplikasi yang tidak tersedia di Google Play atau FDroid atau yang terkait dengan pembatasan geografis atau perangkat lunak.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Kami telah menemukan izin berikut pada aplikasi ini:</string>
+    <string name="code_permission_not_found">Aplikasi ini tidak membutuhkan izin apa pun.</string>
+    <string name="permission_info">Perizinan adalah tindakan yang dapat dilakukan aplikasi pada ponsel Anda.</string>
+    <string name="permission_info_dangerous">Tanda <font color="red"><b>!</b></font> tersebut menunjukkan tingkat \'Berbahaya\' atau \'Khusus\' menurut tingkat perlindungan Google.</string>
+    <!-- Notification -->
+    <string name="updates">Pembaruan</string>
+    <string name="updating_database">Memperbarui basis data laporan... (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="other">1
+<xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikasi
+Lainnya
+<xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> aplikasi</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Buka pelacakan aplikasi</string>
+    <string name="detection_rules">Aturan Pendeteksian</string>
+    <string name="code_signature">Aturan pendeteksian kode:</string>
+    <string name="network_signature">Aturan pendeteksian jaringan:</string>
+    <string name="apps_list">List Aplikasi</string>
+    <plurals name="trackers_presence">
+        <item quantity="other">Hadir dalam <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> app) dari aplikasi Anda
+Lainnya
+Hadir dalam <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> apps) dari aplikasi Anda</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">Terima</string>
+    <string name="reject">Tolak</string>
+    <string name="warning_title">Izinkan Exodus mengirimkan data yang diperlukan?</string>
+    <string name="warning_desc">Agar dapat berjalan, Aplikasi ini harus mengumpulkan dan mengirimkan data ke server Exodus Privacy yang mencakup daftar aplikasi yang diinstal pada perangkat ini untuk analisis pelacak. Data ini tidak mengandung informasi pribadi apa pun.</string>
+    <string name="title_theme">Pilih Tema</string>
+    <string name="dark_theme">Gelap</string>
+    <string name="light_theme">Terang</string>
+    <string name="system_theme">Bawaan Sistem</string>
+</resources>

@@ -1,1 +1,1 @@
-Mostra rastreadores e permissões das aplicações instaladas
+O Exodus mostra rastreadores e permissões em aplicações instaladas no seu dispositivo.

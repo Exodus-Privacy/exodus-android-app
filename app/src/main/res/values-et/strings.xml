@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Rakenduse logo</string>
+    <string name="trackers">jälitajat</string>
+    <string name="permissions">õigust</string>
+    <string name="not_connected">Internetiühendus puudub</string>
+    <string name="settings">Seadistused</string>
+    <string name="version_mismatch">Analüüsitud versioon on erinev sinu nutiseadmesse paigaldatud versioonist.</string>
+    <string name="version_unavailable">Exodus Privacy pole seda rakendust veel analüüsinud.</string>
+    <string name="refresh">Uuenda andmeid</string>
+    <string name="cancel">Katkesta</string>
+    <string name="title_apps">Rakendused</string>
+    <string name="title_trackers">Jälitajad</string>
+    <string name="title_about">Rakenduse teave</string>
+    <string name="nothing_here">Mitte midagi pole võimalik näidata. Andmete uuendamiseks viipa ülevalt alla!</string>
+    <string name="back_button">Tagasi</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Otsing</string>
+    <string name="menu_action_filter">Järjestamise alus</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Nimi</string>
+    <string name="sort_by_creation_date">Loomise kuupäev</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Uuendame aruannete andmekogu!</string>
+    <string name="no_search_results">Sinu otsingutingimustele ei vasta ühtegi rakendust.</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">Keel</string>
+    <string name="chooseTheme">Kujundus</string>
+    <string name="analyze_desc">Tee mõnele rakendusele uus analüüs</string>
+    <string name="alternatives">Mida sa saad teha järgmiseks?</string>
+    <string name="alternatives_desc">Leidub mitmeid altrenatiive!</string>
+    <string name="website">Veebisait</string>
+    <string name="website_desc">Siit leiad lisateavet projekti Exodus Privacy kohta</string>
+    <string name="srcCode_desc">Teata vigadest, tee ettepanekuid ja tutvu lähtekoodiga</string>
+    <string name="privPolicy">Privaatsusreeglid</string>
+    <string name="privPolicy_desc">Lisateave selle kohta, kuidas me sinu andmeid töötleme</string>
+    <string name="email">E-post</string>
+    <string name="email_desc">Suhtle meiega e-posti vahendusel</string>
+    <string name="mastodon_desc">Viimased uudised Exodus Privacy projekti kohta</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Ava Exodus Privacy saidis</string>
+    <string name="submit_app">Lisa rakendus</string>
+    <string name="open_store">Ava rakendustepood</string>
+    <string name="open_app_info">Rakenduse seadistused</string>
+    <string name="version">Versioon</string>
+    <string name="report_date">Aruanne on loodud <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated">&#160;ja uuendatud <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="installed_version">Paigaldatud versioon</string>
+    <string name="analyzed_version">Analüüsitud versioon</string>
+    <string name="same_version">Sama rakendus võib sõltuvalt kasutatavast Androidi versioonist ja nutiseadmest olla erinev.</string>
+    <string name="learn_more"><u>Lisateave…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Me tuvastasime sellest rakendusest järgnevate jälitajate koodimustri:</string>
+    <string name="code_signature_not_found">Me ei tuvastanud sellest rakendusest mitte ühegi meile teadaoleva jälitaja koodimustrit.</string>
+    <string name="tracker_info">Jälitaja on tarkvaralahendus, mille eesmärgiks on koguda teavet sinu ja/või sinu nutiseadme kasutuse kohta.</string>
+    <string name="analyzed">Exodus Privacy pole seda rakendust veel analüüsinud.</string>
+    <string name="app_restrictions">Exodus Privacy ei saa analüüsida ralendusi, mis ei leidi u Google Play või FDroidi rakendustepoes ega neid, kus on geograafilisi või tarkvaralisi piiranguid.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Me oleme tuvastanud, et rakendus üritab kasutada alljärgnevaid õigusi:</string>
+    <string name="code_permission_not_found">See rakendus ei vaja üldse õigusi.</string>
+    <string name="permission_info">Õigused on tegevused, mida rakendus saab sinu nutiseadmes teha.</string>
+    <string name="permission_info_dangerous"><font color="red"><b>!</b></font> ikoon märgib, et tegemist on Google\'i turvareeglite järgi „Ohtlik“ või „Spetsiaalne“ tasemel õigustega.</string>
+    <!-- Notification -->
+    <string name="updates">Uuendused</string>
+    <string name="updating_database">Uuendame aruannete andmekogu… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> rakendus</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g>%% | <xliff:g id="apps">%2$d</xliff:g> rakendust</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Ava jälitajate leht</string>
+    <string name="detection_rules">Tuvastamise reeglid</string>
+    <string name="code_signature">Jälitaja on tuvastatud rakenduse koodist alljärgneva reegli alusel:</string>
+    <string name="network_signature">Jälitaja on tuvastatud rakenduse võrguühendustest alljärgneva reegli alusel:</string>
+    <string name="apps_list">Rakenduste loend</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Leidub <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> rakendus) sinu rakendustest</item>
+        <item quantity="other">Leidub <xliff:g id="percentage">%1$d</xliff:g>%% (<xliff:g id="apps">%2$d</xliff:g> rakendust) sinu rakendustest</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">Nõustu</string>
+    <string name="reject">Keeldu</string>
+    <string name="warning_title">Kas lubad Exodusel andmed koguda ja edastada?</string>
+    <string name="warning_desc">Selleks, et see rakendus saaks toimida, peab ta sinu nutiseadmest koguma andmeid, sealhulgas paigaldatud rakenduste loendi ning edastama selle edaspidiseks jälitajate tuvastamiseks vajalikuks analüüsiks Exodus Privacy serveritesse. Edastatud andmete hulgas pole sinu isiklikke andmeid.</string>
+    <string name="title_theme">Vali kujundus</string>
+    <string name="dark_theme">Tume teema</string>
+    <string name="light_theme">Hele teema</string>
+    <string name="system_theme">Süsteemi teema</string>
+</resources>

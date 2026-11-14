@@ -1,0 +1,1 @@
+Exodus vous indique les pisteurs et les permissions des applications installées sur votre appareil.

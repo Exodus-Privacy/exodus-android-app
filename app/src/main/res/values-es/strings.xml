@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_logo">Logo de la aplicación</string>
+    <string name="trackers">Rastreadores</string>
+    <string name="permissions">Autorizaciones</string>
+    <string name="not_connected">Sin conexión a Internet</string>
+    <string name="settings">Configuración</string>
+    <string name="version_mismatch">.</string>
+    <string name="version_unavailable"></string>
+    <string name="refresh">Actualizar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="title_apps">Aplicaciones</string>
+    <string name="title_trackers">Rastreadores</string>
+    <string name="title_about">Acerca de</string>
+    <string name="nothing_here">No hay nada que mostrar actualmente. Deslice para actualizar.</string>
+    <string name="back_button">Atrás</string>
+    <!-- Menu -->
+    <string name="menu_action_search">Buscar</string>
+    <string name="menu_action_filter">Filtro</string>
+    <!-- Filters -->
+    <string name="sort_by_name">Nombre</string>
+    <string name="sort_by_creation_date">Fecha de creación</string>
+    <!-- Apps Fragment -->
+    <string name="fetching_apps">Se está actualizando la base de datos.</string>
+    <string name="no_search_results">.</string>
+    <!-- About Fragment -->
+    <string name="appLanguage">Idioma</string>
+    <string name="chooseTheme">Tema</string>
+    <string name="analyze_desc">Efectuar análisis nuevo</string>
+    <string name="alternatives">¿Qué sigue?</string>
+    <string name="alternatives_desc">Hay alternativas.</string>
+    <string name="website">Sitio web</string>
+    <string name="website_desc">Conozca más sobre el proyecto Exodus Privacy</string>
+    <string name="srcCode_desc">Informar de defectos y ver el código fuente</string>
+    <string name="privPolicy">Normativa de privacidad</string>
+    <string name="privPolicy_desc">Sepa cómo manejamos sus datos</string>
+    <string name="email">Correo</string>
+    <string name="email_desc">Contáctenos por correo electrónico</string>
+    <string name="mastodon_desc">Mantente informado sobre el proyecto de privacidad de Exodus</string>
+    <!-- AppDetail Fragment -->
+    <string name="open_exodus_page">Abrir en Exodus Privacy</string>
+    <string name="submit_app">Enviar aplicación</string>
+    <string name="open_store">Abrir tienda</string>
+    <string name="open_app_info">Configuración de la aplicación</string>
+    <string name="version">Versión</string>
+    <string name="report_date">Informe creado el <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="updated"></string>
+    <string name="installed_version">Versión instalada</string>
+    <string name="analyzed_version">Versión analizada</string>
+    <string name="same_version">La misma versión de la aplicación puede variar en función de la versión de Android y el dispositivo utilizado.</string>
+    <string name="learn_more"><u>Más información…</u></string>
+    <!-- ADTrackers Fragment -->
+    <string name="code_signature_found">Encontramos en la aplicación una firma de código de los rastreadores siguientes:</string>
+    <string name="code_signature_not_found">No encontramos en la aplicación ninguna firma de código de algún rastreador que conozcamos.</string>
+    <string name="tracker_info">Un rastreador es un sóftwer destinado a recopilar datos sobre usted o sus usos.</string>
+    <string name="analyzed">Exodus Privacy aún no analiza esta aplicación.</string>
+    <!-- ADPermissions Fragment -->
+    <string name="code_permission_found">Encontramos los permisos siguientes en la aplicación:</string>
+    <string name="code_permission_not_found">Esta aplicación no requiere ningún permiso.</string>
+    <string name="permission_info">Los permisos son acciones que la aplicación puede hacer en el teléfono.</string>
+    <string name="permission_info_dangerous">El icono <font color="red"><b>!</b></font> indica un nivel «peligroso» o «especial» según los niveles de protección de Google.</string>
+    <!-- Notification -->
+    <string name="updates">Actualizaciones</string>
+    <string name="updating_database">Actualizando base de datos de informes… (<xliff:g id="currentSize">%1$d</xliff:g>/<xliff:g id="totalSize">%2$d</xliff:g>)</string>
+    <!-- Trackers Fragment -->
+    <plurals name="trackers_status">
+        <item quantity="one"><xliff:g id="percentage">%1$d</xliff:g> %% | <xliff:g id="apps">%2$d</xliff:g> aplicación</item>
+        <item quantity="other"><xliff:g id="percentage">%1$d</xliff:g> %% | <xliff:g id="apps">%2$d</xliff:g> aplicaciones</item>
+    </plurals>
+    <!-- TrackersDetail Fragment -->
+    <string name="open_tracker_page">Abrir página de rastreador</string>
+    <string name="detection_rules">Reglas de detección</string>
+    <string name="code_signature">Regla de detección por código:</string>
+    <string name="network_signature">Regla de detección por red:</string>
+    <string name="apps_list">Lista de aplicaciones</string>
+    <plurals name="trackers_presence">
+        <item quantity="one">Existe en <xliff:g id="percentage">%1$d</xliff:g> %% (<xliff:g id="apps">%2$d</xliff:g> apli) de sus aplicaciones</item>
+        <item quantity="other">Existe en <xliff:g id="percentage">%1$d</xliff:g> %% (<xliff:g id="apps">%2$d</xliff:g> aplis) de sus aplicaciones</item>
+    </plurals>
+    <!-- Dialog Fragment -->
+    <string name="accept">Aceptar</string>
+    <string name="reject">Rechazar</string>
+    <string name="warning_title">¿Quiere permitir que Exodus transmita datos requeridos?</string>
+    <string name="warning_desc">Para ejecutarse, esta aplicación debe recopilar y enviar datos a los servidores de Exodus Privacy tales como la lista de aplicaciones instaladas en este dispositivo para su análisis en busca de rastreadores. No se incluye ningún dato personal.</string>
+    <string name="title_theme">Elija un tema</string>
+    <string name="dark_theme">Oscuro</string>
+    <string name="light_theme">Claro</string>
+    <string name="system_theme">Predeterminado del sistema</string>
+</resources>
