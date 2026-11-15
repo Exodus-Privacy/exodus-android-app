@@ -71,6 +71,10 @@ android {
     packaging {
         resources.excludes.add("META-INF/*")
     }
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
     sourceSets {
         // Adds exported schema location as test app assets.
         getByName("androidTest").assets.directories.add("$projectDir/schemas")
