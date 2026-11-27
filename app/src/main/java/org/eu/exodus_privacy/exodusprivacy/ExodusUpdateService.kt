@@ -30,7 +30,7 @@ import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplicatio
 import org.eu.exodus_privacy.exodusprivacy.manager.database.tracker.TrackerData
 import org.eu.exodus_privacy.exodusprivacy.manager.network.ExodusAPIRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.network.NetworkManager
-import org.eu.exodus_privacy.exodusprivacy.manager.network.data.AppDetails
+import org.eu.exodus_privacy.exodusprivacy.manager.network.data.selectAppDetails
 import org.eu.exodus_privacy.exodusprivacy.manager.packageinfo.ExodusPackageRepository
 import org.eu.exodus_privacy.exodusprivacy.objects.Application
 import javax.inject.Inject
@@ -308,16 +308,9 @@ class ExodusUpdateService : LifecycleService() {
                 Log.d(TAG, "List of remote version codes for ${app.name}\n$remoteVersionCodes")
                 Log.d(TAG, "Local version code for ${app.name}\n$localVersionCode")
 
-                // Look for current installed version in the list, otherwise pick the latest one
-                val currentApp =
-                    appDetailList.filter { it.version_code.toLongOrZero() == app.versionCode }
-
-                // if a matching version code was found, use this as our exodus app
-                val latestExodusApp = if (currentApp.isNotEmpty()) {
-                    currentApp[0]
-                } else { // otherwise use highest number of version codes found
-                    appDetailList.maxByOrNull { it.version_code.toLongOrZero() } ?: AppDetails()
-                }
+                // Pick the report matching the installed app's store and version code, so that
+                // e.g. an F-Droid install isn't shown the Google Play build's trackers.
+                val latestExodusApp = selectAppDetails(appDetailList, localVersionCode, app.source)
 
                 // Create and save app data with proper tracker info
                 val exodusApp = ExodusApplication(
