@@ -5,7 +5,6 @@ import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +40,7 @@ class ADTrackersFragment : Fragment(R.layout.fragment_a_d_sub) {
         _binding = FragmentADSubBinding.bind(view)
 
         val adTrackersStatusRVAdapter = ADStatusRVAdapter(ADStatusType.TRACKERS)
-        val adTrackersRVAdapter = TrackersRVAdapter(true, findNavController().currentDestination!!.id)
+        val adTrackersRVAdapter = TrackersRVAdapter(true, R.id.appDetailFragment)
         val adTrackersInfoRVAdapter = ADInfoRVAdapter(
             listOf(
                 ADInfoItem(

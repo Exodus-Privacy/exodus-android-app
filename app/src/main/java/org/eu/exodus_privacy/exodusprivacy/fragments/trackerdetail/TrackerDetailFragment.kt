@@ -12,7 +12,6 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.chip.Chip
@@ -144,7 +143,7 @@ class TrackerDetailFragment : Fragment(R.layout.fragment_tracker_detail) {
 
         viewModel.appsList.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                val appsRVAdapter = AppsRVAdapter(findNavController().currentDestination!!.id)
+                val appsRVAdapter = AppsRVAdapter(R.id.trackerDetailFragment)
                 binding.appsListTV.visibility = View.VISIBLE
                 binding.appsListRV.apply {
                     visibility = View.VISIBLE
