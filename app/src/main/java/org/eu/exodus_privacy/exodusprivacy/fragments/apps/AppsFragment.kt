@@ -117,7 +117,7 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
     }
 
     private fun setupRecyclerView() {
-        val appsRVAdapter = AppsRVAdapter(findNavController().currentDestination!!.id)
+        val appsRVAdapter = AppsRVAdapter(R.id.appsFragment)
         binding.appListRV.apply {
             adapter = appsRVAdapter
             layoutManager = StaggeredGridLayoutManager(getColumnScreen(context), 1)
