@@ -17,6 +17,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -152,7 +153,6 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
                 binding.swipeRefreshLayout.visibility = View.VISIBLE
                 binding.appListRV.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
-                binding.progress.visibility = View.GONE
                 binding.noAppsFound.visibility = View.GONE
                 (binding.appListRV.adapter as AppsRVAdapter).submitList(list)
             } else {
@@ -170,6 +170,10 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
                 }
             }
             binding.swipeRefreshLayout.visibility = View.VISIBLE
+        }
+
+        ExodusUpdateService.isRunning.asLiveData().observe(viewLifecycleOwner) { running ->
+            binding.progress.isVisible = running
         }
 
         // Preserve the state of the sort menu on orientation change
@@ -208,14 +212,12 @@ class AppsFragment : Fragment(R.layout.fragment_apps), Toolbar.OnMenuItemClickLi
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.swipeRefreshLayout.isRefreshing = false
             updateReports(view.context)
-            binding.progress.visibility = View.VISIBLE
         }
     }
 
     private fun setupUpdateReportsFab(view: View) {
         binding.updateReportsFAB.setOnClickListener {
             updateReports(view.context)
-            binding.progress.visibility = View.VISIBLE
         }
     }
 
