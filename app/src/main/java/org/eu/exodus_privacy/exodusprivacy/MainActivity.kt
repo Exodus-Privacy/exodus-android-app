@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.databinding.ActivityMainBinding
 import org.eu.exodus_privacy.exodusprivacy.fragments.dialog.ExodusDialogFragment
+import org.eu.exodus_privacy.exodusprivacy.manager.storage.ExodusConfig
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -119,21 +121,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startInitial() {
-        viewModel.config.observe(this) { config ->
-            if (config["privacy_policy"]?.enable!! &&
-                !ExodusUpdateService.IS_SERVICE_RUNNING
-            ) {
-                Log.d(
-                    TAG,
-                    "Populating database for the first time.",
-                )
-                val intent = Intent(this, ExodusUpdateService::class.java)
-                intent.apply {
-                    action = ExodusUpdateService.FIRST_TIME_START_SERVICE
-                    startService(this)
+        viewModel.config.observe(
+            this,
+            object : Observer<Map<String, ExodusConfig>> {
+                override fun onChanged(value: Map<String, ExodusConfig>) {
+                    if (!value["privacy_policy"]?.enable!!) return
+                    // The config is emitted again when the activity comes back after some time
+                    // in the background (e.g. the device was locked), so only populate it once
+                    viewModel.config.removeObserver(this)
+                    if (!ExodusUpdateService.IS_SERVICE_RUNNING) {
+                        Log.d(
+                            TAG,
+                            "Populating database for the first time.",
+                        )
+                        val intent = Intent(this@MainActivity, ExodusUpdateService::class.java)
+                        intent.apply {
+                            action = ExodusUpdateService.FIRST_TIME_START_SERVICE
+                            startService(this)
+                        }
+                    }
                 }
-            }
-        }
+            },
+        )
     }
 
     // Hide the bottom navigation bar with animation
