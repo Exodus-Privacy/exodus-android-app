@@ -10,7 +10,6 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.eu.exodus_privacy.exodusprivacy.ExodusUpdateService
@@ -41,7 +40,7 @@ class TrackersFragment : Fragment(R.layout.fragment_trackers) {
         }
 
         val trackersRVAdapter =
-            TrackersRVAdapter(false, findNavController().currentDestination!!.id)
+            TrackersRVAdapter(false, R.id.trackersFragment)
         binding.trackersListRV.apply {
             adapter = trackersRVAdapter
             layoutManager = GridLayoutManager(context, getColumnScreen(context))

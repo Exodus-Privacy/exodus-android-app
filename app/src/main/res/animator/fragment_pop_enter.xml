@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+    <!-- Fade in over 50ms after a 66ms delay. The delay is part of the keyframes because an
+         animator with a start offset does not apply its start value while it waits, so the
+         view would flash at full alpha before fading in. -->
+    <objectAnimator
+        android:duration="116"
+        android:interpolator="@android:anim/linear_interpolator">
+        <propertyValuesHolder
+            android:propertyName="alpha"
+            android:valueType="floatType">
+            <keyframe
+                android:fraction="0"
+                android:value="0" />
+            <keyframe
+                android:fraction="0.56897"
+                android:value="0" />
+            <keyframe
+                android:fraction="1"
+                android:value="1" />
+        </propertyValuesHolder>
+    </objectAnimator>
+    <objectAnimator
+        android:duration="300"
+        android:interpolator="@interpolator/fast_out_extra_slow_in"
+        android:propertyName="scaleX"
+        android:valueFrom="1.1"
+        android:valueTo="1"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="300"
+        android:interpolator="@interpolator/fast_out_extra_slow_in"
+        android:propertyName="scaleY"
+        android:valueFrom="1.1"
+        android:valueTo="1"
+        android:valueType="floatType" />
+</set>
