@@ -24,6 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.eu.exodus_privacy.exodusprivacy.manager.database.ExodusDatabaseRepository
 import org.eu.exodus_privacy.exodusprivacy.manager.database.app.ExodusApplication
@@ -39,7 +42,16 @@ import javax.inject.Inject
 class ExodusUpdateService : LifecycleService() {
 
     companion object {
-        var IS_SERVICE_RUNNING = false
+        private val isRunningState = MutableStateFlow(false)
+
+        // Lets screens follow a refresh that started before they were created
+        val isRunning: StateFlow<Boolean> = isRunningState.asStateFlow()
+
+        var IS_SERVICE_RUNNING: Boolean
+            get() = isRunningState.value
+            private set(value) {
+                isRunningState.value = value
+            }
         const val SERVICE_ID = 1
         const val FIRST_TIME_START_SERVICE = "first_time_start_service"
         const val START_SERVICE = "start_service"
